@@ -22,6 +22,6 @@ class MesesTableSeeder extends Seeder
         \DB::table('meses')->insert(['mes' => 'Septiembre']);
         \DB::table('meses')->insert(['mes' => 'Octubre']);
         \DB::table('meses')->insert(['mes' => 'Noviembre']);
-        \DB::table('meses')->insert(['mes' => 'Dciembre']);
+        \DB::table('meses')->insert(['mes' => 'Diciembre']);
     }
 }

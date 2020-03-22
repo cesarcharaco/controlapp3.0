@@ -6,6 +6,8 @@ use App\Estacionamientos;
 use Illuminate\Http\Request;
 use App\MensualidadE;
 use App\Meses;
+use App\Inmuebles;
+
 class EstacionamientosController extends Controller
 {
     /**
@@ -18,8 +20,9 @@ class EstacionamientosController extends Controller
         $estacionamientos=Estacionamientos::all();
         $anio=date('Y');
         $meses=Meses::all();
+        $inmuebles=Inmuebles::all();
 
-        return view('estacionamientos.index',compact('estacionamientos','anio','meses'));
+        return view('estacionamientos.index',compact('estacionamientos','anio','meses','inmuebles'));
 
     }
 

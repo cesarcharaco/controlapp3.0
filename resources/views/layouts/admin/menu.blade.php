@@ -35,7 +35,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ url('estacionamientos') }}">
                     <i data-feather="share"></i>
                     <span> Estacionamiento </span>
                 </a>
