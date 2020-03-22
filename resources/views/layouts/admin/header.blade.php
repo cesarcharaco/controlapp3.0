@@ -2,7 +2,7 @@
 <div class="navbar navbar-expand flex-column flex-md-row navbar-custom">
     <div class="container-fluid">
         <!-- LOGO -->
-        <a href="/" class="navbar-brand mr-0 mr-md-2 logo">
+        <a href="{{ url('home') }}" class="navbar-brand mr-0 mr-md-2 logo">
             <span class="logo-lg">
                 <img src="{{ asset('assets/images/logo.jpg') }}" alt="" height="70" />
                 <span class="d-inline h5 ml-1 text-logo">EICHE - Control App</span>
