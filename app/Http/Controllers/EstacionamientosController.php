@@ -69,7 +69,7 @@ class EstacionamientosController extends Controller
                     $mensualidad=new MensualidadE();
                     $mensualidad->id_estacionamiento=$estacionamiento->id;
                     $mensualidad->anio=date('Y');
-                    $mensualidad->mes=$key->mes;
+                    $mensualidad->mes=$key->id;
                     $mensualidad->monto=$request->monto[$i];
                     $mensualidad->save();
                     $i++;
@@ -82,7 +82,7 @@ class EstacionamientosController extends Controller
                     $mensualidad=new MensualidadE();
                     $mensualidad->id_estacionamiento=$estacionamiento->id;
                     $mensualidad->anio=$request->anio;
-                    $mensualidad->mes=$key->mes;
+                    $mensualidad->mes=$key->id;
                     $mensualidad->monto=$request->monto;
                     $mensualidad->save();
                     }
