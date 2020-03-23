@@ -49,6 +49,7 @@ class EstacionamientosController extends Controller
     {
         //dd($request->all());
         $buscar=Estacionamientos::where('idem',$request->idem)->get();
+        $meses=Meses::all();
         if (count($buscar)>0) {
             flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
             return redirect()->back();
@@ -57,28 +58,33 @@ class EstacionamientosController extends Controller
             $estacionamiento->idem=$request->idem;
             $estacionamiento->status=$request->status;
             $estacionamiento->save();
+            $m=date('m');
 
             if ($request->opcion==1) {
                 # mensual
-                for($i=0;$i<12;$i++) {
+                $i=0;
+                foreach ($meses as $key) {
+                    if($key->id>=$m){
                     $mensualidad=new MensualidadE();
                     $mensualidad->id_estacionamiento=$estacionamiento->id;
                     $mensualidad->anio=date('Y');
-                    $mensualidad->mes=$request->mes[$i];
+                    $mensualidad->mes=$key->mes;
                     $mensualidad->monto=$request->monto[$i];
                     $mensualidad->save();
+                    $i++;
+                    }
                 }
             } else {
                 # anual
-                $meses=Meses::all();
                 foreach ($meses as $key) {
-                    # code...
+                    if($key->id>=$m){
                     $mensualidad=new MensualidadE();
                     $mensualidad->id_estacionamiento=$estacionamiento->id;
                     $mensualidad->anio=$request->anio;
                     $mensualidad->mes=$key->mes;
                     $mensualidad->monto=$request->monto;
                     $mensualidad->save();
+                    }
                 }
                 
             }
