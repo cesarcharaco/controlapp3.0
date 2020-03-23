@@ -63,7 +63,8 @@
 
     </div>
 
-    <form method="POST">
+    <form action="{{ route('estacionamientos.store') }}" method="POST">
+        @csrf
                 <div class="modal fade" id="crearEstacionamiento" role="dialog">
                     <div class="modal-dialog modals-default">
                         <div class="modal-content">
@@ -77,7 +78,7 @@
                                 <div class="row">
 		                            <div class="col-md-12">
 		                                <div class="form-group">
-		                                    <input type="text" v-model="idem" name="idem" placeholder="Idem del estacionamiento" class="form-control">
+		                                    <input type="text" v-model="idem" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
 		                                </div>
 		                            </div>
 		                        </div>
@@ -87,8 +88,8 @@
                                         <div class="form-group">
                                             <label>Estado del estacionamiento</label>
                                             <select name="status" class="form-control" required placeholder="Introduzca el status del estacionamiento">
-                                                <option value="Libre" selected>Libre</option>
-                                                <option value="Ocupado" selected>Ocupado</option>
+                                                <option value="Libre" selected="selected">Libre</option>
+                                                <option value="Ocupado" >Ocupado</option>
                                             </select>
                                         </div>
                                     </div>

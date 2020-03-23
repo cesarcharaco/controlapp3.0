@@ -47,26 +47,40 @@ class EstacionamientosController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $buscar=Estacionamientos::where('idem',$request->idem)->get();
-
         if (count($buscar)>0) {
             flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
             return redirect()->back();
         } else {
-            
             $estacionamiento=new Estacionamientos();
             $estacionamiento->idem=$request->idem;
             $estacionamiento->status=$request->status;
             $estacionamiento->save();
 
-            for($i=0;$i<12;$i++) {
-                $mensualidad=new MensualidadE();
-                $mensualidad->id_estacionamiento=$estacionamiento->id;
-                $mensualidad->anio=$request->anio;
-                $mensualidad->mes=$mes[$i];
-                $mensualidad->monto=$request->monto[$i];
-                $mensualidad->save();
+            if ($request->opcion==1) {
+                # mensual
+                for($i=0;$i<12;$i++) {
+                    $mensualidad=new MensualidadE();
+                    $mensualidad->id_estacionamiento=$estacionamiento->id;
+                    $mensualidad->anio=$request->anio;
+                    $mensualidad->mes=$request->mes[$i];
+                    $mensualidad->monto=$request->monto[$i];
+                    $mensualidad->save();
+                }
+            } else {
+                # anual
+                for($i=0;$i<12;$i++) {
+                    $mensualidad=new MensualidadE();
+                    $mensualidad->id_estacionamiento=$estacionamiento->id;
+                    $mensualidad->anio=$request->anio;
+                    $mensualidad->mes=$request->mes[$i];
+                    $mensualidad->monto=$request->monto;
+                    $mensualidad->save();
+                }
             }
+        
+
             flash('Estacionamiento registrado con éxito!')->success()->important();
             return redirect()->to('estacionamientos');
         }
