@@ -104,7 +104,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Enero" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Enero" name="mes[]" id="meses1" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -113,7 +113,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses1" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -127,7 +127,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Febrero" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Febrero" name="mes[]" id="meses2" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -136,7 +136,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses2" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -150,7 +150,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Marzo" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Marzo" name="mes[]" id="meses3" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -159,7 +159,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses3" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -173,7 +173,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Abril" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Abril" name="mes[]" id="meses4" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -182,7 +182,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses4" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -196,7 +196,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Mayo" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Mayo" name="mes[]" id="meses5" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -205,7 +205,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses5" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -219,7 +219,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Junio" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Junio" name="mes[]" id="meses6" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -228,7 +228,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses6" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -242,7 +242,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Julio" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Julio" name="mes[]" id="meses7" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -251,7 +251,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses7" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -265,7 +265,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Agosto" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Agosto" name="mes[]" id="meses8" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -274,7 +274,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses8" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -288,7 +288,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Septiembre" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Septiembre" name="mes[]" id="meses9" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -297,7 +297,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses9" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -311,7 +311,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Octubre" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Octubre" name="mes[]" id="meses10" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -320,7 +320,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses10" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -334,7 +334,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Noviembre" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Noviembre" name="mes[]" id="meses11" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -343,7 +343,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses11" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -357,7 +357,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Diciembre" name="mes[]" class="form-control-plaintext">
+                                                                                <input type="text" disabled="disabled" value="Diciembre" name="mes[]" id="meses12" class="form-control-plaintext">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -366,7 +366,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" class="form-control" placeholder="Monto">
+                                                                                    <input type="number" name="monto[]" id="montoMeses12" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -375,20 +375,6 @@
                                                                         </div>
                                                                     </div>
                                                                 @endif
-                                                                <!-- <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <select type="text" name="anio" placeholder="Inmueble" class="form-control">
-                                                                                <option value="" disabled="" selected="">Especifique el año</option>
-                                                                                <option value="2020">2020</option>
-                                                                                <option value="2021">2021</option>
-                                                                                <option value="2022">2022</option>
-                                                                                <option value="2023">2023</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div> -->
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -405,8 +391,13 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label>Año actual</label>
-                                                                            <input type="number" disabled="disabled" value="{{date('Y')}}" name="anio" class="form-control-plaintext">
+                                                                            <label>Especifique el año para el monto</label>
+                                                                            <select name="anio" id="anio2" class="form-control" disabled>
+                                                                                <?php $anio=date('Y');?>
+                                                                                @for($i=0; $i<10; $i++)
+                                                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                                                @endfor
+                                                                            </select>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -418,7 +409,7 @@
                                                                                 <div class="input-group-prepend">
                                                                                     <div class="input-group-text">$</div>
                                                                                 </div>
-                                                                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Monto">
+                                                                                <input type="text" name="monto" class="form-control" id="montoAnio" placeholder="10" disabled>
                                                                                 <div class="input-group-prepend">
                                                                                     <div class="input-group-text">.00</div>
                                                                                 </div>
@@ -510,13 +501,27 @@
 <script type="text/javascript">
 
     function opcion(opcion) {
+        var f = new Date();
+        var anio=f.getFullYear();
+        var mes=['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
         $('#opcion').val(opcion);
-    }
-    function editar(argument) {
-        // body...
-    }
 
-    function eliminar(argument) {
-        // body...
+        if (opcion==2) {
+            for (var i = 0; i < 13; i++) {
+                $('#meses'+i).prop('disabled',true).val(null).prop('required',false);
+                $('#montoMeses'+i).prop('disabled',true).val(null).prop('required',false);
+            }
+            $('#anio2').prop('disabled',false).val(anio).prop('required',true);
+            $('#montoAnio').prop('disabled',false).prop('required',true);
+        } else {
+            for (var i = 0; i < 13; i++) {
+                $('#meses'+i).prop('disabled',false).val(mes[i]).prop('required',true);
+                $('#montoMeses'+i).prop('disabled',false).val(null).prop('required',true);
+            }
+            $('#anio2').prop('disabled',true).val(null).prop('required',false);
+            $('#montoAnio').prop('disabled',true).val(null).prop('required',false);
+        }
+
     }
+    
 </script>

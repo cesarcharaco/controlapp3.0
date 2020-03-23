@@ -43,10 +43,10 @@
                         <div>
                             
                             <app></app>
+                            @yield('statusarea')
+                            @yield('breadcomb')
+                            @yield('content')
                         </div>
-                        @yield('statusarea')
-                        @yield('breadcomb')
-                        @yield('content')
                         
                     </div> <!-- container-fluid -->
 
@@ -57,10 +57,10 @@
 
             
         </div>
+    @include('layouts.admin.footer')
     </div>
     
 
-    @include('layouts.admin.footer')
     <!-- Scripts -->
         @include('layouts.scripts')
     @section('scripts')
