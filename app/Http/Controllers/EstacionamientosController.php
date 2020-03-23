@@ -80,7 +80,7 @@ class EstacionamientosController extends Controller
                     $mensualidad->monto=$request->monto;
                     $mensualidad->save();
                 }
-                }
+                
             }
         
 
