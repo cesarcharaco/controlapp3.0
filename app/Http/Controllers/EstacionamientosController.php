@@ -63,7 +63,7 @@ class EstacionamientosController extends Controller
                 for($i=0;$i<12;$i++) {
                     $mensualidad=new MensualidadE();
                     $mensualidad->id_estacionamiento=$estacionamiento->id;
-                    $mensualidad->anio=$request->anio;
+                    $mensualidad->anio=date('Y');
                     $mensualidad->mes=$request->mes[$i];
                     $mensualidad->monto=$request->monto[$i];
                     $mensualidad->save();
@@ -71,7 +71,7 @@ class EstacionamientosController extends Controller
             } else {
                 # anual
                 $meses=Meses::all();
-                foreach ($variable as $key) {
+                foreach ($meses as $key) {
                     # code...
                     $mensualidad=new MensualidadE();
                     $mensualidad->id_estacionamiento=$estacionamiento->id;
