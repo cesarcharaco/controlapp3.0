@@ -82,6 +82,18 @@
 		                            </div>
 		                        </div>
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Estado del estacionamiento</label>
+                                            <select name="status" class="form-control" required placeholder="Introduzca el status del estacionamiento">
+                                                <option value="Libre" selected>Libre</option>
+                                                <option value="Ocupado" selected>Ocupado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <hr>
                                 <h4>Mensualidad del estacionamiento</h4>
 
