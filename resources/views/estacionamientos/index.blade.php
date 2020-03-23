@@ -117,7 +117,7 @@
                                                                         <div class="row">
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
-                                                                                    <input type="hidden" value="{{$key->id}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
+                                                                                    <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
                                                                                     <label>{{$key->mes}}</label>
                                                                                 </div>
                                                                             </div>

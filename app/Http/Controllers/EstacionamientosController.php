@@ -70,13 +70,16 @@ class EstacionamientosController extends Controller
                 }
             } else {
                 # anual
-                for($i=1;$i<=12;$i++) {
+                $meses=Meses::all();
+                foreach ($variable as $key) {
+                    # code...
                     $mensualidad=new MensualidadE();
                     $mensualidad->id_estacionamiento=$estacionamiento->id;
                     $mensualidad->anio=$request->anio;
-                    $mensualidad->mes=$i;
+                    $mensualidad->mes=$key->mes;
                     $mensualidad->monto=$request->monto;
                     $mensualidad->save();
+                }
                 }
             }
         
