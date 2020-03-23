@@ -110,283 +110,35 @@
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                         <div class="add-todo-list notika-shadow ">
                                                             <div class="card-box">
-
-
-                                                                @if(date('m') <= 1)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Enero" name="mes[]" id="meses1" class="form-control-plaintext">
+                                                                @php $i=0; @endphp
+                                                                @foreach($meses as $key)
+                                                                    @if(date('m') <= $key->id)
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <input type="hidden" value="{{$key->id}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
+                                                                                    <label>{{$key->mes}}</label>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses1" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <div class="input-group mb-2">
+                                                                                        <div class="input-group-prepend">
+                                                                                            <div class="input-group-text">$</div>
+                                                                                        </div>
+                                                                                        <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
+                                                                                        <div class="input-group-prepend">
+                                                                                            <div class="input-group-text">.00</div>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                @endif
+                                                                    @endif
+                                                                    @php $i++; @endphp
+                                                                @endforeach()
 
-                                                                @if(date('m') <= 2)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Febrero" name="mes[]" id="meses2" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses2" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 3)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Marzo" name="mes[]" id="meses3" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses3" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 4)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Abril" name="mes[]" id="meses4" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses4" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 5)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Mayo" name="mes[]" id="meses5" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses5" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 6)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Junio" name="mes[]" id="meses6" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses6" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 7)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Julio" name="mes[]" id="meses7" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses7" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 8)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Agosto" name="mes[]" id="meses8" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses8" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 9)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Septiembre" name="mes[]" id="meses9" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses9" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 10)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Octubre" name="mes[]" id="meses10" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses10" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 11)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Noviembre" name="mes[]" id="meses11" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses11" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                @if(date('m') <= 12)
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <input type="text" disabled="disabled" value="Diciembre" name="mes[]" id="meses12" class="form-control-plaintext">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <div class="input-group mb-2">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">$</div>
-                                                                                    </div>
-                                                                                    <input type="number" name="monto[]" id="montoMeses12" class="form-control" placeholder="10">
-                                                                                    <div class="input-group-prepend">
-                                                                                        <div class="input-group-text">.00</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -515,19 +267,19 @@
     function opcion(opcion) {
         var f = new Date();
         var anio=f.getFullYear();
-        var mes=['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        // var mes=['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
         $('#opcion').val(opcion);
 
         if (opcion==2) {
             for (var i = 0; i < 13; i++) {
-                $('#meses'+i).prop('disabled',true).val(null).prop('required',false);
+                // $('#meses'+i).prop('disabled',true).prop('required',false);
                 $('#montoMeses'+i).prop('disabled',true).val(null).prop('required',false);
             }
             $('#anio2').prop('disabled',false).val(anio).prop('required',true);
             $('#montoAnio').prop('disabled',false).prop('required',true);
         } else {
             for (var i = 0; i < 13; i++) {
-                $('#meses'+i).prop('disabled',false).val(mes[i]).prop('required',true);
+                // $('#meses'+i).prop('disabled',false).prop('required',true);
                 $('#montoMeses'+i).prop('disabled',false).val(null).prop('required',true);
             }
             $('#anio2').prop('disabled',true).val(null).prop('required',false);
