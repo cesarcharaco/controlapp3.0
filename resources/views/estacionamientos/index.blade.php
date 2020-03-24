@@ -57,8 +57,8 @@
 
             </div>
             
-        <form action="{{ route('estacionamientos.update',1033) }}" method="PUT">
-            @csrf
+         {!! Form::open(['route' => ['estacionamientos.update',1], 'method' => 'PUT', 'name' => 'editar_estac', 'id' => 'editar_estac', 'data-parsley-validate']) !!}
+                    @csrf
             <div class="modal fade" id="editarEstacionamiento" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -193,7 +193,7 @@
                         </div>
                     </div>
             </div>
-        </form>
+        {!! Form::close() !!}
         </div>
 
 
