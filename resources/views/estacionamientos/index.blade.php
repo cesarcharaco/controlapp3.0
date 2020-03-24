@@ -109,11 +109,11 @@
 
                             <div class="widget-tabs-list">
                                 <ul class="nav nav-tabs tab-nav-left">
-                                    <li class="active"><a class="active" data-toggle="tab" href="#mes" onclick="opcion(1)">Montos por mes</a></li>
-                                    <li><a data-toggle="tab" href="#anio" onclick="opcion(2)">Montos por año</a></li>
+                                    <li class="active"><a class="active" data-toggle="tab" href="#mes_e" onclick="opcion(1)">Montos por mes</a></li>
+                                    <li><a data-toggle="tab" href="#anio_e" onclick="opcion(2)">Montos por año</a></li>
                                 </ul>
                                 <div class="tab-content tab-custom-st">
-                                    <div id="mes" class="tab-pane fade in active show">
+                                    <div id="mes_e" class="tab-pane fade in active show">
                                         <div class="tab-ctn">
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -125,7 +125,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses_e{{$i}}" class="form-control-plaintext">
+                                                                                <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses_e{{$i+1}}" class="form-control-plaintext">
                                                                                 <label>{{$key->mes}}</label>
                                                                             </div>
                                                                         </div>
@@ -135,7 +135,7 @@
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">$</div>
                                                                                     </div>
-                                                                                    <input type="number" name="monto[]" id="montoMese_e{{$i}}" class="form-control" placeholder="10">
+                                                                                    <input type="number" name="monto[]" id="montoMese_e{{$i+1}}" class="form-control" placeholder="10">
                                                                                     <div class="input-group-prepend">
                                                                                         <div class="input-group-text">.00</div>
                                                                                     </div>
@@ -155,7 +155,7 @@
                                         </div>
                                     </div>
 
-                                    <div id="anio" class="tab-pane fade">
+                                    <div id="anio_e" class="tab-pane fade">
                                         <div class="tab-ctn">
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -186,8 +186,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <input type="text" name="id" id="id_e">
-                                <input type="hidden" name="opcion" id="opcion" value="1">
+                                <input type="hidden" name="id" id="id_e">
+                                <input type="hidden" name="opcion" id="opcion_e" value="1">
                                 <button type="submit" class="btn btn-success" >Guardar</button>
                             </div>
                         </div>
@@ -377,18 +377,30 @@
 
     function editar(id, idem, anio, status) {
 
-        $('#id_e').val(id);
-        $('#idem').val(idem);
-        $('#status_e').val(status);
-        $('#anio2').val(anio);
+        var f = new Date();
+        var m = f.getMonth();
 
         $.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
+            
+            $('#id_e').val(id);
+            $('#idem').val(idem);
+            $('#status_e').val(status);
+            $('#anio2').val(anio);
 
+            for (var i = 0; i < 13; i++) {
+                $('#montoMese_e'+i).empty();
+            }
+            $('#montoAnio_e').empty();
 
-            // $('#meses_e')
-            // $('#montoMese_e')
-            // $('#montoAnio_e')
-
+            if (data.length > 0) {
+                for (var i = 0; i < 13; i++) {
+                    if (data[i].mes >= m) {
+                        $('#montoMese_e'+data[i].mes).val(data[i].monto);
+                        console.log(data[i].mes);
+                        $('#montoAnio_e').val(data[i].monto).prop('disabled',false);
+                    }
+                }
+            }
         });
     }
 
@@ -397,6 +409,7 @@
         var anio=f.getFullYear();
         // var mes=['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
         $('#opcion').val(opcion);
+        $('#opcion_e').val(opcion);
 
         if (opcion==2) {
             for (var i = 0; i < 13; i++) {
@@ -405,7 +418,7 @@
             }
             // $('#anio2').prop('disabled',false).val(anio).prop('required',true);
             $('#montoAnio').prop('disabled',false).prop('required',true);
-        } else {
+        }else {
             for (var i = 0; i < 13; i++) {
                 // $('#meses'+i).prop('disabled',false).prop('required',true);
                 $('#montoMeses'+i).prop('disabled',false).val(null).prop('required',true);

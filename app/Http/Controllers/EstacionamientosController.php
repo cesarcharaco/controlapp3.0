@@ -120,6 +120,11 @@ class EstacionamientosController extends Controller
         return view('estacionamientos.edit',compact('estacionamiento'));
     }
 
+    public function buscar_mensualidad($id, $anio)
+    {
+        return MensualidadE::where('id_estacionamiento', $id)->where('anio',$anio)->get();
+    }
+
     /**
      * Update the specified resource in storage.
      *
