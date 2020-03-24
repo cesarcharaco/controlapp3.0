@@ -169,7 +169,7 @@
                                                                             <div class="input-group-prepend">
                                                                                 <div class="input-group-text">$</div>
                                                                             </div>
-                                                                            <input type="text" name="monto" class="form-control" id="montoAnio_e" placeholder="10" disabled>
+                                                                            <input type="text" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10" disabled>
                                                                             <div class="input-group-prepend">
                                                                                 <div class="input-group-text">.00</div>
                                                                             </div>

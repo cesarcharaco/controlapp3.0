@@ -48,7 +48,7 @@ class EstacionamientosController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
         $buscar=Estacionamientos::where('idem',$request->idem)->where('anio',$request->anio)->get();
         $meses=Meses::all();
         if (count($buscar)>0) {
