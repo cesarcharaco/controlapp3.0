@@ -20,7 +20,7 @@ class EstacionamientosController extends Controller
         $estacionamientos=Estacionamientos::all();
         $anio=date('Y');
         $meses=Meses::all();
-        $mensualidadE=MensualidadE::where('id','<>',0)->groupBy('id_estacionamiento')->get();
+        $mensualidadE=MensualidadE::where('anio','>=',$anio)->groupBy('id_estacionamiento')->get();
         $inmuebles=Inmuebles::all();
 
         return view('estacionamientos.index',compact('estacionamientos','anio','meses','inmuebles','mensualidadE'));

@@ -30,27 +30,27 @@
                     <thead>
                         <tr>
                             <th>Idem</th>
-                            <th>Año</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($estacionamientos as $key)
-                            @foreach($mensualidadE as $key2)
-                                @if($key->id == $key2->id_estacionamiento)
                                     <tr>
                                         <td>{{$key->idem}}</td>
-                                        <td>{{$key2->anio}}</td>
                                         <td>{{$key->status}}</td>
                                         <td>
-                                            <a href="#" data-toggle="modal" data-target="#editarEstacionamiento" onclick="editar('{{$key->id}}','{{$key->idem}}','{{$key2->anio}}','{{$key->status}}')" class="btn btn-warning btn-sm">Editar</a>
+                                            Editar
+                                            @foreach($mensualidadE as $key2)
+                                                @if($key->id == $key2->id_estacionamiento)
+                                                    <a href="#" data-toggle="modal" data-target="#editarEstacionamiento" onclick="editar('{{$key->id}}','{{$key->idem}}','{{$key2->anio}}','{{$key->status}}')" class="btn btn-warning btn-sm">2020</a>
 
+                                                @endif
+                                            @endforeach()
+                                            <hr>
                                             <a href="#" data-toggle="modal" data-target="#eliminarEstacionamiento" onclick="eliminar('{{$key->id}}')" class="btn btn-danger btn-sm">Eliminar</a>
                                         </td>
                                     </tr>
-                                @endif
-                            @endforeach()
                         @endforeach()
                     </tbody>
                 </table>
@@ -69,56 +69,69 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" id="idem" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Estado del estacionamiento</label>
-                                        <select name="status" id="status_e" class="form-control" required placeholder="Introduzca el status del estacionamiento">
-                                            <option value="Libre" selected="selected">Libre</option>
-                                            <option value="Ocupado" >Ocupado</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Especifique el año para los montos</label>
-                                        <select name="anio" id="anio2" class="form-control">
-                                            <?php $anio=date('Y');?>
-                                            @for($i=0; $i<10; $i++)
-                                                <option value="{{$anio++}}">{{$anio-1}}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <hr>
-                            <h4>Mensualidad del estacionamiento</h4>
-
 
                             <div class="widget-tabs-list">
                                 <ul class="nav nav-tabs tab-nav-left">
-                                    <li class="active"><a class="active" data-toggle="tab" href="#mes_e" onclick="opcion(1)">Montos por mes</a></li>
+                                    <li class="active"><a class="active" data-toggle="tab" href="#d_general">Datos Generales</a></li>
+                                    <li><a data-toggle="tab" href="#mes_e" onclick="opcion(1)">Montos por mes</a></li>
                                     <li><a data-toggle="tab" href="#anio_e" onclick="opcion(2)">Montos por año</a></li>
                                 </ul>
                                 <div class="tab-content tab-custom-st">
-                                    <div id="mes_e" class="tab-pane fade in active show">
+
+                                    <div id="d_general" class="tab-pane fade in active show">
                                         <div class="tab-ctn">
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="add-todo-list notika-shadow ">
                                                         <div class="card-box">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Nombre del estacionamiento</label>
+                                                                        <input type="text" id="idem" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Estado del estacionamiento</label>
+                                                                        <select name="status" id="status_e" class="form-control" required placeholder="Introduzca el status del estacionamiento">
+                                                                            <option value="Libre" selected="selected">Libre</option>
+                                                                            <option value="Ocupado" >Ocupado</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Especifique el año para los montos</label>
+                                                                        <select name="anio" id="anio2" class="form-control">
+                                                                            <?php $anio=date('Y');?>
+                                                                            @for($i=0; $i<10; $i++)
+                                                                                <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                                            @endfor
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="mes_e" class="tab-pane fade">
+                                        <div class="tab-ctn">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="add-todo-list notika-shadow ">
+                                                        <div class="card-box">
+                                                            <label>Montos por mes</label>
                                                             @php $i=0; @endphp
                                                             @foreach($meses as $key)
                                                                 @if(date('m') <= $key->id)
@@ -335,7 +348,7 @@
                                                                         <div class="input-group-prepend">
                                                                             <div class="input-group-text">$</div>
                                                                         </div>
-                                                                        <input type="text" name="monto" class="form-control" id="montoAnio" placeholder="10" disabled>
+                                                                        <input type="text" name="montoAnio" class="form-control" id="montoAnio" placeholder="10" disabled>
                                                                         <div class="input-group-prepend">
                                                                             <div class="input-group-text">.00</div>
                                                                         </div>
