@@ -49,10 +49,10 @@
                                 <td>{{$key->status}}</td>
                                 <td>
                                     <select class="form-control" onchange="mensual(this.value,'{{$key->id}}');">
-                                        <option disabled>Seleccionar opción</option>
-                                        <option value="1">Registrar mensualidad</option>
-                                        <option value="2">Editar mensualidad</option>
-                                        <option value="3">Eliminar mensualidad</option>
+                                        <option>Seleccionar opción</option>
+                                        <option value="1">Registrar</option>
+                                        <option value="2">Editar</option>
+                                        <option value="3">Eliminar</option>
                                     </select>                                            
                                 </td>
                             </tr>
