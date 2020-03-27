@@ -29,7 +29,8 @@
                 <table class="table table-hover" id="myTable" width="100%">
                     <thead>
                         <tr>
-                            <th colspan="2">Idem</th>
+                            <th></th>
+                            <th>Idem</th>
                             <th>Status</th>
                             <th>Mensualidades</th>
                         </tr>
@@ -37,13 +38,11 @@
                     <tbody>
                         @foreach($estacionamientos as $key)
                             <tr>
-                                <td>
-                                    <select class="form-control" onchange="select(this.value,'{{$key->id}}','{{$key->idem}}','{{$key->status}}');">
-                                        <option>Seleccionar opción</option>
-                                        <!-- <option value="1">Ver</option> -->
-                                        <option value="2">Editar</option>
-                                        <option value="3">Eliminar</option>
-                                    </select>
+                                <td align="center">
+
+                                    <a href="#" class="btn btn-warning" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="edit"></i></a>
+
+                                    <a href="#" class="btn btn-danger" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
                                 </td>
                                 <td>{{$key->idem}}</td>
                                 <td>{{$key->status}}</td>
@@ -166,7 +165,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id" id="id">
-                            <button type="submit" class="btn btn-danger" >Eliminar</button>
+                            <button type="submit" class="btn btn-danger" style="border-radius: 50px;"><i data-feather="trash-2"></i></button>
                         </div>
                     </div>
                 </div>
@@ -209,7 +208,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="id" id="id_e">
                             <input type="hidden" name="opcion" id="opcion_e" value="1">
-                            <button type="submit" class="btn btn-success" >Guardar</button>
+                            <button type="submit" class="btn btn-warning" style="border-radius: 50px;"><i data-feather="edit"></i></button>
                         </div>
                     </div>
                 </div>
@@ -235,7 +234,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id" id="id">
-                            <button type="submit" class="btn btn-danger" >Eliminar</button>
+                            <button type="submit" class="btn btn-danger" style="border-radius: 50px;"><i data-feather="trash-2"></i></button>
                         </div>
                     </div>
                 </div>
@@ -374,7 +373,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="opcion" id="opcion" value="1">
-                            <button type="submit" class="btn btn-success" >Guardar</button>
+                            <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
                         </div>
                     </div>
                 </div>
