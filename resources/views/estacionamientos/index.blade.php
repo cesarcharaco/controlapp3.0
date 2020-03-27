@@ -40,9 +40,9 @@
                             <tr>
                                 <td align="center">
 
-                                    <a href="#" class="btn btn-warning" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="edit"></i></a>
+                                    <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="edit"></i></a>
 
-                                    <a href="#" class="btn btn-danger" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
+                                    <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
                                 </td>
                                 <td>{{$key->idem}}</td>
                                 <td>{{$key->status}}</td>
