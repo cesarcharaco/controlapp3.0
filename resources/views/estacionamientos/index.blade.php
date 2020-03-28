@@ -471,11 +471,19 @@
 
         $('#selectO').val(0);
         if (accion==1) {
+            $('#SelectAnio1').val(0);
             $('#createMensualidad').modal('show');
+            $('#buttonCreate').empty();
+            $('#createMensuality1').empty();
+            $('#createMensuality2').empty();
             $('#idCreateM').val(id);
             // $('#anioCreateM').val(anio);
         }
         if(accion==2){
+            $('#SelectAnio2').val(0);
+            $('#editMensuality1').empty();
+            $('#editMensuality2').empty();
+            $('#buttonEdit').empty();
             $('#editarMensualidad').modal('show');
             $('#idEditM').val(id);
             // $('#anioEditM').val(anio);
@@ -489,17 +497,6 @@
         }
     }
 
-    function limpiar(){
-        $('#SelectAnio1').val(0);
-    //     $('#anio2').val(0);
-    //     $('#createMensuality2').empty();
-    //     $('#createMensuality1').empty();
-    //     $('#buttonCreate').empty();
-
-    //     $('#editMensuality2').empty();
-    //     $('#editMensuality1').empty();
-    //     $('#buttonEdit').empty();
-    }
 
     function mostrarC(opcion) {
         if (opcion==1) {
@@ -527,8 +524,7 @@
 
     function accionM(accion, anio) {
 
-        limpiar();
-
+        // alert('adasdasad');
         var mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
         var f = new Date();
         var m = f.getMonth()+1;

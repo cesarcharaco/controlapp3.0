@@ -48,7 +48,7 @@ class EstacionamientosController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $buscar=Estacionamientos::where('idem',$request->idem)->get();
         $meses=Meses::all();
         if (count($buscar)>0) {
@@ -79,12 +79,12 @@ class EstacionamientosController extends Controller
                 # anual
                 foreach ($meses as $key) {
                     if($key->id>=$m){
-                    $mensualidad=new MensualidadE();
-                    $mensualidad->id_estacionamiento=$estacionamiento->id;
-                    $mensualidad->anio=$request->anio;
-                    $mensualidad->mes=$key->id;
-                    $mensualidad->monto=$request->monto;
-                    $mensualidad->save();
+                        $mensualidad=new MensualidadE();
+                        $mensualidad->id_estacionamiento=$estacionamiento->id;
+                        $mensualidad->anio=$request->anio;
+                        $mensualidad->mes=$key->id;
+                        $mensualidad->monto=$request->montoAnio;
+                        $mensualidad->save();
                     }
                 }
                 
