@@ -105,19 +105,33 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Especifique el año para la mensualidad</label>
-                                    <select name="anio" id="anio2" class="form-control">
-                                        <?php $anio=date('Y');?>
-                                        @for($i=0; $i<10; $i++)
-                                            <option value="{{$anio++}}">{{$anio-1}}</option>
-                                        @endfor
-                                    </select>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Especifique el año para la mensualidad</label>
+                                        <select name="anio" id="anio2" class="form-control" onchange="accionM(1,this.value);">
+                                            <?php $anio=date('Y');?>
+                                            @for($i=0; $i<10; $i++)
+                                                <option value="{{$anio++}}">{{$anio-1}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>                            
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="buttonCreate"></div>
+                                    <div id="createMensuality1"></div>
+                                    <div id="createMensuality2"></div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="modal-footer">
+                            <input type="hidden" name="id_estacionamiento" id="idCreateM">
+                            <input type="hidden" name="anio" id="anioCreateM">
+                            <button type="submit" class="btn btn-success" disabled id="buttonC" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
+                        </div>                           
                     </div>
                 </div>
             </div>
@@ -133,19 +147,31 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Especifique el año para la mensualidad</label>
-                                    <select name="anio" id="anio2" class="form-control">
-                                        <?php $anio=date('Y');?>
-                                        @for($i=0; $i<10; $i++)
-                                            <option value="{{$anio++}}">{{$anio-1}}</option>
-                                        @endfor
-                                    </select>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Especifique el año para editar la mensualidad</label>
+                                        <select name="anio" id="anio2" class="form-control">
+                                            <?php $anio=date('Y');?>
+                                            @for($i=0; $i<10; $i++)
+                                                <option value="{{$anio++}}">{{$anio-1}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>                            
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="editMensuality"></div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="modal-footer">
+                            <input type="text" name="id_estacionamiento" id="idEditM">
+                            <button type="submit" class="btn btn-warning" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
+                        </div>                                                  
                     </div>
                 </div>
             </div>
@@ -154,19 +180,38 @@
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4>Eliminar Mensualidad</h4>
+                            <h4>Eliminar una mensualidad</h4>
                             <button type="button" class="close" data-dismiss="modal">
                                 <span>&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h3>¡ATENCIÓN!</h3>
-                            <p>Está a punto de eliminar una mensualidad con todos sus registros y meses de pago. Esta opción no se podrá deshacer</p>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Especifique el año para eliminar la mensualidad</label>
+                                        <select name="anio" id="anio2" class="form-control" onchange="accionM(3,this.value);">
+                                            <?php $anio=date('Y');?>
+                                            @for($i=0; $i<10; $i++)
+                                                <option value="{{$anio++}}">{{$anio-1}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="deleteMensuality"></div>
+                                </div>
+                            </div>
+                        </div> 
+
                         <div class="modal-footer">
-                            <input type="hidden" name="id" id="id">
-                            <button type="submit" class="btn btn-danger" style="border-radius: 50px;"><i data-feather="trash-2"></i></button>
-                        </div>
+                            <input type="hidden" name="id_estacionamiento" id="idDeleteM">
+                            <input type="hidden" name="anio" id="anioDeleteM">
+                            <button type="submit" class="btn btn-danger" id="buttonD" disabled style="border-radius: 50px;"><i data-feather="trash-2"></i></button>
+                        </div>                            
                     </div>
                 </div>
             </div>
@@ -417,15 +462,156 @@
     function mensual(accion, id) {
         if (accion==1) {
             $('#createMensualidad').modal('show');
+            $('#idCreateM').val(id);
+            // $('#anioCreateM').val(anio);
         }
         if(accion==2){
             $('#editarMensualidad').modal('show');
+            $('#idEditM').val(id);
+            // $('#anioEditM').val(anio);
         }
         if (accion==3) {
             $('#deleteMensualidad').modal('show');
+            $('#idDeleteM').val(id);
+            // $('#anioDeleteM').val(anio);
         } else {
 
         }
+    }
+
+    function mostrarC(opcion) {
+        if (opcion==1) {
+            $('#createMensuality1').show();
+            $('#createMensuality2').hide();
+        } else {
+            $('#createMensuality1').hide();
+            $('#createMensuality2').show();
+        }
+    }
+
+    function accionM(accion, anio) {
+
+
+        if (accion == 1) {
+            var id = $('#idCreateM').val();
+            $('#anioCreateM').val(anio);
+
+            $.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
+        
+
+                $('#montoAnio').empty();
+                $('#buttonCreate').empty();
+                $('#createMensuality1').empty();
+                $('#createMensuality2').empty();
+
+                beforeSend: $('#createMensuality1').append('Cargando...');
+                complete: $('#createMensuality1').empty();
+
+                if (data.length > 0) {
+
+                    
+                    $('#createMensuality1').append('Ya existen registros para este año');
+                    $('#buttonC').attr('disabled',true);
+
+                }else{
+                    var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+                    $('#buttonCreate').append(
+                        "<div class='card-box'>"+
+                            "<div class='row'>"+
+                                "<div class='col-md-6' width='100%'>"+
+                                    "<a href='#' class='btn btn-success' onclick='mostrarC(1)'>Montos por mes</a>"+
+                                "</div>"+
+                                "<div class='col-md-6' width='100%'>"+
+                                    "<a href='#' class='btn btn-warning' onclick='mostrarC(2)'>Monto por año</a>"+
+                                "</div>"+
+                            "</div>"+
+                        "</div"
+                    );
+                    $('#createMensuality1').append('<label>Montos por mes</label><br>');
+
+                    for (var i = 0; i < 12; i++) {
+                        
+                        $('#createMensuality1').append(
+                                '<div class="row">'+
+                                    '<div class="col-md-4">'+
+                                        '<div class="form-group">'+
+                                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+                                            '<label>'+mes[i]+'</label>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="col-md-6">'+
+                                        '<div class="form-group">'+
+                                            '<div class="input-group mb-2">'+
+                                                '<div class="input-group-prepend">'+
+                                                    '<div class="input-group-text">$</div>'+
+                                                '</div>'+
+                                                '<input type="number" name="monto[]" class="form-control" placeholder="10">'+
+                                                '<div class="input-group-prepend">'+
+                                                    '<div class="input-group-text">.00</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'
+                        );
+
+                    }
+                    $('#createMensuality2').append(
+                        '<div class="row">'+
+                            '<div class="col-md-12">'+
+                                '<div class="form-group">'+
+                                    '<label>Monto por todo el año</label>'+
+                                    '<div class="input-group mb-2">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">$</div>'+
+                                        '</div>'+
+                                        '<input type="text" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10" disabled>'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">.00</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'
+                    );
+                    $('#createMensuality2').css('display','none');
+
+                    $('#buttonC').attr('disabled',false);
+                }
+            });
+
+        }
+        if (accion == 3) {
+
+            $('#deleteMensuality').empty();
+            var id = $('#idDeleteM').val();
+            $('#anioDeleteM').val(anio);
+
+            $.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
+        
+                for (var i = 0; i < 13; i++) {
+                    $('#montoMese_e'+i).empty();
+                }
+                $('#montoAnio_e').empty();
+
+                beforeSend: $('#deleteMensuality').append('Cargando...');
+                    
+                if (data.length > 0) {
+
+                    $('#deleteMensuality').empty();
+                    $('#deleteMensuality').append('<h3>Existen registros para este año</h3><br><p>¿Eliminar mensualidad de este año? No habrá vuelta atrás</p>');
+                    $('#buttonD').attr('disabled', false);
+
+                }else{
+                    $('#deleteMensuality').empty();
+                    $('#deleteMensuality').append('No hay registros de este año');
+                    $('#buttonD').attr('disabled', true);
+                }
+
+
+            });
+        } 
     }
 
     function editar(id, idem, status) {
