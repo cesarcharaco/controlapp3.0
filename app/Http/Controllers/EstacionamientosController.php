@@ -48,11 +48,11 @@ class EstacionamientosController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $buscar=Estacionamientos::where('idem',$request->idem)->where('anio',$request->anio)->get();
+        //dd($request->all());
+        $buscar=Estacionamientos::where('idem',$request->idem)->get();
         $meses=Meses::all();
         if (count($buscar)>0) {
-            flash('El idem ya se encuentra registrado para el año indicado, intente otra vez!')->warning()->important();
+            flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
             return redirect()->back();
         } else {
             $estacionamiento=new Estacionamientos();
@@ -134,7 +134,7 @@ class EstacionamientosController extends Controller
      */
     public function update(Request $request, $id_estacionamiento)
     {
-        dd($request->all());
+        //dd($request->all());
         $buscar=Estacionamientos::where('idem',$request->idem)->where('id','<>',$request->id)->get();
         $meses=Meses::all();
         if (count($buscar)>0) {
