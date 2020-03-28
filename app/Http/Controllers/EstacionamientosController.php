@@ -122,7 +122,7 @@ class EstacionamientosController extends Controller
 
     public function buscar_mensualidad($id, $anio)
     {
-        return MensualidadE::where('id_estacionamiento', $id)->where('anio',$anio)->groupBy('id_estacionamiento')->get();
+        return MensualidadE::where('id_estacionamiento', $id)->where('anio',$anio)->get();
     }
 
     /**
