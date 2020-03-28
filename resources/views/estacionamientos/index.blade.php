@@ -108,7 +108,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Especifique el año para la mensualidad</label>
-                                        <select name="anio" id="anio2" class="form-control" onchange="accionM(1,this.value);">
+                                        <select name="anio" id="SelectAnio1" class="form-control" onchange="accionM(1,this.value);">
+                                            <option value="0">Seleccione el año</option>
                                             <?php $anio=date('Y');?>
                                             @for($i=0; $i<10; $i++)
                                                 <option value="{{$anio++}}">{{$anio-1}}</option>
@@ -151,8 +152,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Especifique el año para editar la mensualidad</label>
-                                        <select name="anio" id="anio2" class="form-control" onchange="accionM(2,this.value);">
-                                            <option>Seleccionar año</option>
+                                        <select name="anio" id="SelectAnio2" class="form-control" onchange="accionM(2,this.value);">
+                                            <option value="0">Seleccionar año</option>
                                             <?php $anio=date('Y');?>
                                             @for($i=0; $i<10; $i++)
                                                 <option value="{{$anio++}}">{{$anio-1}}</option>
@@ -196,7 +197,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Especifique el año para eliminar la mensualidad</label>
-                                        <select name="anio" id="anio2" class="form-control" onchange="accionM(3,this.value);">
+                                        <select name="anio" id="SelectAnio3" class="form-control" onchange="accionM(3,this.value);">
+                                            <option value="0">Seleccione el año</option>
                                             <?php $anio=date('Y');?>
                                             @for($i=0; $i<10; $i++)
                                                 <option value="{{$anio++}}">{{$anio-1}}</option>
@@ -466,6 +468,7 @@
     // }
 
     function mensual(accion, id) {
+
         $('#selectO').val(0);
         if (accion==1) {
             $('#createMensualidad').modal('show');
@@ -484,6 +487,18 @@
         } else {
 
         }
+    }
+
+    function limpiar(){
+        $('#SelectAnio1').val(0);
+    //     $('#anio2').val(0);
+    //     $('#createMensuality2').empty();
+    //     $('#createMensuality1').empty();
+    //     $('#buttonCreate').empty();
+
+    //     $('#editMensuality2').empty();
+    //     $('#editMensuality1').empty();
+    //     $('#buttonEdit').empty();
     }
 
     function mostrarC(opcion) {
@@ -511,6 +526,8 @@
     }
 
     function accionM(accion, anio) {
+
+        limpiar();
 
         var mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
         var f = new Date();
@@ -731,28 +748,6 @@
         $('#id_e').val(id);
         $('#idem').val(idem);
         $('#status_e').val(status);
-        // $('#anio2').val(anio);
-        // var f = new Date();
-        // var m = f.getMonth();
-
-        // $.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
-            
-
-        //     for (var i = 0; i < 13; i++) {
-        //         $('#montoMese_e'+i).empty();
-        //     }
-        //     $('#montoAnio_e').empty();
-
-        //     if (data.length > 0) {
-        //         for (var i = 0; i < 13; i++) {
-        //             if (data[i].mes >= m) {
-        //                 $('#montoMese_e'+data[i].mes).val(data[i].monto);
-        //                 console.log(data[i].mes);
-        //                 $('#montoAnio_e').val(data[i].monto).prop('disabled',false);
-        //             }
-        //         }
-        //     }
-        // });
     }
 
     function opcion(opcion) {
@@ -764,17 +759,13 @@
 
         if (opcion==2) {
             for (var i = 0; i < 13; i++) {
-                // $('#meses'+i).prop('disabled',true).prop('required',false);
                 $('#montoMeses'+i).prop('disabled',true).val(null).prop('required',false);
             }
-            // $('#anio2').prop('disabled',false).val(anio).prop('required',true);
             $('#montoAnio').prop('disabled',false).prop('required',true);
         }else {
             for (var i = 0; i < 13; i++) {
-                // $('#meses'+i).prop('disabled',false).prop('required',true);
                 $('#montoMeses'+i).prop('disabled',false).val(null).prop('required',true);
             }
-            // $('#anio2').prop('disabled',true).val(null).prop('required',false);
             $('#montoAnio').prop('disabled',true).val(null).prop('required',false);
         }
 
