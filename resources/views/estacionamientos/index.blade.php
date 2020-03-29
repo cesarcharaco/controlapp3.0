@@ -10,7 +10,7 @@
         </div>
         <div class="card">
             <div class="card-body">
-                
+                @include('flash::message')
                 <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="row">
@@ -576,6 +576,8 @@
         var mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
         var f = new Date();
         var m = f.getMonth()+1;
+        var a = f.getFullYear();
+
         if (accion == 1) {
             var id = $('#idCreateM').val();
             $('#anioCreateM').val(anio);
@@ -613,8 +615,40 @@
                     );
                     $('#createMensuality1').append('<label>Montos por mes</label><br>');
 
-                    for (var i = 0; i < 13; i++) {
-                        if(i>=m){
+                    if(a == anio){
+                        for (var i = 0; i < 13; i++) {
+                        
+                            if(i>=m){
+                                $('#createMensuality1').append(
+                                    '<div class="row">'+
+                                        '<div class="col-md-4">'+
+                                            '<div class="form-group">'+
+                                                '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+                                                '<label>'+mes[i]+'</label>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="col-md-6">'+
+                                            '<div class="form-group">'+
+                                                '<div class="input-group mb-2">'+
+                                                    '<div class="input-group-prepend">'+
+                                                        '<div class="input-group-text">$</div>'+
+                                                    '</div>'+
+                                                    '<input type="number" name="monto[]" class="form-control" placeholder="10">'+
+                                                    '<div class="input-group-prepend">'+
+                                                        '<div class="input-group-text">.00</div>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'
+                                );
+                            }
+                        }
+
+                    }
+
+                    else{
+                        for (var i = 1; i < 13; i++) {
                             $('#createMensuality1').append(
                                 '<div class="row">'+
                                     '<div class="col-md-4">'+
@@ -638,8 +672,7 @@
                                     '</div>'+
                                 '</div>'
                             );
-                        }
-
+                        } 
                     }
                     $('#createMensuality2').append(
                         '<div class="row">'+
