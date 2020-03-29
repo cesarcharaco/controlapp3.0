@@ -136,7 +136,7 @@ class EstacionamientosController extends Controller
     {
         //dd($request->all());
         $buscar=Estacionamientos::where('idem',$request->idem)->where('id','<>',$request->id)->get();
-        $meses=Meses::all();
+        //$meses=Meses::all();
         if (count($buscar)>0) {
             flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
             return redirect()->back();
@@ -149,7 +149,7 @@ class EstacionamientosController extends Controller
             //---------------------
             //eliminando mensualidades
 
-            foreach ($meses as $key) {
+            /*foreach ($meses as $key) {
                     if($key->id>=$m){
                     $mensualidad= MensualidadE::where('id_estacionamiento',$request->id)->where('anio',$request->anio)->where('mes',$key->id)->first();
                     //dd($mensualidad);
@@ -189,7 +189,7 @@ class EstacionamientosController extends Controller
                     }
                 }
                 
-            }
+            }*/
         
 
             flash('Estacionamiento actualizado con éxito!')->success()->important();
@@ -216,5 +216,10 @@ class EstacionamientosController extends Controller
 
         flash('Estacionamiento eliminado con éxito!')->success()->important();
             return redirect()->to('estacionamientos');
+    }
+
+    public function destroy_mensualidades(Request $request)
+    {
+        
     }
 }
