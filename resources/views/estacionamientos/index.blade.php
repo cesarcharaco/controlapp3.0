@@ -62,6 +62,7 @@
             </div>
             
 
+<!-- --------------------------------------------VER ESTACIONAMIENTOS--------------------------------------------------------- -->
             <div class="modal fade" id="VerEstacionamiento" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -93,7 +94,14 @@
                     </div>
                 </div>
             </div>
+<!-- --------------------------------------------FIN REGISTRAR ESTACIONAMIENTOS--------------------------------------------------------- -->
 
+
+
+
+
+
+<!-- --------------------------------------------CREAR MENSUALIDAD--------------------------------------------------------- -->
             <div class="modal fade" id="createMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -137,7 +145,16 @@
                     </div>
                 </div>
             </div>
+<!-- --------------------------------------------FIN CREAR MENSUALIDAD--------------------------------------------------------- -->
 
+
+
+
+
+
+
+<!-- --------------------------------------------EDITAR MENSUALIDAD--------------------------------------------------------- -->
+        {!! Form::open(['route' => ['home'],'method' => 'PUT', 'name' => 'Editar_mensualidad', 'id' => 'editar_mensualidad', 'data-parsley-validate']) !!}
             <div class="modal fade" id="editarMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -182,7 +199,16 @@
                     </div>
                 </div>
             </div>
+        {!! Form::close() !!}
+<!-- --------------------------------------------FIN EDITAR MENSUALIDAD--------------------------------------------------------- -->
 
+
+
+
+
+
+<!-- --------------------------------------------ELIMINAR MENSUALIDAD--------------------------------------------------------- -->
+        {!! Form::open(['route' => ['home'],'method' => 'DELETE', 'name' => 'Eliminar_mensualidad', 'id' => 'eliminar_mensualidad', 'data-parsley-validate']) !!}    
             <div class="modal fade" id="deleteMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -223,8 +249,13 @@
                     </div>
                 </div>
             </div>
+        {!! Form::close() !!}
+<!-- --------------------------------------------FIN ELIMINAR MENSUALIDAD--------------------------------------------------------- -->
 
-         {!! Form::open(['route' => ['estacionamientos.update',1], 'method' => 'PUT', 'name' => 'editar_estac', 'id' => 'editar_estac', 'data-parsley-validate']) !!}
+
+
+<!-- --------------------------------------------EDITAR ESTACIONAMIENTOS--------------------------------------------------------- -->
+         {!! Form::open(['route' => ['home'], 'method' => 'PUT', 'name' => 'editar_estac', 'id' => 'editar_estac', 'data-parsley-validate']) !!}
                     @csrf
             <div class="modal fade" id="editarEstacionamiento" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -268,8 +299,12 @@
             </div>
         {!! Form::close() !!}
         </div>
+<!-- --------------------------------------------FIN EDITAR ESTACIONAMIENTOS--------------------------------------------------------- -->
 
 
+
+
+<!-- --------------------------------------------ELIMINAR ESTACIONAMIENTOS--------------------------------------------------------- -->
         <form action="{{ route('estacionamientos.destroy',1033) }}" method="DELETE">
             @csrf
             <div class="modal fade" id="eliminarEstacionamiento" role="dialog">
@@ -293,8 +328,14 @@
                 </div>
             </div>
         </form>
+<!-- --------------------------------------------FIN ELIMINAR ESTACIONAMIENTOS--------------------------------------------------------- -->
 
     </div>
+
+
+
+
+<!-- --------------------------------------------REGISTRAR ESTACIONAMIENTOS--------------------------------------------------------- -->    
 
     <form action="{{ route('estacionamientos.store') }}" method="POST">
         @csrf
@@ -432,6 +473,8 @@
                 </div>
         </div>
     </form>
+
+<!-- --------------------------------------------FIN REGISTRAR ESTACIONAMIENTOS------------------------------------------------------ -->
 
     
 
