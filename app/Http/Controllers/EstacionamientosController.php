@@ -125,6 +125,11 @@ class EstacionamientosController extends Controller
         return MensualidadE::where('id_estacionamiento', $id)->where('anio',$anio)->get();
     }
 
+    public function buscar_anios($id)
+    {
+        return MensualidadE::where('id_estacionamiento', $id)->groupBy('id_estacionamiento')->get();
+    }
+
     /**
      * Update the specified resource in storage.
      *

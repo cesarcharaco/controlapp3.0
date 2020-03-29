@@ -8,9 +8,9 @@
                 <h1>Estacionamientos</h1>
             </div>
         </div>
+        @include('flash::message')
         <div class="card">
             <div class="card-body">
-                @include('flash::message')
                 <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="row">
@@ -52,6 +52,7 @@
                                         <option value="1">Registrar</option>
                                         <option value="2">Editar</option>
                                         <option value="3">Eliminar</option>
+                                        <option value="4">Ver registros</option>
                                     </select>                                            
                                 </td>
                             </tr>
@@ -96,6 +97,26 @@
             </div>
 <!-- --------------------------------------------FIN REGISTRAR ESTACIONAMIENTOS--------------------------------------------------------- -->
 
+<!-- --------------------------------------------VER ESTACIONAMIENTOS--------------------------------------------------------- -->
+            <div class="modal fade" id="VerMensualidades" role="dialog">
+                <div class="modal-dialog modals-default">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Ver Mensualidades</h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="fechasM"></div>
+                            <div id="buttonShow"></div>
+                            <div id="MesesM"></div>
+                            <input type="hidden" name="id" id="idShowM">
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+<!-- --------------------------------------------FIN REGISTRAR ESTACIONAMIENTOS--------------------------------------------------------- -->
 
 
 
@@ -103,7 +124,7 @@
 
 <!-- --------------------------------------------CREAR MENSUALIDAD--------------------------------------------------------- -->
 {!! Form::open(['route' => ['estacionamientos.registrar_mensualidad'],'method' => 'POST', 'name' => 'registrar_mensualidad', 'id' => 'registrar_mensualidad', 'data-parsley-validate']) !!}
-@csrf
+    @csrf
             <div class="modal fade" id="createMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -540,7 +561,44 @@
             $('#deleteMensualidad').modal('show');
             $('#idDeleteM').val(id);
             // $('#anioDeleteM').val(anio);
-        } else {
+        } 
+        if (accion==4){
+            $('#buttonShow').empty();
+            $('#fechasM').empty();
+            $('#MesesM').empty();
+            $('#idShowM').val(id);
+            $('#VerMensualidades').modal('show');
+
+            $.get('estacionamientos/'+id+'/buscar_anios', function(data) {
+        
+                beforeSend: $('#MesesM').append('Cargando...');
+                complete: $('#MesesM').empty();
+                    
+                if (data.length > 0) {
+
+                    $('#fechasM').append(
+                        '<div class="row">'+
+                            '<div class="col-md-12">'+
+                                '<div class="form-group">'+
+                                    '<label>Especifique el año para ver la mensualidad</label>'+
+                                        '<select class="form-control" onchange="accionM(4,this.value);" id="verFechaMensual">'+
+                                            '<option value="0">Seleccionar año</option>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'
+                    );
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#verFechaMensual').append('<option value="'+data[i].anio+'">'+data[i].anio+'</option>');
+                    }
+                    
+                }else
+                    $('#fechasM').append('El estacionamiento no posee mensualidades');
+
+            });
+        }else {
 
         }
     }
@@ -572,7 +630,6 @@
 
     function accionM(accion, anio) {
 
-        // alert('adasdasad');
         var mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
         var f = new Date();
         var m = f.getMonth()+1;
@@ -774,7 +831,7 @@
                                         '<div class="input-group-prepend">'+
                                             '<div class="input-group-text">$</div>'+
                                         '</div>'+
-                                        '<input type="text" name="montoaAnio" value="'+data[montoT].monto+'" class="form-control" id="montoAnio_e" placeholder="10" disabled>'+
+                                        '<input type="text" name="montoaAnio" value="'+data[montoT].monto+'" class="form-control" id="montoAnio_e" placeholder="10" disabled="disabled">'+
                                         '<div class="input-group-prepend">'+
                                             '<div class="input-group-text">.00</div>'+
                                         '</div>'+
@@ -819,6 +876,88 @@
 
             });
         } 
+        if (accion == 4){
+
+            var id = $('#idShowM').val();
+            $('#MesesM').empty();
+            $.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
+        
+                $('#buttonShow').empty();
+
+                beforeSend: $('#MesesM').append('Cargando...');
+                complete: $('#MesesM').empty();
+
+                if (data.length > 0) {
+
+                    var montoT=data.length-1;
+                    // $('#buttonShow').append(
+                    //     "<div class='card-box'>"+
+                    //         "<div class='row'>"+
+                    //             "<div class='col-md-6' width='100%'>"+
+                    //                 "<a href='#' class='btn btn-success' onclick='mostrarS(1)'>Montos por mes</a>"+
+                    //             "</div>"+
+                    //             "<div class='col-md-6' width='100%'>"+
+                    //                 "<a href='#' class='btn btn-warning' onclick='mostrarS(2)'>Monto por año</a>"+
+                    //             "</div>"+
+                    //         "</div>"+
+                    //     "</div"
+                    // );
+                    $('#MesesM').append('<label>Montos por mes</label><br>');
+
+                    
+                    for (var i = 0; i < data.length; i++) {
+                            
+                        $('#MesesM').append(
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<input type="hidden" value="'+data[i].mes+'" name="mes[]" disabled="disabled" class="form-control-plaintext">'+
+                                        '<label>'+mes[data[i].mes]+'</label>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<div class="form-group">'+
+                                        '<div class="input-group mb-2">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">$</div>'+
+                                            '</div>'+
+                                            '<input type="number" disabled="disabled" value="'+data[i].monto+'" name="monto[]" class="form-control" placeholder="10">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">.00</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'
+                        );
+
+                    }
+                    $('#MesesM').append('<label>Montos por Año</label><br>');
+
+                    $('#MesesM').append(
+                        '<div class="row">'+
+                            '<div class="col-md-12">'+
+                                '<div class="form-group">'+
+                                    // '<label>Monto por todo el año</label>'+
+                                    '<div class="input-group mb-2">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">$</div>'+
+                                        '</div>'+
+                                        '<input type="text" name="montoaAnio"  disabled="disabled" value="'+data[montoT].monto+'" class="form-control" id="montoAnio_e" placeholder="10">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">.00</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'
+                    );
+                    $('#editMensuality2').css('display','none');
+
+                    $('#buttonE').attr('disabled',false);
+                }
+            });
+        }
     }
 
     function editar(id, idem, status) {
