@@ -218,8 +218,17 @@ class EstacionamientosController extends Controller
             return redirect()->to('estacionamientos');
     }
 
-    public function destroy_mensualidades(Request $request)
+    public function registrar_mensualidad(Request $request)
     {
-        
+        dd($request->all());
     }
+    public function editar_mensualidad(Request $request)
+    {
+        dd($request->all());
+    }
+    public function eliminar_mensualidad(Request $request)
+    {
+        dd($request->all());
+    }
+
 }

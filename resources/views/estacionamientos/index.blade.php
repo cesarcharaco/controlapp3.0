@@ -102,6 +102,8 @@
 
 
 <!-- --------------------------------------------CREAR MENSUALIDAD--------------------------------------------------------- -->
+{!! Form::open(['route' => ['estacionamientos.registrar_mensualidad'],'method' => 'PUT', 'name' => 'registrar_mensualidad', 'id' => 'registrar_mensualidad', 'data-parsley-validate']) !!}
+@csrf
             <div class="modal fade" id="createMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -145,6 +147,7 @@
                     </div>
                 </div>
             </div>
+{!! Form::close() !!}
 <!-- --------------------------------------------FIN CREAR MENSUALIDAD--------------------------------------------------------- -->
 
 
@@ -154,7 +157,8 @@
 
 
 <!-- --------------------------------------------EDITAR MENSUALIDAD--------------------------------------------------------- -->
-        {!! Form::open(['route' => ['home'],'method' => 'PUT', 'name' => 'Editar_mensualidad', 'id' => 'editar_mensualidad', 'data-parsley-validate']) !!}
+        {!! Form::open(['route' => ['estacionamientos.editar_mensualidad'],'method' => 'PUT', 'name' => 'editar_mensualidad', 'id' => 'editar_mensualidad', 'data-parsley-validate']) !!}
+        @csrf
             <div class="modal fade" id="editarMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -208,7 +212,8 @@
 
 
 <!-- --------------------------------------------ELIMINAR MENSUALIDAD--------------------------------------------------------- -->
-        {!! Form::open(['route' => ['home'],'method' => 'DELETE', 'name' => 'Eliminar_mensualidad', 'id' => 'eliminar_mensualidad', 'data-parsley-validate']) !!}    
+        {!! Form::open(['route' => ['estacionamientos.eliminar_mensualidad'],'method' => 'POST', 'name' => 'eliminar_mensualidad', 'id' => 'eliminar_mensualidad', 'data-parsley-validate']) !!} 
+        @csrf   
             <div class="modal fade" id="deleteMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
@@ -255,7 +260,7 @@
 
 
 <!-- --------------------------------------------EDITAR ESTACIONAMIENTOS--------------------------------------------------------- -->
-         {!! Form::open(['route' => ['home'], 'method' => 'PUT', 'name' => 'editar_estac', 'id' => 'editar_estac', 'data-parsley-validate']) !!}
+         {!! Form::open(['route' => ['estacionamientos.update',1], 'method' => 'PUT', 'name' => 'editar_estac', 'id' => 'editar_estac', 'data-parsley-validate']) !!}
                     @csrf
             <div class="modal fade" id="editarEstacionamiento" role="dialog">
                 <div class="modal-dialog modals-default">
