@@ -139,7 +139,7 @@ class EstacionamientosController extends Controller
      */
     public function update(Request $request, $id_estacionamiento)
     {
-        //dd($request->all());
+        dd($request->all());
         $buscar=Estacionamientos::where('idem',$request->idem)->where('id','<>',$request->id)->get();
         //$meses=Meses::all();
         if (count($buscar)>0) {

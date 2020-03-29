@@ -618,10 +618,12 @@
 
     function mostrarE(opcion) {
         if (opcion==1) {
+            $('#montoAnio_e').attr('disabled',true);
             $('#editMensuality1').show();
             $('#editMensuality2').hide();
             $('#accionEdit').val(1);
         } else {
+            $('#montoAnio_e').attr('disabled',false);
             $('#editMensuality1').hide();
             $('#editMensuality2').show();
             $('#accionEdit').val(2);
@@ -662,10 +664,10 @@
                         "<div class='card-box'>"+
                             "<div class='row'>"+
                                 "<div class='col-md-6' width='100%'>"+
-                                    "<a href='#' class='btn btn-success' onclick='mostrarC(1)'>Montos por mes</a>"+
+                                    "<a href='#' class='btn btn-block btn-success' onclick='mostrarC(1)'>Montos por mes</a>"+
                                 "</div>"+
                                 "<div class='col-md-6' width='100%'>"+
-                                    "<a href='#' class='btn btn-warning' onclick='mostrarC(2)'>Monto por año</a>"+
+                                    "<a href='#' class='btn btn-block btn-warning' onclick='mostrarC(2)'>Monto por año</a>"+
                                 "</div>"+
                             "</div>"+
                         "</div"
@@ -783,10 +785,10 @@
                         "<div class='card-box'>"+
                             "<div class='row'>"+
                                 "<div class='col-md-6' width='100%'>"+
-                                    "<a href='#' class='btn btn-success' onclick='mostrarE(1)'>Montos por mes</a>"+
+                                    "<a href='#' class='btn btn-block btn-success' onclick='mostrarE(1)'>Montos por mes</a>"+
                                 "</div>"+
                                 "<div class='col-md-6' width='100%'>"+
-                                    "<a href='#' class='btn btn-warning' onclick='mostrarE(2)'>Monto por año</a>"+
+                                    "<a href='#' class='btn btn-block btn-warning' onclick='mostrarE(2)'>Monto por año</a>"+
                                 "</div>"+
                             "</div>"+
                         "</div"
@@ -911,22 +913,11 @@
                             '<div class="row">'+
                                 '<div class="col-md-4">'+
                                     '<div class="form-group">'+
-                                        '<input type="hidden" value="'+data[i].mes+'" name="mes[]" disabled="disabled" class="form-control-plaintext">'+
-                                        '<label>'+mes[data[i].mes]+'</label>'+
+                                        '<button type="button" style="width=100% !important" class="btn btn-block btn-outline-info">'+mes[data[i].mes]+'</button>'+
                                     '</div>'+
                                 '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<div class="form-group">'+
-                                        '<div class="input-group mb-2">'+
-                                            '<div class="input-group-prepend">'+
-                                                '<div class="input-group-text">$</div>'+
-                                            '</div>'+
-                                            '<input type="number" disabled="disabled" value="'+data[i].monto+'" name="monto[]" class="form-control" placeholder="10">'+
-                                            '<div class="input-group-prepend">'+
-                                                '<div class="input-group-text">.00</div>'+
-                                            '</div>'+
-                                        '</div>'+
-                                    '</div>'+
+                                '<div class="col-md-8">'+
+                                    '<button class="btn btn-block btn-success" style="width=100% !important">$ <strong>'+data[i].monto+'</strong> .00</button>'+
                                 '</div>'+
                             '</div>'
                         );
@@ -935,21 +926,13 @@
                     $('#MesesM').append('<label>Montos por Año</label><br>');
 
                     $('#MesesM').append(
-                        '<div class="row">'+
-                            '<div class="col-md-12">'+
-                                '<div class="form-group">'+
-                                    // '<label>Monto por todo el año</label>'+
-                                    '<div class="input-group mb-2">'+
-                                        '<div class="input-group-prepend">'+
-                                            '<div class="input-group-text">$</div>'+
-                                        '</div>'+
-                                        '<input type="text" name="montoaAnio"  disabled="disabled" value="'+data[montoT].monto+'" class="form-control" id="montoAnio_e" placeholder="10">'+
-                                        '<div class="input-group-prepend">'+
-                                            '<div class="input-group-text">.00</div>'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
+                        '<div class="row justify-content-center">'+
+                            '<div class="col-md-4">'+
+                                    '<button type="button" class="btn btn-block btn-outline-warning">'+anio+'</button>'+
                             '</div>'+
+                            '<div class="col-md-8">'+
+                                    '<button class="btn btn-block btn-warning" style="width=100% !important">$ <strong>'+data[montoT].monto+'</strong>.00</button>'+
+                                '</div>'+
                         '</div>'
                     );
                     $('#editMensuality2').css('display','none');
