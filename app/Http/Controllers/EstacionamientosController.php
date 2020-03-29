@@ -226,6 +226,7 @@ class EstacionamientosController extends Controller
         $m=date('m');
         $a=date('Y');
         $meses=Meses::all();
+        $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
         if ($request->accion==1) {
                 # mensual
                 $i=0;
@@ -239,7 +240,7 @@ class EstacionamientosController extends Controller
                         $mensualidad->save();
                         $i++;
                     }else{
-                        
+
                         $mensualidad=new MensualidadE();
                         $mensualidad->id_estacionamiento=$request->id_estacionamiento;
                         $mensualidad->anio=$request->anio;
@@ -257,27 +258,103 @@ class EstacionamientosController extends Controller
                         $mensualidad->id_estacionamiento=$request->id_estacionamiento;
                         $mensualidad->anio=$request->anio;
                         $mensualidad->mes=$key->id;
-                        $mensualidad->monto=$request->montoAnio;
+                        $mensualidad->monto=$request->montoaAnio;
                         $mensualidad->save();
                     }else{
                         $mensualidad=new MensualidadE();
                         $mensualidad->id_estacionamiento=$request->id_estacionamiento;
                         $mensualidad->anio=$request->anio;
                         $mensualidad->mes=$key->id;
-                        $mensualidad->monto=$request->montoAnio;
+                        $mensualidad->monto=$request->montoaAnio;
                         $mensualidad->save();
                     }
                 }
                 
             }
+            flash('Mensualidad registrada para el año: <b>'.$request->anio.'</b> en el estacionamiento: <b>'.$estacionamiento->idem.'</b>, de manera exitosa!')->success()->important();
+            return redirect()->to('estacionamientos');
     }
     public function editar_mensualidad(Request $request)
     {
         dd('Editar mensualidad',$request->all());
+
+        $m=date('m');
+        $a=date('Y');
+        $meses=Meses::all();
+        $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
+        //eliminando mensualidades
+
+            foreach ($meses as $key) {
+                    if($key->id>=$m){
+                    $mensualidad= MensualidadE::where('id_estacionamiento',$request->id_estacionamiento)->where('anio',$request->anio)->where('mes',$key->id)->first();
+                    //dd($mensualidad);
+                    if ($mensualidad!=null) {
+                        
+                        $mensualidad->delete();
+                    }
+                    
+                    }
+                }
+            //----------------------
+        if ($request->accion==1) {
+                # mensual
+                
+                for($i=0;$i<count($request->mes);$i++) {
+                    
+                        $mensualidad=new MensualidadE();
+                        $mensualidad->id_estacionamiento=$request->id_estacionamiento;
+                        $mensualidad->anio=$request->anio;
+                        $mensualidad->mes=$key->mes[$i];
+                        $mensualidad->monto=$request->monto[$i];
+                        $mensualidad->save();
+                        
+                    
+                }
+            } else {
+                # anual
+                foreach ($meses as $key) {
+                    if($key->id>=$m && $a==$request->anio){
+                        $mensualidad=new MensualidadE();
+                        $mensualidad->id_estacionamiento=$request->id_estacionamiento;
+                        $mensualidad->anio=$request->anio;
+                        $mensualidad->mes=$key->id;
+                        $mensualidad->monto=$request->montoaAnio;
+                        $mensualidad->save();
+                    }else{
+                        $mensualidad=new MensualidadE();
+                        $mensualidad->id_estacionamiento=$request->id_estacionamiento;
+                        $mensualidad->anio=$request->anio;
+                        $mensualidad->mes=$key->id;
+                        $mensualidad->monto=$request->montoaAnio;
+                        $mensualidad->save();
+                    }
+                }
+                
+            }
+            flash('Mensualidad actualizada para el año: <b>'.$request->anio.'</b> en el estacionamiento: <b>'.$estacionamiento->idem.'</b>, de manera exitosa!')->success()->important();
+            return redirect()->to('estacionamientos');
     }
     public function eliminar_mensualidad(Request $request)
     {
-        dd('Eliminar mensualidad',$request->all());
+        //dd('Eliminar mensualidad',$request->all());
+        //eliminando mensualidades
+        $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
+        $meses=Meses::all();
+
+            foreach ($meses as $key) {
+                    
+                    $mensualidad= MensualidadE::where('id_estacionamiento',$request->id_estacionamiento)->where('anio',$request->anio)->where('mes',$key->id)->first();
+                    //dd($mensualidad);
+                    if ($mensualidad!=null) {
+                        
+                        $mensualidad->delete();
+                    }
+                    
+                    
+                }
+            //----------------------
+                flash('Mensualidad eliminada para el año: <b>'.$request->anio.'</b> en el estacionamiento: <b>'.$estacionamiento->idem.'</b>, de manera exitosa!')->success()->important();
+                return redirect()->to('estacionamientos');
     }
 
 }
