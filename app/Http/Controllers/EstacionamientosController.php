@@ -220,15 +220,15 @@ class EstacionamientosController extends Controller
 
     public function registrar_mensualidad(Request $request)
     {
-        dd($request->all());
+        dd('Registrar mensualidad',$request->all());
     }
     public function editar_mensualidad(Request $request)
     {
-        dd($request->all());
+        dd('Editar mensualidad',$request->all());
     }
     public function eliminar_mensualidad(Request $request)
     {
-        dd($request->all());
+        dd('Eliminar mensualidad',$request->all());
     }
 
 }

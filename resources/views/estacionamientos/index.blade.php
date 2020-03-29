@@ -102,7 +102,7 @@
 
 
 <!-- --------------------------------------------CREAR MENSUALIDAD--------------------------------------------------------- -->
-{!! Form::open(['route' => ['estacionamientos.registrar_mensualidad'],'method' => 'PUT', 'name' => 'registrar_mensualidad', 'id' => 'registrar_mensualidad', 'data-parsley-validate']) !!}
+{!! Form::open(['route' => ['estacionamientos.registrar_mensualidad'],'method' => 'POST', 'name' => 'registrar_mensualidad', 'id' => 'registrar_mensualidad', 'data-parsley-validate']) !!}
 @csrf
             <div class="modal fade" id="createMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -157,7 +157,7 @@
 
 
 <!-- --------------------------------------------EDITAR MENSUALIDAD--------------------------------------------------------- -->
-        {!! Form::open(['route' => ['estacionamientos.editar_mensualidad'],'method' => 'PUT', 'name' => 'editar_mensualidad', 'id' => 'editar_mensualidad', 'data-parsley-validate']) !!}
+        {!! Form::open(['route' => ['estacionamientos.editar_mensualidad'],'method' => 'POST', 'name' => 'editar_mensualidad', 'id' => 'editar_mensualidad', 'data-parsley-validate']) !!}
         @csrf
             <div class="modal fade" id="editarMensualidad" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -613,9 +613,9 @@
                     );
                     $('#createMensuality1').append('<label>Montos por mes</label><br>');
 
-                    for (var i = 0; i < 12; i++) {
-                        
-                        $('#createMensuality1').append(
+                    for (var i = 0; i < 13; i++) {
+                        if(i>=m){
+                            $('#createMensuality1').append(
                                 '<div class="row">'+
                                     '<div class="col-md-4">'+
                                         '<div class="form-group">'+
@@ -637,7 +637,8 @@
                                         '</div>'+
                                     '</div>'+
                                 '</div>'
-                        );
+                            );
+                        }
 
                     }
                     $('#createMensuality2').append(
@@ -649,7 +650,7 @@
                                         '<div class="input-group-prepend">'+
                                             '<div class="input-group-text">$</div>'+
                                         '</div>'+
-                                        '<input type="text" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10" disabled>'+
+                                        '<input type="text" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10">'+
                                         '<div class="input-group-prepend">'+
                                             '<div class="input-group-text">.00</div>'+
                                         '</div>'+
