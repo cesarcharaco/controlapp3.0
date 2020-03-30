@@ -147,12 +147,6 @@ class EstacionamientosController extends Controller
     {
 
         dd($request->all());
-<<<<<<< HEAD
-=======
-
-        //dd($request->all());
->>>>>>> 17d7fce8befead4970937c235120b04ef00002ce
-
         $buscar=Estacionamientos::where('idem',$request->idem)->where('id','<>',$request->id)->get();
         //$meses=Meses::all();
         if (count($buscar)>0) {

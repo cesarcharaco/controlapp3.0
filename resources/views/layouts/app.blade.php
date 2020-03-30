@@ -34,12 +34,12 @@
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-                        <div class="row page-title">
+                        <!-- <div class="row page-title">
                             <div class="col-md-12">
                                 <h4 class="mb-1 mt-0">ControlApp <label class="badge badge-soft-danger">v1.0.1</label>
                                 </h4>
                             </div>
-                        </div>
+                        </div> -->
                         <div>
                             
                             <app></app>
