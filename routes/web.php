@@ -21,7 +21,15 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('residentes','ResidentesController');
 	Route::resource('mensualidades','MensualidadesController');
+
 	Route::resource('inmuebles','InmueblesController');
+	Route::get('inmuebles/{id}/{anio}/buscar_mensualidad','InmueblesController@buscar_mensualidad');
+	Route::get('inmuebles/{id}/buscar_anios', 'InmueblesController@buscar_anios');
+	Route::post('inmuebles/registrar_mensualidad','InmueblesController@registrar_mensualidad')->name('inmuebles.registrar_mensualidad');
+	Route::post('inmuebles/editar_mensualidad','InmueblesController@editar_mensualidad')->name('inmuebles.editar_mensualidad');
+	Route::post('inmuebles/eliminar_mensualidad','InmueblesController@eliminar_mensualidad')->name('inmuebles.eliminar_mensualidad');
+
+
 
 	Route::resource('estacionamientos','EstacionamientosController');
 	Route::get('estacionamientos/{id}/{anio}/buscar_mensualidad','EstacionamientosController@buscar_mensualidad');
