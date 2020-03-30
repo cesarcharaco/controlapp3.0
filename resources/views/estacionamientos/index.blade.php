@@ -51,7 +51,7 @@
                                         <option value="0">Seleccionar opción</option>
                                         <option value="1">Registrar</option>
                                         <option value="2">Editar</option>
-                                        <option value="3">Eliminar</option>
+                                        <option value="3">Eliminar</opt     ion>
                                         <option value="4">Ver registros</option>
                                     </select>                                            
                                 </td>
@@ -442,9 +442,6 @@
                                                                                     <div class="input-group-text">$</div>
                                                                                 </div>
                                                                                 <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
-                                                                                <div class="input-group-prepend">
-                                                                                    <div class="input-group-text">.00</div>
-                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -476,9 +473,6 @@
                                                                             <div class="input-group-text">$</div>
                                                                         </div>
                                                                         <input type="text" name="montoAnio" class="form-control" id="montoAnio" placeholder="10" disabled>
-                                                                        <div class="input-group-prepend">
-                                                                            <div class="input-group-text">.00</div>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -608,10 +602,12 @@
         if (opcion==1) {
             $('#createMensuality1').show();
             $('#createMensuality2').hide();
+            $('#montoAnioC').attr('disabled',true);
             $('#accionCreate').val(1);
         } else {
             $('#createMensuality1').hide();
             $('#createMensuality2').show();
+            $('#montoAnioC').attr('disabled',false);
             $('#accionCreate').val(2);
         }
     }
@@ -693,9 +689,6 @@
                                                         '<div class="input-group-text">$</div>'+
                                                     '</div>'+
                                                     '<input type="number" name="monto[]" class="form-control" placeholder="10">'+
-                                                    '<div class="input-group-prepend">'+
-                                                        '<div class="input-group-text">.00</div>'+
-                                                    '</div>'+
                                                 '</div>'+
                                             '</div>'+
                                         '</div>'+
@@ -723,9 +716,6 @@
                                                     '<div class="input-group-text">$</div>'+
                                                 '</div>'+
                                                 '<input type="number" name="monto[]" class="form-control" placeholder="10">'+
-                                                '<div class="input-group-prepend">'+
-                                                    '<div class="input-group-text">.00</div>'+
-                                                '</div>'+
                                             '</div>'+
                                         '</div>'+
                                     '</div>'+
@@ -742,10 +732,7 @@
                                         '<div class="input-group-prepend">'+
                                             '<div class="input-group-text">$</div>'+
                                         '</div>'+
-                                        '<input type="text" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10">'+
-                                        '<div class="input-group-prepend">'+
-                                            '<div class="input-group-text">.00</div>'+
-                                        '</div>'+
+                                        '<input type="text" id="montoAnioC" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10">'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -814,9 +801,6 @@
                                                     '<div class="input-group-text">$</div>'+
                                                 '</div>'+
                                                 '<input type="number" value="'+data[i].monto+'" name="monto[]" class="form-control" placeholder="10">'+
-                                                '<div class="input-group-prepend">'+
-                                                    '<div class="input-group-text">.00</div>'+
-                                                '</div>'+
                                             '</div>'+
                                         '</div>'+
                                     '</div>'+
@@ -834,9 +818,6 @@
                                             '<div class="input-group-text">$</div>'+
                                         '</div>'+
                                         '<input type="text" name="montoaAnio" value="'+data[montoT].monto+'" class="form-control" id="montoAnio_e" placeholder="10" disabled="disabled">'+
-                                        '<div class="input-group-prepend">'+
-                                            '<div class="input-group-text">.00</div>'+
-                                        '</div>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -917,7 +898,7 @@
                                     '</div>'+
                                 '</div>'+
                                 '<div class="col-md-8">'+
-                                    '<button class="btn btn-block btn-success" style="width=100% !important">$ <strong>'+data[i].monto+'</strong> .00</button>'+
+                                    '<button class="btn btn-block btn-success" style="width=100% !important">$ <strong>'+data[i].monto+'</strong></button>'+
                                 '</div>'+
                             '</div>'
                         );
@@ -931,7 +912,7 @@
                                     '<button type="button" class="btn btn-block btn-outline-warning">'+anio+'</button>'+
                             '</div>'+
                             '<div class="col-md-8">'+
-                                    '<button class="btn btn-block btn-warning" style="width=100% !important">$ <strong>'+data[montoT].monto+'</strong>.00</button>'+
+                                    '<button class="btn btn-block btn-warning" style="width=100% !important">$ <strong>'+data[montoT].monto+'</strong></button>'+
                                 '</div>'+
                         '</div>'
                     );
