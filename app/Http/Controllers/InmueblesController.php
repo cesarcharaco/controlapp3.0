@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Inmuebles;
 use Illuminate\Http\Request;
+use App\Meses;
+use App\Mensualidades;
 
 class InmueblesController extends Controller
 {
@@ -15,8 +17,9 @@ class InmueblesController extends Controller
 	public function index()
 	{
 		$inmuebles=Inmuebles::all();
+		$meses=Meses::all();
 
-		return view('inmuebles.index',compact('inmuebles'));
+		return view('inmuebles.index',compact('inmuebles','meses'));
 	}
 
 	/**
@@ -77,6 +80,16 @@ class InmueblesController extends Controller
 	{
 	
 	}
+
+	public function buscar_mensualidad($id, $anio)
+    {
+        return Mensualidades::where('id_inmueble', $id)->where('anio',$anio)->get();
+    }
+
+    public function buscar_anios($id)
+    {
+        return Mensualidades::where('id_inmueble', $id)->groupBy('id_inmueble')->get();
+    }
 
 	/**
 	* Update the specified resource in storage.

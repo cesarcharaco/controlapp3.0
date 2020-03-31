@@ -427,26 +427,24 @@
                                                     <div class="card-box">
                                                         @php $i=0; @endphp
                                                         @foreach($meses as $key)
-                                                            @if(date('m') <= $key->id)
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <div class="form-group">
-                                                                            <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
-                                                                            <label>{{$key->mes}}</label>
-                                                                        </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
+                                                                        <label>{{$key->mes}}</label>
                                                                     </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <div class="input-group mb-2">
-                                                                                <div class="input-group-prepend">
-                                                                                    <div class="input-group-text">$</div>
-                                                                                </div>
-                                                                                <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group mb-2">
+                                                                            <div class="input-group-prepend">
+                                                                                <div class="input-group-text">$</div>
                                                                             </div>
+                                                                            <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            @endif
+                                                            </div>
                                                             @php $i++; @endphp
                                                         @endforeach()
 

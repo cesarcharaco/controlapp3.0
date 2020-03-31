@@ -27,6 +27,7 @@
             
             
             @include('layouts.admin.menu')
+            
 
 
             <div class="content-page">

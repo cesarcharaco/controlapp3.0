@@ -18,12 +18,9 @@ class EstacionamientosController extends Controller
     public function index()
     {
         $estacionamientos=Estacionamientos::all();
-        $anio=date('Y');
         $meses=Meses::all();
-        $mensualidadE=MensualidadE::where('anio','>=',$anio)->groupBy('id_estacionamiento')->get();
-        $inmuebles=Inmuebles::all();
 
-        return view('estacionamientos.index',compact('estacionamientos','anio','meses','inmuebles','mensualidadE'));
+        return view('estacionamientos.index',compact('estacionamientos','meses'));
 
     }
 
