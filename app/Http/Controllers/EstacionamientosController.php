@@ -107,7 +107,7 @@ class EstacionamientosController extends Controller
      */
     public function show(Estacionamientos $estacionamientos)
     {
-        //
+        dd('asasas');
     }
 
     /**
@@ -215,11 +215,12 @@ class EstacionamientosController extends Controller
      */
     public function destroy(Request $request)
     {
+        //dd($request->all());
         $meses=Meses::all();
-        $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
+        $estacionamiento=Estacionamientos::find($request->id);
 
         foreach($meses as $key){
-                $mensualidad= MensualidadE::where('id_estacionamiento',$request->id_estacionamiento)->where('anio',$estacionamiento->anio)->where('mes',$key->mes)->first();
+                $mensualidad= MensualidadE::where('id_estacionamiento',$request->id)->where('mes',$key->mes)->first();
                 if ($mensualidad!=null) {
                     $mensualidad->delete();
                 }

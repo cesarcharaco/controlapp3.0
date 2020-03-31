@@ -331,7 +331,7 @@
 
 
 <!-- --------------------------------------------ELIMINAR ESTACIONAMIENTOS--------------------------------------------------------- -->
-        <form action="{{ route('estacionamientos.destroy',1033) }}" method="DELETE">
+        {!! Form::open(['route' => ['estacionamientos.destroy',1033], 'method' => 'DELETE']) !!}
             @csrf
             <div class="modal fade" id="eliminarEstacionamiento" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -353,7 +353,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        {!! Form::close() !!}
 <!-- --------------------------------------------FIN ELIMINAR ESTACIONAMIENTOS--------------------------------------------------------- -->
 
     </div>

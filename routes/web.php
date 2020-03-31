@@ -37,8 +37,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('estacionamientos/registrar_mensualidad','EstacionamientosController@registrar_mensualidad')->name('estacionamientos.registrar_mensualidad');
 	Route::post('estacionamientos/editar_mensualidad','EstacionamientosController@editar_mensualidad')->name('estacionamientos.editar_mensualidad');
 	Route::post('estacionamientos/eliminar_mensualidad','EstacionamientosController@eliminar_mensualidad')->name('estacionamientos.eliminar_mensualidad');
-
-
+	
 
 	Route::resource('noticias', 'NoticiasController');
 	Route::get('eliminarNoticia/{id}','NoticiasController@destroy')->name('eliminarNoticia');
