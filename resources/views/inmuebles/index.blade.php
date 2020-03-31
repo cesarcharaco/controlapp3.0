@@ -339,6 +339,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
+                                        <select name="id_estacionamientos[]" multiple="multiple" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                            <option value="0" selected="selected">Seleccionar estacionamientos</option>
+                                            @foreach($estacionamientos as $key)
+                                                <option value="{{$key->id}}">{{$key->idem}}</option>
+                                            @endforeach()
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                             
                         <div class="modal-footer">
@@ -410,19 +424,19 @@
                         </div>
 
                         <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tipo de Inmueble</label>
-                                        <select name="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble" required="required">
-                                            <option value="Casa" selected="selected">Casa</option>
-                                            <option value="Apartamento" >Apartamento</option>
-                                            <option value="Anexo" >Anexo</option>
-                                            <option value="Habitación" >Habitación</option>
-                                            <option value="Otro" >Otro</option>
-                                        </select>
-                                    </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Tipo de Inmueble</label>
+                                    <select name="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble" required="required">
+                                        <option value="Casa" selected="selected">Casa</option>
+                                        <option value="Apartamento" >Apartamento</option>
+                                        <option value="Anexo" >Anexo</option>
+                                        <option value="Habitación" >Habitación</option>
+                                        <option value="Otro" >Otro</option>
+                                    </select>
                                 </div>
                             </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -431,6 +445,20 @@
                                     <select name="status" class="form-control" required placeholder="Introduzca el status del Inmueble">
                                         <option value="Disponible" selected="selected">Disponible</option>
                                         <option value="No Disponible" >No Disponible</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
+                                    <select name="id_estacionamientos[]" multiple="multiple" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                        <option value="0" selected="selected">Seleccionar estacionamientos</option>
+                                        @foreach($estacionamientos as $key)
+                                            <option value="{{$key->id}}">{{$key->idem}}</option>
+                                        @endforeach()
                                     </select>
                                 </div>
                             </div>

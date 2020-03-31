@@ -6,6 +6,7 @@ use App\Inmuebles;
 use Illuminate\Http\Request;
 use App\Meses;
 use App\Mensualidades;
+use App\Estacionamientos;
 
 class InmueblesController extends Controller
 {
@@ -18,8 +19,9 @@ class InmueblesController extends Controller
 	{
 		$inmuebles=Inmuebles::all();
 		$meses=Meses::all();
+		$estacionamientos=estacionamientos::where('status','Libre')->get();
 
-		return view('inmuebles.index',compact('inmuebles','meses'));
+		return view('inmuebles.index',compact('inmuebles','meses','estacionamientos'));
 	}
 
 	/**
