@@ -32,6 +32,7 @@
                             <th></th>
                             <th>Idem</th>
                             <th>Tipo</th>
+                            <th>Estacionamientos</th>
                             <th>Status</th>
                             <th>Mensualidades</th>
                         </tr>
@@ -47,6 +48,7 @@
                                 </td>
                                 <td>{{$key->idem}}</td>
                                 <td>{{$key->tipo}}</td>
+                                <td>Si</td>
                                 <td>{{$key->status}}</td>
                                 <td>
                                     <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
@@ -344,7 +346,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
-                                        <select name="id_estacionamientos[]" multiple="multiple" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                        <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
                                             <option value="0" selected="selected">Seleccionar estacionamientos</option>
                                             @foreach($estacionamientos as $key)
                                                 <option value="{{$key->id}}">{{$key->idem}}</option>
@@ -454,7 +456,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
-                                    <select name="id_estacionamientos[]" multiple="multiple" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                    <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
                                         <option value="0" selected="selected">Seleccionar estacionamientos</option>
                                         @foreach($estacionamientos as $key)
                                             <option value="{{$key->id}}">{{$key->idem}}</option>
