@@ -173,7 +173,7 @@
                         </div> 
 
                         <div class="modal-footer">
-                            <input type="hidden" name="id_Inmueble" id="idCreateM">
+                            <input type="hidden" name="id_inmueble" id="idCreateM">
                             <input type="hidden" name="anio" id="anioCreateM">
                             <input type="hidden" id="accionCreate" name="accion" value="1">
                             <button type="submit" class="btn btn-success" disabled id="buttonC" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
@@ -229,7 +229,7 @@
                         </div> 
 
                         <div class="modal-footer">
-                            <input type="hidden" name="id_Inmueble" id="idEditM">
+                            <input type="hidden" name="id_inmueble" id="idEditM">
                             <input type="hidden" name="anio" id="anioEditM">
                             <input type="hidden" id="accionEdit" name="accion" value="1">
                             <button type="submit" id="buttonE" disabled class="btn btn-warning" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
@@ -281,7 +281,7 @@
                         </div> 
 
                         <div class="modal-footer">
-                            <input type="hidden" name="id_Inmueble" id="idDeleteM">
+                            <input type="hidden" name="id_inmueble" id="idDeleteM">
                             <input type="hidden" name="anio" id="anioDeleteM">
                             <button type="submit" class="btn btn-danger" id="buttonD" disabled style="border-radius: 50px;"><i data-feather="trash-2"></i></button>
                         </div>                            
@@ -346,7 +346,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>¿El inmueble posee estacionamientos?</label>
-                                        <select name="estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                        <select name="estacionamiento" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
                                             <option value="Si" selected="selected">Si</option>
                                             <option value="No">No</option>
 
@@ -387,7 +387,7 @@
 
 
 <!-- --------------------------------------------ELIMINAR InmuebleS--------------------------------------------------------- -->
-        <form action="{{ route('inmuebles.destroy',1033) }}" method="DELETE">
+        {!! Form::open(['route' => ['inmuebles.destroy',1033], 'method' => 'DELETE']) !!}
             @csrf
             <div class="modal fade" id="eliminarInmueble" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -409,7 +409,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        {!! Form::close() !!}
 <!-- --------------------------------------------FIN ELIMINAR InmuebleS--------------------------------------------------------- -->
 
     </div>
@@ -470,7 +470,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>¿El inmueble posee estacionamientos?</label>
-                                        <select name="estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                        <select name="estacionamiento" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
                                             <option value="Si" selected="selected">Si</option>
                                             <option value="No">No</option>
 

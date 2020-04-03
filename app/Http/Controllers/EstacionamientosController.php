@@ -143,8 +143,8 @@ class EstacionamientosController extends Controller
     public function update(Request $request, $id_estacionamiento)
     {
 
-        dd($request->all());
         //dd($request->all());
+        
         $buscar=Estacionamientos::where('idem',$request->idem)->where('id','<>',$request->id)->get();
         //$meses=Meses::all();
         if (count($buscar)>0) {
@@ -155,53 +155,8 @@ class EstacionamientosController extends Controller
             $estacionamiento->idem=$request->idem;
             $estacionamiento->status=$request->status;
             $estacionamiento->save();
-            $m=date('m');
-            //---------------------
-            //eliminando mensualidades
-
-            /*foreach ($meses as $key) {
-                    if($key->id>=$m){
-                    $mensualidad= MensualidadE::where('id_estacionamiento',$request->id)->where('anio',$request->anio)->where('mes',$key->id)->first();
-                    //dd($mensualidad);
-                    if ($mensualidad!=null) {
-                        
-                    $mensualidad->delete();
-                    }
-                    
-                    }
-                }
-            //----------------------
-
-            if ($request->opcion==1) {
-                # mensual
-                $i=0;
-                foreach ($meses as $key) {
-                    if($key->id>=$m){
-                    $mensualidad=new MensualidadE();
-                    $mensualidad->id_estacionamiento=$estacionamiento->id;
-                    $mensualidad->anio=$request->anio;
-                    $mensualidad->mes=$key->id;
-                    $mensualidad->monto=$request->monto[$i];
-                    $mensualidad->save();
-                    $i++;
-                    }
-                }
-            } else {
-                # anual
-                foreach ($meses as $key) {
-                    if($key->id>=$m){
-                    $mensualidad=new MensualidadE();
-                    $mensualidad->id_estacionamiento=$estacionamiento->id;
-                    $mensualidad->anio=$request->anio;
-                    $mensualidad->mes=$key->id;
-                    $mensualidad->monto=$request->monto;
-                    $mensualidad->save();
-                    }
-                }
-                
-            }*/
+            
         
-
             flash('Estacionamiento actualizado con éxito!')->success()->important();
             return redirect()->to('estacionamientos');
         }
