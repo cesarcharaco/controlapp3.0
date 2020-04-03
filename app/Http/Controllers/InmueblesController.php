@@ -43,7 +43,7 @@ class InmueblesController extends Controller
 	*/
 	public function store(Request $request)
 	{
-		//dd($request->all());
+		// dd($request->all());
 		$buscar=Inmuebles::where('idem',$request->idem)->get();
 		$meses=Meses::all();
 		if (count($buscar)>0) {
@@ -127,7 +127,7 @@ class InmueblesController extends Controller
 
     public function buscar_anios($id)
     {
-        return Mensualidades::where('id_inmueble', $id)->groupBy('id_inmueble')->get();
+        return Mensualidades::where('id_inmueble', $id)->groupBy('anio')->get();
     }
 
 	/**
