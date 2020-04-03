@@ -345,6 +345,20 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label>¿El inmueble posee estacionamientos?</label>
+                                        <select name="estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                            <option value="Si" selected="selected">Si</option>
+                                            <option value="No">No</option>
+
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
                                         <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
                                             <option value="0" selected="selected">Seleccionar estacionamientos</option>
@@ -354,7 +368,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                             
                         <div class="modal-footer">
@@ -453,6 +467,20 @@
                         </div>
 
                         <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>¿El inmueble posee estacionamientos?</label>
+                                        <select name="estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                            <option value="Si" selected="selected">Si</option>
+                                            <option value="No">No</option>
+
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!-- <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
@@ -464,7 +492,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <div class="col-md-12">
