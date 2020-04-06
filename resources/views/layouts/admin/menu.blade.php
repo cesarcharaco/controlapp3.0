@@ -30,7 +30,7 @@
             <li>
                 <a href="#">
                     <i data-feather="truck"></i>
-                    <span> Productos y servicios </span>
+                    <span> Productos </span>
                 </a>
             </li>
 
@@ -53,10 +53,18 @@
                     <i data-feather="users"></i>
                     <span> Residentes </span>
                 </a>
+            </li>
+
+            <li>
+                <a href="{{ url('arriendos') }}">
+                    <i data-feather="credit-card"></i>
+                    <span> Arriendos </span>
+                </a>
+            </li>
 
             <li class="menu-title">Pagos </li>
 
-            <li>
+            <!-- <li>
                 <a href="#">
                     <i data-feather="credit-card"></i>
                     <span> Pagos </span>
@@ -68,7 +76,7 @@
                     <i data-feather="credit-card"></i>
                     <span> Mensualidades </span>
                 </a>
-            </li>
+            </li> -->
 
             <li>
                 <a href="#">

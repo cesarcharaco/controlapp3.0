@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Residentes;
+use App\Estacionamientos;
+use App\Inmuebles;
 use Illuminate\Http\Request;
 
 class ResidentesController extends Controller
@@ -116,6 +118,48 @@ class ResidentesController extends Controller
 
         flash('Residente actualizado!')->success()->important();
         return redirect()->back();
+    }
+
+    public function arriendos()
+    {
+        $residentes=Residentes::all();
+        $estacionamientos=Estacionamientos::all();
+        $inmuebles=Inmuebles::all();
+
+        return View('arriendos.index', compact('residentes', 'estacionamientos','inmuebles'));
+    }
+
+    public function buscar_residente($id_residente)
+    {
+        return \DB::table('residentes')
+        ->join('users','users.id','=','residentes.id_usuario')
+        ->where('residentes.id', $id_residente)
+        ->select('residentes.*','users.email')
+        ->get();
+
+        // return Residentes::where('id', $id_residente)->get();
+    }
+
+    public function buscar_inmuebles($id_residente)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
+        ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+        ->where('residentes.id', $id_residente)
+        ->select('inmuebles.*')
+        ->get();
+
+    }
+
+    public function buscar_estacionamientos($id_residente)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
+        ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
+        ->where('residentes.id', $id_residente)
+        ->select('estacionamientos.*')
+        ->get();
+
     }
 
     /**

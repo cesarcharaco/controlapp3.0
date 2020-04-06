@@ -20,6 +20,12 @@ Auth::routes();
 Route::group(['middleware' => ['web']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('residentes','ResidentesController');
+
+	Route::get('arriendos','ResidentesController@arriendos')->name('arriendos');
+	Route::get('arriendos/{id_residente}/buscar_residente','ResidentesController@buscar_residente');
+	Route::get('arriendos/{id_residente}/buscar_inmuebles','ResidentesController@buscar_inmuebles');
+	Route::get('arriendos/{id_residente}/buscar_estacionamientos','ResidentesController@buscar_estacionamientos');
+
 	Route::resource('mensualidades','MensualidadesController');
 
 	Route::resource('inmuebles','InmueblesController');
