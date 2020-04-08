@@ -75,7 +75,7 @@
 
 
 
-        <form action="{{ route('residentes.store') }}" method="POST" name="registrar_Arriendo" data-parsley-validate>
+        <form action="{{ route('arriendos.asignando') }}" method="POST" name="registrar_Arriendo" data-parsley-validate>
             @csrf
             <div class="modal fade" id="modalInmueble" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -90,19 +90,22 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <select name="id_inmueble" class="form-control" required>
-                                            <option selected disabled>Seleccione inmueble</option>
+
+                                        <label><b>Seleccione un/unos Inmueble(s)</b></label><br>
+                                        <div class="dropdown bootstrap-select show-tick show">
+                                        <select name="id_inmueble[]" class="form-control" required="required" title="Seleccione un Inmueble" multiple="multiple">
                                             @foreach($inmuebles as $key)
                                                 <option value="{{$key->id}}">{{$key->idem}}</option>
                                             @endforeach()
                                         </select>
-                                        
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id_residente" id="id_residente">
+                            <input type="hidden" name="opcion" value="inmueble">
                             <button type="submit" class="btn btn-sm btn-rounded btn-success"><i data-feather="plus"></i></button>
                         </div>
                     </div>
@@ -110,7 +113,7 @@
             </div>
         </form>
 
-        <form action="{{ route('residentes.store') }}" method="POST" name="registrar_Arriendo" data-parsley-validate>
+        <form action="{{ route('arriendos.asignando') }}" method="POST" name="registrar_Arriendo" data-parsley-validate>
             @csrf
             <div class="modal fade" id="modalEsta" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -125,8 +128,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <select name="id_inmueble" class="form-control" required>
-                                            <option selected disabled>Seleccione estacionamiento</option>
+                                        <select name="id_estacionamiento[]" class="form-control" required="required" title="Seleccione un Estacionamiento" multiple="multiple">
                                             @foreach($estacionamientos as $key)
                                                 <option value="{{$key->id}}">{{$key->idem}}</option>
                                             @endforeach()
@@ -138,43 +140,13 @@
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id_residente" id="id_residente2">
+                            <input type="hidden" name="opcion" value="estacionacionamiento">
                             <button type="submit" class="btn btn-sm btn-rounded btn-success"><i data-feather="plus"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             
             

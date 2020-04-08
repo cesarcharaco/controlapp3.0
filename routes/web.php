@@ -25,7 +25,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('arriendos/{id_residente}/buscar_residente','ResidentesController@buscar_residente');
 	Route::get('arriendos/{id_residente}/buscar_inmuebles','ResidentesController@buscar_inmuebles');
 	Route::get('arriendos/{id_residente}/buscar_estacionamientos','ResidentesController@buscar_estacionamientos');
-
+	Route::post('arriendos/asignando','ArriendosController@asignando')->name('arriendos.asignando');
 	Route::resource('mensualidades','MensualidadesController');
 
 	Route::resource('inmuebles','InmueblesController');
@@ -49,4 +49,6 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('eliminarNoticia/{id}','NoticiasController@destroy')->name('eliminarNoticia');
 	Route::resource('notificaciones','NotificacionesController');
 	Route::get('eliminarNotificacion/{id}','NotificacionesController@destroy')->name('eliminarNotificacion');
+
+	
 });
