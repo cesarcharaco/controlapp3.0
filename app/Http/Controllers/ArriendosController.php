@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Inmuebles;
+use App\Estacionamientos;
 use Illuminate\Http\Request;
 
 class ArriendosController extends Controller
@@ -17,6 +18,9 @@ class ArriendosController extends Controller
                     'id_residente' => $request->id_residente,
                     'id_inmueble' => $request->id_inmueble[$i]
                 ]);
+                $inmueble=Inmuebles::find($request->id_inmueble[$i]);
+                $inmueble->status="No Disponible";
+                $inmueble->save();
             }
 
         }elseif($request->opcion=="estacionamiento"){
@@ -25,6 +29,9 @@ class ArriendosController extends Controller
                     'id_residente' => $request->id_residente,
                     'id_inmueble' => $request->id_estacionamiento[$i]
                 ]);
+                $estacionamiento=Estacionamientos::find($request->id_estacionamiento[$i]);
+                $estacionamiento->status="No Disponible";
+                $estacionamiento->save();
             }
         }
         flash($request->opcion.'asignado con éxito!')->success()->important();
