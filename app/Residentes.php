@@ -19,4 +19,9 @@ class Residentes extends Model
 	{
 		return $this->belongsToMany('App\Inmuebles','residentes_has_inmuebles','id_residente','id_inmueble');
 	}
+
+	public function mr()
+    {
+    	return $this->belongsToMany('App\MultasRecargas','resi_has_mr','id_residente','id_mr')->withPivot('status');
+    }
 }

@@ -50,5 +50,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('notificaciones','NotificacionesController');
 	Route::get('eliminarNotificacion/{id}','NotificacionesController@destroy')->name('eliminarNotificacion');
 
-	
+	Route::resource('multas_recargas','MultasRecargasController');
+	Route::post('multas_recargas/asignar','MultasRecargasController@asignar_mr')->name('asignar_mr');
+	Route::post('sanciones/cambiar_status','MultasRecargasController@status_mr')->name('sanciones.cambiar_status');
+	Route::post('sanciones/eliminar','MensualidadesController@eliminar_mr')->name('sanciones.eliminar_mr');
 });
