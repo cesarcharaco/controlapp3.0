@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notificaciones;
 use Illuminate\Http\Request;
-
+use App\Residentes;
 class NotificacionesController extends Controller
 {
     /**
@@ -97,5 +97,50 @@ class NotificacionesController extends Controller
 
         flash('Notificación eliminada!')->important();
         return redirect('home');
+    }
+
+    public function asignar_notif(Request $request)
+    {
+        //dd($request->all());
+
+        for ($i=0; $i < count($request->id_mr); $i++) { 
+            \DB::table('resi_has_notif')->insert([
+                'id_residente' => $request->id_residente,
+                'id_notificacion' => $request->id_mr[$i]
+            ]);
+        }
+
+        flash('Notificación enviada con éxito')->success()->important();
+            return redirect()->to('notificaciones');
+    }
+
+    public function status_notif(Request $request)
+    {
+        $residente=Residentes::find($request->id_residente);
+
+        foreach ($residente->notificaciones as $key) {
+            if ($key->id_notificacion==$request->id_notificacion) {
+                $key->pivot->status=$request->status;
+                $key->save();
+            }
+        }
+
+        flash('Status de Notificación actualizado a ('.$request->status.') con éxito')->success()->important();
+            return redirect()->to('notificaciones');
+    }
+
+    public function eliminar_notif(Request $request)
+    {
+        $residente=Residentes::find($request->id_residente);
+
+        foreach ($residente->notificaciones as $key) {
+            if ($key->id_notificacion==$request->id_notificacion) {
+                $key->pivot->status=$request->status;
+                $key->delete();
+            }
+        }
+
+        flash('Notificación eliminada con éxito')->success()->important();
+            return redirect()->to('notificaciones');
     }
 }

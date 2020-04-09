@@ -24,4 +24,9 @@ class Residentes extends Model
     {
     	return $this->belongsToMany('App\MultasRecargas','resi_has_mr','id_residente','id_mr')->withPivot('status');
     }
+
+    public function notificaciones()
+    {
+    	return $this->belongsToMany('App\Notificaciones','resi_has_notif','id_residente','id_notificacion')->withPivot('status');
+    }
 }
