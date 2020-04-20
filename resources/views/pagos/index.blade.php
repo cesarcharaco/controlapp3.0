@@ -24,161 +24,139 @@
 
             </div>
         </div>
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
-                                                <!-- <div class="shadow-none p-3 mb-5 bg-light rounded"> -->
-                        <div class="carousel-inner">
-                            <br>
-                                    <!-- <div class="row"> -->
-                            @for($i=0; $i < count($residentes); $i++)
-                                @if($i>1)
-                                            <!-- <div class="shadow p-3 mb-5 bg-white rounded"> -->
-                                    <div class="row">
-                                        
-                                    
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-8">
-                                            <div class="carousel-item active">
-                                                <div class="shadow rounded">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
-                                                    <div class="card">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <img src="{{ asset('assets/images/avatar-user.png') }}" width="180px" height="180px" />
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <h5 class="font-size-15 mt-2 mb-1"><a href="#" class="text-dark">{{$residentes[0]->nombres}} {{$residentes[0]->apellidos}}</a></h5>
-                                                                <p class="text-muted font-size-13 text-truncate mb-0">
-                                                                    {{$residentes[0]->rut}}
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="shadow p-3 mb-5 bg-white rounded">
+
+
+          <div class="carousel-inner">
+
+            @for($i=0;$i< count($residentes);$i++)
+                @if($i==0)
+                    <div class="carousel-item active">
+                      <div class="card">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('assets/images/avatar-user.png') }}" width="180px" height="180px" />
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="font-size-15 mt-2 mb-1"><a href="#" class="text-dark">{{$residentes[$i]->nombres}} {{$residentes[$i]->apellidos}}</a></h5>
+                                    <p class="text-muted font-size-13 text-truncate mb-0">
+                                        {{$residentes[$i]->rut}}
+                                    </p>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="shadow p-3 mb-5 bg-white rounded">
 
 
 
 
-                                                                    <div class="btn-group mt-2 mr-1">
-                                                                        <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
+                                        <div class="btn-group mt-2 mr-1">
+                                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
 
-                                                                        </div>
-                                                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                                                            <a class="dropdown-item" onclick="VerResi('{{$key->id}}')" href="#">Residencias registradas</a>
-                                                                            <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                                                                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="btn-group mt-2 mr-1">
-                                                                        <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            <img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
-
-                                                                        </div>
-                                                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                                                            <a class="dropdown-item" onclick="VerEstacionamiento('{{$key->id}}')" href="#">Estacionamientos registrados</a>
-                                                                            <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                                                                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
-
-
-
-
-
-                                                                        <a href="#" onclick="verForm('{{$key->id}}')" class=" btn btn-sm btn-success"> Nuevo</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                            </div>
+                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
+                                                <a class="dropdown-item" onclick="VerResi('{{$key->id}}')" href="#">Residencias registradas</a>
+                                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                                             </div>
                                         </div>
-                                        <div class="col-md-2"></div>
-                                    </div>
-                                        
-                                @else
 
-                                        <!-- <div class="col-md-6">
-                                            <div class="carousel-item active">
-                                                <div class="shadow rounded">
-                                                    <div class="card">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <img src="{{ asset('assets/images/avatar-user.png') }}" width="180px" height="180px" />
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <h5 class="font-size-15 mt-2 mb-1"><a href="#" class="text-dark">{{$residentes[1]->nombres}} {{$residentes[1]->apellidos}}</a></h5>
-                                                                <p class="text-muted font-size-13 text-truncate mb-0">
-                                                                    {{$residentes[1]->rut}}
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="shadow p-3 mb-5 bg-white rounded">
-                                                                        <img src="{{ asset('assets/images/house.png') }}" onclick="VerResi('{{$key->id}}')" class="avatar-md rounded-circle"/>
-                                                                        <img src="{{ asset('assets/images/parkin.png') }}" onclick="VerEstacionamiento('{{$key->id}}')" class="avatar-md"/>
-
-
-                                                                        <a href="#" onclick="verForm('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="plus-circle"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
+                                        <div class="btn-group mt-2 mr-1">
+                                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
 
                                             </div>
-                                        </div> -->
-
-                                @endif
-                            @endfor()
-                                    <!-- </div> -->
-                                                <!-- </div> -->
-                        </div>
-
-
-
-
-                  <a class="carousel-control-prev" style="background-color: grey;" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" style="background-color: grey;" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-
-                <!-- <div class="shadow-none p-3 mb-5 bg-light rounded">
-                    <div class="shadow p-3 mb-5 bg-white rounded">
-                        <ul class="list-unstyled">
-                            <li class="py-3 border-bottom">
-                                <div class="media">
-                                    <div class="mr-3">
-                                        
-                                        <img src="{{ asset('assets/images/avatar-user.png') }}" alt=""class="avatar-md rounded-circle" />
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h5 class="font-size-15 mt-2 mb-1"><a href="#" class="text-dark">John Jack</a></h5>
-                                        <p class="text-muted font-size-13 text-truncate mb-0">
-                                            123123
-                                        </p>
-                                    </div>
-                                    <div class="mr-4">
-                                        
-                                        <div class="shadow p-3 mb-5 bg-white rounded">
-                                            <div class="card">
-                                                asdasd
+                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
+                                                <a class="dropdown-item" onclick="VerEstacionamiento('{{$key->id}}')" href="#">Estacionamientos registrados</a>
+                                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                                             </div>
                                         </div>
+                                        <hr>
+
+
+
+
+
+                                            <a href="#" onclick="verForm('{{$key->id}}')" class=" btn btn-sm btn-success"> Nuevo</a>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
-                </div> -->
+                @else
+                    <div class="carousel-item">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('assets/images/avatar-user.png') }}" width="180px" height="180px" />
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="font-size-15 mt-2 mb-1"><a href="#" class="text-dark">{{$residentes[$i]->nombres}} {{$residentes[$i]->apellidos}}</a></h5>
+                                    <p class="text-muted font-size-13 text-truncate mb-0">
+                                        {{$residentes[$i]->rut}}
+                                    </p>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="shadow p-3 mb-5 bg-white rounded">
+
+
+
+
+                                        <div class="btn-group mt-2 mr-1">
+                                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
+
+                                            </div>
+                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
+                                                <a class="dropdown-item" onclick="VerResi('{{$key->id}}')" href="#">Residencias registradas</a>
+                                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                                            </div>
+                                        </div>
+
+                                        <div class="btn-group mt-2 mr-1">
+                                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
+
+                                            </div>
+                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
+                                                <a class="dropdown-item" onclick="VerEstacionamiento('{{$key->id}}')" href="#">Estacionamientos registrados</a>
+                                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                                            </div>
+                                        </div>
+                                        <hr>
+
+
+
+
+
+                                            <a href="#" onclick="verForm('{{$key->id}}')" class=" btn btn-sm btn-success"> Nuevo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endfor
+          </div>
+
+
+
+
+          <a class="carousel-control-prev" style="background-color: black;" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" style="background-color: black;" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+ 
                 <br>
         <div class="card" id="VerFomulario" style="display: none;">
             <div class="card-header">
@@ -400,6 +378,8 @@
 
 @endsection
 
+
+@section('script')
 <script>
 
     $(document).ready( function(){
@@ -472,3 +452,5 @@
         // body...
     }
 </script>
+
+@endsection
