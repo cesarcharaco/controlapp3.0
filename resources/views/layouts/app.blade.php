@@ -14,6 +14,8 @@
     
     @include('layouts.css')
 
+    
+
     <!-- <style type="text/css">
         
         }
@@ -63,6 +65,7 @@
     
 
     <!-- Scripts -->
+        
         @include('layouts.scripts')
     @section('scripts')
     @endsection

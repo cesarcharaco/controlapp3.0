@@ -25,136 +25,10 @@
             </div>
         </div>
 
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-
-
-
-          <div class="carousel-inner">
-
-            @for($i=0;$i< count($residentes);$i++)
-                @if($i==0)
-                    <div class="carousel-item active">
-                      <div class="card">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="{{ asset('assets/images/avatar-user.png') }}" width="180px" height="180px" />
-                                </div>
-                                <div class="col-md-5">
-                                    <h5 class="font-size-15 mt-2 mb-1"><a href="#" class="text-dark">{{$residentes[$i]->nombres}} {{$residentes[$i]->apellidos}}</a></h5>
-                                    <p class="text-muted font-size-13 text-truncate mb-0">
-                                        {{$residentes[$i]->rut}}
-                                    </p>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="shadow p-3 mb-5 bg-white rounded">
-
-
-
-
-                                        <div class="btn-group mt-2 mr-1">
-                                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
-
-                                            </div>
-                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                                <a class="dropdown-item" onclick="VerResi('{{$key->id}}')" href="#">Residencias registradas</a>
-                                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                            </div>
-                                        </div>
-
-                                        <div class="btn-group mt-2 mr-1">
-                                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
-
-                                            </div>
-                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                                <a class="dropdown-item" onclick="VerEstacionamiento('{{$key->id}}')" href="#">Estacionamientos registrados</a>
-                                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                            </div>
-                                        </div>
-                                        <hr>
-
-
-
-
-
-                                            <a href="#" onclick="verForm('{{$key->id}}')" class=" btn btn-sm btn-success"> Nuevo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    <div class="carousel-item">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="{{ asset('assets/images/avatar-user.png') }}" width="180px" height="180px" />
-                                </div>
-                                <div class="col-md-5">
-                                    <h5 class="font-size-15 mt-2 mb-1"><a href="#" class="text-dark">{{$residentes[$i]->nombres}} {{$residentes[$i]->apellidos}}</a></h5>
-                                    <p class="text-muted font-size-13 text-truncate mb-0">
-                                        {{$residentes[$i]->rut}}
-                                    </p>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="shadow p-3 mb-5 bg-white rounded">
-
-
-
-
-                                        <div class="btn-group mt-2 mr-1">
-                                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
-
-                                            </div>
-                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                                <a class="dropdown-item" onclick="VerResi('{{$key->id}}')" href="#">Residencias registradas</a>
-                                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                            </div>
-                                        </div>
-
-                                        <div class="btn-group mt-2 mr-1">
-                                            <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
-
-                                            </div>
-                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                                <a class="dropdown-item" onclick="VerEstacionamiento('{{$key->id}}')" href="#">Estacionamientos registrados</a>
-                                                <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                            </div>
-                                        </div>
-                                        <hr>
-
-
-
-
-
-                                            <a href="#" onclick="verForm('{{$key->id}}')" class=" btn btn-sm btn-success"> Nuevo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @endfor
-          </div>
-
-
-
-
-          <a class="carousel-control-prev" style="background-color: black;" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" style="background-color: black;" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+        <div class="center">
+            <div>your content</div>
+  <div>your content</div>
+  <div>your content</div>
         </div>
  
                 <br>
@@ -381,6 +255,7 @@
 
 @section('script')
 <script>
+    $('.single-item').slick();
 
     $(document).ready( function(){
         $('#residentes').on("change",function (event) {
