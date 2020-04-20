@@ -57,31 +57,30 @@
 
             <li>
                 <a href="{{ url('arriendos') }}">
-                    <i data-feather="credit-card"></i>
+                    <i data-feather="key"></i>
                     <span> Arriendos </span>
                 </a>
             </li>
 
-            <li class="menu-title">Pagos </li>
+            <li class="menu-title">Transacciones </li>
 
-            <!-- <li>
-                <a href="#">
+            <li>
+                <a href="{{ url('pagos') }}">
                     <i data-feather="credit-card"></i>
                     <span> Pagos </span>
                 </a>
             </li>
 
             <li>
-                <a href="{{ url('mensualidades') }}">
-                    <i data-feather="credit-card"></i>
-                    <span> Mensualidades </span>
-                </a>
-            </li> -->
-
-            <li>
-                <a href="#">
+                <a href="{{ url('multas_recargas')}}">
                     <i data-feather="dollar-sign"></i>
                     <span> Multas y recargas </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('multas_recargas')}}">
+                    <i data-feather="credit-card"></i>
+                    <span> Asignar saldo </span>
                 </a>
             </li>
 

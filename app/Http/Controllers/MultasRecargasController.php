@@ -16,7 +16,7 @@ class MultasRecargasController extends Controller
     {
         $mr=MultasRecargas::all();
 
-        return view('multasrecargas.index',compact('mr'));
+        return view('multas.index',compact('mr'));
     }
 
     /**
@@ -37,7 +37,7 @@ class MultasRecargasController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
 
         if ($request->motivo=="") {
             flash('Debe ingresar un motivo')->warning()->important();
@@ -54,7 +54,7 @@ class MultasRecargasController extends Controller
             $mr->save();
 
             flash('La '.$request->tipo.' ha sido registrada con éxito')->success()->important();
-            return redirect()->to('multasrecargas');
+            return redirect()->to('multas_recargas');
         }
         
     }
@@ -97,7 +97,7 @@ class MultasRecargasController extends Controller
             flash('Debe Ingresar un Monto')->warning()->important();
             return redirect()->back();
         }else{
-            $mr= MultasRecargas::find($id_mr);
+            $mr= MultasRecargas::find($request->id);
             $mr->motivo=$request->motivo;
             $mr->observacion=$request->observacion;
             $mr->monto=$request->monto;
@@ -105,7 +105,7 @@ class MultasRecargasController extends Controller
             $mr->save();
 
             flash('La '.$request->tipo.' ha sido actualiza con éxito')->success()->important();
-            return redirect()->to('multasrecargas');
+            return redirect()->to('multas_recargas');
         }
     }
 
@@ -115,20 +115,26 @@ class MultasRecargasController extends Controller
      * @param  \App\MultasRecargas  $multasRecargas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $id_mr)
+    public function destroy(Request $request, $id_mr)
     {
         $mr=MultasRecargas::find($request->id_mr);
         $tipo=$mr->tipo;
         if ($mr->delete()) {
             flash('La '.$tipo.' ha sido eliminada con éxito')->success()->important();
-            return redirect()->to('multasrecargas');
+            return redirect()->to('multas_recargas');
         } else {
             flash('La '.$tipo.' no pudo ser eliminada')->warning()->important();
-            return redirect()->to('multasrecargas');
+            return redirect()->to('multas_recargas');
         }
         
     }
 
+    public function saldo()
+    {
+        $residentes=Residentes::all();
+
+        return view('saldo',compact('residentes'));
+    }
     public function asignar_mr(Request $request)
     {
         //dd($request->all());
@@ -141,7 +147,7 @@ class MultasRecargasController extends Controller
         }
 
         flash('Sanción asignada con éxito')->success()->important();
-            return redirect()->to('multasrecargas');
+            return redirect()->to('multas_recargas');
     }
 
     public function status_mr(Request $request)
@@ -156,7 +162,7 @@ class MultasRecargasController extends Controller
         }
 
         flash('Status de Sanción actualizado a ('.$request->status.') con éxito')->success()->important();
-            return redirect()->to('multasrecargas');
+            return redirect()->to('multas_recargas');
     }
 
     public function eliminar_mr(Request $request)
@@ -171,6 +177,6 @@ class MultasRecargasController extends Controller
         }
 
         flash('Sanción eliminada con éxito')->success()->important();
-            return redirect()->to('multasrecargas');
+            return redirect()->to('multas_recargas');
     }
 }

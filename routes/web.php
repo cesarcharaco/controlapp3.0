@@ -58,4 +58,6 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('multas_recargas/asignar','MultasRecargasController@asignar_mr')->name('asignar_mr');
 	Route::post('sanciones/cambiar_status','MultasRecargasController@status_mr')->name('sanciones.cambiar_status');
 	Route::post('sanciones/eliminar','MensualidadesController@eliminar_mr')->name('sanciones.eliminar_mr');
+
+	Route::resource('pagos','PagosController');
 });

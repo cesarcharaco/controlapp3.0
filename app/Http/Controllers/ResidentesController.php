@@ -123,8 +123,8 @@ class ResidentesController extends Controller
     public function arriendos()
     {
         $residentes=Residentes::all();
-        $estacionamientos=Estacionamientos::all();
-        $inmuebles=Inmuebles::all();
+        $estacionamientos=Estacionamientos::where('status','Libre')->get();
+        $inmuebles=Inmuebles::where('status','Disponible')->get();
 
         return View('arriendos.index', compact('residentes', 'estacionamientos','inmuebles'));
     }
