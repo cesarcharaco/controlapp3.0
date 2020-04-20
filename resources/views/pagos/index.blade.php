@@ -25,10 +25,29 @@
             </div>
         </div>
 
-        <div class="center">
-            <div>your content</div>
-  <div>your content</div>
-  <div>your content</div>
+        <div class="carrousel">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+              
+            </div>
+            @for($i=0; $i< count($residentes);$i++)
+                <div class="card">
+
+
+                    <form class="form-inline">
+                        <div class="form-group mr-3">
+                            <img src="{{ asset('assets/images/avatar-user.png') }}" width="100px" height="100px" />
+                        </div>
+                        <div class="form-group mr-3">
+                            {{$residentes[$i]->nombres}} {{$residentes[$i]->apellidos}}
+                            <br>
+                            {{$residentes[$i]->rut}}
+                        </div>
+                        
+                    </form>
+                </div>
+
+            @endfor
+            
         </div>
  
                 <br>

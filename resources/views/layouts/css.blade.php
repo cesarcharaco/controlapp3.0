@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -9,8 +11,6 @@
 
 <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- -->
-<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <!-- Styles -->
