@@ -25,44 +25,43 @@
             </div>
         </div>
 
-        <div class="carrousel">
+        <div class="carrousel" style="height: 200px;">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
               
             </div>
             @for($i=0; $i< count($residentes);$i++)
-                <div class="card" style="margin-left: 20px;">
+
+                    <div class="card" style="margin-left: 20px;" width="900px">
 
 
-                    <form class="form-row align-items-center">
-                        <div class="form-group mr-4">
-                            <img src="{{ asset('assets/images/avatar-user.png') }}" width="90px" height="90px"  style="margin-left: 5px;" />
-                        </div>
-                        <div class="form-group mr-6">
-                            {{$residentes[$i]->nombres}} {{$residentes[$i]->apellidos}}
-                            <br>
-                            {{$residentes[$i]->rut}}
-                        </div>
-                        <!-- <div class="form-group mr-4">
-                            <div class="btn-group mt-2 mr-1">
-                                                                        <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
+                        <form class="form-row align-items-center">
+                            <div class="form-group mr-4">
+                                <img src="{{ asset('assets/images/avatar-user.png') }}" width="90px" height="90px"  style="margin-left: 5px;" />
+                            </div>
+                            <div class="form-group mr-6">
+                                {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
+                                <br>
+                                {{$residentes[$i]->rut}}
+                            </div>
+                                <div class="btn-group mt-2 mr-1">
+                                    <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
 
-                                                                        </div>
-                                                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                                                            <a class="dropdown-item" onclick="VerResi('{{$key->id}}')" href="#">Residencias registradas</a>
-                                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                                        </div>
-                                                                    </div>
-                        </div> -->
-                    </form>
-                </div>
-
+                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
+                                        <a class="dropdown-item" onclick="$('#VerResidencias').modal('show')" href="#">Residencias asignadas</a>
+                                        <a class="dropdown-item" onclick="$('#VerEstacionamientos').modal('show')" href="#">Estacionamientos asignados</a>
+                                    </div>
+                                </div>
+                                    <a href="#" onclick="$('#verF').val('{{$key->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> Nuevo</a>
+                        </form>
+                    </div>
+                
             @endfor
             
         </div>
- 
-                <br>
+
+        <input type="hidden" name="numero" id="numero" value="1">
         <div class="card" id="VerFomulario" style="display: none;">
             <div class="card-header">
                 <button type="button" class="close" onclick="$('#VerFomulario').css('display','none')">
@@ -286,7 +285,7 @@
 
 @section('script')
 <script>
-    $('.single-item').slick();
+    // $('.single-item').slick();
 
     $(document).ready( function(){
         $('#residentes').on("change",function (event) {
@@ -346,8 +345,7 @@
 
     function verForm(id_residente) {
 
-        $('#verF').val(id_residente);
-        $('#VerFomulario').css('display','block');
+        $('#verF').val(id_residente);$('#VerFomulario').css('display','block');
     }
 
     function editar(argument) {

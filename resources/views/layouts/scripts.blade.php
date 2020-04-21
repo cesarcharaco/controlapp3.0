@@ -3,7 +3,7 @@
 <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
 
-<script src="{{ asset('assets/js/app.min.js') }}" ></script>
+<!-- <script src="{{ asset('assets/js/app.min.js') }}" ></script> -->
 <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 
@@ -13,39 +13,20 @@
 	$(function () {
 		
 		// $('.carousel').carousel();
-		  // $('select').each(function () {
-		  //   $(this).select2({
-		  //     theme: 'bootstrap4',
-		  //     width: 'style',
-		  //     placeholder: $(this).attr('placeholder'),
-		  //     allowClear: Boolean($(this).data('allow-clear')),
-		  //   });
-		  // });
+		  $('select').each(function () {
+		    $(this).select2({
+		      theme: 'bootstrap4',
+		      width: 'style',
+		      placeholder: $(this).attr('placeholder'),
+		      allowClear: Boolean($(this).data('allow-clear')),
+		    });
+		  });
 
 		$('.carrousel').slick({
-		  centerMode: true,
-		  centerPadding: '60px',
 		  slidesToShow: 3,
-		  responsive: [
-		    {
-		      breakpoint: 768,
-		      settings: {
-		        arrows: false,
-		        centerMode: true,
-		        centerPadding: '40px',
-		        slidesToShow: 3
-		      }
-		    },
-		    {
-		      breakpoint: 480,
-		      settings: {
-		        arrows: false,
-		        centerMode: true,
-		        centerPadding: '40px',
-		        slidesToShow: 1
-		      }
-		    }
-		  ]
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
 		});
 
 	});

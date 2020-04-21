@@ -28,7 +28,7 @@
     display: block;
 
     width: 20px;
-    height: 17px;
+    height: 20px;
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
@@ -36,11 +36,10 @@
 
     cursor: pointer;
 
-    color: transparent;
+    color: black;
     border: none;
     outline: none;
-    border-radius: 50px;
-    background: black;
+    background: transparent;
 }
 .slick-prev:hover,
 .slick-prev:focus,
@@ -49,7 +48,7 @@
 {
     color: transparent;
     outline: none;
-    background: grey;
+    background: transparent;
 }
 .slick-prev:hover:before,
 .slick-prev:focus:before,
