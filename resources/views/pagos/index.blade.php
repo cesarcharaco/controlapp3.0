@@ -25,18 +25,18 @@
             </div>
         </div>
 
-        <div class="carrousel" style="height: 200px;">
+        <div class="carrousel" style="height: 80px;">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
               
             </div>
             @for($i=0; $i< count($residentes);$i++)
 
-                <div class="card" style="margin-left: 20px;" width="900px">
+                <div class="card" style="margin-left: 20px;">
 
 
                     <form class="form-row align-items-center">
-                        <div class="form-group mr-4">
-                            <img src="{{ asset('assets/images/avatar-user.png') }}" width="50px" height="50px"  style="margin-left: 5px;" />
+                        <div class="form-group mr-1">
+                            <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle" style="margin-left: 5px;" />
                         </div>
                         <div class="form-group mr-6">
                             {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
@@ -333,11 +333,7 @@
                             '<div class="btn-group mt-2 mr-1">'+
                                 '<a onclick="VerResi('+data[0].id+')" href="#"><img src="'+house+'" class="avatar-md rounded-circle"/></a>'+
                             '</div>'+
-                        
-                    
 
-                    
-                        
                             '<div class="btn-group mt-2 mr-1">'+
                                 '<a onclick="VerEstacionamientos('+data[0].id+')" href="#"><img src="'+parkin+'" class="avatar-md"/>'+
                             '</div>'+
