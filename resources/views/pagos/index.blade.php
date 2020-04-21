@@ -35,9 +35,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
+                                <center>
+                                    
                                 <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
 
-                                <a style="width: 100%; border-radius: 30px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                </center>
                             </div>
                             <div class="col-md-5">
                                 {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
