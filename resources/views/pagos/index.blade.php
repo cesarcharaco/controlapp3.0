@@ -25,46 +25,52 @@
             </div>
         </div>
 
-        <div class="carrousel" style="height: 80px;">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-              
-            </div>
+
+        <div class="carrousel" style="height: 150px;">
+
+            <div id="carouselExampleSlidesOnly" style="display: none;" class="carousel slide" data-ride="carousel"></div>
             @for($i=0; $i< count($residentes);$i++)
 
                 <div class="card" style="margin-left: 20px;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
 
+                                <a style="width: 100%; border-radius: 30px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                            </div>
+                            <div class="col-md-5">
+                                {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
+                                <br>
+                                {{$residentes[$i]->rut}}
+                            </div>
+                            <div class="col-md-4">
+                                
+                                @foreach($asignaIn as $key)
+                                    @if($key->id_residente == $residentes[$i]->id)
+                                            <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/></a>
+                                    @endif
+                                @endforeach
 
-                    <form class="form-row align-items-center">
-                        <div class="form-group mr-1">
-                            <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle" style="margin-left: 5px;" />
+                                @foreach($asignaEs as $key)
+                                    @if($key->id_residente == $residentes[$i]->id)
+                                            <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/></a>
+                                    @endif
+                                @endforeach
+
+                            </div>
                         </div>
-                        <div class="form-group mr-6">
-                            {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
-                            <br>
-                            {{$residentes[$i]->rut}}
+                        <div class="row">
+                            <dir></dir>
                         </div>
-                            @foreach($asignaIn as $key)
-                                @if($key->id_residente == $residentes[$i]->id)
-                                    <div class="btn-group mt-2 mr-1">
-                                        <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/></a>
-                                    </div>
-                                @endif
-                            @endforeach
-
-                            @foreach($asignaEs as $key)
-                                @if($key->id_residente == $residentes[$i]->id)
-                                    <div class="btn-group mt-2 mr-1">
-                                        <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
-                                    </div>
-                                @endif
-                            @endforeach
-                            <a href="#" onclick="$('#verF').val('{{$key->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> Pagar</a>
-                    </form>
+                    </div>
                 </div>
                 
             @endfor
             
         </div>
+    
+</div>
 
         <div class="card" id="VerFomulario" style="display: none;">
             <div class="card-header">
