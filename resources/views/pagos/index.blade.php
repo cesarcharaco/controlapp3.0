@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="form-group ic-cmpint">
                     <div class="nk-int-st">
-                        <select class="form-control select2" name="id_residentes" id="residentes">
+                        <select class="form-control select2" name="id_residentes" id="residentes" onchange="buscarResidentes(this.value)">
                             @foreach($residentes as $key)
                                 <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} -  {{$key->rut}}</option>
                             @endforeach()
@@ -305,7 +305,56 @@
     var mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
     var fecha = new Date();
     var anio = fecha.getFullYear();
+    var avatar= "{{ asset('assets/images/avatar-user.png') }}";
+    var house= "{{ asset('assets/images/house.png') }}";
+    var parkin= "{{ asset('assets/images/parkin.png') }}";
     
+    function buscarResidentes(id_residente) {
+        $('.carrousel').empty();
+
+        $.get('arriendos/'+id_residente+'/buscar_residente',function (data) {
+
+        })
+        .done(function(data) {
+            var verF= $('#verF');
+            $('.carrousel').append(
+                '<div class="card" style="margin-left: 20px;" width="900px">'+
+                    '<form class="form-row align-items-center">'+
+                        '<div class="form-group mr-4">'+
+                            '<img src="'+avatar+'" width="50px" height="50px"  style="margin-left: 5px;" />'+
+                        '</div>'+
+                        '<div class="form-group mr-6">'
+                            +data[0].nombres+ ' ' +data[0].apellidos+
+                            '<br>'
+                            +data[0].rut+
+                        '</div>'+
+                            
+                                
+                            '<div class="btn-group mt-2 mr-1">'+
+                                '<a onclick="VerResi('+data[0].id+')" href="#"><img src="'+house+'" class="avatar-md rounded-circle"/></a>'+
+                            '</div>'+
+                        
+                    
+
+                    
+                        
+                            '<div class="btn-group mt-2 mr-1">'+
+                                '<a onclick="VerEstacionamientos('+data[0].id+')" href="#"><img src="'+parkin+'" class="avatar-md"/>'+
+                            '</div>'+
+                                
+                            
+                            '<a href="#" onclick="registrarPago('+data[0].id+')" class=" btn btn-sm btn-success"> Pagar</a>'+
+                    '</form>'+
+                '</div>'
+            );
+        });
+    }
+
+    function registrarPago(id_residente) {
+        $('#verF').val(id_residente);
+        $('#VerFomulario').css('display','block');
+    }
+
     function buscarArriendos(id_arriendo) {
     }
 
