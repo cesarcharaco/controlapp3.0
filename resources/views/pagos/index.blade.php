@@ -46,11 +46,7 @@
                             @foreach($asignaIn as $key)
                                 @if($key->id_residente == $residentes[$i]->id)
                                     <div class="btn-group mt-2 mr-1">
-                                        <a onclick="
-                                            // VerResi('{{$key->id_residente}}')
-                                            $('#VerResidencias').modal('show');
-                                            $('#numero').val('{{$key->id_residente}}')
-                                        " href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/></a>
+                                        <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/></a>
                                     </div>
                                 @endif
                             @endforeach
@@ -58,11 +54,11 @@
                             @foreach($asignaEs as $key)
                                 @if($key->id_residente == $residentes[$i]->id)
                                     <div class="btn-group mt-2 mr-1">
-                                        <a onclick="$('#VerEstacionamientos').modal('show'); $('#numero').val('{{$key->id}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
+                                        <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
                                     </div>
                                 @endif
                             @endforeach
-                            <a href="#" onclick="$('#verF').val('{{$key->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> Nuevo</a>
+                            <a href="#" onclick="$('#verF').val('{{$key->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> Pagar</a>
                     </form>
                 </div>
                 
@@ -70,7 +66,6 @@
             
         </div>
 
-        <input type="hidden" name="numero" id="numero">
         <div class="card" id="VerFomulario" style="display: none;">
             <div class="card-header">
                 <button type="button" class="close" onclick="$('#VerFomulario').css('display','none')">
@@ -244,13 +239,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <select type="text" name="id_residen" id="MostrarArriendos" class="form-control">
-                                    @foreach($inmuebles as $key)
-                                    <option selected disabled>Seleccione inmueble</option>
-                                        <option value="{{$key->id}}">{{$key->idem}}</option>
-                                    @endforeach()
+                                <select type="text" name="id_residen" id="MostrarArriendos" onchange="buscarArriendos(this.value)" class="form-control">
+                                    
                                 </select>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="buttonCreate"></div>
+                            <div id="createMensuality1"></div>
+                            <div id="createMensuality2"></div>
                         </div>
                     </div>
                 </div>
@@ -263,7 +262,7 @@
 
     <!--   -------------------------------------------------------------- ESTACIONAMIENTOS   -->
 
-    <div class="modal fade" id="VerEstacionamientos" role="dialog">
+    <div class="modal fade" id="VerEsta" role="dialog">
         <div class="modal-dialog modals-default">
             <div class="modal-content">
                 <div class="modal-header">
@@ -277,15 +276,20 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <select type="text" name="id_estacionamiento" id="MostrarEstacionamientos" class="form-control">
-                                    @foreach($estacionamientos as $key)
-                                    <option selected disabled>Seleccione estacionamiento</option>
-                                        <option value="{{$key->id}}">{{$key->idem}}</option>
-                                    @endforeach()
+                                <select type="text" onchange="buscarEstacionamientos(this.value)" name="id_estacionamiento" id="MostrarEstacionamientos"  class="form-control">
+                                    
                                 </select>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="muestraEsta1"></div>
+                            <div id="muestraEsta2"></div>
+                            <div id="muestraEsta3"></div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="modal-footer border-bottom">
                     <button type="submit" class="btn btn-success" >Guardar</button>
@@ -297,44 +301,201 @@
 
 @endsection
 
-@section('scripts')
-
 <script type="text/javascript">
-    // $('.single-item').slick();
-
-    $(document).ready( function(){
-
-        $('#numero').on("change",function (event) {
-
-
-            
-        });
-    });
+    var mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
+    var fecha = new Date();
+    var anio = fecha.getFullYear();
+    
+    function buscarArriendos(id_arriendo) {
+    }
 
     function VerResi(id_residente) {
-
-        alert(id_residente);
         $('#VerResidencias').modal('show');
         $('#MostrarArriendos').empty();
 
+        
+        $.get("arriendos/"+id_residente+"/buscar_inmuebles",function (data) {
+        })
+        .done(function(data) {
+            
+            $("#MostrarArriendos").append('<option value="">Seleccione un inmueble</option>');
 
-        $.get('arriendos/'+id_residente+'/buscar_inmuebles', function(data) {
-
-        }).done(function(data) {
-            if (data.length > 0) {
-                $('#MostrarArriendos').attr('disabled',false);
-                for (var i = 0; i < data.length; i++) {
-                    $('#MostrarArriendos').append('<option value="'+data[i].id+'">'+data[i].id+'</option>');
+            if(data.length > 0){
+                for (var i = 0; i < data.length ; i++) 
+                {  
+                    $("#MostrarArriendos").append('<option value="'+ data[i].id + '">' + data[i].idem +'</option>');
                 }
             }else{
+                
                 $('#MostrarArriendos').empty();
-                $('#MostrarArriendos').append('<option>El residente no tiene arriendos registrados</option>');
-                $('#MostrarArriendos').attr('disabled',true);
+
             }
         });
     }
 
-    
+    function buscarArriendos(id_arriendo) {
+        $('#buttonCreate').empty();
+        $('#createMensuality1').empty();
+        $('#createMensuality2').empty();
+
+        // alert(id_arriendo);
+        $.get('inmuebles/'+id_arriendo+'/'+anio+'/buscar_mensualidad', function(data) {
+        }).done(function(data) {
+            if (data.length > 0) {
+                // alert('trae');
+                var montoT=data.length-1;
+                    $('#buttonCreate').append(
+                        "<div class='card-box'>"+
+                            "<div class='row'>"+
+                                "<div class='col-md-12' width='100%'>"+
+                                    "<a href='#' disabled class='btn btn-block btn-success'>Montos por mes</a>"+
+                                "</div>"+
+                                // "<div class='col-md-6' width='100%'>"+
+                                //     "<a href='#' class='btn btn-block btn-warning' onclick='mostrarE(2)'>Monto por año</a>"+
+                                // "</div>"+
+                            "</div>"+
+                        "</div"
+                    );
+                    $('#createMensuality1').append('<label>Montos por mes</label><br>');
+
+                    
+                    for (var i = 0; i < data.length; i++) {
+                            
+                            console.log(i);
+                            $('#createMensuality1').append(
+                                '<div class="row">'+
+                                    '<div class="col-md-4">'+
+                                        '<div class="form-group">'+
+                                            '<input type="hidden" value="'+data[i].mes+'" name="mes[]" class="form-control-plaintext">'+
+                                            '<label>'+mes[data[i].mes]+'</label>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="col-md-6">'+
+                                        '<div class="form-group">'+
+                                            '<div class="input-group mb-2">'+
+                                                // '<div class="input-group-prepend">'+
+                                                //     '<div class="input-group-text">$</div>'+
+                                                // '</div>'+
+                                                '<label><strong>$'+data[i].monto+'</strong></label>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'
+                            );
+
+                    }
+                    $('#createMensuality2').append(
+                        '<div class="row">'+
+                            '<div class="col-md-12">'+
+                                '<div class="form-group">'+
+                                    '<label>Monto por todo el año</label>'+
+                                    '<div class="input-group mb-2">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">$</div>'+
+                                        '</div>'+
+                                        '<input type="text" name="montoaAnio" value="'+data[montoT].monto+'" class="form-control" id="montoAnio_e" placeholder="10" disabled="disabled">'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'
+                    );
+                    $('#createMensuality2').css('display','none');            
+               
+
+            }else{
+                // alert('NO TRAE')
+                $('#buttonCreate').append('<h3>No hay mensualidades para el año actual</h3>');
+            }
+        });
+    }
+
+
+    function VerEstacionamientos(id_residente) {
+        $('#VerEsta').modal('show');
+        $('#MostrarEstacionamientos').empty();
+
+        
+        $.get("arriendos/"+id_residente+"/buscar_estacionamientos",function (data) {
+        })
+        .done(function(data) {
+            
+            $("#MostrarEstacionamientos").append('<option value="">Seleccione un estacionamiento</option>');
+
+            if(data.length > 0){
+                for (var i = 0; i < data.length ; i++) 
+                {  
+                    $("#MostrarEstacionamientos").append('<option value="'+ data[i].id + '">' + data[i].idem +'</option>');
+                }
+            }else{
+                $('#MostrarEstacionamientos').empty();
+
+            }
+        });
+    }
+
+    function buscarEstacionamientos(id_arriendo) {
+        $('#muestraEsta1').empty();
+        $('#muestraEsta2').empty();
+        // $('#muestrEsta3').empty();
+
+        $.get('estacionamientos/'+id_arriendo+'/'+anio+'/buscar_mensualidad', function(data) {
+        }).done(function(data) {
+            if (data.length > 0) {
+                // alert('trae');
+                var montoT=data.length-1;
+                    $('#muestraEsta1').append(
+                        "<div class='card-box'>"+
+                            "<div class='row'>"+
+                                "<div class='col-md-12' width='100%'>"+
+                                    "<a href='#' disabled class='btn btn-block btn-success'>Montos por mes</a>"+
+                                "</div>"+
+                                // "<div class='col-md-6' width='100%'>"+
+                                //     "<a href='#' class='btn btn-block btn-warning' onclick='mostrarE(2)'>Monto por año</a>"+
+                                // "</div>"+
+                            "</div>"+
+                        "</div"
+                    );
+                    $('#muestraEsta2').append('<label>Montos por mes</label><br>');
+
+                    
+                    for (var i = 0; i < data.length; i++) {
+                            
+                        $('#muestraEsta2').append(
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<input type="hidden" value="'+data[i].mes+'" name="mes[]" class="form-control-plaintext">'+
+                                        '<label>'+mes[data[i].mes]+'</label>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<div class="form-group">'+
+                                        '<div class="input-group mb-2">'+
+                                            // '<div class="input-group-prepend">'+
+                                            //     '<div class="input-group-text">$</div>'+
+                                            // '</div>'+
+                                            '<label><strong>$'+data[i].monto+'</strong></label>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'
+                        );
+
+                    }
+               
+
+            }else{
+                // alert('NO TRAE')
+                $('#muestrEsta1').append('<h3>No hay mensualidades para el año actual</h3>');
+            }
+        });
+    }
+</script>
+
+@section('scripts')
+
+<script type="text/javascript">
+
 </script>
 
 @endsection
