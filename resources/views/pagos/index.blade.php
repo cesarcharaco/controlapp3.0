@@ -26,12 +26,13 @@
         </div>
 
 
-        <div class="carrousel" style="height: 150px;">
+        <div class="carrousel">
 
             <div id="carouselExampleSlidesOnly" style="display: none;" class="carousel slide" data-ride="carousel"></div>
             @for($i=0; $i< count($residentes);$i++)
 
-                <div class="card" style="margin-left: 20px;">
+                <div class="card" style="margin-left: 20px; height: auto;">
+            <div class="scrollbar scrollbar-primary">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
@@ -40,6 +41,7 @@
                                 <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
 
                                 <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
                                 </center>
                             </div>
                             <div class="col-md-5">
@@ -68,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                
+            </div>
             @endfor
             
         </div>
