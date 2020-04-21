@@ -28,8 +28,8 @@ class ResidentesTableSeeder extends Seeder
         \DB::table('residentes')->insert([
         	'nombres' => 'Carmen',
             'apellidos' => 'García',
-        	'rut' => '1728172837182',
-        	'telefono' => '728717719273719',
+        	'rut' => '123456798',
+        	'telefono' => '728717719273',
             'id_usuario' => 3
         ]);
     }
