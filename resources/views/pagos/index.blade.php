@@ -44,15 +44,28 @@
                                 {{$residentes[$i]->rut}}
                             </div>
                                 <div class="btn-group mt-2 mr-1">
-                                    <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
+                                                                        <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
 
-                                    </div>
-                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                        <a class="dropdown-item" onclick="$('#VerResidencias').modal('show')" href="#">Residencias asignadas</a>
-                                        <a class="dropdown-item" onclick="$('#VerEstacionamientos').modal('show')" href="#">Estacionamientos asignados</a>
-                                    </div>
-                                </div>
+                                                                        </div>
+                                                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
+                                                                            <a class="dropdown-item" onclick="VerResi('{{$key->id}}')" href="#">Residencias registradas</a>
+                                                                            <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                                                                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="btn-group mt-2 mr-1">
+                                                                        <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
+
+                                                                        </div>
+                                                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
+                                                                            <a class="dropdown-item" onclick="VerEstacionamiento('{{$key->id}}')" href="#">Estacionamientos registrados</a>
+                                                                            <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                                                                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                                                                        </div>
+                                                                    </div>
                                     <a href="#" onclick="$('#verF').val('{{$key->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> Nuevo</a>
                         </form>
                     </div>
