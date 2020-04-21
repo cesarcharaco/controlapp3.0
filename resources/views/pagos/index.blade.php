@@ -31,50 +31,46 @@
             </div>
             @for($i=0; $i< count($residentes);$i++)
 
-                    <div class="card" style="margin-left: 20px;" width="900px">
+                <div class="card" style="margin-left: 20px;" width="900px">
 
 
-                        <form class="form-row align-items-center">
-                            <div class="form-group mr-4">
-                                <img src="{{ asset('assets/images/avatar-user.png') }}" width="50px" height="50px"  style="margin-left: 5px;" />
-                            </div>
-                            <div class="form-group mr-6">
-                                {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
-                                <br>
-                                {{$residentes[$i]->rut}}
-                            </div>
-                                <div class="btn-group mt-2 mr-1">
-                                    <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/>
-
-                                        </div>
-                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                            <a class="dropdown-item" onclick="VerResi('{{$key->id}}')" href="#">Residencias registradas</a>
-                                            <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                        </div>
-                                    </div>
-
+                    <form class="form-row align-items-center">
+                        <div class="form-group mr-4">
+                            <img src="{{ asset('assets/images/avatar-user.png') }}" width="50px" height="50px"  style="margin-left: 5px;" />
+                        </div>
+                        <div class="form-group mr-6">
+                            {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
+                            <br>
+                            {{$residentes[$i]->rut}}
+                        </div>
+                            @foreach($asignaIn as $key)
+                                @if($key->id_residente == $residentes[$i]->id)
                                     <div class="btn-group mt-2 mr-1">
-                                        <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
-
-                                        </div>
-                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-58px, 39px, 0px);">
-                                            <a class="dropdown-item" onclick="VerEstacionamiento('{{$key->id}}')" href="#">Estacionamientos registrados</a>
-                                            <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                        </div>
+                                        <a onclick="
+                                            // VerResi('{{$key->id_residente}}')
+                                            $('#VerResidencias').modal('show');
+                                            $('#numero').val('{{$key->id_residente}}')
+                                        " href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle"/></a>
                                     </div>
-                                    <a href="#" onclick="$('#verF').val('{{$key->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> Nuevo</a>
-                        </form>
-                    </div>
+                                @endif
+                            @endforeach
+
+                            @foreach($asignaEs as $key)
+                                @if($key->id_residente == $residentes[$i]->id)
+                                    <div class="btn-group mt-2 mr-1">
+                                        <a onclick="$('#VerEstacionamientos').modal('show'); $('#numero').val('{{$key->id}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md"/>
+                                    </div>
+                                @endif
+                            @endforeach
+                            <a href="#" onclick="$('#verF').val('{{$key->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> Nuevo</a>
+                    </form>
+                </div>
                 
             @endfor
             
         </div>
 
-        <input type="hidden" name="numero" id="numero" value="1">
+        <input type="hidden" name="numero" id="numero">
         <div class="card" id="VerFomulario" style="display: none;">
             <div class="card-header">
                 <button type="button" class="close" onclick="$('#VerFomulario').css('display','none')">
@@ -301,25 +297,23 @@
 
 @endsection
 
+@section('scripts')
 
-@section('script')
-<script>
+<script type="text/javascript">
     // $('.single-item').slick();
 
     $(document).ready( function(){
-        $('#residentes').on("change",function (event) {
 
-            alert('adasd');
-            var id_residente= event.target.value;
-            $.get('arriendos/'+id_residente+'/buscar_residente', function(data) {
+        $('#numero').on("change",function (event) {
 
-            }).done(function(data) {
 
-            });
+            
         });
     });
 
     function VerResi(id_residente) {
+
+        alert(id_residente);
         $('#VerResidencias').modal('show');
         $('#MostrarArriendos').empty();
 
@@ -340,40 +334,7 @@
         });
     }
 
-    function VerEstacionamiento(id_residente) {
-        $('#VerEstacionamientos').modal('show');
-        $('#MostrarEstacionamientos').empty();
-
-        $.get('arriendos/'+id_residente+'/buscar_estacionamientos', function(data) {
-
-        }).done(function(data) {
-            if (data.length > 0) {
-                $('#MostrarEstacionamientos').attr('disabled',false);
-
-                for (var i = 0; i < data.length; i++) {
-
-                    $('#MostrarEstacionamientos').append('<option value="'+data[i].id+'">'+data[i].id+'</option>');
-                }
-            }else{
-                $('#MostrarEstacionamientos').empty();
-                $('#MostrarEstacionamientos').append('<option>El residente no tiene estacionamientos registrados</option>');
-                $('#MostrarEstacionamientos').attr('disabled',true);
-            }
-        });
-    }
-
-    function verForm(id_residente) {
-
-        $('#verF').val(id_residente);$('#VerFomulario').css('display','block');
-    }
-
-    function editar(argument) {
-        // body...
-    }
-
-    function eliminar(argument) {
-        // body...
-    }
+    
 </script>
 
 @endsection
