@@ -25,6 +25,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('arriendos/{id_residente}/buscar_residente','ResidentesController@buscar_residente');
 	Route::get('arriendos/{id_residente}/buscar_inmuebles','ResidentesController@buscar_inmuebles');
 	Route::get('arriendos/{id_residente}/buscar_estacionamientos','ResidentesController@buscar_estacionamientos');
+	Route::get('arriendos/{id_residente}/buscar_estacionamientos2','ResidentesController@buscar_estacionamientos2');
 	Route::post('arriendos/asignando','ArriendosController@asignando')->name('arriendos.asignando');
 	Route::resource('mensualidades','MensualidadesController');
 

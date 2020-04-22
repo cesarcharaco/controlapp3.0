@@ -162,6 +162,18 @@ class ResidentesController extends Controller
 
     }
 
+    public function buscar_estacionamientos2($id_residente)
+    {
+        return \DB::table('mens_estac')
+        ->join('estacionamientos','estacionamientos.id','=','mens_estac.id_estacionamiento')
+        ->join('residentes_has_est','residentes_has_est.id_estacionamiento','=','estacionamientos.id')
+        ->join('residentes','residentes.id','=','residentes_has_est.id_residente')
+        ->where('residentes.id', $id_residente)
+        ->select('estacionamientos.*','mens_estac.*')
+        ->get();
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *

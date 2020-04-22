@@ -12,21 +12,21 @@
 <script type="text/javascript">
 	$(function () {
 		
-		// $('.carousel').carousel();
-		  $('select').each(function () {
-		    $(this).select2({
-		      theme: 'bootstrap4',
-		      width: 'style',
-		      placeholder: $(this).attr('placeholder'),
-		      allowClear: Boolean($(this).data('allow-clear')),
-		    });
-		  });
+		$('.VerEstaciona').carousel();
+		$('select').each(function () {
+		$(this).select2({
+		  theme: 'bootstrap4',
+		  width: 'style',
+		  placeholder: $(this).attr('placeholder'),
+		  allowClear: Boolean($(this).data('allow-clear')),
+		});
+		});
 
 		$('.carrousel').slick({
 		  slidesToShow: 3,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2000,
+		  slidesToScroll: 1,
+		  autoplay: true,
+		  autoplaySpeed: 2000,
 		});
 
 	});
