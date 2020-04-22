@@ -236,40 +236,7 @@
     
     <!--   -------------------------------------------------------------- RESIDENCIAS   -->
 
-    <div class="modal fade" id="VerResidencias" role="dialog">
-        <div class="modal-dialog modals-default">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Sus residencias</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <select type="text" name="id_residen" id="MostrarArriendos" onchange="buscarArriendos(this.value)" class="form-control">
-                                    
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="buttonCreate"></div>
-                            <div id="createMensuality1"></div>
-                            <div id="createMensuality2"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-bottom">
-                    <button type="submit" class="btn btn-success" >Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!--   -------------------------------------------------------------- ESTACIONAMIENTOS   -->
 
@@ -277,7 +244,7 @@
         <div class="modal-dialog modals-default">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Sus estacionamientos</h4>
+                    <h4>Sus <span id="titleModal"></span></h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
@@ -368,26 +335,263 @@
     }
 
     function VerResi(id_residente) {
-        $('#VerResidencias').modal('show');
-        $('#MostrarArriendos').empty();
+        $('#titleModal').empty();
+        $('#titleModal').append('Residencias');
+        $('.carousel-inner').empty();
+        $('#VerEsta').modal('show');
+        $('#MostrarEstacionamientos').empty();
 
         
         $.get("arriendos/"+id_residente+"/buscar_inmuebles",function (data) {
         })
         .done(function(data) {
             
-            $("#MostrarArriendos").append('<option value="">Seleccione un inmueble</option>');
 
-            if(data.length > 0){
-                for (var i = 0; i < data.length ; i++) 
-                {  
-                    $("#MostrarArriendos").append('<option value="'+ data[i].id + '">' + data[i].idem +'</option>');
+
+            for (var i = 0; i < data.length ; i++) {
+                if (i==0) {
+                    $('.carousel-inner').append(
+                        '<div class="carousel-item active">'+
+                            '<center>'+
+                                '<h3 alt="First slide">'+data[i].idem+'</h3>'+
+                            '</center>'+
+                            '<hr>'+
+                            '<label>Montos por mes</label><br>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[1]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[2]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[3]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[4]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[5]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[6]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[7]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[8]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[9]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[10]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[11]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[12]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'
+
+                    );
+                }else{
+                    $('.carousel-inner').append(
+                        '<div class="carousel-item">'+
+                            '<center>'+
+                                '<h3 alt="First slide">'+data[i].idem+'</h3>'+
+                            '</center>'+
+                            '<hr>'+
+                            '<label>Montos por mes</label><br>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[1]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[2]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[3]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[4]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[5]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[6]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[7]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[8]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[9]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[10]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[11]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+ 
+                                        '<label>'+mes[12]+'</label>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label>monto</label>'+
+                                '</div>'+
+                            '</div>'
+
+                    );
                 }
-            }else{
                 
-                $('#MostrarArriendos').empty();
-
+                $('.carousel-inner').append('</div>');
             }
+
+            
+            
         });
     }
 
@@ -469,7 +673,9 @@
 
 
     function VerEstacionamientos(id_residente) {
-        // $('#VerEstaciona').empty();
+        $('#titleModal').empty();
+        $('#titleModal').append('Estacionamientos');
+        $('.carousel-inner').empty();
         $('#VerEsta').modal('show');
         $('#MostrarEstacionamientos').empty();
 
