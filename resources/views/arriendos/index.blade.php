@@ -140,7 +140,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id_residente" id="id_residente2">
-                            <input type="hidden" name="opcion" value="estacionacionamiento">
+                            <input type="hidden" name="opcion" value="estacionamiento">
                             <button type="submit" class="btn btn-sm btn-rounded btn-success"><i data-feather="plus"></i></button>
                         </div>
                     </div>

@@ -27,8 +27,9 @@ class ArriendosController extends Controller
             for ($i=0; $i < count($request->id_estacionamiento); $i++) { 
                 \DB::table('residentes_has_est')->insert([
                     'id_residente' => $request->id_residente,
-                    'id_inmueble' => $request->id_estacionamiento[$i]
+                    'id_estacionamiento' => $request->id_estacionamiento[$i]
                 ]);
+                //dd(".....");
                 $estacionamiento=Estacionamientos::find($request->id_estacionamiento[$i]);
                 $estacionamiento->status="No Disponible";
                 $estacionamiento->save();
