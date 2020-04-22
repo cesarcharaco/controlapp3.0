@@ -342,13 +342,16 @@
         $('#MostrarEstacionamientos').empty();
 
         
-        $.get("arriendos/"+id_residente+"/buscar_inmuebles",function (data) {
+        $.get("arriendos/"+id_residente+"/buscar_inmuebles2",function (data) {
         })
         .done(function(data) {
+
+            
+            // alert(data.length);
             /*
             var inmuebles=[]; //arreglo para guardar los inmuebles
             var x=0; //variable iterativa del array inmueble
-            for(var i=0; i < data.length; i´++){ // recorriendo los datos traidos
+            for(var i=0; i < data.length; i++){ // recorriendo los datos traidos
 
                 if (inmuebles.length>0) {// verificando si ya se han registrado inmuebles en el array
                     var cont=0;// se usa para contar las veces que consiguen el inmueble en el array
@@ -371,245 +374,57 @@
             }*/
 
             for (var i = 0; i < data.length ; i++) {
-                if (i==0) {
-                    $('.carousel-inner').append(
-                        '<div class="carousel-item active">'+
-                            '<center>'+
-                                '<h3 alt="First slide">'+data[i].idem+'</h3>'+
-                            '</center>'+
-                            '<hr>'+
-                            '<label>Montos por mes</label><br>'+
 
+                if(data[i].id == data[i].id_inmueble){
+                    if (i==0) {
+                        $('.carousel-inner').append(
+                            '<div class="carousel-item active">'+
+                                '<center>'+
+                                    '<h3 alt="First slide">'+data[i].idem+'</h3>'+
+                                '</center>'+
+                                '<hr>'+
+                                '<label>Montos por mes</label><br>'+
+                                '<div class="inner2"></div>'
+                        );
+                        $('.inner2').append(
                             '<div class="row">'+
                                 '<div class="col-md-4">'+ 
-                                        '<label>'+mes[1]+'</label>'+
+                                        '<label>'+i+'</label>'+
                                 '</div>'+
                                 '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[2]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[3]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[4]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[5]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[6]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[7]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[8]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[9]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[10]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[11]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[12]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
+                                    '<label>'+data[i].status+'</label>'+
                                 '</div>'+
                             '</div>'
+                        );
 
-                    );
-                }else{
-                    $('.carousel-inner').append(
-                        '<div class="carousel-item">'+
-                            '<center>'+
-                                '<h3 alt="First slide">'+data[i].idem+'</h3>'+
-                            '</center>'+
-                            '<hr>'+
-                            '<label>Montos por mes</label><br>'+
-
+                        
+                        $('.carousel-inner').append('</div>');
+                    }else{
+                        $('.carousel-inner').append(
+                            '<div class="carousel-item">'+
+                                '<center>'+
+                                    '<h3 alt="First slide">'+data[i].idem+'</h3>'+
+                                '</center>'+
+                                '<hr>'+
+                                '<label>Montos por mes</label><br>'+
+                                '<div class="inner2"></div>'
+                        );
+                        $('.inner2').append(
                             '<div class="row">'+
                                 '<div class="col-md-4">'+ 
-                                        '<label>'+mes[1]+'</label>'+
+                                        '<label>'+i+'</label>'+
                                 '</div>'+
                                 '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[2]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[3]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[4]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[5]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[6]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[7]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[8]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[9]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[10]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[11]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
-                                '</div>'+
-                            '</div>'+
-
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mes[12]+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>monto</label>'+
+                                    '<label>'+data[i].status+'</label>'+
                                 '</div>'+
                             '</div>'
+                        );
 
-                    );
+                            
+                        $('.carousel-inner').append('</div>');
+                    }
                 }
                 
-                $('.carousel-inner').append('</div>');
             }
 
             

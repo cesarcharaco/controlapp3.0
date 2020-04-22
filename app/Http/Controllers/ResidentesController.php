@@ -151,6 +151,20 @@ class ResidentesController extends Controller
 
     }
 
+    public function buscar_inmuebles2($id_residente)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
+        ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+        ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
+        ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
+        // ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+        ->where('residentes.id', $id_residente)
+        ->select('inmuebles.id','inmuebles.idem','mensualidades.id_inmueble','pagos.status')
+        ->get();
+
+    }
+
     public function buscar_estacionamientos($id_residente)
     {
         return \DB::table('residentes')

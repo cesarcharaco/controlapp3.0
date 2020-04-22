@@ -64,18 +64,18 @@ class InmueblesController extends Controller
                     return redirect()->back();    
                 } else {
                     
-                $i=0;
-                foreach ($meses as $key) {
-                    if($key->id>=$m){
-                    $mensualidad=new Mensualidades();
-                    $mensualidad->id_inmueble=$inmueble->id;
-                    $mensualidad->anio=$request->anio;
-                    $mensualidad->mes=$key->id;
-                    $mensualidad->monto=$request->monto[$i];
-                    $mensualidad->save();
-                    $i++;
+                    $i=0;
+                    foreach ($meses as $key) {
+                        if($key->id>=$m){
+                        $mensualidad=new Mensualidades();
+                        $mensualidad->id_inmueble=$inmueble->id;
+                        $mensualidad->anio=$request->anio;
+                        $mensualidad->mes=$key->id;
+                        $mensualidad->monto=$request->monto[$i];
+                        $mensualidad->save();
+                        $i++;
+                        }
                     }
-                }
                 }//nulidad
             } else {
                 # anual
