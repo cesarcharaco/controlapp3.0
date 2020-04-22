@@ -193,4 +193,32 @@ class ResidentesController extends Controller
         flash('Residente eliminado!')->success();
         return redirect()->back();
     }
+
+
+
+
+
+    public function mostrar_inmuebles($id_residente)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
+        ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+        ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
+        ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
+        ->where('residentes.id', $id_residente)
+        ->select('inmuebles.*')
+        ->get();
+    }
+
+    public function mostrar_estacionamientos($id_residente)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
+        ->join('estacionamientos','estacionamientos.id','=','residentes_has_estacionamientos.id_estacionamiento')
+        ->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
+        ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
+        ->where('residentes.id', $id_residente)
+        ->select('inmuebles.*')
+        ->get();
+    }
 }

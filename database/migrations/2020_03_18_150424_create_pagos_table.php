@@ -16,7 +16,7 @@ class CreatePagosTable extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_mensualidad');
-            $table->enum('status',['Cancelado','Pendiente'])->default('Pendiente');
+            $table->enum('status',['Cancelado','Pendiente','No aplica'])->default('Pendiente');
 
             $table->foreign('id_mensualidad')->references('id')->on('mensualidades')->onDelete('cascade');
             $table->timestamps();

@@ -14,4 +14,9 @@ class MensualidadE extends Model
     {
     	return $this->belognsTo('App\Estacionamientos','id_estacionamiento');
     }
+
+    public function pago()
+	{
+		return $this->HasMany('App\PagosE','id_mens_estac','id');
+	}
 }

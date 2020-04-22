@@ -345,8 +345,30 @@
         $.get("arriendos/"+id_residente+"/buscar_inmuebles",function (data) {
         })
         .done(function(data) {
-            
+            /*
+            var inmuebles=[]; //arreglo para guardar los inmuebles
+            var x=0; //variable iterativa del array inmueble
+            for(var i=0; i < data.length; i´++){ // recorriendo los datos traidos
 
+                if (inmuebles.length>0) {// verificando si ya se han registrado inmuebles en el array
+                    var cont=0;// se usa para contar las veces que consiguen el inmueble en el array
+                    for(var j=0; j < inmuebles.length; j++){// recorriendo el array inmueble para buscar el idem
+                        if(inmuebles[j]==data[i].idem){
+                        // si ya el idem esta guardado en el array el contador se incrementa
+                            cont++;
+                        }
+                    }
+                    if (cont==0) {
+                        //si el contador es = a 0 quiere decir que no esta guardado en el array
+                        //y se procese a guardarlo
+                        inmuebles[x]==data[i].idem;
+                        x++;
+                    }
+                } else {
+                    //esto es mas para la primer iteracion cuando no hay registros en el array
+                    inmuebles[x]=data[i].idem;
+                }
+            }*/
 
             for (var i = 0; i < data.length ; i++) {
                 if (i==0) {
