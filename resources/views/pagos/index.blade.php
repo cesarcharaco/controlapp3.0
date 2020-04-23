@@ -382,10 +382,11 @@
         });
     }
     function detalles(id_inmueble){
-        console.log(id_inmueble);
+        //console.log(id_inmueble);
         $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
         })
         .done(function(data) {
+            console.log(data.length);
             for(var i=0; i < data.length; i++){
                 $('.inner2').append(
                             '<div class="row">'+
