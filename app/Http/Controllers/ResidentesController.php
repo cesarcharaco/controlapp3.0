@@ -191,12 +191,26 @@ class ResidentesController extends Controller
 
     public function buscar_estacionamientos2($id_residente)
     {
-        return \DB::table('mens_estac')
-        ->join('estacionamientos','estacionamientos.id','=','mens_estac.id_estacionamiento')
-        ->join('residentes_has_est','residentes_has_est.id_estacionamiento','=','estacionamientos.id')
-        ->join('residentes','residentes.id','=','residentes_has_est.id_residente')
+        return \DB::table('residentes')
+        ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
+        ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
         ->where('residentes.id', $id_residente)
-        ->select('estacionamientos.*','mens_estac.*')
+        ->select('estacionamientos.id','estacionamientos.idem')
+        ->get();
+
+    }
+
+    public function buscar_estacionamientos3($id_estacionamiento)
+    {
+        $anio=date('Y');
+        return \DB::table('residentes')
+        ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
+        ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
+        ->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
+        ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
+        ->where('estacionamientos.id',$id_estacionamiento)
+        ->where('mens_estac.anio',$anio)
+        ->select('mens_estac.mes','pagos_estac.status')
         ->get();
 
     }
