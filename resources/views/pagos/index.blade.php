@@ -353,29 +353,28 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item active">'+
                                 '<center>'+
-                                    '<h3 alt="First slide">'+data[i].idem+'</h3>'+
+                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
                                 '<hr>'+
                                 '<label>Montos por mes</label><br>'+
-                                '<div class="inner2"></div>'
+                                '<div class="inner'+data[i].id+'"></div>'
                         );
 
                         detalles(data[i].id);
-                        $('.carousel-inner').append('</div>');
                     }else{
                         $('.carousel-inner').append(
                             '<div class="carousel-item">'+
                                 '<center>'+
-                                    '<h3 alt="First slide">'+data[i].idem+'</h3>'+
+                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
                                 '<hr>'+
                                 '<label>Montos por mes</label><br>'+
-                                '<div class="inner2"></div>'
+                                '<div class="inner'+data[i].id+'"></div>'
                         );
 
                         detalles(data[i].id);
-                        $('.carousel-inner').append('</div>');
                     }
+                    $('.carousel-inner').append('</div>');
             }
                         
             
@@ -388,7 +387,7 @@
         .done(function(data) {
             console.log(data.length);
             for(var i=0; i < data.length; i++){
-                $('.inner2').append(
+                $('.inner'+id_inmueble).append(
                             '<div class="row">'+
                                 '<div class="col-md-4">'+ 
                                         '<label>'+mostrar_mes(data[i].mes)+'</label>'+
