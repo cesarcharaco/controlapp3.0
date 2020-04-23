@@ -347,36 +347,9 @@
         .done(function(data) {
 
             
-            // alert(data.length);
-            /*
-            var inmuebles=[]; //arreglo para guardar los inmuebles
-            var x=0; //variable iterativa del array inmueble
-            for(var i=0; i < data.length; i++){ // recorriendo los datos traidos
-
-                if (inmuebles.length>0) {// verificando si ya se han registrado inmuebles en el array
-                    var cont=0;// se usa para contar las veces que consiguen el inmueble en el array
-                    for(var j=0; j < inmuebles.length; j++){// recorriendo el array inmueble para buscar el idem
-                        if(inmuebles[j]==data[i].idem){
-                        // si ya el idem esta guardado en el array el contador se incrementa
-                            cont++;
-                        }
-                    }
-                    if (cont==0) {
-                        //si el contador es = a 0 quiere decir que no esta guardado en el array
-                        //y se procese a guardarlo
-                        inmuebles[x]==data[i].idem;
-                        x++;
-                    }
-                } else {
-                    //esto es mas para la primer iteracion cuando no hay registros en el array
-                    inmuebles[x]=data[i].idem;
-                }
-            }*/
-
-            for (var i = 0; i < data.length ; i++) {
-
-                if(data[i].id == data[i].id_inmueble){
-                    if (i==0) {
+            //alert(data.length);
+            for(i=0 ; i<data.length ; i++){
+                if (i==0) {
                         $('.carousel-inner').append(
                             '<div class="carousel-item active">'+
                                 '<center>'+
@@ -386,18 +359,8 @@
                                 '<label>Montos por mes</label><br>'+
                                 '<div class="inner2"></div>'
                         );
-                        $('.inner2').append(
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+i+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>'+data[i].status+'</label>'+
-                                '</div>'+
-                            '</div>'
-                        );
 
-                        
+                        detalles(data[i].id);
                         $('.carousel-inner').append('</div>');
                     }else{
                         $('.carousel-inner').append(
@@ -409,29 +372,88 @@
                                 '<label>Montos por mes</label><br>'+
                                 '<div class="inner2"></div>'
                         );
-                        $('.inner2').append(
+
+                        detalles(data[i].id);
+                        $('.carousel-inner').append('</div>');
+                    }
+            }
+                        
+            
+        });
+    }
+    function detalles(id_inmueble){
+        console.log(id_inmueble);
+        $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
+        })
+        .done(function(data) {
+            for(var i=0; i < data.length; i++){
+                $('.inner2').append(
                             '<div class="row">'+
                                 '<div class="col-md-4">'+ 
-                                        '<label>'+i+'</label>'+
+                                        '<label>'+mostrar_mes(data[i].mes)+'</label>'+
                                 '</div>'+
                                 '<div class="col-md-6">'+
                                     '<label>'+data[i].status+'</label>'+
                                 '</div>'+
                             '</div>'
                         );
-
-                            
-                        $('.carousel-inner').append('</div>');
-                    }
-                }
-                
             }
 
-            
-            
         });
     }
 
+    function mostrar_mes(num) {
+        switch (num) {
+            case 1:
+                return 'Enero';
+                break;
+            case 2:
+                return 'Febrero';
+                break;
+            
+            case 3:
+                return 'Marzo';
+                break;
+            
+            case 4:
+                return 'Abril';
+                break;
+            
+            case 5:
+                return 'Mayo';
+                break;
+            
+            case 6:
+                return 'Junio';
+                break;
+            
+            case 7:
+                return 'Julio';
+                break;
+            
+            case 8:
+                return 'Agosto';
+                break;
+            
+            case 9:
+                return 'Septiembre';
+                break;
+            
+            case 10:
+                return 'Octubre';
+                break;
+            
+            case 11:
+                return 'Noviembre';
+                break;
+            
+            case 12:
+                return 'Diciembre';
+                break;
+            
+            
+        }
+    }
     function buscarArriendos(id_arriendo) {
         $('#buttonCreate').empty();
         $('#createMensuality1').empty();
