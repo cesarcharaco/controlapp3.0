@@ -77,7 +77,7 @@
     
 </div>
 
-        <div class="card" id="VerFomulario" style="display: none;">
+        <div class="card" id="VerFomulario">
             <div class="card-header">
                 <button type="button" class="close" onclick="$('#VerFomulario').css('display','none')">
                     <span>&times;</span>
@@ -88,73 +88,87 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Inmuebles</label>
-                            <select class="multi-select" multiple="multiple" >
-                                @foreach($inmuebles as $key)
-                                    <option value="{{$key->id}}">{{$key->idem}}</option>
-                                @endforeach()
+                            <select multiple class="form-control" id="my_multi_select2" name="inmuebles[]" data-plugin="multiselect" data-selectable-optgroup="true">
+                                <optgroup label="NOMBRE DE INMUEBLE">
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marzo</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abril</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mayo</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Junio</font></font></option>
+                                </optgroup>
+                                <optgroup label="NOMBRE DE INMUEBLE 2">
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agosto</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aeptiembre</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Octubre</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Noviembre</font></font></option>
+                                </optgroup>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Estacionamientos</label>
-                            <select class="multi-select" multiple="multiple" >
-                                @foreach($estacionamientos as $key)
-                                    <option value="{{$key->id}}">{{$key->idem}}</option>
-                                @endforeach()
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Meses</label>
-                            <select class="form-control" multiple="multiple" >
-                               @foreach($meses as $key)
-                                    <option value="{{$key->id}}">{{$key->mes}}</option>
-                                @endforeach()
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Meses</label>
-                            <select class="form-control" multiple="multiple" >
-                               @foreach($meses as $key)
-                                    <option value="{{$key->id}}">{{$key->mes}}</option>
-                                @endforeach()
+                            <select multiple class="form-control" id="my_multi_select2" name="estacionamients[]" data-plugin="multiselect" data-selectable-optgroup="true">
+                                <optgroup label="NOMBRE DE ESTACIONAMIENTO">
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marzo</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abril</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mayo</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Junio</font></font></option>
+                                </optgroup>
+                                <optgroup label="NOMBRE DE ESTACIONAMIENTO 2">
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agosto</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aeptiembre</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Octubre</font></font></option>
+                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Noviembre</font></font></option>
+                                </optgroup>
                             </select>
                         </div>
                     </div>
                 </div>
                 <hr>
-                <div class="row justify-content-md-center">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Sub Total.</label>
-                            <center><h1 style="color: grey; font-size: 100px;">$ 0.00</h1></center>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Multas</label>
+                                <br>
+                                <font style="vertical-align: inherit; color: red">Multa 1 - 9999.00$</font><br>
+                                <font style="vertical-align: inherit; color: red">Multa 2 - 9999.00$</font><br>
+                                <font style="vertical-align: inherit; color: red">Multa 3 - 9999.00$</font>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Recargas</label>
+                                <br>
+                                <font style="vertical-align: inherit; color: green;">Recarga 1 - 9999.00$</font><br>
+                                <font style="vertical-align: inherit; color: green;">Recarga 2 - 9999.00$</font><br>
+                                <font style="vertical-align: inherit; color: green;">Recarga 3 - 9999.00$</font>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                <hr>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label>Total a pagar</label>
                             <center><h1 style="color: grey; font-size: 100px;">$ 0.00</h1></center>
                         </div>
                     </div>
                 </div>
-                        <hr>
-                        <hr>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label>Rereferencias</label>
                             <input type="number" name="" class="form-control">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                <input type="hidden" name="id_residente" id="verF">
-                <button type="button" class="btn btn-primary btn-rounded">Enviar</button>
+                <div class="float-right">
+                    <input type="hidden" name="id_residente" id="verF">
+                    <button type="button" class="btn btn-primary btn-rounded">Aceptar</button>
+                </div>
+
+                
+                
             </div>
         </div>
     </div>
@@ -305,6 +319,7 @@
 @endsection
 
 <script type="text/javascript">
+
     var mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
     var fecha = new Date();
     var anio = fecha.getFullYear();
