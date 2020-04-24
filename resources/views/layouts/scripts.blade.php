@@ -50,7 +50,7 @@
 	    	console.log(data.length)
 	        if (data.length>0) {
 	            for (var i = 0; i < data.length; i++) {
-	               $("#campoMultaRecarga").append('<option value="'+data[i].id+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - monto: '+data[i].monto+'$</font></option>');
+	               $("#campoMultaRecarga").append('<option value="'+data[i].id+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - '+ data[i].tipo+' - monto: '+data[i].monto+'$</font></option>');
 	            }
 	        }else{
 	        	$("#campoMultaRecarga").attr('disabled',true);

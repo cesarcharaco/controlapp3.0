@@ -52,7 +52,8 @@
 
 
 
-                            <form method="POST">
+                            {!! Form::open(['route' => ['asignar_mr'],'method' => 'POST', 'name' => 'asignar_multa', 'id' => 'asignar_multa', 'data-parsley-validate']) !!}
+                                @csrf
                                 <div class="modal fade" id="AsignarMR" role="dialog">
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
@@ -67,7 +68,7 @@
                                                     <div class="col-md-12">
                                                         <div div="form-group">
                                                             <label>Multas - Recargas</label>
-                                                            <select multiple class="custom-select custom-select-sm" name="id_multas[]" id="campoMultaRecarga">
+                                                            <select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga">
                                                             </select>
                                                         </div>
                                                     </div>
@@ -77,7 +78,7 @@
                                                     <div class="col-md-12">
                                                         <div div="form-group">
                                                             <label>Residentes</label>
-                                                            <select multiple class="custom-select custom-select-sm" name="id_residentes[]" id="campoResidentes">
+                                                            <select multiple class="custom-select custom-select-sm" name="id_residente[]" id="campoResidentes">
                                                             </select>
                                                         </div>
                                                     </div>
@@ -98,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            {!! Form::close() !!}
                         
                     </div> <!-- container-fluid -->
 

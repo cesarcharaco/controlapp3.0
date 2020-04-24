@@ -137,17 +137,49 @@ class MultasRecargasController extends Controller
     }
     public function asignar_mr(Request $request)
     {
-        //dd($request->all());
 
-        for ($i=0; $i < count($request->id_mr); $i++) { 
-            \DB::table('resi_has_mr')->insert([
-                'id_residente' => $request->id_residente,
-                'id_mr' => $request->id_mr[$i]
-            ]);
+        $residentes=Residentes::all();
+
+        // dd($request->all());
+        if($request->registrarTodos== 'AsignarTodos'){
+
+            for ($i=0; $i < count($residentes); $i++) {
+
+                $asignados=\DB::table('resi_has_mr')->where('id_residente',$residentes[$i]->id)->get();
+                if(count($asignados)==0){
+
+                    for ($j=0; $j < count($request->id_mr); $j++) { 
+
+                        \DB::table('resi_has_mr')->insert([
+                            'id_residente' => $residentes[$i]->id,
+                            'id_mr' => $request->id_mr[$j]
+                        ]);
+                    }
+
+                }else{
+                    flash('Hay sanciones que ya estaban registradas al residente '.$residentes[$i]->nombres.' '.$residentes[$i]->apellidos)->warning()->important();
+                }
+            }
+
+            flash('Sanciones asignadas a todos los residentes con éxito')->success()->important();
+
+        }else{
+            for ($i=0; $i < count($request->id_residente); $i++) { 
+
+                for ($j=0; $j < count($request->id_mr); $j++) { 
+
+                    \DB::table('resi_has_mr')->insert([
+                        'id_residente' => $request->id_residente[$i],
+                        'id_mr' => $request->id_mr[$j]
+                    ]);
+                }
+            }
+
+            flash('Sanción asignada con éxito')->success()->important();
         }
 
-        flash('Sanción asignada con éxito')->success()->important();
-            return redirect()->to('multas_recargas');
+
+        return redirect()->back();
     }
 
     public function status_mr(Request $request)
