@@ -13,7 +13,7 @@
             <div class="card-body">
                 
                 <div class="float-right">
-                    <a class="btn btn-warning" data-toggle="modal" data-target="#AsignarMR" style="border-radius: 30px; color: white;">
+                    <a class="btn btn-warning" onclick="asignar_mr()" data-toggle="modal" data-target="#AsignarMR" style="border-radius: 30px; color: white;">
                         <span> Asignar M/R </span>
                     </a>
 
