@@ -42,7 +42,7 @@
                                 @foreach($asignaIn as $key)
                                     @foreach($asignaEs as $key2)
                                         @if($key->id_residente == $residentes[$i]->id && $key2->id_residente == $residentes[$i]->id)
-                                            <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                            <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');mostrar_datos('{{$residentes[$i]->id}}');mostrar_datos2('{{$residentes[$i]->id}}');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                             <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
                                         @endif
                                     @endforeach
@@ -82,7 +82,7 @@
     
 </div>
 
-        <div class="card" id="VerFomulario">
+        <div class="card" id="VerFomulario" style="display: none" >
             <div class="card-header">
                 <button type="button" class="close" onclick="$('#VerFomulario').css('display','none')">
                     <span>&times;</span>
@@ -93,8 +93,8 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Inmuebles</label>
-                            <select multiple class="form-control" id="my_multi_select2" name="inmuebles[]" data-plugin="multiselect" data-selectable-optgroup="true">
-                                <optgroup label="NOMBRE DE INMUEBLE">
+                            <select multiple class="form-control select2" id="mis_inmuebles" name="inmuebles[]" data-plugin="multiselect" data-selectable-optgroup="true">
+                                {{-- <optgroup label="NOMBRE DE INMUEBLE">
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marzo</font></font></option>
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abril</font></font></option>
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mayo</font></font></option>
@@ -105,15 +105,15 @@
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aeptiembre</font></font></option>
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Octubre</font></font></option>
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Noviembre</font></font></option>
-                                </optgroup>
+                                </optgroup> --}}
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Estacionamientos</label>
-                            <select multiple class="form-control" id="my_multi_select2" name="estacionamients[]" data-plugin="multiselect" data-selectable-optgroup="true">
-                                <optgroup label="NOMBRE DE ESTACIONAMIENTO">
+                            <select multiple class="form-control select2" id="mis_estacionamientos" name="estacionamientos[]" data-plugin="multiselect" data-selectable-optgroup="true">
+                                {{-- <optgroup label="NOMBRE DE ESTACIONAMIENTO">
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marzo</font></font></option>
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abril</font></font></option>
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mayo</font></font></option>
@@ -124,7 +124,7 @@
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aeptiembre</font></font></option>
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Octubre</font></font></option>
                                     <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Noviembre</font></font></option>
-                                </optgroup>
+                                </optgroup> --}}
                             </select>
                         </div>
                     </div>
@@ -325,6 +325,75 @@
 
 <script type="text/javascript">
 
+    function mostrar_datos(id_residente) {
+        //console.log('entro'+id_residente);
+
+        $.get("arriendos/"+id_residente+"/buscar_inmuebles2",function (data) {
+        })
+        .done(function(data) {
+
+            //console.log(data.length);
+            for(i=0 ; i<data.length ; i++){
+                
+                        $('#mis_inmuebles').append(
+                            '<optgroup id="inmuebles'+data[i].id+'" label="'+data[i].idem+'">'+inmuebles_meses(data[i].id)+'</optgroup>'
+                        );
+
+            }
+                        
+            
+        });
+
+    }
+    function inmuebles_meses(id_inmueble) {
+
+        $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
+        })
+        .done(function(data) {
+            console.log(data.length);
+            for(var i=0; i < data.length; i++){
+                if (data[i].status=="Pendiente") {
+                $('#inmuebles'+id_inmueble).append('<option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                }
+            }
+
+        });
+    }
+
+    function mostrar_datos2(id_residente) {
+        //console.log('entro'+id_residente);
+
+       $.get("arriendos/"+id_residente+"/buscar_estacionamientos2",function (data) {
+        })
+        .done(function(data) {
+
+            //console.log(data.length);
+            for(i=0 ; i<data.length ; i++){
+                
+                        $('#mis_estacionamientos').append(
+                            '<optgroup id="estacionamientos'+data[i].id+'" label="'+data[i].idem+'">'+estacionamientos_meses(data[i].id)+'</optgroup>'
+                        );
+
+            }
+                        
+            
+        });
+
+    }
+    function estacionamientos_meses(id_estacionamiento) {
+
+        $.get("arriendos/"+id_estacionamiento+"/buscar_estacionamientos3",function (data) {
+            })
+            .done(function(data) {
+            console.log(data.length);
+            for(var i=0; i < data.length; i++){
+                if (data[i].status=="Pendiente") {
+                $('#estacionamientos'+id_estacionamiento).append('<option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                }
+            }
+
+        });
+    }
     var mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
     var fecha = new Date();
     var anio = fecha.getFullYear();
@@ -427,7 +496,7 @@
         $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
         })
         .done(function(data) {
-            console.log(data.length);
+            //console.log(data.length);
             for(var i=0; i < data.length; i++){
                 $('.inner'+id_inmueble).append(
                             '<div class="row">'+
