@@ -83,7 +83,7 @@
                                                 
                                             </div>
                                             <div class="modal-footer border-bottom">
-                                                <button type="submit" class="btn btn-success" id="botonG" disabled>Asignar</button>
+                                                <button type="submit" class="btn btn-success">Asignar</button>
                                             </div>
                                         </div>
                                     </div>
