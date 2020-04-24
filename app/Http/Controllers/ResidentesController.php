@@ -262,4 +262,15 @@ class ResidentesController extends Controller
         ->select('inmuebles.*')
         ->get();
     }
+
+    public function buscar_mr($id_residente)
+    {
+        return \DB::table('multas_recargas')
+        ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
+        ->where('residentes.id',$id_residente)
+        ->where('resi_has_mr.status','<>','Pagada')
+        ->select('multas_recargas.*','resi_has_mr.id AS id_resi_mr')
+        ->get();
+    }
 }

@@ -42,7 +42,7 @@
                                 @foreach($asignaIn as $key)
                                     @foreach($asignaEs as $key2)
                                         @if($key->id_residente == $residentes[$i]->id && $key2->id_residente == $residentes[$i]->id)
-                                            <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');mostrar_datos('{{$residentes[$i]->id}}');mostrar_datos2('{{$residentes[$i]->id}}');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                            <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');mostrar_datos('{{$residentes[$i]->id}}');mostrar_datos2('{{$residentes[$i]->id}}');mis_mr('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                             <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
                                         @endif
                                     @endforeach
@@ -130,25 +130,19 @@
                     </div>
                 </div>
                 <hr>
-                    <div class="row">
+                    <div class="row" id="mis_mr" style="display: none">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Multas</label>
+                                <label>Multas/Recargas</label>
                                 <br>
-                                <font style="vertical-align: inherit; color: red">Multa 1 - 9999.00$</font><br>
-                                <font style="vertical-align: inherit; color: red">Multa 2 - 9999.00$</font><br>
-                                <font style="vertical-align: inherit; color: red">Multa 3 - 9999.00$</font>
+                                <select name="id_mr[]" class="form-control selct2" multiple id="mr">
+                                    
+                                </select>
+                                {{-- <font style="vertical-align: inherit; color: red">Multa 1 - 9999.00$</font><br> --}}
+                                
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Recargas</label>
-                                <br>
-                                <font style="vertical-align: inherit; color: green;">Recarga 1 - 9999.00$</font><br>
-                                <font style="vertical-align: inherit; color: green;">Recarga 2 - 9999.00$</font><br>
-                                <font style="vertical-align: inherit; color: green;">Recarga 3 - 9999.00$</font>
-                            </div>
-                        </div>
+                        
                     </div>
                 <hr>
                 <div class="row justify-content-md-center">
@@ -324,7 +318,23 @@
 @endsection
 
 <script type="text/javascript">
+    function mis_mr(id_residente) {
+            $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
+        })
+        .done(function(data) {
+            //console.log(data.length);
+            if (data.length>0) {
+                $("#mis_mr").css('display','block');
+                $("#mr").empty();
+                for (var i = 0; i < data.length; i++) {
+                   $("#mr").append('<option value="'+data[i].id_resi_mr+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - monto: '+data[i].monto+'$</font></option>')
+                }
+            }else{
+                $("#mis_mr").css('display','none');
+            }
 
+        });       
+    }
     function mostrar_datos(id_residente) {
         //console.log('entro'+id_residente);
 
@@ -350,7 +360,7 @@
         $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
         })
         .done(function(data) {
-            console.log(data.length);
+            //console.log(data.length);
             for(var i=0; i < data.length; i++){
                 if (data[i].status=="Pendiente") {
                 $('#inmuebles'+id_inmueble).append('<option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
