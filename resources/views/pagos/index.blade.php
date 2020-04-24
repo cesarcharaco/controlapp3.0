@@ -324,10 +324,9 @@
         .done(function(data) {
             //console.log(data.length);
             if (data.length>0) {
-                $("#mis_mr").css('display','block');
-                $("#mr").empty();
+
                 for (var i = 0; i < data.length; i++) {
-                   $("#mr").append('<option value="'+data[i].id_resi_mr+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - monto: '+data[i].monto+'$</font></option>')
+                   $("#campoResidentes").append('<option value="'+data[i].id_resi_mr+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - monto: '+data[i].monto+'$</font></option>')
                 }
             }else{
                 $("#mis_mr").css('display','none');

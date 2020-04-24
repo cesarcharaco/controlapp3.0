@@ -165,6 +165,13 @@ class MultasRecargasController extends Controller
             return redirect()->to('multas_recargas');
     }
 
+
+
+    public function buscar_mr_all()
+    {
+        return $mr=MultasRecargas::all();
+    }
+
     public function eliminar_mr(Request $request)
     {
         $residente=Residentes::find($request->id_residente);

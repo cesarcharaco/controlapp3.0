@@ -140,6 +140,15 @@ class ResidentesController extends Controller
         // return Residentes::where('id', $id_residente)->get();
     }
 
+    public function buscar_residente2()
+    {
+        return \DB::table('residentes')
+        ->select('residentes.*')
+        ->get();
+
+        // return Residentes::where('id', $id_residente)->get();
+    }
+
     public function buscar_inmuebles($id_residente)
     {
         return \DB::table('residentes')

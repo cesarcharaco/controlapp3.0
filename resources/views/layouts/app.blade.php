@@ -65,26 +65,29 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <label>Multas - Recargas</label>
-                                                        <select multiple class="form-control select2" name="id_multas[]" id="campoMultaRecarga">
-                                                            
-                                                        </select>
+                                                        <div div="form-group">
+                                                            <label>Multas - Recargas</label>
+                                                            <select multiple class="custom-select custom-select-sm" name="id_multas[]" id="campoMultaRecarga">
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <label>Residentes</label>
-                                                        <select multiple class="form-control" name="id_residentes[]" id="campoResidentes">
-                                                            
-                                                        </select>
+                                                        <div div="form-group">
+                                                            <label>Residentes</label>
+                                                            <select multiple class="custom-select custom-select-sm" name="id_residentes[]" id="campoResidentes">
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <label>¿Quiere asignar las multas y recargas a todos los residentes?</label>
-                                                        <input type="checkbox" value="AsignarTodos" id="AsignaT" name="registrarTodos" onchange="cambiar(this.value)">
+                                                        <input type="checkbox" value="AsignarTodos" name="registrarTodos" onclick="cambiarResiT()">
+                                                        <input type="hidden" name="opcion" id="opcionAsignaT" value="1">
                                                     </div>
                                                 </div>
                                                 
