@@ -85,32 +85,29 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Inmuebles</label>
-                            <select class="form-control" multiple="multiple" >
+                            <select class="multi-select" multiple="multiple" >
                                 @foreach($inmuebles as $key)
                                     <option value="{{$key->id}}">{{$key->idem}}</option>
                                 @endforeach()
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Meses</label>
-                            <select class="form-control" multiple="multiple" >
-                               @foreach($meses as $key)
-                                    <option value="{{$key->id}}">{{$key->mes}}</option>
-                                @endforeach()
-                            </select>
-                        </div>
-                        <hr>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Estacionamientos</label>
-                            <select class="form-control" multiple="multiple" >
+                            <select class="multi-select" multiple="multiple" >
                                 @foreach($estacionamientos as $key)
                                     <option value="{{$key->id}}">{{$key->idem}}</option>
                                 @endforeach()
                             </select>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Meses</label>
                             <select class="form-control" multiple="multiple" >
@@ -119,6 +116,34 @@
                                 @endforeach()
                             </select>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Meses</label>
+                            <select class="form-control" multiple="multiple" >
+                               @foreach($meses as $key)
+                                    <option value="{{$key->id}}">{{$key->mes}}</option>
+                                @endforeach()
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Sub Total.</label>
+                            <center><h1 style="color: grey; font-size: 100px;">$ 0.00</h1></center>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Total a pagar</label>
+                            <center><h1 style="color: grey; font-size: 100px;">$ 0.00</h1></center>
+                        </div>
+                    </div>
+                </div>
+                        <hr>
                         <hr>
                         <div class="form-group">
                             <label>Rereferencias</label>
