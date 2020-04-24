@@ -39,9 +39,14 @@
                                 <center>
                                     
                                 <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
-
-                                <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
-                                <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
+                                @foreach($asignaIn as $key)
+                                    @foreach($asignaEs as $key2)
+                                        @if($key->id_residente == $residentes[$i]->id && $key2->id_residente == $residentes[$i]->id)
+                                            <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                            <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
+                                        @endif
+                                    @endforeach
+                                @endforeach
                                 </center>
                             </div>
                             <div class="col-md-5">
