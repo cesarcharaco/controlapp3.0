@@ -43,13 +43,52 @@
                                 </h4>
                             </div>
                         </div> -->
-                        <div>
                             
                             <app></app>
                             @yield('statusarea')
                             @yield('breadcomb')
                             @yield('content')
-                        </div>
+
+
+
+
+                            <form method="POST">
+                                <div class="modal fade" id="AsignarMR" role="dialog">
+                                    <div class="modal-dialog modals-default">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Asignar M/R</h4>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Multas - Recargas</label>
+                                                        <select multiple class="form-control select2" name="id_multas[]">
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Residentes</label>
+                                                        <select multiple class="form-control select2" name="id_residentes[]">
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer border-bottom">
+                                                <button type="submit" class="btn btn-success" id="botonG" disabled>Asignar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         
                     </div> <!-- container-fluid -->
 

@@ -12,14 +12,14 @@
         <div class="card">
             <div class="card-body">
                 
-                <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 offset-md-9">
-                        <a class="btn btn-success" data-toggle="modal" data-target="#crearMulta" style="border-radius: 30px; color: white;">
-                            <span> Nuevo Multa - Recarga </span>
-                        </a>
-                    </div>
+                <div class="float-right">
+                    <a class="btn btn-warning" data-toggle="modal" data-target="#AsignarMR" style="border-radius: 30px; color: white;">
+                        <span> Asignar M/R </span>
+                    </a>
+
+                    <a class="btn btn-success" data-toggle="modal" data-target="#crearMulta" style="border-radius: 30px; color: white;">
+                        <span> Nuevo Multa - Recarga </span>
+                    </a>
                 </div>
             </div>
                     

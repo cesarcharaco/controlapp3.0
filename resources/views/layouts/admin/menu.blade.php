@@ -78,9 +78,9 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('multas_recargas')}}">
+                <a class="dropdown-item" data-toggle="modal" data-target="#AsignarMR">
                     <i data-feather="credit-card"></i>
-                    <span> Asignar saldo </span>
+                        <span> Asignar M/R </span>
                 </a>
             </li>
 
