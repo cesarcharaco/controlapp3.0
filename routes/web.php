@@ -23,7 +23,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('arriendos','ResidentesController@arriendos')->name('arriendos');
 	Route::get('arriendos/{id_residente}/buscar_residente','ResidentesController@buscar_residente');
-	Route::get('residentes/buscar_residente2','ResidentesController@buscar_residente2');
+	Route::get('residentes/{num}/buscar_residente2','ResidentesController@buscar_residente2');
 	Route::get('arriendos/{id_residente}/buscar_inmuebles','ResidentesController@buscar_inmuebles');
 	Route::get('arriendos/{id_residente}/buscar_inmuebles2','ResidentesController@buscar_inmuebles2');
 	Route::get('arriendos/{id_inmueble}/buscar_inmuebles3','ResidentesController@buscar_inmuebles3');
@@ -64,7 +64,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('multas_recargas/asignar','MultasRecargasController@asignar_mr')->name('asignar_mr');
 	Route::post('sanciones/cambiar_status','MultasRecargasController@status_mr')->name('sanciones.cambiar_status');
 	Route::post('sanciones/eliminar','MensualidadesController@eliminar_mr')->name('sanciones.eliminar_mr');
-	Route::get('multas_recargas/buscar_mr_all','MultasRecargasController@buscar_mr_all');
+	Route::get('multas_recargas/{num}/buscar_mr_all','MultasRecargasController@buscar_mr_all');
 
 	Route::resource('pagos','PagosController');
 });

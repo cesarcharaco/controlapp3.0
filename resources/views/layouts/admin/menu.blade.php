@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li>
-                <a class="dropdown-item" data-toggle="modal" data-target="#AsignarMR">
+                <a class="dropdown-item" onclick="asignar_mr()" data-toggle="modal" data-target="#AsignarMR">
                     <i data-feather="credit-card"></i>
                         <span> Asignar M/R </span>
                 </a>

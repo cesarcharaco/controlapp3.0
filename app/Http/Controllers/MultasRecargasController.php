@@ -167,11 +167,9 @@ class MultasRecargasController extends Controller
 
 
 
-    public function buscar_mr_all()
+    public function buscar_mr_all($num)
     {
-        return \DB::table('multas_recargas')
-        ->select('multas_recargas.*')
-        ->get();
+        return $mr=MultasRecargas::where('id','>=',$num)->get();
     }
 
     public function eliminar_mr(Request $request)
