@@ -66,7 +66,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <label>Multas - Recargas</label>
-                                                        <select multiple class="form-control select2" name="id_multas[]">
+                                                        <select multiple class="form-control select2" name="id_multas[]" id="campoMultaRecarga">
                                                             
                                                         </select>
                                                     </div>
@@ -75,9 +75,16 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <label>Residentes</label>
-                                                        <select multiple class="form-control select2" name="id_residentes[]">
+                                                        <select multiple class="form-control" name="id_residentes[]" id="campoResidentes">
                                                             
                                                         </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>¿Quiere asignar las multas y recargas a todos los residentes?</label>
+                                                        <input type="checkbox" value="AsignarTodos" id="AsignaT" name="registrarTodos" onchange="cambiar(this.value)">
                                                     </div>
                                                 </div>
                                                 
@@ -106,6 +113,7 @@
     <!-- Scripts -->
         
         @include('layouts.scripts')
+        
     @section('scripts')
     @endsection
 </body>

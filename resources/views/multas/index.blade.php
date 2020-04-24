@@ -30,7 +30,6 @@
                 <table class="table table-hover" id="myTable" width="100%">
                     <thead>
                         <tr>
-                            <th>Mensualidad</th>
                             <th>Motivo</th>
                             <th>Observación</th>
                             <th>Monto</th>
@@ -41,7 +40,6 @@
                     <tbody>
                         @foreach($mr as $key)
                             <tr>
-                                <td></td>
                                 <td>{{$key->motivo}}</td>
                                 <td>{{$key->observacion}}</td>
                                 <td>{{$key->monto}}</td>
