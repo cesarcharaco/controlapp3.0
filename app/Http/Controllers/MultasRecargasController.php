@@ -19,6 +19,11 @@ class MultasRecargasController extends Controller
         return view('multas.index',compact('mr'));
     }
 
+    public function buscar_multa($id_multa)
+    {
+        return \DB::table('multas_recargas')->where('id',$id_multa)->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

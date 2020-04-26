@@ -32,7 +32,17 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('arriendos/{id_estacionamiento}/buscar_estacionamientos3','ResidentesController@buscar_estacionamientos3');
 	Route::get('arriendos/{id_residente}/buscar_mr','ResidentesController@buscar_mr');
 	Route::post('arriendos/asignando','ArriendosController@asignando')->name('arriendos.asignando');
+
+
+
+
 	Route::resource('mensualidades','MensualidadesController');
+	Route::get('mensualidadInmueble/{id}/buscar', 'MensualidadesController@buscarMesInmueble');
+	Route::get('mensualidadEstacionamiento/{id}/buscar', 'MensualidadesController@buscarMesEstacionamiento');
+
+
+
+
 
 	Route::resource('inmuebles','InmueblesController');
 	Route::get('inmuebles/{id}/{anio}/buscar_mensualidad','InmueblesController@buscar_mensualidad');
@@ -61,6 +71,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('notificaciones/eliminar','NotificacionesController@eliminar_notif')->name('notificaciones.eliminar_notif');
 
 	Route::resource('multas_recargas','MultasRecargasController');
+	Route::get('multas_recargas/{id}/buscar','MultasRecargasController@buscar_multa');
 	Route::post('multas_recargas/asignar','MultasRecargasController@asignar_mr')->name('asignar_mr');
 	Route::post('sanciones/cambiar_status','MultasRecargasController@status_mr')->name('sanciones.cambiar_status');
 	Route::post('sanciones/eliminar','MensualidadesController@eliminar_mr')->name('sanciones.eliminar_mr');

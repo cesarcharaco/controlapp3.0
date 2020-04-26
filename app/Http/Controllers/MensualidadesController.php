@@ -86,6 +86,26 @@ class MensualidadesController extends Controller
 
 	}
 
+
+	public function buscarMesInmueble($id_inmueble){
+
+		return \DB::table('inmuebles')
+		->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
+		->where('mensualidades.id',$id_inmueble)
+		->select('inmuebles.idem','mensualidades.*')
+		->get();
+
+	}
+	public function buscarMesEstacionamiento($id_estacionamiento){
+		
+		return \DB::table('estacionamientos')
+		->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
+		->where('mens_estac.id',$id_estacionamiento)
+		->select('estacionamientos.idem','mens_estac.*')
+		->get();
+
+	}
+
 	/**
 	* Update the specified resource in storage.
 	*

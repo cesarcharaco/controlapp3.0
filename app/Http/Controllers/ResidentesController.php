@@ -180,7 +180,7 @@ class ResidentesController extends Controller
         ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
         ->where('inmuebles.id',$id_inmueble)
         ->where('mensualidades.anio',$anio)
-        ->select('mensualidades.mes','pagos.status')
+        ->select('mensualidades.mes','mensualidades.id','pagos.status')
         ->get();
 
     }
@@ -217,7 +217,7 @@ class ResidentesController extends Controller
         ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
         ->where('estacionamientos.id',$id_estacionamiento)
         ->where('mens_estac.anio',$anio)
-        ->select('mens_estac.mes','pagos_estac.status')
+        ->select('mens_estac.mes','mens_estac.id','pagos_estac.status')
         ->get();
 
     }

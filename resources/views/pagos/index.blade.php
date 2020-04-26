@@ -42,7 +42,7 @@
                                 @foreach($asignaIn as $key)
                                     @foreach($asignaEs as $key2)
                                         @if($key->id_residente == $residentes[$i]->id && $key2->id_residente == $residentes[$i]->id)
-                                            <a style="border-radius: 50px;" href="#" onclick="$('#verF').val('{{$residentes[$i]->id}}');$('#VerFomulario').css('display','block');mostrar_datos('{{$residentes[$i]->id}}');mostrar_datos2('{{$residentes[$i]->id}}');mis_mr('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                            <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                             <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
                                         @endif
                                     @endforeach
@@ -93,63 +93,46 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Inmuebles</label>
-                            <select multiple class="form-control select2" id="mis_inmuebles" name="inmuebles[]" data-plugin="multiselect" data-selectable-optgroup="true">
-                                {{-- <optgroup label="NOMBRE DE INMUEBLE">
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marzo</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abril</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mayo</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Junio</font></font></option>
-                                </optgroup>
-                                <optgroup label="NOMBRE DE INMUEBLE 2">
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agosto</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aeptiembre</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Octubre</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Noviembre</font></font></option>
-                                </optgroup> --}}
+                            <select class="form-control select2" id="mis_inmuebles" name="inmuebles[]" onchange="montoTotalI(this.value)" data-plugin="multiselect" data-selectable-optgroup="true">
+                                
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Estacionamientos</label>
-                            <select multiple class="form-control select2" id="mis_estacionamientos" name="estacionamientos[]" data-plugin="multiselect" data-selectable-optgroup="true">
-                                {{-- <optgroup label="NOMBRE DE ESTACIONAMIENTO">
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marzo</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abril</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mayo</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Junio</font></font></option>
-                                </optgroup>
-                                <optgroup label="NOMBRE DE ESTACIONAMIENTO 2">
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agosto</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aeptiembre</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Octubre</font></font></option>
-                                    <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Noviembre</font></font></option>
-                                </optgroup> --}}
+                            <select class="form-control select2" id="mis_estacionamientos" name="estacionamientos[]" onchange="montoTotalE(this.value)" data-plugin="multiselect" data-selectable-optgroup="true">
+                                
                             </select>
                         </div>
                     </div>
                 </div>
                 <hr>
-                    <div class="row" id="mis_mr" style="display: none">
+                    <div class="row" id="mis_mr">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Multas/Recargas</label>
                                 <br>
-                                <select name="id_mr[]" class="form-control selct2" multiple id="mr">
+                                <select name="id_mr[]" class="form-control selct2" id="mr" onchange="montoTotalM(this.value)">
                                     
                                 </select>
                                 {{-- <font style="vertical-align: inherit; color: red">Multa 1 - 9999.00$</font><br> --}}
                                 
                             </div>
                         </div>
-                        
+                        <div class="col-md-6">
+                            <div class="overflow-auto">
+                                    <table id="mrSeleccionado" class="" style="width: 100%;" alt="Max-width 100%">
+                                    </table>
+                            </div>
+                        </div>
                     </div>
                 <hr>
                 <div class="row justify-content-md-center">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Total a pagar</label>
-                            <center><h1 style="color: grey; font-size: 100px;">$ 0.00</h1></center>
+                            <center style="color: grey; font-size: 100px;">$<span id="TotalPagar">0</span>.00</center>
                         </div>
                     </div>
                 </div>
@@ -318,18 +301,26 @@
 @endsection
 
 <script type="text/javascript">
+
+    function mostrarFormulario(id_residente) {
+        $('#verF').val(id_residente);
+        $('#VerFomulario').css('display','block');
+
+        mostrar_datos(id_residente);
+        mostrar_datos2(id_residente);
+        mis_mr(id_residente);
+    }
     function mis_mr(id_residente) {
-            $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
+        $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
         })
         .done(function(data) {
-            //console.log(data.length);
+            $('#mr').append('<option value="0" selected>Seleccione multa-recarga</option>');
             if (data.length>0) {
-
                 for (var i = 0; i < data.length; i++) {
-                   $("#campoResidentes").append('<option value="'+data[i].id_resi_mr+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - monto: '+data[i].monto+'$</font></option>')
+                   $("#mr").append('<option value="'+data[i].id+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - '+ data[i].tipo+' - monto: '+data[i].monto+'$</font></option>');
                 }
             }else{
-                $("#mis_mr").css('display','none');
+                $("#mr").css('display','none');
             }
 
         });       
@@ -341,7 +332,7 @@
         })
         .done(function(data) {
 
-            //console.log(data.length);
+            $('#mis_inmuebles').append('<option value="0" selected>Seleccione inmueble</option>');
             for(i=0 ; i<data.length ; i++){
                 
                         $('#mis_inmuebles').append(
@@ -362,7 +353,7 @@
             //console.log(data.length);
             for(var i=0; i < data.length; i++){
                 if (data[i].status=="Pendiente") {
-                $('#inmuebles'+id_inmueble).append('<option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                $('#inmuebles'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 }
             }
 
@@ -375,7 +366,7 @@
        $.get("arriendos/"+id_residente+"/buscar_estacionamientos2",function (data) {
         })
         .done(function(data) {
-
+            $('#mis_estacionamientos').append('<option value="0" selected>Seleccione estacionamiento</option>');
             //console.log(data.length);
             for(i=0 ; i<data.length ; i++){
                 
@@ -397,7 +388,7 @@
             console.log(data.length);
             for(var i=0; i < data.length; i++){
                 if (data[i].status=="Pendiente") {
-                $('#estacionamientos'+id_estacionamiento).append('<option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                $('#estacionamientos'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 }
             }
 
@@ -410,7 +401,161 @@
     var house= "{{ asset('assets/images/house.png') }}";
     var parkin= "{{ asset('assets/images/parkin.png') }}";
 
-    
+    function montoTotalI(id_inmueble){
+        if(id_inmueble!= null){
+            $.get("mensualidadInmueble/"+id_inmueble+"/buscar",function (data) {
+            })
+            .done(function(data) {
+                $("#mis_inmuebles option[value=" + id_inmueble + "]").attr('disabled',true);
+                var monto= parseFloat(data[0].monto);
+                $('#mrSeleccionado').append(
+                    '<tr id="trInmueble'+data[0].id+'">'+
+                        '<td>'+
+                            '<div class="text-primary">Inmueble </div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<div class="text-primary">'+data[0].idem+'</div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<div class="text-primary">$'+monto+'.00</div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<div class="text-primary"></div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<button type="button" onclick="borrarInmuebleT('+id_inmueble+','+monto+')" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+
+                        '</td>'+
+                    '</tr>'
+                );
+                $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+            });
+            $('#mis_inmuebles').val('');
+        }
+    }
+    function montoTotalE(id_estacionamiento){
+        if(id_estacionamiento!= null){
+            $.get("mensualidadEstacionamiento/"+id_estacionamiento+"/buscar",function (data) {
+            })
+            .done(function(data) {
+                $("#mis_estacionamientos option[value=" + id_estacionamiento + "]").attr('disabled',true);
+                var monto= parseFloat(data[0].monto);
+                $('#mrSeleccionado').append(
+                    '<tr id="trEstacionamiento'+data[0].id+'">'+
+                        '<td>'+
+                            '<div class="text-warning">Estacionamiento </div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<div class="text-warning">'+data[0].idem+'</div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<div class="text-warning">$'+monto+'.00</div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<div class="text-warning"></div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<button type="button" onclick="borrarEstacionamientoT('+id_estacionamiento+','+monto+');" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+
+                        '</td>'+
+                    '</tr>'
+                );
+                $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+            });
+            $('#mis_estacionamientos').val('');
+        }
+    }
+    function montoTotalM(id_multa){
+        if(id_multa!= null){
+            $.get("multas_recargas/"+id_multa+"/buscar",function (data) {
+            })
+            .done(function(data) {
+
+                $("#mr option[value=" + id_multa + "]").attr('disabled',true);
+                var monto= parseFloat(data[0].monto);
+                var tipo= ""+data[0].tipo+"";
+                if(data[0].tipo == 'Recarga'){
+                    var tipo=1;
+                    $('#mrSeleccionado').append(
+                        '<tr id="trMulta'+data[0].id+'">'+
+                            '<td>'+
+                                '<div class="text-success">Recarga </div>'+
+                            '</td>'+
+                            '<td>'+
+                                '<div class="text-success">'+data[0].motivo+'</div>'+
+                            '</td>'+
+                            '<td>'+
+                                '<div class="text-success">$'+monto+'.00</div>'+
+                            '</td>'+
+                            '<td>'+
+                                '<div class="text-success"></div>'+
+                            '</td>'+
+                            '<td>'+
+                                '<button type="button" onclick="borrarMultaT('+data[0].id+','+monto+','+tipo+')" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+
+                            '</td>'+
+                        '</tr>'
+                    );
+                    $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+                }
+                if(data[0].tipo == 'Multa'){
+                    var tipo=2;
+                    $('#mrSeleccionado').append(
+                        '<tr id="trMulta'+data[0].id+'">'+
+                            '<td>'+
+                                '<div class="text-danger">Multa </div>'+
+                            '</td>'+
+                            '<td>'+
+                                '<div class="text-danger">'+data[0].motivo+'</div>'+
+                            '</td>'+
+                            '<td>'+
+                                '<div class="text-danger"></div>'+
+                            '</td>'+
+                            '<td>'+
+                                '<div class="text-danger">$'+monto+'.00</div>'+
+                            '</td>'+
+                            '<td>'+
+                                '<button type="button" onclick="borrarMultaT('+id_multa+','+monto+','+tipo+')" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+
+                            '</td>'+
+                        '</tr>'
+                    );
+                    $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+                }
+
+
+            });
+            $('#mr').val('');
+        }
+    }
+
+
+    function borrarInmuebleT(id_inmueble, monto) {
+        $("#mis_inmuebles option[value=" + id_inmueble + "]").removeAttr('disabled');
+        $("#trInmueble"+id_inmueble).remove();
+        $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+    }
+    function borrarEstacionamientoT(id_estacionamiento, monto) {
+        $("#mis_estacionamientos option[value=" + id_estacionamiento + "]").removeAttr('disabled');
+        $("#trEstacionamiento"+id_estacionamiento).remove();
+        $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+    }
+    function borrarMultaT(id_multa, monto, tipo) {
+        $("#mis_mr option[value=" + id_multa + "]").removeAttr('disabled');
+        $("#trMulta"+id_multa).remove();
+        if (tipo == 1) {
+            $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+        } else if(tipo == 2) {
+            $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    //-----------------------------------------------------------------------------------CARROUSEL---------------------------------------------------------
 
     function buscarResidentes(id_residente) {
         $('.carrousel').empty();
