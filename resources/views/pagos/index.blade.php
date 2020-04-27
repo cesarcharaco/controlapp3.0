@@ -92,16 +92,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Inmuebles</label>
+                            <label><div class="text-primary">Inmuebles</div></label>
                             <select class="form-control select2" id="mis_inmuebles" name="inmuebles[]" onchange="montoTotalI(this.value)" data-plugin="multiselect" data-selectable-optgroup="true" disabled>
+                                <option value="0" selected disabled>Seleccione</option>
                                 
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Estacionamientos</label>
+                            <label><div class="text-warning">Estacionamientos</div></label>
                             <select class="form-control select2" id="mis_estacionamientos" name="estacionamientos[]" onchange="montoTotalE(this.value)" data-plugin="multiselect" data-selectable-optgroup="true" disabled>
+                                <option value="0" selected disabled>Seleccione</option>
                                 
                             </select>
                         </div>
@@ -111,9 +113,10 @@
                     <div class="row" id="mis_mr">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Multas/Recargas</label>
+                                <label><div class="text-danger">Multas</div><div class="text-success">Recargas</div></label>
                                 <br>
                                 <select name="id_mr[]" class="form-control selct2" id="mr" onchange="montoTotalM(this.value)" disabled>
+                                    <option value="0" selected disabled>Seleccione</option>
                                     
                                 </select>
                                 {{-- <font style="vertical-align: inherit; color: red">Multa 1 - 9999.00$</font><br> --}}
