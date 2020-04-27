@@ -139,24 +139,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Rereferencias</label>
-                            <input type="number" name="" class="form-control">
+                {!! Form::open(['route' => ['estacionamientos.registrar_mensualidad'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Rereferencias</label>
+                                <input type="number" name="referencias" class="form-control">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="float-right">
-                    {!! Form::open(['route' => ['estacionamientos.registrar_mensualidad'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
-                        @csrf
-                        <input type="text" name="id_residente" id="verF">
-                        <select class="form-control" name="id_mensInmueble[]" id="id_mensInmuebleR" multiple style="display: none;"></select>
-                        <select class="form-control" name="id_mensEstaciona[]" id="id_mensEstacionaR" multiple style="display: none;"></select>
-                        <select class="form-control" name="id_mensMulta[]" id="id_mensMultaR" multiple style="display: none;"></select>
-                        <button type="button" class="btn btn-primary btn-rounded">Aceptar</button>
-                    {!! Form::close() !!}
-                </div>
+                    <div class="float-right">
+                            @csrf
+                            <div style="display: none">
+                                <input type="hidden" name="id_residente" id="verF">
+                                <select class="form-control" name="id_mensInmueble[]" id="id_mensInmuebleR" multiple></select>
+                                <select class="form-control" name="id_mensEstaciona[]" id="id_mensEstacionaR" multiple></select>
+                                <select class="form-control" name="id_mensMulta[]" id="id_mensMultaR" multiple></select>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-rounded">Aceptar</button>
+                    </div>
+                {!! Form::close() !!}
 
                 
                 
