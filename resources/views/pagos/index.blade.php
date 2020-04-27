@@ -93,7 +93,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Inmuebles</label>
-                            <select class="form-control select2" id="mis_inmuebles" name="inmuebles[]" onchange="montoTotalI(this.value)" data-plugin="multiselect" data-selectable-optgroup="true">
+                            <select class="form-control select2" id="mis_inmuebles" name="inmuebles[]" onchange="montoTotalI(this.value)" data-plugin="multiselect" data-selectable-optgroup="true" disabled>
                                 
                             </select>
                         </div>
@@ -101,7 +101,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Estacionamientos</label>
-                            <select class="form-control select2" id="mis_estacionamientos" name="estacionamientos[]" onchange="montoTotalE(this.value)" data-plugin="multiselect" data-selectable-optgroup="true">
+                            <select class="form-control select2" id="mis_estacionamientos" name="estacionamientos[]" onchange="montoTotalE(this.value)" data-plugin="multiselect" data-selectable-optgroup="true" disabled>
                                 
                             </select>
                         </div>
@@ -113,7 +113,7 @@
                             <div class="form-group">
                                 <label>Multas/Recargas</label>
                                 <br>
-                                <select name="id_mr[]" class="form-control selct2" id="mr" onchange="montoTotalM(this.value)">
+                                <select name="id_mr[]" class="form-control selct2" id="mr" onchange="montoTotalM(this.value)" disabled>
                                     
                                 </select>
                                 {{-- <font style="vertical-align: inherit; color: red">Multa 1 - 9999.00$</font><br> --}}
@@ -122,8 +122,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="overflow-auto">
-                                    <table id="mrSeleccionado" class="" style="width: 100%;" alt="Max-width 100%">
-                                    </table>
+                                <table id="mrSeleccionado" class="" style="width: 100%;" alt="Max-width 100%">
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -145,8 +145,14 @@
                     </div>
                 </div>
                 <div class="float-right">
-                    <input type="hidden" name="id_residente" id="verF">
-                    <button type="button" class="btn btn-primary btn-rounded">Aceptar</button>
+                    {!! Form::open(['route' => ['estacionamientos.registrar_mensualidad'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
+                        @csrf
+                        <input type="text" name="id_residente" id="verF">
+                        <select class="form-control" name="id_mensInmueble[]" id="id_mensInmuebleR" multiple style="display: none;"></select>
+                        <select class="form-control" name="id_mensEstaciona[]" id="id_mensEstacionaR" multiple style="display: none;"></select>
+                        <select class="form-control" name="id_mensMulta[]" id="id_mensMultaR" multiple style="display: none;"></select>
+                        <button type="button" class="btn btn-primary btn-rounded">Aceptar</button>
+                    {!! Form::close() !!}
                 </div>
 
                 
@@ -314,7 +320,6 @@
         $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
         })
         .done(function(data) {
-            $('#mr').append('<option value="0" selected>Seleccione multa-recarga</option>');
             if (data.length>0) {
                 for (var i = 0; i < data.length; i++) {
                    $("#mr").append('<option value="'+data[i].id+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - '+ data[i].tipo+' - monto: '+data[i].monto+'$</font></option>');
@@ -322,6 +327,7 @@
             }else{
                 $("#mr").css('display','none');
             }
+            $('#mr').removeAttr('disabled');
 
         });       
     }
@@ -332,7 +338,6 @@
         })
         .done(function(data) {
 
-            $('#mis_inmuebles').append('<option value="0" selected>Seleccione inmueble</option>');
             for(i=0 ; i<data.length ; i++){
                 
                         $('#mis_inmuebles').append(
@@ -356,7 +361,7 @@
                 $('#inmuebles'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 }
             }
-
+            $('#mis_inmuebles').removeAttr('disabled');
         });
     }
 
@@ -366,7 +371,6 @@
        $.get("arriendos/"+id_residente+"/buscar_estacionamientos2",function (data) {
         })
         .done(function(data) {
-            $('#mis_estacionamientos').append('<option value="0" selected>Seleccione estacionamiento</option>');
             //console.log(data.length);
             for(i=0 ; i<data.length ; i++){
                 
@@ -391,6 +395,7 @@
                 $('#estacionamientos'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 }
             }
+            $('#mis_estacionamientos').removeAttr('disabled');
 
         });
     }
@@ -411,10 +416,10 @@
                 $('#mrSeleccionado').append(
                     '<tr id="trInmueble'+data[0].id+'">'+
                         '<td>'+
-                            '<div class="text-primary">Inmueble </div>'+
+                            '<div class="text-primary">'+data[0].idem+'</div>'+
                         '</td>'+
                         '<td>'+
-                            '<div class="text-primary">'+data[0].idem+'</div>'+
+                            '<div class="text-primary">'+mostrar_mes(data[0].mes)+' </div>'+
                         '</td>'+
                         '<td>'+
                             '<div class="text-primary">$'+monto+'.00</div>'+
@@ -427,9 +432,9 @@
                         '</td>'+
                     '</tr>'
                 );
-                $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+                $('#id_mensInmuebleR').append('<option selected id="inmuebleR'+data[0].id+'" value="'+data[0].id+'">'+data[0].id+'</option>');
+                montoTotal(2,monto);
             });
-            $('#mis_inmuebles').val('');
         }
     }
     function montoTotalE(id_estacionamiento){
@@ -442,10 +447,10 @@
                 $('#mrSeleccionado').append(
                     '<tr id="trEstacionamiento'+data[0].id+'">'+
                         '<td>'+
-                            '<div class="text-warning">Estacionamiento </div>'+
+                            '<div class="text-warning">'+data[0].idem+'</div>'+
                         '</td>'+
                         '<td>'+
-                            '<div class="text-warning">'+data[0].idem+'</div>'+
+                            '<div class="text-warning">'+mostrar_mes(data[0].mes)+' </div>'+
                         '</td>'+
                         '<td>'+
                             '<div class="text-warning">$'+monto+'.00</div>'+
@@ -458,9 +463,9 @@
                         '</td>'+
                     '</tr>'
                 );
-                $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+                $('#id_mensEstacionaR').append('<option selected id="estacionamientoR'+data[0].id+'" value="'+data[0].id+'">'+data[0].id+'</option>');
+                montoTotal(2,monto);
             });
-            $('#mis_estacionamientos').val('');
         }
     }
     function montoTotalM(id_multa){
@@ -493,7 +498,8 @@
                             '</td>'+
                         '</tr>'
                     );
-                    $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+                    
+                    montoTotal(2,monto);
                 }
                 if(data[0].tipo == 'Multa'){
                     var tipo=2;
@@ -516,12 +522,11 @@
                             '</td>'+
                         '</tr>'
                     );
-                    $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+                    montoTotal(1,monto);
                 }
 
-
+                $('#id_mensMultaR').append('<option selected id="multaR'+data[0].id+'" value="'+data[0].id+'">'+data[0].id+'</option>');
             });
-            $('#mr').val('');
         }
     }
 
@@ -529,25 +534,40 @@
     function borrarInmuebleT(id_inmueble, monto) {
         $("#mis_inmuebles option[value=" + id_inmueble + "]").removeAttr('disabled');
         $("#trInmueble"+id_inmueble).remove();
-        $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+        $("#inmuebleR"+id_inmueble).remove();
+        montoTotal(1,monto);
     }
     function borrarEstacionamientoT(id_estacionamiento, monto) {
         $("#mis_estacionamientos option[value=" + id_estacionamiento + "]").removeAttr('disabled');
         $("#trEstacionamiento"+id_estacionamiento).remove();
-        $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+        $("#estacionamientoR"+id_estacionamiento).remove();
+        montoTotal(1,monto);
     }
     function borrarMultaT(id_multa, monto, tipo) {
         $("#mis_mr option[value=" + id_multa + "]").removeAttr('disabled');
         $("#trMulta"+id_multa).remove();
+        $("#multaR"+id_multa).remove();
         if (tipo == 1) {
-            $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
-        } else if(tipo == 2) {
-            $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+            montoTotal(1,monto);
+        }else{
+            montoTotal(2,monto);
         }
+        
     }
 
 
-
+    function montoTotal(tipo, monto){
+        var cuentaFilas = $('#mrSeleccionado tr').length;
+        if (cuentaFilas == 0) {
+            $('#TotalPagar').html(parseInt(0));
+        } else {
+            if (tipo == 1) {
+                $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+            } else if(tipo == 2) {
+                $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+            }
+        }
+    }
 
 
 
