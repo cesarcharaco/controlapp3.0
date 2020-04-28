@@ -14,4 +14,9 @@ class Estacionamientos extends Model
     {
     	return $this->hasMany('App\MensualidadE','id_estacionamiento','id');
     }
+
+    public function residentes()
+	{
+	return $this->belongsToMany('App\Residentes','residentes_has_est','id_estacionamiento','id_residente');
+	}
 }

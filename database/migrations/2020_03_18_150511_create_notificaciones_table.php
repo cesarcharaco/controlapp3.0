@@ -17,6 +17,7 @@ class CreateNotificacionesTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->text('motivo');
+            $table->enum('publicar',['Todos','Individual'])->default('Todos');
             $table->timestamps();
         });
     }

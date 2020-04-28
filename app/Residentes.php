@@ -15,9 +15,14 @@ class Residentes extends Model
 		return $this->belongsTo('App\User','id_usuario');
 	}
 
-		public function inmuebles()
+	public function inmuebles()
 	{
 		return $this->belongsToMany('App\Inmuebles','residentes_has_inmuebles','id_residente','id_inmueble');
+	}
+
+	public function estacionamientos()
+	{
+		return $this->belongsToMany('App\Estacionamientos','residentes_has_est','id_residente','id_estacionamiento');
 	}
 
 	public function mr()

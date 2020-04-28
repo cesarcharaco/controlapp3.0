@@ -35,12 +35,50 @@ class NotificacionesController extends Controller
      */
     public function store(Request $request)
     {
-        $notificaciones=\DB::table('notificaciones')->insert([
-            'titulo' => $request->titulo,
-            'motivo' => $request->motivo
-        ]);
-        flash('Notificacion registrada!')->important();
-        return redirect()->back();
+        //dd($request->all());
+        //dd(!is_null($request->todos));
+        if ($request->titulo=="" || $request->motivo=="") {
+            flash('Los campos no deben de estar vacíos!')->warning()->important();
+            return redirect()->back();
+        } else {
+            if (!is_null($request->todos)) {
+            $notificaciones=\DB::table('notificaciones')->insert([
+                'titulo' => $request->titulo,
+                'motivo' => $request->motivo
+            ]);
+                flash('Notificación registrada con éxito!')->success()->important();
+                    return redirect()->back();    
+            }else{
+                if (is_null($request->id_residente)) {
+                    flash('No ha seleccionado ningún residente!')->warning()->important();
+                    return redirect()->back();    
+                } else {
+                    
+                   $notif=new Notificaciones();
+                   $notif->titulo=$request->titulo;
+                   $notif->motivo=$request->motivo;
+                   $notif->publicar="Individual";
+                   $notif->save();
+
+                    for ($i=0; $i < count($request->id_residente) ; $i++) { 
+                         \DB::table('resi_has_notif')->insert([
+                            'id_residente' => $request->id_residente[$i],
+                            'id_notificacion' => $notif->id
+                         ]);
+                     } 
+
+                     flash('Notificación registrada y enviada con éxito!')->success()->important();
+                    return redirect()->back();    
+                }
+                
+            }
+            
+        }
+        
+
+
+        
+        
     }
 
     /**

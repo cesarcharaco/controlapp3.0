@@ -4,8 +4,8 @@
                 <img src="{{ asset('assets/images/logo.jpg') }}" class="avatar-sm rounded-circle mr-2" alt="Shreyu">
 
                 <div class="media-body">
-                    <h6 class="pro-user-name mt-0 mb-0">Nik Patel</h6>
-                    <span class="pro-user-desc">Administrator</span>
+                    <h6 class="pro-user-name mt-0 mb-0">{{ \Auth::user()->name }}</h6>
+                    <span class="pro-user-desc">{{ \Auth::user()->tipo_usuario }}</span>
                 </div>
                 <div class="dropdown align-self-center profile-dropdown-menu">
                     <a class="dropdown-toggle mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
