@@ -322,9 +322,9 @@
 
     function mostrarFormulario(id_residente) {
 
-        $('#mis_inmuebles').empty();
-        $('#mis_estacionamientos').empty();
-        $('#mr').empty();
+        $('#mis_inmuebles').empty().append('<option selected disabled>Seleccione los inmuebles</option');
+        $('#mis_estacionamientos').empty().append('<option selected disabled>Seleccione los estacionamientos</option');
+        $('#mr').empty().append('<option selected disabled>Seleccione las Multas - Recargas</option');
         $('#TotalPagar').html(parseInt(0));
         $('#mrSeleccionado').empty();
         $('#id_mensInmuebleR').empty();
