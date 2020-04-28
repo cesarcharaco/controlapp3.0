@@ -126,10 +126,10 @@
                                                                         
                                                                         <div class="col-lg-6">
                                                                             <input type="text" readonly="" class="form-control-plaintext" id="nombres_profile" value="Nelson">
-                                                                            <input type="text" readonly="" name="nombres" class="form-control" id="nombres_profileE" value="Nelson" style="display: none;">
+                                                                            <input type="text" name="nombres" class="form-control" id="nombres_profileE" value="Nelson" style="display: none;">
 
                                                                             <input type="text" readonly="" class="form-control-plaintext" id="apellidos_profile" value="Mandela">
-                                                                            <input type="text" readonly="" name="apellidos" class="form-control" id="apellidos_profileE" value="Mandela" style="display: none;">
+                                                                            <input type="text" name="apellidos" class="form-control" id="apellidos_profileE" value="Mandela" style="display: none;">
                                                                         </div>
                                                                     </div>
                                                                     <h6 class="text-muted font-weight-normal mt-1 mb-4">
@@ -137,7 +137,7 @@
                                                                             <label class="col-lg-4 col-form-label" for="example-static">Rut</label>
                                                                             <div class="col-lg-8">
                                                                                 <input type="number" readonly="" class="form-control-plaintext" id="rut_profile" value="123124123">
-                                                                                <input type="number" readonly="" name="rut" class="form-control" id="rut_profileE" value="123124123" style="display: none;">
+                                                                                <input type="number" name="rut" class="form-control" id="rut_profileE" value="123124123" style="display: none;">
                                                                             </div>
                                                                         </div>
                                                                     </h6>
@@ -171,14 +171,14 @@
                                                                         <label class="col-lg-4 col-form-label" for="example-static">Email</label>
                                                                         <div class="col-lg-8">
                                                                             <input type="email" readonly="" class="form-control-plaintext" id="email_profile"value="email@example.com">
-                                                                            <input type="email" readonly="" name="email" class="form-control" id="email_profileE"value="email@example.com" style="display: none;">
+                                                                            <input type="email" name="email" class="form-control" id="email_profileE"value="email@example.com" style="display: none;">
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group row">
                                                                         <label class="col-lg-6 col-form-label" for="example-static">Teléfono</label>
                                                                         <div class="col-lg-6">
                                                                             <input type="number" readonly="" class="form-control-plaintext" id="telefono_profile"value="13123123">
-                                                                            <input type="number" readonly="" name="telefono" class="form-control" id="telefono_profileE"value="13123123" style="display: none;">
+                                                                            <input type="number" name="telefono" class="form-control" id="telefono_profileE"value="13123123" style="display: none;">
                                                                         </div>
                                                                     </div>
                                                                     
