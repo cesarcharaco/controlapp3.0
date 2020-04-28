@@ -39,11 +39,15 @@
                                 <center>
                                     
                                 <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
+                                @php $cuenta=0; @endphp
                                 @foreach($asignaIn as $key)
                                     @foreach($asignaEs as $key2)
-                                        @if($key->id_residente == $residentes[$i]->id && $key2->id_residente == $residentes[$i]->id)
-                                            <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
-                                            <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
+                                        @if($key->id_residente == $residentes[$i]->id || $key2->id_residente == $residentes[$i]->id)
+                                            @if($cuenta == 0)
+                                                <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
+                                                @php $cuenta++; @endphp
+                                            @endif
                                         @endif
                                     @endforeach
                                 @endforeach
@@ -317,6 +321,18 @@
 <script type="text/javascript">
 
     function mostrarFormulario(id_residente) {
+
+        $('#mis_inmuebles').empty();
+        $('#mis_estacionamientos').empty();
+        $('#mr').empty();
+        $('#TotalPagar').html(parseInt(0));
+        $('#mrSeleccionado').empty();
+        $('#id_mensInmuebleR').empty();
+        $('#id_mensEstacionaR').empty();
+        $('#id_mensMultaR').empty();
+
+
+
         $('#verF').val(id_residente);
         $('#VerFomulario').css('display','block');
 
