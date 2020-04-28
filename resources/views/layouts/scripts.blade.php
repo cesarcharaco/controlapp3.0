@@ -74,7 +74,101 @@
 	    });
 	}
 
-	
+	function Profile(){
+		// $('#perfil').modal('show');
+	}
+
+	function EditarProfile() {
+		$('#btnGuardarProfile').fadeIn(300);
+
+		$('#buttonEditP').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#buttonEditP2').fadeIn(300);
+		});
+
+		$('#nombres_profile').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#nombres_profileE').fadeIn(300);
+		});
+		$('#apellidos_profile').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#apellidos_profileE').fadeIn(300);
+		});
+
+		$('#rut_profile').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#rut_profileE').fadeIn(300);
+		});
+
+		$('#email_profile').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#email_profileE').fadeIn(300);
+		});
+
+		$('#telefono_profile').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#telefono_profileE').fadeIn(300);
+		});
+	}
+
+	function EditarProfile2() {
+		$('#btnGuardarProfile').fadeOut('slow');
+
+		$('#buttonEditP2').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#buttonEditP').fadeIn(300);
+		});
+
+		$('#nombres_profileE').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#nombres_profile').fadeIn(300);
+		});
+		$('#apellidos_profileE').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#apellidos_profile').fadeIn(300);
+		});
+
+		$('#rut_profileE').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#rut_profile').fadeIn(300);
+		});
+
+		$('#email_profileE').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#email_profile').fadeIn(300);
+		});
+
+		$('#telefono_profileE').fadeOut('slow',
+			function() { 
+				$(this).hide();
+				$('#telefono_profile').fadeIn(300);
+		});
+
+	}
+
+
+	// function productos(){
+	// }
+
+	// function productos2(){
+	// 	$('#productos2').fadeOut('slow',
+	// 		function() { 
+	// 			$(this).hide(); 
+	// 			$('#productos').fadeIn(300);
+	// 	});
+	// }
+
 
     
 
