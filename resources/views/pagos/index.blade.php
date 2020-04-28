@@ -163,7 +163,7 @@
                                 <select class="form-control" name="id_mensEstaciona[]" id="id_mensEstacionaR" multiple></select>
                                 <select class="form-control" name="id_mensMulta[]" id="id_mensMultaR" multiple></select>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-rounded">Aceptar---</button>
+                            <button type="submit" class="btn btn-primary btn-rounded">Aceptar</button>
                     </div>
                 {!! Form::close() !!}
 
