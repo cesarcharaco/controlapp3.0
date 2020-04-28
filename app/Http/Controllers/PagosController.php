@@ -7,6 +7,7 @@ use App\Residentes;
 use App\Inmuebles;
 use App\Meses;
 use App\Estacionamientos;
+use App\MultasRecargas;
 use Illuminate\Http\Request;
 
 class PagosController extends Controller
@@ -48,7 +49,7 @@ class PagosController extends Controller
      */
     public function store(Request $request)
     {
-
+        //dd($request->all());
         
         $factura="";
 
@@ -57,20 +58,39 @@ class PagosController extends Controller
             flash('No ha seleccionado nada a pagar!')->warning()->important();
         return redirect()->back();
         } else {
-            for ($i=0; $i < count($request->id_mensInmueble); $i++) { 
-                $pagos=Pagos::where('id_mensualidad',$request->id_mensInmueble[$i])->first();
-                $pagos->status="Cancelado";
-                $pagos->save();
-                
-                $factura.="Inmueble: ".$pagos->mensualidad->inmuebles->idem." Mes: ".$this->mostrar_mes($pagos->mensualidad->mes)."<br>";
+            if (is_null($request->id_mensInmueble)==false) {
+                for ($i=0; $i < count($request->id_mensInmueble); $i++) { 
+                    $pagos=Pagos::where('id_mensualidad',$request->id_mensInmueble[$i])->first();
+                    $pagos->status="Cancelado";
+                    $pagos->save();
+                    
+                    $factura.="Inmueble: ".$pagos->mensualidad->inmuebles->idem." Mes: ".$this->mostrar_mes($pagos->mensualidad->mes)." Monto: ".$pagos->mensualidad->monto."<br>";
+                }
+            }
+            
+            if(is_null($request->id_mensEstaciona)==false){
+                for ($i=0; $i < count($request->id_mensEstaciona); $i++) { 
+                    $pagosE=PagosE::where('id_mensualidad',$request->id_mensEstaciona[$i])->first();
+                    $pagosE->status="Cancelado";
+                    $pagosE->save();
+                    
+                    $factura.="Inmueble: ".$pagosE->mensualidad->inmuebles->idem." Mes: ".$this->mostrar_mes($pagosE->mensualidad->mes)." Monto: ".$pagosE->mensualidad->monto."<br>";
+                }
             }
 
-            for ($i=0; $i < count($request->id_mensEstaciona); $i++) { 
-                $pagosE=PagosE::where('id_mensualidad',$request->id_mensEstaciona[$i])->first();
-                $pagosE->status="Cancelado";
-                $pagosE->save();
-                
-                $factura.="Inmueble: ".$pagosE->mensualidad->inmuebles->idem." Mes: ".$this->mostrar_mes($pagosE->mensualidad->mes)."<br>";
+            if(is_null($request->id_mensMulta)==false){
+                for ($i=0; $i < count($request->id_mensMulta) ; $i++) { 
+                    $mr=MultasRecargas::find($request->id_mensMulta[$i]);
+                    //dd($mr->residentes);
+                    foreach ($mr->residentes as $key) {
+                        if($key->pivot->id_residente==$request->id_residente){
+                            //dd("asas");
+                            $key->pivot->status="Pagada";
+                            $key->pivot->save();
+                            $factura.="Multa o Recarga: ".$mr->motivo.", Monto: ".$mr->monto." status:Pagada<br>";
+                        }
+                    }
+                }
             }
             $factura.="<br></br>Total Cancelado: ".$request->total.", con la referencia: ".$request->referencia."<br>";
             $reporte=\DB::table('reportes_pagos')->insert([
@@ -78,6 +98,7 @@ class PagosController extends Controller
                 'reporte' => $factura,
                 'id_residente' => $request->id_residente
             ]);
+            //dd("---------");
             flash('Pago realizado con éxito!')->success()->important();
             return redirect()->back();
         }
