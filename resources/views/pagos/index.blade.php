@@ -9,7 +9,7 @@
                 <h1>Pagos</h1>
             </div>
         </div>
-
+        @include('flash::message')
         <div class="card">
             <div class="card-body">
                 <div class="form-group ic-cmpint">
@@ -88,6 +88,8 @@
                     <span>&times;</span>
                 </button>
             </div>
+           {!! Form::open(['route' => ['pagos.store'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
+                @csrf
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -136,27 +138,28 @@
                         <div class="form-group">
                             <label>Total a pagar</label>
                             <center style="color: grey; font-size: 100px;">$<span id="TotalPagar">0</span>.00</center>
+                            <input type="hidden" name="total" id="total" value="0">
                         </div>
                     </div>
                 </div>
-                {!! Form::open(['route' => ['estacionamientos.registrar_mensualidad'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
+                
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Rereferencias</label>
-                                <input type="number" name="referencias" class="form-control">
+                                <input type="number" required="required" name="referencia" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="float-right">
-                            @csrf
+                            
                             <div style="display: none">
                                 <input type="hidden" name="id_residente" id="verF">
                                 <select class="form-control" name="id_mensInmueble[]" id="id_mensInmuebleR" multiple></select>
                                 <select class="form-control" name="id_mensEstaciona[]" id="id_mensEstacionaR" multiple></select>
                                 <select class="form-control" name="id_mensMulta[]" id="id_mensMultaR" multiple></select>
                             </div>
-                            <button type="button" class="btn btn-primary btn-rounded">Aceptar</button>
+                            <button type="submit" class="btn btn-primary btn-rounded">Aceptar---</button>
                     </div>
                 {!! Form::close() !!}
 
@@ -562,14 +565,18 @@
 
 
     function montoTotal(tipo, monto){
+        var total=0;
         var cuentaFilas = $('#mrSeleccionado tr').length;
         if (cuentaFilas == 0) {
             $('#TotalPagar').html(parseInt(0));
+            //$('#total').val(0);
         } else {
             if (tipo == 1) {
                 $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+                $("#total").val($("#TotalPagar").html());
             } else if(tipo == 2) {
                 $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+                $("#total").val($("#TotalPagar").html());
             }
         }
     }
