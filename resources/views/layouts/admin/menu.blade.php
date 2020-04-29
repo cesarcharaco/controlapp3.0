@@ -94,14 +94,14 @@
                 </a>
             </li>
 
-            <li class="menu-title">Configuración </li>
+            {{-- <li class="menu-title">Configuración </li>
             
             <li>
                 <a href="angular-doc.html">
                     <i data-feather="users"></i>
                     <span> Usuarios </span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
     <!-- End Sidebar -->

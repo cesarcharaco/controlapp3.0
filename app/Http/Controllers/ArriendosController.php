@@ -84,35 +84,42 @@ class ArriendosController extends Controller
 
     }
 
-    public function retirando_i(Request $request)
+    public function retirando(Request $request)
     {
-        $inmueble=Inmuebles::find($request->id_inmueble);
+        //dd($request->all());
+        if ($request->id_inmueble>0) {
+            $inmueble=Inmuebles::find($request->id_inmueble);
 
-        $inmueble->status="Disponible";
-        $inmueble->save();
+            $inmueble->status="Disponible";
+            $inmueble->save();
 
-        foreach ($inmueble->residentes as $key) {
-            if ($key->pivot->id_residente==$request->id_residente && $key->pivot->status=="En Uso") {
-                $key->pivot->status="Retirado";
-                $key->pivot->save();
+            foreach ($inmueble->residentes as $key) {
+                if ($key->pivot->id_residente==$request->id_residente && $key->pivot->status=="En Uso") {
+                    $key->pivot->status="Retirado";
+                    $key->pivot->save();
+                }
+                
             }
-            
+            flash('Retiro de inmueble realizado con éxito!')->success()->important();
+        } elseif($request->id_estacionamiento>0) {
+            $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
+
+            $estacionamiento->status="Libre";
+            $estacionamiento->save();
+
+            foreach ($estacionamiento->residentes as $key) {
+                if ($key->pivot->id_residente==$request->id_residente && $key->pivot->status=="En Uso") {
+                    $key->pivot->status="Retirado";
+                    $key->pivot->save();
+                }
+                
+            }
+            flash('Retiro de estacionamiento realizado con éxito!')->success()->important();
         }
+
+        
+        return redirect()->to('arriendos');
     }
 
-    public function retirando_e(Request $request)
-    {
-        $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
-
-        $estacionamiento->status="Libre";
-        $estacionamiento->save();
-
-        foreach ($estacionamiento->residentes as $key) {
-            if ($key->pivot->id_residente==$request->id_residente && $key->pivot->status=="En Uso") {
-                $key->pivot->status="Retirado";
-                $key->pivot->save();
-            }
-            
-        }
-    }
+    
 }
