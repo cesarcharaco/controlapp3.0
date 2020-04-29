@@ -84,15 +84,15 @@ class ArriendosController extends Controller
 
     }
 
-    public function retirando_i($id_inmueble,$id_residente)
+    public function retirando_i(Request $request)
     {
-        $inmueble=Inmuebles::find($id_inmueble);
+        $inmueble=Inmuebles::find($request->id_inmueble);
 
         $inmueble->status="Disponible";
         $inmueble->save();
 
         foreach ($inmueble->residentes as $key) {
-            if ($key->pivot->id_residente==$id_residente && $key->pivot->status=="En Uso") {
+            if ($key->pivot->id_residente==$request->id_residente && $key->pivot->status=="En Uso") {
                 $key->pivot->status="Retirado";
                 $key->pivot->save();
             }
@@ -100,15 +100,15 @@ class ArriendosController extends Controller
         }
     }
 
-    public function retirando_e($id_estacionamiento,$id_residente)
+    public function retirando_e(Request $request)
     {
-        $estacionamiento=Estacionamientos::find($id_estacionamiento);
+        $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
 
         $estacionamiento->status="Libre";
         $estacionamiento->save();
 
         foreach ($estacionamiento->residentes as $key) {
-            if ($key->pivot->id_residente==$id_residente && $key->pivot->status=="En Uso") {
+            if ($key->pivot->id_residente==$request->id_residente && $key->pivot->status=="En Uso") {
                 $key->pivot->status="Retirado";
                 $key->pivot->save();
             }
