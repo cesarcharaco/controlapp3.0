@@ -45,7 +45,7 @@
                                         @if($key->id_residente == $residentes[$i]->id || $key2->id_residente == $residentes[$i]->id)
                                             @if($cuenta == 0)
                                                 <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
-                                                <a style="border-radius: 50px;" href="#" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
+                                                <a style="border-radius: 50px;" href="#" onclick="EditarPago('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
                                                 @php $cuenta++; @endphp
                                             @endif
                                         @endif
@@ -204,11 +204,14 @@
     </form> -->
 
     <form method="POST">
-        <div class="modal fade" id="editarPago" role="dialog">
+        <div class="modal fade" id="editar_p" role="dialog">
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4>Editar Pago</h4>
+                        <div class="spinner-border text-warning m-2" role="status" id="cargando_E">
+                            <span class="sr-only">Cargando...</span>
+                        </div>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
@@ -217,29 +220,53 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" v-model="idem" name="idem" placeholder="Idem del Pago" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <select type="text" v-model="id_mensualidad" name="id_mensualidad" placeholder="Status de Pago" class="form-control">
+                                    <label class=" col-form-label" for="example-static">Referencias</label>
+                                    <select class="form-control select2" name="id_referencia" id="id_referencias">
                                         
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <select type="text" v-model="status" name="status" placeholder="Status del Pago" class="form-control">
-                                    	<option value="Cancelado">Cancelado</option>
-                                    	<option value="Pendiente">Pendiente</option>
-                                    </select>
+                        <hr>
+
+                        <div id="consigueRefe">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="text-primary col-form-label" for="example-static">Inmuebles</label>
+                                        <select class="border border-primary form-control select2" name="id_inmueble[]" id="id_inmuebleEditar">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="text-warning col-form-label" for="example-static">Estacionamientos</label>
+                                        <select class="border border-warning form-control select2" name="id_estacionamiento[]" id="id_estacionamientoEditar">
+                                            
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="text-success col-form-label" for="example-static">Multas - Recargas</label>
+                                        <select class="border border-success form-control select2" name="id_multa[]" id="id_multaEditar">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                </div>
+                            </div>
+
+                            
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="id">
@@ -340,6 +367,20 @@
         mostrar_datos2(id_residente);
         mis_mr(id_residente);
     }
+
+
+    function EditarPago(argument) {
+        $('#editar_p').modal('show');
+
+        $.get("pagos/"+id_residente+"/buscar_mr",function (data) {
+        })
+        .done(function(data) {
+
+        });
+
+    }
+
+
     function mis_mr(id_residente) {
         $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
         })

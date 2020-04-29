@@ -208,6 +208,33 @@
         </div>
     </div>
 </form>
+
+
+
+<form action="{{ route('residentes.store') }}" method="POST" name="BorrarAsignacion" data-parsley-validate>
+    @csrf
+    <div class="modal fade" id="BorrarAsignacion" role="dialog">
+        <div class="modal-dialog modals-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="text-danger">Eliminar asignación</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>¿Está seguro de querer borrar esta asignación?</h3><br> Sus pagos y mensualidades también se borrarán
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_residente" id="id_residenteBorrar">
+                    <input type="hidden" name="id_estacionamiento" id="id_estacionamientoBorrar">
+                    <input type="hidden" name="id_inmueble" id="id_inmuebleBorrar">
+                    <button type="submit" class="btn btn-danger" >Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 @endsection
 
 
@@ -299,6 +326,7 @@
                             '<tr>'+
                             '<th scope="col">#</th>'+
                             '<th scope="col">Idem</th>'+
+                            '<th scope="col">Opciones</th>'+
                             '</tr>'+
                         '</thead>'+
                     '</table>'+
@@ -311,6 +339,7 @@
                             '<tr>'+
                             '<th scope="row">'+n+'</th>'+
                             '<td>'+data[i].idem+'</td>'+
+                            '<td><a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+',0,'+data[i].id+')">Borrar</a></td>'+
                             '</tr>'+
                         '</tbody>'
                     );
@@ -332,6 +361,7 @@
                             '<tr>'+
                             '<th scope="col">#</th>'+
                             '<th scope="col">Idem</th>'+
+                            '<th scope="col">Opciones</th>'+
                             '</tr>'+
                         '</thead>'+
                     '</table>'+
@@ -344,6 +374,7 @@
                             '<tr>'+
                             '<th scope="row">'+n+'</th>'+
                             '<td>'+data[i].idem+'</td>'+
+                            '<td><a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+','+data[i].id+',0)">Borrar</a></td>'+
                             '</tr>'+
                         '</tbody>'
                     );
@@ -352,5 +383,17 @@
                 $('#VerEstacionamientos').append('<h3>No tiene estacionamientos asignados</h3>');
             }
         });
+    }
+
+    function borrar(id_residente, id_inmueble, id_estacionamiento) {
+        $('#BorrarAsignacion').modal('show');
+
+        $('#id_residenteBorrar').empty();
+        $('#id_estacionamientoBorrar').empty();
+        $('#id_inmuebleBorrar').empty();
+
+        $('#id_residenteBorrar').val(id_residente);
+        $('#id_estacionamientoBorrar').val(id_estacionamiento);
+        $('#id_inmuebleBorrar').val(id_inmueble);
     }
 </script>
