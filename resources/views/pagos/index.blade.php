@@ -481,7 +481,7 @@
             });
 
 
-            console.log('holaaa');
+            //console.log('holaaa');
             $.get("estacionamientos/"+id_residente+"/"+anio+"/buscar_estacionamientos",function (data) {
             })
             .done(function(data) {
@@ -537,9 +537,9 @@
         });
     }
 
-    function estacionamientos_meses_editar(id_inmueble) {
+    function estacionamientos_meses_editar(id_estacionamiento) {
 
-        $.get("mostrar/"+id_inmueble+"/meses_estacionamientos",function (data) {
+        $.get("mostrar/"+id_estacionamiento+"/meses_estacionamientos",function (data) {
         })
         .done(function(data) {
             if (data.length>0) {

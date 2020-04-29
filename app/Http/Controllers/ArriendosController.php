@@ -206,7 +206,7 @@ class ArriendosController extends Controller
         
         return \DB::table('residentes')
         ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
-        ->join('estacionamientos','estacionamientos.id','=','residentes_has_inmuebles.id_estacionamiento')
+        ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
         ->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
         ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
         ->where('estacionamientos.id',$id_estacionamiento)
