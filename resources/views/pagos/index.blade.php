@@ -420,7 +420,7 @@
             $.get("inmuebles/"+id_residente+"/buscar_anios",function (data) {
             })
             .done(function(data) {
-                    console.log(data.length);
+                    //console.log(data.length);
                     if (data.length>0) {
                         $("#anio").empty();
                         for (var i = 0; i < data.length ; i++) {
@@ -437,7 +437,7 @@
             $.get("estacionamientos/"+id_residente+"/buscar_anios",function (data) {
             })
             .done(function(data) {
-                    console.log(data.length);
+                    //console.log(data.length);
                     if (data.length>0) {
                         $("#anio").empty();
                         for (var i = 0; i < data.length ; i++) {
@@ -456,12 +456,13 @@
     }
 
     function BuscarEditar(anio) {
-
+        console.log(anio+"----------");
             var id_residente =$('#verF').val();
 
-            $.get("arriendos/"+id_residente+"/buscar_inmuebles2",function (data) {
+            $.get("inmuebles/"+id_residente+"/"+anio+"/buscar_inmuebles",function (data) {
+            })
             .done(function(data) {
-
+                console.log(data.length);
                 for(i=0 ; i<data.length ; i++){
                     
                     $('#id_inmuebleEditar').append(
@@ -471,7 +472,7 @@
                 }
             });
 
-
+/*
 
 
             $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
@@ -509,7 +510,7 @@
                 for (var i = 0; i < data.length; i++) {
                     $('#id_estacionamientoEditar').append('<option selected value="'+data[i].id+'"></option>');
                 }
-            });
+            });*/
     }
 
 

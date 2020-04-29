@@ -84,4 +84,5 @@ Route::group(['middleware' => ['web','auth']], function () {
 	
 	Route::get('inmuebles/{id_residente}/buscar_anios','ArriendosController@buscar_anios_i');	
 	Route::get('estacionamientos/{id_residente}/buscar_anios','ArriendosController@buscar_anios_e');
+	Route::get('inmuebles/{id_residente}/{anio}/buscar_inmuebles','ArriendosController@buscar_inmuebles');
 });

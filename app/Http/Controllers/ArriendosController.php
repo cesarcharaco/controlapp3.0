@@ -148,4 +148,19 @@ class ArriendosController extends Controller
         ->groupBy('mens_estac.anio')
         ->get();
     }
+
+    public function buscar_inmuebles($id_residente,$anio)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
+        ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+        ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
+        ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
+        ->where('residentes.id',$id_residente)
+        ->where('mensualidades.anio',$anio)
+        ->where('residentes_has_inmuebles.status','En Uso')
+        ->select('inmuebles.id','inmuebles.idem','residentes_has_inmuebles.status AS alquiler_status')
+        ->groupBy('inmuebles.idem')
+        ->get();
+    }
 }
