@@ -410,6 +410,10 @@
         $('#MuestraEstacionamiento').hide();
         $('#MuestraMulta').hide();
 
+        $('#id_inmuebleEditar').empty();
+        $('#id_estacionamientoEditar').empty();
+        $('#id_multaEditar').empty();
+
 
         // $('#id_añoE').append('<option></option>');
 
@@ -464,11 +468,10 @@
             $.get("inmuebles/"+id_residente+"/"+anio+"/buscar_inmuebles",function (data) {
             })
             .done(function(data) {
-                console.log(data.length);
                 for(i=0 ; i<data.length ; i++){
                     
                     $('#id_inmuebleEditar').append(
-                        '<optgroup label="'+data[i].idem+'">'+inmuebles_meses_editar(data[i].id)+'</optgroup>'
+                        '<optgroup label="'+data[i].idem+'" id="id_inmuebleEditar'+data[i].id+'">'+inmuebles_meses_editar(data[i].id)+'</optgroup>'
                     );
 
                 }
@@ -521,8 +524,9 @@
         .done(function(data) {
             if (data.length>0) {
             for(var i=0; i < data.length; i++){
+                console.log(i);
                 // if (data[i].status=="Pendiente") {
-                $('#id_inmuebleEditar').append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                $('#id_inmuebleEditar'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 // }
             }
             $('#mis_inmuebles').removeAttr('disabled');
