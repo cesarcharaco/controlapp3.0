@@ -44,8 +44,40 @@
                                     @foreach($asignaEs as $key2)
                                         @if($key->id_residente == $residentes[$i]->id || $key2->id_residente == $residentes[$i]->id)
                                             @if($cuenta == 0)
+                                                
+                                                <div class="dropdown align-self-center profile-dropdown-menu">
+                                                    
+                                                    <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
+
+                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+
+                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
+                                                            <span class="text-primary">Inmuebles</span>
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
+                                                            <span class="text-warning">Estacionamientos</span>
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
+                                                            <span class="text-danger">Multas</span>
+                                                        </a>
+
+                                                        
+                                                        <!-- <div class="dropdown-divider"></div> -->
+
+                                                    </div>
+                                                </div>
+
                                                 <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
-                                                <a style="border-radius: 50px;" href="#" onclick="EditarPago('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-warning"> <i data-feather="edit"></i></a>
+
+
+
+
+
+
+
                                                 @php $cuenta++; @endphp
                                             @endif
                                         @endif
@@ -208,10 +240,10 @@
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4>Editar Pago</h4>
-                        <div class="spinner-border text-warning m-2" role="status" id="cargando_E">
+                        <h4 id="titleE"></h4>
+                        <!-- <div class="spinner-border text-warning m-2" role="status" id="cargando_E">
                             <span class="sr-only">Cargando...</span>
-                        </div>
+                        </div> -->
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
@@ -220,8 +252,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class=" col-form-label" for="example-static">Referencias</label>
-                                    <select class="form-control select2" name="id_referencia" id="id_referencias">
+                                    <label class=" col-form-label" for="example-static">Año de pago</label>
+                                    <select class="form-control select2" name="id_año" id="id_añoE">
                                         
                                     </select>
                                 </div>
@@ -229,10 +261,10 @@
                         </div>
                         <hr>
 
-                        <div id="consigueRefe">
+                        <div id="MuestraInmueble">
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="text-primary col-form-label" for="example-static">Inmuebles</label>
                                         <select class="border border-primary form-control select2" name="id_inmueble[]" id="id_inmuebleEditar">
@@ -240,7 +272,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                        </div>
+
+                        <div id="MuestraEstacionamiento">
+                            <div>
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="text-warning col-form-label" for="example-static">Estacionamientos</label>
                                         <select class="border border-warning form-control select2" name="id_estacionamiento[]" id="id_estacionamientoEditar">
@@ -249,9 +286,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <div id="MuestraMulta">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="text-success col-form-label" for="example-static">Multas - Recargas</label>
                                         <select class="border border-success form-control select2" name="id_multa[]" id="id_multaEditar">
@@ -259,12 +298,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    
-                                </div>
                             </div>
-
-                            
                         </div>
 
                     </div>
@@ -369,14 +403,26 @@
     }
 
 
-    function EditarPago(argument) {
+    function EditarPago(id_residente, opcion) {
         $('#editar_p').modal('show');
+        $('#MuestraInmueble').hide();
+        $('#MuestraEstacionamiento').hide();
+        $('#MuestraMulta').hide();
 
-        $.get("pagos/"+id_residente+"/buscar_mr",function (data) {
-        })
-        .done(function(data) {
+        if (opcion == 1) {
+            $('#titleE').text('Editar Inmuebles');
+            $('#MuestraInmueble').show();
+        }
 
-        });
+        if (opcion == 2) {
+            $('#titleE').text('Editar Estacionamientos');
+            $('#MuestraEstacionamiento').show();
+        }
+
+        if (opcion == 3) {
+            $('#titleE').text('Editar Multas');
+            $('#MuestraMulta').show();
+        }
 
     }
 
