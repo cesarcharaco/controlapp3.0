@@ -17,12 +17,12 @@ class Residentes extends Model
 
 	public function inmuebles()
 	{
-		return $this->belongsToMany('App\Inmuebles','residentes_has_inmuebles','id_residente','id_inmueble');
+		return $this->belongsToMany('App\Inmuebles','residentes_has_inmuebles','id_residente','id_inmueble')->withPivot('status');
 	}
 
 	public function estacionamientos()
 	{
-		return $this->belongsToMany('App\Estacionamientos','residentes_has_est','id_residente','id_estacionamiento');
+		return $this->belongsToMany('App\Estacionamientos','residentes_has_est','id_residente','id_estacionamiento')->withPivot('status');
 	}
 
 	public function mr()

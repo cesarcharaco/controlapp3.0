@@ -17,6 +17,7 @@ class CreateResidentesHasEstTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_residente');
             $table->unsignedBigInteger('id_estacionamiento');
+            $table->enum('status',['En Uso','Retirado'])->default('En Uso');
 
             $table->foreign('id_residente')->references('id')->on('residentes')->onDelete('cascade');
             $table->foreign('id_estacionamiento')->references('id')->on('estacionamientos')->onDelete('cascade');

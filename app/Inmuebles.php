@@ -12,7 +12,7 @@ protected $fillable=['idem','tipo','status'];
 
 public function residentes()
 {
-return $this->belongsToMany('App\Residentes','residentes_has_inmuebles','id_inmueble','id_residente');
+return $this->belongsToMany('App\Residentes','residentes_has_inmuebles','id_inmueble','id_residente')->withPivot('status');
 }
 
 public function mensualidades()

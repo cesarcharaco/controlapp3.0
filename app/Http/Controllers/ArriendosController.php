@@ -84,4 +84,35 @@ class ArriendosController extends Controller
 
     }
 
+    public function retirando_i($id_inmueble,$id_residente)
+    {
+        $inmueble=Inmuebles::find($id_inmueble);
+
+        $inmueble->status="Disponible";
+        $inmueble->save();
+
+        foreach ($inmueble->residentes as $key) {
+            if ($key->pivot->id_residente==$id_residente && $key->pivot->status=="En Uso") {
+                $key->pivot->status="Retirado";
+                $key->pivot->save();
+            }
+            
+        }
+    }
+
+    public function retirando_e($id_estacionamiento,$id_residente)
+    {
+        $estacionamiento=Estacionamientos::find($id_estacionamiento);
+
+        $estacionamiento->status="Libre";
+        $estacionamiento->save();
+
+        foreach ($estacionamiento->residentes as $key) {
+            if ($key->pivot->id_residente==$id_residente && $key->pivot->status=="En Uso") {
+                $key->pivot->status="Retirado";
+                $key->pivot->save();
+            }
+            
+        }
+    }
 }

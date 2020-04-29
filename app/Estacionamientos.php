@@ -17,6 +17,6 @@ class Estacionamientos extends Model
 
     public function residentes()
 	{
-	return $this->belongsToMany('App\Residentes','residentes_has_est','id_estacionamiento','id_residente');
+	return $this->belongsToMany('App\Residentes','residentes_has_est','id_estacionamiento','id_residente')->withPivot('status');
 	}
 }
