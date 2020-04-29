@@ -80,6 +80,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('pagos','PagosController');
 
 
-	Route::post('arriendos/retirar_i','ArriendosController@retirando_i');
-	Route::post('arriendos/retirar_e','ArriendosController@retirando_e');
+	Route::post('arriendos/retirar','ArriendosController@retirando')->name('arriendos.retirar');
+	
 });

@@ -211,7 +211,7 @@
 
 
 
-<form action="{{ route('residentes.store') }}" method="POST" name="BorrarAsignacion" data-parsley-validate>
+<form action="{{ route('arriendos.retirar') }}" method="POST" name="BorrarAsignacion" data-parsley-validate>
     @csrf
     <div class="modal fade" id="BorrarAsignacion" role="dialog">
         <div class="modal-dialog modals-default">
@@ -223,7 +223,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h3>¿Está seguro de querer borrar esta asignación?</h3><br> Sus pagos y mensualidades también se borrarán
+                    <h3>¿Está seguro de querer borrar esta asignación?</h3><br> NO podrá deshacer el cambio
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id_residente" id="id_residenteBorrar">
@@ -333,16 +333,18 @@
                 '</div>');
 
                 for (var i = 0; i < data.length; i++) {
+                    if (data[i].alquiler_status=="En Uso") {
                     var n=i+1;
                     $('#tablaMuestraInm').append(
                         '<tbody>'+
                             '<tr>'+
                             '<th scope="row">'+n+'</th>'+
                             '<td>'+data[i].idem+'</td>'+
-                            '<td><a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+',0,'+data[i].id+')">Borrar</a></td>'+
+                            '<td><a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+','+data[i].id+',0)">Borrar</a></td>'+
                             '</tr>'+
                         '</tbody>'
                     );
+                    }
                 }
             }else{
                 $('#VerInmuebles').append('<h3>No tiene inmuebles asignados</h3>');
@@ -355,6 +357,7 @@
         $('#VerEstacionamientos').empty();
         $.get('arriendos/'+id_residente+'/buscar_estacionamientos', function(data) {
             if (data.length > 0) {
+
                 $('#VerEstacionamientos').append('<div class="table-responsive">'+
                     '<table id="tablaMuestraEsta" class="table table-striped mb-0">'+
                         '<thead>'+
@@ -368,16 +371,18 @@
                 '</div>');
 
                 for (var i = 0; i < data.length; i++) {
+                    if (data[i].alquiler_status=="En Uso") {
                     var n=i+1;
                     $('#tablaMuestraEsta').append(
                         '<tbody>'+
                             '<tr>'+
                             '<th scope="row">'+n+'</th>'+
                             '<td>'+data[i].idem+'</td>'+
-                            '<td><a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+','+data[i].id+',0)">Borrar</a></td>'+
+                            '<td><a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+',0,'+data[i].id+')">Borrar</a></td>'+
                             '</tr>'+
                         '</tbody>'
                     );
+                    }
                 }
             }else{
                 $('#VerEstacionamientos').append('<h3>No tiene estacionamientos asignados</h3>');
