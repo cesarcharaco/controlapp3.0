@@ -477,10 +477,24 @@
                 }
             });
 
-/*
 
+            console.log('holaaa');
+            $.get("estacionamientos/"+id_residente+"/"+anio+"/buscar_estacionamientos",function (data) {
+            })
+            .done(function(data) {
+                console.log(data.length);
+                for(i=0 ; i<data.length ; i++){
+                    
+                            $('#id_estacionamientoEditar').append(
+                                '<optgroup label="'+data[i].idem+'">'+estacionamientos_meses_editar(data[i].id)+'</optgroup>'
+                            );
 
-            $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
+                }
+                            
+                
+            });
+
+        /*    $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
             })
             .done(function(data) {
                 if (data.length>0) {
@@ -493,20 +507,6 @@
             });
 
 
-            $.get("arriendos/"+id_residente+"/buscar_estacionamientos2",function (data) {
-            })
-            .done(function(data) {
-                //console.log(data.length);
-                for(i=0 ; i<data.length ; i++){
-                    
-                            $('#id_estacionamientoEditar').append(
-                                '<optgroup label="'+data[i].idem+'">'+estacionamientos_meses(data[i].id)+'</optgroup>'
-                            );
-
-                }
-                            
-                
-            });
 
 
             $.get("estacionamientos/"+id_residente+"/buscar_anios",function (data) {
@@ -529,7 +529,24 @@
                 $('#id_inmuebleEditar'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 // }
             }
-            $('#mis_inmuebles').removeAttr('disabled');
+            
+            }
+        });
+    }
+
+    function estacionamientos_meses_editar(id_inmueble) {
+
+        $.get("mostrar/"+id_inmueble+"/meses_estacionamientos",function (data) {
+        })
+        .done(function(data) {
+            if (data.length>0) {
+            for(var i=0; i < data.length; i++){
+                console.log(i);
+                // if (data[i].status=="Pendiente") {
+                $('#id_estacionamientoEditar'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                // }
+            }
+            
             }
         });
     }

@@ -86,4 +86,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('estacionamientos/{id_residente}/buscar_anios','ArriendosController@buscar_anios_e');
 	Route::get('inmuebles/{id_residente}/{anio}/buscar_inmuebles','ArriendosController@buscar_inmuebles');
 	Route::get('mostrar/{id_inmueble}/meses_inmuebles','ArriendosController@meses_inmuebles');
+	Route::get('estacionamientos/{id_residente}/{anio}/buscar_estacionamientos','ArriendosController@buscar_estacionamientos');
+	Route::get('mostrar/{id_estacionamiento}/meses_estacionamientos','ArriendosController@meses_estacionamientos');
 });

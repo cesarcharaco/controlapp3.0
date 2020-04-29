@@ -183,4 +183,41 @@ class ArriendosController extends Controller
         //return 0;
 
     }
+
+    public function buscar_estacionamientos($id_residente,$anio)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
+        ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
+        ->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
+        ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
+        ->where('residentes.id',$id_residente)
+        ->where('mens_estac.anio',$anio)
+        ->where('residentes_has_est.status','En Uso')
+        ->select('estacionamientos.id','estacionamientos.idem','residentes_has_est.status AS alquiler_status')
+        ->groupBy('estacionamientos.idem')
+        ->get();
+
+        
+    }
+
+    public function meses_estacionamientos($id_estacionamiento)
+    {
+        
+        return \DB::table('residentes')
+        ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
+        ->join('estacionamientos','estacionamientos.id','=','residentes_has_inmuebles.id_estacionamiento')
+        ->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
+        ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
+        ->where('estacionamientos.id',$id_estacionamiento)
+        ->where('pagos_estac.status','Cancelado')
+        ->where('residentes_has_est.status','En Uso')
+        ->select('mens_estac.mes','mens_estac.id','pagos_estac.status','residentes_has_est.status AS alquiler_status')
+        ->get();
+
+        //return 0;
+
+    }
+
+
 }
