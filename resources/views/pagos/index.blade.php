@@ -520,11 +520,11 @@
         })
         .done(function(data) {
             console.log(data.length);
-            //console.log('hola');
+            console.log('hola');
             for(var i=0; i < data.length; i++){
-                if (data[i].status=="Pendiente") {
-                $('#id_inmuebleEditar'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
-                }
+                // if (data[i].status=="Pendiente") {
+                $('#id_inmuebleEditar').append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                // }
             }
             $('#mis_inmuebles').removeAttr('disabled');
         });
