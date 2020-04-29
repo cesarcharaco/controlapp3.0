@@ -8,7 +8,7 @@ class MultasRecargas extends Model
 {
     protected $table='multas_recargas';
 
-    protected $fillable=['motivo','observacion','monto','tipo'];
+    protected $fillable=['motivo','observacion','monto','tipo','anio'];
 
     public function residentes()
     {

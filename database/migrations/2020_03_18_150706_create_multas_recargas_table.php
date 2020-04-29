@@ -19,6 +19,7 @@ class CreateMultasRecargasTable extends Migration
             $table->text('observacion')->nullable();
             $table->float('monto');
             $table->enum('tipo',['Multa','Recarga']);
+            $table->integer('anio');
             $table->timestamps();
         });
     }

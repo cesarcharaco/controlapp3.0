@@ -43,7 +43,7 @@ class MultasRecargasController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-
+        $anio=date('Y');
         if ($request->motivo=="") {
             flash('Debe ingresar un motivo')->warning()->important();
             return redirect()->back();
@@ -56,6 +56,7 @@ class MultasRecargasController extends Controller
             $mr->observacion=$request->observacion;
             $mr->monto=$request->monto;
             $mr->tipo=$request->tipo;
+            $mr->anio=$anio;
             $mr->save();
 
             flash('La '.$request->tipo.' ha sido registrada con éxito')->success()->important();
@@ -95,6 +96,7 @@ class MultasRecargasController extends Controller
      */
     public function update(Request $request, $id_mr)
     {
+        $anio=date('Y');
         if ($request->motivo=="") {
             flash('Debe ingresar un motivo')->warning()->important();
             return redirect()->back();
@@ -107,6 +109,7 @@ class MultasRecargasController extends Controller
             $mr->observacion=$request->observacion;
             $mr->monto=$request->monto;
             $mr->tipo=$request->tipo;
+            $mr->anio=$anio;
             $mr->save();
 
             flash('La '.$request->tipo.' ha sido actualiza con éxito')->success()->important();

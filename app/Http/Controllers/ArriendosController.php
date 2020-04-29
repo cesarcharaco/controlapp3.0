@@ -218,6 +218,30 @@ class ArriendosController extends Controller
         //return 0;
 
     }
+    public function buscar_anios_mr($id_residente)
+    {
+        return \DB::table('multas_recargas')
+        ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
+        ->where('residentes.id',$id_residente)
+        ->where('resi_has_mr.status','Pagada')
+        ->select('multas_recargas.anio')
+        ->groupBy('multas_recargas.anio')
+        ->get();
+        //return 0;
+    }
+
+    public function buscar_mr($id_residente,$anio)
+    {
+        return \DB::table('multas_recargas')
+        ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
+        ->where('residentes.id',$id_residente)
+        ->where('resi_has_mr.status','Pagada')
+        ->where('multas_recargas.anio',$anio)
+        ->select('multas_recargas.*','resi_has_mr.id AS id_resi_mr')
+        ->get();
+    }
 
 
 }

@@ -460,6 +460,18 @@
         if (opcion == 3) {
             $('#titleE').text('Editar Multas');
             $('#MuestraMulta').show();
+            $.get("mr/"+id_residente+"/buscar_anios",function (data) {
+            })
+            .done(function(data) {
+                    //console.log(data.length);
+                    if (data.length>0) {
+                        // $("#anio").empty();
+                        for (var i = 0; i < data.length ; i++) {
+                            
+                            $("#anio").append('<option value="'+data[i].anio+'">'+data[i].anio+'</option>');
+                        }
+                    }
+            });
         }
 
     }
@@ -497,7 +509,7 @@
                 
             });
 
-        /*    $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
+            $.get("mr/"+id_residente+"/"+anio+"/buscar_mr",function (data) {
             })
             .done(function(data) {
                 if (data.length>0) {
@@ -511,7 +523,7 @@
 
 
 
-
+            /*
             $.get("estacionamientos/"+id_residente+"/buscar_anios",function (data) {
             })
             .done(function(data) {
