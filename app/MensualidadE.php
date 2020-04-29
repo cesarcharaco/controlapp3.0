@@ -12,11 +12,11 @@ class MensualidadE extends Model
 
     public function estacionamientos()
     {
-    	return $this->belognsTo('App\Estacionamientos','id_estacionamiento');
+    	return $this->belongsTo('App\Estacionamientos','id_estacionamiento');
     }
 
     public function pago()
 	{
-		return $this->HasMany('App\PagosE','id_mens_estac','id');
+		return $this->hasMany('App\PagosE','id_mens_estac','id');
 	}
 }

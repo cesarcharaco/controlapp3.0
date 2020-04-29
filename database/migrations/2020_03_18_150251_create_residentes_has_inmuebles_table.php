@@ -17,6 +17,7 @@ class CreateResidentesHasInmueblesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_residente');
             $table->unsignedBigInteger('id_inmueble');
+            $table->enum('status',['En Uso','Retirado'])->default('En Uso');
 
             $table->foreign('id_residente')->references('id')->on('residentes')->onDelete('cascade');
             $table->foreign('id_inmueble')->references('id')->on('inmuebles')->onDelete('cascade');

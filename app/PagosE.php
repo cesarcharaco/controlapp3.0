@@ -12,6 +12,6 @@ class PagosE extends Model
 
 	public function mensualidad()
 	{
-		return $this->belongsTo('App\MensualidadesE','id_mens_estac');
+		return $this->belongsTo('App\MensualidadE','id_mens_estac');
 	}
 }

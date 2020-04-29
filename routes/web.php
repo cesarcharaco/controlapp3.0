@@ -78,4 +78,8 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('multas_recargas/{num}/buscar_mr_all','MultasRecargasController@buscar_mr_all');
 
 	Route::resource('pagos','PagosController');
+
+
+	Route::post('arriendos/retirar_i','ArriendosController@retirando_i');
+	Route::post('arriendos/retirar_e','ArriendosController@retirando_e');
 });

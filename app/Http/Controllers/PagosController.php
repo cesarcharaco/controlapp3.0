@@ -9,6 +9,7 @@ use App\Meses;
 use App\Estacionamientos;
 use App\MultasRecargas;
 use App\PagosE;
+use App\MensualidadE;
 use Illuminate\Http\Request;
 
 class PagosController extends Controller
@@ -75,7 +76,7 @@ class PagosController extends Controller
                     $pagosE->status="Cancelado";
                     $pagosE->save();
                     
-                    $factura.="Inmueble: ".$pagosE->mensualidad->inmuebles->idem." Mes: ".$this->mostrar_mes($pagosE->mensualidad->mes)." Monto: ".$pagosE->mensualidad->monto."<br>";
+                    $factura.="Inmueble: ".$pagosE->mensualidad->estacionamientos->idem." Mes: ".$this->mostrar_mes($pagosE->mensualidad->mes)." Monto: ".$pagosE->mensualidad->monto."<br>";
                 }
             }
 
