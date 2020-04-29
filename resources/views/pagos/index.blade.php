@@ -253,7 +253,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class=" col-form-label" for="example-static">Año de pago</label>
-                                    <select class="form-control select2" name="anio" id="anio">
+                                    <select class="form-control select2" name="anio" id="anio" onchange="BuscarEditar(this.value)" >
                                         
                                     </select>
                                 </div>
@@ -453,6 +453,63 @@
             $('#MuestraMulta').show();
         }
 
+    }
+
+    function BuscarEditar(anio) {
+
+            var id_residente =$('#verF').val();
+
+            $.get("arriendos/"+id_residente+"/buscar_inmuebles2",function (data) {
+            .done(function(data) {
+
+                for(i=0 ; i<data.length ; i++){
+                    
+                    $('#id_inmuebleEditar').append(
+                        '<optgroup label="'+data[i].idem+'">'+inmuebles_meses(data[i].id)+'</optgroup>'
+                    );
+
+                }
+            });
+
+
+
+
+            $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
+            })
+            .done(function(data) {
+                if (data.length>0) {
+                    for (var i = 0; i < data.length; i++) {
+                       $("#id_multaEditar").append('<option value="'+data[i].id+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - '+ data[i].tipo+' - monto: '+data[i].monto+'$</font></option>');
+                    }
+                }else{
+                    $("#id_multaEditar").css('display','none');
+                }
+            });
+
+
+            $.get("arriendos/"+id_residente+"/buscar_estacionamientos2",function (data) {
+            })
+            .done(function(data) {
+                //console.log(data.length);
+                for(i=0 ; i<data.length ; i++){
+                    
+                            $('#id_estacionamientoEditar').append(
+                                '<optgroup label="'+data[i].idem+'">'+estacionamientos_meses(data[i].id)+'</optgroup>'
+                            );
+
+                }
+                            
+                
+            });
+
+
+            $.get("estacionamientos/"+id_residente+"/buscar_anios",function (data) {
+            })
+            .done(function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    $('#id_estacionamientoEditar').append('<option selected value="'+data[i].id+'"></option>');
+                }
+            });
     }
 
 
