@@ -519,14 +519,14 @@
         $.get("mostrar/"+id_inmueble+"/meses_inmuebles",function (data) {
         })
         .done(function(data) {
-            console.log(data.length);
-            console.log('hola');
+            if (data.length>0) {
             for(var i=0; i < data.length; i++){
                 // if (data[i].status=="Pendiente") {
                 $('#id_inmuebleEditar').append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 // }
             }
             $('#mis_inmuebles').removeAttr('disabled');
+            }
         });
     }
 
