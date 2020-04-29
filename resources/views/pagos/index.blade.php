@@ -414,6 +414,9 @@
         $('#id_estacionamientoEditar').empty();
         $('#id_multaEditar').empty();
 
+        $('#anio').empty();
+        $('#anio').append('<option selected disabled value="0">Seleccione año</option');
+
 
         // $('#id_añoE').append('<option></option>');
 
@@ -427,7 +430,7 @@
             .done(function(data) {
                     //console.log(data.length);
                     if (data.length>0) {
-                        $("#anio").empty();
+                        // $("#anio").empty();
                         $("#anio").append('<option value="0">Seleccione el año</option>');
                         for (var i = 0; i < data.length ; i++) {
                             
@@ -445,7 +448,7 @@
             .done(function(data) {
                     //console.log(data.length);
                     if (data.length>0) {
-                        $("#anio").empty();
+                        // $("#anio").empty();
                         for (var i = 0; i < data.length ; i++) {
                             
                             $("#anio").append('<option value="'+data[i].anio+'">'+data[i].anio+'</option>');
@@ -485,9 +488,9 @@
                 console.log(data.length);
                 for(i=0 ; i<data.length ; i++){
                     
-                            $('#id_estacionamientoEditar').append(
-                                '<optgroup label="'+data[i].idem+'">'+estacionamientos_meses_editar(data[i].id)+'</optgroup>'
-                            );
+                    $('#id_estacionamientoEditar').append(
+                        '<optgroup label="'+data[i].idem+'" id="id_estacionamientoEditar'+data[i].id+'">'+estacionamientos_meses_editar(data[i].id)+'</optgroup>'
+                    );
 
                 }
                             
