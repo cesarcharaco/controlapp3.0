@@ -82,4 +82,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 	Route::post('arriendos/retirar','ArriendosController@retirando')->name('arriendos.retirar');
 	
+	Route::get('inmuebles/{id_residente}/buscar_anios','ArriendosController@buscar_anios_i');	
+	Route::get('estacionamientos/{id_residente}/buscar_anios','ArriendosController@buscar_anios_e');
 });

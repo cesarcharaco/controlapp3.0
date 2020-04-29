@@ -2,13 +2,13 @@
 
 function alquilados_i_t()
 {
-	$buscar=\DB::table('residentes_has_inmuebles')->select('*')->get();
+	$buscar=\DB::table('residentes_has_inmuebles')->where('status','En Uso')->select('*')->get();
 
 	return count($buscar);
 }
 function alquilados_i_p()
 {
-	$buscar=\DB::table('residentes_has_inmuebles')->select('*')->get();
+	$buscar=\DB::table('residentes_has_inmuebles')->where('status','En Uso')->select('*')->get();
 	if (existencia_i()>0) {
 		$porcentaje=(count($buscar)*100)/existencia_i();
 	} else {
@@ -66,7 +66,10 @@ function residentes_alquilados_i()
 	foreach ($buscar as $key) {
 		$c=0;
 		foreach ($key->inmuebles as $key2) {
-			$c++;
+			if ($key2->pivot->status=="En Uso") {
+				$c++;
+			}
+			
 		}
 
 		if($c>0){
@@ -84,7 +87,9 @@ function residentes_alquilados_e()
 	foreach ($buscar as $key) {
 		$c=0;
 		foreach ($key->estacionamientos as $key2) {
-			$c++;
+			if ($key2->pivot->status=="En Uso") {
+				$c++;
+			}
 		}
 
 		if($c>0){
@@ -104,13 +109,17 @@ function residentes_alquilados_p()
 	foreach ($buscar as $key) {
 		$c1=0;
 		foreach ($key->inmuebles as $key2) {
-			$c1++;
+			if ($key2->pivot->status=="En Uso") {
+				$c1++;
+			}
 		}
 
 
 		$c2=0;
 		foreach ($key->estacionamientos as $key2) {
-			$c2++;
+			if ($key2->pivot->status=="En Uso") {
+				$c2++;
+			}
 		}
 
 		if($c1>0 || $c2>0){

@@ -121,5 +121,31 @@ class ArriendosController extends Controller
         return redirect()->to('arriendos');
     }
 
-    
+    public function buscar_anios_i($id_residente)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
+        ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+        ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
+        ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
+        ->where('residentes.id',$id_residente)
+        ->where('residentes_has_inmuebles.status','En Uso')
+        ->select('mensualidades.anio')
+        ->groupBy('mensualidades.anio')
+        ->get();
+    }    
+
+    public function buscar_anios_i($id_residente)
+    {
+        return \DB::table('residentes')
+        ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
+        ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
+        ->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
+        ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
+        ->where('residentes.id',$id_residente)
+        ->where('residentes_has_est.status','En Uso')
+        ->select('mens_estac.anio')
+        ->groupBy('mens_estac.anio')
+        ->get();
+    }
 }

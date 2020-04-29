@@ -253,7 +253,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class=" col-form-label" for="example-static">Año de pago</label>
-                                    <select class="form-control select2" name="id_año" id="id_añoE">
+                                    <select class="form-control select2" name="anio" id="anio">
                                         
                                     </select>
                                 </div>
@@ -416,11 +416,36 @@
         if (opcion == 1) {
             $('#titleE').text('Editar Inmuebles');
             $('#MuestraInmueble').show();
+
+            $.get("inmuebles/"+id_residente+"/buscar_anios",function (data) {
+            })
+            .done(function(data) {
+                    console.log(data.length);
+                    if (data.length>0) {
+                        $("#anio").empty();
+                        for (var i = 0; i < data.length ; i++) {
+                            
+                            $("#anio").append('<option value="'+data[i].anio+'">'+data[i].anio+'</option>');
+                        }
+                    }
+            });
         }
 
         if (opcion == 2) {
             $('#titleE').text('Editar Estacionamientos');
             $('#MuestraEstacionamiento').show();
+            $.get("estacionamientos/"+id_residente+"/buscar_anios",function (data) {
+            })
+            .done(function(data) {
+                    console.log(data.length);
+                    if (data.length>0) {
+                        $("#anio").empty();
+                        for (var i = 0; i < data.length ; i++) {
+                            
+                            $("#anio").append('<option value="'+data[i].anio+'">'+data[i].anio+'</option>');
+                        }
+                    }
+            });
         }
 
         if (opcion == 3) {
