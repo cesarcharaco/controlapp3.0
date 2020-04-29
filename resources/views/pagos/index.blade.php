@@ -460,7 +460,6 @@
     function BuscarEditar(anio) {
 
             var id_residente =$('#verF').val();
-            alert(id_residente);
 
             $.get("inmuebles/"+id_residente+"/"+anio+"/buscar_inmuebles",function (data) {
             })
@@ -469,7 +468,7 @@
                 for(i=0 ; i<data.length ; i++){
                     
                     $('#id_inmuebleEditar').append(
-                        '<optgroup label="'+data[i].idem+'">'+inmuebles_meses(data[i].id)+'</optgroup>'
+                        '<optgroup label="'+data[i].idem+'">'+inmuebles_meses_editar(data[i].id)+'</optgroup>'
                     );
 
                 }
@@ -515,7 +514,21 @@
                 }
             });*/
     }
+    function inmuebles_meses_editar(id_inmueble) {
 
+        $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
+        })
+        .done(function(data) {
+            console.log(data.length);
+            //console.log('hola');
+            for(var i=0; i < data.length; i++){
+                if (data[i].status=="Pendiente") {
+                $('#id_inmuebleEditar'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                }
+            }
+            $('#mis_inmuebles').removeAttr('disabled');
+        });
+    }
 
     function mis_mr(id_residente) {
         $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
@@ -556,7 +569,8 @@
         $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
         })
         .done(function(data) {
-            //console.log(data.length);
+            console.log(data.length);
+            //console.log('hola');
             for(var i=0; i < data.length; i++){
                 if (data[i].status=="Pendiente") {
                 $('#inmuebles'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');

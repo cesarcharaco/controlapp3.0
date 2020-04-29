@@ -135,7 +135,7 @@ class ArriendosController extends Controller
         ->get();
     }    
 
-    public function buscar_anios_i($id_residente)
+    public function buscar_anios_e($id_residente)
     {
         return \DB::table('residentes')
         ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
@@ -162,5 +162,7 @@ class ArriendosController extends Controller
         ->select('inmuebles.id','inmuebles.idem','residentes_has_inmuebles.status AS alquiler_status')
         ->groupBy('inmuebles.idem')
         ->get();
+
+        
     }
 }
