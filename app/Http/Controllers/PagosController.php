@@ -8,6 +8,7 @@ use App\Inmuebles;
 use App\Meses;
 use App\Estacionamientos;
 use App\MultasRecargas;
+use App\PagosE;
 use Illuminate\Http\Request;
 
 class PagosController extends Controller
