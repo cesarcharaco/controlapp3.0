@@ -404,6 +404,7 @@
 
 
     function EditarPago(id_residente, opcion) {
+        $('#verF').val(id_residente);
         $('#editar_p').modal('show');
         $('#MuestraInmueble').hide();
         $('#MuestraEstacionamiento').hide();
@@ -423,6 +424,7 @@
                     //console.log(data.length);
                     if (data.length>0) {
                         $("#anio").empty();
+                        $("#anio").append('<option value="0">Seleccione el año</option>');
                         for (var i = 0; i < data.length ; i++) {
                             
                             $("#anio").append('<option value="'+data[i].anio+'">'+data[i].anio+'</option>');
@@ -456,8 +458,9 @@
     }
 
     function BuscarEditar(anio) {
-        console.log(anio+"----------");
+
             var id_residente =$('#verF').val();
+            alert(id_residente);
 
             $.get("inmuebles/"+id_residente+"/"+anio+"/buscar_inmuebles",function (data) {
             })
