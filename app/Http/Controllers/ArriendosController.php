@@ -165,4 +165,22 @@ class ArriendosController extends Controller
 
         
     }
+
+    public function meses_inmuebles($id_inmueble)
+    {
+        
+        return \DB::table('residentes')
+        ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
+        ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+        ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
+        ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
+        ->where('inmuebles.id',$id_inmueble)
+        ->where('pagos.status','Cancelado')
+        ->where('residentes_has_inmuebles.status','En Uso')
+        ->select('mensualidades.mes','mensualidades.id','pagos.status','residentes_has_inmuebles.status AS alquiler_status')
+        ->get();
+
+        //return 0;
+
+    }
 }

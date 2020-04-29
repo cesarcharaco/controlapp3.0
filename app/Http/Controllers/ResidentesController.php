@@ -153,6 +153,7 @@ class ResidentesController extends Controller
         ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
         ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
         ->where('residentes.id', $id_residente)
+        ->where('residentes_has_inmuebles.status','En Uso')
         ->select('inmuebles.*','residentes_has_inmuebles.status AS alquiler_status')
         ->get();
 
@@ -165,6 +166,7 @@ class ResidentesController extends Controller
         ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
         ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
         ->where('residentes.id', $id_residente)
+        ->where('residentes_has_inmuebles.status','En Uso')
         ->select('inmuebles.id','inmuebles.idem','residentes_has_inmuebles.status AS alquiler_status')
         ->get();
 
@@ -180,6 +182,7 @@ class ResidentesController extends Controller
         ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
         ->where('inmuebles.id',$id_inmueble)
         ->where('mensualidades.anio',$anio)
+        ->where('residentes_has_inmuebles.status','En Uso')
         ->select('mensualidades.mes','mensualidades.id','pagos.status','residentes_has_inmuebles.status AS alquiler_status')
         ->get();
 
@@ -191,6 +194,7 @@ class ResidentesController extends Controller
         ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
         ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
         ->where('residentes.id', $id_residente)
+        ->where('residentes_has_est.status','En Uso')
         ->select('estacionamientos.*','residentes_has_est.status AS alquiler_status')
         ->get();
 
@@ -202,6 +206,7 @@ class ResidentesController extends Controller
         ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
         ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
         ->where('residentes.id', $id_residente)
+        ->where('residentes_has_est.status','En Uso')
         ->select('estacionamientos.id','estacionamientos.idem','residentes_has_est.status AS alquiler_status')
         ->get();
 
@@ -217,6 +222,7 @@ class ResidentesController extends Controller
         ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
         ->where('estacionamientos.id',$id_estacionamiento)
         ->where('mens_estac.anio',$anio)
+        ->where('residentes_has_est.status','En Uso')
         ->select('mens_estac.mes','mens_estac.id','pagos_estac.status','residentes_has_est.status AS alquiler_status')
         ->get();
 
@@ -254,6 +260,7 @@ class ResidentesController extends Controller
         ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
         ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
         ->where('residentes.id', $id_residente)
+        ->where('residentes_has_inmuebles.status','En Uso')
         ->select('inmuebles.*','residentes_has_inmuebles.status AS alquiler_status')
         ->get();
     }
@@ -266,6 +273,7 @@ class ResidentesController extends Controller
         ->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
         ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
         ->where('residentes.id', $id_residente)
+        ->where('residentes_has_est.status','En Uso')
         ->select('inmuebles.*','residentes_has_est.status AS alquiler_status')
         ->get();
     }

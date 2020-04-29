@@ -516,7 +516,7 @@
     }
     function inmuebles_meses_editar(id_inmueble) {
 
-        $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
+        $.get("mostrar/"+id_inmueble+"/meses_inmuebles",function (data) {
         })
         .done(function(data) {
             console.log(data.length);
