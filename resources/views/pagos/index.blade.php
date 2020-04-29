@@ -409,6 +409,10 @@
         $('#MuestraEstacionamiento').hide();
         $('#MuestraMulta').hide();
 
+
+        // $('#id_añoE').append('<option></option>');
+
+
         if (opcion == 1) {
             $('#titleE').text('Editar Inmuebles');
             $('#MuestraInmueble').show();
