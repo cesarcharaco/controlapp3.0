@@ -71,7 +71,7 @@ class PagosController extends Controller
             
             if(is_null($request->id_mensEstaciona)==false){
                 for ($i=0; $i < count($request->id_mensEstaciona); $i++) { 
-                    $pagosE=PagosE::where('id_mensualidad',$request->id_mensEstaciona[$i])->first();
+                    $pagosE=PagosE::where('id_mens_estac',$request->id_mensEstaciona[$i])->first();
                     $pagosE->status="Cancelado";
                     $pagosE->save();
                     
