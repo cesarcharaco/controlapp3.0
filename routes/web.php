@@ -90,4 +90,11 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('mostrar/{id_estacionamiento}/meses_estacionamientos','ArriendosController@meses_estacionamientos');
 	Route::get('mr/{id_residente}/buscar_anios','ArriendosController@buscar_anios_mr');	
 	Route::get('mr/{id_residente}/{anio}/buscar_mr','ArriendosController@buscar_mr');
+
+
+
+
+
+
+	Route::resource('reportes','ReportesController');
 });
