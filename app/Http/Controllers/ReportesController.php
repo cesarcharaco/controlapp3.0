@@ -23,7 +23,12 @@ class ReportesController extends Controller
      */
     public function index()
     {
-        //
+        $meses=Meses::all();
+        $inmuebles=Inmuebles::all();
+        $estacionamientos=Estacionamientos::all();
+        $residentes=Residentes::all();
+
+        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes'));
     }
 
     /**

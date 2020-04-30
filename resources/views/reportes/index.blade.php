@@ -22,85 +22,95 @@
 		                    </div>
 		                </div>
 		            </div> -->                    
-		            <div class="col-md-6">
-		            	
-		            </div>
 
-		            <div class="col-md-6">
-		            	<h3><button type="button" class="btn btn-outline-danger btn-rounded">Danger</button></h3>
-		            </div>
 		        </div>
 
-		        <div class="row justify-content-center">
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label>Meses</label>
-		        			<select class="form-control select2"></select>
-		        		</div>
-		        	</div>
 
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label>¿Todos los meses del año?</label>
-		        			<input type="checkbox" value="MesesTodos" name="MesesTodos">
-		        		</div>
-		        	</div>
-		        </div>
+			    <form>
+			        <div class="row justify-content-center">
+			        	<div class="col-md-6">
+			        		<div class="form-group">
+			        			<label class="text-primary">Meses</label>
+			        			<select class="form-control select2 border border-default" multiple name="id_meses[]">
+			        				@foreach($meses as $key)
+			        					<option value="{{$key->id}}">{{$key->mes}}</option>
+			        				@endforeach
+			        			</select>
+			        		</div>
+			        		<div class="form-group">
+			        			<label>¿Todos los meses del año?</label>
+			        			<input type="checkbox" value="MesesTodos" name="MesesTodos">
+			        		</div>
+			        	</div>
 
-		        <div class="row justify-content-center">
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label>Inmuebles</label>
-		        			<select class="form-control select2"></select>
-		        		</div>
-		        	</div>
+			        	<div class="col-md-6">
+			        		<div class="form-group">
+			        			<label class="text-warning">Estacionamientos</label>
+			        			<select class="form-control select2 border border-warning" multiple name="id_estacionamientos[]">
+			        				@foreach($estacionamientos as $key)
+			        					<option value="{{$key->id}}">{{$key->idem}}</option>
+			        				@endforeach
+			        			</select>
+			        		</div>
+			        		<div class="form-group">
+			        			<label>¿Todos los estacionamientos?</label>
+			        			<input type="checkbox" value="Si" name="EstacionamientosTodos">
+			        		</div>
+			        	</div>
+			        </div>
 
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label>¿Todos los inmuebles?</label>
-		        			<input type="checkbox" value="Si" name="InmueblesTodos">
-		        		</div>
-		        	</div>
-		        </div>
+			        <div class="row justify-content-center">
+			        	<div class="col-md-6">
+			        		<div class="form-group">
+			        			<label class="text-primary">Inmuebles</label>
+			        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]">
+			        				@foreach($inmuebles as $key)
+			        					<option value="{{$key->id}}">{{$key->idem}}</option>
+			        				@endforeach
+			        			</select>
+			        		</div>
+			        		<div class="form-group">
+			        			<label>¿Todos los inmuebles?</label>
+			        			<input type="checkbox" value="Si" name="InmueblesTodos">
+			        		</div>
+			        	</div>
 
-		        <div class="row justify-content-center">
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label>Estacionamientos</label>
-		        			<select class="form-control select2"></select>
-		        		</div>
-		        	</div>
+			        	<div class="col-md-6">
+			        		<div class="form-group">
+			        			<label class="text-success">Residentes</label>
+			        			<select class="form-control select2 border border-success" multiple name="id_residentes[]">
+			        				@foreach($residentes as $key)
+			        					<option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+			        				@endforeach
+			        			</select>
+			        		</div>
+			        		<div class="form-group">
+			        			<label>¿Todos los residentes?</label>
+			        			<input type="checkbox" value="Si" name="ResidentesTodos">
+			        		</div>
+			        	</div>
+			        </div>
 
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label>¿Todos los estacionamientos?</label>
-		        			<input type="checkbox" value="Si" name="EstacionamientosTodos">
-		        		</div>
-		        	</div>
-		        </div>
+			        <div class="row justify-content-center">
+			        	
+			        	<div class="col-md-6">
+			        	</div>
+			        </div>
+			        <div class="row justify-content-center">
+			        	
 
-		        <div class="row justify-content-center">
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label>Residente</label>
-		        			<select class="form-control select2"></select>
-		        		</div>
-		        	</div>
-
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label>¿Todos los residentes?</label>
-		        			<input type="checkbox" value="Si" name="ResidentesTodos">
-		        		</div>
-		        	</div>
-		        </div>
-
-		        <hr>
-		        <div class="form-group row">
-		        	<label>¿Incluir Multas y recargas?</label>
-		        	<input type="checkbox" value="Si" name="MultasRecargas">
-		        </div>
-		        
+			        	<div class="col-md-6">
+			        	</div>
+			        </div>
+			        <hr>
+			        <div class="form-group">
+			        	<label>¿Incluir Multas y recargas? </label>
+			        	<input type="checkbox" value="Si" name="MultasRecargas">
+			        </div>
+			        <div class="float-right">
+			        	<h3><button type="button" class="btn btn-danger btn-rounded">Generar PDF</button></h3>
+			        </div>
+			    </form>
 
 		    </div>
 

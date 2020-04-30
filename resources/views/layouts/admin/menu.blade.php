@@ -94,6 +94,13 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{ url('reportes')}}">
+                    <i data-feather="book-open"></i>
+                        <span> Reportes </span>
+                </a>
+            </li>
+
             {{-- <li class="menu-title">Configuración </li>
             
             <li>
