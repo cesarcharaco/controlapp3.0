@@ -136,9 +136,9 @@ class PagosController extends Controller
      * @param  \App\Pagos  $pagos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pagos $pagos)
+    public function update(Request $request, $id_pago)
     {
-        //
+        dd($request->all());
     }
 
     /**

@@ -266,7 +266,8 @@
         </div>
     </form> -->
 
-    <form method="POST">
+     {!! Form::open(['route' => ['pagos.update',1],'method' => 'PUT', 'name' => 'editarPago', 'id' => 'editar_pago', 'data-parsley-validate']) !!}
+                @csrf
         <div class="modal fade" id="editar_p" role="dialog">
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
@@ -334,7 +335,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id">
+                        <input type="hidden" name="opcion" id="opcion">
                         <button type="submit" class="btn btn-success" >Editar</button>
                     </div>
                 </div>
@@ -453,6 +454,7 @@
 
 
         if (opcion == 1) {
+            $('#opcion').val(1);
             $('#titleE').text('Editar Inmuebles');
             $('#MuestraInmueble').show();
 
@@ -472,6 +474,7 @@
         }
 
         if (opcion == 2) {
+            $('#opcion').val(2);
             $('#titleE').text('Editar Estacionamientos');
             $('#MuestraEstacionamiento').show();
             $.get("estacionamientos/"+id_residente+"/buscar_anios",function (data) {
@@ -489,6 +492,7 @@
         }
 
         if (opcion == 3) {
+            $('#opcion').val(3);
             $('#titleE').text('Editar Multas');
             $('#MuestraMulta').show();
             $.get("mr/"+id_residente+"/buscar_anios",function (data) {
