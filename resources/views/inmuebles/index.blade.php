@@ -12,15 +12,17 @@
         <div class="card">
             <div class="card-body">
                 <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 offset-md-9">
-                        <a class="btn btn-success" data-toggle="modal" data-target="#crearInmueble" style="border-radius: 30px; color: white;">
-                            <span> Nuevo Inmueble </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12 offset-md-9">
+                                    <a class="btn btn-success" data-toggle="modal" data-target="#crearInmueble" style="border-radius: 30px; color: white;">
+                                        <span> Nuevo Inmueble </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     
         
             <div class="col-md-12">
@@ -41,23 +43,26 @@
                         @foreach($inmuebles as $key)
                             <tr>
                                 <td align="center">
+                                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                                        <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="edit"></i></a>
 
-                                    <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="edit"></i></a>
-
-                                    <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
+                                        <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
+                                    @endif
                                 </td>
                                 <td>{{$key->idem}}</td>
                                 <td>{{$key->tipo}}</td>
                                 <td>Si</td>
                                 <td>{{$key->status}}</td>
                                 <td>
-                                    <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
-                                        <option value="0">Seleccionar opción</option>
-                                        <option value="1">Registrar</option>
-                                        <option value="2">Editar</option>
-                                        <option value="3">Eliminar</opt     ion>
-                                        <option value="4">Ver registros</option>
-                                    </select>                                            
+                                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                                        <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
+                                            <option value="0">Seleccionar opción</option>
+                                            <option value="1">Registrar</option>
+                                            <option value="2">Editar</option>
+                                            <option value="3">Eliminar</opt     ion>
+                                            <option value="4">Ver registros</option>
+                                        </select>
+                                    @endif                                          
                                 </td>
                             </tr>
                         @endforeach()

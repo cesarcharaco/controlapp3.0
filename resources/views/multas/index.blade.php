@@ -11,51 +11,65 @@
         @include('flash::message')
         <div class="card">
             <div class="card-body">
-                
-                <div class="float-right">
-                    <a class="btn btn-warning" onclick="asignar_mr()" data-toggle="modal" data-target="#AsignarMR" style="border-radius: 30px; color: white;">
-                        <span> Asignar M/R </span>
-                    </a>
+                @if(\Auth::user()->tipo_usuario == 'Admin')
+                    <div class="float-right">
+                        <a class="btn btn-warning" onclick="asignar_mr()" data-toggle="modal" data-target="#AsignarMR" style="border-radius: 30px; color: white;">
+                            <span> Asignar M/R </span>
+                        </a>
 
-                    <a class="btn btn-success" data-toggle="modal" data-target="#crearMulta" style="border-radius: 30px; color: white;">
-                        <span> Nuevo Multa - Recarga </span>
-                    </a>
+                        <a class="btn btn-success" data-toggle="modal" data-target="#crearMulta" style="border-radius: 30px; color: white;">
+                            <span> Nuevo Multa - Recarga </span>
+                        </a>
+                    </div>
+                @endif
+            
+                <br> <br>
+        
+                <div class="col-md-12">
+
+                    <table class="table table-hover" id="myTable" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Motivo</th>
+                                <th>Observación</th>
+                                <th>Monto</th>
+                                <th>Tipo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(\Auth::user()->tipo_usuario == 'Admin')
+                                @foreach($mr as $key)
+                                    <tr>
+                                        <td>{{$key->motivo}}</td>
+                                        <td>{{$key->observacion}}</td>
+                                        <td>{{$key->monto}}</td>
+                                         <td>{{$key->tipo}}</td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#editarMulta" onclick="EditarMR('{{$key->id}}','{{$key->motivo}}','{{$key->monto}}','{{$key->tipo}}','{{$key->observacion}}')" class="btn btn-warning btn-sm">Editar</a>
+
+                                            <a href="#" data-toggle="modal" data-target="#eliminarMulta" onclick="eliminar('{{$key->id}}')" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach()
+                            @else
+                                @foreach($asignacion as $key)
+                                    <tr>
+                                        <td>{{$key->motivo}}</td>
+                                        <td>{{$key->observacion}}</td>
+                                        <td>{{$key->monto}}</td>
+                                         <td>{{$key->tipo}}</td>
+                                        <td>
+                                           
+                                        </td>
+                                    </tr>
+                                @endforeach()
+                            @endif
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
-                    
-        
-            <div class="col-md-12">
-                <hr>
-
-                <table class="table table-hover" id="myTable" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Motivo</th>
-                            <th>Observación</th>
-                            <th>Monto</th>
-                            <th>Tipo</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($mr as $key)
-                            <tr>
-                                <td>{{$key->motivo}}</td>
-                                <td>{{$key->observacion}}</td>
-                                <td>{{$key->monto}}</td>
-                                 <td>{{$key->tipo}}</td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#editarMulta" onclick="EditarMR('{{$key->id}}','{{$key->motivo}}','{{$key->monto}}','{{$key->tipo}}','{{$key->observacion}}')" class="btn btn-warning btn-sm">Editar</a>
-
-                                    <a href="#" data-toggle="modal" data-target="#eliminarMulta" onclick="eliminar('{{$key->id}}')" class="btn btn-danger btn-sm">Eliminar</a>
-                                </td>
-                            </tr>
-                        @endforeach()
-                    </tbody>
-                </table>
-
-            </div>
-            
         </div>
         
 

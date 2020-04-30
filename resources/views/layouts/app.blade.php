@@ -83,14 +83,15 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label>¿Quiere asignar las multas y recargas a todos los residentes?</label>
-                                                        <input type="checkbox" value="AsignarTodos" name="registrarTodos" onclick="cambiarResiT()">
-                                                        <input type="hidden" name="opcion" id="opcionAsignaT" value="1">
+                                                @if(\Auth::user()->tipo_usuario == 'Admin')
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>¿Quiere asignar las multas y recargas a todos los residentes?</label>
+                                                            <input type="checkbox" value="AsignarTodos" name="registrarTodos" onclick="cambiarResiT()">
+                                                            <input type="hidden" name="opcion" id="opcionAsignaT" value="1">
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                                 
                                             </div>
                                             <div class="modal-footer border-bottom">
@@ -125,11 +126,11 @@
 
                                                                         
                                                                         <div class="col-lg-6">
-                                                                            <input type="text" readonly="" class="form-control-plaintext" id="nombres_profile" value="Nelson">
-                                                                            <input type="text" name="nombres" class="form-control" id="nombres_profileE" value="Nelson" style="display: none;">
+                                                                            <input type="text" readonly="" class="form-control-plaintext" id="nombres_profile" value="{{Auth::user()->name}}">
+                                                                            <input type="text" name="nombres" class="form-control" id="nombres_profileE" value="{{Auth::user()->name}}" style="display: none;">
 
-                                                                            <input type="text" readonly="" class="form-control-plaintext" id="apellidos_profile" value="Mandela">
-                                                                            <input type="text" name="apellidos" class="form-control" id="apellidos_profileE" value="Mandela" style="display: none;">
+                                                                            <!-- <input type="text" readonly="" class="form-control-plaintext" id="apellidos_profile" value="Mandela">
+                                                                            <input type="text" name="apellidos" class="form-control" id="apellidos_profileE" value="Mandela" style="display: none;"> -->
                                                                         </div>
                                                                     </div>
                                                                     <h6 class="text-muted font-weight-normal mt-1 mb-4">
@@ -170,8 +171,8 @@
                                                                     <div class="form-group row">
                                                                         <label class="col-lg-4 col-form-label" for="example-static">Email</label>
                                                                         <div class="col-lg-8">
-                                                                            <input type="email" readonly="" class="form-control-plaintext" id="email_profile"value="email@example.com">
-                                                                            <input type="email" name="email" class="form-control" id="email_profileE"value="email@example.com" style="display: none;">
+                                                                            <input type="email" readonly="" class="form-control-plaintext" id="email_profile"value="{{Auth::user()->email}}">
+                                                                            <input type="email" name="email" class="form-control" id="email_profileE"value="{{Auth::user()->email}}" style="display: none;">
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group row">

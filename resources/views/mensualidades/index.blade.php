@@ -13,15 +13,17 @@
             <div class="card-body">
                 
                 <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 offset-md-9">
-                        <a class="btn btn-success" data-toggle="modal" data-target="#crearMensualidad" style="border-radius: 30px; color: white;">
-                            <span> Nueva Mensualidad </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12 offset-md-9">
+                                    <a class="btn btn-success" data-toggle="modal" data-target="#crearMensualidad" style="border-radius: 30px; color: white;">
+                                        <span> Nueva Mensualidad </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     
         
             <div class="col-md-12">
@@ -46,8 +48,9 @@
                                 <td>{{$key->monto}}</td>
                                 <td>
                                     <!-- <a href="#" data-toggle="modal" onclick="Editar('{{$key->id}}','{{$key->inmuebles->id}}','{{$key->mes}}','{{$key->anio}}','{{$key->monto}}')" data-target="#editarMensualidad" class="btn btn-warning btn-sm">Editar</a> -->
-
-                                    <a href="#" data-toggle="modal" onclick="Eliminar('{{$key->id}}')" data-target="#eliminarMensualidad" class="btn btn-danger btn-sm">Eliminar</a>
+                                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                                        <a href="#" data-toggle="modal" onclick="Eliminar('{{$key->id}}')" data-target="#eliminarMensualidad" class="btn btn-danger btn-sm">Eliminar</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach()

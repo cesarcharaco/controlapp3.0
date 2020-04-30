@@ -60,47 +60,52 @@
 			        </div>
 
 			        <div class="row justify-content-center">
-			        	<div class="col-md-6">
-			        		<div class="form-group">
-			        			<label class="text-primary">Inmuebles</label>
-			        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]">
-			        				@foreach($inmuebles as $key)
-			        					<option value="{{$key->id}}">{{$key->idem}}</option>
-			        				@endforeach
-			        			</select>
-			        		</div>
-			        		<div class="form-group">
-			        			<label>¿Todos los inmuebles?</label>
-			        			<input type="checkbox" value="Si" name="InmueblesTodos">
-			        		</div>
-			        	</div>
+			        	@if(\Auth::user()->tipo_usuario == 'Admin')
+				        	<div class="col-md-6">
+				        		<div class="form-group">
+				        			<label class="text-primary">Inmuebles</label>
+				        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]">
+				        				@foreach($inmuebles as $key)
+				        					<option value="{{$key->id}}">{{$key->idem}}</option>
+				        				@endforeach
+				        			</select>
+				        		</div>
+				        		<div class="form-group">
+				        			<label>¿Todos los inmuebles?</label>
+				        			<input type="checkbox" value="Si" name="InmueblesTodos">
+				        		</div>
+				        	</div>
 
-			        	<div class="col-md-6">
-			        		<div class="form-group">
-			        			<label class="text-success">Residentes</label>
-			        			<select class="form-control select2 border border-success" multiple name="id_residentes[]">
-			        				@foreach($residentes as $key)
-			        					<option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
-			        				@endforeach
-			        			</select>
-			        		</div>
-			        		<div class="form-group">
-			        			<label>¿Todos los residentes?</label>
-			        			<input type="checkbox" value="Si" name="ResidentesTodos">
-			        		</div>
-			        	</div>
-			        </div>
-
-			        <div class="row justify-content-center">
-			        	
-			        	<div class="col-md-6">
-			        	</div>
-			        </div>
-			        <div class="row justify-content-center">
-			        	
-
-			        	<div class="col-md-6">
-			        	</div>
+				        	<div class="col-md-6">
+				        		<div class="form-group">
+				        			<label class="text-success">Residentes</label>
+				        			<select class="form-control select2 border border-success" multiple name="id_residentes[]">
+				        				@foreach($residentes as $key)
+				        					<option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+				        				@endforeach
+				        			</select>
+				        		</div>
+				        		<div class="form-group">
+				        			<label>¿Todos los residentes?</label>
+				        			<input type="checkbox" value="Si" name="ResidentesTodos">
+				        		</div>
+				        	</div>
+				        @else
+				        	<div class="col-md-12">
+				        		<div class="form-group">
+				        			<label class="text-primary">Inmuebles</label>
+				        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]">
+				        				@foreach($inmuebles as $key)
+				        					<option value="{{$key->id}}">{{$key->idem}}</option>
+				        				@endforeach
+				        			</select>
+				        		</div>
+				        		<div class="form-group">
+				        			<label>¿Todos los inmuebles?</label>
+				        			<input type="checkbox" value="Si" name="InmueblesTodos">
+				        		</div>
+				        	</div>
+			        	@endif
 			        </div>
 			        <hr>
 			        <div class="form-group">

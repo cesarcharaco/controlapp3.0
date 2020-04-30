@@ -9,22 +9,41 @@
             </div>
         </div>
         @include('flash::message')
-        <div class="card">
-            <div class="card-body">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <label>Detalles de adquisiciones</label>
-                        <select class="form-control select2" id="residente" onchange="buscarTodo(this.value)">
-                            <option value="0">Seleccione residente</option>
-                            @foreach($residentes as $key)
-                                <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
-                            @endforeach()
-                        </select>
+
+
+        @if(\Auth::user()->tipo_usuario == 'Admin')
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <label>Detalles de adquisiciones</label>
+                            <select class="form-control select2" id="residente" onchange="buscarTodo(this.value)">
+                                <option value="0">Seleccione residente</option>
+                                @foreach($residentes as $key)
+                                    <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+                                @endforeach()
+                            </select>
+                        </div>
+                        
                     </div>
-                    
                 </div>
             </div>
-        </div>
+        @else
+            <div class="card">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <label>Detalles de adquisiciones</label>
+                            <button class="btn btn-success" onclick="buscarTodo('{{ \Auth::user()->tipo_usuario }}')">Buscar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        @endif
+
+
+
         <div id="mensaje"></div>
         <div class="row">
             <div class="col-lg-3">

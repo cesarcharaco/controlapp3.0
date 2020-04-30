@@ -44,62 +44,75 @@
                 </a>
             </li> -->
 
-            <li>
-                <a href="{{ url('estacionamientos') }}">
-                    <i data-feather="share"></i>
-                    <span> Estacionamiento </span>
-                </a>
-            </li>
+            @if(\Auth::user()->tipo_usuario == 'Admin')
+                <li>
+                    <a href="{{ url('estacionamientos') }}">
+                        <i data-feather="share"></i>
+                        <span> Estacionamiento </span>
+                    </a>
+                </li>
+            @endif
 
-            <li>
-                <a href="{{ url('inmuebles') }}">
-                    <i data-feather="map"></i>
-                    <span> Inmuebles </span>
-                </a>
-            </li>
 
-            <li>
-                <a href="{{ url('residentes') }}">
-                    <i data-feather="users"></i>
-                    <span> Residentes </span>
-                </a>
-            </li>
+            @if(\Auth::user()->tipo_usuario == 'Admin')
+                <li>
+                    <a href="{{ url('inmuebles') }}">
+                        <i data-feather="map"></i>
+                        <span> Inmuebles </span>
+                    </a>
+                </li>
+            @endif    
 
-            <li>
-                <a href="{{ url('arriendos') }}">
-                    <i data-feather="key"></i>
-                    <span> Arriendos </span>
-                </a>
-            </li>
 
-            <li class="menu-title">Transacciones </li>
+            @if(\Auth::user()->tipo_usuario == 'Admin')
+                <li>
+                    <a href="{{ url('residentes') }}">
+                        <i data-feather="users"></i>
+                        <span> Residentes </span>
+                    </a>
+                </li>
+            @endif
 
-            <li>
-                <a href="{{ url('pagos') }}">
-                    <i data-feather="credit-card"></i>
-                    <span> Pagos </span>
-                </a>
-            </li>
+            @if(\Auth::user()->tipo_usuario == 'Admin')
+                <li>
+                    <a href="{{ url('arriendos') }}">
+                        <i data-feather="key"></i>
+                        <span> Arriendos </span>
+                    </a>
+                </li>
+            @endif
 
-            <li>
-                <a href="{{ url('multas_recargas')}}">
-                    <i data-feather="dollar-sign"></i>
-                    <span> Multas y recargas </span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" onclick="asignar_mr()" data-toggle="modal" data-target="#AsignarMR">
-                    <i data-feather="credit-card"></i>
-                        <span> Asignar M/R </span>
-                </a>
-            </li>
+                <li class="menu-title">Transacciones </li>
 
-            <li>
-                <a href="{{ url('reportes')}}">
-                    <i data-feather="book-open"></i>
-                        <span> Reportes </span>
-                </a>
-            </li>
+                <li>
+                    <a href="{{ url('pagos') }}">
+                        <i data-feather="credit-card"></i>
+                        <span> Pagos </span>
+                    </a>
+                </li>
+
+                    <li>
+                        <a href="{{ url('multas_recargas')}}">
+                            <i data-feather="dollar-sign"></i>
+                            <span> Multas y recargas </span>
+                        </a>
+                    </li>
+
+                @if(\Auth::user()->tipo_usuario == 'Admin')
+                    <li>
+                        <a class="dropdown-item" onclick="asignar_mr()" data-toggle="modal" data-target="#AsignarMR">
+                            <i data-feather="credit-card"></i>
+                                <span> Asignar M/R </span>
+                        </a>
+                    </li>
+                @endif
+
+                <li>
+                    <a href="{{ url('reportes')}}">
+                        <i data-feather="book-open"></i>
+                            <span> Reportes </span>
+                    </a>
+                </li>
 
             {{-- <li class="menu-title">Configuración </li>
             

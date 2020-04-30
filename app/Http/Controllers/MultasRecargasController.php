@@ -14,9 +14,19 @@ class MultasRecargasController extends Controller
      */
     public function index()
     {
+
+        $asignacion = \DB::table('residentes')
+        ->join('resi_has_mr','resi_has_mr.id_residente','=','residentes.id')
+        ->join('multas_recargas','multas_recargas.id','=','resi_has_mr.id_mr')
+        ->where('residentes.id_usuario',\Auth::user()->id)
+        ->select('multas_recargas.*')
+        ->get();
+
+        // dd(count($asignacion));
+
         $mr=MultasRecargas::all();
 
-        return view('multas.index',compact('mr'));
+        return view('multas.index',compact('mr','asignacion'));
     }
 
     public function buscar_multa($id_multa)
