@@ -92,9 +92,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Notificaciones
-                        @if(\Auth::user()->tipo_usuario == 'Admin')
-                            <a href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
-                        @endif
+                        <a href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
                     </div>
                     <div class="card-body">
                         @foreach($notificaciones as $key)
