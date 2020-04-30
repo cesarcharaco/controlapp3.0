@@ -23,10 +23,30 @@ class ReportesController extends Controller
      */
     public function index()
     {
+
         $meses=Meses::all();
-        $inmuebles=Inmuebles::all();
-        $estacionamientos=Estacionamientos::all();
-        $residentes=Residentes::all();
+
+        if(\Auth::user()->tipo_usuario == 'Admin'){
+            $inmuebles=Inmuebles::all();
+            $estacionamientos=Estacionamientos::all();
+            $residentes=Residentes::all();
+
+        }else{
+            $inmuebles = \DB::table('residentes')
+                ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
+                ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+                ->where('residentes.id_usuario',\Auth::user()->id)
+                ->select('inmuebles.*')
+                ->get();
+
+            $estacionamientos = \DB::table('residentes')
+                ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
+                ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
+                ->where('residentes.id_usuario',\Auth::user()->id)
+                ->select('estacionamientos.*')
+                ->get();
+            $residentes=0;
+        }
 
         return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes'));
     }

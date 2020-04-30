@@ -10,147 +10,33 @@
             </div>
         </div>
         @include('flash::message')
-
-        @if(\Auth::user()->tipo_usuario == 'Admin')
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-group ic-cmpint">
-                        <div class="nk-int-st">
-                            <select class="form-control select2" name="id_residentes" id="residentes" onchange="buscarResidentes(this.value)">
-                                @foreach($residentes as $key)
-                                    <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} -  {{$key->rut}}</option>
-                                @endforeach()
-                            </select>
-                        </div>
-                    </div>   
-
-                </div>
-            </div>
-        @endif
-
-
-        <div class="carrousel">
-
-            <div id="carouselExampleSlidesOnly" style="display: none;" class="carousel slide" data-ride="carousel"></div>
-
+        <div id="ElCarrousel">
+            
+        
             @if(\Auth::user()->tipo_usuario == 'Admin')
-                @for($i=0; $i< count($residentes);$i++)
-                    <div class="card" style="margin-left: 20px; height: auto;">
-                        <div class="scrollbar scrollbar-primary">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <center>
-                                            
-                                            <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
-                                            @php $cuenta=0; @endphp
-                                            @foreach($asignaIn as $key)
-                                                    @if($key->id_residente == $residentes[$i]->id)
-                                                        @if($cuenta==0)   
-                                                            <div class="dropdown align-self-center profile-dropdown-menu">
-                                                                
-                                                                <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
-
-                                                                <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-
-                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
-                                                                        <span class="text-primary">Inmuebles</span>
-                                                                    </a>
-
-                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
-                                                                        <span class="text-warning">Estacionamientos</span>
-                                                                    </a>
-
-                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
-                                                                        <span class="text-danger">Multas</span>
-                                                                    </a>
-
-                                                                    
-                                                                    <!-- <div class="dropdown-divider"></div> -->
-
-                                                                </div>
-                                                            </div>
-
-                                                            <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
-                                                            @php $cuenta++; @endphp
-                                                        @endif
-                                                    @endif
-                                            @endforeach
-                                            @foreach($asignaEs as $key2)
-                                                    @if($key2->id_residente == $residentes[$i]->id)
-                                                        @if($cuenta==0) 
-                                                            <div class="dropdown align-self-center profile-dropdown-menu">
-                                                                
-                                                                <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
-
-                                                                <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-
-                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
-                                                                        <span class="text-primary">Inmuebles</span>
-                                                                    </a>
-
-                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
-                                                                        <span class="text-warning">Estacionamientos</span>
-                                                                    </a>
-
-                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
-                                                                        <span class="text-danger">Multas</span>
-                                                                    </a>
-
-                                                                    
-                                                                    <!-- <div class="dropdown-divider"></div> -->
-
-                                                                </div>
-                                                            </div>
-
-
-                                                            <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
-                                                            @php $cuenta++; @endphp
-                                                        @endif
-                                                    @endif
-                                            @endforeach
-
-
-
-
-
-
-
-                                        </center>
-                                    </div>
-                                    <div class="col-md-5">
-                                        {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
-                                        <br>
-                                        {{$residentes[$i]->rut}}
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                        @foreach($asignaIn as $key)
-                                            @if($key->id_residente == $residentes[$i]->id)
-                                                    <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle img-fluid" alt="Responsive image"/></a>
-                                            @endif
-                                        @endforeach
-
-                                        @foreach($asignaEs as $key)
-                                            @if($key->id_residente == $residentes[$i]->id)
-                                                    <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md img-fluid" alt="Responsive image"/></a>
-                                            @endif
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <dir></dir>
-                                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group ic-cmpint">
+                            <div class="nk-int-st">
+                                <select class="form-control select2" name="id_residentes" id="residentes" onchange="buscarResidentes(this.value)">
+                                    @foreach($residentes as $key)
+                                        <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} -  {{$key->rut}}</option>
+                                    @endforeach()
+                                </select>
                             </div>
-                        </div>
+                        </div>   
+
                     </div>
-                @endfor
-            @else
-                @for($i=0; $i< count($residentes);$i++)
-                    @if($residentes[$i]->id_usuario == \Auth::user()->id)
+                </div>
+            @endif
+
+
+            <div class="carrousel">
+
+                <div id="carouselExampleSlidesOnly" style="display: none;" class="carousel slide" data-ride="carousel"></div>
+
+                @if(\Auth::user()->tipo_usuario == 'Admin')
+                    @for($i=0; $i< count($residentes);$i++)
                         <div class="card" style="margin-left: 20px; height: auto;">
                             <div class="scrollbar scrollbar-primary">
                                 <div class="card-body">
@@ -163,7 +49,30 @@
                                                 @foreach($asignaIn as $key)
                                                         @if($key->id_residente == $residentes[$i]->id)
                                                             @if($cuenta==0)   
-                                                               
+                                                                <div class="dropdown align-self-center profile-dropdown-menu">
+                                                                    
+                                                                    <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
+
+                                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
+                                                                            <span class="text-primary">Inmuebles</span>
+                                                                        </a>
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
+                                                                            <span class="text-warning">Estacionamientos</span>
+                                                                        </a>
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
+                                                                            <span class="text-danger">Multas</span>
+                                                                        </a>
+
+                                                                        
+                                                                        <!-- <div class="dropdown-divider"></div> -->
+
+                                                                    </div>
+                                                                </div>
 
                                                                 <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                                                 @php $cuenta++; @endphp
@@ -173,7 +82,30 @@
                                                 @foreach($asignaEs as $key2)
                                                         @if($key2->id_residente == $residentes[$i]->id)
                                                             @if($cuenta==0) 
-                                                                
+                                                                <div class="dropdown align-self-center profile-dropdown-menu">
+                                                                    
+                                                                    <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
+
+                                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
+                                                                            <span class="text-primary">Inmuebles</span>
+                                                                        </a>
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
+                                                                            <span class="text-warning">Estacionamientos</span>
+                                                                        </a>
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
+                                                                            <span class="text-danger">Multas</span>
+                                                                        </a>
+
+                                                                        
+                                                                        <!-- <div class="dropdown-divider"></div> -->
+
+                                                                    </div>
+                                                                </div>
 
 
                                                                 <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
@@ -212,22 +144,97 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                    <dir></dir>
-                                </div>
+                                        <dir></dir>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    @endif
-                @endfor
-            @endif
-            
+                    @endfor
+                @else
+                    @for($i=0; $i< count($residentes);$i++)
+                        @if($residentes[$i]->id_usuario == \Auth::user()->id)
+                            <div class="card" style="margin-left: 20px; height: auto;">
+                                <div class="scrollbar scrollbar-primary">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <center>
+                                                    
+                                                    <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
+                                                    @php $cuenta=0; @endphp
+                                                    @foreach($asignaIn as $key)
+                                                            @if($key->id_residente == $residentes[$i]->id)
+                                                                @if($cuenta==0)   
+                                                                   
+
+                                                                    <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                    @php $cuenta++; @endphp
+                                                                @endif
+                                                            @endif
+                                                    @endforeach
+                                                    @foreach($asignaEs as $key2)
+                                                            @if($key2->id_residente == $residentes[$i]->id)
+                                                                @if($cuenta==0) 
+                                                                    
+
+
+                                                                    <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                    @php $cuenta++; @endphp
+                                                                @endif
+                                                            @endif
+                                                    @endforeach
+
+
+
+
+
+
+
+                                                </center>
+                                            </div>
+                                            <div class="col-md-5">
+                                                {{$residentes[$i]->nombres}}<br>{{$residentes[$i]->apellidos}}
+                                                <br>
+                                                {{$residentes[$i]->rut}}
+                                            </div>
+                                            <div class="col-md-4">
+                                                
+                                                @foreach($asignaIn as $key)
+                                                    @if($key->id_residente == $residentes[$i]->id)
+                                                            <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle img-fluid" alt="Responsive image"/></a>
+                                                    @endif
+                                                @endforeach
+
+                                                @foreach($asignaEs as $key)
+                                                    @if($key->id_residente == $residentes[$i]->id)
+                                                            <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md img-fluid" alt="Responsive image"/></a>
+                                                    @endif
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <dir></dir>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endfor
+                @endif
+                
+            </div>
         </div>
-    
 </div>
 
         <div class="card" id="VerFomulario" style="display: none" >
             <div class="card-header">
-                <button type="button" class="close" onclick="$('#VerFomulario').css('display','none')">
+                <button type="button" class="close" onclick="
+                    $('#VerFomulario').fadeOut('slow',
+                        function() { 
+                            $('#VerFomulario').hide();
+                            $('#ElCarrousel').fadeIn(300);
+                    });">
                     <span>&times;</span>
                 </button>
             </div>
@@ -500,10 +507,14 @@
         $('#id_mensEstacionaR').empty();
         $('#id_mensMultaR').empty();
 
-
+        $('#ElCarrousel').fadeOut('slow',
+            function() { 
+                $('#carrousel').hide();
+                $('#VerFomulario').fadeIn(300);
+        });
 
         $('#verF').val(id_residente);
-        $('#VerFomulario').css('display','block');
+        // $('#VerFomulario').css('display','block');
 
         mostrar_datos(id_residente);
         mostrar_datos2(id_residente);

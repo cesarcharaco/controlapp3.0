@@ -112,9 +112,10 @@
 			        	<label>¿Incluir Multas y recargas? </label>
 			        	<input type="checkbox" value="Si" name="MultasRecargas">
 			        </div>
-			        <div class="float-right">
-			        	<h3><button type="button" class="btn btn-danger btn-rounded">Generar PDF</button></h3>
-			        </div>
+			        
+				        <!-- <div class="float-right">
+				        	<h3><button type="button" class="btn btn-danger btn-rounded">Generar PDF</button></h3>
+				        </div> -->
 			    </form>
 
 		    </div>
