@@ -163,30 +163,7 @@
                                                 @foreach($asignaIn as $key)
                                                         @if($key->id_residente == $residentes[$i]->id)
                                                             @if($cuenta==0)   
-                                                                <div class="dropdown align-self-center profile-dropdown-menu">
-                                                                    
-                                                                    <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
-
-                                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
-                                                                            <span class="text-primary">Inmuebles</span>
-                                                                        </a>
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
-                                                                            <span class="text-warning">Estacionamientos</span>
-                                                                        </a>
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
-                                                                            <span class="text-danger">Multas</span>
-                                                                        </a>
-
-                                                                        
-                                                                        <!-- <div class="dropdown-divider"></div> -->
-
-                                                                    </div>
-                                                                </div>
+                                                               
 
                                                                 <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                                                 @php $cuenta++; @endphp
@@ -196,30 +173,7 @@
                                                 @foreach($asignaEs as $key2)
                                                         @if($key2->id_residente == $residentes[$i]->id)
                                                             @if($cuenta==0) 
-                                                                <div class="dropdown align-self-center profile-dropdown-menu">
-                                                                    
-                                                                    <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
-
-                                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
-                                                                            <span class="text-primary">Inmuebles</span>
-                                                                        </a>
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
-                                                                            <span class="text-warning">Estacionamientos</span>
-                                                                        </a>
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
-                                                                            <span class="text-danger">Multas</span>
-                                                                        </a>
-
-                                                                        
-                                                                        <!-- <div class="dropdown-divider"></div> -->
-
-                                                                    </div>
-                                                                </div>
+                                                                
 
 
                                                                 <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
@@ -907,7 +861,7 @@
                         '</tr>'
                     );
                     
-                    montoTotal(2,monto);
+                    montoTotal(1,monto);
                 }
                 if(data[0].tipo == 'Multa'){
                     var tipo=2;
@@ -930,7 +884,7 @@
                             '</td>'+
                         '</tr>'
                     );
-                    montoTotal(1,monto);
+                    montoTotal(2,monto);
                 }
 
                 $('#id_mensMultaR').append('<option selected id="multaR'+data[0].id+'" value="'+data[0].id+'">'+data[0].id+'</option>');
