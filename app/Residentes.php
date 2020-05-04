@@ -34,4 +34,9 @@ class Residentes extends Model
     {
     	return $this->belongsToMany('App\Notificaciones','resi_has_notif','id_residente','id_notificacion')->withPivot('status');
     }
+
+    public function reportes()
+    {
+    	return $this->hasMany('App\Reportes','id_residente','id');
+    }
 }

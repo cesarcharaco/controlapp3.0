@@ -367,8 +367,16 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class=" col-form-label" for="example-static">Año de pago</label>
-                                    <select class="form-control select2" name="anio" id="anio" onchange="BuscarEditar(this.value)" >
+                                    <label class=" col-form-label" for="example-static">Referencia con la que se registró el pago</label>
+                                    <input type="number" name="referencia_edit" data-toggle="tooltip" data-placement="top" title="Ingrese la referencia con la que se registró el pago" placeholder="Ej: 12345678" class="form-control" required="required" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label data-toggle="tooltip" data-placement="top" title="Seleccione el año al cual corresponde el pago" class=" col-form-label" for="example-static">Año de pago</label>
+                                    <select   class="form-control select2" name="anio" id="anio" onchange="BuscarEditar(this.value)" >
                                         
                                     </select>
                                 </div>
@@ -381,8 +389,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="text-primary col-form-label" for="example-static">Inmuebles</label>
-                                        <select class="border border-primary form-control select2" name="id_inmueble[]" id="id_inmuebleEditar">
+                                        <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendiente, de acuerdo al inmueble" class="text-primary col-form-label" for="example-static">Inmuebles</label>
+                                        <select   class="border border-primary form-control select2" name="id_inmueble" id="id_inmuebleEditar">
                                             
                                         </select>
                                     </div>
@@ -394,8 +402,8 @@
                             <div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="text-warning col-form-label" for="example-static">Estacionamientos</label>
-                                        <select class="border border-warning form-control select2" name="id_estacionamiento[]" id="id_estacionamientoEditar">
+                                        <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendient, de acuerdo al estacionamiento" class="text-warning col-form-label" for="example-static">Estacionamientos</label>
+                                        <select   class="border border-warning form-control select2" name="id_estacionamiento" id="id_estacionamientoEditar">
                                             
                                         </select>
                                     </div>
@@ -407,8 +415,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="text-success col-form-label" for="example-static">Multas - Recargas</label>
-                                        <select class="border border-success form-control select2" name="id_multa[]" id="id_multaEditar">
+                                        <label   data-toggle="tooltip" data-placement="top" title="Seleccione la Multa o Recarga que desea colocar como pendiente" class="text-success col-form-label" for="example-static">Multas - Recargas</label>
+                                        <select class="border border-success form-control select2" name="id_multa" id="id_multaEditar">
                                             
                                         </select>
                                     </div>
@@ -419,6 +427,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="opcion" id="opcion">
+                        <input type="hidden" name="id_residente_edit" id="id_residente_edit">
                         <button type="submit" class="btn btn-success" >Editar</button>
                     </div>
                 </div>
@@ -539,16 +548,16 @@
 
         // $('#id_añoE').append('<option></option>');
 
-
+        $("#id_residente_edit").val(id_residente);
         if (opcion == 1) {
             $('#opcion').val(1);
             $('#titleE').text('Editar pago de Inmuebles');
             $('#MuestraInmueble').show();
-
+            console.log(id_residente);
             $.get("inmuebles/"+id_residente+"/buscar_anios",function (data) {
             })
             .done(function(data) {
-                    //console.log(data.length);
+                    console.log(data.length);
                     if (data.length>0) {
                         // $("#anio").empty();
                         $("#anio").append('<option value="0">Seleccione el año</option>');
@@ -569,7 +578,8 @@
             .done(function(data) {
                     //console.log(data.length);
                     if (data.length>0) {
-                        // $("#anio").empty();
+                        $("#anio").empty();
+                        $("#anio").append('<option value="0">Seleccione el año</option>');
                         for (var i = 0; i < data.length ; i++) {
                             
                             $("#anio").append('<option value="'+data[i].anio+'">'+data[i].anio+'</option>');
@@ -587,7 +597,8 @@
             .done(function(data) {
                     //console.log(data.length);
                     if (data.length>0) {
-                        // $("#anio").empty();
+                        $("#anio").empty();
+                        $("#anio").append('<option value="0">Seleccione el año</option>');
                         for (var i = 0; i < data.length ; i++) {
                             
                             $("#anio").append('<option value="'+data[i].anio+'">'+data[i].anio+'</option>');

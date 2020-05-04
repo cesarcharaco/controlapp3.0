@@ -26,6 +26,7 @@
 		        </div>
 
 
+<<<<<<< HEAD
 			    <form>
 			    	{{-- <div class="row justify-content-center">
 			    		<div class="col-md-6">
@@ -38,6 +39,10 @@
 			    		</div>
 			    	</div> --}}
 			    	
+=======
+			    <form action="{{ route('reportes.store') }}" method="POST" accept-charset="utf-8">
+			   	@csrf
+>>>>>>> 0b9e96e29dd655212df7a3e6f3c70569a572b1bd
 			        <div class="row justify-content-center">
 			        	<div class="col-md-6">
 			        		<div class="form-group">
@@ -123,10 +128,17 @@
 			        	<label>¿Incluir Multas y recargas? </label>
 			        	<input type="checkbox" value="Si" name="MultasRecargas">
 			        </div>
+<<<<<<< HEAD
 
 				        <!-- <div class="float-right">
 				        	<h3><button type="button" class="btn btn-danger btn-rounded">Generar PDF</button></h3>
 				        </div> -->
+=======
+			        
+				        <div class="float-right">
+				        	<h3><button type="submit" class="btn btn-danger btn-rounded">Generar PDF</button></h3>
+				        </div>
+>>>>>>> 0b9e96e29dd655212df7a3e6f3c70569a572b1bd
 			    </form>
 
 		    </div>
