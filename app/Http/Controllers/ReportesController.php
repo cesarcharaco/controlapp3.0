@@ -140,6 +140,14 @@ class ReportesController extends Controller
         $inmuebles=\DB::select($sql_i);
         $estacionamientos=\DB::select($sql_e);
         $mr=\DB::select($sql_mr);
+
+        $pdf = PDF::loadView('reportes/PDF', array(
+                    'inmuebles'=>$inmuebles,
+                    'estacionamientos'=>$estacionamientos,
+                    'mr'=>$mr
+                ));
+                $pdf->setPaper('A4', 'landscape');
+                return $pdf->stream('Reporte_PDF.pdf');
         
     }
 
