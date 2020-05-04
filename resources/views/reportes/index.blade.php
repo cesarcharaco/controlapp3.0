@@ -25,22 +25,22 @@
 
 		        </div>
 
-			    <form>
-			    	{{-- <div class="row justify-content-center">
-			    		<div class="col-md-6">
-			    			<label class="text-primary">Seleccione años</label>
-			        			<select class="form-control select2 border border-default" multiple name="id_meses[]">
-			        				@foreach($años as $key)
-			        					<option value="{{$key->id}}">{{$key->años}}</option>
-			        				@endforeach
-			        			</select>
-			    		</div>
-			    	</div> --}}
 			    	
 
 			    <form action="{{ route('reportes.store') }}" method="POST" accept-charset="utf-8">
 			   	@csrf
 
+			    	<div class="row justify-content-center">
+			    		<div class="col-md-12">
+			    			<label>Seleccione años</label>
+		        			<select class="form-control select2 border border-default" multiple name="id_meses[]">
+		        				@for($i=0; $i < count($anios); $i++)
+		        					<option value=""></option>
+		        				@endfor
+		        			</select>
+			    		</div>
+			    	</div>
+			    	<hr>
 			        <div class="row justify-content-center">
 			        	<div class="col-md-6">
 			        		<div class="form-group">
