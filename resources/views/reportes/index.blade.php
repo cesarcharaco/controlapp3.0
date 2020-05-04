@@ -32,11 +32,11 @@
 
 			    	<div class="row justify-content-center">
 			    		<div class="col-md-12">
-			    			<label>Seleccione años</label>
-		        			<select class="form-control select2 border border-default" multiple name="id_meses[]">
-		        				@for($i=0; $i < count($anios); $i++)
-		        					<option value=""></option>
-		        				@endfor
+			    			<label  data-toggle="tooltip" data-placement="top" title="Seleccione el año para el reporte">Seleccione el año</label>
+		        			<select class="form-control select2 border border-default" name="anio">
+		        				<option value="{{ date('Y')-1 }}">{{ date('Y')-1 }}</option>
+		        				<option value="{{ date('Y') }}">{{ date('Y') }}</option>
+		        				<option value="{{ date('Y')+1 }}">{{ date('Y')+1 }}</option>
 		        			</select>
 			    		</div>
 			    	</div>

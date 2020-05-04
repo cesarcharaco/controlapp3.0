@@ -47,13 +47,11 @@ class ReportesController extends Controller
                 ->get();
             $residentes=0;
         }
-        $anios=array();
-        $limit=date('Y')+1;
-        for ($i=2019; $i <= $limit; $i++) { 
-            $anios[$i]=$i;
-        }
-        //dd($anios);
-        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes','anios'));
+        
+
+        
+        //dd(count($anios));
+        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes'));
     }
 
     /**
@@ -87,7 +85,7 @@ class ReportesController extends Controller
         
         //preparando variable para anios de inmuebles
         if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
-            $sql_i="SELECT * FROM residentes, inmuebles, residentes_has_inmuebles WHERE residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND residentes_has_inmuebles.anio=".$request->anio." ";
+            $sql_i="SELECT * FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades WHERE residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id  AND mensualidades.anio=".$request->anio." ";
         } else {
             $sql_i="";
         }
@@ -95,14 +93,14 @@ class ReportesController extends Controller
         //preparando variable para anios de estacionamientos
         if (!is_null($request->id_estacionamientos) || !is_null($request->EstacionamientosTodos)) {
             
-            $sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos WHERE residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND residentes_has_est.anio=".$request->anio." ";
+            $sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos,mens_estac WHERE residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND mens_estac.id_estacionamiento=estacionamientos.id  AND mens_estac.anio=".$request->anio." ";
         } else {
            $sql_e="";
         }
         
         //preparando la variable de anios multas/recargas
         if (!is_null($request->MultasRecargas)) {
-            $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id=multas_recargas.id_residente AND multas_recargas.id_mr=multas_recargas.id AND multas_racargas.anio=".$request->anio." ";
+            $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id=resi_has_mr.id_residente AND resi_has_mr.id_mr=multas_recargas.id AND multas_recargas.anio=".$request->anio." ";
         } else {
             $sql_mr="";
         }
@@ -110,8 +108,10 @@ class ReportesController extends Controller
         //agregando los residentes
         if (is_null($request->ResidentesTodos)) {
             $residentes="";
+            $residentes2="";
           for ($i=0; $i < count($request->id_residentes); $i++) { 
               $residentes.=" AND residentes.id=".$request->id_residentes[$i]." ";
+              $residentes2.=" AND resi_has_mr.id_residente=".$request->id_residentes[$i]." ";
 
           }
           if($sql_i!==""){
@@ -121,20 +121,25 @@ class ReportesController extends Controller
             $sql_e.=$residentes; 
           }
           if($sql_mr!==""){
-            $sql_mr.=$residentes;
+            $sql_mr.=$residentes2;
           }
         }
 
         if(is_null($request->MesesTodos)){
             // para agregar los meses
+
             for ($i=0; $i < count($request->id_meses) ; $i++) { 
-                $sql_i.=" AND mensualidades.mes=".$request->id_meses[$i]." ";
-                $sql_e.=" AND mens_estac.mes=".$request->id_meses[$i]." ";
+                $sql_i.=" OR mensualidades.mes=".$request->id_meses[$i]." ";
+                $sql_e.=" OR mens_estac.mes=".$request->id_meses[$i]." ";
             }
         }
 
-        echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";
-        dd("-------------");
+        /*echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";
+        dd("-------------");*/
+
+        $inmuebles=\DB::select($sql_i);
+        $estacionamientos=\DB::select($sql_e);
+        $mr=\DB::select($sql_mr);
         
     }
 
