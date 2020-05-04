@@ -69,7 +69,56 @@ class ReportesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*"id_meses" => array:2 [▶]
+          "MesesTodos" => "MesesTodos"
+          "id_estacionamientos" => array:1 [▶]
+          "EstacionamientosTodos" => "Si"
+          "id_inmuebles" => array:1 [▶]
+          "InmueblesTodos" => "Si"
+          "id_residentes" => array:1 [▶]
+          "ResidentesTodos" => "Si"
+          "MultasRecargas" => "Si"*/
+        dd($request->all());
+        
+        //preparando variable para anios de inmuebles
+        if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
+            $sql_i="SELECT * FROM residentes, inmuebles, residentes_has_inmuebles WHERE residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND residentes_has_inmuebles.anio=".$request->anio." ";
+        } else {
+            $sql_i="";
+        }
+
+        //preparando variable para anios de estacionamientos
+        if (!is_null($request->id_estacionamientos) || !is_null($request->EstacionamientosTodos)) {
+            $anio_e=" mens_estac.anio=".$request->anio." ";
+            $tablas.=" estacionamientos, residentes_has_est, mens_estac ";
+            $sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos WHERE residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND residentes_has_est.anio=".$request->anio." ";
+        } else {
+           $sql_e="";
+        }
+        
+        //preparando la variable de anios multas/recargas
+        if (!is_null($request->MultasRecargas)) {
+            $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id=multas_recargas.id_residente AND multas_recargas.id_mr=multas_recargas.id AND multas_racargas.anio=".$request->anio." ";
+        } else {
+            $sql_mr="";
+        }
+        
+        
+        
+        
+        if (is_null($request->ResidentesTodos)) {
+            $residentes="";
+          for ($i=0; $i < count($request->id_residentes); $i++) { 
+              $residentes.=" AND residentes.id=".$request->id_residentes[$i]." ";
+
+          }
+          if($sql_i!==""){
+            $sql_i.=$residentes;
+          }
+        } else {
+        dd("seleccionados todos");
+        }
+        
     }
 
     /**

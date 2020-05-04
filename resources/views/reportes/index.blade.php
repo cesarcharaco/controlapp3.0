@@ -26,7 +26,8 @@
 		        </div>
 
 
-			    <form>
+			    <form action="{{ route('reportes.store') }}" method="POST" accept-charset="utf-8">
+			   	@csrf
 			        <div class="row justify-content-center">
 			        	<div class="col-md-6">
 			        		<div class="form-group">
@@ -113,9 +114,9 @@
 			        	<input type="checkbox" value="Si" name="MultasRecargas">
 			        </div>
 			        
-				        <!-- <div class="float-right">
-				        	<h3><button type="button" class="btn btn-danger btn-rounded">Generar PDF</button></h3>
-				        </div> -->
+				        <div class="float-right">
+				        	<h3><button type="submit" class="btn btn-danger btn-rounded">Generar PDF</button></h3>
+				        </div>
 			    </form>
 
 		    </div>

@@ -18,6 +18,7 @@ class CreateReportesPagosTable extends Migration
             $table->string('referencia');
             $table->text('reporte');
             $table->unsignedBigInteger('id_residente');
+            $table->enum('tipo',['Cancelado','Pendiente','No Aplica'])->default('Cancelado');
 
             $table->foreign('id_residente')->references('id')->on('residentes')->ondelete('cascade');
             $table->timestamps();

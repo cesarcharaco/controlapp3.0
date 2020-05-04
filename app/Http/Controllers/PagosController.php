@@ -10,6 +10,8 @@ use App\Estacionamientos;
 use App\MultasRecargas;
 use App\PagosE;
 use App\MensualidadE;
+use App\Mensualidades;
+use App\Reportes;
 use Illuminate\Http\Request;
 
 class PagosController extends Controller
@@ -21,6 +23,7 @@ class PagosController extends Controller
      */
     public function index()
     {
+
         $residentes=Residentes::all();
         $meses=Meses::all();
         $pagos=Pagos::all();
@@ -138,7 +141,99 @@ class PagosController extends Controller
      */
     public function update(Request $request, $id_pago)
     {
-        dd($request->all());
+    //dd($request->all());
+        switch ($request->opcion) {
+            case 1:
+                $pago=Pagos::where('id_mensualidad',$request->id_inmueble)->first();
+                //dd($this->mostrar_mes($pago->mensualidad->mes));
+                $mes=$this->mostrar_mes($pago->mensualidad->mes);
+                $inmueble=$pago->mensualidad->inmuebles->idem;
+                $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$mes."%' ORDER BY id DESC LIMIT 0,1";
+                $sql2="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$inmueble."%' ORDER BY id DESC LIMIT 0,1";
+                //dd($sql2);
+                $buscar1=\DB::select($sql);
+                $buscar2=\DB::select($sql2);
+                
+               if (count($buscar1)>0 AND count($buscar2)>0) {
+                    $reporte_new=new Reportes();
+                    $reporte_new->referencia=$request->referencia_edit;
+                    $reporte_new->reporte="Se ha colocado como Pendiente al mes de ".$mes." del Inmueble: ".$inmueble;
+                    $reporte_new->tipo="Pendiente";
+                    $reporte_new->id_residente=$request->id_residente_edit;
+                    $reporte_new->save();
+                    
+                    $pago->status="Pendiente";
+                    $pago->save();     
+                    flash('Se ha colocado como Pendiente al mes de '.$mes.' del Inmueble: '.$inmueble.', con éxito!')->success()->important();
+                    return redirect()->back();
+               } else {
+                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
+                    return redirect()->back();
+               }
+               
+                break;
+            case 2:
+                $pago=PagosE::where('id_mens_estac',$request->id_estacionamiento)->first();
+                //dd($this->mostrar_mes($pago->mensualidad->mes));
+                $mes=$this->mostrar_mes($pago->mensualidad->mes);
+                $estacionamiento=$pago->mensualidad->estacionamientos->idem;
+                $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$mes."%' ORDER BY id DESC LIMIT 0,1";
+                $sql2="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$estacionamiento."%' ORDER BY id DESC LIMIT 0,1";
+                //dd($sql2);
+                $buscar1=\DB::select($sql);
+                $buscar2=\DB::select($sql2);
+                
+               if (count($buscar1)>0 AND count($buscar2)>0) {
+                    $reporte_new=new Reportes();
+                    $reporte_new->referencia=$request->referencia_edit;
+                    $reporte_new->reporte="Se ha colocado como Pendiente al mes de ".$mes." del Estacionamiento: ".$estacionamiento;
+                    $reporte_new->tipo="Pendiente";
+                    $reporte_new->id_residente=$request->id_residente_edit;
+                    $reporte_new->save();
+                    
+                    $pago->status="Pendiente";
+                    $pago->save();     
+                    flash('Se ha colocado como Pendiente al mes de '.$mes.' del Estacionamiento: '.$estacionamiento.', con éxito!')->success()->important();
+                    return redirect()->back();
+               } else {
+                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
+                    return redirect()->back();
+               }
+               
+                break;
+            case 3:
+            //multas y Recargas
+                $pago=MultasRecargas::find($request->id_multa);
+                
+                $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$pago->motivo."%' ORDER BY id DESC LIMIT 0,1";
+                //dd($sql2);
+                $buscar=\DB::select($sql);
+                
+               if (count($buscar)>0) {
+                    $reporte_new=new Reportes();
+                    $reporte_new->referencia=$request->referencia_edit;
+                    $reporte_new->reporte="Se ha colocado como Pendiente la ".$pago->tipo.": ".$pago->motivo;
+                    $reporte_new->tipo="Pendiente";
+                    $reporte_new->id_residente=$request->id_residente_edit;
+                    $reporte_new->save();
+                    
+                    foreach ($pago->residentes as $key) {
+                        if ($key->pivot->id_residente==$request->id_residente_edit) {
+                            $key->pivot->status="Recibida";
+                            $key->pivot->save();
+                        }
+                        
+                    }
+                         
+                    flash('Se ha colocado como Pendiente la '.$pago->tipo.': '.$pago->motivo.', con éxito!')->success()->important();
+                    return redirect()->back();
+               } else {
+                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
+                    return redirect()->back();
+               }
+               
+                break;
+        }
     }
 
     /**
