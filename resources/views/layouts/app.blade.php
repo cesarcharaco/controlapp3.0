@@ -68,8 +68,8 @@
                                                     <div class="col-md-12">
                                                         <div div="form-group">
                                                             <label>Multas - Recargas</label>
-                                                            <select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
-                                                            </select>
+                                                            <pre><select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
+                                                            </select></pre>
                                                         </div>
                                                     </div>
                                                 </div>

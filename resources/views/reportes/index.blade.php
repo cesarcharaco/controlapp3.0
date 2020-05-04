@@ -34,7 +34,7 @@
 			    		<div class="col-md-12">
 			    			<label  data-toggle="tooltip" data-placement="top" title="Seleccione el año para el reporte">Seleccione el año</label>
 		        			<select class="form-control select2 border border-default" name="anio">
-		        				<option value="{{ date('Y')-1 }}">{{ date('Y')-1 }}</option>
+		        				<option value="{{ date('Y')-1 }}" selected>{{ date('Y')-1 }}</option>
 		        				<option value="{{ date('Y') }}">{{ date('Y') }}</option>
 		        				<option value="{{ date('Y')+1 }}">{{ date('Y')+1 }}</option>
 		        			</select>
@@ -108,7 +108,7 @@
 				        	<div class="col-md-12">
 				        		<div class="form-group">
 				        			<label class="text-primary">Inmuebles</label>
-				        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]">
+				        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]" id="selectTodosInmuebles">
 				        				@foreach($inmuebles as $key)
 				        					<option value="{{$key->id}}">{{$key->idem}}</option>
 				        				@endforeach
@@ -116,7 +116,7 @@
 				        		</div>
 				        		<div class="form-group">
 				        			<label>¿Todos los inmuebles?</label>
-				        			<input type="checkbox" value="Si" name="InmueblesTodos">
+				        			<input type="checkbox" value="Si" name="InmueblesTodos" id="InmueblesTodos" onchange="TodosInmuebles()">
 				        		</div>
 				        	</div>
 			        	@endif
@@ -155,38 +155,34 @@
     }
 
     function TodosMeses() {
-    	var valor = $('#MesesTodos').val();
-    	if(valor==0){
+    	if($('#MesesTodos').prop('checked')){
     		$('#selectTodosMeses').attr('disabled',true);
     	}else{
-    		$('#selectTodosMeses').removeAtrr('disabled',false);
+    		$('#selectTodosMeses').removeAttr('disabled',false);
     	}
     }
 
     function TodosEstacionamientos() {
-    	var valor = $('#EstacionamientosTodos').val();
-    	if(valor==0){
+    	if($('#EstacionamientosTodos').prop('checked')){
     		$('#selectTodosEstacionamientos').attr('disabled',true);
     	}else{
-    		$('#selectTodosEstacionamientos').removeAtrr('disabled',false);
+    		$('#selectTodosEstacionamientos').removeAttr('disabled',false);
     	}
     }
 
     function TodosInmuebles() {
-    	var valor = $('#InmueblesTodos').val();
-    	if(valor==0){
+    	if($('#InmueblesTodos').prop('checked')){
     		$('#selectTodosInmuebles').attr('disabled',true);
     	}else{
-    		$('#selectTodosInmuebles').removeAtrr('disabled',false);
+    		$('#selectTodosInmuebles').removeAttr('disabled',false);
     	}
     }
 
     function TodosResidentes() {
-    	var valor = $('#ResidentesTodos').val();
-    	if(valor==0){
+    	if($('#ResidentesTodos').prop('checked')){
     		$('#selectTodosResidentes').attr('disabled',true);
     	}else{
-    		$('#selectTodosResidentes').removeAtrr('disabled',false);
+    		$('#selectTodosResidentes').removeAttr('disabled',false);
     	}
     }
 

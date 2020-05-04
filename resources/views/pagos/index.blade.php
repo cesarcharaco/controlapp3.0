@@ -390,7 +390,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendiente, de acuerdo al inmueble" class="text-primary col-form-label" for="example-static">Inmuebles</label>
-                                        <select   class="border border-primary form-control select2" name="id_inmueble" id="id_inmuebleEditar">
+                                        <select   class="border border-primary form-control select2" name="id_inmueble" id="id_inmuebleEditar" disabled>
                                             
                                         </select>
                                     </div>
@@ -403,7 +403,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendient, de acuerdo al estacionamiento" class="text-warning col-form-label" for="example-static">Estacionamientos</label>
-                                        <select   class="border border-warning form-control select2" name="id_estacionamiento" id="id_estacionamientoEditar">
+                                        <select   class="border border-warning form-control select2" name="id_estacionamiento" id="id_estacionamientoEditar" disabled>
                                             
                                         </select>
                                     </div>
@@ -416,7 +416,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label   data-toggle="tooltip" data-placement="top" title="Seleccione la Multa o Recarga que desea colocar como pendiente" class="text-success col-form-label" for="example-static">Multas - Recargas</label>
-                                        <select class="border border-success form-control select2" name="id_multa" id="id_multaEditar">
+                                        <select class="border border-success form-control select2" name="id_multa" id="id_multaEditar" disabled>
                                             
                                         </select>
                                     </div>
@@ -612,32 +612,45 @@
     function BuscarEditar(anio) {
 
             var id_residente =$('#verF').val();
+            $('#id_inmuebleEditar').empty();
+            $('#id_estacionamientoEditar').empty();
+            $("#id_multaEditar").empty();
 
             $.get("inmuebles/"+id_residente+"/"+anio+"/buscar_inmuebles",function (data) {
+                if (data.length>0) {
+                        $('#id_inmuebleEditar').append('<option selected disabled>Seleccione los meses</option>');
+                    for(i=0 ; i<data.length ; i++){
+                        $('#id_inmuebleEditar').append(
+                            '<optgroup label="'+data[i].idem+'" id="id_inmuebleEditar'+data[i].id+'">'+inmuebles_meses_editar(data[i].id)+'</optgroup>'
+                        );
+
+                    }
+                }else{
+                        $('#id_inmuebleEditar').append('<option>El residente no tiene compras realizadas en los inmuebles</option>');
+                }
             })
             .done(function(data) {
-                for(i=0 ; i<data.length ; i++){
-                    
-                    $('#id_inmuebleEditar').append(
-                        '<optgroup label="'+data[i].idem+'" id="id_inmuebleEditar'+data[i].id+'">'+inmuebles_meses_editar(data[i].id)+'</optgroup>'
-                    );
-
-                }
+                
             });
 
 
             //console.log('holaaa');
             $.get("estacionamientos/"+id_residente+"/"+anio+"/buscar_estacionamientos",function (data) {
+                if (data.length>0) {
+                        $('#id_estacionamientoEditar').append('<option selected disabled>Seleccione los meses</option>');
+                    for(i=0 ; i<data.length ; i++){
+                        $('#id_estacionamientoEditar').append(
+                            '<optgroup label="'+data[i].idem+'" id="id_estacionamientoEditar'+data[i].id+'">'+estacionamientos_meses_editar(data[i].id)+'</optgroup>'
+                        );
+
+                    }
+                }else{
+                        $('#id_estacionamientoEditar').append('<option>El residente no tiene compras realizadas en los estacionamientos</option>');
+                }
             })
             .done(function(data) {
+                
                 console.log(data.length);
-                for(i=0 ; i<data.length ; i++){
-                    
-                    $('#id_estacionamientoEditar').append(
-                        '<optgroup label="'+data[i].idem+'" id="id_estacionamientoEditar'+data[i].id+'">'+estacionamientos_meses_editar(data[i].id)+'</optgroup>'
-                    );
-
-                }
                             
                 
             });
@@ -650,8 +663,10 @@
                        $("#id_multaEditar").append('<option value="'+data[i].id+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - '+ data[i].tipo+' - monto: '+data[i].monto+'$</font></option>');
                     }
                 }else{
+                    $('#id_multaEditar').append('<option>El residente no tiene compras realizadas en las Multas-Recargas</option>');
                     $("#id_multaEditar").css('display','none');
                 }
+                // $("#id_multaEditar").removeAttr('disabled');
             });
 
 
@@ -671,13 +686,15 @@
         })
         .done(function(data) {
             if (data.length>0) {
-            for(var i=0; i < data.length; i++){
-                console.log(i);
-                // if (data[i].status=="Pendiente") {
-                $('#id_inmuebleEditar'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
-                // }
-            }
+                for(var i=0; i < data.length; i++){
+                    console.log(i);
+                    // if (data[i].status=="Pendiente") {
+                    $('#id_inmuebleEditar'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                    // }
+                }
             
+            }else{
+                $('#id_inmuebleEditar'+id_inmueble).append('<option>No hay meses pagados en este inmueble</option>');
             }
         });
     }
@@ -688,14 +705,18 @@
         })
         .done(function(data) {
             if (data.length>0) {
-            for(var i=0; i < data.length; i++){
-                console.log(i);
-                // if (data[i].status=="Pendiente") {
-                $('#id_estacionamientoEditar'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
-                // }
-            }
+                for(var i=0; i < data.length; i++){
+                    console.log(i);
+                    // if (data[i].status=="Pendiente") {
+                    $('#id_estacionamientoEditar'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                    // }
+                }
             
+            }else{
+                $('#id_estacionamientoEditar'+id_estacionamiento).append('<option>No hay meses pagados en este estacionamiento</option>');
             }
+            $('#id_inmuebleEditar').removeAttr('disabled');
+            $('#id_estacionamientoEditar').removeAttr('disabled');
         });
     }
 
@@ -736,16 +757,16 @@
     function inmuebles_meses(id_inmueble) {
 
         $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
-        })
-        .done(function(data) {
-            console.log(data.length);
-            //console.log('hola');
             for(var i=0; i < data.length; i++){
                 if (data[i].status=="Pendiente") {
                 $('#inmuebles'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 }
             }
-            $('#mis_inmuebles').removeAttr('disabled');
+        })
+        .done(function(data) {
+            console.log(data.length);
+            //console.log('hola');
+        
         });
     }
 
@@ -771,14 +792,17 @@
     function estacionamientos_meses(id_estacionamiento) {
 
         $.get("arriendos/"+id_estacionamiento+"/buscar_estacionamientos3",function (data) {
-            })
-            .done(function(data) {
-            console.log(data.length);
             for(var i=0; i < data.length; i++){
                 if (data[i].status=="Pendiente") {
                 $('#estacionamientos'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                 }
             }
+        })
+        .done(function(data) {
+            console.log(data.length);
+            
+            
+            $('#mis_inmuebles').removeAttr('disabled');
             $('#mis_estacionamientos').removeAttr('disabled');
 
         });
