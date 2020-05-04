@@ -47,8 +47,13 @@ class ReportesController extends Controller
                 ->get();
             $residentes=0;
         }
-
-        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes'));
+        $anios=array();
+        $limit=date('Y')+1;
+        for ($i=2019; $i <= $limit; $i++) { 
+            $anios[$i]=$i;
+        }
+        //dd($anios);
+        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes','anios'));
     }
 
     /**
@@ -78,7 +83,7 @@ class ReportesController extends Controller
           "id_residentes" => array:1 [▶]
           "ResidentesTodos" => "Si"
           "MultasRecargas" => "Si"*/
-        dd($request->all());
+        //dd($request->all());
         
         //preparando variable para anios de inmuebles
         if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
@@ -89,8 +94,7 @@ class ReportesController extends Controller
 
         //preparando variable para anios de estacionamientos
         if (!is_null($request->id_estacionamientos) || !is_null($request->EstacionamientosTodos)) {
-            $anio_e=" mens_estac.anio=".$request->anio." ";
-            $tablas.=" estacionamientos, residentes_has_est, mens_estac ";
+            
             $sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos WHERE residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND residentes_has_est.anio=".$request->anio." ";
         } else {
            $sql_e="";
@@ -103,9 +107,7 @@ class ReportesController extends Controller
             $sql_mr="";
         }
         
-        
-        
-        
+        //agregando los residentes
         if (is_null($request->ResidentesTodos)) {
             $residentes="";
           for ($i=0; $i < count($request->id_residentes); $i++) { 
@@ -115,9 +117,24 @@ class ReportesController extends Controller
           if($sql_i!==""){
             $sql_i.=$residentes;
           }
-        } else {
-        dd("seleccionados todos");
+          if($sql_e!==""){
+            $sql_e.=$residentes; 
+          }
+          if($sql_mr!==""){
+            $sql_mr.=$residentes;
+          }
         }
+
+        if(is_null($request->MesesTodos)){
+            // para agregar los meses
+            for ($i=0; $i < count($request->id_meses) ; $i++) { 
+                $sql_i.=" AND mensualidades.mes=".$request->id_meses[$i]." ";
+                $sql_e.=" AND mens_estac.mes=".$request->id_meses[$i]." ";
+            }
+        }
+
+        echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";
+        dd("-------------");
         
     }
 
