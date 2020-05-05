@@ -16,22 +16,125 @@
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <div class="card">
                     <div class="card-body">
-                        <div class="form-group ic-cmpint">
-                            <div class="nk-int-st">
-                                <select class="form-control select2" name="id_residentes" id="residentes" onchange="buscarResidentes(this.value)">
+                        <div style="overflow-x: auto;">                            
+                            <table class="table table-hover" id="myTable" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nombres</th>
+                                        <th>Rut</th>
+                                        <th>Asignaciones</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     @foreach($residentes as $key)
-                                        <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} -  {{$key->rut}}</option>
-                                    @endforeach()
-                                </select>
-                            </div>
-                        </div>   
+                                        <tr>
+                                            <td align="center">
+                                                    
+                                                <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
+                                                
 
+
+                                            </td>
+                                            <td>{{$key->nombres}} {{$key->apellidos}}</td>
+                                            <td>{{$key->rut}}</td>
+                                            <td>
+                                                @foreach($asignaIn as $key2)
+                                                    @if($key2->id_residente == $key->id)
+                                                            <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle img-fluid" alt="Responsive image"/></a>
+                                                    @endif
+                                                @endforeach
+
+                                                @foreach($asignaEs as $key2)
+                                                    @if($key2->id_residente == $key->id)
+                                                            <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md img-fluid" alt="Responsive image"/></a>
+                                                    @endif
+                                                @endforeach
+                                                                                         
+                                            </td>
+                                            <td>
+                                                @php $cuenta=0; @endphp
+                                                @foreach($asignaIn as $key2)
+                                                        @if($key2->id_residente == $key->id)
+                                                            @if($cuenta==0)   
+                                                                <div class="dropdown align-self-center profile-dropdown-menu">
+                                                                    
+                                                                    <a style="border-radius: 50px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i>Editar pago</a>
+
+                                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',1)" >
+                                                                            <span class="text-primary">Inmuebles</span>
+                                                                        </a>
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
+                                                                            <span class="text-warning">Estacionamientos</span>
+                                                                        </a>
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',3)" >
+                                                                            <span class="text-danger">Multas</span>
+                                                                        </a>
+
+                                                                        
+                                                                        <!-- <div class="dropdown-divider"></div> -->
+
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+
+                                                                <a style="border-radius: 50px; width: 100%;" href="#" onclick="mostrarFormulario('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
+                                                                @php $cuenta++; @endphp
+                                                            @endif
+                                                        @endif
+                                                @endforeach
+                                                @foreach($asignaEs as $key2)
+                                                        @if($key2->id_residente == $key->id)
+                                                            @if($cuenta==0) 
+                                                                <div class="dropdown align-self-center profile-dropdown-menu">
+                                                                    
+                                                                    <a style="border-radius: 50px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i>Editar pago</a>
+
+                                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',1)" >
+                                                                            <span class="text-primary">Inmuebles</span>
+                                                                        </a>
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
+                                                                            <span class="text-warning">Estacionamientos</span>
+                                                                        </a>
+
+                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',3)" >
+                                                                            <span class="text-danger">Multas</span>
+                                                                        </a>
+
+                                                                        
+                                                                        <!-- <div class="dropdown-divider"></div> -->
+
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+
+
+                                                                <a style="border-radius: 50px; width: 100%;" href="#" onclick="mostrarFormulario('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
+                                                                @php $cuenta++; @endphp
+                                                            @endif
+                                                        @endif
+                                                @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach()
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             @endif
 
-
-            <div class="carrousel">
+            {{--<div class="carrousel">
 
                 <div id="carouselExampleSlidesOnly" style="display: none;" class="carousel slide" data-ride="carousel"></div>
 
@@ -223,7 +326,7 @@
                     @endfor
                 @endif
                 
-            </div>
+            </div>--}}
         </div>
 </div>
 
@@ -271,7 +374,7 @@
                                     <option value="0" selected disabled>Seleccione</option>
                                     
                                 </select>
-                                {{-- <font style="vertical-align: inherit; color: red">Multa 1 - 9999.00$</font><br> --}}
+                                {{-- <font style="vertical-align: inherit; color: red">Multa 1 - 9999$</font><br> --}}
                                 
                             </div>
                         </div>
@@ -287,7 +390,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Total a pagar</label>
-                            <center style="color: grey; font-size: 100px;">$<span id="TotalPagar">0</span>.00</center>
+                            <center style="color: grey; font-size: 100px; width:100%; font-size: 10vw;">$<span id="TotalPagar">0</span></center>
                             <input type="hidden" name="total" id="total" value="0">
                         </div>
                     </div>
@@ -830,7 +933,7 @@
                             '<div class="text-primary">'+mostrar_mes(data[0].mes)+' </div>'+
                         '</td>'+
                         '<td>'+
-                            '<div class="text-primary">$'+monto+'.00</div>'+
+                            '<div class="text-primary">$'+monto+'</div>'+
                         '</td>'+
                         '<td>'+
                             '<div class="text-primary"></div>'+
@@ -861,7 +964,7 @@
                             '<div class="text-warning">'+mostrar_mes(data[0].mes)+' </div>'+
                         '</td>'+
                         '<td>'+
-                            '<div class="text-warning">$'+monto+'.00</div>'+
+                            '<div class="text-warning">$'+monto+'</div>'+
                         '</td>'+
                         '<td>'+
                             '<div class="text-warning"></div>'+
@@ -896,7 +999,7 @@
                                 '<div class="text-success">'+data[0].motivo+'</div>'+
                             '</td>'+
                             '<td>'+
-                                '<div class="text-success">$'+monto+'.00</div>'+
+                                '<div class="text-success">$'+monto+'</div>'+
                             '</td>'+
                             '<td>'+
                                 '<div class="text-success"></div>'+
@@ -923,7 +1026,7 @@
                                 '<div class="text-danger"></div>'+
                             '</td>'+
                             '<td>'+
-                                '<div class="text-danger">$'+monto+'.00</div>'+
+                                '<div class="text-danger">$'+monto+'</div>'+
                             '</td>'+
                             '<td>'+
                                 '<button type="button" onclick="borrarMultaT('+id_multa+','+monto+','+tipo+')" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+

@@ -27,48 +27,48 @@
         
             <div class="col-md-12">
                 <hr>
-
-                <table class="table table-hover" id="myTable" width="100%">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Idem</th>
-                            <th>Tipo</th>
-                            <th>Estacionamientos</th>
-                            <th>Status</th>
-                            <th>Mensualidades</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($inmuebles as $key)
+                <div style="overflow-x: auto;">
+                    <table class="table table-hover" id="myTable" width="100%">
+                        <thead>
                             <tr>
-                                <td align="center">
-                                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                                        <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="edit"></i></a>
-
-                                        <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
-                                    @endif
-                                </td>
-                                <td>{{$key->idem}}</td>
-                                <td>{{$key->tipo}}</td>
-                                <td>Si</td>
-                                <td>{{$key->status}}</td>
-                                <td>
-                                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                                        <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
-                                            <option value="0">Seleccionar opción</option>
-                                            <option value="1">Registrar</option>
-                                            <option value="2">Editar</option>
-                                            <option value="3">Eliminar</opt     ion>
-                                            <option value="4">Ver registros</option>
-                                        </select>
-                                    @endif                                          
-                                </td>
+                                <th></th>
+                                <th>Idem</th>
+                                <th>Tipo</th>
+                                <th>Estacionamientos</th>
+                                <th>Status</th>
+                                <th>Mensualidades</th>
                             </tr>
-                        @endforeach()
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach($inmuebles as $key)
+                                <tr>
+                                    <td align="center">
+                                        @if(\Auth::user()->tipo_usuario == 'Admin')
+                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="edit"></i></a>
 
+                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
+                                        @endif
+                                    </td>
+                                    <td>{{$key->idem}}</td>
+                                    <td>{{$key->tipo}}</td>
+                                    <td>Si</td>
+                                    <td>{{$key->status}}</td>
+                                    <td>
+                                        @if(\Auth::user()->tipo_usuario == 'Admin')
+                                            <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
+                                                <option value="0">Seleccionar opción</option>
+                                                <option value="1">Registrar</option>
+                                                <option value="2">Editar</option>
+                                                <option value="3">Eliminar</opt     ion>
+                                                <option value="4">Ver registros</option>
+                                            </select>
+                                        @endif                                          
+                                    </td>
+                                </tr>
+                            @endforeach()
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
 
@@ -514,7 +514,7 @@
                         </div>
 
                         <hr>
-                        <h4>Mensualidad del Inmueble</h4>
+                        {{--<h4>Mensualidad del Inmueble</h4>
 
 
                         <div class="widget-tabs-list">
@@ -586,6 +586,7 @@
                                 </div>
                             </div>
                         </div>
+                        --}}
                         <div class="modal-footer">
                             <input type="hidden" name="opcion" id="opcion" value="1">
                             <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>

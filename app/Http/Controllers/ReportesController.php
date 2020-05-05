@@ -13,6 +13,7 @@ use App\Notificaciones;
 use App\Pagos;
 use App\PagosE;
 use App\Residentes;
+use PDF;
 
 class ReportesController extends Controller
 {
@@ -141,13 +142,13 @@ class ReportesController extends Controller
         $estacionamientos=\DB::select($sql_e);
         $mr=\DB::select($sql_mr);
 
-        $pdf = PDF::loadView('reportes/PDF', array(
-                    'inmuebles'=>$inmuebles,
-                    'estacionamientos'=>$estacionamientos,
-                    'mr'=>$mr
-                ));
-                $pdf->setPaper('A4', 'landscape');
-                return $pdf->stream('Reporte_PDF.pdf');
+        $pdf = PDF::loadView('reportes/PDF/PDF', array(
+            'inmuebles'=>$inmuebles,
+            'estacionamientos'=>$estacionamientos,
+            'mr'=>$mr
+        ));
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream('reportes/Reporte_PDF.pdf');
         
     }
 

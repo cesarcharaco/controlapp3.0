@@ -27,43 +27,43 @@
         
             <div class="col-md-12">
                 <hr>
-
-                <table class="table table-hover" id="myTable" width="100%">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Idem</th>
-                            <th>Status</th>
-                            <th>Mensualidades</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($estacionamientos as $key)
+                <div style="overflow-x: auto;">
+                    <table class="table table-hover" id="myTable" width="100%">
+                        <thead>
                             <tr>
-                                <td align="center">
-                                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                                        <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="edit"></i></a>
-
-                                        <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
-                                    @endif
-                                    
-                                </td>
-                                <td>{{$key->idem}}</td>
-                                <td>{{$key->status}}</td>
-                                <td>
-                                    <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
-                                        <option value="0">Seleccionar opción</option>
-                                        <option value="1">Registrar</option>
-                                        <option value="2">Editar</option>
-                                        <option value="3">Eliminar</opt     ion>
-                                        <option value="4">Ver registros</option>
-                                    </select>                                            
-                                </td>
+                                <th></th>
+                                <th>Idem</th>
+                                <th>Status</th>
+                                <th>Mensualidades</th>
                             </tr>
-                        @endforeach()
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach($estacionamientos as $key)
+                                <tr>
+                                    <td align="center">
+                                        @if(\Auth::user()->tipo_usuario == 'Admin')
+                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="edit"></i></a>
 
+                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
+                                        @endif
+                                        
+                                    </td>
+                                    <td>{{$key->idem}}</td>
+                                    <td>{{$key->status}}</td>
+                                    <td>
+                                        <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
+                                            <option value="0">Seleccionar opción</option>
+                                            <option value="1">Registrar</option>
+                                            <option value="2">Editar</option>
+                                            <option value="3">Eliminar</opt     ion>
+                                            <option value="4">Ver registros</option>
+                                        </select>                                            
+                                    </td>
+                                </tr>
+                            @endforeach()
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
 
@@ -414,10 +414,11 @@
                         </div>
 
                         <hr>
+                        {{-- 
                         <h4>Mensualidad del estacionamiento</h4>
 
 
-                        <div class="widget-tabs-list">
+                            <div class="widget-tabs-list">
                             <ul class="nav nav-tabs tab-nav-left">
                                 <li class="active"><a class="active" data-toggle="tab" href="#mes" onclick="opcion(1)">Montos por mes</a></li>
                                 <li><a data-toggle="tab" href="#anio" onclick="opcion(2)">Montos por año</a></li>
@@ -486,7 +487,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
+                        --}}
                         <div class="modal-footer">
                             <input type="hidden" name="opcion" id="opcion" value="1">
                             <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
