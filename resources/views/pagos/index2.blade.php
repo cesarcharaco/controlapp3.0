@@ -364,19 +364,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-md-center">
-                    <div class="col-md-12">
-                        <div id="spinner" style="display: none;">
-                            <div class="spinner-border text-warning m-2" role="status" id="cargando_E">
-                                <span class="sr-only">Cargando multas y recargas...</span>
-                            </div>
-                            <p>Cargando multas y recargas...</p>
-                        </div>
-                    </div>
-                </div>
                 <hr>
                     <div class="row" id="mis_mr">
-                        <!-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label><div class="text-danger">Multas</div><div class="text-success">Recargas</div></label>
                                 <br>
@@ -387,19 +377,10 @@
                                 {{-- <font style="vertical-align: inherit; color: red">Multa 1 - 9999$</font><br> --}}
                                 
                             </div>
-                        </div> -->
-                        <div class="col-md-12">
+                        </div>
+                        <div class="col-md-6">
                             <div class="overflow-auto">
-                                <table id="mrSeleccionado" class="table table-hover" style="width: 100%;" alt="Max-width 100%">
-                                    <thead>
-                                        <th>Inmuebles</th>
-                                        <th>Inmuebles</th>
-                                        <th>Multa</th>
-                                        <th>Recarga</th>
-                                    </thead>
-                                    <tbody>
-                                        
-                                    </tbody>
+                                <table id="mrSeleccionado" class="" style="width: 100%;" alt="Max-width 100%">
                                 </table>
                             </div>
                         </div>
@@ -650,7 +631,6 @@
         mostrar_datos(id_residente);
         mostrar_datos2(id_residente);
         mis_mr(id_residente);
-        // $('#spinner').css('display', 'none');
     }
 
 
@@ -844,89 +824,17 @@
     }
 
     function mis_mr(id_residente) {
-        $('#spinner').css('display', 'block');
         $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
         })
-        .done(function(data2) {
-
-            if (data2.length>0) {
-                for (var i = 0; i < data2.length; i++) {
-
-                    $.get("multas_recargas/"+data2[i].id+"/buscar",function (data) {
-                    })
-                    .done(function(data) {
-
-                        // $("#mr option[value=" + id_multa + "]").attr('disabled',true);
-                        var monto= parseFloat(data[0].monto);
-                        var tipo= ""+data[0].tipo+"";
-                        if(data[0].tipo == 'Recarga'){
-                            var tipo=1;
-                            $('#mrSeleccionado').append(
-                                '<tr id="trMulta'+data[0].id+'">'+
-                                    '<td>'+
-                                        '<div class="text-success">Recarga </div>'+
-                                    '</td>'+
-                                    '<td>'+
-                                        '<div class="text-success">'+data[0].motivo+'</div>'+
-                                    '</td>'+
-                                    '<td>'+
-                                        '<div class="text-success">$'+monto+'</div>'+
-                                    '</td>'+
-                                    '<td>'+
-                                        '<div class="text-success"></div>'+
-                                    '</td>'+
-                                    // '<td>'+
-                                    //     '<button type="button" onclick="borrarMultaT('+data[0].id+','+monto+','+tipo+')" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+
-                                    // '</td>'+
-                                '</tr>'
-                            );
-                            
-                            montoTotal(1,monto);
-                        }
-                        if(data[0].tipo == 'Multa'){
-                            var tipo=2;
-                            $('#mrSeleccionado').append(
-                                '<tr id="trMulta'+data[0].id+'">'+
-                                    '<td>'+
-                                        '<div class="text-danger">Multa </div>'+
-                                    '</td>'+
-                                    '<td>'+
-                                        '<div class="text-danger">'+data[0].motivo+'</div>'+
-                                    '</td>'+
-                                    '<td>'+
-                                        '<div class="text-danger"></div>'+
-                                    '</td>'+
-                                    '<td>'+
-                                        '<div class="text-danger">$'+monto+'</div>'+
-                                    '</td>'+
-                                    // '<td>'+
-                                    //     '<button type="button" onclick="borrarMultaT('+data[0].id+','+monto+','+tipo+')" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+
-                                    // '</td>'+
-                                '</tr>'
-                            );
-                            montoTotal(2,monto);
-                        }
-
-                        $('#id_mensMultaR').append('<option selected id="multaR'+data[0].id+'" value="'+data[0].id+'">'+data[0].id+'</option>');
-                        // alert(i +'   '+ data2.length);
-                        if (i == data2.length) {
-                            $('#spinner').css('display', 'none');
-                        }
-                    });
+        .done(function(data) {
+            if (data.length>0) {
+                for (var i = 0; i < data.length; i++) {
+                   $("#mr").append('<option value="'+data[i].id+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - '+ data[i].tipo+' - monto: '+data[i].monto+'$</font></option>');
                 }
+            }else{
+                $("#mr").css('display','none');
             }
-
-
-
-
-            // if (data.length>0) {
-            //     for (var i = 0; i < data.length; i++) {
-            //        $("#mr").append('<option value="'+data[i].id+'"><font style="vertical-align: inherit; color: red">'+data[i].motivo+' - '+ data[i].tipo+' - monto: '+data[i].monto+'$</font></option>');
-            //     }
-            // }else{
-            //     $("#mr").css('display','none');
-            // }
-            // $('#mr').removeAttr('disabled');
+            $('#mr').removeAttr('disabled');
 
         });       
     }

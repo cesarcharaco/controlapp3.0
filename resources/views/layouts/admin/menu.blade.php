@@ -82,6 +82,15 @@
                 </li>
             @endif
 
+            @if(\Auth::user()->tipo_usuario == 'Admin')
+                <li>
+                    <a class="dropdown-item" onclick="EMontos()" data-toggle="modal" data-target="#E_Montos">
+                        <i data-feather="key"></i>
+                        <span> Especificar Montos </span>
+                    </a>
+                </li>
+            @endif
+
                 <li class="menu-title">Transacciones </li>
 
                 <li>

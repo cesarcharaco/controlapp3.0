@@ -196,7 +196,46 @@
 
     
 
-	function cambiar() {
+	function EMontos() {
+
+	}
+
+	function EspecificarMontoB(opcion){
+
+		if(opcion ==1){
+
+			$('#muestraMultaMonto').fadeOut('slow',
+				function() { 
+					$(this).hide();
+					$('#muestraEstacionamientoMonto').fadeOut('slow');
+					$('#muestraEstacionamientoMonto').hide();
+
+			});
+			$('#muestraInmuebleMonto').fadeIn(300);
+		}
+
+		if (opcion == 2) {
+			$('#muestraInmuebleMonto').fadeOut('slow',
+				function() { 
+					$(this).hide();
+					$('#muestraMultaMonto').fadeOut('slow');
+					$('#muestraMultaMonto').hide();
+
+			});
+			$('#muestraEstacionamientoMonto').fadeIn(300);
+		}
+
+		if (opcion == 3) {
+			$('#muestraEstacionamientoMonto').fadeOut('slow',
+				function() { 
+					$(this).hide();
+					$('#muestraInmuebleMonto').fadeOut('slow');
+					$('#muestraInmuebleMonto').hide();
+
+			});
+			$('#muestraMultaMonto').fadeIn(300);
+		}
+
 		
 	}
 </script>
