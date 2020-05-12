@@ -340,7 +340,7 @@
         $.get('arriendos/'+id_residente+'/buscar_inmuebles', function(data) {
             if (data.length > 0) {
                 $('#VerInmuebles').append('<div class="table-responsive">'+
-                    '<table id="tablaMuestraInm" class="table table-striped mb-0">'+
+                    '<table id="tablaMuestraInm" class="data-table-basic table table-striped mb-0">'+
                         '<thead>'+
                             '<tr>'+
                             '<th scope="col">#</th>'+
@@ -378,7 +378,7 @@
             if (data.length > 0) {
 
                 $('#VerEstacionamientos').append('<div class="table-responsive">'+
-                    '<table id="tablaMuestraEsta" class="table table-striped mb-0">'+
+                    '<table id="tablaMuestraEsta" class="data-table-basic table table-striped mb-0">'+
                         '<thead>'+
                             '<tr>'+
                             '<th scope="col">#</th>'+

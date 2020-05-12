@@ -26,8 +26,8 @@
             
             <div class="col-md-12">
                 <hr>
-
-                        <table class="table table-hover" id="myTable" width="100%">
+                <div style="overflow-x: auto;">
+                    <table class="data-table-basic" id="myTable" width="100%">
                             <thead>
                                 <tr>
                                     <th>Nombres</th>
@@ -52,8 +52,8 @@
                                     </tr>
                                 @endforeach()
                             </tbody>
-                        </table>
-
+                    </table>
+                </div>
             </div>
             
         </div>

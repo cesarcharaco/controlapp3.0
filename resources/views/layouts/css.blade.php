@@ -18,5 +18,8 @@
 {{--  <link href="{{ asset('toastr/build/toastr.css') }}" rel="stylesheet"/> --}}
 {{-- <script src="{{ asset('resources/css/toastr.css') }}"></script>  --}}
 
+<!-- Data Table CSS
+		============================================ -->
+		<link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
 
 <!-- App css -->

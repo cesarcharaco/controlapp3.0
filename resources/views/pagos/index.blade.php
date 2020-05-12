@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="overflow-x: auto;">                            
-                            <table class="table table-hover" id="myTable" width="100%">
+                            <table class="data-table-basic table table-hover mb-0" id="myTable" width="100%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -390,16 +390,8 @@
                         </div> -->
                         <div class="col-md-12">
                             <div class="overflow-auto">
-                                <table id="mrSeleccionado" class="table table-hover" style="width: 100%;" alt="Max-width 100%">
-                                    <thead>
-                                        <th>Inmuebles</th>
-                                        <th>Inmuebles</th>
-                                        <th>Multa</th>
-                                        <th>Recarga</th>
-                                    </thead>
-                                    <tbody>
-                                        
-                                    </tbody>
+                                <table id="mrSeleccionado" class="data-table-basic" style="width: 100%;" alt="Max-width 100%">
+                                    
                                 </table>
                             </div>
                         </div>
@@ -634,6 +626,18 @@
         $('#mr').empty().append('<option selected disabled>Seleccione las Multas - Recargas</option');
         $('#TotalPagar').html(parseInt(0));
         $('#mrSeleccionado').empty();
+        $('#mrSeleccionado').append(
+            '<thead>'+
+                '<th>Inmuebles</th>'+
+                '<th>Inmuebles</th>'+
+                '<th>Multa</th>'+
+                '<th>Recarga</th>'+
+                '<th>Acción</th>'+
+            '</thead>'+
+            '<tbody>'+
+                
+            '</tbody>'
+        );
         $('#id_mensInmuebleR').empty();
         $('#id_mensEstacionaR').empty();
         $('#id_mensMultaR').empty();

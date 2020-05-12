@@ -28,59 +28,59 @@
                 <div class="col-md-12">
                     <div class="data-table-list">
                         <div class="table-responsive">
-                                <div class="data-table-list">
-                                    <div class="table-responsive">
-                                         <div style="overflow-x: auto;">
-                                            <table id="data-table-basic" class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Motivo</th>
-                                                        <th>Observación</th>
-                                                        <th>Monto</th>
-                                                        <th>Tipo</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                                                        @foreach($mr as $key)
-                                                            <tr>
-                                                                <td>{{$key->motivo}}</td>
-                                                                <td>{{$key->observacion}}</td>
-                                                                <td>{{$key->monto}}</td>
-                                                                 <td>{{$key->tipo}}</td>
-                                                                <td>
-                                                                    <a href="#" data-toggle="modal" data-target="#editarMulta" onclick="EditarMR('{{$key->id}}','{{$key->motivo}}','{{$key->monto}}','{{$key->tipo}}','{{$key->observacion}}')" class="btn btn-warning btn-sm">Editar</a>
+                            <div class="data-table-list">
+                                <div class="table-responsive">
+                                     <div style="overflow-x: auto;">
+                                        <table class="data-table-basic" id="myTable" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Motivo</th>
+                                                    <th>Observación</th>
+                                                    <th>Monto</th>
+                                                    <th>Tipo</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if(\Auth::user()->tipo_usuario == 'Admin')
+                                                    @foreach($mr as $key)
+                                                        <tr>
+                                                            <td>{{$key->motivo}}</td>
+                                                            <td>{{$key->observacion}}</td>
+                                                            <td>{{$key->monto}}</td>
+                                                             <td>{{$key->tipo}}</td>
+                                                            <td>
+                                                                <a href="#" data-toggle="modal" data-target="#editarMulta" onclick="EditarMR('{{$key->id}}','{{$key->motivo}}','{{$key->monto}}','{{$key->tipo}}','{{$key->observacion}}')" class="btn btn-warning btn-sm">Editar</a>
 
-                                                                    <a href="#" data-toggle="modal" data-target="#eliminarMulta" onclick="eliminar('{{$key->id}}')" class="btn btn-danger btn-sm">Eliminar</a>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach()
-                                                    @else
-                                                        @foreach($asignacion as $key)
-                                                            <tr>
-                                                                <td>{{$key->motivo}}</td>
-                                                                <td>{{$key->observacion}}</td>
-                                                                <td>{{$key->monto}}</td>
-                                                                 <td>{{$key->tipo}}</td>
-                                                                <td>
-                                                                   
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach()
-                                                    @endif
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                                <a href="#" data-toggle="modal" data-target="#eliminarMulta" onclick="eliminar('{{$key->id}}')" class="btn btn-danger btn-sm">Eliminar</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach()
+                                                @else
+                                                    @foreach($asignacion as $key)
+                                                        <tr>
+                                                            <td>{{$key->motivo}}</td>
+                                                            <td>{{$key->observacion}}</td>
+                                                            <td>{{$key->monto}}</td>
+                                                             <td>{{$key->tipo}}</td>
+                                                            <td>
+                                                               
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach()
+                                                @endif
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
                 </div>
+               
             </div>
         </div>
+    </div>
         
 
     </div>

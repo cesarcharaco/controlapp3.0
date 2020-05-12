@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <hr>
                 <div style="overflow-x: auto;">
-                    <table class="table table-hover" id="myTable" width="100%">
+                    <table class="data-table-basic" id="myTable" width="100%">
                         <thead>
                             <tr>
                                 <th></th>
