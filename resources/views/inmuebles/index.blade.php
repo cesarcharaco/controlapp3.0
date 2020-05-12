@@ -36,7 +36,7 @@
                                 <th>Tipo</th>
                                 <th>Estacionamientos</th>
                                 <th>Status</th>
-                                <th>Mensualidades</th>
+                                <!-- <th>Mensualidades</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -53,7 +53,7 @@
                                     <td>{{$key->tipo}}</td>
                                     <td>Si</td>
                                     <td>{{$key->status}}</td>
-                                    <td>
+                                    {{--<td>
                                         @if(\Auth::user()->tipo_usuario == 'Admin')
                                             <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
                                                 <option value="0">Seleccionar opción</option>
@@ -63,7 +63,7 @@
                                                 <option value="4">Ver registros</option>
                                             </select>
                                         @endif                                          
-                                    </td>
+                                    </td>--}}
                                 </tr>
                             @endforeach()
                         </tbody>
@@ -499,7 +499,7 @@
                             </div>
                         </div> -->
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Especifique el año para los montos</label>
@@ -511,10 +511,10 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <hr>
                         {{--<h4>Mensualidad del Inmueble</h4>
+                        <hr>
 
 
                         <div class="widget-tabs-list">
