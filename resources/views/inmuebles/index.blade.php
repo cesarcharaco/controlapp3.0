@@ -109,6 +109,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Pago común</label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">$</div>
+                                            </div>
+                                            <input type="number" name="monto[]" class="form-control" placeholder="10">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>                            
                     </div>
                 </div>
@@ -360,6 +374,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>¿Cuántos?</label>
+                                        <input type="number" name="Cuantos[]" class="form-control" placeholder="1">
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- <div class="row">
                                 <div class="col-md-12">
@@ -422,179 +444,7 @@
 
 
 
-<!-- --------------------------------------------REGISTRAR InmuebleS--------------------------------------------------------- -->    
 
-    <form action="{{ route('inmuebles.store') }}" method="POST">
-        @csrf
-        <div class="modal fade" id="crearInmueble" role="dialog">
-            <div class="modal-dialog modals-default">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Nuevo Inmueble</h4>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" name="idem" placeholder="Idem del Inmueble" class="form-control" required="required">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Tipo de Inmueble</label>
-                                    <select name="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble" required="required">
-                                        <option value="Casa" selected="selected">Casa</option>
-                                        <option value="Apartamento" >Apartamento</option>
-                                        <option value="Anexo" >Anexo</option>
-                                        <option value="Habitación" >Habitación</option>
-                                        <option value="Otro" >Otro</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Estado del Inmueble</label>
-                                    <select name="status" class="form-control" required placeholder="Introduzca el status del Inmueble">
-                                        <option value="Disponible" selected="selected">Disponible</option>
-                                        <option value="No Disponible" >No Disponible</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>¿El inmueble posee estacionamientos?</label>
-                                        <select name="estacionamiento" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                            <option value="Si" selected="selected">Si</option>
-                                            <option value="No">No</option>
-
-                                            
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                        <!-- <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
-                                    <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                        <option value="0" selected="selected">Seleccionar estacionamientos</option>
-                                        @foreach($estacionamientos as $key)
-                                            <option value="{{$key->id}}">{{$key->idem}}</option>
-                                        @endforeach()
-                                    </select>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <!-- <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Especifique el año para los montos</label>
-                                    <select name="anio" id="anio2" class="form-control" onchange="mostrarMCreate(this.value);">
-                                        <?php $anio=date('Y');?>
-                                        @for($i=0; $i<10; $i++)
-                                            <option value="{{$anio++}}">{{$anio-1}}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        {{--<h4>Mensualidad del Inmueble</h4>
-                        <hr>
-
-
-                        <div class="widget-tabs-list">
-                            <ul class="nav nav-tabs tab-nav-left">
-                                <li class="active"><a class="active" data-toggle="tab" href="#mes" onclick="opcion(1)">Montos por mes</a></li>
-                                <li><a data-toggle="tab" href="#anio" onclick="opcion(2)">Montos por año</a></li>
-                            </ul>
-                            <div class="tab-content tab-custom-st">
-                                <div id="mes" class="tab-pane fade in active show">
-                                    <div class="tab-ctn">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="add-todo-list notika-shadow ">
-                                                    <div class="card-box">
-                                                        @php $i=0; @endphp
-                                                        @foreach($meses as $key)
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
-                                                                        <label>{{$key->mes}}</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group mb-2">
-                                                                            <div class="input-group-prepend">
-                                                                                <div class="input-group-text">$</div>
-                                                                            </div>
-                                                                            <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            @php $i++; @endphp
-                                                        @endforeach()
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="anio" class="tab-pane fade">
-                                    <div class="tab-ctn">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="add-todo-list notika-shadow ">
-                                                    <div class="card-box">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label>Monto por todo el año</label>
-                                                                    <div class="input-group mb-2">
-                                                                        <div class="input-group-prepend">
-                                                                            <div class="input-group-text">$</div>
-                                                                        </div>
-                                                                        <input type="text" name="montoAnio" class="form-control" id="montoAnio" placeholder="10" disabled>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        --}}
-                        <div class="modal-footer">
-                            <input type="hidden" name="opcion" id="opcion" value="1">
-                            <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </form>
 
 <!-- --------------------------------------------FIN REGISTRAR InmuebleS------------------------------------------------------ -->
 

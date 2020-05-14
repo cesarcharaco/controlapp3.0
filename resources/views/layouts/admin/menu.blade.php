@@ -37,22 +37,19 @@
 
             <li class="menu-title">Funciones</li>
 
+            <li>
+                <a href="{{ url('home') }}">
+                    <i data-feather="share"></i>
+                    <span> Home </span>
+                </a>
+            </li>
+
             <!-- <li>
                 <a href="#">
                     <i data-feather="truck"></i>
                     <span> Productos </span>
                 </a>
             </li> -->
-
-            @if(\Auth::user()->tipo_usuario == 'Admin')
-                <li>
-                    <a href="{{ url('estacionamientos') }}">
-                        <i data-feather="share"></i>
-                        <span> Estacionamiento </span>
-                    </a>
-                </li>
-            @endif
-
 
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <li>
@@ -63,6 +60,14 @@
                 </li>
             @endif    
 
+            @if(\Auth::user()->tipo_usuario == 'Admin')
+                <li>
+                    <a href="{{ url('estacionamientos') }}">
+                        <i data-feather="key"></i>
+                        <span> Estacionamiento </span>
+                    </a>
+                </li>
+            @endif
 
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <li>
@@ -74,21 +79,21 @@
             @endif
 
             @if(\Auth::user()->tipo_usuario == 'Admin')
-                <li>
-                    <a href="{{ url('arriendos') }}">
+                <!-- <li>
+                    <a href="{{ url('Asignación') }}">
                         <i data-feather="key"></i>
-                        <span> Arriendos </span>
+                        <span> Asignación </span>
                     </a>
-                </li>
+                </li> -->
             @endif
 
             @if(\Auth::user()->tipo_usuario == 'Admin')
-                <li>
+                <!-- <li>
                     <a class="dropdown-item" onclick="EMontos()" data-toggle="modal" data-target="#E_Montos">
                         <i data-feather="key"></i>
                         <span> Especificar Montos </span>
                     </a>
-                </li>
+                </li> -->
             @endif
 
                 <li class="menu-title">Transacciones </li>
@@ -100,12 +105,12 @@
                     </a>
                 </li>
 
-                    <li>
-                        <a href="{{ url('multas_recargas')}}">
-                            <i data-feather="dollar-sign"></i>
-                            <span> Multas y recargas </span>
-                        </a>
-                    </li>
+                <li>
+                    <a href="{{ url('multas_recargas')}}">
+                        <i data-feather="dollar-sign"></i>
+                        <span> Multas y recargas </span>
+                    </a>
+                </li>
 
                 @if(\Auth::user()->tipo_usuario == 'Admin')
                     <li>

@@ -60,62 +60,7 @@
         
 
 
-    <form action="{{ route('residentes.store') }}" method="POST" name="registrar_residente" data-parsley-validate>
-        @csrf
-        <div class="modal fade" id="crearResidente" role="dialog">
-            <div class="modal-dialog modals-default">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Nuevo Residente</h4>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                
-                                <div class="form-group">
-                                    <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="number" name="rut" placeholder="Rut del residente" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="number" name="telefono" placeholder="Teléfono del residente" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email del residente" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" >Guardar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+
 
             {!! Form::open(['route' => ['residentes.update',1033], 'method' => 'PUT']) !!}
                 <div class="modal fade" id="editarResidente" role="dialog">
@@ -154,14 +99,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="number" id="telefono_e" name="telefono" placeholder="Teléfono del residente" class="form-control">
+                                            <label>¿Asignar inmueble?</label>
+                                            <select name="id_inmuebles" class="form select2" multiple=""></select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="email" id="email_e" name="email" placeholder="Email del residente" class="form-control">
+                                            <label>¿Asignar estacionamiento?</label>
+                                            <select name="id_estacionamientos" class="form select2" multiple=""></select>
                                         </div>
                                     </div>
                                 </div>
