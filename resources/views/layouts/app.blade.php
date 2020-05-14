@@ -420,21 +420,39 @@
                             </form>
 
 <!-- --------------------------------------------PAGO COMÚN INMUEBLE--------------------------------------------------------- -->
+                        <form action="{{ route('home') }}" method="POST">
                             <div class="modal fade" id="PagoCInmueble" role="dialog">
                                 <div class="modal-dialog modals-default">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4>Pago Común - Inmueble</h4>
+                                            <h4>Costo - Inmuebles</h4>                
+                                            <div class="row justify-content-md-center">
+                                                <div class="col-md-12">
+                                                    <div id="spinnerI" style="display: none;">
+                                                        <div class="spinner-border text-warning m-2" role="status" id="CargandoPCInmueble">
+                                                            <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <button type="button" class="close" data-dismiss="modal">
                                                 <span>&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
+                                           <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Seleccione año</label>
+                                                        <select name="anioI" id="anioPagoComunI" class="form-control select2" onchange="montosInmuebleAnio(this.value)">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div id="buttonCreate"></div>
-                                                    <div id="createMensuality1"></div>
-                                                    <div id="createMensuality2"></div>
+                                                    <div id="PagoCInmuebles"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -444,25 +462,44 @@
                                     </div>
                                 </div>
                             </div>
+                        </form>
 
 <!-- --------------------------------------------PAGO COMÚN ESTACIONAMIENTO--------------------------------------------------------- -->
+                        <form action="{{ route('home') }}" method="POST">
                             <div class="modal fade" id="PagoCEstacionamiento" role="dialog">
                                 <div class="modal-dialog modals-default">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4>Pago Común - Estacionamientos</h4>
+                                            <h4>Costo - Estacionamiento</h4>                
+                                            <div class="row justify-content-md-center">
+                                                <div class="col-md-12">
+                                                    <div id="spinnerE" style="display: none;">
+                                                        <div class="spinner-border text-warning m-2" role="status" id="CargandoPCEstaciona">
+                                                            <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <button type="button" class="close" data-dismiss="modal">
                                                 <span>&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="buttonCreate"></div>
-                                    <div id="createMensuality1"></div>
-                                    <div id="createMensuality2"></div>
-                                </div>
-                            </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Seleccione año</label>
+                                                        <select name="anioE" id="anioPagoComunE" class="form-control select2" onchange="montosEstacionaAnio(this.value)" >
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="PagoCEstaciona"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-success" >Guardar</button>
@@ -470,6 +507,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </form>
 
 <!-- --------------------------------------------REGISTRAR InmuebleS--------------------------------------------------------- -->    
 
@@ -663,6 +701,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
                             </form>
 

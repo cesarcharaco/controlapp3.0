@@ -18,6 +18,10 @@
 
 
 <script type="text/javascript">
+	var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
+	var f = new Date();
+    var a=f.getFullYear();
+
 	$(function () {
 
 		$('.data-table-basic').DataTable({
@@ -250,119 +254,154 @@
 		
 	}
 	function PagoC(opcion) {
+		
+
 		if (opcion ==1) {
+			$('#anioPagoComunI').empty();
+			$('#anioPagoComunI').append('<option selected>Seleccione año</option>');
+			for (var i = a; i < a+3; i++) {
+				$('#anioPagoComunI').append('<option value="'+i+'">'+i+'</option>');
+			}
 			$('#PagoCInmueble').modal('show');
+			$('#PagoCInmuebles').empty();
 		}else{
+			$('#anioPagoComunE').empty();
+			$('#anioPagoComunE').append('<option selected>Seleccione año</option>');
+			for (var i = a; i < a+3; i++) {
+				$('#anioPagoComunE').append('<option value="'+i+'">'+i+'</option>');
+			}
 			$('#PagoCEstacionamiento').modal('show');
-			// $('#anioCreateM').val(anio);
-			var anio = '2020';
+			$('#PagoCEstaciona').empty();
 
-            $.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
-        
+		}
+	}
 
-                $('#montoAnio').empty();
-                $('#buttonCreate').empty();
-                $('#createMensuality1').empty();
-                $('#createMensuality2').empty();
+	function montosEstacionaAnio(anio) {
+		$('#spinnerE').css('display','block');
+		var id =1;
+		$.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
+        		
+                $('#PagoCEstaciona').empty();
+                
+                $('#PagoCEstaciona').append('<label>Montos por mes</label><br>');
+               	if (data.length > 0){
 
-                // beforeSend: $('#createMensuality1').append('Cargando...');
-                // complete: $('#createMensuality1').empty();
 
-                if (data.length > 0) {
-
+                    for (var i = 0; i < 12; i++) {
                     
-                    $('#createMensuality1').append('Ya existen registros para este año');
-                    $('#buttonC').attr('disabled',true);
-
-                }else{
-
-                    $('#buttonCreate').append(
-                        "<div class='card-box'>"+
-                            "<div class='row'>"+
-                                "<div class='col-md-6' width='100%'>"+
-                                    "<a href='#' class='btn btn-block btn-success' onclick='mostrarC(1)'>Montos por mes</a>"+
-                                "</div>"+
-                                "<div class='col-md-6' width='100%'>"+
-                                    "<a href='#' class='btn btn-block btn-warning' onclick='mostrarC(2)'>Monto por año</a>"+
-                                "</div>"+
-                            "</div>"+
-                        "</div"
-                    );
-                    $('#createMensuality1').append('<label>Montos por mes</label><br>');
-
-                    if(a == anio){
-                        for (var i = 0; i < 13; i++) {
-                        
-                            if(i>=m){
-                                $('#createMensuality1').append(
-                                    '<div class="row">'+
-                                        '<div class="col-md-4">'+
-                                            '<div class="form-group">'+
-                                                '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-                                                '<label>'+mes[i]+'</label>'+
-                                            '</div>'+
-                                        '</div>'+
-                                        '<div class="col-md-6">'+
-                                            '<div class="form-group">'+
-                                                '<div class="input-group mb-2">'+
-                                                    '<div class="input-group-prepend">'+
-                                                        '<div class="input-group-text">$</div>'+
-                                                    '</div>'+
-                                                    '<input type="number" name="monto[]" class="form-control" placeholder="10">'+
-                                                '</div>'+
-                                            '</div>'+
-                                        '</div>'+
-                                    '</div>'
-                                );
-                            }
-                        }
-
-                    }
-
-                    else{
-                        for (var i = 1; i < 13; i++) {
-                            $('#createMensuality1').append(
-                                '<div class="row">'+
-                                    '<div class="col-md-4">'+
-                                        '<div class="form-group">'+
-                                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-                                            '<label>'+mes[i]+'</label>'+
-                                        '</div>'+
-                                    '</div>'+
-                                    '<div class="col-md-6">'+
-                                        '<div class="form-group">'+
-                                            '<div class="input-group mb-2">'+
-                                                '<div class="input-group-prepend">'+
-                                                    '<div class="input-group-text">$</div>'+
-                                                '</div>'+
-                                                '<input type="number" name="monto[]" class="form-control" placeholder="10">'+
-                                            '</div>'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'
-                            );
-                        } 
-                    }
-                    $('#createMensuality2').append(
-                        '<div class="row">'+
-                            '<div class="col-md-12">'+
-                                '<div class="form-group">'+
-                                    '<label>Monto por todo el año</label>'+
-                                    '<div class="input-group mb-2">'+
-                                        '<div class="input-group-prepend">'+
-                                            '<div class="input-group-text">$</div>'+
-                                        '</div>'+
-                                        '<input type="text" id="montoAnioC" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10">'+
+                        $('#PagoCEstaciona').append(
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+                                        '<label>'+mes[i]+'</label>'+
                                     '</div>'+
                                 '</div>'+
-                            '</div>'+
-                        '</div>'
-                    );
-                    $('#createMensuality2').css('display','none');
-
-                    $('#buttonC').attr('disabled',false);
+                                '<div class="col-md-6">'+
+                                    '<div class="form-group">'+
+                                        '<div class="input-group mb-2">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">$</div>'+
+                                            '</div>'+
+                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+data[i].monto+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'
+                        );
+                    }
+                }else{
+                	for (var i = 0; i < 12; i++) {
+                    
+                        $('#PagoCEstaciona').append(
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+                                        '<label>'+mes[i]+'</label>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<div class="form-group">'+
+                                        '<div class="input-group mb-2">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">$</div>'+
+                                            '</div>'+
+                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="0">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'
+                        );
+                    }
                 }
-            });
-		}
+            })
+		.done(function(data) {
+			$('#spinnerE').css('display','none');
+		});
+	}
+	function montosInmuebleAnio(anio) {
+		$('#spinnerI').css('display','block');
+		var id =1;
+		$.get('inmuebles/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
+        		
+                $('#PagoCInmuebles').empty();
+                
+                $('#PagoCInmuebles').append('<label>Montos por mes</label><br>');
+               	if (data.length > 0){
+
+
+                    for (var i = 0; i < 12; i++) {
+                    
+                        $('#PagoCInmuebles').append(
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+                                        '<label>'+mes[i]+'</label>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<div class="form-group">'+
+                                        '<div class="input-group mb-2">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">$</div>'+
+                                            '</div>'+
+                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+data[i].monto+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'
+                        );
+                    }
+                }else{
+                	for (var i = 0; i < 12; i++) {
+                    
+                        $('#PagoCInmuebles').append(
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+                                        '<label>'+mes[i]+'</label>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<div class="form-group">'+
+                                        '<div class="input-group mb-2">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">$</div>'+
+                                            '</div>'+
+                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="0">'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'
+                        );
+                    }
+                }
+            })
+		.done(function(data) {
+			$('#spinnerI').css('display','none');
+		});
 	}
 </script>
