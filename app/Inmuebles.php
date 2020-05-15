@@ -8,7 +8,7 @@ class Inmuebles extends Model
 {
 protected $table='inmuebles';
 
-protected $fillable=['idem','tipo','status'];
+protected $fillable=['idem','tipo','status','estacionamiento','cuantos'];
 
 public function residentes()
 {

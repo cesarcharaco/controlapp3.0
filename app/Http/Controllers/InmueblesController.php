@@ -55,9 +55,15 @@ class InmueblesController extends Controller
 			$inmueble->tipo=$request->tipo;
 			$inmueble->status='Disponible';
 			$inmueble->estacionamiento=$request->estacionamiento;
-			$inmueble->save();
-			$m=date('m');
-			if ($request->opcion==1) {
+			
+            $anio=date('Y');
+            $mensualidad=Mensualidades::where('anio',$anio)->get();
+            dd(count($mensualidad));
+
+
+            /*$inmueble->save();
+			$m=date('m');*/
+			/*if ($request->opcion==1) {
                 # mensual
                 if ($this->nulidad($request->monto)) {
                     flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
@@ -90,7 +96,7 @@ class InmueblesController extends Controller
                     }
                 }
                 
-            }
+            }*/
 			flash('Inmueble registrado con éxito!')->important();
 			return redirect()->to('inmuebles');
 		}

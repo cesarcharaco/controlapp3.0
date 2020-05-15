@@ -97,4 +97,9 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
 	Route::resource('reportes','ReportesController');
+
+
+
+
+	Route::resource('pagoscomunes','PagosComunesController')->except(['index','create','edit','show','destroy']);
 });
