@@ -228,7 +228,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <hr>
+                                                <!-- <hr>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
@@ -241,7 +241,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 
                                                 <!-- <div class="row">
@@ -420,12 +420,12 @@
                             </form>
 
 <!-- --------------------------------------------PAGO COMÚN INMUEBLE--------------------------------------------------------- -->
-                        <form action="{{ route('home') }}" method="POST">
+                        <form action="{{ route('pagoscomunes.store') }}" method="POST">
                             <div class="modal fade" id="PagoCInmueble" role="dialog">
                                 <div class="modal-dialog modals-default">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4>Costo - Inmuebles</h4>                
+                                            <h4>Costo - Inmuebles <span id="editar1"></span></h4>                
                                             <div class="row justify-content-md-center">
                                                 <div class="col-md-12">
                                                     <div id="spinnerI" style="display: none;">
@@ -457,6 +457,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
+                                            <input type="hidden" name="tipo" value="Inmueble">
+                                            <input type="hidden" name="accion" value="1">
                                             <button type="submit" class="btn btn-success" >Guardar</button>
                                         </div>
                                     </div>
@@ -465,45 +467,53 @@
                         </form>
 
 <!-- --------------------------------------------PAGO COMÚN ESTACIONAMIENTO--------------------------------------------------------- -->
-                        <form action="{{ route('home') }}" method="POST">
+                        <form action="{{ route('pagoscomunes.store') }}" method="POST">
                             <div class="modal fade" id="PagoCEstacionamiento" role="dialog">
                                 <div class="modal-dialog modals-default">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4>Costo - Estacionamiento</h4>                
-                                            <div class="row justify-content-md-center">
-                                                <div class="col-md-12">
-                                                    <div id="spinnerE" style="display: none;">
-                                                        <div class="spinner-border text-warning m-2" role="status" id="CargandoPCEstaciona">
-                                                            <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+
+                                        {{--@if(count($buscarPEstaciona)>0) --}}
+                                            <div class="modal-header">
+                                                <h4>Costo - Estacionamiento <span id="editar2"></span></h4>                
+                                                <div class="row justify-content-md-center">
+                                                    <div class="col-md-12">
+                                                        <div id="spinnerE" style="display: none;">
+                                                            <div class="spinner-border text-warning m-2" role="status" id="CargandoPCEstaciona">
+                                                                <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
                                             </div>
-                                            <button type="button" class="close" data-dismiss="modal">
-                                                <span>&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                           <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Seleccione año</label>
-                                                        <select name="anioE" id="anioPagoComunE" class="form-control select2" onchange="montosEstacionaAnio(this.value)" >
-                                                        </select>
+                                            <div class="modal-body">
+                                               <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Seleccione año</label>
+                                                            <select name="anioE" id="anioPagoComunE" class="form-control select2" onchange="montosEstacionaAnio(this.value)" >
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div id="PagoCEstaciona"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div id="PagoCEstaciona"></div>
-                                                </div>
+                                            <div class="modal-footer">
+                                                <input type="hidden" name="tipo" value="Estacionamiento">
+                                                <input type="hidden" name="accion" value="2">
+                                                <button type="submit" class="btn btn-success" >Guardar</button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-success" >Guardar</button>
-                                        </div>
+                                        {{--@else
+                                            <h3>No hay registros de montos de pagos comunes en el año actual</h3>
+                                            <p>Registre los montos del año actual para registrar inmuebles</p>
+                                        @endif--}}
                                     </div>
                                 </div>
                             </div>
@@ -562,15 +572,16 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>¿El inmueble posee estacionamientos?</label>
-                                                            <select name="estacionamiento" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                                                <option value="Si" selected="selected">Si</option>
-                                                                <option value="No">No</option>
+                                                            <select name="estacionamiento" class="form-control select2" onchange="(
+                                                            $('#cuantosEstaciona').css('display','block'))" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                                                <option value="Si">Si</option>
+                                                                <option value="No" selected="selected">No</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
+                                                <div class="row" id="cuantosEstaciona" style="display: none;">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>¿Cuántos?</label>
@@ -579,7 +590,7 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Pago común</label>
@@ -591,7 +602,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 {{--<div class="row">
                                                     <div class="col-md-12">

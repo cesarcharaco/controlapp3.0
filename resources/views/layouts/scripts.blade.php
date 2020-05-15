@@ -277,6 +277,7 @@
 	}
 
 	function montosEstacionaAnio(anio) {
+		$('#editar2').empty();
 		$('#spinnerE').css('display','block');
 		var id =1;
 		$.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
@@ -285,6 +286,7 @@
                 
                 $('#PagoCEstaciona').append('<label>Montos por mes</label><br>');
                	if (data.length > 0){
+					$('#editar2').append(' - Editar');
 
 
                     for (var i = 0; i < 12; i++) {
@@ -311,6 +313,7 @@
                         );
                     }
                 }else{
+                	$('#editar2').append(' - Guardar');
                 	for (var i = 0; i < 12; i++) {
                     
                         $('#PagoCEstaciona').append(
@@ -341,6 +344,7 @@
 		});
 	}
 	function montosInmuebleAnio(anio) {
+		$('#editar1').empty();
 		$('#spinnerI').css('display','block');
 		var id =1;
 		$.get('inmuebles/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
@@ -349,7 +353,7 @@
                 
                 $('#PagoCInmuebles').append('<label>Montos por mes</label><br>');
                	if (data.length > 0){
-
+					$('#editar1').append(' - Editar');
 
                     for (var i = 0; i < 12; i++) {
                     
@@ -375,6 +379,7 @@
                         );
                     }
                 }else{
+                	$('#editar1').append(' - Guardar');
                 	for (var i = 0; i < 12; i++) {
                     
                         $('#PagoCInmuebles').append(
