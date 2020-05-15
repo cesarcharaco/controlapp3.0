@@ -277,21 +277,26 @@
 	}
 
 	function montosEstacionaAnio(anio) {
+		$('#MuestraStoreEstaciona').css('display','none');
+		$('#MuestraUpdateEstaciona').css('display','none');
 		$('#editar2').empty();
 		$('#spinnerE').css('display','block');
 		var id =1;
 		$.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
         		
-                $('#PagoCEstaciona').empty();
+                $('#PagoCEstaciona1').empty();
+                $('#PagoCEstaciona2').empty();
                 
-                $('#PagoCEstaciona').append('<label>Montos por mes</label><br>');
+                $('#PagoCEstaciona1').append('<label>Montos por mes</label><br>');
+                $('#PagoCEstaciona2').append('<label>Montos por mes</label><br>');
                	if (data.length > 0){
 					$('#editar2').append(' - Editar');
+					$('#MuestraUpdateEstaciona').css('display','block');
 
 
                     for (var i = 0; i < 12; i++) {
                     
-                        $('#PagoCEstaciona').append(
+                        $('#PagoCEstaciona2').append(
                             '<div class="row">'+
                                 '<div class="col-md-4">'+
                                     '<div class="form-group">'+
@@ -314,9 +319,10 @@
                     }
                 }else{
                 	$('#editar2').append(' - Guardar');
+                	$('#MuestraStoreEstaciona').css('display','block');
                 	for (var i = 0; i < 12; i++) {
                     
-                        $('#PagoCEstaciona').append(
+                        $('#PagoCEstaciona1').append(
                             '<div class="row">'+
                                 '<div class="col-md-4">'+
                                     '<div class="form-group">'+
@@ -344,20 +350,26 @@
 		});
 	}
 	function montosInmuebleAnio(anio) {
+		$('#MuestraStoreInmueble').css('display','none');
+		$('#MuestraUpdateInmueble').css('display','none');
 		$('#editar1').empty();
 		$('#spinnerI').css('display','block');
 		var id =1;
 		$.get('inmuebles/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
         		
-                $('#PagoCInmuebles').empty();
+                $('#PagoCInmuebles1').empty();
+                $('#PagoCInmuebles2').empty();
                 
-                $('#PagoCInmuebles').append('<label>Montos por mes</label><br>');
+                $('#PagoCInmuebles1').append('<label>Montos por mes</label><br>');
+                $('#PagoCInmuebles2').append('<label>Montos por mes</label><br>');
                	if (data.length > 0){
 					$('#editar1').append(' - Editar');
+					$('#MuestraUpdateInmueble').css('display','block');
+
 
                     for (var i = 0; i < 12; i++) {
                     
-                        $('#PagoCInmuebles').append(
+                        $('#PagoCInmuebles2').append(
                             '<div class="row">'+
                                 '<div class="col-md-4">'+
                                     '<div class="form-group">'+
@@ -379,10 +391,12 @@
                         );
                     }
                 }else{
-                	$('#editar1').append(' - Guardar');
+                	$('#editar1').append(' - Guardar');		
+                	$('#MuestraStoreInmueble').css('display','block');
+
                 	for (var i = 0; i < 12; i++) {
                     
-                        $('#PagoCInmuebles').append(
+                        $('#PagoCInmuebles1').append(
                             '<div class="row">'+
                                 '<div class="col-md-4">'+
                                     '<div class="form-group">'+
