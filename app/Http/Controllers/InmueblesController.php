@@ -55,6 +55,10 @@ class InmueblesController extends Controller
 			$inmueble->tipo=$request->tipo;
 			$inmueble->status='Disponible';
 			$inmueble->estacionamiento=$request->estacionamiento;
+            if ($request->estacionamiento=="Si") {
+                $inmueble->cuantos=$request->cuantos;
+            }
+            
 			
             $anio=date('Y');
             $mensualidad=Mensualidades::where('anio',$anio)->get();
@@ -156,6 +160,9 @@ class InmueblesController extends Controller
 			$inmueble->tipo=$request->tipo;
 			$inmueble->status=$request->status;
 			$inmueble->estacionamiento=$request->estacionamiento;
+             if ($request->estacionamiento=="Si") {
+                $inmueble->cuantos=$request->cuantos;
+            }
 			$inmueble->save();
 
 			flash('Inmueble actualizado')->success()->important();

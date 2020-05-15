@@ -144,3 +144,21 @@ function residentes_alquilados_p()
 
 	return count($buscar);
 }
+
+public function pc_i()
+{
+	$anio=date('Y');
+
+	$buscar=App\PagosComunes::where('anio',$anio)->where('tipo','Inmueble')->get();
+
+	return count($buscar);
+}
+
+public function pc_e()
+{
+	$anio=date('Y');
+
+	$buscar=App\PagosComunes::where('anio',$anio)->where('tipo','Estacionamiento')->get();
+
+	return count($buscar);
+}

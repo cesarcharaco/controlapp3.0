@@ -19,7 +19,7 @@ class CreateInmueblesTable extends Migration
             $table->enum('tipo',['Casa','Apartamento','Anexo','Habitación','Otro']);
             $table->enum('status',['Disponible','No Disponible'])->default('Disponible');
             $table->enum('estacionamiento',['Si','No'])->default('Si');
-            $table->integer('cuantos');
+            $table->integer('cuantos')->nullable();
             $table->timestamps();
         });
     }
