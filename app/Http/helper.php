@@ -145,7 +145,7 @@ function residentes_alquilados_p()
 	return count($buscar);
 }
 
-public function pc_i()
+function pc_i()
 {
 	$anio=date('Y');
 
@@ -154,7 +154,7 @@ public function pc_i()
 	return count($buscar);
 }
 
-public function pc_e()
+function pc_e()
 {
 	$anio=date('Y');
 
