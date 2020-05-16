@@ -263,8 +263,8 @@
 				$('#anioPagoComunI').append('<option value="'+i+'">'+i+'</option>');
 			}
 			$('#PagoCInmueble').modal('show');
-			$('#PagoCInmuebles').empty();
-		}else{
+		}
+		if(opcion ==2){
 			$('#anioPagoComunE').empty();
 			$('#anioPagoComunE').append('<option selected>Seleccione año</option>');
 			for (var i = a; i < a+3; i++) {
@@ -272,15 +272,29 @@
 			}
 			$('#PagoCEstacionamiento').modal('show');
 			$('#PagoCEstaciona').empty();
-
+		}
+		if(opcion==3) {
+			$('#anioPagoComunI_E').empty();
+			$('#anioPagoComunI_E').append('<option selected>Seleccione año</option>');
+			for (var i = a; i < a+3; i++) {
+				$('#anioPagoComunI_E').append('<option value="'+i+'">'+i+'</option>');
+			}
+			$('#PagoCInmuebleE').modal('show');
+		}
+		if(opcion==4){
+			$('#anioPagoComunE2').empty();
+			$('#anioPagoComunE2').append('<option selected>Seleccione año</option>');
+			for (var i = a; i < a+3; i++) {
+				$('#anioPagoComunE2').append('<option value="'+i+'">'+i+'</option>');
+			}
+			$('#PagoCEstacionamiento2').modal('show');
 		}
 	}
 
-	function montosEstacionaAnio(anio) {
-		$('#MuestraStoreEstaciona').css('display','none');
-		$('#MuestraUpdateEstaciona').css('display','none');
+	function montosEstacionaAnio(anio, opcion) {
 		$('#editar2').empty();
 		$('#spinnerE').css('display','block');
+		$('#spinnerE2').css('display','block');
 		var id =1;
 		$.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
         		
@@ -289,72 +303,84 @@
                 
                 $('#PagoCEstaciona1').append('<label>Montos por mes</label><br>');
                 $('#PagoCEstaciona2').append('<label>Montos por mes</label><br>');
-               	if (data.length > 0){
-					$('#editar2').append(' - Editar');
-					$('#MuestraUpdateEstaciona').css('display','block');
 
 
-                    for (var i = 0; i < 12; i++) {
-                    
-                        $('#PagoCEstaciona2').append(
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+
-                                    '<div class="form-group">'+
-                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-                                        '<label>'+mes[i]+'</label>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<div class="form-group">'+
-                                        '<div class="input-group mb-2">'+
-                                            '<div class="input-group-prepend">'+
-                                                '<div class="input-group-text">$</div>'+
-                                            '</div>'+
-                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+data[i].monto+'">'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'
-                        );
-                    }
+                if (opcion == 1) {
+
+
+	               	if (data.length == 0){
+
+
+	                    for (var i = 0; i < 12; i++) {
+	                    
+	                        $('#PagoCEstaciona1').append(
+	                            '<div class="row">'+
+	                                '<div class="col-md-4">'+
+	                                    '<div class="form-group">'+
+	                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+	                                        '<label>'+mes[i]+'</label>'+
+	                                    '</div>'+
+	                                '</div>'+
+	                                '<div class="col-md-6">'+
+	                                    '<div class="form-group">'+
+	                                        '<div class="input-group mb-2">'+
+	                                            '<div class="input-group-prepend">'+
+	                                                '<div class="input-group-text">$</div>'+
+	                                            '</div>'+
+	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="0">'+
+	                                        '</div>'+
+	                                    '</div>'+
+	                                '</div>'+
+	                            '</div>'
+	                        );
+	                    }
+	                }else{
+	                	$('#PagoCEstaciona1').append('<h3>Ya registros de pago común para este año para este año</h3>');
+	                }
                 }else{
-                	$('#editar2').append(' - Guardar');
-                	$('#MuestraStoreEstaciona').css('display','block');
-                	for (var i = 0; i < 12; i++) {
-                    
-                        $('#PagoCEstaciona1').append(
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+
-                                    '<div class="form-group">'+
-                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-                                        '<label>'+mes[i]+'</label>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<div class="form-group">'+
-                                        '<div class="input-group mb-2">'+
-                                            '<div class="input-group-prepend">'+
-                                                '<div class="input-group-text">$</div>'+
-                                            '</div>'+
-                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="0">'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'
-                        );
-                    }
+
+	               	if (data.length > 0){
+
+
+	                    for (var i = 0; i < 12; i++) {
+	                    
+	                        $('#PagoCEstaciona2').append(
+	                            '<div class="row">'+
+	                                '<div class="col-md-4">'+
+	                                    '<div class="form-group">'+
+	                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+	                                        '<label>'+mes[i]+'</label>'+
+	                                    '</div>'+
+	                                '</div>'+
+	                                '<div class="col-md-6">'+
+	                                    '<div class="form-group">'+
+	                                        '<div class="input-group mb-2">'+
+	                                            '<div class="input-group-prepend">'+
+	                                                '<div class="input-group-text">$</div>'+
+	                                            '</div>'+
+	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+data[i].monto+'">'+
+	                                        '</div>'+
+	                                    '</div>'+
+	                                '</div>'+
+	                            '</div>'
+	                        );
+	                    }
+	                }else{
+	                	$('#PagoCEstaciona2').append('<h3>¡No hay registros de este año para editar!</h3>');
+	                }
                 }
             })
 		.done(function(data) {
 			$('#spinnerE').css('display','none');
+			$('#spinnerE2').css('display','none');
 		});
 	}
-	function montosInmuebleAnio(anio) {
-		$('#MuestraStoreInmueble').css('display','none');
-		$('#MuestraUpdateInmueble').css('display','none');
+	function montosInmuebleAnio(anio,opcion) {
 		$('#editar1').empty();
 		$('#spinnerI').css('display','block');
+		$('#spinnerI2').css('display','block');
 		var id =1;
+
 		$.get('inmuebles/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
         		
                 $('#PagoCInmuebles1').empty();
@@ -362,65 +388,76 @@
                 
                 $('#PagoCInmuebles1').append('<label>Montos por mes</label><br>');
                 $('#PagoCInmuebles2').append('<label>Montos por mes</label><br>');
-               	if (data.length > 0){
-					$('#editar1').append(' - Editar');
-					$('#MuestraUpdateInmueble').css('display','block');
 
 
-                    for (var i = 0; i < 12; i++) {
-                    
-                        $('#PagoCInmuebles2').append(
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+
-                                    '<div class="form-group">'+
-                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-                                        '<label>'+mes[i]+'</label>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<div class="form-group">'+
-                                        '<div class="input-group mb-2">'+
-                                            '<div class="input-group-prepend">'+
-                                                '<div class="input-group-text">$</div>'+
-                                            '</div>'+
-                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+data[i].monto+'">'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'
-                        );
-                    }
+                if (opcion == 1) {
+
+
+	               	if (data.length == 0){
+
+
+	                    for (var i = 0; i < 12; i++) {
+	                    
+	                        $('#PagoCInmuebles1').append(
+	                            '<div class="row">'+
+	                                '<div class="col-md-4">'+
+	                                    '<div class="form-group">'+
+	                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+	                                        '<label>'+mes[i]+'</label>'+
+	                                    '</div>'+
+	                                '</div>'+
+	                                '<div class="col-md-6">'+
+	                                    '<div class="form-group">'+
+	                                        '<div class="input-group mb-2">'+
+	                                            '<div class="input-group-prepend">'+
+	                                                '<div class="input-group-text">$</div>'+
+	                                            '</div>'+
+	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="0">'+
+	                                        '</div>'+
+	                                    '</div>'+
+	                                '</div>'+
+	                            '</div>'
+	                        );
+	                    }
+	                }else{
+	                	$('#PagoCInmuebles1').append('<h3>Ya registros de pago común para este año para este año</h3>');
+	                }
                 }else{
-                	$('#editar1').append(' - Guardar');		
-                	$('#MuestraStoreInmueble').css('display','block');
 
-                	for (var i = 0; i < 12; i++) {
-                    
-                        $('#PagoCInmuebles1').append(
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+
-                                    '<div class="form-group">'+
-                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-                                        '<label>'+mes[i]+'</label>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<div class="form-group">'+
-                                        '<div class="input-group mb-2">'+
-                                            '<div class="input-group-prepend">'+
-                                                '<div class="input-group-text">$</div>'+
-                                            '</div>'+
-                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="0">'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'
-                        );
-                    }
+	               	if (data.length > 0){
+
+
+	                    for (var i = 0; i < 12; i++) {
+	                    
+	                        $('#PagoCInmuebles2').append(
+	                            '<div class="row">'+
+	                                '<div class="col-md-4">'+
+	                                    '<div class="form-group">'+
+	                                        '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+	                                        '<label>'+mes[i]+'</label>'+
+	                                    '</div>'+
+	                                '</div>'+
+	                                '<div class="col-md-6">'+
+	                                    '<div class="form-group">'+
+	                                        '<div class="input-group mb-2">'+
+	                                            '<div class="input-group-prepend">'+
+	                                                '<div class="input-group-text">$</div>'+
+	                                            '</div>'+
+	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+data[i].monto+'">'+
+	                                        '</div>'+
+	                                    '</div>'+
+	                                '</div>'+
+	                            '</div>'
+	                        );
+	                    }
+	                }else{
+	                	$('#PagoCInmuebles2').append('<h3>¡No hay registros de este año para editar!</h3>');
+	                }
                 }
             })
 		.done(function(data) {
 			$('#spinnerI').css('display','none');
+			$('#spinnerI2').css('display','none');
 		});
 	}
 </script>

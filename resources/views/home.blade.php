@@ -92,19 +92,25 @@
                             <div class="media-body">
                                 <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago Común</span>
                                 <div class="row">
-                                    <div class="col-lg-8 col-md-8">
+                                    <div class="col-lg-4 col-md-4">
                                         <h6><input type="text" readonly="" class="form-control-plaintext text-primary" id="example-static" value="Costo Inmueble"></h6>
                                     </div>
                                     <div class="col-lg-4 col-md-4">
-                                        <h6><a href="#" style="width: 100% !important;" onclick="PagoC(1)" class="btn btn-primary">Editar</a></h6>
+                                        <h6><a href="#" style="width: 100% !important;" onclick="PagoC(1)" class="btn btn-primary">Registrar</a></h6>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <h6><a href="#" style="width: 100% !important;" onclick="PagoC(3)" class="btn btn-warning">Editar</a></h6>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-8 col-md-8">
+                                    <div class="col-lg-4 col-md-4">
                                         <h6><input type="text" readonly="" class="form-control-plaintext text-danger" id="example-static" value="Costo Estacionamiento"></h6>
                                     </div>
                                     <div class="col-lg-4 col-md-4">
-                                        <h6><a href="#" style="width: 100% !important;" onclick="PagoC(2)" class="btn btn-danger">Editar</a></h6>
+                                        <h6><a href="#" style="width: 100% !important;" onclick="PagoC(2)" class="btn btn-primary">Registrar</a></h6>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <h6><a href="#" style="width: 100% !important;" onclick="PagoC(4)" class="btn btn-warning">Editar</a></h6>
                                     </div>
                                 </div>
                             </div>

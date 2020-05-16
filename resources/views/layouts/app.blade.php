@@ -422,11 +422,12 @@
 <!-- --------------------------------------------PAGO COMÚN INMUEBLE--------------------------------------------------------- -->
                         
                             
+                            <form action="{{ route('pagoscomunes.store') }}" method="POST">
                                 <div class="modal fade" id="PagoCInmueble" role="dialog">
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4>Costo - Inmuebles <span id="editar1"></span></h4>                
+                                                <h4>Costo - Inmuebles - Registrar</h4>                
                                                 <div class="row justify-content-md-center">
                                                     <div class="col-md-12">
                                                         <div id="spinnerI" style="display: none;">
@@ -445,70 +446,40 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Seleccione año</label>
-                                                            <select name="anioI" id="anioPagoComunI" class="form-control select2" onchange="montosInmuebleAnio(this.value)">
+                                                            <select name="anioI" id="anioPagoComunI" class="form-control select2" onchange="montosInmuebleAnio(this.value,1)">
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <hr>
-
-
-
-                                                <div id="MuestraStoreInmueble" style="display: none;">
-                                                    <form action="{{ route('pagoscomunes.store') }}" method="POST">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div id="PagoCInmuebles1"></div>
-                                                            </div>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="float-right">
-                                                            <input type="hidden" name="tipo" value="Inmueble">
-                                                            <input type="hidden" name="accion" value="1">
-                                                            <button type="submit" class="btn btn-success" >Guardar</button>
-                                                        </div>
-                                                    </form>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div id="PagoCInmuebles1"></div>
+                                                    </div>
                                                 </div>
-
-
-
-
-                                                <div id="MuestraUpdateInmueble" style="display: none;">
-                                                    {!! Form::open(['route' => ['pagoscomunes.update',1], 'method' => 'PUT', 'name' => 'editar_pagosComunesInmueble', 'id' => 'editar_pagosComunesInmueble', 'data-parsley-validate']) !!}
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div id="PagoCInmuebles2"></div>
-                                                            </div>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="float-right">
-                                                            <input type="hidden" name="tipo" value="Inmueble">
-                                                            <input type="hidden" name="accion" value="1">
-                                                            <button type="submit" class="btn btn-success" >Editar</button>
-                                                        </div>
-                                                    {!! Form::close() !!}
+                                                <hr>
+                                                <div class="float-right">
+                                                    <input type="hidden" name="tipo" value="Inmueble">
+                                                    <input type="hidden" name="accion" value="1">
+                                                    <button type="submit" class="btn btn-success" >Guardar</button>
                                                 </div>
-
-
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            
-                        
-                            
+                            </form>
 
-<!-- --------------------------------------------PAGO COMÚN ESTACIONAMIENTO--------------------------------------------------------- -->
-                        <div class="modal fade" id="PagoCEstacionamiento" role="dialog">
+
+                            {!! Form::open(['route' => ['pagoscomunes.update',1], 'method' => 'PUT', 'name' => 'editar_pagosComunesInmueble', 'id' => 'editar_pagosComunesInmueble', 'data-parsley-validate']) !!}
+                                <div class="modal fade" id="PagoCInmuebleE" role="dialog">
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4>Costo - Estacionamientos <span id="editar2"></span></h4>                
+                                                <h4>Costo - Inmuebles - Editar</h4>                
                                                 <div class="row justify-content-md-center">
                                                     <div class="col-md-12">
-                                                        <div id="spinnerE" style="display: none;">
-                                                            <div class="spinner-border text-warning m-2" role="status" id="CargandoPCEstaciona">
+                                                        <div id="spinnerI2" style="display: none;">
+                                                            <div class="spinner-border text-warning m-2" role="status" id="CargandoPCInmueble2">
                                                                 <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
                                                             </div>
                                                         </div>
@@ -523,56 +494,127 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Seleccione año</label>
-                                                            <select name="anioE" id="anioPagoComunE" class="form-control select2" onchange="montosEstacionaAnio(this.value)" >
+                                                            <select name="anioI" id="anioPagoComunI_E" class="form-control select2" onchange="montosInmuebleAnio(this.value,2)">
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <hr>
 
-
-
-                                                <div id="MuestraStoreEstaciona" style="display: none;">
-                                                    <form action="{{ route('pagoscomunes.store') }}" method="POST">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div id="PagoCEstaciona1"></div>
-                                                            </div>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="float-right">
-                                                            <input type="hidden" name="tipo" value="Estacionamiento">
-                                                            <input type="hidden" name="accion" value="1">
-                                                            <button type="submit" class="btn btn-success" >Guardar</button>
-                                                        </div>
-                                                    </form>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div id="PagoCInmuebles2"></div>
+                                                    </div>
                                                 </div>
-
-
-
-
-                                                <div id="MuestraUpdateEstaciona" style="display: none;">
-                                                    {!! Form::open(['route' => ['pagoscomunes.update',1], 'method' => 'PUT', 'name' => 'editar_pagosComunesEstacionamiento', 'id' => 'editar_pagosComunesEstacionamiento', 'data-parsley-validate']) !!}
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div id="PagoCEstaciona2"></div>
-                                                            </div>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="float-right">
-                                                            <input type="hidden" name="tipo" value="Estacionamiento">
-                                                            <input type="hidden" name="accion" value="2">
-                                                            <button type="submit" class="btn btn-success" >Editar</button>
-                                                        </div>
-                                                    {!! Form::close() !!}
+                                                <hr>
+                                                <div class="float-right">
+                                                    <input type="hidden" name="tipo" value="Inmueble">
+                                                    <input type="hidden" name="accion" value="1">
+                                                    <button type="submit" class="btn btn-success" >Editar</button>
                                                 </div>
-
-
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            {!! Form::close() !!}
+                            
+                        
+                            
+
+<!-- --------------------------------------------PAGO COMÚN ESTACIONAMIENTO--------------------------------------------------------- -->
+                    <form action="{{ route('pagoscomunes.store') }}" method="POST">
+                        <div class="modal fade" id="PagoCEstacionamiento" role="dialog">
+                            <div class="modal-dialog modals-default">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Costo - Estacionamientos - Registrar</span></h4>                
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-12">
+                                                <div id="spinnerE" style="display: none;">
+                                                    <div class="spinner-border text-warning m-2" role="status" id="CargandoPCEstaciona">
+                                                        <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                       <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Seleccione año</label>
+                                                    <select name="anioE" id="anioPagoComunE" class="form-control select2" onchange="montosEstacionaAnio(this.value,1)" >
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="PagoCEstaciona1"></div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="float-right">
+                                            <input type="hidden" name="tipo" value="Estacionamiento">
+                                            <input type="hidden" name="accion" value="1">
+                                            <button type="submit" class="btn btn-success" >Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    {!! Form::open(['route' => ['pagoscomunes.update',1], 'method' => 'PUT', 'name' => 'editar_pagosComunesEstacionamiento', 'id' => 'editar_pagosComunesEstacionamiento', 'data-parsley-validate']) !!}
+                        <div class="modal fade" id="PagoCEstacionamiento2" role="dialog">
+                            <div class="modal-dialog modals-default">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Costo - Estacionamientos - Editar</h4>                
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-12">
+                                                <div id="spinnerE2" style="display: none;">
+                                                    <div class="spinner-border text-warning m-2" role="status" id="CargandoPCEstaciona">
+                                                        <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                       <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Seleccione año</label>
+                                                    <select name="anioE" id="anioPagoComunE2" class="form-control select2" onchange="montosEstacionaAnio(this.value,2)" >
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="PagoCEstaciona2"></div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="float-right">
+                                            <input type="hidden" name="tipo" value="Estacionamiento">
+                                            <input type="hidden" name="accion" value="2">
+                                            <button type="submit" class="btn btn-success" >Editar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {!! Form::close() !!}
 
 <!-- --------------------------------------------REGISTRAR InmuebleS--------------------------------------------------------- -->    
 
