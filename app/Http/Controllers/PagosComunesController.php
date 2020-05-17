@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PagosComunes;
 use App\Meses;
+use App\Inmuebles;
+use App\Estacionamientos;
+
 class PagosComunesController extends Controller
 {
     public function store(Request $request)
@@ -74,6 +77,13 @@ class PagosComunesController extends Controller
 
     public function update(Request $request)
     {
+    	//dd($request->all());
+    	if(!is_null($request->anioI)){
+        	$anio=$request->anioI;
+        }
+        if(!is_null($request->anioE)){
+        	$anio=$request->anioE;
+        }
     	if ($this->nulidad($request->monto)==true && $request->accion==1) {
                     flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
                     return redirect()->back();    
@@ -82,8 +92,8 @@ class PagosComunesController extends Controller
                 $meses=Meses::all();
                 
 
-            for($i=0;$i<count($request->mes);$i++){
-                    $pagocomun= PagosComunes::where('tipo',$request->tipo)->where('anio',$request->anio)->where('mes',$request->mes[$i])->first();
+            foreach($meses as $key){
+                    $pagocomun= PagosComunes::where('tipo',$request->tipo)->where('anio',$request->anio)->where('mes',$key->mes)->first();
                     //dd($pagocomun);
                     if ($pagocomun!=null) {
                         
@@ -93,17 +103,42 @@ class PagosComunesController extends Controller
             //----------------------
         if ($request->accion==1) {
                 # mensual
-                
-                for($i=0;$i<count($request->mes);$i++) {
+                $i=1;
+                foreach($meses as $key){
                     
                         $pagocomun=new PagosComunes();
                         $pagocomun->tipo=$request->tipo;
-                        $pagocomun->anio=$request->anio;
-                        $pagocomun->mes=$request->mes[$i];
+                        $pagocomun->anio=$anio;
+                        $pagocomun->mes=$key->id;
                         $pagocomun->monto=$request->monto[$i];
                         $pagocomun->save();
+
+                        //cambiando montos de inmuebles
+                        $inmuebles=Inmuebles::all();
+                        foreach ($inmuebles as $key2) {
+                        	foreach ($key2->mensualidades as $key3) {
+                        		if($key3->mes==$key->id){
+                        			$key3->monto=$pagocomun->monto;
+                        			$key3->save();
+                        		}
+                        	}
+                        }
+                        //-----------------------------
+                        //cambiando montos de estacionamientos
+                        $estacionamiento=Estacionamientos::all();
+                        foreach ($estacionamiento as $key2) {
+                        	foreach ($key2->mensualidad as $key3) {
+                        		if($key3->mes==$key->id){
+                        			$key3->monto=$pagocomun->monto;
+                        			$key3->save();
+                        		}
+                        	}
+                        }
+                        //-----------------------------
+                        $i++;
+                }
                         
-                    
+                    	
                 }
             } else {
                 # anual
@@ -111,7 +146,7 @@ class PagosComunesController extends Controller
                    
                         $pagocomun=new PagosComunes();
                         $pagocomun->tipo=$request->tipo;
-                        $pagocomun->anio=$request->anio;
+                        $pagocomun->anio=$anio;
                         $pagocomun->mes=$request->mes[$i];
                         $pagocomun->monto=$request->montoaAnio;
                         $pagocomun->save();
