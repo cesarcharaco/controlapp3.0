@@ -423,6 +423,7 @@
                         
                             
                             <form action="{{ route('pagoscomunes.store') }}" method="POST">
+                                @csrf
                                 <div class="modal fade" id="PagoCInmueble" role="dialog">
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
@@ -523,6 +524,7 @@
 
 <!-- --------------------------------------------PAGO COMÚN ESTACIONAMIENTO--------------------------------------------------------- -->
                     <form action="{{ route('pagoscomunes.store') }}" method="POST">
+                        @csrf
                         <div class="modal fade" id="PagoCEstacionamiento" role="dialog">
                             <div class="modal-dialog modals-default">
                                 <div class="modal-content">

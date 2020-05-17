@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Meses;
 use App\Mensualidades;
 use App\Estacionamientos;
-
+use App\PagosComunes;
 class InmueblesController extends Controller
 {
 	/**
@@ -50,22 +50,27 @@ class InmueblesController extends Controller
 			flash('El Idem ya se encuentra registrado, intente otra vez')->warning()->important();
 			return redirect()->back();
 		} else {
-			$inmueble=new Inmuebles();
-			$inmueble->idem=$request->idem;
-			$inmueble->tipo=$request->tipo;
-			$inmueble->status='Disponible';
-			$inmueble->estacionamiento=$request->estacionamiento;
-            if ($request->estacionamiento=="Si") {
-                $inmueble->cuantos=$request->cuantos;
-            }
-            
 			
             $anio=date('Y');
-            $mensualidad=Mensualidades::where('anio',$anio)->get();
-            dd(count($mensualidad));
+            $mensualidad=PagosComunes::where('anio',$anio)->get();
+            //dd(count($mensualidad));
+            if (count($mensualidad)==0) {
+                flash('No existen Pagos Comunes registrados para el presente año')->warning()->important();
+                return redirect()->back();
+            } else {
+                $inmueble=new Inmuebles();
+                $inmueble->idem=$request->idem;
+                $inmueble->tipo=$request->tipo;
+                $inmueble->status='Disponible';
+                $inmueble->estacionamiento=$request->estacionamiento;
+                if ($request->estacionamiento=="Si") {
+                    $inmueble->cuantos=$request->cuantos;
+                }
+                $inmueble->save();  
+            }
+            
 
-
-            /*$inmueble->save();
+            /*
 			$m=date('m');*/
 			/*if ($request->opcion==1) {
                 # mensual

@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PagosComunes;
+use App\Meses;
 class PagosComunesController extends Controller
 {
     public function store(Request $request)
     {
+    	//dd($request->all());
     	$m=date('m');
         $a=date('Y');
         $meses=Meses::all();
-        
+        if(!is_null($request->anioI)){
+        	$anio=$request->anioI;
+        }
+        if(!is_null($request->anioE)){
+        	$anio=$request->anioE;
+        }
         if ($request->accion==1) {
                 # mensual
             if ($this->nulidad($request->monto)) {
@@ -23,7 +30,7 @@ class PagosComunesController extends Controller
                         if($key->id>=$m && $a==$request->anio){
                             $pagocomun=new PagosComunes();
                             $pagocomun->tipo=$request->tipo;
-                            $pagocomun->anio=$request->anio;
+                            $pagocomun->anio=$anio;
                             $pagocomun->mes=$key->id;
                             $pagocomun->monto=$request->monto[$i];
                             $pagocomun->save();
@@ -32,7 +39,7 @@ class PagosComunesController extends Controller
 
                             $pagocomun=new PagosComunes();
                             $pagocomun->tipo=$request->tipo;
-                            $pagocomun->anio=$request->anio;
+                            $pagocomun->anio=$anio;
                             $pagocomun->mes=$key->id;
                             $pagocomun->monto=$request->monto[$i];
                             $pagocomun->save();
@@ -61,7 +68,7 @@ class PagosComunesController extends Controller
                 }
                 
             }
-            flash('Pago Común registrado para el año: <b>'.$request->anio.'</b> para : <b>'.$request->tipo.'</b>, de manera exitosa!')->success()->important();
+            flash('Pago Común registrado para el año: <b>'.$anio.'</b> para : <b>'.$request->tipo.'</b>, de manera exitosa!')->success()->important();
             return redirect()->to('home');
     }
 
@@ -116,5 +123,20 @@ class PagosComunesController extends Controller
             flash('Pago Común actualizado para el año: <b>'.$request->anio.'</b> para el <b>'.$request->tipo.'</b>, de manera exitosa!')->success()->important();
             return redirect()->to('home');
         }
+    }
+    protected function nulidad($request)
+    {
+        $cont=0;
+        for ($i=0; $i <count($request) ; $i++) { 
+            if ($request[$i]==NULL) {
+                $cont++;
+            }
+        }
+        if ($cont>0) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 }
