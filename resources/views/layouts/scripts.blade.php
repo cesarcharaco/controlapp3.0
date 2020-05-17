@@ -296,7 +296,7 @@
 		$('#spinnerE').css('display','block');
 		$('#spinnerE2').css('display','block');
 		var id =1;
-		$.get('estacionamientos/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
+		$.get('pagoscomunes/2/'+anio+'/buscarPagoC', function(data) {
         		
                 $('#PagoCEstaciona1').empty();
                 $('#PagoCEstaciona2').empty();
@@ -381,7 +381,7 @@
 		$('#spinnerI2').css('display','block');
 		var id =1;
 
-		$.get('inmuebles/'+id+'/'+anio+'/buscar_mensualidad', function(data) {
+		$.get('pagoscomunes/1/'+anio+'/buscarPagoC', function(data) {
         		
                 $('#PagoCInmuebles1').empty();
                 $('#PagoCInmuebles2').empty();
@@ -389,9 +389,7 @@
                 $('#PagoCInmuebles1').append('<label>Montos por mes</label><br>');
                 $('#PagoCInmuebles2').append('<label>Montos por mes</label><br>');
 
-
                 if (opcion == 1) {
-
 
 	               	if (data.length == 0){
 

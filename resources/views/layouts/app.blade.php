@@ -472,6 +472,7 @@
 
 
                             {!! Form::open(['route' => ['pagoscomunes.update',1], 'method' => 'PUT', 'name' => 'editar_pagosComunesInmueble', 'id' => 'editar_pagosComunesInmueble', 'data-parsley-validate']) !!}
+                                @csrf
                                 <div class="modal fade" id="PagoCInmuebleE" role="dialog">
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
@@ -572,6 +573,7 @@
                     </form>
 
                     {!! Form::open(['route' => ['pagoscomunes.update',1], 'method' => 'PUT', 'name' => 'editar_pagosComunesEstacionamiento', 'id' => 'editar_pagosComunesEstacionamiento', 'data-parsley-validate']) !!}
+                        @csrf
                         <div class="modal fade" id="PagoCEstacionamiento2" role="dialog">
                             <div class="modal-dialog modals-default">
                                 <div class="modal-content">

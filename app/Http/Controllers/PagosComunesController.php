@@ -139,4 +139,13 @@ class PagosComunesController extends Controller
         }
         
     }
+
+    public function buscarPagoAnio($tipo, $anio)
+    {
+        if ($tipo==1) {
+            return $pagoComun=PagosComunes::where('tipo','Inmueble')->where('anio',$anio)->get();
+        }else{
+            return $pagoComun=PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->get();
+        }
+    }
 }
