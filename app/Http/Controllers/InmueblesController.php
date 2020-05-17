@@ -52,7 +52,7 @@ class InmueblesController extends Controller
 		} else {
 			
             $anio=date('Y');
-            $mensualidad=PagosComunes::where('anio',$anio)->get();
+            $mensualidad=PagosComunes::where('anio',$anio)->where('tipo','Inmueble')->get();
             //dd(count($mensualidad));
             if (count($mensualidad)==0) {
                 flash('No existen Pagos Comunes registrados para el presente año')->warning()->important();
@@ -66,7 +66,17 @@ class InmueblesController extends Controller
                 if ($request->estacionamiento=="Si") {
                     $inmueble->cuantos=$request->cuantos;
                 }
-                $inmueble->save();  
+                $inmueble->save();
+
+                foreach ($mensualidad as $key) {
+                    $reg=\DB::table('mensualidades')->insert([
+                        'id_inmueble' => $inmueble->id,
+                        'mes' => $key->mes,
+                        'anio' => $key->anio,
+                        'monto' => $key->monto
+
+                    ]);
+                }
             }
             
 

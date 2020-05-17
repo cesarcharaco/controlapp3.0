@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\MensualidadE;
 use App\Meses;
 use App\Inmuebles;
-
+use App\PagosComunes;
 class EstacionamientosController extends Controller
 {
     /**
@@ -52,13 +52,30 @@ class EstacionamientosController extends Controller
             flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
             return redirect()->back();
         } else {
-            $estacionamiento=new Estacionamientos();
-            $estacionamiento->idem=$request->idem;
-            $estacionamiento->status=$request->status;
-            $estacionamiento->save();
-            $m=date('m');
+            $anio=date('Y');
+            $mensualidad=PagosComunes::where('anio',$anio)->where('tipo','Estacionamiento')->get();
+            if (count($mensualidad)==0) {
+                flash('No se encuentran Pagos Comunes registrados para estacionamiento este año, intente otra vez!')->warning()->important();
+                return redirect()->back();
+            } else {
+                $estacionamiento=new Estacionamientos();
+                $estacionamiento->idem=$request->idem;
+                $estacionamiento->status=$request->status;
+                $estacionamiento->save();
+                //$m=date('m');
+                foreach ($mensualidad as $key) {
+                    $reg=\DB::table('mens_estac')->insert([
+                        'id_estacionamiento' => $estacionamiento->id,
+                        'mes' => $key->mes,
+                        'anio' => $key->anio,
+                        'monto' => $key->monto
 
-            if ($request->opcion==1) {
+                    ]);
+                }
+            }
+            
+
+            /*if ($request->opcion==1) {
                 # mensual
                 if ($this->nulidad($request->monto)) {
                     flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
@@ -91,7 +108,7 @@ class EstacionamientosController extends Controller
                     }
                 }
                 
-            }
+            }*/
         
 
             flash('Estacionamiento registrado con éxito!')->success()->important();
