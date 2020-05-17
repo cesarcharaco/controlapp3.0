@@ -139,7 +139,6 @@ class PagosComunesController extends Controller
                 }
                         
                     	
-                }
             } else {
                 # anual
                 for($i=0;$i<count($request->mes);$i++){

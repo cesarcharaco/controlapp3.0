@@ -296,7 +296,7 @@
 		$('#spinnerE').css('display','block');
 		$('#spinnerE2').css('display','block');
 		var id =1;
-		$.get('pagoscomunes/2/'+anio+'/buscarPagoC', function(data) {
+		$.get('pagoscomunes/1/'+anio+'/buscarPagoC', function(data) {
         		
                 $('#PagoCEstaciona1').empty();
                 $('#PagoCEstaciona2').empty();
@@ -343,6 +343,14 @@
 
 
 	                    for (var i = 0; i < 12; i++) {
+
+	                    	var monto=0;
+
+	                    	if(data[i].monto > 0){
+	                    		monto=data[i].monto;
+	                    	}else{
+	                    		monto=0;
+	                    	}
 	                    
 	                        $('#PagoCEstaciona2').append(
 	                            '<div class="row">'+
@@ -358,7 +366,7 @@
 	                                            '<div class="input-group-prepend">'+
 	                                                '<div class="input-group-text">$</div>'+
 	                                            '</div>'+
-	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+data[i].monto+'">'+
+	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+monto+'">'+
 	                                        '</div>'+
 	                                    '</div>'+
 	                                '</div>'+
@@ -381,7 +389,7 @@
 		$('#spinnerI2').css('display','block');
 		var id =1;
 
-		$.get('pagoscomunes/1/'+anio+'/buscarPagoC', function(data) {
+		$.get('pagoscomunes/2/'+anio+'/buscarPagoC', function(data) {
         		
                 $('#PagoCInmuebles1').empty();
                 $('#PagoCInmuebles2').empty();
@@ -426,7 +434,14 @@
 
 
 	                    for (var i = 0; i < 12; i++) {
-	                    
+	                    	
+	                    	var monto=0;
+
+	                    	if(data[i].monto > 0){
+	                    		monto=data[i].monto;
+	                    	}else{
+	                    		monto=0;
+	                    	}
 	                        $('#PagoCInmuebles2').append(
 	                            '<div class="row">'+
 	                                '<div class="col-md-4">'+
@@ -441,7 +456,7 @@
 	                                            '<div class="input-group-prepend">'+
 	                                                '<div class="input-group-text">$</div>'+
 	                                            '</div>'+
-	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+data[i].monto+'">'+
+	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+monto+'">'+
 	                                        '</div>'+
 	                                    '</div>'+
 	                                '</div>'+
