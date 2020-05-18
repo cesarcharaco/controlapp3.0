@@ -296,7 +296,7 @@
 		$('#spinnerE').css('display','block');
 		$('#spinnerE2').css('display','block');
 		var id =1;
-		$.get('pagoscomunes/1/'+anio+'/buscarPagoC', function(data) {
+		$.get('pagoscomunes/2/'+anio+'/buscarPagoC', function(data) {
         		
                 $('#PagoCEstaciona1').empty();
                 $('#PagoCEstaciona2').empty();
@@ -335,7 +335,7 @@
 	                        );
 	                    }
 	                }else{
-	                	$('#PagoCEstaciona1').append('<h3>Ya registros de pago común para este año para este año</h3>');
+	                	$('#PagoCEstaciona1').append('<h3>Ya hay registros de pago común para este año para este año</h3>');
 	                }
                 }else{
 
@@ -389,7 +389,8 @@
 		$('#spinnerI2').css('display','block');
 		var id =1;
 
-		$.get('pagoscomunes/2/'+anio+'/buscarPagoC', function(data) {
+		$.get('pagoscomunes/1/'+anio+'/buscarPagoC', function(data) {
+			
         		
                 $('#PagoCInmuebles1').empty();
                 $('#PagoCInmuebles2').empty();
@@ -426,7 +427,7 @@
 	                        );
 	                    }
 	                }else{
-	                	$('#PagoCInmuebles1').append('<h3>Ya registros de pago común para este año para este año</h3>');
+	                	$('#PagoCInmuebles1').append('<h3>Ya hay registros de pago común para este año para este año</h3>');
 	                }
                 }else{
 
