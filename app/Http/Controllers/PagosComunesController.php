@@ -93,7 +93,7 @@ class PagosComunesController extends Controller
                 
 
             foreach($meses as $key){
-                    $pagocomun= PagosComunes::where('tipo',$request->tipo)->where('anio',$request->anio)->where('mes',$key->mes)->first();
+                    $pagocomun= PagosComunes::where('tipo',$request->tipo)->where('anio',$anio)->where('mes',$key->id)->first();
                     //dd($pagocomun);
                     if ($pagocomun!=null) {
                         
@@ -103,7 +103,8 @@ class PagosComunesController extends Controller
             //----------------------
         if ($request->accion==1) {
                 # mensual
-                $i=1;
+            $meses=Meses::all();
+                $i=0;
                 foreach($meses as $key){
                     
                         $pagocomun=new PagosComunes();
