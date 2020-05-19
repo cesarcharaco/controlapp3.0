@@ -135,7 +135,7 @@ class ReportesController extends Controller
             }
         }
 
-        echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";
+        //echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";
         //dd("-------------");
         if($sql_i!==""){
         $inmuebles=\DB::select($sql_i);
