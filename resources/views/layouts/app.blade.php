@@ -64,26 +64,26 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div div="form-group">
-                                                            <label>Multas - Recargas</label>
-                                                            <pre><select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
-                                                            </select></pre>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div div="form-group">
-                                                            <label>Residentes</label>
-                                                            <select multiple class="custom-select custom-select-sm" name="id_residente[]" id="campoResidentes">
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 @if(\Auth::user()->tipo_usuario == 'Admin')
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div div="form-group">
+                                                                <label>Multas - Recargas</label>
+                                                                <pre><select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
+                                                                </select></pre>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div div="form-group">
+                                                                <label>Residentes</label>
+                                                                <select multiple class="custom-select custom-select-sm" name="id_residente[]" id="campoResidentes">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <label>¿Quiere asignar las multas y recargas a todos los residentes?</label>
@@ -91,8 +91,21 @@
                                                             <input type="hidden" name="opcion" id="opcionAsignaT" value="1">
                                                         </div>
                                                     </div>
+                                                @else
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div div="form-group">
+                                                                <label>Multas - Recargas</label>
+                                                                <pre><select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
+                                                                </select></pre>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    
                                                 @endif
-                                                
+
+
                                             </div>
                                             <div class="modal-footer border-bottom">
                                                 <button type="submit" class="btn btn-success">Asignar</button>
