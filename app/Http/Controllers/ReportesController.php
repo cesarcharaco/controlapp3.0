@@ -135,12 +135,23 @@ class ReportesController extends Controller
             }
         }
 
-        /*echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";
-        dd("-------------");*/
-
+        echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";
+        //dd("-------------");
+        if($sql_i!==""){
         $inmuebles=\DB::select($sql_i);
+        }else{
+            $inmuebles=null;
+        }
+        if($sql_e!==""){
         $estacionamientos=\DB::select($sql_e);
+        }else{
+        $estacionamientos=null;
+        }
+        if($sql_mr!==""){
         $mr=\DB::select($sql_mr);
+        }else{
+            $mr=null;
+        }
 
         $pdf = PDF::loadView('reportes/PDF/PDF', array(
             'inmuebles'=>$inmuebles,
