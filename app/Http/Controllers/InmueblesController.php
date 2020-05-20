@@ -17,9 +17,9 @@ class InmueblesController extends Controller
 	*/
 	public function index()
 	{
-		$inmuebles=Inmuebles::all();
+		$inmuebles=Inmuebles::where('id','<>',0)->orderBy('idem','ASC')->get();;
 		$meses=Meses::all();
-		$estacionamientos=estacionamientos::where('status','Libre')->get();
+		$estacionamientos=estacionamientos::where('status','Libre')->orderBy('idem','ASC')->get();;
 
 		return view('inmuebles.index',compact('inmuebles','meses','estacionamientos'));
 	}

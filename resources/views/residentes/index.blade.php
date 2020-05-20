@@ -27,27 +27,39 @@
             <div class="col-md-12">
                 <hr>
                 <div style="overflow-x: auto;">
-                    <table class="data-table-basic" id="myTable" width="100%">
+                    <table class="data-table-basic table-striped" id="myTable" width="100%">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Nombres</th>
                                     <th>Rut</th>
+                                    <th>Correo</th>
                                     <th>Telefono</th>
-                                    <th>Usuario</th>
-                                    <th></th>
+                                    <th>Inmuebles asignados</th>
+                                    <th>Estacionamientos asignados</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($residentes as $key)
                                     <tr>
-                                        <td>{{$key->nombres}} {{$key->apellidos}}</td>
-                                        <td>{{$key->rut}}</td>
-                                        <td>{{$key->telefono}}</td>
-                                        <td>{{$key->usuario->email}}</td>
                                         <td>
                                             <a href="#" data-toggle="modal" data-target="#editarResidente" class="btn btn-warning btn-sm" onclick="Editar('{{$key->id}}','{{$key->nombres}}','{{$key->apellidos}}','{{$key->rut}}','{{$key->telefono}}','{{$key->usuario->email}}')">Editar</a>
 
                                             <a href="#" data-toggle="modal" data-target="#eliminarResidente" class="btn btn-danger btn-sm" onclick="Eliminar('{{$key->id}}')">Eliminar</a>
+                                        </td>
+                                        <td>{{$key->nombres}} {{$key->apellidos}}</td>
+                                        <td>{{$key->rut}}</td>
+                                        <td>{{$key->usuario->email}}</td>
+                                        <td>{{$key->telefono}}</td>
+                                        <td>
+                                            @foreach($key->inmuebles as $key2)
+                                                <p class="text-primary">{{$key2->idem}}</p>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($key->estacionamientos as $key2)
+                                                <p class="text-warning">{{$key2->idem}}</p>
+                                            @endforeach
                                         </td>
                                     </tr>
                                 @endforeach()

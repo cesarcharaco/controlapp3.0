@@ -79,12 +79,12 @@
             @endif
 
             @if(\Auth::user()->tipo_usuario == 'Admin')
-                <!-- <li>
-                    <a href="{{ url('Asignación') }}">
+                <li>
+                    <a href="{{ url('arriendos') }}">
                         <i data-feather="key"></i>
                         <span> Asignación </span>
                     </a>
-                </li> -->
+                </li>
             @endif
 
             @if(\Auth::user()->tipo_usuario == 'Admin')

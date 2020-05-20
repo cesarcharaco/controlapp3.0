@@ -17,7 +17,7 @@ class EstacionamientosController extends Controller
      */
     public function index()
     {
-        $estacionamientos=Estacionamientos::all();
+        $estacionamientos=Estacionamientos::where('id','<>',0)->orderBy('idem','ASC')->get();
         $meses=Meses::all();
 
         return view('estacionamientos.index',compact('estacionamientos','meses'));

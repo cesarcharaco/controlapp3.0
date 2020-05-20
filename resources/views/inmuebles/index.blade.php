@@ -34,7 +34,7 @@
                                 <th></th>
                                 <th>Idem</th>
                                 <th>Tipo</th>
-                                <th>Estacionamientos</th>
+                                <!-- <th>Estacionamientos</th> -->
                                 <th>Status</th>
                                 <!-- <th>Mensualidades</th> -->
                             </tr>
@@ -51,7 +51,7 @@
                                     </td>
                                     <td>{{$key->idem}}</td>
                                     <td>{{$key->tipo}}</td>
-                                    <td>Si</td>
+                                    <!-- <td>Si</td> -->
                                     <td>{{$key->status}}</td>
                                     {{--<td>
                                         @if(\Auth::user()->tipo_usuario == 'Admin')
@@ -361,7 +361,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>¿El inmueble posee estacionamientos?</label>
@@ -373,7 +373,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">

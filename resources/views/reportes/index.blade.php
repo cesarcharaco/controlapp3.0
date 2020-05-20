@@ -105,6 +105,7 @@
 				        		</div>
 				        	</div>
 				        @else
+				        	<input type="hidden" name="id_residentes[]" value="{{\Auth::user()->id}}">
 				        	<div class="col-md-12">
 				        		<div class="form-group">
 				        			<label class="text-primary">Inmuebles</label>

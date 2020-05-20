@@ -17,8 +17,10 @@ class ResidentesController extends Controller
      */
     public function index()
     {
-        $residentes=Residentes::all();
-        return View('residentes.index', compact('residentes'));
+        $inmuebles=Inmuebles::all();
+        $estacionamientos=Estacionamientos::all();
+        $residentes=Residentes::where('id','<>',0)->orderBy('rut','ASC')->get();;
+        return View('residentes.index', compact('residentes','inmuebles','estacionamientos'));
     }
 
     /**
