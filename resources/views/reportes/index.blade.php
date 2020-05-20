@@ -9,6 +9,37 @@
             </div>
         </div>
         @include('flash::message')
+
+        <div class="card">
+        	<div class="card-header">
+        		<h3>Reporte General</h3>
+        	</div>
+        	<div class="card-body">
+
+
+
+        		<form action="{{ route('reportes.general') }}" method="POST" accept-charset="utf-8">
+			   	@csrf
+
+			        <label class="text-primary">Meses</label>
+	        		<div class="row">
+	        			<div class="col-md-8">
+			        		<div class="form-group">
+			        			<select class="form-control select2 border border-default" multiple name="id_mes[]">
+			        				@foreach($meses as $key)
+			        					<option value="{{$key->id}}">{{$key->mes}}</option>
+			        				@endforeach
+			        			</select>
+			        		</div>
+	        			</div>
+	        			<div class="col-md-4">
+	        				<button type="submit" class="btn btn-primary btn-rounded" style="font-size: 19px;">Generar reporte</button>
+	        			</div>
+	        		</div>
+
+	        	</form>
+        	</div>
+        </div>
         <div class="card">
             <div class="card-body">
                 
