@@ -97,7 +97,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
 	Route::resource('reportes','ReportesController');
-
+	Route::post('reportes/general','ReportesController@general')->name('reportes.general');
 
 
 
