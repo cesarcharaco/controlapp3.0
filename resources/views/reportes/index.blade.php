@@ -36,7 +36,7 @@
 	        			<div class="col-md-4">
 			        		<div class="form-group">
 			        			<label class="text-primary">Año</label>
-			        			<select class="form-control select2 border border-default" multiple name="anio">
+			        			<select class="form-control select2 border border-default" name="anio">
 			        				<option value="{{ date('Y')-1 }}" selected>{{ date('Y')-1 }}</option>
 			        				<option value="{{ date('Y') }}">{{ date('Y') }}</option>
 			        				<option value="{{ date('Y')+1 }}">{{ date('Y')+1 }}</option>
