@@ -231,9 +231,9 @@ function estacionamientos_asig($id_residente)
 
 	return $mostrar;
 }
-function gasto_comun_mes($mes,$id_residente)
+function gasto_comun_mes($mes,$id_residente,$anio)
 {
-	$anio=date('Y');
+	
 	$cont=0;
 	$cont2=0;
 	$residente=App\Residentes::find($id_residente);
@@ -260,7 +260,7 @@ function gasto_comun_mes($mes,$id_residente)
 
 }
 
-function status_gastos_i($mes,$id_residente)
+function status_gastos_i($mes,$id_residente,$anio)
 {
 	$inmueble="";
 	$residente=App\Residentes::find($id_residente);
@@ -268,7 +268,7 @@ function status_gastos_i($mes,$id_residente)
 	foreach ($residente->inmuebles as $key) {
         $inmueble.=$key->idem.": ";
         foreach ($key->mensualidades as $key2) {
-            if($key2->mes==$mes){
+            if($key2->mes==$mes && $key2->anio==$anio){
                 foreach ($key2->pago as $key3) {
                     $inmueble.=$key3->status." \n ";
                 }
@@ -279,7 +279,7 @@ function status_gastos_i($mes,$id_residente)
 	return $inmueble;
 }
 
-function status_gastos_e($mes,$id_residente)
+function status_gastos_e($mes,$id_residente,$anio)
 {
 	$estacionamiento="";
 	$residente=App\Residentes::find($id_residente);
@@ -288,7 +288,7 @@ function status_gastos_e($mes,$id_residente)
     foreach ($residente->estacionamientos as $key) {
         $estacionamiento.=$key->idem.": ";
         foreach ($key->mensualidad as $key2) {
-            if($key2->mes==$mes){
+            if($key2->mes==$mes && $key2->anio==$anio){
                 foreach ($key2->pago as $key3) {
                     $estacionamiento.=$key3->status." \n ";
                 }
@@ -299,19 +299,19 @@ function status_gastos_e($mes,$id_residente)
     return $estacionamiento;
 }
 
-function montos_mr($mes,$id_residente)
+function montos_mr($mes,$id_residente,$anio)
 {
 	$total=0;
 	$residente=App\Residentes::find($id_residente);
 
 	foreach ($residente->mr as $key) {
-		if($key->pivot->mes==$mes){
+		if($key->pivot->mes==$mes && $key->anio==$anio){
 			$total+=$key->monto;
 		}
 	}
 	return $total;
 }
-function status_montos_mr($mes,$id_residente)
+function status_montos_mr($mes,$id_residente,$anio)
 {
 $enviada=0;
 $pagada=0;
@@ -320,7 +320,7 @@ $resumen="";
 	$residente=App\Residentes::find($id_residente);
 	
 	foreach ($residente->mr as $key) {
-		if($key->pivot->mes==$mes){
+		if($key->pivot->mes==$mes && $key->anio==$anio){
 			switch ($key->pivot->status) {
 			case 'Enviada':
 				$enviada++;

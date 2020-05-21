@@ -104,7 +104,7 @@
 					<th>Año</th>
 				</tr>
 				<tr>
-					<td>{{ date('Y') }}</td>
+					<td>{{ $anio }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -157,14 +157,14 @@
 					</tr>
 					<tr>
 						<td>{{ estacionamientos_asig($key->id) }}</td>
-						<td>{{ gasto_comun_mes($meses[$i],$key->id) }}</td>
+						<td>{{ gasto_comun_mes($meses[$i],$key->id,$anio) }}</td>
 						<td> 
-							{{ status_gastos_i($meses[$i],$key->id) }}
+							{{ status_gastos_i($meses[$i],$key->id,$anio) }}
 							<br>
-							{{ status_gastos_e($meses[$i],$key->id) }}
+							{{ status_gastos_e($meses[$i],$key->id,$anio) }}
 						</td>
-						<td>{{ montos_mr($meses[$i],$key->id) }}</td>
-						<td>{{ status_montos_mr($meses[$i],$key->id) }}</td>
+						<td>{{ montos_mr($meses[$i],$key->id,$anio) }}</td>
+						<td>{{ status_montos_mr($meses[$i],$key->id,$anio) }}</td>
 						<td></td>
 					</tr>
 					

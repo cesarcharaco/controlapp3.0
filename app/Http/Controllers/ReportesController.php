@@ -174,6 +174,7 @@ class ReportesController extends Controller
    
     public function general(Request $request)
     {
+        $anio=$request->anio;
         $meses[]=array();
         if (is_null($request->id_mes)) {
             flash('No ha seleccionado ningún mes, intente otra vez')->warning()->important();
@@ -193,7 +194,8 @@ class ReportesController extends Controller
 
         $pdf = PDF::loadView('reportes/PDF/ReporteGeneral', array(
             'residentes'=>$residentes,
-            'meses'=>$meses
+            'meses'=>$meses,
+            'anio' => $anio
         ));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream('reportes/ReporteGeneral.pdf');
