@@ -341,3 +341,4 @@ $resumen="";
 	$resumen='Enviada: '.$enviada.' | Pagada: '.$pagada.' | Por Confirmar: '.$por_confirmar;
 	return $resumen;
 }
+

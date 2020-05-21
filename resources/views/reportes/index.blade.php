@@ -37,9 +37,9 @@
 			        		<div class="form-group">
 			        			<label class="text-primary">Año</label>
 			        			<select class="form-control select2 border border-default" multiple name="anio">
-			        				@foreach($anios as $key)
-			        					<option value="{{$key->anio}}">{{$key->anio}}</option>
-			        				@endforeach
+			        				<option value="{{ date('Y')-1 }}" selected>{{ date('Y')-1 }}</option>
+			        				<option value="{{ date('Y') }}">{{ date('Y') }}</option>
+			        				<option value="{{ date('Y')+1 }}">{{ date('Y')+1 }}</option>
 			        			</select>
 			        		</div>
 	        			</div>
