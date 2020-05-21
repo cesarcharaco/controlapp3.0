@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Reportes</title>
+	<title>Reporte Específico</title>
 </head>
 <body>
 	<div align="float-left">AÑO:</div>
