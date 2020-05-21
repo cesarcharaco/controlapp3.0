@@ -90,13 +90,49 @@
 				<td>{{ $key->status }}</td>
 				<td>{{ $key->estacionamiento }}</td>
 				<td>{{ $key->cuantos }}</td>
-				<td>{{ $key->estado_pago }}</td>
+				<td>{{ alquiler_i($meses[$i],$key->id,$anio) }}</td>
 			</tr>
 			@endforeach
 		@endfor
-
+		<tr>
+			<td colspan="6" style="background-color: green;"><br></td>
+		</tr>
 	</tbody>
 </table>
+@endif
+@if(count($estacionamientos)>0)
+<table width="100%" border="1">
+	<tbody>
+		<tr>
+			<th colspan="3">ESTACIONAMIENTOS</th>
+		</tr>
+		@for($i=0; $i < count($meses); $i++)
+			<tr>
+				<th>Año: {{ $anio }} </th>
+				<th >Mes: {{ meses($meses[$i]) }}</th>
+				<th></th>
+			</tr>
+		<tr>
+			<th>IDEM</th>
+			<th>STATUS</th>
+			<th>ESTADO DE ALQUILER</th>
+		</tr>
+			@foreach($estacionamientos as $key)
+			<tr>
+				<td>{{ $key->idem }}</td>
+				<td>{{ $key->status }}</td>
+				<td>{{ alquiler_e($meses[$i],$key->id_estacionamiento,$anio) }}</td>
+			</tr>
+			@endforeach
+		@endfor
+		<tr>
+			<td colspan="6" style="background-color: green;"><br></td>
+		</tr>
+	</tbody>
+</table>
+@endif
+@if(count($residentes)==0 && count($inmuebles)==0 && count($estacionamientos)==0)
+<center><h1></h1></center>
 @endif
 </body>
 </html>

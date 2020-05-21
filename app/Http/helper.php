@@ -245,7 +245,7 @@ function gasto_comun_mes($mes,$id_residente,$anio)
 	}
 
 	foreach ($residente->estacionamientos as $key) {
-		if($key->pivot->status=="En Uso"){
+		if($key->pivot->status=="Ocupado"){
 			$cont2++;
 		}
 	}
@@ -342,3 +342,34 @@ $resumen="";
 	return $resumen;
 }
 
+function alquiler_i($mes,$id_inmueble,$anio)
+{
+	$estado="";
+	$buscar=App\Inmuebles::find($id_inmueble);
+	foreach ($buscar->mensualidades as $key) {
+		if ($key->mes==$mes && $key->anio==$anio) {
+			foreach ($key->pago as $key2) {
+				$estado=$key2->status;
+			}
+		}
+		
+	}
+
+	return $estado;
+}
+
+function alquiler_e($mes,$id_estacionamiento,$anio)
+{
+	$estado="";
+	$buscar=App\Estacionamientos::find($id_estacionamiento);
+	foreach ($buscar->mensualidad as $key) {
+		if ($key->mes==$mes && $key->anio==$anio) {
+			foreach ($key->pago as $key2) {
+				$estado=$key2->status;
+			}
+		}
+		
+	}
+
+	return $estado;
+}

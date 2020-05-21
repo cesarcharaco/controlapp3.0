@@ -71,7 +71,7 @@ class ReportesController extends Controller
         
         //preparando variable para anios de inmuebles
         if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
-            $sql_i="SELECT inmuebles.*,pagos.status AS estado_pago FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades,pagos WHERE residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id AND mensualidades.id=pagos.id_mensualidad  AND mensualidades.anio=".$request->anio." ";
+            $sql_i="SELECT inmuebles.* FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades,pagos WHERE residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id AND mensualidades.anio=".$request->anio." ";
         } else {
             $sql_i="";
         }
@@ -158,6 +158,7 @@ class ReportesController extends Controller
             $mr=null;
         }
         $anio=$request->anio;
+
         $pdf = PDF::loadView('reportes/PDF/ReporteEspecifico', array(
             'inmuebles'=>$inmuebles,
             'estacionamientos'=>$estacionamientos,
@@ -191,14 +192,20 @@ class ReportesController extends Controller
             }
             
         }
-
-        $pdf = PDF::loadView('reportes/PDF/ReporteGeneral', array(
-            'residentes'=>$residentes,
-            'meses'=>$meses,
-            'anio' => $anio
-        ));
-        $pdf->setPaper('A4', 'landscape');
-        return $pdf->stream('reportes/ReporteGeneral.pdf');
+        if (count($residentes)==0) {
+           flash('No existen datos para mostrar')->warning()->important();
+            return redirect()->back();
+        } else {
+            
+            $pdf = PDF::loadView('reportes/PDF/ReporteGeneral', array(
+                'residentes'=>$residentes,
+                'meses'=>$meses,
+                'anio' => $anio
+            ));
+            $pdf->setPaper('A4', 'landscape');
+            return $pdf->stream('reportes/ReporteGeneral.pdf');
+        }
+        
         
     }
 
