@@ -19,7 +19,7 @@ class MultasRecargasController extends Controller
         ->join('resi_has_mr','resi_has_mr.id_residente','=','residentes.id')
         ->join('multas_recargas','multas_recargas.id','=','resi_has_mr.id_mr')
         ->where('residentes.id_usuario',\Auth::user()->id)
-        ->select('multas_recargas.*')
+        ->select('multas_recargas.*','resi_has_mr.mes')
         ->get();
 
         // dd(count($asignacion));
@@ -170,7 +170,8 @@ class MultasRecargasController extends Controller
 
                         \DB::table('resi_has_mr')->insert([
                             'id_residente' => $residentes[$i]->id,
-                            'id_mr' => $request->id_mr[$j]
+                            'id_mr' => $request->id_mr[$j],
+                            'mes' => date('m')
                         ]);
                     }
 
@@ -188,7 +189,8 @@ class MultasRecargasController extends Controller
 
                     \DB::table('resi_has_mr')->insert([
                         'id_residente' => $request->id_residente[$i],
-                        'id_mr' => $request->id_mr[$j]
+                        'id_mr' => $request->id_mr[$j],
+                        'mes' => date('m')
                     ]);
                 }
             }

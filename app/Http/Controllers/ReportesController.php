@@ -55,22 +55,7 @@ class ReportesController extends Controller
         return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         /*"id_meses" => array:2 [▶]
@@ -152,14 +137,16 @@ class ReportesController extends Controller
         }else{
             $mr=null;
         }
-
-        $pdf = PDF::loadView('reportes/PDF/PDF', array(
+        $sql_r="SELECT * FROM residentes";
+        $residentes=\DB::select($sql_r);
+        $pdf = PDF::loadView('reportes/PDF/ReporteEspecifico', array(
             'inmuebles'=>$inmuebles,
             'estacionamientos'=>$estacionamientos,
-            'mr'=>$mr
+            'mr'=>$mr,
+            'residentes' => $residentes
         ));
         $pdf->setPaper('A4', 'landscape');
-        return $pdf->stream('reportes/Reporte_PDF.pdf');
+        return $pdf->stream('reportes/ReporteEspecifico.pdf');
         
     }
 
@@ -168,10 +155,27 @@ class ReportesController extends Controller
     {
         $meses[]=array();
         if (is_null($request->id_mes)) {
-            
+            flash('No ha seleccionado ningún mes, intente otra vez')->warning()->important();
+            return redirect()->back();
         } else {
-            # code...
+            for ($i=0; $i < count($request->id_mes); $i++) { 
+                $meses[$i]=$request->id_mes[$i];
+            }
+
+            if (\Auth::user()->tipo_usuario=="Residente") {
+                $residentes=Residentes::where('id_usuario',\Auth::user()->id)->get();
+            } else {
+                $residentes=Residentes::all();
+            }
+            
         }
+
+        $pdf = PDF::loadView('reportes/PDF/ReporteGeneral', array(
+            'residentes'=>$residentes,
+            'meses'=>$meses
+        ));
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream('reportes/ReporteGeneral.pdf');
         
     }
 

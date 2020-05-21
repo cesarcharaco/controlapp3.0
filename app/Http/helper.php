@@ -162,3 +162,182 @@ function pc_e()
 
 	return count($buscar);
 }
+
+function meses($num_mes)
+{
+	switch ($num_mes) {
+		case 1:
+			return "Enero";
+			break;
+		case 2:
+			return "Febrero";
+			break;
+		case 3:
+			return "Marzo";
+			break;
+		case 4:
+			return "Abril";
+			break;
+		case 5:
+			return "Mayo";
+			break;
+		case 6:
+			return "Junio";
+			break;
+		case 7:
+			return "Julio";
+			break;
+		case 8:
+			return "Agosto";
+			break;
+		case 9:
+			return "Septiembre";
+			break;
+		case 10:
+			return "Octubre";
+			break;
+		case 11:
+			return "Noviembre";
+			break;
+		case 12:
+			return "Diciembre";
+			break;
+	}
+}
+
+function inmuebles_asig($id_residente)
+{
+	$mostrar="";
+
+	$residente=App\Residentes::find($id_residente);
+	foreach ($residente->inmuebles as $key) {
+		if($key->pivot->status=="En Uso"){
+			$mostrar.=$key->idem."\n";
+		}
+	}
+
+	return $mostrar;
+}
+function estacionamientos_asig($id_residente)
+{
+	$mostrar="";
+
+	$residente=App\Residentes::find($id_residente);
+	foreach ($residente->estacionamientos as $key) {
+		if($key->pivot->status=="En Uso"){
+			$mostrar.=$key->idem."\n";
+		}
+	}
+
+	return $mostrar;
+}
+function gasto_comun_mes($mes,$id_residente)
+{
+	$anio=date('Y');
+	$cont=0;
+	$cont2=0;
+	$residente=App\Residentes::find($id_residente);
+	
+	foreach ($residente->inmuebles as $key) {
+		if($key->pivot->status=="En Uso"){
+			$cont++;
+		}
+	}
+
+	foreach ($residente->estacionamientos as $key) {
+		if($key->pivot->status=="En Uso"){
+			$cont2++;
+		}
+	}
+	$total=0;
+	$monto_i=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Inmueble')->first();
+	$total+=($cont*$monto_i->monto);
+	$monto_i=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Estacionamiento')->first();
+	$total+=($cont2*$monto_i->monto);
+
+	return $total;
+
+
+}
+
+function status_gastos_i($mes,$id_residente)
+{
+	$inmueble="";
+	$residente=App\Residentes::find($id_residente);
+	
+	foreach ($residente->inmuebles as $key) {
+        $inmueble.=$key->idem.": ";
+        foreach ($key->mensualidades as $key2) {
+            if($key2->mes==$mes){
+                foreach ($key2->pago as $key3) {
+                    $inmueble.=$key3->status." \n ";
+                }
+            }
+        }
+    }
+	
+	return $inmueble;
+}
+
+function status_gastos_e($mes,$id_residente)
+{
+	$estacionamiento="";
+	$residente=App\Residentes::find($id_residente);
+	
+	
+    foreach ($residente->estacionamientos as $key) {
+        $estacionamiento.=$key->idem.": ";
+        foreach ($key->mensualidad as $key2) {
+            if($key2->mes==$mes){
+                foreach ($key2->pago as $key3) {
+                    $estacionamiento.=$key3->status." \n ";
+                }
+            }
+        }
+    }
+    
+    return $estacionamiento;
+}
+
+function montos_mr($mes,$id_residente)
+{
+	$total=0;
+	$residente=App\Residentes::find($id_residente);
+
+	foreach ($residente->mr as $key) {
+		if($key->pivot->mes==$mes){
+			$total+=$key->monto;
+		}
+	}
+	return $total;
+}
+function status_montos_mr($mes,$id_residente)
+{
+$enviada=0;
+$pagada=0;
+$por_confirmar=0;
+$resumen="";
+	$residente=App\Residentes::find($id_residente);
+	
+	foreach ($residente->mr as $key) {
+		if($key->pivot->mes==$mes){
+			switch ($key->pivot->status) {
+			case 'Enviada':
+				$enviada++;
+				break;
+			case 'Pagada':
+				$pagada++;
+				break;
+			case 'Por Confirmar':
+				$por_confirmar++;
+				break;
+			
+			default:
+				# code...
+				break;
+		}			
+		}
+	}
+	$resumen='Enviada: '.$enviada.' | Pagada: '.$pagada.' | Por Confirmar: '.$por_confirmar;
+	return $resumen;
+}

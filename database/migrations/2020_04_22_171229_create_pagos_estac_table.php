@@ -16,7 +16,7 @@ class CreatePagosEstacTable extends Migration
         Schema::create('pagos_estac', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_mens_estac');
-            $table->enum('status',['Cancelado','Pendiente','No Aplica'])->default('Pendiente');
+            $table->enum('status',['Cancelado','Pendiente','No Aplica','Por Confirmar','Por Confirmar'])->default('Pendiente');
 
             $table->foreign('id_mens_estac')->references('id')->on('mens_estac')->onDelete('cascade');
             $table->timestamps();
