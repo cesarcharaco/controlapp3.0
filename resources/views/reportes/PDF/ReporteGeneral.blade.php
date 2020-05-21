@@ -7,11 +7,20 @@
 <head>
 	<title>Reporte General</title>
 	<style type="text/css">
+
+		body {
+			/*background-image: url('../../public/assets/images/fondos.png');
+			background-repeat: no-repeat;
+			background-attachment: fixed;*/
+
+		  	font-family: 'helvetica neue', helvetica, arial, sans-serif;
+		}
+
 		table {
 			table-layout: fixed;
 			width: 100%;
 			border-collapse: collapse;
-			border: 3px solid blue;
+			border: 3px solid grey;
   			border-radius: 1em;
   			overflow: hidden;
 		}
@@ -37,9 +46,6 @@
 		}
 
 		/* --------------------------------------------------- */
-		html {
-		  font-family: 'helvetica neue', helvetica, arial, sans-serif;
-		}
 
 		thead th, tfoot th {
 		  font-family: 'Rock Salt', cursive;
@@ -65,32 +71,27 @@
 		/* --------------------------------------------------------- */
 
 		thead, tfoot {
-		  background: url(leopardskin.jpg);
 		  color: white;
 		  text-shadow: 1px 1px 1px black;
 		}
 
 		thead th, tfoot th, tfoot td {
 		  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
-		  border: 3px solid purple;
+		  border: 3px solid blue;
 		}
 
 
 		/* --------------------------------------------------------- */
 		tbody tr:nth-child(odd) {
-		  background-color: #70FFE6;
+		  background-color: white;
 		}
 
 		tbody tr:nth-child(even) {
 		  background-color: #D5D7D8;
 		}
 
-		tbody tr {
-		  background-image: url(noise.png);
-		}
-
 		table {
-		  background-color: grey;
+		  background-color: #D5D7D8;
 		}
 	</style>
 </head>
@@ -127,53 +128,53 @@
 			<th>Asignación de estacionamiento</th>
 		</thead> --}}
 		<tbody>
-	@for($i=0; $i < count($meses); $i++)
-	<tr>
-		<th colspan="6">Mes: {{ meses($meses[$i]) }}</th>
-	</tr>
-		@foreach($residentes as $key)
-			<tr>
-				<th>Inmueble(s)</th>
-				<th>Nombre residente</th>
-				<th>Rut/Clave</th>
-				<th colspan="2">Correo</th>
-				<th>Teléfono de contacto</th>
-			</tr>
-			<tr>
-				<td>{{ inmuebles_asig($key->id) }}</td>
-				<td>{{ $key->apellidos }}, {{ $key->nombres }}</td>
-				<td>{{ $key->rut }}</td>
-				<td colspan="2">{{ $key->usuario->email }}</td>
-				<td>{{ $key->telefono }}</td>
-			</tr>
-			<tr>
-				<th>Estacionamiento(s)</th>
-				<th>Monto gasto común</th>
-				<th>Estado de pago de gasto común</th>
-				<th>Monto de Recarga</th>
-				<th>Estado de pago de recarga</th>
-				<th>Detalle de recarga</th>
-			</tr>
-			<tr>
-				<td>{{ estacionamientos_asig($key->id) }}</td>
-				<td>{{ gasto_comun_mes($meses[$i],$key->id) }}</td>
-				<td> 
-					{{ status_gastos_i($meses[$i],$key->id) }}
-					<br>
-					{{ status_gastos_e($meses[$i],$key->id) }}
-				</td>
-				<td>{{ montos_mr($meses[$i],$key->id) }}</td>
-				<td>{{ status_montos_mr($meses[$i],$key->id) }}</td>
-				<td></td>
-			</tr>
-			
+			@for($i=0; $i < count($meses); $i++)
+				<tr>
+					<th colspan="6">Mes: {{ meses($meses[$i]) }}</th>
+				</tr>
+				@foreach($residentes as $key)
+					<tr>
+						<th>Inmueble(s)</th>
+						<th>Nombre residente</th>
+						<th>Rut/Clave</th>
+						<th colspan="2">Correo</th>
+						<th>Teléfono de contacto</th>
+					</tr>
+					<tr>
+						<td>{{ inmuebles_asig($key->id) }}</td>
+						<td>{{ $key->apellidos }}, {{ $key->nombres }}</td>
+						<td>{{ $key->rut }}</td>
+						<td colspan="2">{{ $key->usuario->email }}</td>
+						<td>{{ $key->telefono }}</td>
+					</tr>
+					<tr>
+						<th>Estacionamiento(s)</th>
+						<th>Monto gasto común</th>
+						<th>Estado de pago de gasto común</th>
+						<th>Monto de Recarga</th>
+						<th>Estado de pago de recarga</th>
+						<th>Detalle de recarga</th>
+					</tr>
+					<tr>
+						<td>{{ estacionamientos_asig($key->id) }}</td>
+						<td>{{ gasto_comun_mes($meses[$i],$key->id) }}</td>
+						<td> 
+							{{ status_gastos_i($meses[$i],$key->id) }}
+							<br>
+							{{ status_gastos_e($meses[$i],$key->id) }}
+						</td>
+						<td>{{ montos_mr($meses[$i],$key->id) }}</td>
+						<td>{{ status_montos_mr($meses[$i],$key->id) }}</td>
+						<td></td>
+					</tr>
+					
 
-		@endforeach
-		<tr>
-			<td colspan="6" style="background-color: blue;"><br></td>
-		</tr>
-		
-	@endfor
+				@endforeach
+				<tr>
+					<td colspan="6" style="background-color: gray;"><br></td>
+				</tr>
+				
+			@endfor
 		</tbody>
 	</table>
 
