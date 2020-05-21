@@ -300,4 +300,10 @@ class PagosController extends Controller
         }
     }
 
+
+    public function inmuebles_residente($id)
+    {
+        # code...
+    }
+
 }

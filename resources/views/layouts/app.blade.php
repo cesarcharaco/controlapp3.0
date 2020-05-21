@@ -411,7 +411,9 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>¿Asignar inmueble?</label>
-                                                            <select name="id_inmuebles" class="form select2" multiple=""></select>
+                                                            <select name="id_inmuebles" class="form select2" multiple="" id="asignaInmueResidente">
+                                                                
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -419,13 +421,114 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>¿Asignar estacionamiento?</label>
-                                                            <select name="id_estacionamientos" class="form select2" multiple=""></select>
+                                                            <select name="id_estacionamientos" class="form select2" multiple="" id="asignaEstaResidente">
+
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-success" >Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            
+                <!-----------------------------------------------PAGAR MESES RESIDENTE---------------------------------------- -->
+                            <form action="#" method="POST">
+                                @csrf
+                                <div class="modal fade" id="pagarMesesModal" role="dialog">
+                                    <div class="modal-dialog modals-default">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Pagar meses</h4>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Meses</label>
+                                                            <select class="form-control select2" required name="id_mes[]" id="MesPagarResi" onchange="pagarMultasResidentes(this.value)">
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="muestraMesesAPagar" style="display: none;">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="text-primary">Inmuebles</label>
+                                                                <select class="form-control select2" name="id_inmuebles[]" id="InmuPagarResi">
+                                                                    
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="text-warning">Estacionamientos</label>
+                                                                <select class="form-control select2" name="id_estacionamientos[]" id="EstaPagarResi">
+                                                                    
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="muestraMesesAPagar2" style="display: none;">
+                                                    <h3 align="center">No hay inmuebles que pagar</h3>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="hidden" name="opcion" id="opcion" value="1">
+                                                <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                <!-----------------------------------------------PAGAR MULTAS RESIDENTE---------------------------------------- -->
+                            <form action="#" method="POST">
+                                @csrf
+                                <div class="modal fade" id="pagarMultasModal" role="dialog">
+                                    <div class="modal-dialog modals-default">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Pagar Multas</h4>
+                                                <div id="CargandoMultasResi" style="display: none;">
+                                                    <div class="spinner-border text-warning m-2" role="status">
+                                                        <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Multas</label>
+                                                            <select class="form-control select2" required multiple name="id_multa[]" id="MultasPagarResi">
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="hidden" name="opcion" id="opcion" value="1">
+                                                <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
                                             </div>
                                         </div>
                                     </div>

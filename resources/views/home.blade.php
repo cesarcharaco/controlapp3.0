@@ -69,7 +69,7 @@
                                 
                             <div class="form-group">
                                     <label class="mb-0 text-success">Nuevo Residente</label>
-                                    <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" data-toggle="modal" data-target="#crearResidente" class="btn btn-success">Agregar</a></h6>
+                                    <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" class="btn btn-success" onclick="NuevoResidente()">Agregar</a></h6>
                                 </div>
                             </div>
                         </div>
@@ -145,6 +145,7 @@
                 <div class="row">
                     <div class="col-md-6 col-xl-6">
                         <div class="card">
+                            <input type="hidden" name="id_residente" id="id_reside" value="{{\Auth::user()->id}}">
                             <div class="card-body p-0">
                                 <div class="media p-3">
                                     <div class="media-body">
@@ -155,7 +156,7 @@
                                  
                                     <div class="form-group">
                                         <label class="mb-0 text-primary">Pagar mes</label>
-                                        <h6 class="mb-0"><a href="#" style="width: 100% !important;" data-toggle="modal" data-target="#crearInmueble"  class="btn btn-primary">Pagar</a></h6>
+                                        <h6 class="mb-0"><a href="#" style="width: 100% !important;" onclick="BMesesResidente()" class="btn btn-primary">Pagar</a></h6>
                                     </div>
 
                                 
@@ -175,12 +176,10 @@
                                     
                                     <div class="form-group">
                                         <label class="mb-0 text-danger">Pagar multa</label>
-                                        <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" onclick="asignar_mr()" data-toggle="modal" data-target="#AsignarMR" class="btn btn-danger">Pagar</a></h6>
+                                        <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente()" class="btn btn-danger">Pagar</a></h6>
                                     </div>
                                 </div>
-                            </div>
-                            
-                        
+                            </div>                            
                         </div>
                     </div>
                 </div>

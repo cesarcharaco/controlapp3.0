@@ -83,6 +83,7 @@
 	}
 
 	function asignar_mr() {
+		$("#campoMultaRecarga").empty();
 		$.get("multas_recargas/1/buscar_mr_all",function (data) {
 	    })
 	    .done(function(data) {
@@ -474,4 +475,127 @@
 			$('#spinnerI2').css('display','none');
 		});
 	}
+
+
+
+	function NuevoResidente() {
+		$('#crearResidente').modal('show');
+		$('#asignaInmueResidente').empty();
+		$('#asignaEstaResidente').empty();
+
+		$.get('inmuebles_disponibles/1044/buscar', function (data) {
+		})
+		.done(function(data) {
+
+			if(data.length>0){
+
+				for (var i = 0; i < data.length; i++) {
+					$('#asignaInmueResidente').append('<option value="'+data[i].id+'">'+data[i].idem+'</option>');
+				}
+			}else{
+				$('#asignaInmueResidente').append('<option>No hay inmuebles disponibles para asignar</option>');
+			}
+
+		});
+
+		$.get('estacionamientos_disponibles/1044/buscar', function (data) {
+		})
+		.done(function(data) {
+
+			if(data.length>0){
+
+				for (var i = 0; i < data.length; i++) {
+					$('#asignaEstaResidente').append('<option value="'+data[i].id+'">'+data[i].idem+'</option>');
+				}
+			}else{
+				$('#asignaEstaResidente').append('<option>No hay estacionamientos disponibles para asignar</option>');
+			}
+
+		});
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//------------------------VISTA RESIDENTES-------------------------------------
+
+	function BMesesResidente() {
+		$('#pagarMesesModal').modal('show');
+		$('#MesPagarResi').empty();
+		var m=f.getMonth();
+		// alert(m);
+		$('#MesPagarResi').append('<option selected>Seleccione mes a pagar</option>');
+		for (var i = 0; i < 12; i++) {
+			if(m<=i){
+				$('#MesPagarResi').append('<option value="'+i+'">'+mes[i]+'</option>');
+			}
+		}
+	}
+
+
+	function pagarMultasResidentes(mesP) {
+		$('#muestraMesesAPagar').css('display','none');
+		$('#muestraMesesAPagar2').css('display','none');
+		$.get('multas_residentes/'+id_residente+'/buscar', function(data) {
+		})
+		.done(function(data) {
+			if(data.length>0){
+				$('#muestraMesesAPagar').css('display','block');
+			}else{
+				$('#muestraMesesAPagar2').css('display','block');
+			}
+		});
+	}
+
+
+
+
+	function pagarMultasResidente() {
+		$('#CargandoMultasResi').css('display','block');
+		$('#MultasPagarResi').empty();
+		$('#pagarMultasModal').modal('show');
+		var id_residente=$('#id_reside').val();
+
+		$.get('multas_residentes/'+id_residente+'/buscar', function(data) {
+		})
+		.done(function(data) {
+			if(data.length){
+				for (var i = 0; i < data.length; i++) {
+					if(data[i].tipo == 'Multa'){
+						$('#MultasPagarResi').append('<option class="text-danger" value="'+data[i].id+'">'+data[i].motivo+'  -  '+data[i].monto+'  -  '+data[i].anio+'</option>');
+					}else{
+						$('#MultasPagarResi').append('<option>No tiene multas disponibles para pagar</option>');
+					}
+				}
+			}else{
+				$('#MultasPagarResi').append('<option>No tiene multas disponibles para pagar</option>');
+			}
+			$('#CargandoMultasResi').css('display','none');
+		});
+	}
+
+	//------------------------FIN VISTA RESIDENTES---------------------------------
+
+
+
+
+
 </script>

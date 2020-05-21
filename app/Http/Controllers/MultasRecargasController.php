@@ -238,4 +238,16 @@ class MultasRecargasController extends Controller
         flash('Sanción eliminada con éxito')->success()->important();
             return redirect()->to('multas_recargas');
     }
+
+
+
+    public function multas_residentes($id)
+    {
+        
+        return $multas=\DB::table('multas_recargas')
+        ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->where('resi_has_mr.id_residente',$id)
+        ->select('multas_recargas.*')
+        ->get();
+    }
 }

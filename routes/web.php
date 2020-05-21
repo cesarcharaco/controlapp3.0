@@ -76,6 +76,11 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::post('sanciones/cambiar_status','MultasRecargasController@status_mr')->name('sanciones.cambiar_status');
 	Route::post('sanciones/eliminar','MensualidadesController@eliminar_mr')->name('sanciones.eliminar_mr');
 	Route::get('multas_recargas/{num}/buscar_mr_all','MultasRecargasController@buscar_mr_all');
+	
+	// ------------------------Buscar multas del residente
+	Route::get('multas_residentes/{id_residente}/buscar','MultasRecargasController@multas_residentes');
+
+
 
 	Route::resource('pagos','PagosController');
 
@@ -91,8 +96,9 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('mr/{id_residente}/buscar_anios','ArriendosController@buscar_anios_mr');	
 	Route::get('mr/{id_residente}/{anio}/buscar_mr','ArriendosController@buscar_mr');
 
-
-
+	//-----------------Buscar inmuebles y estacionamientos disponibles
+	Route::get('inmuebles_disponibles/{id}/buscar','InmueblesController@inmuebles_disponibles');
+	Route::get('estacionamientos_disponibles/{id}/buscar','EstacionamientosController@estacionamientos_disponibles');
 
 
 

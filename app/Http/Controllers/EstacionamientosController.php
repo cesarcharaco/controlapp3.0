@@ -355,4 +355,9 @@ class EstacionamientosController extends Controller
         }
         
     }
+
+    public function estacionamientos_disponibles($id)
+    {
+        return $estacionamientos=Estacionamientos::where('status','<>','Ocupado')->get();
+    }
 }

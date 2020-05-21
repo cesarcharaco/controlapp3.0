@@ -364,4 +364,12 @@ class InmueblesController extends Controller
         }
         
     }
+
+    public function inmuebles_disponibles($id)
+    {
+        return $inmuebles=Inmuebles::where('status','<>','No Disponible')->get();
+    }
+
+    
+        
 }
