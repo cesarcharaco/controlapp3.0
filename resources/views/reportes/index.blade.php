@@ -21,10 +21,10 @@
         		<form action="{{ route('reportes.general') }}" method="POST" accept-charset="utf-8">
 			   	@csrf
 
-			        <label class="text-primary">Meses</label>
 	        		<div class="row">
-	        			<div class="col-md-8">
+	        			<div class="col-md-4">
 			        		<div class="form-group">
+			        			<label class="text-primary">Meses</label>
 			        			<select class="form-control select2 border border-default" multiple name="id_mes[]">
 			        				@foreach($meses as $key)
 			        					<option value="{{$key->id}}">{{$key->mes}}</option>
@@ -32,7 +32,19 @@
 			        			</select>
 			        		</div>
 	        			</div>
-	        			<div class="col-md-2">
+
+	        			<div class="col-md-4">
+			        		<div class="form-group">
+			        			<label class="text-primary">Año</label>
+			        			<select class="form-control select2 border border-default" multiple name="anio">
+			        				@foreach($anios as $key)
+			        					<option value="{{$key->anio}}">{{$key->anio}}</option>
+			        				@endforeach
+			        			</select>
+			        		</div>
+	        			</div>
+
+	        			<div class="col-md-2"><br>
 	        				<h3><button type="submit" class="btn btn-danger btn-rounded">Generar PDF</button></h3>
 	        			</div>
 	        		</div>

@@ -6,8 +6,112 @@
 <html>
 <head>
 	<title>Reporte General</title>
+	<style type="text/css">
+		table {
+			table-layout: fixed;
+			width: 100%;
+			border-collapse: collapse;
+			border: 3px solid blue;
+  			border-radius: 1em;
+  			overflow: hidden;
+		}
+
+		thead th:nth-child(1) {
+		  width: 30%;
+		}
+
+		thead th:nth-child(2) {
+		  width: 20%;
+		}
+
+		thead th:nth-child(3) {
+		  width: 15%;
+		}
+
+		thead th:nth-child(4) {
+		  width: 35%;
+		}
+
+		th, td {
+		  padding: 20px;
+		}
+
+		/* --------------------------------------------------- */
+		html {
+		  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+		}
+
+		thead th, tfoot th {
+		  font-family: 'Rock Salt', cursive;
+		}
+
+		th {
+		  /*letter-spacing: 2px;*/
+		}
+
+		td {
+		  letter-spacing: 1px;
+		}
+
+		tbody td {
+		  text-align: center;
+		}
+
+		tfoot th {
+		  text-align: right;
+		}
+
+
+		/* --------------------------------------------------------- */
+
+		thead, tfoot {
+		  background: url(leopardskin.jpg);
+		  color: white;
+		  text-shadow: 1px 1px 1px black;
+		}
+
+		thead th, tfoot th, tfoot td {
+		  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+		  border: 3px solid purple;
+		}
+
+
+		/* --------------------------------------------------------- */
+		tbody tr:nth-child(odd) {
+		  background-color: #70FFE6;
+		}
+
+		tbody tr:nth-child(even) {
+		  background-color: #D5D7D8;
+		}
+
+		tbody tr {
+		  background-image: url(noise.png);
+		}
+
+		table {
+		  background-color: grey;
+		}
+	</style>
 </head>
 <body>
+
+	<div style="float: left">
+		<table style="width: 500px !important;">
+			<tbody>
+				<tr>
+					<th>Año</th>
+				</tr>
+				<tr>
+					<td>{{ date('Y') }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="text-align: right">
+		<img width="250" height="250" style="border-radius: 50px;" src="../public/assets/images/logo.jpg">
+	</div>
+	<!-- <p> Formato PDF para explicar la gestión y datos que se han almacenado hasta ahora</p> -->
 	<table width="100%" border="1">
 		{{-- <thead>
 			<th>Asignación de inmueble</th>
@@ -25,24 +129,22 @@
 		<tbody>
 	@for($i=0; $i < count($meses); $i++)
 	<tr>
-		<th>Año: {{ date('Y') }}</th>
-		<th >Mes: {{ meses($meses[$i]) }}</th>
-		<th colspan="4"></th>
+		<th colspan="6">Mes: {{ meses($meses[$i]) }}</th>
 	</tr>
 		@foreach($residentes as $key)
 			<tr>
 				<th>Inmueble(s)</th>
 				<th>Nombre residente</th>
 				<th>Rut/Clave</th>
-				<th>Correo</th>
-				<th colspan="2">Teléfono de contacto</th>
+				<th colspan="2">Correo</th>
+				<th>Teléfono de contacto</th>
 			</tr>
 			<tr>
 				<td>{{ inmuebles_asig($key->id) }}</td>
 				<td>{{ $key->apellidos }}, {{ $key->nombres }}</td>
 				<td>{{ $key->rut }}</td>
-				<td>{{ $key->usuario->email }}</td>
-				<td colspan="2">{{ $key->telefono }}</td>
+				<td colspan="2">{{ $key->usuario->email }}</td>
+				<td>{{ $key->telefono }}</td>
 			</tr>
 			<tr>
 				<th>Estacionamiento(s)</th>
@@ -64,9 +166,7 @@
 				<td>{{ status_montos_mr($meses[$i],$key->id) }}</td>
 				<td></td>
 			</tr>
-			<tr>
-				<td colspan="6" style="background-color: black;"><div class="page-break"></div></td>
-			</tr>
+			
 
 		@endforeach
 		<tr>
