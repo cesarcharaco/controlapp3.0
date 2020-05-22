@@ -242,20 +242,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <hr>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Pago común</label>
-                                                            <div class="input-group mb-2">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text">$</div>
-                                                                </div>
-                                                                <input type="number" name="monto[]" class="form-control" placeholder="10">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
+                                                
 
                                                 
                                                 <!-- <div class="row">
@@ -808,19 +795,7 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <!-- <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Pago común</label>
-                                                            <div class="input-group mb-2">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text">$</div>
-                                                                </div>
-                                                                <input type="number" name="monto[]" class="form-control" placeholder="10">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
+                                                
 
                                                 {{--<div class="row">
                                                     <div class="col-md-12">
