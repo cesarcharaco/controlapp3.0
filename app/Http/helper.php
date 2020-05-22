@@ -251,10 +251,13 @@ function gasto_comun_mes($mes,$id_residente,$anio)
 	}
 	$total=0;
 	$monto_i=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Inmueble')->first();
-	$total+=($cont*$monto_i->monto);
-	$monto_i=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Estacionamiento')->first();
+	if(!is_null($monto_i)){
+		$total+=($cont*$monto_i->monto);
+	}
+	$monto_e=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Estacionamiento')->first();
+	if(!is_null($monto_e)){
 	$total+=($cont2*$monto_i->monto);
-
+	}
 	return $total;
 
 
