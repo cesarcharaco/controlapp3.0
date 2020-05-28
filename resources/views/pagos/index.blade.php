@@ -372,6 +372,7 @@
                             </div>
                             <p>Cargando multas y recargas...</p>
                         </div>
+                        <p id="ResidenteTieneMultas" style="display: none;">El residente no posee multas ni recargas</p>
                     </div>
                 </div>
                 <hr>
@@ -629,7 +630,7 @@
         $('#mrSeleccionado').append(
             '<thead>'+
                 '<th>Inmuebles</th>'+
-                '<th>Inmuebles</th>'+
+                '<th>Estacionamientos</th>'+
                 '<th>Multa</th>'+
                 '<th>Recarga</th>'+
                 '<th>Acción</th>'+
@@ -848,11 +849,11 @@
     }
 
     function mis_mr(id_residente) {
+        $('#ResidenteTieneMultas').css('display','none');
         $('#spinner').css('display', 'block');
-        $.get("arriendos/"+id_residente+"/buscar_mr",function (data) {
+        $.get("arriendos/"+id_residente+"/buscar_mr",function (data2) {
         })
         .done(function(data2) {
-
             if (data2.length>0) {
                 for (var i = 0; i < data2.length; i++) {
 
@@ -918,6 +919,9 @@
                         }
                     });
                 }
+            }else{
+                $('#spinner').css('display', 'none');
+                $('#ResidenteTieneMultas').css('display','block');
             }
 
 
