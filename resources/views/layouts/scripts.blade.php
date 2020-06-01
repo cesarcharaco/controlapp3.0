@@ -560,40 +560,46 @@
 				if(data2.length>0){
 					for (var i = 0; i < data2.length; i++) {
 
-					if(data2[i].alquiler_status=="En Uso"){
-						if(m<data2[i].mes){
-							$('#muestraMesesAPagar').append(
-								'<div class="row">'+
-				                    '<div class="col-md-4">'+
-				                        '<div class="form-group">'+
-				                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-				                            '<label>'+mes[i]+ '</label>'+
-				                        '</div>'+
-				                    '</div>'+
-				                    '<div class="col-md-6">'+
-				                        '<div class="form-group">'+
-			                                '<input type="checkbox" name="monto[]" class="form-control">'+
-				                        '</div>'+
-				                    '</div>'+
-				                '</div>'
-				            );
-						}else{
-							$('#muestraMesesAPagar').append(
-								'<div class="row">'+
-				                    '<div class="col-md-4">'+
-				                        '<div class="form-group">'+
-				                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-				                            '<label>'+mes[i]+ ' <spam class="text-danger">'+data2[i].status+'</spam></label>'+
-				                        '</div>'+
-				                    '</div>'+
-				                    '<div class="col-md-6">'+
-				                        '<div class="form-group">'+
-			                                '<input type="checkbox" name="monto[]" class="form-control">'+
-				                        '</div>'+
-				                    '</div>'+
-				                '</div>'
-				            );
-						}
+						if(data2[i].alquiler_status=="En Uso"){
+							if(m<data2[i].mes){
+								$('#muestraMesesAPagar').append(
+									'<div class="row">'+
+					                    '<div class="col-md-4">'+
+					                        '<div class="form-group">'+
+					                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+					                            '<label>'+mes[i]+ '</label>'+
+					                        '</div>'+
+					                    '</div>'+
+					                    '<div class="col-md-4">'+
+					                    	'<p class="text-success">' +data2[i].status+'</p>'+
+					                    '</div>'+
+					                    '<div class="col-md-4">'+
+					                        '<div class="form-group">'+
+				                                '<input type="checkbox"  name="id[]" value="'+data2[i].id+'" class="form-control">'+
+					                        '</div>'+
+					                    '</div>'+
+					                '</div>'
+					            );
+							}else{
+								$('#muestraMesesAPagar').append(
+									'<div class="row border">'+
+					                    '<div class="col-md-4">'+
+					                        '<div class="form-group">'+
+					                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+					                            '<label style="color:gray;">'+mes[i]+ '</label>'+
+					                        '</div>'+
+					                    '</div>'+
+					                    '<div class="col-md-4">'+
+					                    	'<p class="text-danger"><strong>' +data2[i].status+'</strong></p>'+
+					                    '</div>'+
+					                    '<div class="col-md-4">'+
+					                        '<div class="form-group">'+
+				                                '<input type="checkbox" disabled name="id[]" value="'+data2[i].id+'" class="form-control">'+
+					                        '</div>'+
+					                    '</div>'+
+					                '</div>'
+					            );
+							}
 						}//cierre de if de status alquilado
 					}//cierre del for
 				}else{

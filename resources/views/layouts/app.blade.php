@@ -432,7 +432,7 @@
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4>Pagar meses</h4>
+                                                <h4>Pagar arriendos</h4>
                                                 <button type="button" class="close" data-dismiss="modal">
                                                     <span>&times;</span>
                                                 </button>
@@ -461,7 +461,7 @@
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4>Pagar Multas</h4>
+                                                <h4>Pagar</h4>
                                                 <div id="CargandoMultasResi" style="display: none;">
                                                     <div class="spinner-border text-warning m-2" role="status">
                                                         <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
