@@ -551,7 +551,7 @@
 		$.get("arriendos/"+id_residente+"/buscar_inmuebles2", function(data) {
 		})
 		.done(function(data) {
-
+			
 			$.get("arriendos/"+data[0].id+"/buscar_inmuebles3",function (data2) {
 			})
 
@@ -560,7 +560,8 @@
 				if(data2.length>0){
 					for (var i = 0; i < data2.length; i++) {
 
-						if(m<i){
+					if(data2[i].alquiler_status=="En Uso"){
+						if(m<data2[i].mes){
 							$('#muestraMesesAPagar').append(
 								'<div class="row">'+
 				                    '<div class="col-md-4">'+
@@ -582,7 +583,7 @@
 				                    '<div class="col-md-4">'+
 				                        '<div class="form-group">'+
 				                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
-				                            '<label>'+mes[i]+ ' <spam class="text-danger">Vencido</spam></label>'+
+				                            '<label>'+mes[i]+ ' <spam class="text-danger">'+data2[i].status+'</spam></label>'+
 				                        '</div>'+
 				                    '</div>'+
 				                    '<div class="col-md-6">'+
@@ -593,7 +594,8 @@
 				                '</div>'
 				            );
 						}
-					}
+						}//cierre de if de status alquilado
+					}//cierre del for
 				}else{
 					$('#muestraMesesAPagar2').css('display','block');
 				}
