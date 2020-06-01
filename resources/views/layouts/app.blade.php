@@ -438,38 +438,8 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Meses</label>
-                                                            <select class="form-control select2" required name="id_mes[]" id="MesPagarResi" onchange="pagarMultasResidentes(this.value)">
-                                                                
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div id="muestraMesesAPagar" style="display: none;">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label class="text-primary">Inmuebles</label>
-                                                                <select class="form-control select2" name="id_inmuebles[]" id="InmuPagarResi">
-                                                                    
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label class="text-warning">Estacionamientos</label>
-                                                                <select class="form-control select2" name="id_estacionamientos[]" id="EstaPagarResi">
-                                                                    
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div id="muestraMesesAPagar">
+                                                    
                                                 </div>
                                                 <div id="muestraMesesAPagar2" style="display: none;">
                                                     <h3 align="center">No hay inmuebles que pagar</h3>

@@ -537,31 +537,68 @@
 
 	//------------------------VISTA RESIDENTES-------------------------------------
 
+	
+
+
 	function BMesesResidente() {
 		$('#pagarMesesModal').modal('show');
 		$('#MesPagarResi').empty();
-		var m=f.getMonth();
-		// alert(m);
-		$('#MesPagarResi').append('<option selected>Seleccione mes a pagar</option>');
-		for (var i = 0; i < 12; i++) {
-			if(m<=i){
-				$('#MesPagarResi').append('<option value="'+i+'">'+mes[i]+'</option>');
-			}
-		}
-	}
-
-
-	function pagarMultasResidentes(mesP) {
-		$('#muestraMesesAPagar').css('display','none');
+		$('#muestraMesesAPagar').empty();
 		$('#muestraMesesAPagar2').css('display','none');
-		$.get('multas_residentes/'+id_residente+'/buscar', function(data) {
+		var id_residente = $('#id_reside').val();
+		var m=f.getMonth();
+
+		$.get("arriendos/"+id_residente+"/buscar_inmuebles2", function(data) {
 		})
 		.done(function(data) {
-			if(data.length>0){
-				$('#muestraMesesAPagar').css('display','block');
-			}else{
-				$('#muestraMesesAPagar2').css('display','block');
-			}
+
+			$.get("arriendos/"+data[0].id+"/buscar_inmuebles3",function (data2) {
+			})
+
+
+			.done(function(data2) {
+				if(data2.length>0){
+					for (var i = 0; i < data2.length; i++) {
+
+						if(m<i){
+							$('#muestraMesesAPagar').append(
+								'<div class="row">'+
+				                    '<div class="col-md-4">'+
+				                        '<div class="form-group">'+
+				                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+				                            '<label>'+mes[i]+ '</label>'+
+				                        '</div>'+
+				                    '</div>'+
+				                    '<div class="col-md-6">'+
+				                        '<div class="form-group">'+
+			                                '<input type="checkbox" name="monto[]" class="form-control">'+
+				                        '</div>'+
+				                    '</div>'+
+				                '</div>'
+				            );
+						}else{
+							$('#muestraMesesAPagar').append(
+								'<div class="row">'+
+				                    '<div class="col-md-4">'+
+				                        '<div class="form-group">'+
+				                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+				                            '<label>'+mes[i]+ ' <spam class="text-danger">Vencido</spam></label>'+
+				                        '</div>'+
+				                    '</div>'+
+				                    '<div class="col-md-6">'+
+				                        '<div class="form-group">'+
+			                                '<input type="checkbox" name="monto[]" class="form-control">'+
+				                        '</div>'+
+				                    '</div>'+
+				                '</div>'
+				            );
+						}
+					}
+				}else{
+					$('#muestraMesesAPagar2').css('display','block');
+				}
+
+			});
 		});
 	}
 

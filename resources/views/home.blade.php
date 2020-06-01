@@ -134,6 +134,8 @@
 
         </div>
     @else
+
+        <input type="hidden" name="id_resi" id="id_reside" value="{{$residente->id}}">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('flash::message')
