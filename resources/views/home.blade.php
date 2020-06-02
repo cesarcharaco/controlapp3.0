@@ -151,8 +151,7 @@
                             <div class="card-body p-0">
                                 <div class="media p-3">
                                     <div class="media-body">
-                                        <span class="text-muted text-uppercase font-size-12 font-weight-bold">Mes de Pago</span>
-                                        <h6 class="mb-0">Mes a pagar:</h6>
+                                        <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago de condominio</span>
                                         <h6 class="mb-0">Pagos retrasados: </h6>
                                     </div>
                                  
