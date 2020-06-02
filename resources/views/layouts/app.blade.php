@@ -426,7 +426,7 @@
 
                             
                 <!-----------------------------------------------PAGAR MESES RESIDENTE---------------------------------------- -->
-                            <form action="#" method="POST">
+                            <form action="{{ route('pagos.store') }}" method="POST">
                                 @csrf
                                 <div class="modal fade" id="pagarMesesModal" role="dialog">
                                     <div class="modal-dialog modals-default">

@@ -576,7 +576,7 @@
 					                    '<div class="col-md-4">'+
 											'<div class="mt-3">'+
 	                                            '<div class="custom-control custom-checkbox mb-2">'+
-	                                                '<input type="checkbox" class="custom-control-input" id="customCheck1">'+
+	                                                '<input type="checkbox"  name="mes[]" value="'+data2[i].mes+'" class="custom-control-input" id="customCheck1">'+
 	                                                '<label class="custom-control-label" for="customCheck1"></label>'+
 	                                            '</div>'+
 	                                        '</div>'+

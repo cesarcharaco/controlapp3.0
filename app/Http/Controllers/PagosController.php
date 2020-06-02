@@ -54,18 +54,18 @@ class PagosController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
         
         $factura="";
 
 
-        if (is_null($request->id_mensInmueble)==true and is_null($request->id_mensEstaciona)==true and is_null($request->id_mensMulta)==true) {
+        if (is_null($request->mes)==true) {
             flash('No ha seleccionado nada a pagar!')->warning()->important();
         return redirect()->back();
         } else {
-            if (is_null($request->id_mensInmueble)==false) {
-                for ($i=0; $i < count($request->id_mensInmueble); $i++) { 
-                    $pagos=Pagos::where('id_mensualidad',$request->id_mensInmueble[$i])->first();
+            if (is_null($request->mes)==false) {
+                for ($i=0; $i < count($request->mes); $i++) { 
+                    $pagos=Pagos::where('id_mensualidad',$request->mes[$i])->first();
                     $pagos->status="Cancelado";
                     $pagos->save();
                     
@@ -73,9 +73,9 @@ class PagosController extends Controller
                 }
             }
             
-            if(is_null($request->id_mensEstaciona)==false){
-                for ($i=0; $i < count($request->id_mensEstaciona); $i++) { 
-                    $pagosE=PagosE::where('id_mens_estac',$request->id_mensEstaciona[$i])->first();
+            if(is_null($request->mes)==false){
+                for ($i=0; $i < count($request->mes); $i++) { 
+                    $pagosE=PagosE::where('id_mens_estac',$request->mes[$i])->first();
                     $pagosE->status="Cancelado";
                     $pagosE->save();
                     
@@ -83,7 +83,22 @@ class PagosController extends Controller
                 }
             }
 
-            if(is_null($request->id_mensMulta)==false){
+            
+            $factura.="<br></br>Total Cancelado: ".$request->total.", con la referencia: ".$request->referencia."<br>";
+            $reporte=\DB::table('reportes_pagos')->insert([
+                'referencia' => $request->referencia,
+                'reporte' => $factura,
+                'id_residente' => $request->id_residente
+            ]);
+            //dd("---------");
+            flash('Pago realizado con éxito!')->success()->important();
+            return redirect()->back();
+        }
+        
+    }
+    public function pagarmultas(Request $request)
+    {
+        if(is_null($request->id_mensMulta)==false){
                 for ($i=0; $i < count($request->id_mensMulta) ; $i++) { 
                     $mr=MultasRecargas::find($request->id_mensMulta[$i]);
                     //dd($mr->residentes);
@@ -103,13 +118,7 @@ class PagosController extends Controller
                 'reporte' => $factura,
                 'id_residente' => $request->id_residente
             ]);
-            //dd("---------");
-            flash('Pago realizado con éxito!')->success()->important();
-            return redirect()->back();
-        }
-        
     }
-
     /**
      * Display the specified resource.
      *
