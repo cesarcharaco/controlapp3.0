@@ -574,11 +574,14 @@
 					                    	'<p class="text-success">' +data2[i].status+'</p>'+
 					                    '</div>'+
 					                    '<div class="col-md-4">'+
-					                        '<div class="form-group">'+
-				                                '<input type="checkbox"  name="id[]" value="'+data2[i].id+'" class="form-control">'+
-					                        '</div>'+
+											'<div class="mt-3">'+
+	                                            '<div class="custom-control custom-checkbox mb-2">'+
+	                                                '<input type="checkbox" class="custom-control-input" id="customCheck1">'+
+	                                                '<label class="custom-control-label" for="customCheck1"></label>'+
+	                                            '</div>'+
+	                                        '</div>'+
 					                    '</div>'+
-					                '</div>'
+					                '</div><hr>'
 					            );
 							}else{
 								$('#muestraMesesAPagar').append(
@@ -589,12 +592,12 @@
 					                            '<label style="color:gray;">'+mes[i]+ '</label>'+
 					                        '</div>'+
 					                    '</div>'+
-					                    '<div class="col-md-5">'+
+					                    '<div class="col-md-4">'+
 					                    	'<p class="text-danger"><strong>' +data2[i].status+'</strong></p>'+
 					                    '</div>'+
-					                    '<div class="col-md-3">'+
+					                    '<div class="col-md-4">'+
 					                    	'<div class="form-group">'+
-						                        '<div style="font-size: 3em; float: center;">'+
+						                        '<div style="font-size: 2em; ">'+
 					                                '<svg class="bi bi-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
 													  '<rect width="11" height="9" x="2.5" y="7" rx="2"/>'+
 													  '<path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>'+
