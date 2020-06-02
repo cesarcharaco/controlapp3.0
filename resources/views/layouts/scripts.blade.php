@@ -615,6 +615,17 @@
 							}
 						}//cierre de if de status alquilado
 					}//cierre del for
+					$('#muestraMesesAPagar').append(
+						'<br><div class="row border">'+
+		                    '<div class="col-md-12">'+
+		                        '<div class="form-group">'+
+		                            '<label>Referencia</label>'+
+		                            '<input type="number" name="referencia" class="form-control">'+
+		                        '</div>'+
+		                    '</div>'+
+		                '</div>'
+		            );
+		            $('#muestraMesesAPagar').append('<input type="hidden" name="id_user" value="'+id_residente+'" >');
 				}else{
 					$('#muestraMesesAPagar2').css('display','block');
 				}
