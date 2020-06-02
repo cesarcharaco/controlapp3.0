@@ -135,7 +135,6 @@
         </div>
     @else
 
-        <input type="hidden" name="id_resi" id="id_reside" value="{{$residente->id}}">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('flash::message')
@@ -157,7 +156,7 @@
                                  
                                     <div class="form-group">
                                         <!-- <label class="mb-0 text-primary">Pagar mes</label> -->
-                                        <h6 class="mb-0"><a href="#" style="width: 100% !important;" onclick="BMesesResidente()" class="btn btn-primary">Pagar</a></h6>
+                                        <h6 class="mb-0"><a href="#" style="width: 100% !important;" onclick="BMesesResidente('{{$residente->id}}')" class="btn btn-primary">Pagar</a></h6>
                                     </div>
 
                                 

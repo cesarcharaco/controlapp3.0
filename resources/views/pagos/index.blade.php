@@ -84,7 +84,7 @@
                                                                 </div>
                                                                 <br>
 
-                                                                <a style="border-radius: 50px; width: 100%;" href="#" onclick="mostrarFormulario('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
+                                                                <a style="border-radius: 50px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -119,7 +119,7 @@
                                                                 <br>
 
 
-                                                                <a style="border-radius: 50px; width: 100%;" href="#" onclick="mostrarFormulario('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
+                                                                <a style="border-radius: 50px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -177,7 +177,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                <a style="border-radius: 50px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -211,7 +211,7 @@
                                                                 </div>
 
 
-                                                                <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                <a style="border-radius: 50px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -270,7 +270,7 @@
                                                                 @if($cuenta==0)   
                                                                    
 
-                                                                    <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                    <a style="border-radius: 50px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                                                     @php $cuenta++; @endphp
                                                                 @endif
                                                             @endif
@@ -281,7 +281,7 @@
                                                                     
 
 
-                                                                    <a style="border-radius: 50px;" href="#" onclick="mostrarFormulario('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                    <a style="border-radius: 50px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
                                                                     @php $cuenta++; @endphp
                                                                 @endif
                                                             @endif

@@ -540,12 +540,11 @@
 	
 
 
-	function BMesesResidente() {
+	function BMesesResidente(id_residente) {
 		$('#pagarMesesModal').modal('show');
 		$('#MesPagarResi').empty();
 		$('#muestraMesesAPagar').empty();
 		$('#muestraMesesAPagar2').css('display','none');
-		var id_residente = $('#id_reside').val();
 		var m=f.getMonth();
 
 		$.get("arriendos/"+id_residente+"/buscar_inmuebles2", function(data) {
