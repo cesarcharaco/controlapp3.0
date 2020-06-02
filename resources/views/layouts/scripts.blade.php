@@ -574,12 +574,14 @@
 					                    	'<p class="text-success">' +data2[i].status+'</p>'+
 					                    '</div>'+
 					                    '<div class="col-md-4">'+
-											'<div class="mt-3">'+
-	                                            '<div class="custom-control custom-checkbox mb-2">'+
-	                                                '<input type="checkbox"  name="mes[]" value="'+data2[i].mes+'" class="custom-control-input" id="customCheck1">'+
-	                                                '<label class="custom-control-label" for="customCheck1"></label>'+
-	                                            '</div>'+
-	                                        '</div>'+
+					                    	'<div class="form-group">'+
+												'<div class="mt-3">'+
+		                                            '<div class="custom-control custom-checkbox mb-2">'+
+		                                                '<input type="checkbox"  name="mes[]" value="'+data2[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
+		                                                '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
+		                                            '</div>'+
+		                                        '</div>'+
+		                                    '</div>'+
 					                    '</div>'+
 					                '</div><hr>'
 					            );
