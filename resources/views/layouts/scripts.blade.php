@@ -661,7 +661,9 @@
 	}
 
 	//------------------------FIN VISTA RESIDENTES---------------------------------
-
+	function AnuncioCreate(){
+		$('#crearAnuncio').modal('show');
+	}
 
 
 

@@ -16,10 +16,18 @@
 
     
 
-    <!-- <style type="text/css">
-        
+    <style type="text/css">
+        .anuncio{
+
         }
-    </style> -->
+        .imagenAnun{
+            /*width: 100%;*/
+            margin-left: -20px;
+            /*margin-right: -100px;*/
+            /*height: 80%;*/
+            /*margin:auto;*/
+        }
+    </style>
     
 </head>
 <body>
@@ -29,7 +37,7 @@
             
             
             @include('layouts.admin.menu')
-            
+
 
 
             <div class="content-page">
@@ -45,9 +53,39 @@
                         </div> -->
                             
                             <app></app>
-                            @yield('statusarea')
-                            @yield('breadcomb')
-                            @yield('content')
+
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div style="margin-right: -25px;">
+                                        @yield('statusarea')
+                                        @yield('breadcomb')
+                                        @yield('content')
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
+                                        <div class="card-header">
+                                            <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
+                                            <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
+                                        </div>
+                                        <div class="card-body">
+                                            <span class="text-dark"><strong>Vista 13K</strong></span>
+                                            <span class="text-dark" style="float: right;"><strong>Autos de lujo</strong></span>
+                                            <img class="imagenAnun text-dark" src="{{ asset('assets/images/anuncios/autos.jpg') }}" width="250" height="200">
+
+                                            <p class="text-dark">En mayo, la estrategia de vender tomando el dólar al valor del mercado "blue" disparó 331% la comercialización de autos usados con relación a abril.</p>
+
+                                            <hr>
+
+                                            <span class="text-dark"><strong>Vista 7K</strong></span>
+                                            <span class="text-dark" style="float: right;"><strong>Doritos extra queso</strong></span>
+                                            <img class="imagenAnun text-dark" src="{{ asset('assets/images/anuncios/Doritos-scaled.jpg') }}" width="250" height="200">
+
+                                            <p class="text-dark">El querer comer algo delicioso, puede incluir bocadillos como los snacks que lucen tan inocentes pero ¿realmente de qué están compuestos?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -879,6 +917,62 @@
                                 </div>
                             </form>
 
+
+        <!-- -------------------------------- ANUNCIOS ------------------------------------- -->
+        <form action="#" method="POST">
+            @csrf
+            <div class="modal fade" id="crearAnuncio" role="dialog">
+                <div class="modal-dialog modals-default">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Nuevo anuncio</h4>                
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Título del anuncio</label>
+                                        <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                    </div>
+                                </div>
+                           
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>url</label>
+                                        <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="url" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Descripcion</label>
+                                        <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Imagen</label>
+                                        <input type="file" class="form-control" id="example-fileinput" name="imagen">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-success" >Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
                         
                     </div> <!-- container-fluid -->
