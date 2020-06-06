@@ -39,7 +39,8 @@ class AnunciosController extends Controller
     {
         //dd($request->all());
         
-        $codigo=$this->generarCodigo();
+        //$codigo=$this->generarCodigo();
+        $codigo="nnn";
         
             $validatedData = $request->validate([
                 'imagen' => 'mimes:jpeg,png|max:3000'
@@ -100,7 +101,8 @@ class AnunciosController extends Controller
     {
         dd($request->all());
 
-        $codigo=$this->generarCodigo();
+        //$codigo=$this->generarCodigo();
+        $codigo="nnn";
         $cambio=0;
         if($request->hasfile('imagen')){
 
