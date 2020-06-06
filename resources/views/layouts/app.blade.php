@@ -941,7 +941,7 @@
                            
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>url</label>
+                                        <label>Url</label>
                                         <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="url" required>
                                     </div>
                                 </div>
@@ -950,7 +950,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Descripcion</label>
+                                        <label>Descripción</label>
                                         <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
                                     </div>
                                 </div>
