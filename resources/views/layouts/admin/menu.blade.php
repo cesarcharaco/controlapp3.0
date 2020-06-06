@@ -128,9 +128,16 @@
                     </a>
                 </li>
 
-            {{-- <li class="menu-title">Configuración </li>
+                <li>
+                    <a href="{{ url('anuncios') }}">
+                        <i data-feather="columns"></i>
+                        <span> Anuncios </span>
+                    </a>
+                </li>
+            {{--<li class="menu-title">Configuración </li>
+
             
-            <li>
+             <li>
                 <a href="angular-doc.html">
                     <i data-feather="users"></i>
                     <span> Usuarios </span>
