@@ -167,7 +167,7 @@
 
 
 <!-- --------------------------------------------EDITAR AnuncioS--------------------------------------------------------- -->
-         {!! Form::open(['route' => ['Anuncios.update',1], 'method' => 'PUT', 'name' => 'editar_Anuncio', 'id' => 'editar_Anuncio', 'data-parsley-validate']) !!}
+         {!! Form::open(['route' => ['anuncios.update',1], 'method' => 'PUT', 'name' => 'editar_Anuncio', 'id' => 'editar_Anuncio', 'data-parsley-validate']) !!}
                     @csrf
             <div class="modal fade" id="editarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -237,19 +237,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Asignar estacionamientos al Anuncio</label><label class="badge badge-soft-warning">Opcional</label>
-                                        <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el Anuncio?">
-                                            <option value="0" selected="selected">Seleccionar estacionamientos</option>
-                                            @foreach($estacionamientos as $key)
-                                                <option value="{{$key->id}}">{{$key->idem}}</option>
-                                            @endforeach()
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> -->
+                           
                         </div>
                             
                         <div class="modal-footer">
@@ -268,7 +256,7 @@
 
 
 <!-- --------------------------------------------ELIMINAR AnuncioS--------------------------------------------------------- -->
-        {!! Form::open(['route' => ['Anuncios.destroy',1033], 'method' => 'DELETE']) !!}
+        {!! Form::open(['route' => ['anuncios.destroy',1033], 'method' => 'DELETE']) !!}
             @csrf
             <div class="modal fade" id="eliminarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
