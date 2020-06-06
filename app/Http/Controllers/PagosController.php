@@ -55,7 +55,7 @@ class PagosController extends Controller
     public function store(Request $request)
     {
         dd($request->all());
-        
+        //dd(count($request->mes));
         $factura="";
 
 
@@ -64,22 +64,26 @@ class PagosController extends Controller
         return redirect()->back();
         } else {
             if (is_null($request->mes)==false) {
-                for ($i=0; $i < count($request->mes); $i++) { 
-                    $pagos=Pagos::where('id_mensualidad',$request->mes[$i])->first();
-                    $pagos->status="Cancelado";
-                    $pagos->save();
-                    
-                    $factura.="Inmueble: ".$pagos->mensualidad->inmuebles->idem." Mes: ".$this->mostrar_mes($pagos->mensualidad->mes)." Monto: ".$pagos->mensualidad->monto."<br>";
+                for ($i=0; $i < count($request->mes); $i++) {
+                    if($request->mes[$i]!==null){
+                        $pagos=Pagos::where('id_mensualidad',$request->mes[$i])->first();
+                        $pagos->status="Cancelado";
+                        $pagos->save();
+                        
+                        $factura.="Inmueble: ".$pagos->mensualidad->inmuebles->idem." Mes: ".$this->mostrar_mes($pagos->mensualidad->mes)." Monto: ".$pagos->mensualidad->monto."<br>";
+                    }
                 }
             }
             
             if(is_null($request->mes)==false){
                 for ($i=0; $i < count($request->mes); $i++) { 
-                    $pagosE=PagosE::where('id_mens_estac',$request->mes[$i])->first();
-                    $pagosE->status="Cancelado";
-                    $pagosE->save();
-                    
-                    $factura.="Inmueble: ".$pagosE->mensualidad->estacionamientos->idem." Mes: ".$this->mostrar_mes($pagosE->mensualidad->mes)." Monto: ".$pagosE->mensualidad->monto."<br>";
+                    if($request->mes[$i]!==null){
+                        $pagosE=PagosE::where('id_mens_estac',$request->mes[$i])->first();
+                        $pagosE->status="Cancelado";
+                        $pagosE->save();
+                        
+                        $factura.="Inmueble: ".$pagosE->mensualidad->estacionamientos->idem." Mes: ".$this->mostrar_mes($pagosE->mensualidad->mes)." Monto: ".$pagosE->mensualidad->monto."<br>";
+                    }
                 }
             }
 
