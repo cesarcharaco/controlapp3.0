@@ -37,30 +37,38 @@ class AnunciosController extends Controller
      */
     public function store(AnunciosRequest $request)
     {
-        dd($request->all());
-
+        //dd($request->all());
+        
         $codigo=$this->generarCodigo();
-        //    if($request->hasfile('files')){
+        
+            $validatedData = $request->validate([
+                'imagen' => 'mimes:jpeg,png|max:3000'
+            ]);
+
+            
+            
 
             $file=$request->file('imagen');
 
-            $name=$file->getClientOriginalName();
+            $name=$codigo."_".$file->getClientOriginalName();
             $file->move(public_path().'/images_anuncios/', $name);  
-            $name = $name;
-            $url ='files/'.$name;
-
+            $url ='images_anuncios/'.$name;
+            
+        
             $anuncio=new Anuncios();
 
             $anuncio->titulo=$request->titulo;
             $anuncio->link=$request->link;
             $anuncio->descripcion=$request->descripcion;
+            
             $anuncio->nombre_img=$name;
             $anuncio->url_img=$url;
             $anuncio->save();
-
-            flash('Anuncio registrado con éxito!')->success()->important();
+       
+            
+        flash('Anuncio registrado con éxito!')->success()->important();
         return redirect()->back();
-        //}
+        
     }
 
     /**

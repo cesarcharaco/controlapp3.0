@@ -919,7 +919,7 @@
 
 
         <!-- -------------------------------- ANUNCIOS ------------------------------------- -->
-        <form action="{{ route('anuncios.store') }}" method="POST">
+        <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal fade" id="crearAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">

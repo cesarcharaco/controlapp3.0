@@ -24,20 +24,20 @@ class AnunciosRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'require',
-            'link' => 'require',
-            'descripcion' => 'require',
-            'imagen' => 'require'
+            'titulo' => 'required',
+            'link' => 'required',
+            'descripcion' => 'required',
+            'imagen' => 'required'
         ];
     }
 
     public function mesagge()
     {
         return [
-            'titulo.require' => 'Debe ingresar el título del anuncio',
-            'link.require' => 'Debe ingresar el enlace del anuncio',
-            'descripcion.require' => 'Es necesario una breve descripción del anuncio',
-            'imagen.require' => 'Debe ingresar una imagen para el anuncio'
+            'titulo.required' => 'Debe ingresar el título del anuncio',
+            'link.required' => 'Debe ingresar el enlace del anuncio',
+            'descripcion.required' => 'Es necesario una breve descripción del anuncio',
+            'imagen.required' => 'Debe ingresar una imagen para el anuncio'
         ];   
     }
 }
