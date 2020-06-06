@@ -44,10 +44,6 @@ class AnunciosController extends Controller
             $validatedData = $request->validate([
                 'imagen' => 'mimes:jpeg,png|max:3000'
             ]);
-
-            
-            
-
             $file=$request->file('imagen');
 
             $name=$codigo."_".$file->getClientOriginalName();
