@@ -947,7 +947,7 @@
         </form>
 
 
-        {!! Form::open(['route' => ['anuncios.update',1], 'method' => 'PUT', 'name' => 'editar_anunc', 'id' => 'editar_anunc', 'data-parsley-validate']) !!}
+        {!! Form::open(['route' => ['anuncios.update',1], 'enctype' => 'multipart/form-data', 'method' => 'PUT', 'name' => 'editar_anunc', 'id' => 'editar_anunc', 'data-parsley-validate']) !!}
             @csrf
             <div class="modal fade" id="editarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
