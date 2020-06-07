@@ -932,6 +932,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Imagen</label>
+                                        <div class="alert alert-primary" role="alert">
+                                            <p><strong>Recordar que:</strong><br>
+                                            - La imagen no debe exceder los 800 KB de tamaño<br>
+                                            - La imagen no debe tener una anchura mayor a 1024 kb<br>
+                                            - La imagen no debe tener una altura mayor a 800 kb</p>
+                                        </div>
                                         <input type="file" class="form-control" id="example-fileinput" name="imagen">
                                     </div>
                                 </div>
