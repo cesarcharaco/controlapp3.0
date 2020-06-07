@@ -323,22 +323,23 @@
                     <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
                 </div>
                 <div class="card-body">
-                    <!-- <span class="text-dark"><strong>Vista 13K</strong></span> -->
-                    <span class="text-dark"><strong>Autos de lujo</strong></span>
-                        <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px; width: 28px; height: 28px; float: right;">
-                            x
+                    @foreach($anuncios as $key)
+                        <a href="{{$key->link}}">
+                            
+                            <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
+                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
+                                    x
+                                </a>
+                                {{--<a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                    e
+                                </a>--}}
+                            <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200">
+
+                            <p class="text-dark">{{$key->descripcion}}</p>
                         </a>
-                    <img class="imagenAnun text-dark" src="{{ asset('assets/images/anuncios/autos.jpg') }}" width="250" height="200">
 
-                    <p class="text-dark">En mayo, la estrategia de vender tomando el dólar al valor del mercado "blue" disparó 331% la comercialización de autos usados con relación a abril.</p>
-
-                    <hr>
-
-                    <!-- <span class="text-dark"><strong>Vista 7K</strong></span> -->
-                    <span class="text-dark"><strong>Doritos extra queso</strong></span>
-                    <img class="imagenAnun text-dark" src="{{ asset('assets/images/anuncios/Doritos-scaled.jpg') }}" width="250" height="200">
-
-                    <p class="text-dark">El querer comer algo delicioso, puede incluir bocadillos como los snacks que lucen tan inocentes pero ¿realmente de qué están compuestos?</p>
+                        <hr>
+                    @endforeach()
                 </div>
             </div>
         </div>

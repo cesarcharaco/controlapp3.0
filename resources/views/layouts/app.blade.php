@@ -946,6 +946,95 @@
             </div>
         </form>
 
+
+        {!! Form::open(['route' => ['anuncios.update',1], 'method' => 'PUT', 'name' => 'editar_anunc', 'id' => 'editar_anunc', 'data-parsley-validate']) !!}
+            @csrf
+            <div class="modal fade" id="editarAnuncio" role="dialog">
+                <div class="modal-dialog modals-default">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Editar anuncio</h4>                
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Título del anuncio</label>
+                                        <input type="text" id="tituloAnunE" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                    </div>
+                                </div>
+                           
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Link</label>
+                                        <input type="url" id="urlAnunE" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Descripción</label>
+                                        <textarea id="descripAnunE" placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Imagen</label>
+                                        <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="id" required id="idAnuncioE">
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-success" >Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {!! Form::close() !!}
+
+
+
+
+        {!! Form::open(['route' => ['anuncios.destroy',1033], 'method' => 'DELETE']) !!}
+            @csrf
+            <div class="modal fade" id="eliminarAnuncio" role="dialog">
+                <div class="modal-dialog modals-default">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Eliminar anuncio</h4>                
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="id" required id="idAnuncio">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-danger" >Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {!! Form::close() !!}
+
                         
                     </div> <!-- container-fluid -->
 

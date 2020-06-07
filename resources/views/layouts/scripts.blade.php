@@ -665,6 +665,20 @@
 		$('#crearAnuncio').modal('show');
 	}
 
+	function EditarAnuncio(id,titulo,descripcion,nombre_img,link){
+		$('#editarAnuncio').modal('show');
+		$('#idAnuncioE').val(id);
+		$('#tituloAnunE').val(titulo);
+		$('#urlAnunE').val(link);
+		$('#descripAnunE').val(descripcion);
+		$('#imagenAnunE').val(nombre_img);
+	}
+
+	function EliminarAnuncio(id){
+		$('#eliminarAnuncio').modal('show');
+		$('#idAnuncio').val(id);
+	}
+
 
 
 

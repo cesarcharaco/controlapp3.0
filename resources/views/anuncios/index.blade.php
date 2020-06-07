@@ -31,17 +31,30 @@
                     <table class="data-table-basic" id="myTable" width="100%">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Título</th>
                                 <th>Url</th>
                                 <th>Descripción</th>
                                 <th>Imagen</th>
-                                <th>Status</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @foreach()
+                                <tr>
+                                    <td>{{$key->titulo}}</td>
+                                    <td>{{$key->url_img}}</td>
+                                    <td>{{$key->descripcion}}</td>
+                                    <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" width="250" height="200"></td>
+                                    <td>
+                                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
+                                            x
+                                        </a>
+                                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                            e
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeac()
                         </tbody>
                     </table>
                 </div>

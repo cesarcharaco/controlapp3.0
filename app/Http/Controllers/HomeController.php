@@ -9,6 +9,7 @@ use App\Residentes;
 use App\PagosComunes;
 use App\Estacionamientos;
 use App\Inmuebles;
+use App\Anuncios;
 
 class HomeController extends Controller
 {
@@ -39,9 +40,10 @@ class HomeController extends Controller
 
         $buscarPInmuebles= PagosComunes::where('tipo','Inmueble')->where('anio',$anio)->get();
         $buscarPEstaciona= PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->get();
+        $anuncios=Anuncios::all();
 
         // dd(count($pagosComunesInmuebles));
 
-        return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona'));
+        return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios'));
     }
 }
