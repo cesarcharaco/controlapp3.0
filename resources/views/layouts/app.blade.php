@@ -54,38 +54,10 @@
                             
                             <app></app>
 
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div style="margin-right: -25px;">
-                                        @yield('statusarea')
-                                        @yield('breadcomb')
-                                        @yield('content')
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
-                                        <div class="card-header">
-                                            <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
-                                            <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
-                                        </div>
-                                        <div class="card-body">
-                                            <!-- <span class="text-dark"><strong>Vista 13K</strong></span> -->
-                                            <span class="text-dark"><strong>Autos de lujo</strong></span>
-                                            <img class="imagenAnun text-dark" src="{{ asset('assets/images/anuncios/autos.jpg') }}" width="250" height="200">
-
-                                            <p class="text-dark">En mayo, la estrategia de vender tomando el dólar al valor del mercado "blue" disparó 331% la comercialización de autos usados con relación a abril.</p>
-
-                                            <hr>
-
-                                            <!-- <span class="text-dark"><strong>Vista 7K</strong></span> -->
-                                            <span class="text-dark"><strong>Doritos extra queso</strong></span>
-                                            <img class="imagenAnun text-dark" src="{{ asset('assets/images/anuncios/Doritos-scaled.jpg') }}" width="250" height="200">
-
-                                            <p class="text-dark">El querer comer algo delicioso, puede incluir bocadillos como los snacks que lucen tan inocentes pero ¿realmente de qué están compuestos?</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @yield('statusarea')
+                            @yield('breadcomb')
+                            @yield('content')
+                                
 
 
 
