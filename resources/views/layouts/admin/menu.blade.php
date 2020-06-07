@@ -127,13 +127,14 @@
                             <span> Reportes </span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="{{ url('anuncios') }}">
-                        <i data-feather="columns"></i>
-                        <span> Anuncios </span>
-                    </a>
-                </li>
+                @if(\Auth::user()->tipo_usuario == 'Admin')
+                    <li>
+                        <a href="{{ url('anuncios') }}">
+                            <i data-feather="columns"></i>
+                            <span> Anuncios </span>
+                        </a>
+                    </li>
+                @endif
             {{--<li class="menu-title">Configuración </li>
 
             

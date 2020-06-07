@@ -46,11 +46,11 @@
                                     <td>{{$key->descripcion}}</td>
                                     <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" width="250" height="200"></td>
                                     <td>
-                                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
-                                            <i data-feather="edit"></i>
-                                        </a>
-                                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                        <a href="#" style="border-radius: 50px;float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
                                             <i data-feather="trash-2"></i>
+                                        </a>
+                                        <a href="#" style="border-radius: 50px;float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                            <i data-feather="edit"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -118,7 +118,8 @@
             </div>
 <!-- --------------------------------------------FIN REGISTRAR AnuncioS--------------------------------------------------------- -->
 
-    <form action="#" method="POST">
+
+     {!! Form::open(['route' => ['anuncios.update',1], 'enctype' => 'multipart/form-data', 'method' => 'PUT', 'name' => 'editar_anunc', 'id' => 'editar_anunc', 'data-parsley-validate']) !!}
             @csrf
             <div class="modal fade" id="editarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
@@ -130,18 +131,18 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                           <div class="row">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Título del anuncio</label>
-                                        <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                        <input type="text" id="tituloAnunE" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
                                     </div>
                                 </div>
                            
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Url</label>
-                                        <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="url" required>
+                                        <label>Link</label>
+                                        <input type="url" id="urlAnunE" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +151,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Descripción</label>
-                                        <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                        <textarea id="descripAnunE" placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -159,140 +160,53 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Imagen</label>
-                                        <input type="file" class="form-control" id="example-fileinput" name="imagen">
+                                        <div id="mostrarImagenEditar" align="center"></div>
+                                        <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
                                     </div>
                                 </div>
                             </div>
-                            
+                            <input type="hidden" class="form-control" name="id_anuncio" required id="idAnuncioE">
                             <div class="float-right">
-                                <button type="submit" class="btn btn-success" >Guardar</button>
+                                <button type="submit" class="btn btn-success" >Editar</button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-                            
-
-
-
-
-
-
-<!-- --------------------------------------------EDITAR AnuncioS--------------------------------------------------------- -->
-         {!! Form::open(['route' => ['anuncios.update',1], 'method' => 'PUT', 'name' => 'editar_Anuncio', 'id' => 'editar_Anuncio', 'data-parsley-validate']) !!}
-                    @csrf
-            <div class="modal fade" id="editarAnuncio" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Editar Anuncio</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Nombre del Anuncio</label>
-                                        <input type="text" id="idem" name="idem" placeholder="Idem del Anuncio" class="form-control" required="required">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tipo de Anuncio</label>
-                                        <select name="tipo" id="tipo" class="form-control" required placeholder="Introduzca el tipo de Anuncio">
-                                            <option value="Casa" selected="selected">Casa</option>
-                                            <option value="Apartamento" >Apartamento</option>
-                                            <option value="Anexo" >Anexo</option>
-                                            <option value="Habitación" >Habitación</option>
-                                            <option value="Otro" >Otro</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Estado del Anuncio</label>
-                                        <select name="status" id="status_e" class="form-control" required placeholder="Introduzca el status del Anuncio">
-                                            <option value="Disponible" selected="selected">Disponible</option>
-                                            <option value="No Disponible" >No Disponible</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>¿El Anuncio posee estacionamientos?</label>
-                                        <select name="estacionamiento" class="form-control select2" required placeholder="¿Algún estacionamiento para el Anuncio?">
-                                            <option value="Si" selected="selected">Si</option>
-                                            <option value="No">No</option>
-
-                                            
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>¿Cuántos?</label>
-                                        <input type="number" name="Cuantos[]" class="form-control" placeholder="1">
-                                    </div>
-                                </div>
-                            </div>
-
-                           
-                        </div>
-                            
-                        <div class="modal-footer">
-                            <input type="hidden" name="id" id="id_e">
-                            <input type="hidden" name="opcion" id="opcion_e" value="1">
-                            <button type="submit" class="btn btn-warning" style="border-radius: 50px;"><i data-feather="edit"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         {!! Form::close() !!}
-        </div>
-<!-- --------------------------------------------FIN EDITAR AnuncioS--------------------------------------------------------- -->
 
 
 
 
-<!-- --------------------------------------------ELIMINAR AnuncioS--------------------------------------------------------- -->
         {!! Form::open(['route' => ['anuncios.destroy',1033], 'method' => 'DELETE']) !!}
             @csrf
             <div class="modal fade" id="eliminarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4>Eliminar Anuncio</h4>
+                            <h4>Eliminar anuncio</h4>                
                             <button type="button" class="close" data-dismiss="modal">
                                 <span>&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h3>¡ATENCIÓN!</h3>
-                            <p>Está a punto de eliminar este Anuncio con todos sus registros y mensualidades. Esta opción no se podrá deshacer</p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="hidden" name="id" id="id">
-                            <button type="submit" class="btn btn-danger" style="border-radius: 50px;"><i data-feather="trash-2"></i></button>
+                            <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="id" required id="idAnuncio">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-danger" >Eliminar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         {!! Form::close() !!}
-<!-- --------------------------------------------FIN ELIMINAR AnuncioS--------------------------------------------------------- -->
 
     </div>
 

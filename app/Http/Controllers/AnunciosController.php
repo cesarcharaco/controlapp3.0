@@ -15,11 +15,14 @@ class AnunciosController extends Controller
      */
     public function index()
     {
-        $anuncios=Anuncios::all();
-        //dd($anuncios);
-        return view('anuncios.index',compact('anuncios'));
+        if(\Auth::user()->tipo_usuario == 'Admin'){
+            $anuncios=Anuncios::all();
+            return view('anuncios.index',compact('anuncios'));
+        }else{
+            flash('ACCESO DENEGADO!')->warning()->important();
+            return redirect()->back();
+        }
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -161,7 +164,9 @@ class AnunciosController extends Controller
      $key = '';
      $pattern = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
      $max = strlen($pattern)-1;
-     for($i=0;$i < 4;$i++) $key .= $pattern{mt_rand(0,$max)};
+     for($i=0;$i < 4;$i++){
+        $key .= $pattern(mt_rand(0,$max));
+    }
      return $key;
     }
 }
