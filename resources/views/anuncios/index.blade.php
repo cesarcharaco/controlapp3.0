@@ -39,22 +39,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach()
+                            @foreach($anuncios as $key)
                                 <tr>
                                     <td>{{$key->titulo}}</td>
-                                    <td>{{$key->url_img}}</td>
+                                    <td>{{$key->link}}</td>
                                     <td>{{$key->descripcion}}</td>
                                     <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" width="250" height="200"></td>
                                     <td>
-                                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
+                                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
                                             x
                                         </a>
-                                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
                                             e
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeac()
+                            @endforeach()
                         </tbody>
                     </table>
                 </div>

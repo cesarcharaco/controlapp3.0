@@ -349,12 +349,12 @@
                 </div>
                 <div class="card-body">
                     @foreach($anuncios as $key)
-                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
-                                    x
-                                </a>
-                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
-                                    e
-                                </a>
+                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
+                            x
+                        </a>
+                        <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                            e
+                        </a>
                         <div onclick="window.open('{{$key->link}}', '_blank');">
                             
                             <span class="text-dark"><strong>{{$key->titulo}}</strong></span>

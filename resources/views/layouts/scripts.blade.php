@@ -666,6 +666,7 @@
 	}
 
 	function EditarAnuncio(id,titulo,descripcion,nombre_img,link){
+		// alert(id+' '+titulo+' '+descripcion+' '+nombre_img+' '+link);
 		$('#editarAnuncio').modal('show');
 		$('#mostrarImagenEditar').empty();
 		$('#mostrarImagenEditar').append('<img class="imagenAnun text-dark" src="'+nombre_img+'" width="250" height="200">');

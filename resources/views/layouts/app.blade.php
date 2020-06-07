@@ -993,7 +993,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" class="form-control" name="id" required id="idAnuncioE">
+                            <input type="hidden" class="form-control" name="id_anuncio" required id="idAnuncioE">
                             <div class="float-right">
                                 <button type="submit" class="btn btn-success" >Editar</button>
                             </div>
