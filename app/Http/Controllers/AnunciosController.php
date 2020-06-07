@@ -126,15 +126,15 @@ class AnunciosController extends Controller
             unlink(public_path().'/images_anuncios/'.$nombre);
             $file=$request->file('imagen');
 
-            $name=$file->getClientOriginalName();
+            $name=$codigo."_".$file->getClientOriginalName();
             $file->move(public_path().'/images_anuncios/', $name);  
             $name = $name;
-            $url ='files/'.$name;
+            $url ='images_anuncios/'.$name;
             $cambio=1;
             }
         }
             
-        dd('asasa');
+        //dd('asasa');
             $anuncio->titulo=$request->titulo;
             $anuncio->link=$request->link;
             $anuncio->descripcion=$request->descripcion;
@@ -177,7 +177,7 @@ class AnunciosController extends Controller
      $pattern = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
      $max = strlen($pattern)-1;
      for($i=0;$i < 4;$i++){
-        $key .= $pattern(mt_rand(0,$max));
+        $key .= $pattern=mt_rand(0,$max);
     }
      return $key;
     }
