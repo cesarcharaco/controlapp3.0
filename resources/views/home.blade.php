@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="row">
         <div class="col-md-9">
             <div style="margin-right: -25px;">
@@ -13,6 +14,18 @@
                                 <h1>Home</h1>
                             </div>
                         </div>
+                        @if(!empty($errors->all()))
+                            <div class="notification is-danger">
+                                <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
+                                <ul>
+                                    @foreach ($errors->all() as $mensaje)
+                                        <li>
+                                            {{$mensaje}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-6 col-xl-6">
                                 <div class="card">
@@ -145,6 +158,18 @@
                                     <h1>Home</h1>
                                 </div>
                             </div>
+                            @if(!empty($errors->all()))
+                                <div class="notification is-danger">
+                                    <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
+                                    <ul>
+                                        @foreach ($errors->all() as $mensaje)
+                                            <li>
+                                                {{$mensaje}}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-md-6 col-xl-6">
                                     <div class="card">
@@ -324,19 +349,19 @@
                 </div>
                 <div class="card-body">
                     @foreach($anuncios as $key)
-                        <a href="{{$key->link}}">
-                            
-                            <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
                                 <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
                                     x
                                 </a>
-                                {{--<a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
                                     e
-                                </a>--}}
+                                </a>
+                        <div onclick="window.open('{{$key->link}}', '_blank');">
+                            
+                            <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
                             <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200">
 
                             <p class="text-dark">{{$key->descripcion}}</p>
-                        </a>
+                        </div>
 
                         <hr>
                     @endforeach()

@@ -667,11 +667,12 @@
 
 	function EditarAnuncio(id,titulo,descripcion,nombre_img,link){
 		$('#editarAnuncio').modal('show');
+		$('#mostrarImagenEditar').empty();
+		$('#mostrarImagenEditar').append('<img class="imagenAnun text-dark" src="'+nombre_img+'" width="250" height="200">');
 		$('#idAnuncioE').val(id);
 		$('#tituloAnunE').val(titulo);
 		$('#urlAnunE').val(link);
 		$('#descripAnunE').val(descripcion);
-		$('#imagenAnunE').val(nombre_img);
 	}
 
 	function EliminarAnuncio(id){

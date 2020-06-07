@@ -988,13 +988,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Imagen</label>
+                                        <div id="mostrarImagenEditar" align="center"></div>
                                         <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
                                     </div>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="id" required id="idAnuncioE">
+                            <input type="hidden" class="form-control" name="id" required id="idAnuncioE">
                             <div class="float-right">
-                                <button type="submit" class="btn btn-success" >Guardar</button>
+                                <button type="submit" class="btn btn-success" >Editar</button>
                             </div>
                         </div>
                     </div>
@@ -1021,7 +1022,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="id" required id="idAnuncio">
+                                        <input type="hidden" class="form-control" name="id" required id="idAnuncio">
                                     </div>
                                 </div>
                             </div>
