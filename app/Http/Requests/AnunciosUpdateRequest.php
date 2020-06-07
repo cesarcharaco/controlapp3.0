@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AnunciosRequest extends FormRequest
+class AnunciosUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,7 @@ class AnunciosRequest extends FormRequest
         return [
             'titulo' => 'required',
             'link' => 'required',
-            'descripcion' => 'required',
-            'imagen' => 'required'
+            'descripcion' => 'required'
         ];
     }
 
@@ -36,8 +35,7 @@ class AnunciosRequest extends FormRequest
         return [
             'titulo.required' => 'Debe ingresar el título del anuncio',
             'link.required' => 'Debe ingresar el enlace del anuncio',
-            'descripcion.required' => 'Es necesario una breve descripción del anuncio',
-            'imagen.required' => 'Debe ingresar una imagen para el anuncio'
+            'descripcion.required' => 'Es necesario una breve descripción del anuncio'  
         ];   
     }
 }

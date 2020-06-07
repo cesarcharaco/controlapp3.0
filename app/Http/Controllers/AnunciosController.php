@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Anuncios;
 use Illuminate\Http\Request;
 use App\Http\Requests\AnunciosRequest;
+use App\Http\Requests\AnunciosUpdateRequest;
 class AnunciosController extends Controller
 {
     /**
@@ -97,15 +98,18 @@ class AnunciosController extends Controller
      * @param  \App\Anuncios  $anuncios
      * @return \Illuminate\Http\Response
      */
-    public function update(AnunciosRequest $request, $id_anuncio)
+    public function update(AnunciosUpdateRequest $request, $id_anuncio)
     {
-        dd($request->all());
+        //dd($request->all());
 
-        //$codigo=$this->generarCodigo();
-        $codigo="nnn";
+        $codigo=$this->generarCodigo();
+        //$codigo="nnn";
         $cambio=0;
-        if($request->hasfile('imagen')){
-
+        
+        $anuncio=Anuncios::find($request->id_anuncio);
+        if($request->imagen!==null){
+            $nombre=$anuncio->nombre_img;
+            unlink(public_path().'/images_anuncios/'.$nombre);
             $file=$request->file('imagen');
 
             $name=$file->getClientOriginalName();
@@ -114,7 +118,7 @@ class AnunciosController extends Controller
             $url ='files/'.$name;
             $cambio=1;
         }
-            $anuncio=new Anuncios();
+            
 
             $anuncio->titulo=$request->titulo;
             $anuncio->link=$request->link;
@@ -125,7 +129,7 @@ class AnunciosController extends Controller
             }
             $anuncio->save();
 
-            flash('Anuncio registrado con éxito!')->success()->important();
+            flash('Anuncio actualizado con éxito!')->success()->important();
         return redirect()->back();
     }
 
@@ -153,11 +157,11 @@ class AnunciosController extends Controller
 
     }
 
-    /*protected function generarCodigo() {
+    protected function generarCodigo() {
      $key = '';
      $pattern = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
      $max = strlen($pattern)-1;
      for($i=0;$i < 4;$i++) $key .= $pattern{mt_rand(0,$max)};
      return $key;
-    }*/
+    }
 }
