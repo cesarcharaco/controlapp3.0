@@ -42,12 +42,17 @@ class AnunciosController extends Controller
     public function store(AnunciosRequest $request)
     {
         //dd($request->all());
-        
-        //$codigo=$this->generarCodigo();
-        $codigo="nnn";
+        $validacion=$this->validar_imagen($request->file('imagen'));
+
+        if(!$validacion['valida']){
+            flash($validacion['mensaje'].'!')->success()->important();
+            return redirect()->back();
+        }
+        $codigo=$this->generarCodigo();
+        //$codigo="nnn";
         
             $validatedData = $request->validate([
-                'imagen' => 'mimes:jpeg,png|dimensions:min_width=100,min_height=200|max:3000'
+                'imagen' => 'mimes:jpeg,png'
             ]);
             $file=$request->file('imagen');
 
@@ -111,6 +116,12 @@ class AnunciosController extends Controller
         
         $anuncio=Anuncios::find($request->id_anuncio);
         if($request->imagen!==null){
+            $validacion=$this->validar_imagen($request->file('imagen'));
+
+            if(!$validacion['valida']){
+                flash($validacion['mensaje'].'!')->success()->important();
+                return redirect()->back();
+            }else{
             $nombre=$anuncio->nombre_img;
             unlink(public_path().'/images_anuncios/'.$nombre);
             $file=$request->file('imagen');
@@ -120,9 +131,10 @@ class AnunciosController extends Controller
             $name = $name;
             $url ='files/'.$name;
             $cambio=1;
+            }
         }
             
-
+        dd('asasa');
             $anuncio->titulo=$request->titulo;
             $anuncio->link=$request->link;
             $anuncio->descripcion=$request->descripcion;
@@ -133,7 +145,7 @@ class AnunciosController extends Controller
             $anuncio->save();
 
             flash('Anuncio actualizado con éxito!')->success()->important();
-        return redirect()->back();
+            return redirect()->back();
     }
 
     /**
@@ -168,5 +180,37 @@ class AnunciosController extends Controller
         $key .= $pattern(mt_rand(0,$max));
     }
      return $key;
+    }
+
+    protected function validar_imagen($imagen)
+    {
+        //dd($imagen);
+        $mensaje="";
+        $valida=true;
+        $img=getimagesize($imagen);
+        $size=$imagen->getClientSize();
+        $width=$img[0];
+        $higth=$img[1];
+
+        //dd($size."-".$width."-".$higth);
+
+        if ($size>819200) {
+            $mensaje="La imagen excede el límite de tamaño de 800 KB ";
+            $valida=false;
+        }
+
+        if ($width>1024) {
+            $mensaje.=" | La imagen excede el límite de ancho de 1024 KB ";
+            $valida=false;
+        }
+
+        if ($higth>800) {
+            $mensaje.=" | La imagen excede el límite de altura de 800 KB ";
+            $valida=false;
+        }
+
+        $respuesta=['mensaje' => $mensaje,'valida' => $valida];
+
+        return $respuesta;
     }
 }
