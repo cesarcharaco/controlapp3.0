@@ -15,7 +15,7 @@ class AnunciosController extends Controller
     public function index()
     {
         $anuncios=Anuncios::all();
-
+        //dd($anuncios);
         return view('anuncios.index',compact('anuncios'));
     }
 
@@ -43,7 +43,7 @@ class AnunciosController extends Controller
         $codigo="nnn";
         
             $validatedData = $request->validate([
-                'imagen' => 'mimes:jpeg,png|max:3000'
+                'imagen' => 'mimes:jpeg,png|dimensions:min_width=100,min_height=200|max:3000'
             ]);
             $file=$request->file('imagen');
 
@@ -135,9 +135,22 @@ class AnunciosController extends Controller
      * @param  \App\Anuncios  $anuncios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Anuncios $anuncios)
+    public function destroy(Request $request)
     {
-        //
+        //dd($request->all());
+        $anuncio=Anuncios::find($request->id);
+        $nombre=$anuncio->nombre_img;
+        if ($anuncio->delete()) {
+            unlink(public_path().'/images_anuncios/'.$nombre);
+            
+            flash('Anuncio eliminado con éxito!')->success()->important();
+            return redirect()->back();
+        } else {
+            flash('El Anuncio no pudo ser elimnado, intente otra vez!')->success()->important();
+            return redirect()->back();
+        }
+        
+
     }
 
     /*protected function generarCodigo() {
