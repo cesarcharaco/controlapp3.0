@@ -831,6 +831,7 @@
 
     function estacionamientos_meses_editar(id_estacionamiento) {
 
+        $('#MuestraEstacionamiento2').empty();
         $.get("mostrar/"+id_estacionamiento+"/meses_estacionamientos",function (data) {
         })
         .done(function(data) {
