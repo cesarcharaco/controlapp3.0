@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-9">
             <div style="margin-right: -25px;">
-                @if(\Auth::user()->tipo_usuario=="Admin")
+                @if(\Auth::user()->tipo_usuario=="Admin" || \Auth::user()->tipo_usuario=="root")
                     <div class="row justify-content-center">
                         <div class="col-md-12">
                             @include('flash::message')

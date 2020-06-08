@@ -96,6 +96,7 @@
                 </li> -->
             @endif
 
+            @if(\Auth::user()->tipo_usuario != 'root')
                 <li class="menu-title">Transacciones </li>
 
                 <li>
@@ -111,6 +112,7 @@
                         <span> Multas y recargas </span>
                     </a>
                 </li>
+            @endif
 
                 @if(\Auth::user()->tipo_usuario == 'Admin')
                     <li>
@@ -121,12 +123,14 @@
                     </li>
                 @endif
 
-                <li>
-                    <a href="{{ url('reportes')}}">
-                        <i data-feather="book-open"></i>
-                            <span> Reportes </span>
-                    </a>
-                </li>
+                @if(\Auth::user()->tipo_usuario != 'root')
+                    <li>
+                        <a href="{{ url('reportes')}}">
+                            <i data-feather="book-open"></i>
+                                <span> Reportes </span>
+                        </a>
+                    </li>
+                @endif
                 @if(\Auth::user()->tipo_usuario == 'Admin')
                     <li>
                         <a href="{{ url('anuncios') }}">
@@ -135,6 +139,7 @@
                         </a>
                     </li>
                 @endif
+            @if(\Auth::user()->tipo_usuario == 'root')
             <li class="menu-title">Configuración </li>
 
             
@@ -144,6 +149,7 @@
                     <span> Root </span>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
     <!-- End Sidebar -->
