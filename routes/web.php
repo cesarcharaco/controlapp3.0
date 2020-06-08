@@ -111,4 +111,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('pagoscomunes/{tipo}/{anio}/buscarPagoC','PagosComunesController@buscarPagoAnio');
 
 	Route::resource('anuncios','AnunciosController');
+	Route::resource('administradores','AdminController');
+
 });
