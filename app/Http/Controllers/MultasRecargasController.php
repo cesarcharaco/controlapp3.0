@@ -14,17 +14,18 @@ class MultasRecargasController extends Controller
      */
     public function index()
     {
-
+        $id_admin=id_admin(\Auth::user()->email);
         $asignacion = \DB::table('residentes')
         ->join('resi_has_mr','resi_has_mr.id_residente','=','residentes.id')
         ->join('multas_recargas','multas_recargas.id','=','resi_has_mr.id_mr')
         ->where('residentes.id_usuario',\Auth::user()->id)
+        ->where('multas_recargas.id_admin',$id_admin)
         ->select('multas_recargas.*','resi_has_mr.mes')
         ->get();
 
         // dd(count($asignacion));
 
-        $mr=MultasRecargas::all();
+        $mr=MultasRecargas::where('id_admin',$id_admin)->get();
 
         return view('multas.index',compact('mr','asignacion'));
     }
@@ -53,6 +54,7 @@ class MultasRecargasController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $id_admin=id_admin(\Auth::user()->email);
         $anio=date('Y');
         if ($request->motivo=="") {
             flash('Debe ingresar un motivo')->warning()->important();
@@ -67,6 +69,7 @@ class MultasRecargasController extends Controller
             $mr->monto=$request->monto;
             $mr->tipo=$request->tipo;
             $mr->anio=$anio;
+            $mr->id_admin=$id_admin;
             $mr->save();
 
             flash('La '.$request->tipo.' ha sido registrada con éxito')->success()->important();
@@ -106,6 +109,7 @@ class MultasRecargasController extends Controller
      */
     public function update(Request $request, $id_mr)
     {
+        
         $anio=date('Y');
         if ($request->motivo=="") {
             flash('Debe ingresar un motivo')->warning()->important();
@@ -120,6 +124,7 @@ class MultasRecargasController extends Controller
             $mr->monto=$request->monto;
             $mr->tipo=$request->tipo;
             $mr->anio=$anio;
+
             $mr->save();
 
             flash('La '.$request->tipo.' ha sido actualiza con éxito')->success()->important();
@@ -149,14 +154,15 @@ class MultasRecargasController extends Controller
 
     public function saldo()
     {
-        $residentes=Residentes::all();
+        $id_admin=id_admin(\Auth::user()->email);
+        $residentes=Residentes::where('id_admin',$id_admin)->get();
 
         return view('saldo',compact('residentes'));
     }
     public function asignar_mr(Request $request)
     {
-
-        $residentes=Residentes::all();
+        $id_admin=id_admin(\Auth::user()->email);
+        $residentes=Residentes::where('id_admin',$id_admin)->get();
 
         // dd($request->all());
         if($request->registrarTodos== 'AsignarTodos'){
@@ -221,7 +227,8 @@ class MultasRecargasController extends Controller
 
     public function buscar_mr_all($num)
     {
-        return $mr=MultasRecargas::where('id','>=',$num)->get();
+        $id_admin=id_admin(\Auth::user()->email);
+        return $mr=MultasRecargas::where('id','>=',$num)->where('id_admin',$id_admin)->get();
     }
 
     public function eliminar_mr(Request $request)

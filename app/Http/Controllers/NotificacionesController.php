@@ -37,6 +37,7 @@ class NotificacionesController extends Controller
     {
         //dd($request->all());
         //dd(!is_null($request->todos));
+        $id_admin=id_admin(\Auth::user()->email);
         if ($request->titulo=="" || $request->motivo=="") {
             flash('Los campos no deben de estar vacíos!')->warning()->important();
             return redirect()->back();
@@ -44,7 +45,8 @@ class NotificacionesController extends Controller
             if (!is_null($request->todos)) {
             $notificaciones=\DB::table('notificaciones')->insert([
                 'titulo' => $request->titulo,
-                'motivo' => $request->motivo
+                'motivo' => $request->motivo,
+                'id_admin' => $id_admin
             ]);
                 flash('Notificación registrada con éxito!')->success()->important();
                     return redirect()->back();    
@@ -58,6 +60,7 @@ class NotificacionesController extends Controller
                    $notif->titulo=$request->titulo;
                    $notif->motivo=$request->motivo;
                    $notif->publicar="Individual";
+                   $notif->id_admin=$id_admin;
                    $notif->save();
 
                     for ($i=0; $i < count($request->id_residente) ; $i++) { 

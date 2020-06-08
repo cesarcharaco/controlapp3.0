@@ -15,11 +15,14 @@ class ResidentesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //public $id_admin=id_admin(\Auth::user()->email);
+
     public function index()
     {
-        $inmuebles=Inmuebles::all();
-        $estacionamientos=Estacionamientos::all();
-        $residentes=Residentes::where('id','<>',0)->orderBy('rut','ASC')->get();;
+        $id_admin=id_admin(\Auth::user()->email);
+        $inmuebles=Inmuebles::where('id_admin',$id_admin)->get();
+        $estacionamientos=Estacionamientos::where('id_admin',$id_admin)->get();
+        $residentes=Residentes::where('id_admin',$id_admin)->orderBy('rut','ASC')->get();;
         return View('residentes.index', compact('residentes','inmuebles','estacionamientos'));
     }
 
@@ -42,6 +45,7 @@ class ResidentesController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $id_admin=id_admin(\Auth::user()->email);
         $buscar=user::where('email',$request->email)->get();
         if (count($buscar)>0) {
             flash('email ya registrado')->warning()->important();
@@ -52,7 +56,8 @@ class ResidentesController extends Controller
             'rut' =>            $request->rut,
             'email' =>          $request->email,
             'password' =>       bcrypt($request->rut),
-            'tipo_usuario' =>   'Residente'
+            'tipo_usuario' =>   'Residente',
+            'id_admin' => $id_admin
             ]);
 
             $user=User::where('email',$request->email)->first();
@@ -62,7 +67,8 @@ class ResidentesController extends Controller
                 'apellidos' => $request->apellidos,
                 'rut' => $request->rut,
                 'telefono' => $request->telefono,
-                'id_usuario' => $user->id
+                'id_usuario' => $user->id,
+                'id_admin' => $id_admin
             ]);
 
             flash('Residente registrado exitosamente!')->success()->important();
@@ -124,9 +130,10 @@ class ResidentesController extends Controller
 
     public function arriendos()
     {
-        $residentes=Residentes::all();
-        $estacionamientos=Estacionamientos::where('status','Libre')->get();
-        $inmuebles=Inmuebles::where('status','Disponible')->get();
+        $id_admin=id_admin(\Auth::user()->email);
+        $residentes=Residentes::where('id_admin',$id_admin)->get();
+        $estacionamientos=Estacionamientos::where('status','Libre')->where('id_admin',$id_admin)->get();
+        $inmuebles=Inmuebles::where('status','Disponible')->where('id_admin',$id_admin)->get();
 
         return View('arriendos.index', compact('residentes', 'estacionamientos','inmuebles'));
     }
@@ -144,13 +151,15 @@ class ResidentesController extends Controller
 
     public function buscar_residente2($num)
     {
-        return $residentes=Residentes::where('id','>=',$num)->get();
+        $id_admin=id_admin(\Auth::user()->email);
+        return $residentes=Residentes::where('id','>=',$num)->where('id_admin',$id_admin)->get();
 
         // return Residentes::where('id', $id_residente)->get();
     }
 
     public function buscar_inmuebles($id_residente)
     {
+
         return \DB::table('residentes')
         ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
         ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
@@ -177,12 +186,14 @@ class ResidentesController extends Controller
     public function buscar_inmuebles3($id_inmueble)
     {
         $anio=date('Y');
+        $id_admin=id_admin(\Auth::user()->email);
         return \DB::table('residentes')
         ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
         ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
         ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
         ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
         ->where('inmuebles.id',$id_inmueble)
+        ->where('inmuebles.id_admin',$id_admin)
         ->where('mensualidades.anio',$anio)
         ->where('residentes_has_inmuebles.status','En Uso')
         ->select('mensualidades.mes','mensualidades.id','pagos.status','residentes_has_inmuebles.status AS alquiler_status')
@@ -217,12 +228,14 @@ class ResidentesController extends Controller
     public function buscar_estacionamientos3($id_estacionamiento)
     {
         $anio=date('Y');
+        $id_admin=id_admin(\Auth::user()->email);
         return \DB::table('residentes')
         ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
         ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
         ->join('mens_estac','mens_estac.id_estacionamiento','=','estacionamientos.id')
         ->join('pagos_estac','pagos_estac.id_mens_estac','=','mens_estac.id')
         ->where('estacionamientos.id',$id_estacionamiento)
+        ->where('estacionamientos.id_admin',$id_admin)
         ->where('mens_estac.anio',$anio)
         ->where('residentes_has_est.status','En Uso')
         ->select('mens_estac.mes','mens_estac.id','pagos_estac.status','residentes_has_est.status AS alquiler_status')

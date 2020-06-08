@@ -23,14 +23,16 @@ class ResidentesTableSeeder extends Seeder
             'apellidos' => 'Carpio',
         	'rut' => '987654321',
         	'telefono' => '881272837827382',
-            'id_usuario' => 2
+            'id_usuario' => 2,
+            'id_admin' => 1
         ]);
         \DB::table('residentes')->insert([
         	'nombres' => 'Carmen',
             'apellidos' => 'García',
         	'rut' => '123456798',
         	'telefono' => '728717719273',
-            'id_usuario' => 3
+            'id_usuario' => 3,
+            'id_admin' => 1
         ]);
     }
 }

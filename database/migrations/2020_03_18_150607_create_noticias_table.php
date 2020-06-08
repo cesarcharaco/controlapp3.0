@@ -17,6 +17,9 @@ class CreateNoticiasTable extends Migration
             $table->bigIncrements('id');
             $table->text('titulo');
             $table->text('contenido');
+            $table->unsignedBigInteger('id_admin');
+
+            $table->foreign('id_admin')->references('id')->on('users_admin')->onDelete('cascade');
             $table->timestamps();
         });
     }

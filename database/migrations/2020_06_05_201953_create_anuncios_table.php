@@ -20,6 +20,9 @@ class CreateAnunciosTable extends Migration
             $table->mediumText('descripcion');
             $table->string('nombre_img');
             $table->string('url_img');
+            $table->unsignedBigInteger('id_admin');
+
+            $table->foreign('id_admin')->references('id')->on('users_admin')->onDelete('cascade');
             $table->timestamps();
         });
     }

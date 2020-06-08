@@ -20,6 +20,9 @@ class CreateInmueblesTable extends Migration
             $table->enum('status',['Disponible','No Disponible'])->default('Disponible');
             $table->enum('estacionamiento',['Si','No'])->default('Si');
             $table->integer('cuantos')->nullable();
+            $table->unsignedBigInteger('id_admin');
+
+            $table->foreign('id_admin')->references('id')->on('users_admin')->onDelete('cascade');
             $table->timestamps();
         });
     }

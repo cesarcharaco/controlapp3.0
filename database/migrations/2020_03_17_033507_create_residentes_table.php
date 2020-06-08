@@ -20,8 +20,10 @@ class CreateResidentesTable extends Migration
             $table->string('rut');
             $table->string('telefono');
             $table->unsignedBigInteger('id_usuario');
+            $table->unsignedBigInteger('id_admin');
 
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_admin')->references('id')->on('users_admin')->onDelete('cascade');
             $table->timestamps();
         });
     }

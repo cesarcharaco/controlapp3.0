@@ -17,7 +17,8 @@ class EstacionamientosController extends Controller
      */
     public function index()
     {
-        $estacionamientos=Estacionamientos::where('id','<>',0)->orderBy('idem','ASC')->get();
+        $id_admin=id_admin(\Auth::user()->email);
+        $estacionamientos=Estacionamientos::where('id_admin',$id_admin)->orderBy('idem','ASC')->get();
         $meses=Meses::all();
 
         return view('estacionamientos.index',compact('estacionamientos','meses'));
@@ -46,14 +47,15 @@ class EstacionamientosController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $buscar=Estacionamientos::where('idem',$request->idem)->get();
+        $id_admin=id_admin(\Auth::user()->email);
+        $buscar=Estacionamientos::where('idem',$request->idem)->where('id_admin',$id_admin)->get();
         $meses=Meses::all();
         if (count($buscar)>0) {
             flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
             return redirect()->back();
         } else {
             $anio=date('Y');
-            $mensualidad=PagosComunes::where('anio',$anio)->where('tipo','Estacionamiento')->get();
+            $mensualidad=PagosComunes::where('anio',$anio)->where('tipo','Estacionamiento')->where('id_admin',$id_admin)->get();
             if (count($mensualidad)==0) {
                 flash('No se encuentran Pagos Comunes registrados para estacionamiento este año, intente otra vez!')->warning()->important();
                 return redirect()->back();
@@ -61,6 +63,7 @@ class EstacionamientosController extends Controller
                 $estacionamiento=new Estacionamientos();
                 $estacionamiento->idem=$request->idem;
                 $estacionamiento->status=$request->status;
+                $estacionamiento->id_admin=$id_admin;
                 $estacionamiento->save();
                 //$m=date('m');
                 foreach ($mensualidad as $key) {
@@ -161,8 +164,8 @@ class EstacionamientosController extends Controller
     {
 
         //dd($request->all());
-        
-        $buscar=Estacionamientos::where('idem',$request->idem)->where('id','<>',$request->id)->get();
+        $id_admin=id_admin(\Auth::user()->email);
+        $buscar=Estacionamientos::where('idem',$request->idem)->where('id_admin',$id_admin)->where('id','<>',$request->id)->get();
         //$meses=Meses::all();
         if (count($buscar)>0) {
             flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
@@ -358,6 +361,7 @@ class EstacionamientosController extends Controller
 
     public function estacionamientos_disponibles($id)
     {
-        return $estacionamientos=Estacionamientos::where('status','<>','Ocupado')->get();
+        $id_admin=id_admin(\Auth::user()->email);
+        return $estacionamientos=Estacionamientos::where('status','<>','Ocupado')->where('id_admin',$id_admin)->get();
     }
 }

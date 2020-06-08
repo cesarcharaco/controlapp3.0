@@ -8,7 +8,7 @@ class Residentes extends Model
 {
 	protected $table='residentes';
 
-	protected $fillable=['nombres','apellidos','rut','telefono','id_usuario'];
+	protected $fillable=['nombres','apellidos','rut','telefono','id_usuario','id_admin'];
 
 	public function usuario()
 	{
@@ -38,5 +38,10 @@ class Residentes extends Model
     public function reportes()
     {
     	return $this->hasMany('App\Reportes','id_residente','id');
+    }
+
+    public function admin()
+    {
+    	return $this->belongsTo('App\UsersAdmin','id_admin');
     }
 }

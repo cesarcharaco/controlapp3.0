@@ -1,5 +1,11 @@
 <?php
 
+function id_admin($email)
+{
+	$admin=\App\UsersAdmin::where('email',$email)->first();
+
+	return $admin->id;
+}
 function alquilados_i_t()
 {
 	$buscar=\DB::table('residentes_has_inmuebles')->where('status','En Uso')->select('*')->get();

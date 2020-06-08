@@ -18,6 +18,9 @@ class CreateNotificacionesTable extends Migration
             $table->string('titulo');
             $table->text('motivo');
             $table->enum('publicar',['Todos','Individual'])->default('Todos');
+            $table->unsignedBigInteger('id_admin');
+
+            $table->foreign('id_admin')->references('id')->on('users_admin')->onDelete('cascade');
             $table->timestamps();
         });
     }

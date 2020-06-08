@@ -13,6 +13,7 @@ class PagosComunesController extends Controller
     public function store(Request $request)
     {
     	//dd($request->all());
+        $id_admin=id_admin(\Auth::user()->email);
     	$m=date('m');
         $a=date('Y');
         $meses=Meses::all();
@@ -36,6 +37,7 @@ class PagosComunesController extends Controller
                             $pagocomun->anio=$anio;
                             $pagocomun->mes=$key->id;
                             $pagocomun->monto=$request->monto[$i];
+                            $pagocomun->id_admin=$id_admin;
                             $pagocomun->save();
                             $i++;
                         }else{
@@ -45,6 +47,7 @@ class PagosComunesController extends Controller
                             $pagocomun->anio=$anio;
                             $pagocomun->mes=$key->id;
                             $pagocomun->monto=$request->monto[$i];
+                            $pagocomun->id_admin=$id_admin;
                             $pagocomun->save();
                             $i++;
                         }
@@ -59,6 +62,7 @@ class PagosComunesController extends Controller
                         $pagocomun->anio=$request->anio;
                         $pagocomun->mes=$key->id;
                         $pagocomun->monto=$request->montoaAnio;
+                        $pagocomun->id_admin=$id_admin;
                         $pagocomun->save();
                     }else{
                         $pagocomun=new PagosComunes();
@@ -66,6 +70,7 @@ class PagosComunesController extends Controller
                         $pagocomun->anio=$request->anio;
                         $pagocomun->mes=$key->id;
                         $pagocomun->monto=$request->montoaAnio;
+                        $pagocomun->id_admin=$id_admin;
                         $pagocomun->save();
                     }
                 }
@@ -78,6 +83,7 @@ class PagosComunesController extends Controller
     public function update(Request $request)
     {
     	//dd($request->all());
+        $id_admin=id_admin(\Auth::user()->email);
     	if(!is_null($request->anioI)){
         	$anio=$request->anioI;
         }
@@ -93,7 +99,7 @@ class PagosComunesController extends Controller
                 
 
             foreach($meses as $key){
-                    $pagocomun= PagosComunes::where('tipo',$request->tipo)->where('anio',$anio)->where('mes',$key->id)->first();
+                    $pagocomun= PagosComunes::where('tipo',$request->tipo)->where('anio',$anio)->where('mes',$key->id)->where('id_admin',$id_admin)->first();
                     //dd($pagocomun);
                     if ($pagocomun!=null) {
                         
@@ -112,10 +118,11 @@ class PagosComunesController extends Controller
                         $pagocomun->anio=$anio;
                         $pagocomun->mes=$key->id;
                         $pagocomun->monto=$request->monto[$i];
+                        $pagocomun->id_admin=$id_admin;
                         $pagocomun->save();
 
                         //cambiando montos de inmuebles
-                        $inmuebles=Inmuebles::all();
+                        $inmuebles=Inmuebles::where('id_admin',$id_admin)->get();
                         foreach ($inmuebles as $key2) {
                         	foreach ($key2->mensualidades as $key3) {
                         		if($key3->mes==$key->id){
@@ -126,7 +133,7 @@ class PagosComunesController extends Controller
                         }
                         //-----------------------------
                         //cambiando montos de estacionamientos
-                        $estacionamiento=Estacionamientos::all();
+                        $estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
                         foreach ($estacionamiento as $key2) {
                         	foreach ($key2->mensualidad as $key3) {
                         		if($key3->mes==$key->id){
@@ -149,6 +156,7 @@ class PagosComunesController extends Controller
                         $pagocomun->anio=$anio;
                         $pagocomun->mes=$request->mes[$i];
                         $pagocomun->monto=$request->montoaAnio;
+                        $pagocomun->id_admin=$id_admin;
                         $pagocomun->save();
                     
                 }
@@ -177,10 +185,11 @@ class PagosComunesController extends Controller
 
     public function buscarPagoAnio($tipo, $anio)
     {
+        $id_admin=id_admin(\Auth::user()->email);
         if ($tipo==1) {
-            return $pagoComun=PagosComunes::where('tipo','Inmueble')->where('anio',$anio)->get();
+            return $pagoComun=PagosComunes::where('tipo','Inmueble')->where('anio',$anio)->where('id_admin',$id_admin)->get();
         }else{
-            return $pagoComun=PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->get();
+            return $pagoComun=PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->where('id_admin',$id_admin)->get();
         }
     }
 }

@@ -17,9 +17,10 @@ class InmueblesController extends Controller
 	*/
 	public function index()
 	{
-		$inmuebles=Inmuebles::where('id','<>',0)->orderBy('idem','ASC')->get();;
+        $id_admin=id_admin(\Auth::user()->email);
+		$inmuebles=Inmuebles::where('id_admin',$id_admin)->orderBy('idem','ASC')->get();;
 		$meses=Meses::all();
-		$estacionamientos=estacionamientos::where('status','Libre')->orderBy('idem','ASC')->get();;
+		$estacionamientos=estacionamientos::where('status','Libre')->where('id_admin',$id_admin)->orderBy('idem','ASC')->get();;
 
 		return view('inmuebles.index',compact('inmuebles','meses','estacionamientos'));
 	}
@@ -44,7 +45,8 @@ class InmueblesController extends Controller
 	public function store(Request $request)
 	{
 		// dd($request->all());
-		$buscar=Inmuebles::where('idem',$request->idem)->get();
+        $id_admin=id_admin(\Auth::user()->email);
+		$buscar=Inmuebles::where('idem',$request->idem)->where('id_admin',$id_admin)->get();
 		$meses=Meses::all();
 		if (count($buscar)>0) {
 			flash('El Idem ya se encuentra registrado, intente otra vez')->warning()->important();
@@ -52,7 +54,7 @@ class InmueblesController extends Controller
 		} else {
 			
             $anio=date('Y');
-            $mensualidad=PagosComunes::where('anio',$anio)->where('tipo','Inmueble')->get();
+            $mensualidad=PagosComunes::where('anio',$anio)->where('tipo','Inmueble')->where('id_admin',$id_admin)->get();
             //dd(count($mensualidad));
             if (count($mensualidad)==0) {
                 flash('No existen Pagos Comunes registrados para el presente año')->warning()->important();
@@ -66,6 +68,7 @@ class InmueblesController extends Controller
                 if ($request->estacionamiento=="Si") {
                     $inmueble->cuantos=$request->cuantos;
                 }
+                $inmuebles->id_admin=$id_admin;
                 $inmueble->save();
 
                 foreach ($mensualidad as $key) {
@@ -165,7 +168,8 @@ class InmueblesController extends Controller
 	public function update(Request $request, $id_inmueble)
 	{
 		//dd($request->all());
-		$buscar=Inmuebles::where('idem',$request->idem)->where('id','<>',$request->id)->get();
+        $id_admin=id_admin(\Auth::user()->email);
+		$buscar=Inmuebles::where('idem',$request->idem)->where('id','<>',$request->id)->where('id_admin',$id_admin)->get();
 		if (count($buscar)>0) {
 			flash('Ya hay un inmueble registrado con ese idem!')->warning()->important();
 			return redirect()->back();
@@ -178,6 +182,7 @@ class InmueblesController extends Controller
              if ($request->estacionamiento=="Si") {
                 $inmueble->cuantos=$request->cuantos;
             }
+            $inmueble->id_admin=$id_admin;
 			$inmueble->save();
 
 			flash('Inmueble actualizado')->success()->important();
@@ -367,7 +372,8 @@ class InmueblesController extends Controller
 
     public function inmuebles_disponibles($id)
     {
-        return $inmuebles=Inmuebles::where('status','<>','No Disponible')->get();
+        $id_admin=id_admin(\Auth::user()->email);
+        return $inmuebles=Inmuebles::where('status','<>','No Disponible')->where('id_admin',$id_admin)->get();
     }
 
     

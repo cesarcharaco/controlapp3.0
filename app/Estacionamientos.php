@@ -8,7 +8,7 @@ class Estacionamientos extends Model
 {
     protected $table='estacionamientos';
 
-    protected $fillable=['idem','status'];
+    protected $fillable=['idem','status','id_admin'];
 
     public function mensualidad()
     {
@@ -19,4 +19,9 @@ class Estacionamientos extends Model
 	{
 	return $this->belongsToMany('App\Residentes','residentes_has_est','id_estacionamiento','id_residente')->withPivot('status');
 	}
+
+    public function admin()
+    {
+        return $this->belongsTo('App\UsersAdmin','id_admin');
+    }
 }

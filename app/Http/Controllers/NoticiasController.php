@@ -35,9 +35,12 @@ class NoticiasController extends Controller
      */
     public function store(Request $request)
     {
+        $id_admin=id_admin(\Auth::user()->email);
         $noticias=\DB::table('noticias')->insert([
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
+            'id_admin' => $id_admin
+
         ]);
         flash('Noticia registrada!')->important();
         return redirect()->back();

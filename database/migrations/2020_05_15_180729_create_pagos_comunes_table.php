@@ -19,6 +19,9 @@ class CreatePagosComunesTable extends Migration
             $table->integer('mes');
             $table->integer('anio');
             $table->float('monto');
+            $table->unsignedBigInteger('id_admin');
+
+            $table->foreign('id_admin')->references('id')->on('users_admin')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -20,6 +20,9 @@ class CreateMultasRecargasTable extends Migration
             $table->float('monto');
             $table->enum('tipo',['Multa','Recarga']);
             $table->integer('anio');
+            $table->unsignedBigInteger('id_admin');
+
+            $table->foreign('id_admin')->references('id')->on('users_admin')->onDelete('cascade');
             $table->timestamps();
         });
     }

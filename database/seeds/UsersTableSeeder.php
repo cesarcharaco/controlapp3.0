@@ -34,5 +34,19 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('EICHE_CONTROL'),
             'tipo_usuario' => 'Otro'
         ]);
+
+        \DB::table('users')->insert([
+            'name' => 'Root',
+            'rut' => '1232212212',
+            'email' => 'root@eiche.cl',
+            'password' => bcrypt('EICHE_CONTROL'),
+            'tipo_usuario' => 'root'
+        ]);
+
+        \DB::table('users_admin')->insert([
+            'name' => 'Administrador',
+            'rut' => '12121212121',
+            'email' => 'admin@eiche.cl'
+        ]);
     }
 }
