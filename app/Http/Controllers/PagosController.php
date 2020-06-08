@@ -98,7 +98,7 @@ class PagosController extends Controller
                                         $pagos->status="Cancelado";
                                         $pagos->save();
                                         $total+=$key2->monto;
-                                        $factura.="Inmueble: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
+                                        $factura.="Estacionamiento: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
                                     }
                                 }
                             }
@@ -174,7 +174,8 @@ class PagosController extends Controller
      */
     public function update(Request $request, $id_pago)
     {
-    dd($request->all());
+    //dd($request->all());
+
         switch ($request->opcion) {
             case 1:
                 $pago=Pagos::where('id_mensualidad',$request->id_inmueble)->first();
@@ -206,32 +207,56 @@ class PagosController extends Controller
                
                 break;
             case 2:
-                $pago=PagosE::where('id_mens_estac',$request->id_estacionamiento)->first();
-                //dd($this->mostrar_mes($pago->mensualidad->mes));
-                $mes=$this->mostrar_mes($pago->mensualidad->mes);
-                $estacionamiento=$pago->mensualidad->estacionamientos->idem;
-                $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$mes."%' ORDER BY id DESC LIMIT 0,1";
-                $sql2="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$estacionamiento."%' ORDER BY id DESC LIMIT 0,1";
-                //dd($sql2);
-                $buscar1=\DB::select($sql);
-                $buscar2=\DB::select($sql2);
-                
-               if (count($buscar1)>0 AND count($buscar2)>0) {
-                    $reporte_new=new Reportes();
-                    $reporte_new->referencia=$request->referencia_edit;
-                    $reporte_new->reporte="Se ha colocado como Pendiente al mes de ".$mes." del Estacionamiento: ".$estacionamiento;
-                    $reporte_new->tipo="Pendiente";
-                    $reporte_new->id_residente=$request->id_residente_edit;
-                    $reporte_new->save();
+
+                if ($request->status=="Pendiente") {
                     
-                    $pago->status="Pendiente";
-                    $pago->save();     
-                    flash('Se ha colocado como Pendiente al mes de '.$mes.' del Estacionamiento: '.$estacionamiento.', con éxito!')->success()->important();
-                    return redirect()->back();
-               } else {
-                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
-                    return redirect()->back();
-               }
+                    $pago=PagosE::where('id_mens_estac',$request->id_estacionamiento)->first();
+                    //dd($this->mostrar_mes($pago->mensualidad->mes));
+                    $mes=$this->mostrar_mes($pago->mensualidad->mes);
+                    $estacionamiento=$pago->mensualidad->estacionamientos->idem;
+                    $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$mes."%' ORDER BY id DESC LIMIT 0,1";
+                    $sql2="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$estacionamiento."%' ORDER BY id DESC LIMIT 0,1";
+                    //dd($sql2);
+                    $buscar1=\DB::select($sql);
+                    $buscar2=\DB::select($sql2);
+                    
+                   if (count($buscar1)>0 AND count($buscar2)>0) {
+                        $reporte_new=new Reportes();
+                        $reporte_new->referencia=$request->referencia_edit;
+                        $reporte_new->reporte="Se ha colocado como Pendiente al mes de ".$mes." del Estacionamiento: ".$estacionamiento;
+                        $reporte_new->tipo="Pendiente";
+                        $reporte_new->id_residente=$request->id_residente_edit;
+                        $reporte_new->save();
+                        
+                        $pago->status="Pendiente";
+                        $pago->save();     
+                        flash('Se ha colocado como Pendiente al mes de '.$mes.' del Estacionamiento: '.$estacionamiento.', con éxito!')->success()->important();
+                        return redirect()->back();
+                   } else {
+                       flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
+                        return redirect()->back();
+                   }
+                } else {
+                    # en caso de colocarlo como cancelado
+                    $pagos=PagosE::where('id_mens_estac',$request->id_estacionamiento)->first();
+                    //dd($pagos->mensualidad->estacionamientos->residentes[0]->pivot->id_residente);
+                    $id_user=$pagos->mensualidad->estacionamientos->residentes[0]->pivot->id_residente;
+                    $pagos->status="Cancelado";
+                    $pagos->save();
+                    
+                    $factura="Estacionamiento: ".$pagos->mensualidad->estacionamientos->idem." Mes: ".$this->mostrar_mes($pagos->mensualidad->mes)." Monto: ".$pagos->mensualidad->monto."<br>";
+
+                    $factura.="<br></br>Total Cancelado: ".$pagos->mensualidad->monto.", con la referencia: ".$request->referencia_edit."<br>";
+                    $reporte=\DB::table('reportes_pagos')->insert([
+                        'referencia' => $request->referencia_edit,
+                        'reporte' => $factura,
+                        'id_residente' => $id_user
+                    ]);
+
+                    flash('Se ha colocado como Cancelado al mes de '.$this->mostrar_mes($pagos->mensualidad->mes).' del Estacionamiento: '.$pagos->mensualidad->estacionamientos->idem.', con éxito!')->success()->important();
+                        return redirect()->back();
+                }
+                
                
                 break;
             case 3:
