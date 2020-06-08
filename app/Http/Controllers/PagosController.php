@@ -54,10 +54,10 @@ class PagosController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         //dd(count($request->mes));
         $factura="";
-
+        $total=0;
 
         if (is_null($request->mes)==true) {
             flash('No ha seleccionado nada a pagar!')->warning()->important();
@@ -66,11 +66,21 @@ class PagosController extends Controller
             if (is_null($request->mes)==false) {
                 for ($i=0; $i < count($request->mes); $i++) {
                     if($request->mes[$i]!==null){
-                        $pagos=Pagos::where('id_mensualidad',$request->mes[$i])->first();
-                        $pagos->status="Cancelado";
-                        $pagos->save();
-                        
-                        $factura.="Inmueble: ".$pagos->mensualidad->inmuebles->idem." Mes: ".$this->mostrar_mes($pagos->mensualidad->mes)." Monto: ".$pagos->mensualidad->monto."<br>";
+                        $residente=Residentes::find($request->id_user);
+                        foreach ($residente->inmuebles as $key) {
+                            if ($key->pivot->status=="En Uso") {
+                                foreach ($key->mensualidades as $key2) {
+                                    if ($key2->mes==$request->mes[$i]) {
+                                        //echo $key2->id."<br>";
+                                        $pagos=Pagos::where('id_mensualidad',$key2->id)->first();
+                                        $pagos->status="Cancelado";
+                                        $pagos->save();
+                                        $total+=$key2->monto;
+                                        $factura.="Inmueble: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -78,21 +88,31 @@ class PagosController extends Controller
             if(is_null($request->mes)==false){
                 for ($i=0; $i < count($request->mes); $i++) { 
                     if($request->mes[$i]!==null){
-                        $pagosE=PagosE::where('id_mens_estac',$request->mes[$i])->first();
-                        $pagosE->status="Cancelado";
-                        $pagosE->save();
-                        
-                        $factura.="Inmueble: ".$pagosE->mensualidad->estacionamientos->idem." Mes: ".$this->mostrar_mes($pagosE->mensualidad->mes)." Monto: ".$pagosE->mensualidad->monto."<br>";
+                        $residente=Residentes::find($request->id_user);
+                        foreach ($residente->estacionamientos as $key) {
+                            if ($key->pivot->status=="En Uso") {
+                                foreach ($key->mensualidad as $key2) {
+                                    if ($key2->mes==$request->mes[$i]) {
+                                        //echo $key2->id."<br>";
+                                        $pagos=PagosE::where('id_mens_estac',$key2->id)->first();
+                                        $pagos->status="Cancelado";
+                                        $pagos->save();
+                                        $total+=$key2->monto;
+                                        $factura.="Inmueble: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
 
             
-            $factura.="<br></br>Total Cancelado: ".$request->total.", con la referencia: ".$request->referencia."<br>";
+            $factura.="<br></br>Total Cancelado: ".$total.", con la referencia: ".$request->referencia."<br>";
             $reporte=\DB::table('reportes_pagos')->insert([
                 'referencia' => $request->referencia,
                 'reporte' => $factura,
-                'id_residente' => $request->id_residente
+                'id_residente' => $request->id_user
             ]);
             //dd("---------");
             flash('Pago realizado con éxito!')->success()->important();
@@ -154,7 +174,7 @@ class PagosController extends Controller
      */
     public function update(Request $request, $id_pago)
     {
-    //dd($request->all());
+    dd($request->all());
         switch ($request->opcion) {
             case 1:
                 $pago=Pagos::where('id_mensualidad',$request->id_inmueble)->first();

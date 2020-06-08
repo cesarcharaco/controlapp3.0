@@ -45,7 +45,7 @@ class AnunciosController extends Controller
         $validacion=$this->validar_imagen($request->file('imagen'));
 
         if(!$validacion['valida']){
-            flash($validacion['mensaje'].'!')->success()->important();
+            flash($validacion['mensaje'].'!')->warning()->important();
             return redirect()->back();
         }
         $codigo=$this->generarCodigo();
@@ -119,7 +119,7 @@ class AnunciosController extends Controller
             $validacion=$this->validar_imagen($request->file('imagen'));
 
             if(!$validacion['valida']){
-                flash($validacion['mensaje'].'!')->success()->important();
+                flash($validacion['mensaje'].'!')->warning()->important();
                 return redirect()->back();
             }else{
             $nombre=$anuncio->nombre_img;
