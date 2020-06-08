@@ -521,6 +521,7 @@
                                         <select   class="border border-warning form-control select2" name="id_estacionamiento" id="id_estacionamientoEditar" disabled>
                                             
                                         </select>
+                                        <div id="MuestraEstacionamiento2"></div>
                                     </div>
                                 </div>
                             </div>
@@ -660,6 +661,7 @@
 
 
     function EditarPago(id_residente, opcion) {
+        $('#MuestraEstacionamiento2').empty();
         $('#verF').val(id_residente);
         $('#editar_p').modal('show');
         $('#MuestraInmueble').hide();
@@ -839,7 +841,7 @@
                     $('#id_estacionamientoEditar'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                     // }
                 }
-                $('#MuestraEstacionamiento').append(
+                $('#MuestraEstacionamiento2').append(
                     '<hr><div class="form-group">'+
                         '<label>Status</label>'+
                         '<select class="form-control" name="status" required>'+
