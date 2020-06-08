@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-9">
             <div style="margin-right: -25px;">
-                @if(\Auth::user()->tipo_usuario=="Admin" || \Auth::user()->tipo_usuario=="root")
+                @if(\Auth::user()->tipo_usuario=="Admin")
                     <div class="row justify-content-center">
                         <div class="col-md-12">
                             @include('flash::message')
@@ -149,6 +149,17 @@
                         </div>
 
                     </div>
+                @elseif(\Auth::user()->tipo_usuario=="root")
+                <br>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{{ asset('assets/images/logo.jpg') }}" style="float: center; border-radius: 50%;" alt="" height="500" width="500" />
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
                 @else
                     <div class="row justify-content-center">
                         <div class="col-md-12">
@@ -213,6 +224,8 @@
                         </div>
                     </div>
                 @endif
+
+                @if(\Auth::user()->tipo_usuario!="root")
                 <hr>
                 <div class="row">
                     <div class="col-md-8">
@@ -374,7 +387,7 @@
         </div>
     </div>
 
-
+@endif
 
 
     <!-- -----------------------------------------------MODALES -------------------------------------->

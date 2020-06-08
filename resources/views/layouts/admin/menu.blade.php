@@ -146,7 +146,7 @@
              <li>
                 <a href="{{'administradores'}}">
                     <i data-feather="users"></i>
-                    <span> Root </span>
+                    <span> Admins </span>
                 </a>
             </li>
             @endif
