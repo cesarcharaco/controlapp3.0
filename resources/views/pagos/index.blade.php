@@ -487,6 +487,21 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                        <div id="MuestraEstacionamiento2" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="form-control" name="status" required>
+                                            <option value="Pendiente">Pendiente</option>
+                                            <option value="Cancelado">Cancelado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -521,7 +536,6 @@
                                         <select   class="border border-warning form-control select2" name="id_estacionamiento" id="id_estacionamientoEditar" disabled>
                                             
                                         </select>
-                                        <div id="MuestraEstacionamiento2"></div>
                                     </div>
                                 </div>
                             </div>
@@ -661,7 +675,7 @@
 
 
     function EditarPago(id_residente, opcion) {
-        $('#MuestraEstacionamiento2').empty();
+        $('#MuestraEstacionamiento2').css('display','none');
         $('#verF').val(id_residente);
         $('#editar_p').modal('show');
         $('#MuestraInmueble').hide();
@@ -700,6 +714,7 @@
         }
 
         if (opcion == 2) {
+            $('#MuestraEstacionamiento2').css('display','block');
             $('#opcion').val(2);
             $('#titleE').text('Editar pago de Estacionamientos');
             $('#MuestraEstacionamiento').show();
@@ -831,7 +846,7 @@
 
     function estacionamientos_meses_editar(id_estacionamiento) {
 
-        $('#MuestraEstacionamiento2').empty();
+       
         $.get("mostrar/"+id_estacionamiento+"/meses_estacionamientos",function (data) {
         })
         .done(function(data) {
@@ -842,17 +857,6 @@
                     $('#id_estacionamientoEditar'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                     // }
                 }
-                $('#MuestraEstacionamiento2').append(
-                    '<hr><div class="form-group">'+
-                        '<label>Status</label>'+
-                        '<select class="form-control" name="status" required>'+
-                            '<option value="Pendiente">Pendiente</option>'+
-                            '<option value="Cancelado">Cancelado</option>'+
-                        '</select>'+
-                    '</div>'
-
-                );
-            
             }else{
                 $('#id_estacionamientoEditar'+id_estacionamiento).append('<option>No hay meses pagados en este estacionamiento</option>');
             }
