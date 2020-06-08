@@ -443,6 +443,9 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4>Pagar arriendos</h4>
+                                                <div id="CargandoPagarArriendos" style="display: none;">
+                                                    <div class="spinner-border text-warning m-2" role="status"></div>
+                                                </div>
                                                 <button type="button" class="close" data-dismiss="modal">
                                                     <span>&times;</span>
                                                 </button>

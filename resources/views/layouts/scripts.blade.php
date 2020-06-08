@@ -545,6 +545,7 @@
 		$('#MesPagarResi').empty();
 		$('#muestraMesesAPagar').empty();
 		$('#muestraMesesAPagar2').css('display','none');
+		$('#CargandoPagarArriendos').css('display','block');
 		var m=f.getMonth();
 
 		$.get("arriendos/"+id_residente+"/buscar_inmuebles2", function(data) {
@@ -619,7 +620,7 @@
 		                    '<div class="col-md-12">'+
 		                        '<div class="form-group">'+
 		                            '<label>Referencia</label>'+
-		                            '<input type="number" name="referencia" class="form-control">'+
+		                            '<input type="number" name="referencia" class="form-control" required="required">'+
 		                        '</div>'+
 		                    '</div>'+
 		                '</div>'
@@ -630,6 +631,7 @@
 				}
 
 			});
+			$('#CargandoPagarArriendos').css('display','none');
 		});
 	}
 
