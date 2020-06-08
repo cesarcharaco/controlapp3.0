@@ -839,6 +839,16 @@
                     $('#id_estacionamientoEditar'+id_estacionamiento).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                     // }
                 }
+                $('#MuestraEstacionamiento').append(
+                    '<hr><div class="form-group">'+
+                        '<label>Status</label>'+
+                        '<select class="form-control" name="status" required>'+
+                            '<option value="Pendiente">Pendiente</option>'+
+                            '<option value="Cancelado">Cancelado</option>'+
+                        '</select>'+
+                    '</div>'
+
+                );
             
             }else{
                 $('#id_estacionamientoEditar'+id_estacionamiento).append('<option>No hay meses pagados en este estacionamiento</option>');
