@@ -23,12 +23,12 @@ class PagosController extends Controller
      */
     public function index()
     {
-
-        $residentes=Residentes::all();
+        $id_admin=id_admin(\Auth::user()->email);
+        $residentes=Residentes::where('id_admin',$id_admin)->get();
         $meses=Meses::all();
         $pagos=Pagos::all();
-        $inmuebles=Inmuebles::all();
-        $estacionamientos=Estacionamientos::all();
+        $inmuebles=Inmuebles::where('id_admin',$id_admin)->get();
+        $estacionamientos=Estacionamientos::where('id_admin',$id_admin)->get();
 
         $asignaIn= \DB::table('residentes_has_inmuebles')->groupBy('id_residente')->get();
         $asignaEs= \DB::table('residentes_has_est')->groupBy('id_residente')->get();

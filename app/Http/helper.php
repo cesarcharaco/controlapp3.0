@@ -2,9 +2,13 @@
 
 function id_admin($email)
 {
+	$id=0;
 	$admin=\App\UsersAdmin::where('email',$email)->first();
-
-	return $admin->id;
+	if (!is_null($admin)) {
+		$id=$admin->id;
+	}
+	
+	return $id;
 }
 function alquilados_i_t()
 {
