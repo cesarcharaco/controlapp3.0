@@ -343,10 +343,12 @@
         </div>
         <div class="col-md-3">
             <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
-                <div class="card-header">
-                    <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
-                    <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
-                </div>
+                @if(\Auth::user()->tipo_usuario == 'Admin')
+                    <div class="card-header">
+                        <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
+                        <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
+                    </div>
+                @endif
                 <div class="card-body">
                     @foreach($anuncios as $key)
                         @if(\Auth::user()->tipo_usuario == 'Admin')
