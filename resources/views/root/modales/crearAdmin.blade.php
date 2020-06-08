@@ -14,21 +14,40 @@
                         <div class="col-md-12">
                             
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Nombre del admin" class="form-control">
+                                <input type="text" name="name" placeholder="Nombre del admin" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="number" name="rut" placeholder="Rut del admin" class="form-control">
+                                <input type="number" name="rut" placeholder="Rut del admin" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="Email del admin" class="form-control">
+                                <input type="email" name="email" placeholder="Email del admin" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Ingrese contraseña<div style="float: right;" class="text-danger">*</div></label>
+                                <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Confirmar contraseña<div style="float: right;" class="text-danger">*</div></label>
+                                <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" class="form-control" required>
                             </div>
                         </div>
                     </div>

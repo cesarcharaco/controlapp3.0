@@ -14,21 +14,21 @@
                         <div class="col-md-12">
                             
                             <div class="form-group">
-                                <input type="text" id="name_e" name="name_e" placeholder="Nombre del admin" class="form-control">
+                                <input type="text" id="name_e" name="name_e" placeholder="Nombre del admin" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="number" id="rut_e" name="rut_e" placeholder="Rut del admin" class="form-control">
+                                <input type="number" id="rut_e" name="rut_e" placeholder="Rut del admin" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="email" id="email_e" name="email_e" placeholder="Email del admin" class="form-control">
+                                <input type="email" id="email_e" name="email_e" placeholder="Email del admin" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -37,9 +37,29 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <select name="status" id="status_e" class="form-control">
-                                    <option value="activo">activo</option>
-                                    <option value="suspendido">suspendido</option>
+                                    <option value="activo">Activo</option>
+                                    <option value="suspendido">Suspendido</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Ingrese contraseña<div style="float: right;" class="text-danger">*</div></label>
+                                <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Confirmar contraseña<div style="float: right;" class="text-danger">*</div></label>
+                                <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" class="form-control" required>
                             </div>
                         </div>
                     </div>
