@@ -23,12 +23,12 @@ class AdminURequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        
             return [
-            'name' => 'required|max:255',
-            'rut' => 'required|numeric|max:10',
-            'email' => 'required|email|max:255|unique:users_admin',
-            'password' => 'required|min:8|confirmed',
+            'name_e' => 'required|max:255',
+            'rut_e' => 'required|numeric|max:10',
+            'email_e' => 'required|email|max:255',
+            'password' => 'required|min:8|confirmed'
             ];
     }
 }
