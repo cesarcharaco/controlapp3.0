@@ -56,8 +56,7 @@ class ResidentesController extends Controller
             'rut' =>            $request->rut,
             'email' =>          $request->email,
             'password' =>       bcrypt($request->rut),
-            'tipo_usuario' =>   'Residente',
-            'id_admin' => $id_admin
+            'tipo_usuario' =>   'Residente'
             ]);
 
             $user=User::where('email',$request->email)->first();
