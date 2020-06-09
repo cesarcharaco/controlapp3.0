@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Ingrese contraseña<div style="float: right;" class="text-danger">*</div></label>
+                                <label>Ingrese contraseña</label>
                                 <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Confirmar contraseña<div style="float: right;" class="text-danger">*</div></label>
+                                <label>Confirmar contraseña</label>
                                 <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" class="form-control" required>
                             </div>
                         </div>
