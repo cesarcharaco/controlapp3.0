@@ -79,7 +79,7 @@ class ArriendosController extends Controller
                 }
             }
         }
-        flash($request->opcion.'asignado con éxito!')->success()->important();
+        flash($request->opcion.' asignado con éxito!')->success()->important();
         return redirect()->to('arriendos');
 
     }
