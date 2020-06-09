@@ -48,7 +48,6 @@ class AdminController extends Controller
         $user->name=$request->name;
         $user->rut=$request->rut;
         $user->email=$request->email;
-        $user->status=$request->status;
         $user->save();
 
         $user2=new User();
@@ -56,7 +55,7 @@ class AdminController extends Controller
         $user2->rut=$request->rut;
         $user2->email=$request->email;
         $user2->tipo_usuario='Admin';
-        $user2->password=Hash::make($data['password']);
+        $user2->password=\Hash::make($request->password);
         $user2->save();
 
         flash('Usuario Admin registrado con éxito!')->success()->important();

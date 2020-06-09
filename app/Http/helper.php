@@ -12,13 +12,25 @@ function id_admin($email)
 }
 function alquilados_i_t()
 {
-	$buscar=\DB::table('residentes_has_inmuebles')->where('status','En Uso')->select('*')->get();
+	$id_admin=id_admin(\Auth::user()->email);
+	$buscar=\DB::table('residentes_has_inmuebles')
+	->join('residentes','residentes.id','=','residentes_has_inmuebles.id_residente')
+	->where('residentes.id_admin',$id_admin)
+	->where('status','En Uso')->select('*')->get();
 
 	return count($buscar);
+	
 }
 function alquilados_i_p()
 {
-	$buscar=\DB::table('residentes_has_inmuebles')->where('status','En Uso')->select('*')->get();
+	$id_admin=id_admin(\Auth::user()->email);
+
+	$buscar=\DB::table('residentes_has_inmuebles')
+	->join('residentes','residentes.id','=','residentes_has_inmuebles.id_residente')
+	->where('residentes.id_admin',$id_admin)
+	->where('status','En Uso')
+	->select('*')->get();
+
 	if (existencia_i()>0) {
 		$porcentaje=(count($buscar)*100)/existencia_i();
 	} else {
@@ -30,21 +42,36 @@ function alquilados_i_p()
 
 function existencia_i()
 {
-	$buscar=\DB::table('inmuebles')->select('*')->get();
+	$id_admin=id_admin(\Auth::user()->email);
+
+	$buscar=\DB::table('inmuebles')
+	->where('id_admin',$id_admin)
+	->select('*')->get();
 
 	return count($buscar);
 }
 
 function alquilados_e_t()
 {
-	$buscar=\DB::table('estacionamientos')->where('status','Ocupado')->select('*')->get();
+	$id_admin=id_admin(\Auth::user()->email);
+
+	$buscar=\DB::table('estacionamientos')
+	->where('id_admin',$id_admin)
+	->where('status','Ocupado')
+	->select('*')->get();
 
 	return count($buscar);
 }
 
 function alquilados_e_p()
 {
-	$buscar=\DB::table('estacionamientos')->where('status','Ocupado')->select('*')->get();
+	$id_admin=id_admin(\Auth::user()->email);
+
+	$buscar=\DB::table('estacionamientos')
+	->where('id_admin',$id_admin)
+	->where('status','Ocupado')
+	->select('*')->get();
+
 	if (existencia_e()>0) {
 		$porcentaje=(count($buscar)*100)/existencia_e();
 	} else {
@@ -56,14 +83,16 @@ function alquilados_e_p()
 
 function existencia_e()
 {
-	$buscar=\DB::table('estacionamientos')->select('*')->get();
+	$id_admin=id_admin(\Auth::user()->email);
+	$buscar=\DB::table('estacionamientos')->where('id_admin',$id_admin)->select('*')->get();
 
 	return count($buscar);
 }
 
 function residentes()
 {
-	$buscar=\App\Residentes::all();
+	$id_admin=id_admin(\Auth::user()->email);
+	$buscar=\App\Residentes::where('id_admin',$id_admin)->get();
 
 	return count($buscar);
 }
@@ -71,8 +100,8 @@ function residentes()
 function residentes_alquilados_i()
 {
 	$cont=0;
-
-	$buscar=\App\Residentes::all();
+	$id_admin=id_admin(\Auth::user()->email);
+	$buscar=\App\Residentes::where('id_admin',$id_admin)->get();
 	foreach ($buscar as $key) {
 		$c=0;
 		foreach ($key->inmuebles as $key2) {
@@ -92,8 +121,8 @@ function residentes_alquilados_i()
 function residentes_alquilados_e()
 {
 	$cont=0;
-
-	$buscar=\App\Residentes::all();
+	$id_admin=id_admin(\Auth::user()->email);
+	$buscar=\App\Residentes::where('id_admin',$id_admin)->get();
 	foreach ($buscar as $key) {
 		$c=0;
 		foreach ($key->estacionamientos as $key2) {
@@ -113,8 +142,8 @@ function residentes_alquilados_e()
 function residentes_alquilados_p()
 {
 	$cont=0;
-
-	$buscar=\App\Residentes::all();
+	$id_admin=id_admin(\Auth::user()->email);
+	$buscar=\App\Residentes::where('id_admin',$id_admin)->get();
 
 	foreach ($buscar as $key) {
 		$c1=0;
@@ -158,8 +187,8 @@ function residentes_alquilados_p()
 function pc_i()
 {
 	$anio=date('Y');
-
-	$buscar=App\PagosComunes::where('anio',$anio)->where('tipo','Inmueble')->get();
+	$id_admin=id_admin(\Auth::user()->email);
+	$buscar=App\PagosComunes::where('anio',$anio)->where('id_admin',$id_admin)->where('tipo','Inmueble')->get();
 
 	return count($buscar);
 }
@@ -167,8 +196,8 @@ function pc_i()
 function pc_e()
 {
 	$anio=date('Y');
-
-	$buscar=App\PagosComunes::where('anio',$anio)->where('tipo','Estacionamiento')->get();
+	$id_admin=id_admin(\Auth::user()->email);
+	$buscar=App\PagosComunes::where('anio',$anio)->where('id_admin',$id_admin)->where('tipo','Estacionamiento')->get();
 
 	return count($buscar);
 }
@@ -260,11 +289,12 @@ function gasto_comun_mes($mes,$id_residente,$anio)
 		}
 	}
 	$total=0;
-	$monto_i=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Inmueble')->first();
+	$id_admin=id_admin(\Auth::user()->email);
+	$monto_i=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Inmueble')->where('id_admin',$id_admin)->first();
 	if(!is_null($monto_i)){
 		$total+=($cont*$monto_i->monto);
 	}
-	$monto_e=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Estacionamiento')->first();
+	$monto_e=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('id_admin',$id_admin)->where('tipo','Estacionamiento')->first();
 	if(!is_null($monto_e)){
 	$total+=($cont2*$monto_i->monto);
 	}

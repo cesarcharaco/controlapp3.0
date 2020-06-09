@@ -25,7 +25,7 @@ class AdminRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'rut' => 'required|numeric|between:8,10',
+            'rut' => 'required|numeric|digits_between:9,10',
             'email' => 'required|email|max:255|unique:users_admin',
             'password' => 'required|min:8|confirmed',
         ];

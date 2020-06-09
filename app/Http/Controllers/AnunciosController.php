@@ -16,7 +16,8 @@ class AnunciosController extends Controller
     public function index()
     {
         if(\Auth::user()->tipo_usuario == 'Admin'){
-            $anuncios=Anuncios::all();
+            $id_admin=id_admin(\Auth::user()->email);
+            $anuncios=Anuncios::where('id_admin',$id_admin)->get();
             return view('anuncios.index',compact('anuncios'));
         }else{
             flash('ACCESO DENEGADO!')->warning()->important();
@@ -43,7 +44,7 @@ class AnunciosController extends Controller
     {
         //dd($request->all());
         $validacion=$this->validar_imagen($request->file('imagen'));
-
+        $id_admin=id_admin(\Auth::user()->email);
         if(!$validacion['valida']){
             flash($validacion['mensaje'].'!')->warning()->important();
             return redirect()->back();
@@ -66,7 +67,7 @@ class AnunciosController extends Controller
             $anuncio->titulo=$request->titulo;
             $anuncio->link=$request->link;
             $anuncio->descripcion=$request->descripcion;
-            
+            $anuncio->id_admin=$id_admin;
             $anuncio->nombre_img=$name;
             $anuncio->url_img=$url;
             $anuncio->save();
