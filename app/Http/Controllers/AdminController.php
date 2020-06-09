@@ -128,8 +128,7 @@ class AdminController extends Controller
                 $user2->name=$request->name;
                 $user2->rut=$request->rut;
                 $user2->email=$request->email;
-                $user2->tipo_usuario='Admin';
-                $user2->password=Hash::make($data['password']);
+                $user2->password=\Hash::make($data['password']);
                 $user2->save();    
                 flash('Admin actualizado con éxito!')->success()->important();
                 return redirect()->back();

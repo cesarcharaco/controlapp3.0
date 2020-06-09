@@ -68,7 +68,7 @@ class InmueblesController extends Controller
                 if ($request->estacionamiento=="Si") {
                     $inmueble->cuantos=$request->cuantos;
                 }
-                $inmuebles->id_admin=$id_admin;
+                $inmueble->id_admin=$id_admin;
                 $inmueble->save();
 
                 foreach ($mensualidad as $key) {
