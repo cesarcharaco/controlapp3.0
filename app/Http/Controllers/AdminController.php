@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\UsersAdmin;
+use App\Http\Requests\AdminRequest;
 class AdminController extends Controller
 {
     /**
@@ -35,9 +36,31 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-        //
+        //dd($request->all());
+            
+
+        dd('----------------');
+        $user=new UsersAdmin();
+
+        $user->name=$request->name;
+        $user->rut=$request->rut;
+        $user->email=$request->email;
+        $user->status=$request->status;
+        $user->save();
+
+        $user2=new User();
+        $user2->name=$request->name;
+        $user2->rut=$request->rut;
+        $user2->email=$request->email;
+        $user2->tipo_usuario='Admin';
+        $user2->password=Hash::make($data['password']);
+        $user2->save();
+
+        flash('Usuario Admin registrado con éxito!')->success()->important();
+            return redirect()->back();
+
     }
 
     /**
@@ -69,9 +92,49 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_user)
     {
-        //
+        dd($request->all());
+        $this->validator($request->all());
+
+        dd('----------------');
+
+        if (is_null($request->cambiar)) {
+            # en caso de no querer cambiar la contraseña
+            $user= UsersAdmin::find($id_user);
+            $email=$user->email;
+
+            $user->name=$request->name;
+            $user->rut=$request->rut;
+            $user->email=$request->email;
+            $user->status=$request->status;
+            $user->save();
+
+            $user2=User::where('email',$email)->first();
+            $user2->name=$request->name;
+            $user2->rut=$request->rut;
+            $user2->email=$request->email;
+            $user2->save();
+        } else {
+            # en caso de querer cambiar la contraseña
+            $user= UsersAdmin::find($id_user);
+            $email=$user->email;
+
+            $user->name=$request->name;
+            $user->rut=$request->rut;
+            $user->email=$request->email;
+            $user->status=$request->status;
+            $user->save();
+
+            $user2=User::where('email',$email)->first();
+            $user2->name=$request->name;
+            $user2->rut=$request->rut;
+            $user2->email=$request->email;
+            $user2->tipo_usuario='Admin';
+            $user2->password=Hash::make($data['password']);
+            $user2->save();
+        }
+        
     }
 
     /**
@@ -84,4 +147,6 @@ class AdminController extends Controller
     {
         //
     }
+
+    
 }
