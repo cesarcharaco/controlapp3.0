@@ -170,6 +170,7 @@ class InmueblesController extends Controller
 	public function update(Request $request, $id_inmueble)
 	{
 		//dd($request->all());
+        $id_admin=id_admin(\Auth::user()->email);
         
 		$buscar=Inmuebles::where('idem',$request->idem)->where('id','<>',$request->id)->where('id_admin',$id_admin)->get();
 		if (count($buscar)>0) {

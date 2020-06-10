@@ -122,6 +122,8 @@ class AdminController extends Controller
                     $user2->rut=$request->rut_e;
                     $user2->email=$request->email_e;
                     $user2->save();
+                     flash('Admin actualizado con éxito!')->success()->important();
+                        return redirect()->back();
                 } else {
                     # en caso de querer cambiar la contraseña
                     if ($request->password==$request->password_confirmation) {

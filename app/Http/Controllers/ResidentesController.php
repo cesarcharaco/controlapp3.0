@@ -7,7 +7,8 @@ use App\Residentes;
 use App\Estacionamientos;
 use App\Inmuebles;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ResidentesRequest;
+use App\UsersAdmin;
 class ResidentesController extends Controller
 {
     /**
@@ -42,36 +43,106 @@ class ResidentesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ResidentesRequest $request)
     {
          dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
-        $buscar=user::where('email',$request->email)->get();
+        $buscar=Residentes::where('email',$request->email)->where('id_admin',$id_admin)->get();
         if (count($buscar)>0) {
-            flash('email ya registrado')->warning()->important();
+            flash('Email ya registrado, intente otra vez')->warning()->important();
             return redirect()->back();
         } else {
-            $user=\DB::table('users')->insert([
-            'name' =>           $request->nombres,
-            'rut' =>            $request->rut,
-            'email' =>          $request->email,
-            'password' =>       bcrypt($request->rut),
-            'tipo_usuario' =>   'Residente'
-            ]);
-
-            $user=User::where('email',$request->email)->first();
-
-            $residente=\DB::table('residentes')->insert([
-                'nombres' => $request->nombres,
-                'apellidos' => $request->apellidos,
-                'rut' => $request->rut,
-                'telefono' => $request->telefono,
-                'id_usuario' => $user->id,
-                'id_admin' => $id_admin
-            ]);
-
-            flash('Residente registrado exitosamente!')->success()->important();
+            $buscar2=Residentes::where('rut',$request->rut)->where('id_admin',$id_admin)->get();
+            if (count($buscar2)>0) {
+                flash('RUT ya registrado, intente otra vez')->warning()->important();
             return redirect()->back();
+            } else {
+                $user=new User();
+                $user->name=$request->nombres;
+                $user->rut= $request->rut;
+                $user->email=$request->email;
+                $user->password=bcrypt($request->rut);
+                $user->tipo_usuario='Residente';
+                $user->save();
+
+                
+                $residente=new Residentes();
+                $residente->nombres = $request->nombres;
+                $residente->apellidos = $request->apellidos;
+                $residente->rut => $request->rut;
+                $residente->telefono = $request->telefono;
+                $residente->id_usuario = $user->id;
+                $residente->id_admin = $id_admin;
+                $residente->save();
+                $anio=date('Y');
+                //asignacion de inmueble
+                if(!is_null($request->id_inmuebles)){
+                        for ($i=0; $i < count($request->id_inmuebles); $i++) { 
+                            \DB::table('residentes_has_inmuebles')->insert([
+                                'id_residente' => $request->id_residente,
+                                'id_inmueble' => $request->id_inmuebles[$i]
+                            ]);
+                            $inmueble=Inmuebles::find($request->id_inmuebles[$i]);
+                            $inmueble->status="No Disponible";
+                            $inmueble->save();
+
+                            //asignando estatus de pago del inmueble
+                            $mensualidades=Mensualidades::where('id_inmueble',$request->id_inmuebles[$i])->where('anio',$anio)->get();
+                            foreach ($mensualidades as $key) {
+                                //echo "".$key->mes."-".$mes."<br>";
+                                if ($key->mes>=intval($mes)) {
+                                    $pago=new Pagos();
+                                    $pago->id_mensualidad=$key->id;
+                                    $pago->status="Pendiente";
+                                    $pago->save();
+                                   
+                                } else {
+                                    $pago=new Pagos();
+                                    $pago->id_mensualidad=$key->id;
+                                    $pago->status="No Aplica";
+                                    $pago->save();
+                                    
+                                }
+                                
+                            }
+
+                        }
+                        //dd("---------");
+                    }//fin de asignacion de inmubles
+
+                    //asignacion de estacionamientos
+                    if(!is_null($request->id_estacionamientos)){
+                        for ($i=0; $i < count($request->id_estacionamientos); $i++) { 
+                            \DB::table('residentes_has_est')->insert([
+                                'id_residente' => $request->id_residente,
+                                'id_estacionamiento' => $request->id_estacionamientos[$i]
+                            ]);
+                            //dd(".....");
+                            $estacionamiento=Estacionamientos::find($request->id_estacionamientos[$i]);
+                            $estacionamiento->status="Ocupado";
+                            $estacionamiento->save();
+
+                            //asignando estatus de pago del inmueble
+                            $mensualidades=MensualidadE::where('id_estacionamiento',$request->id_estacionamientos[$i])->where('anio',$anio)->get();
+                            foreach ($mensualidades as $key) {
+                                if ($key->mes>=intval($mes)) {
+                                    $pago=new PagosE();
+                                    $pago->id_mens_estac=$key->id;
+                                    $pago->status="Pendiente";
+                                    $pago->save();
+                                } else {
+                                    $pago=new PagosE();
+                                    $pago->id_mens_estac=$key->id;
+                                    $pago->status="No Aplica";
+                                    $pago->save();
+                                }
+                                
+                            }
+                        }
+                    }
+                flash('Residente registrado exitosamente!')->success()->important();
+                return redirect()->back();       
+            }
         }
     }
 
