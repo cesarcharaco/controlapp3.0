@@ -40,7 +40,7 @@
             <li>
                 <a href="{{ url('home') }}">
                     <i data-feather="share"></i>
-                    <span> Home </span>
+                    <span> Vista principal </span>
                 </a>
             </li>
 
