@@ -1315,7 +1315,7 @@
                 $('.inner'+id_inmueble).append(
                     '<div class="row">'+
                         '<div class="col-md-12">'+ 
-                            '<label>'+data[i].mes+'</label>'+
+                            '<label>'+mes[data[i].mes]+'</label>'+
                             '<label style="float: right;">'+data[i].status+'</label>'+
                         '</div>'+
                         
