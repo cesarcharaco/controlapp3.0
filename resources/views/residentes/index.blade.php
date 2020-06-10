@@ -102,41 +102,38 @@
                                     <div class="col-md-12">
                                         
                                         <div class="form-group">
-                                            <input type="text" id="nombres_e" name="nombres" placeholder="Nombres del residente" class="form-control">
+                                            <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control" id="nombres_e">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" id="apellidos_e" name="apellidos" placeholder="Apellidos del residente" class="form-control">
+                                            <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control" id="apellidos_e">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="number" id="rut_e" name="rut" placeholder="Rut del residente" class="form-control">
+                                            <input type="number" name="rut" placeholder="Rut del residente" class="form-control" id="rut_e">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>¿Asignar inmueble?</label>
-                                            <select name="id_inmuebles" class="form select2" multiple=""></select>
+                                            <input type="number" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>¿Asignar estacionamiento?</label>
-                                            <select name="id_estacionamientos" class="form select2" multiple=""></select>
+                                            <input type="email" name="email" placeholder="Email del residente" class="form-control" id="email_e">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <div class="modal-footer">
                                 <input type="hidden" name="id" id="id_e">
                                 <button type="submit" class="btn btn-success" >Editar</button>

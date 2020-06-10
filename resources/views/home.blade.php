@@ -166,7 +166,7 @@
                             @include('flash::message')
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h1>Home</h1>
+                                    <h1>Vista principal</h1>
                                 </div>
                             </div>
                             @if(!empty($errors->all()))
