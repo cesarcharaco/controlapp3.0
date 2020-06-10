@@ -24,7 +24,8 @@ class ResidentesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'nombres' => 'required|max:255',
+            'apellidos' => 'required|max:255',
             'rut' => 'required|numeric|digits_between:9,10',
             'email' => 'required|email|max:255'
         ];
@@ -33,8 +34,10 @@ class ResidentesRequest extends FormRequest
     public function mesagges()
     {
         return [
-            'name.required' => 'El nombre es obligatorio',
-            'name.max' => 'El nombre no puede contener mas de 255 caracteres',
+            'nombres.required' => 'El nombre es obligatorio',
+            'nombres.max' => 'El nombre no puede contener mas de 255 caracteres',
+            'apellidos.required' => 'El nombre es obligatorio',
+            'apellidos.max' => 'El nombre no puede contener mas de 255 caracteres',
             'rut.required' => 'El RUT es obligatorio',
             'rut.numeric' => 'El RUT solo debe contener números',
             'rut.max' => 'El RUT solo debe contener máximo 10 números',

@@ -9,6 +9,10 @@ use App\Inmuebles;
 use Illuminate\Http\Request;
 use App\Http\Requests\ResidentesRequest;
 use App\UsersAdmin;
+use App\Mensualidades;
+use App\MensualidadE;
+use App\Pagos;
+use App\PagosE;
 class ResidentesController extends Controller
 {
     /**
@@ -43,12 +47,20 @@ class ResidentesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ResidentesRequest $request)
+    public function store(Request $request)
     {
-         dd($request->all());
+         //dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
-        $buscar=Residentes::where('email',$request->email)->where('id_admin',$id_admin)->get();
-        if (count($buscar)>0) {
+        $buscar=Residentes::where('id_admin',$id_admin)->get();
+        $cont=0;
+        $mes=date('m');
+        foreach ($buscar as $key) {
+            $usuario=User::find($key->id_usuario);
+            if($usuario->email==$request->email){
+                $cont++;
+            }
+        }
+        if ($cont>0) {
             flash('Email ya registrado, intente otra vez')->warning()->important();
             return redirect()->back();
         } else {
@@ -69,8 +81,10 @@ class ResidentesController extends Controller
                 $residente=new Residentes();
                 $residente->nombres = $request->nombres;
                 $residente->apellidos = $request->apellidos;
-                $residente->rut => $request->rut;
-                $residente->telefono = $request->telefono;
+                $residente->rut = $request->rut;
+                if(!is_null($request->telefono)){
+                    $residente->telefono = $request->telefono;
+                }
                 $residente->id_usuario = $user->id;
                 $residente->id_admin = $id_admin;
                 $residente->save();
@@ -79,7 +93,7 @@ class ResidentesController extends Controller
                 if(!is_null($request->id_inmuebles)){
                         for ($i=0; $i < count($request->id_inmuebles); $i++) { 
                             \DB::table('residentes_has_inmuebles')->insert([
-                                'id_residente' => $request->id_residente,
+                                'id_residente' => $residente->id,
                                 'id_inmueble' => $request->id_inmuebles[$i]
                             ]);
                             $inmueble=Inmuebles::find($request->id_inmuebles[$i]);
@@ -114,7 +128,7 @@ class ResidentesController extends Controller
                     if(!is_null($request->id_estacionamientos)){
                         for ($i=0; $i < count($request->id_estacionamientos); $i++) { 
                             \DB::table('residentes_has_est')->insert([
-                                'id_residente' => $request->id_residente,
+                                'id_residente' => $residente->id,
                                 'id_estacionamiento' => $request->id_estacionamientos[$i]
                             ]);
                             //dd(".....");
@@ -175,9 +189,19 @@ class ResidentesController extends Controller
      * @param  \App\Residentes  $residentes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(RsidentesRequest $request)
     {
         // dd($request->all());
+        $id_admin=id_admin(\Auth::user()->email);
+
+        $buscar=Residentes::where('id_admin',$id_admin)->get();
+        $cont=0;
+        foreach ($buscar as $key) {
+            $usuario=User::find($key->id_usuario);
+            if($usuario->email==$request->email){
+                $cont++;
+            }
+        }
         $residente= Residentes::find($request->id);
 
         $residente->nombres=$request->nombres;
@@ -323,6 +347,25 @@ class ResidentesController extends Controller
     {
         $residente = Residentes::where('id', $request->id)->first();
         $id=$residente->id_usuario;
+        
+        foreach ($residente->inmuebles as $key) {
+            $inmueble=Inmuebles::find($key->pivot->id_inmueble);
+            $inmueble->status="Disponible";
+            $inmueble->save();
+            foreach ($key->mensualidades as $key2) {
+                $key2->delete();
+            }
+        }
+
+        foreach ($residente->estacionamientos as $key) {
+            $inmueble=Estacionamientos::find($key->pivot->id_estacionamiento);
+            $inmueble->status="Libre";
+            $inmueble->save();
+            foreach ($key->mensualidad as $key2) {
+                $key2->delete();
+            }
+        }
+
         $residente->delete();
 
         if($eliminar = User::find($id)){
