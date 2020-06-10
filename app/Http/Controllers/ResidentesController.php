@@ -189,37 +189,58 @@ class ResidentesController extends Controller
      * @param  \App\Residentes  $residentes
      * @return \Illuminate\Http\Response
      */
-    public function update(RsidentesRequest $request)
+    public function update(ResidentesRequest $request)
     {
-        // dd($request->all());
+        //dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
 
         $buscar=Residentes::where('id_admin',$id_admin)->get();
         $cont=0;
         foreach ($buscar as $key) {
-            $usuario=User::find($key->id_usuario);
-            if($usuario->email==$request->email){
-                $cont++;
+            
+            if ($key->id!=$request->id) {
+                
+                $usuario=User::find($key->id_usuario);
+                if($usuario->email==$request->email){
+                    $cont++;
+                }
+            }
+            
+        }
+        //dd($cont);
+        if ($cont>0) {
+            flash('Email ya registrado, intente otra vez')->warning()->important();
+            return redirect()->back();
+        } else {
+            $buscar2=Residentes::where('rut',$request->rut)->where('id','<>',$request->id)->where('id_admin',$id_admin)->get();
+            if (count($buscar2)>0) {
+                flash('RUT ya registrado, intente otra vez')->warning()->important();
+            return redirect()->back();
+            } else {
+                $residente= Residentes::find($request->id);
+
+                $residente->nombres=$request->nombres;
+                $residente->apellidos=$request->apellidos;
+                $residente->rut=$request->rut;
+                if(!is_null($request->telefono)){
+                    $residente->telefono=$request->telefono;
+                }
+                $residente->save();
+
+                $user=User::find($residente->id_usuario);
+
+                $user->name=$request->nombres;
+                $user->rut=$request->rut;
+                $user->email=$request->email;
+                $user->password=bcrypt($request->rut);
+                $user->save();
+
+                flash('Residente actualizado!')->success()->important();
+                return redirect()->back();
             }
         }
-        $residente= Residentes::find($request->id);
-
-        $residente->nombres=$request->nombres;
-        $residente->apellidos=$request->apellidos;
-        $residente->rut=$request->rut;
-        $residente->telefono=$request->telefono;
-        $residente->save();
-
-        $user=User::find($residente->id_usuario);
-
-        $user->name=$request->nombres;
-        $user->rut=$request->rut;
-        $user->email=$request->email;
-        $user->password=bcrypt($request->rut);
-        $user->save();
-
-        flash('Residente actualizado!')->success()->important();
-        return redirect()->back();
+        
+        
     }
 
     public function arriendos()
@@ -353,7 +374,8 @@ class ResidentesController extends Controller
             $inmueble->status="Disponible";
             $inmueble->save();
             foreach ($key->mensualidades as $key2) {
-                $key2->delete();
+                $buscar=Pagos::where('id_mensualidad',$key2->id);
+                $buscar->delete();
             }
         }
 
@@ -362,7 +384,8 @@ class ResidentesController extends Controller
             $inmueble->status="Libre";
             $inmueble->save();
             foreach ($key->mensualidad as $key2) {
-                $key2->delete();
+                $buscar=PagosE::where('id_mens_estac',$key2->id);
+                $buscar->delete();
             }
         }
 
