@@ -697,7 +697,7 @@
             $('#opcion').val(1);
             $('#titleE').text('Editar pago de Inmuebles');
             $('#MuestraInmueble').show();
-            console.log(id_residente);
+            console.log(id_residente+' ----');
             $.get("inmuebles/"+id_residente+"/buscar_anios",function (data) {
             })
             .done(function(data) {
@@ -764,6 +764,7 @@
             $.get("inmuebles/"+id_residente+"/"+anio+"/buscar_inmuebles",function (data) {
                 if (data.length>0) {
                         $('#id_inmuebleEditar').append('<option selected disabled>Seleccione los meses</option>');
+                        //console.log(data);
                     for(i=0 ; i<data.length ; i++){
                         $('#id_inmuebleEditar').append(
                             '<optgroup label="'+data[i].idem+'" id="id_inmuebleEditar'+data[i].id+'">'+inmuebles_meses_editar(data[i].id)+'</optgroup>'

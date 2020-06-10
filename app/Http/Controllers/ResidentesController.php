@@ -192,7 +192,7 @@ class ResidentesController extends Controller
         ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
         ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
         ->where('inmuebles.id',$id_inmueble)
-        ->where('inmuebles.id_admin',$id_admin)
+        ->where('residentes.id_admin',$id_admin)
         ->where('mensualidades.anio',$anio)
         ->where('residentes_has_inmuebles.status','En Uso')
         ->select('mensualidades.mes','mensualidades.id','pagos.status','residentes_has_inmuebles.status AS alquiler_status')
