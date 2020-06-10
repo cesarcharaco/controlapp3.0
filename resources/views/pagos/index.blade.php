@@ -764,7 +764,7 @@
             $.get("inmuebles/"+id_residente+"/"+anio+"/buscar_inmuebles",function (data) {
                 if (data.length>0) {
                         $('#id_inmuebleEditar').append('<option selected disabled>Seleccione los meses</option>');
-                    for(i=0 ; i<data.length ; i++){
+                    for(i=0 ; i<12 ; i++){
                         $('#id_inmuebleEditar').append(
                             '<optgroup label="'+data[i].idem+'" id="id_inmuebleEditar'+data[i].id+'">'+inmuebles_meses_editar(data[i].id)+'</optgroup>'
                         );
@@ -783,7 +783,7 @@
             $.get("estacionamientos/"+id_residente+"/"+anio+"/buscar_estacionamientos",function (data) {
                 if (data.length>0) {
                         $('#id_estacionamientoEditar').append('<option selected disabled>Seleccione los meses</option>');
-                    for(i=0 ; i<data.length ; i++){
+                    for(i=0 ; i<12 ; i++){
                         $('#id_estacionamientoEditar').append(
                             '<optgroup label="'+data[i].idem+'" id="id_estacionamientoEditar'+data[i].id+'">'+estacionamientos_meses_editar(data[i].id)+'</optgroup>'
                         );
