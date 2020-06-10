@@ -44,7 +44,7 @@ class ResidentesController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+         dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
         $buscar=user::where('email',$request->email)->get();
         if (count($buscar)>0) {

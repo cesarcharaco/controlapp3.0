@@ -479,6 +479,7 @@
 
 
 	function NuevoResidente() {
+		console.log('hola');
 		$('#crearResidente').modal('show');
 		$('#asignaInmueResidente').empty();
 		$('#asignaEstaResidente').empty();
@@ -486,7 +487,7 @@
 		$.get('inmuebles_disponibles/1044/buscar', function (data) {
 		})
 		.done(function(data) {
-
+			console.log(data.length);
 			if(data.length>0){
 
 				for (var i = 0; i < data.length; i++) {
