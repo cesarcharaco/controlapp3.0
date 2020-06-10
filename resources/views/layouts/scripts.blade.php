@@ -558,7 +558,7 @@
 
 			.done(function(data2) {
 				if(data2.length>0){
-					for (var i = 0; i < 13; i++) {
+					for (var i = 0; i < data2.length; i++) {
 
 						if(data2[i].alquiler_status=="En Uso"){
 							if(i>0){
