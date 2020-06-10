@@ -409,7 +409,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>¿Asignar inmueble?</label>
-                                                            <select name="id_inmuebles" class="form select2" multiple="" id="asignaInmueResidente">
+                                                            <select name="id_inmuebles[]" multiple class="form select2" multiple="" id="asignaInmueResidente">
                                                                 
                                                             </select>
                                                         </div>
@@ -419,7 +419,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>¿Asignar estacionamiento?</label>
-                                                            <select name="id_estacionamientos" class="form select2" multiple="" id="asignaEstaResidente">
+                                                            <select name="id_estacionamientos[]" multiple class="form select2" multiple="" id="asignaEstaResidente">
 
                                                             </select>
                                                         </div>
