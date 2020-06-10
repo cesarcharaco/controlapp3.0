@@ -1,5 +1,6 @@
 <link rel="shortcut icon" href="{{ asset('assets/images/logo.jpg') }}">
 <link href="{{ asset('assets/css/login.min.css') }}" rel="stylesheet" type="text/css" style="border-radius: 30px;" />
+@include('layouts.css')
 <body>
 
     <!-- content -->
@@ -43,7 +44,9 @@
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                     </div>
-
+                    <div class="alert alert-primary" role="alert" style="border-radius: 30px;">
+                        <strong style="font-family: italic;">La contraseña debe tener al menos 9 carácteres.</strong>
+                    </div>
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">
                         <input id="password" type="password" class="input100 @error('password') is-invalid @enderror"
                         name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
@@ -54,7 +57,7 @@
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" type="submit">
+                        <button class="login100-form-btn btn-success" type="submit">
                             {{ __('Login') }}
                         </button>
                     </div>
@@ -74,7 +77,15 @@
 
         </div>
     </div>
-    @include('layouts.admin.footer')
+    <footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                ControlApp <label class="badge badge-soft-danger">v1.0.1.</label> Un proyecto desarrollado por <a href="https://eiche.cl/" target="_blank" id="eiche">EICHE</a>.
+            </div>
+        </div>
+    </div>
+</footer>
     @include('layouts.scripts')
 </body>
 </html>

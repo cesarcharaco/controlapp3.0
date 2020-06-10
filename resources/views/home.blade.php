@@ -355,35 +355,37 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
-                @if(\Auth::user()->tipo_usuario == 'Admin')
-                    <div class="card-header">
-                        <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
-                        <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
-                    </div>
-                @endif
-                <div class="card-body">
-                    @foreach($anuncios as $key)
-                        @if(\Auth::user()->tipo_usuario == 'Admin')
-                            <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
-                                x
-                            </a>
-                            <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
-                                e
-                            </a>
-                        @endif
-                        <div onclick="window.open('{{$key->link}}', '_blank');">
-                            
-                            <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
-                            <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200">
-
-                            <p class="text-dark">{{$key->descripcion}}</p>
+            @if(count($anuncios) >0 || \Auth::user()->tipo_usuario == 'root')
+                <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
+                    @if(\Auth::user()->tipo_usuario == 'root')
+                        <div class="card-header">
+                            <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
+                            <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
                         </div>
+                    @endif
+                    <div class="card-body">
+                        @foreach($anuncios as $key)
+                            @if(\Auth::user()->tipo_usuario == 'Admin')
+                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
+                                    x
+                                </a>
+                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                    e
+                                </a>
+                            @endif
+                            <div onclick="window.open('{{$key->link}}', '_blank');">
+                                
+                                <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
+                                <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200">
 
-                        <hr>
-                    @endforeach()
+                                <p class="text-dark">{{$key->descripcion}}</p>
+                            </div>
+
+                            <hr>
+                        @endforeach()
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 
