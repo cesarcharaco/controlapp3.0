@@ -95,6 +95,24 @@
             $('#email_e').val(email);
             $('#status_e').val(status);
         }
+
+        function CambiarContraseña() {
+            if($('#CheckCambiarContraseña').prop('checked')){
+
+                $('#verCambiarContraseña').fadeIn(300);
+                $('#contraseñaE').attr('required',true);
+                $('#confirmarContraseñaE').attr('required',true);
+                
+            }else{
+
+                $('#verCambiarContraseña').fadeOut('slow',
+                    function() { 
+                        $(this).css('display','none');
+                });
+                $('#contraseñaE').removeAttr('required',false);
+                $('#confirmarContraseñaE').removeAttr('required',false);               
+            }
+        }
         
     </script>
     <script type="text/javascript">

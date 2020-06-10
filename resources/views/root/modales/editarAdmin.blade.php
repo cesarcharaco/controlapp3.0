@@ -50,25 +50,27 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>¿Desea cambiar la contraseña de usuario?</label>
-                                <input type="checkbox" name="cambiar" value="si">
+                                <input type="checkbox" name="cambiar" value="si" id="CheckCambiarContraseña" onclick="CambiarContraseña();">
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Ingrese contraseña</label>
-                                <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
+                    <div id="verCambiarContraseña" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Ingrese contraseña</label>
+                                    <input type="password" name="password" placeholder="Contraseña" id="contraseñaE" class="form-control" >
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Confirmar contraseña</label>
-                                <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" class="form-control" required>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Confirmar contraseña</label>
+                                    <input type="password" name="password_confirmation" id="confirmarContraseñaE" placeholder="Confirmar contraseña" class="form-control" >
+                                </div>
                             </div>
                         </div>
                     </div>
