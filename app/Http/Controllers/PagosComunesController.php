@@ -29,29 +29,37 @@ class PagosComunesController extends Controller
                     flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
                     return redirect()->back();    
                 } else {
-                    $i=0;
-                    foreach ($meses as $key) {
-                        if($key->id>=$m && $a==$request->anio){
-                            $pagocomun=new PagosComunes();
-                            $pagocomun->tipo=$request->tipo;
-                            $pagocomun->anio=$anio;
-                            $pagocomun->mes=$key->id;
-                            $pagocomun->monto=$request->monto[$i];
-                            $pagocomun->id_admin=$id_admin;
-                            $pagocomun->save();
-                            $i++;
-                        }else{
+                    $buscar=PagosComunes::where('tipo',$request->tipo)->where('anio',$anio)->where('id_admin',$id_admin)->get();
+                    if (count($buscar)>0) {
+                        flash('Ya existen Pagos Comunes de '.$request->tipo.' registrados para '.$anio.', intente otra vez!')->warning()->important();
+                        return redirect()->back();    
+                    } else {
+                        # code...
+                        $i=0;
+                        foreach ($meses as $key) {
+                            if($key->id>=$m && $a==$request->anio){
+                                $pagocomun=new PagosComunes();
+                                $pagocomun->tipo=$request->tipo;
+                                $pagocomun->anio=$anio;
+                                $pagocomun->mes=$key->id;
+                                $pagocomun->monto=$request->monto[$i];
+                                $pagocomun->id_admin=$id_admin;
+                                $pagocomun->save();
+                                $i++;
+                            }else{
 
-                            $pagocomun=new PagosComunes();
-                            $pagocomun->tipo=$request->tipo;
-                            $pagocomun->anio=$anio;
-                            $pagocomun->mes=$key->id;
-                            $pagocomun->monto=$request->monto[$i];
-                            $pagocomun->id_admin=$id_admin;
-                            $pagocomun->save();
-                            $i++;
+                                $pagocomun=new PagosComunes();
+                                $pagocomun->tipo=$request->tipo;
+                                $pagocomun->anio=$anio;
+                                $pagocomun->mes=$key->id;
+                                $pagocomun->monto=$request->monto[$i];
+                                $pagocomun->id_admin=$id_admin;
+                                $pagocomun->save();
+                                $i++;
+                            }
                         }
                     }
+                    
                 }//nulidad
             } else {
                 # anual

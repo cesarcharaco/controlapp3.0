@@ -26,11 +26,11 @@ class ReportesController extends Controller
     {
 
         $meses=Meses::all();
-
+        $id_admin=id_admin(\Auth::user()->email);
         if(\Auth::user()->tipo_usuario == 'Admin'){
-            $inmuebles=Inmuebles::all();
-            $estacionamientos=Estacionamientos::all();
-            $residentes=Residentes::all();
+            $inmuebles=Inmuebles::where('id_admin',$id_admin)->get();
+            $estacionamientos=Estacionamientos::where('id_admin',$id_admin)->get();
+            $residentes=Residentes::where('id_admin',$id_admin)->get();
 
         }else{
             $inmuebles = \DB::table('residentes')
@@ -68,10 +68,10 @@ class ReportesController extends Controller
           "ResidentesTodos" => "Si"
           "MultasRecargas" => "Si"*/
         //dd($request->all());
-        
+        $id_admin=id_admin(\Auth::user()->email);
         //preparando variable para anios de inmuebles
         if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
-            $sql_i="SELECT inmuebles.* FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades,pagos WHERE residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id AND mensualidades.anio=".$request->anio." ";
+            $sql_i="SELECT inmuebles.* FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades,pagos WHERE residentes.id_admin=".$id_admin." AND  residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id AND mensualidades.anio=".$request->anio." ";
         } else {
             $sql_i="";
         }
@@ -79,20 +79,20 @@ class ReportesController extends Controller
         //preparando variable para anios de estacionamientos
         if (!is_null($request->id_estacionamientos) || !is_null($request->EstacionamientosTodos)) {
             
-            $sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos,mens_estac WHERE residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND mens_estac.id_estacionamiento=estacionamientos.id  AND mens_estac.anio=".$request->anio." ";
+            $sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos,mens_estac WHERE residentes.id_admin=".$id_admin." AND residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND mens_estac.id_estacionamiento=estacionamientos.id  AND mens_estac.anio=".$request->anio." ";
         } else {
            $sql_e="";
         }
         
         //preparando la variable de anios multas/recargas
         if (!is_null($request->MultasRecargas)) {
-            $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id=resi_has_mr.id_residente AND resi_has_mr.id_mr=multas_recargas.id AND multas_recargas.anio=".$request->anio." ";
+            $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id_admin=".$id_admin." AND residentes.id=resi_has_mr.id_residente AND resi_has_mr.id_mr=multas_recargas.id AND multas_recargas.anio=".$request->anio." ";
         } else {
             $sql_mr="";
         }
         
         //agregando los residentes
-        $sql_r="SELECT * FROM residentes,users WHERE residentes.id_usuario=users.id ";
+        $sql_r="SELECT * FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
         if (is_null($request->ResidentesTodos)) {
             $residentes="";
             $residentes2="";
@@ -113,7 +113,7 @@ class ReportesController extends Controller
           }
         }else{
           
-            $sql_r="SELECT residentes.*,users.email FROM residentes,users WHERE residentes.id_usuario=users.id ";
+            $sql_r="SELECT residentes.*,users.email FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
         }
             $residentes=\DB::select($sql_r);
         $meses[]=array();
@@ -175,6 +175,7 @@ class ReportesController extends Controller
    
     public function general(Request $request)
     {
+        $id_admin=id_admin(\Auth::user()->email);
         $anio=$request->anio;
         $meses[]=array();
         if (is_null($request->id_mes)) {
@@ -188,7 +189,7 @@ class ReportesController extends Controller
             if (\Auth::user()->tipo_usuario=="Residente") {
                 $residentes=Residentes::where('id_usuario',\Auth::user()->id)->get();
             } else {
-                $residentes=Residentes::all();
+                $residentes=Residentes::where('id_admin',$id_admin)->get();
             }
             
         }
