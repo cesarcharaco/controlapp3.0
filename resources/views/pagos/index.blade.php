@@ -42,13 +42,13 @@
                                             <td>
                                                 @foreach($asignaIn as $key2)
                                                     @if($key2->id_residente == $key->id)
-                                                            <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle img-fluid" alt="Responsive image"/></a>
+                                                            <a onclick="VerResi('{{$key2->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle img-fluid" alt="Responsive image"/></a>
                                                     @endif
                                                 @endforeach
 
                                                 @foreach($asignaEs as $key2)
                                                     @if($key2->id_residente == $key->id)
-                                                            <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md img-fluid" alt="Responsive image"/></a>
+                                                            <a onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md img-fluid" alt="Responsive image"/></a>
                                                     @endif
                                                 @endforeach
                                                                                          
@@ -1264,34 +1264,38 @@
         .done(function(data) {
 
             
-            //alert(data.length);
-            for(i=0 ; i<data.length ; i++){
-                if (i==0) {
-                        $('.carousel-inner').append(
-                            '<div class="carousel-item active">'+
-                                '<center>'+
-                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
-                                '</center>'+
-                                '<hr>'+
-                                '<label>Montos por mes</label><br>'+
-                                '<div class="inner'+data[i].id+'"></div>'
-                        );
+            if(data.length>0){
+                for(i=0 ; i<data.length ; i++){
+                    if (i==0) {
+                            $('.carousel-inner').append(
+                                '<div class="carousel-item active">'+
+                                    '<center>'+
+                                        '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
+                                    '</center>'+
+                                    '<hr>'+
+                                    '<label>Montos por mes</label><br>'+
+                                    '<div class="inner'+data[i].id+'"></div>'
+                            );
 
-                        detalles(data[i].id);
-                    }else{
-                        $('.carousel-inner').append(
-                            '<div class="carousel-item">'+
-                                '<center>'+
-                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
-                                '</center>'+
-                                '<hr>'+
-                                '<label>Montos por mes</label><br>'+
-                                '<div class="inner'+data[i].id+'"></div>'
-                        );
+                            detalles(data[i].id);
+                        }else{
+                            $('.carousel-inner').append(
+                                '<div class="carousel-item">'+
+                                    '<center>'+
+                                        '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
+                                    '</center>'+
+                                    '<hr>'+
+                                    '<label>Montos por mes</label><br>'+
+                                    '<div class="inner'+data[i].id+'"></div>'
+                            );
 
-                        detalles(data[i].id);
-                    }
-                    $('.carousel-inner').append('</div>');
+                            detalles(data[i].id);
+                        }
+                        $('.carousel-inner').append('</div>');
+                }
+
+            }else{
+                $('.carousel-inner').append('<h3>El residente no tiene Inmuebles registrados</h3>');
             }
                         
             
@@ -1305,15 +1309,14 @@
             //console.log(data.length);
             for(var i=0; i < data.length; i++){
                 $('.inner'+id_inmueble).append(
-                            '<div class="row">'+
-                                '<div class="col-md-4">'+ 
-                                        '<label>'+mostrar_mes(data[i].mes)+'</label>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label>'+data[i].status+'</label>'+
-                                '</div>'+
-                            '</div>'
-                        );
+                    '<div class="row">'+
+                        '<div class="col-md-12">'+ 
+                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
+                                '<label style="float: right;">'+data[i].status+'</label>'+
+                        '</div>'+
+                        
+                    '</div><hr>'
+                );
             }
 
         });
@@ -1504,15 +1507,13 @@
                 console.log(data.length);
                 for(var i=0; i < data.length; i++){
                     $('.inner'+id_estacionamiento).append(
-                                '<div class="row">'+
-                                    '<div class="col-md-4">'+ 
-                                            '<label>'+mostrar_mes(data[i].mes)+'</label>'+
-                                    '</div>'+
-                                    '<div class="col-md-6">'+
-                                        '<label>'+data[i].status+'</label>'+
-                                    '</div>'+
-                                '</div>'
-                            );
+                        '<div class="row">'+
+                            '<div class="col-md-12">'+ 
+                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
+                                '<label style="float:right;">'+data[i].status+'</label>'+
+                            '</div>'+
+                        '</div><hr>'
+                    );
                 }
 
             });

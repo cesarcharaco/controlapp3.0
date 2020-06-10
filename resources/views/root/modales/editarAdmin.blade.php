@@ -50,7 +50,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>¿Desea cambiar la contraseña de usuario?</label>
-                                <input type="checkbox" name="cambiar" value="si" required>
+                                <input type="checkbox" name="cambiar" value="si">
                             </div>
                         </div>
                     </div>
