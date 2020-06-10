@@ -46,8 +46,10 @@ class InmueblesController extends Controller
 	{
 		// dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
+
 		$buscar=Inmuebles::where('idem',$request->idem)->where('id_admin',$id_admin)->get();
-		$meses=Meses::all();
+		dd(count($buscar));
+        $meses=Meses::all();
 		if (count($buscar)>0) {
 			flash('El Idem ya se encuentra registrado, intente otra vez')->warning()->important();
 			return redirect()->back();

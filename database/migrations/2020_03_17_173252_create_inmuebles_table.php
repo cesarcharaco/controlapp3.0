@@ -15,7 +15,7 @@ class CreateInmueblesTable extends Migration
     {
         Schema::create('inmuebles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('idem')->unique();
+            $table->string('idem');
             $table->enum('tipo',['Casa','Apartamento','Anexo','Habitación','Otro']);
             $table->enum('status',['Disponible','No Disponible'])->default('Disponible');
             $table->enum('estacionamiento',['Si','No'])->default('Si');

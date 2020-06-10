@@ -101,26 +101,13 @@ class AdminController extends Controller
             flash('El correo electrónico ya se encuentra registrado, intente otra vez!')->warning()->important();
                 return redirect()->back();
         } else {
-            
-            if (is_null($request->cambiar)) {
-                # en caso de no querer cambiar la contraseña
-                $user= UsersAdmin::find($request->id);
-                $email=$user->email;
-
-                $user->name=$request->name_e;
-                $user->rut=$request->rut_e;
-                $user->email=$request->email_e;
-                $user->status=$request->status;
-                $user->save();
-
-                $user2=User::where('email',$email)->first();
-                $user2->name=$request->name_e;
-                $user2->rut=$request->rut_e;
-                $user2->email=$request->email_e;
-                $user2->save();
+            $buscar2=UsersAdmin::where('rut',$request->rut_e)->where('id','<>',$request->id)->get();
+            if (count($buscar2)) {
+                flash('El RUT ya se encuentra registrado, intente otra vez!')->warning()->important();
+                return redirect()->back();
             } else {
-                # en caso de querer cambiar la contraseña
-                if ($request->password==$request->password_confirmation) {
+                if (is_null($request->cambiar)) {
+                    # en caso de no querer cambiar la contraseña
                     $user= UsersAdmin::find($request->id);
                     $email=$user->email;
 
@@ -134,16 +121,35 @@ class AdminController extends Controller
                     $user2->name=$request->name_e;
                     $user2->rut=$request->rut_e;
                     $user2->email=$request->email_e;
-                    $user2->password=\Hash::make($request->password);
-                    $user2->save();    
-                    flash('Admin actualizado con éxito!')->success()->important();
-                    return redirect()->back();
+                    $user2->save();
                 } else {
-                    flash('Las contraseñas no coinciden!')->warning()->important();
-                    return redirect()->back();
+                    # en caso de querer cambiar la contraseña
+                    if ($request->password==$request->password_confirmation) {
+                        $user= UsersAdmin::find($request->id);
+                        $email=$user->email;
+
+                        $user->name=$request->name_e;
+                        $user->rut=$request->rut_e;
+                        $user->email=$request->email_e;
+                        $user->status=$request->status;
+                        $user->save();
+
+                        $user2=User::where('email',$email)->first();
+                        $user2->name=$request->name_e;
+                        $user2->rut=$request->rut_e;
+                        $user2->email=$request->email_e;
+                        $user2->password=\Hash::make($request->password);
+                        $user2->save();    
+                        flash('Admin actualizado con éxito!')->success()->important();
+                        return redirect()->back();
+                    } else {
+                        flash('Las contraseñas no coinciden!')->warning()->important();
+                        return redirect()->back();
+                    }
+                
                 }
-            
             }
+            
         }
         
     }

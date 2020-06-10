@@ -15,7 +15,7 @@ class CreateEstacionamientosTable extends Migration
     {
         Schema::create('estacionamientos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('idem')->unique();
+            $table->string('idem');
             $table->enum('status',['Libre','Ocupado'])->default('Libre');
             $table->unsignedBigInteger('id_admin');
 
