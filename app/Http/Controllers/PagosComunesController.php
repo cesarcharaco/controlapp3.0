@@ -106,7 +106,7 @@ class PagosComunesController extends Controller
                 $meses=Meses::all();
                 
 
-            foreach($meses as $key){
+                foreach($meses as $key){
                     $pagocomun= PagosComunes::where('tipo',$request->tipo)->where('anio',$anio)->where('mes',$key->id)->where('id_admin',$id_admin)->first();
                     //dd($pagocomun);
                     if ($pagocomun!=null) {
@@ -115,9 +115,11 @@ class PagosComunesController extends Controller
                     }
                 }
             //----------------------
+        //dd($request->all());
         if ($request->accion==1) {
                 # mensual
             $meses=Meses::all();
+            //dd($meses);
                 $i=0;
                 foreach($meses as $key){
                     
@@ -141,7 +143,7 @@ class PagosComunesController extends Controller
                         }
                         //-----------------------------
                         //cambiando montos de estacionamientos
-                        $estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
+                        /*$estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
                         foreach ($estacionamiento as $key2) {
                         	foreach ($key2->mensualidad as $key3) {
                         		if($key3->mes==$key->id){
@@ -149,7 +151,7 @@ class PagosComunesController extends Controller
                         			$key3->save();
                         		}
                         	}
-                        }
+                        }*/
                         //-----------------------------
                         $i++;
                 }
@@ -157,7 +159,7 @@ class PagosComunesController extends Controller
                     	
             } else {
                 # anual
-                for($i=0;$i<count($request->mes);$i++){
+                /*for($i=0;$i<count($request->mes);$i++){
                    
                         $pagocomun=new PagosComunes();
                         $pagocomun->tipo=$request->tipo;
@@ -167,6 +169,34 @@ class PagosComunesController extends Controller
                         $pagocomun->id_admin=$id_admin;
                         $pagocomun->save();
                     
+                }*/
+                $meses=Meses::all();
+            //dd($meses);
+                $i=0;
+                foreach($meses as $key){
+                    
+                        $pagocomun=new PagosComunes();
+                        $pagocomun->tipo=$request->tipo;
+                        $pagocomun->anio=$anio;
+                        $pagocomun->mes=$key->id;
+                        $pagocomun->monto=$request->monto[$i];
+                        $pagocomun->id_admin=$id_admin;
+                        $pagocomun->save();
+
+                        
+                        //-----------------------------
+                        //cambiando montos de estacionamientos
+                        $estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
+                        foreach ($estacionamiento as $key2) {
+                            foreach ($key2->mensualidad as $key3) {
+                                if($key3->mes==$key->id){
+                                    $key3->monto=$pagocomun->monto;
+                                    $key3->save();
+                                }
+                            }
+                        }
+                        //-----------------------------
+                        $i++;
                 }
                 
             }

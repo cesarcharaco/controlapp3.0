@@ -11,42 +11,43 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('users_admin')->insert([
+            'name' => 'Administrador1',
+            'rut' => '123456789',
+            'email' => 'admin1@controlapp.cl'
+        ]);
+
         \DB::table('users')->insert([
-        	'name' => 'Administrador',
-            'rut' => '12121212121',
-        	'email' => 'admin@eiche.cl',
+        	'name' => 'Administrador1',
+            'rut' => '123456789',
+        	'email' => 'admin1@controlapp.cl',
         	'password' => bcrypt('EICHE_CONTROL'),
             'tipo_usuario' => 'Admin'
         ]);
 
-        \DB::table('users')->insert([
+        /*\DB::table('users')->insert([
             'name' => 'Francisco Carpio',
             'rut' => '121212121',
-            'email' => 'franciscocarpio@eiche.cl',
+            'email' => 'franciscocarpio@controlapp.cl',
             'password' => bcrypt('EICHE_CONTROL'),
             'tipo_usuario' => 'Residente'
-        ]);
+        ]);*/
 
-        \DB::table('users')->insert([
+        /*\DB::table('users')->insert([
             'name' => 'María Garcia',
             'rut' => '121212145',
-            'email' => 'mariagarcia@eiche.cl',
+            'email' => 'mariagarcia@controlapp.cl',
             'password' => bcrypt('EICHE_CONTROL'),
             'tipo_usuario' => 'Otro'
-        ]);
+        ]);*/
 
         \DB::table('users')->insert([
             'name' => 'Root',
             'rut' => '1232212212',
-            'email' => 'root@eiche.cl',
+            'email' => 'root@controlapp.cl',
             'password' => bcrypt('EICHE_CONTROL'),
             'tipo_usuario' => 'root'
         ]);
 
-        \DB::table('users_admin')->insert([
-            'name' => 'Administrador',
-            'rut' => '12121212121',
-            'email' => 'admin@eiche.cl'
-        ]);
     }
 }
