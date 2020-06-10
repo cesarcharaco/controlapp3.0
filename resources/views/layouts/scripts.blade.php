@@ -561,7 +561,7 @@
 					for (var i = 0; i < data2.length; i++) {
 
 						if(data2[i].alquiler_status=="En Uso"){
-							if(i>0){
+							if(i>0 && i<=12){
 
 								if(data2[i].status == 'Pendiente'){
 									$('#muestraMesesAPagar').append(
