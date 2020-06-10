@@ -1269,32 +1269,33 @@
             
             if(data.length>0){
                 for(i=0 ; i<data.length ; i++){
+                    alert()
                     if (i==0) {
-                            $('.carousel-inner').append(
-                                '<div class="carousel-item active">'+
-                                    '<center>'+
-                                        '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
-                                    '</center>'+
-                                    '<hr>'+
-                                    '<label>Montos por mes</label><br>'+
-                                    '<div class="inner'+data[i].id+'"></div>'
-                            );
+                        $('.carousel-inner').append(
+                            '<div class="carousel-item active">'+
+                                '<center>'+
+                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
+                                '</center>'+
+                                '<hr>'+
+                                '<label>Montos por mes</label><br>'+
+                                '<div class="inner'+data[i].id+'"></div>'
+                        );
 
-                            detalles(data[i].id);
-                        }else{
-                            $('.carousel-inner').append(
-                                '<div class="carousel-item">'+
-                                    '<center>'+
-                                        '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
-                                    '</center>'+
-                                    '<hr>'+
-                                    '<label>Montos por mes</label><br>'+
-                                    '<div class="inner'+data[i].id+'"></div>'
-                            );
+                        detalles(data[i].id);
+                    }else{
+                        $('.carousel-inner').append(
+                            '<div class="carousel-item">'+
+                                '<center>'+
+                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
+                                '</center>'+
+                                '<hr>'+
+                                '<label>Montos por mes</label><br>'+
+                                '<div class="inner'+data[i].id+'"></div>'
+                        );
 
-                            detalles(data[i].id);
-                        }
-                        $('.carousel-inner').append('</div>');
+                        detalles(data[i].id);
+                    }
+                    $('.carousel-inner').append('</div>');
                 }
 
             }else{
@@ -1314,8 +1315,8 @@
                 $('.inner'+id_inmueble).append(
                     '<div class="row">'+
                         '<div class="col-md-12">'+ 
-                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
-                                '<label style="float: right;">'+data[i].status+'</label>'+
+                            '<label>'+data[i].mes+'</label>'+
+                            '<label style="float: right;">'+data[i].status+'</label>'+
                         '</div>'+
                         
                     '</div><hr>'
