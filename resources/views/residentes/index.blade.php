@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12 offset-md-9">
-                            <a class="btn btn-success" data-toggle="modal" data-target="#crearResidente" style="border-radius: 30px; color: white;">
+                            <a class="btn btn-success" onclick="NuevoResidente()" style="border-radius: 30px; color: white;">
                                 <span> Nuevo Residente </span>
                             </a>
                         </div>
