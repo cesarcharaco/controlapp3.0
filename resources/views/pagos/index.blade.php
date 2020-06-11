@@ -1268,7 +1268,7 @@
 
     function VerResi(id_residente) {
         $('#titleModal').empty();
-        $('#titleModal').append('Residencias');
+        $('#titleModal').append('residencias');
         $('.carousel-inner').empty();
         $('#VerEsta').modal('show');
         $('#MostrarEstacionamientos').empty();
@@ -1281,7 +1281,7 @@
             
             if(data.length>0){
                 for(i=0 ; i<data.length ; i++){
-                    alert()
+                    // alert()
                     if (i==0) {
                         $('.carousel-inner').append(
                             '<div class="carousel-item active">'+
@@ -1289,7 +1289,7 @@
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
                                 '<hr>'+
-                                '<label>Montos por mes</label><br>'+
+                                '<label><h4>Montos por mes</h4></label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
 
@@ -1301,7 +1301,7 @@
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
                                 '<hr>'+
-                                '<label>Montos por mes</label><br>'+
+                                '<label><h4>Montos por mes</h4></label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
 
@@ -1407,7 +1407,7 @@
                         "<div class='card-box'>"+
                             "<div class='row'>"+
                                 "<div class='col-md-12' width='100%'>"+
-                                    "<a href='#' disabled class='btn btn-block btn-success'>Montos por mes</a>"+
+                                    "<a href='#' disabled class='btn btn-block btn-success'><h4>Montos por mes</h4></a>"+
                                 "</div>"+
                                 // "<div class='col-md-6' width='100%'>"+
                                 //     "<a href='#' class='btn btn-block btn-warning' onclick='mostrarE(2)'>Monto por año</a>"+
@@ -1415,7 +1415,7 @@
                             "</div>"+
                         "</div"
                     );
-                    $('#createMensuality1').append('<label>Montos por mes</label><br>');
+                    $('#createMensuality1').append('<label><h4>Montos por mes</h4></label><br>');
 
                     
                     for (var i = 0; i < data.length; i++) {
@@ -1470,7 +1470,7 @@
 
     function VerEstacionamientos(id_residente) {
         $('#titleModal').empty();
-        $('#titleModal').append('Residencias');
+        $('#titleModal').append('estacionamientos');
         $('.carousel-inner').empty();
         $('#VerEsta').modal('show');
         $('#MostrarEstacionamientos').empty();
@@ -1490,7 +1490,7 @@
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
                                 '<hr>'+
-                                '<label>Montos por mes</label><br>'+
+                                '<label><h4>Montos por mes</h4></label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
 
@@ -1502,7 +1502,7 @@
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
                                 '<hr>'+
-                                '<label>Montos por mes</label><br>'+
+                                '<label><h4>Montos por mes</h4></label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
 
@@ -1549,7 +1549,7 @@
                         "<div class='card-box'>"+
                             "<div class='row'>"+
                                 "<div class='col-md-12' width='100%'>"+
-                                    "<a href='#' disabled class='btn btn-block btn-success'>Montos por mes</a>"+
+                                    "<a href='#' disabled class='btn btn-block btn-success'><h4>Montos por mes</h4></a>"+
                                 "</div>"+
                                 // "<div class='col-md-6' width='100%'>"+
                                 //     "<a href='#' class='btn btn-block btn-warning' onclick='mostrarE(2)'>Monto por año</a>"+
@@ -1557,7 +1557,7 @@
                             "</div>"+
                         "</div"
                     );
-                    $('#muestraEsta2').append('<label>Montos por mes</label><br>');
+                    $('#muestraEsta2').append('<label><h4>Montos por mes</h4></label><br>');
 
                     
                     for (var i = 0; i < data.length; i++) {
