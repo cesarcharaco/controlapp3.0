@@ -44,7 +44,7 @@
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="alert alert-primary" role="alert" style="border-radius: 30px;">
+                    <div class="alert" style="background-color: #e4eeee;" role="alert" style="border-radius: 30px;">
                         <strong style="font-family: italic;">La contraseña debe tener al menos 9 carácteres.</strong>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">

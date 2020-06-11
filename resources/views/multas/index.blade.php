@@ -53,6 +53,8 @@
                                                                 <a href="#" data-toggle="modal" data-target="#editarMulta" onclick="EditarMR('{{$key->id}}','{{$key->motivo}}','{{$key->monto}}','{{$key->tipo}}','{{$key->observacion}}')" class="btn btn-warning btn-sm">Editar</a>
 
                                                                 <a href="#" data-toggle="modal" data-target="#eliminarMulta" onclick="eliminar('{{$key->id}}')" class="btn btn-danger btn-sm">Eliminar</a>
+
+                                                                <a href="#" onclick="verAsignados('{{$key->id}}')" class="btn btn-info btn-sm">Ver asignados</a>
                                                             </td>
                                                         </tr>
                                                     @endforeach()
@@ -217,6 +219,22 @@
             </div>
         </div>
     {!! Form::close() !!}
+
+    <div class="modal fade" id="verAsignadosMulta" role="dialog">
+        <div class="modal-dialog modals-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Asignaciones de la Multa/Recarga</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="ver_multas_asignadas"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 
 @endsection
@@ -235,5 +253,41 @@
 
     function eliminar(id) {
         $('#id_delete').val(id);
+    }
+    function verAsignados(id_multa){
+        $('#ver_multas_asignadas').empty();
+        $('#verAsignadosMulta').modal('show');
+        
+        $.get('mr/'+id_multa+'/asignados', function(data) {
+        })
+        .done(function(data) {
+            if(data.length>0){
+                for (var i = 0; i < data.length; i++) {
+                    $('#ver_multas_asignadas').append(
+                        '<div style="background-color:#AEFBFF; border-radius:10px; height:30px;">'+
+                            '<div class="row justify-content-md-center">'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<center><label>'+data[i].nombres+' '+data[i].apellidos+'</label></center>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<center><label>'+data[i].rut+'</label></center>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<center><label>'+data[i].telefono+'</label></center>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'
+                    );
+                }
+            }else{
+                $('#ver_multas_asignadas').append('<h5>No se encuentra asignada a ningún residente</5>');
+            }
+        });
     }
 </script>
