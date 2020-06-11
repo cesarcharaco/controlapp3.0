@@ -42,13 +42,17 @@
                                             <td>
                                                 @foreach($asignaIn as $key2)
                                                     @if($key2->id_residente == $key->id)
-                                                            <a onclick="VerResi('{{$key2->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle img-fluid" alt="Responsive image"/></a>
+                                                            <a style="width: 56%;" class="btn btn-primary" onclick="VerResi('{{$key2->id_residente}}')" href="#">
+                                                                Ver inmuebles
+                                                            </a>
                                                     @endif
                                                 @endforeach
-
+                                                <br><br>
                                                 @foreach($asignaEs as $key2)
                                                     @if($key2->id_residente == $key->id)
-                                                            <a onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md img-fluid" alt="Responsive image"/></a>
+                                                            <a class="btn btn-warning" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
+                                                                Ver Estacionamiento
+                                                            </a>
                                                     @endif
                                                 @endforeach
                                                                                          
@@ -234,13 +238,17 @@
                                             
                                             @foreach($asignaIn as $key)
                                                 @if($key->id_residente == $residentes[$i]->id)
-                                                        <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle img-fluid" alt="Responsive image"/></a>
+                                                        <a style="width: 56%;" class="btn btn-primary" onclick="VerResi('{{$key->id_residente}}')" href="#">
+                                                            Ver inmuebles
+                                                        </a>
                                                 @endif
                                             @endforeach
-
-                                            @foreach($asignaEs as $key)
+                                            <br>
+                                            @foreach($asignaEs as $key)<br>
                                                 @if($key->id_residente == $residentes[$i]->id)
-                                                        <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md img-fluid" alt="Responsive image"/></a>
+                                                        <a class="btn btn-warning" onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#">
+                                                            Ver Estacionamiento
+                                                        </a>
                                                 @endif
                                             @endforeach
 
@@ -304,13 +312,17 @@
                                                 
                                                 @foreach($asignaIn as $key)
                                                     @if($key->id_residente == $residentes[$i]->id)
-                                                            <a onclick="VerResi('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/house.png') }}" class="avatar-md rounded-circle img-fluid" alt="Responsive image"/></a>
+                                                            <a style="width: 56%;" class="btn btn-primary" onclick="VerResi('{{$key->id_residente}}')" href="#">
+                                                                Ver inmuebles
+                                                            </a>
                                                     @endif
                                                 @endforeach
-
+                                                <br><br>
                                                 @foreach($asignaEs as $key)
                                                     @if($key->id_residente == $residentes[$i]->id)
-                                                            <a onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#"><img src="{{ asset('assets/images/parkin.png') }}" class="avatar-md img-fluid" alt="Responsive image"/></a>
+                                                            <a class="btn btn-warning" onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#">
+                                                                Ver Estacionamiento
+                                                            </a>
                                                     @endif
                                                 @endforeach
 
