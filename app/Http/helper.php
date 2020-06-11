@@ -416,3 +416,24 @@ function alquiler_e($mes,$id_estacionamiento,$anio)
 
 	return $estado;
 }
+
+function mostrar_resi_has_notif($id_notificacion)
+{
+	$id_admin=id_admin(\Auth::user()->email);
+	$notificacion=\App\Notificaciones::find($id_notificacion);
+	$texto="";
+	$cont=0;
+	$residentes=\App\Residentes::where('id_admin',$id_admin)->get();
+	$tr=count($residentes);
+
+	foreach ($notificacion->residentes as $key) {
+		$texto.="<li>".$key->apellidos.", ".$key->nombres." | RUT: ".$key->rut." </li>";
+		$cont++;
+	}
+
+	if($cont==$tr){
+		$texto="Todos los Residentes";
+	}
+
+	return $texto;
+}

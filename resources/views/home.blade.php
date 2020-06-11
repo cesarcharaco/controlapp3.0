@@ -277,9 +277,7 @@
                                         </div>
                                         <div class="col-md-5">
                                             <ul>
-                                            @foreach($key->residentes as $key2)
-                                                <li>{{ $key2->apellidos }},{{ $key2->nombres }} | RUT: {{ $key2->rut }}</li>
-                                            @endforeach
+                                            {{ mostrar_resi_has_notif($key->id) }}
                                             </ul>
                                         </div>
                                         <div class="col-md-2">

@@ -43,11 +43,20 @@ class NotificacionesController extends Controller
             return redirect()->back();
         } else {
             if (!is_null($request->todos)) {
-            $notificaciones=\DB::table('notificaciones')->insert([
-                'titulo' => $request->titulo,
-                'motivo' => $request->motivo,
-                'id_admin' => $id_admin
-            ]);
+               $notif=new Notificaciones();
+               $notif->titulo=$request->titulo;
+               $notif->motivo=$request->motivo;
+               $notif->id_admin=$id_admin;
+               $notif->save();
+            //registrado a usuarios residententes
+            $residentes=Residentes::where('id_admin',$id_admin)->get();
+                foreach ($residentes as $key) {
+                    \DB::table('resi_has_notif')->insert([
+                        'id_residente' => $key->id,
+                        'id_notificacion' => $notif->id
+                     ]);
+                }
+
                 flash('Notificación registrada con éxito!')->success()->important();
                     return redirect()->back();    
             }else{
