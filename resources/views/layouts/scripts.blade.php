@@ -305,7 +305,7 @@
             $('#accionCreate').val(2);
         }
     }
-	
+
 	function montosEstacionaAnio(anio, opcion) {
 		$('#editar2').empty();
 		$('#spinnerE').css('display','block');
@@ -342,7 +342,7 @@
 	                                            '<div class="input-group-prepend">'+
 	                                                '<div class="input-group-text">$</div>'+
 	                                            '</div>'+
-	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="0">'+
+	                                            '<input type="text" name="monto[]" class="form-control" placeholder="10" value="0">'+
 	                                        '</div>'+
 	                                    '</div>'+
 	                                '</div>'+
@@ -381,7 +381,7 @@
 	                                            '<div class="input-group-prepend">'+
 	                                                '<div class="input-group-text">$</div>'+
 	                                            '</div>'+
-	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+monto+'">'+
+	                                            '<input type="text" name="monto[]" class="form-control" placeholder="10" value="'+monto+'">'+
 	                                        '</div>'+
 	                                    '</div>'+
 	                                '</div>'+
@@ -461,7 +461,7 @@
 	                                            '<div class="input-group-prepend">'+
 	                                                '<div class="input-group-text">$</div>'+
 	                                            '</div>'+
-	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="0">'+
+	                                            '<input type="text" name="monto[]" class="form-control" placeholder="10" value="0">'+
 	                                        '</div>'+
 	                                    '</div>'+
 	                                '</div>'+
@@ -500,7 +500,7 @@
 	                                            '<div class="input-group-prepend">'+
 	                                                '<div class="input-group-text">$</div>'+
 	                                            '</div>'+
-	                                            '<input type="number" name="monto[]" class="form-control" placeholder="10" value="'+monto+'">'+
+	                                            '<input type="text" name="monto[]" class="form-control" placeholder="10" value="'+monto+'">'+
 	                                        '</div>'+
 	                                    '</div>'+
 	                                '</div>'+

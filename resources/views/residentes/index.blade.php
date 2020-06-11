@@ -140,14 +140,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="number" name="rut" placeholder="Rut del residente" class="form-control" id="rut_e">
+                                            <input type="text" name="rut" placeholder="Rut del residente" class="form-control" id="rut_e">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="number" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e">
+                                            <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e">
                                         </div>
                                     </div>
                                 </div>

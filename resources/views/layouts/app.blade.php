@@ -384,14 +384,14 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <input type="number" name="rut" placeholder="Rut del residente" class="form-control">
+                                                            <input type="text" name="rut" placeholder="Rut del residente" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <input type="number" name="telefono" placeholder="Teléfono del residente" class="form-control">
+                                                            <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
