@@ -346,10 +346,8 @@
                                                     </div>
                                                 </div> 
                                                 --}}
-                                                <div class="modal-footer">
                                                     <input type="hidden" name="opcion" id="opcion" value="1">
-                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
-                                                </div>
+                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;"><i data-feather="check-circle"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -760,8 +758,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>¿El inmueble posee estacionamientos?</label>
-                                                            <select name="estacionamiento" class="form-control select2" onchange="(
-                                                            $('#cuantosEstaciona').css('display','block'))" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                                            <select name="estacionamiento" class="form-control select2" onchange="CheckboxCuantos(this.value)" id="PoseeEstacionamientoI" required placeholder="¿Algún estacionamiento para el inmueble?">
                                                                 <option value="Si">Si</option>
                                                                 <option value="No" selected="selected">No</option>
                                                             </select>
@@ -777,10 +774,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <hr>
+                                                
                                                 
 
-                                                {{--<div class="row">
+                                                {{--<hr><div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
@@ -882,10 +879,8 @@
                                                     </div>
                                                 </div>
                                                 --}}
-                                                <div class="modal-footer">
                                                     <input type="hidden" name="opcion" id="opcion" value="1">
-                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
-                                                </div>
+                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;"><i data-feather="check-circle"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -973,7 +968,16 @@
     
 
     <!-- Scripts -->
-        
+        <script type="text/javascript">
+        function CheckboxCuantos(){
+            if($('#PoseeEstacionamientoI').val() == 'Si'){
+                $('#cuantosEstaciona').css('display','block');
+            }else{
+                $('#cuantosEstaciona').css('display','none');
+            }
+
+        }
+        </script>
         @include('layouts.scripts')
         
     @section('scripts')

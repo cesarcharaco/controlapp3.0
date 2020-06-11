@@ -230,7 +230,7 @@
 
 
 
-<form action="{{ route('arriendos.retirar') }}" method="POST" name="BorrarAsignacion" data-parsley-validate>
+<form action="{{ route('arriendos.retirar') }}" method="POST" name="desocupar" data-parsley-validate>
     @csrf
     <div class="modal fade" id="BorrarAsignacion" role="dialog">
         <div class="modal-dialog modals-default">
@@ -249,6 +249,31 @@
                     <input type="hidden" name="id_estacionamiento" id="id_estacionamientoBorrar">
                     <input type="hidden" name="id_inmueble" id="id_inmuebleBorrar">
                     <button type="submit" class="btn btn-danger" >Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form action="{{ route('desocupacion') }}" method="POST" name="BorrarAsignacion" data-parsley-validate>
+    @csrf
+    <div class="modal fade" id="desocuparModal" role="dialog">
+        <div class="modal-dialog modals-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>¿Está seguro de querer desocupar esta asignación?</h3>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_residente" id="id_residenteDesocupar">
+                    <input type="hidden" name="id_estacionamiento" id="id_estacionamientoDesocupar">
+                    <input type="hidden" name="id_inmueble" id="id_inmuebleDesocupar">
+                    <input type="hidden" name="opcion_des" id="opcion_des">
+                    <button type="submit" class="btn btn-warning" >Desocupar</button>
                 </div>
             </div>
         </div>
@@ -357,9 +382,14 @@
                     $('#tablaMuestraInm').append(
                         '<tbody>'+
                             '<tr>'+
-                            '<th scope="row">'+n+'</th>'+
-                            '<td>'+data[i].idem+'</td>'+
-                            '<td><a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+','+data[i].id+',0)">Borrar</a></td>'+
+                                '<th scope="row">'+n+'</th>'+
+                                '<td>'+data[i].idem+'</td>'+
+                                '<td>'+
+                                    '<a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+','+data[i].id+',0)">Borrar'+
+                                    '</a>'+
+                                    '<a href="#" class="btn btn-warning btn-sm" onclick="desocupar('+id_residente+','+data[i].id+',0,1)">Borrar'+
+                                    '</a>'+
+                                '</td>'+
                             '</tr>'+
                         '</tbody>'
                     );
@@ -395,9 +425,14 @@
                     $('#tablaMuestraEsta').append(
                         '<tbody>'+
                             '<tr>'+
-                            '<th scope="row">'+n+'</th>'+
-                            '<td>'+data[i].idem+'</td>'+
-                            '<td><a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+',0,'+data[i].id+')">Borrar</a></td>'+
+                                '<th scope="row">'+n+'</th>'+
+                                '<td>'+data[i].idem+'</td>'+
+                                '<td>'+
+                                    '<a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+',0,'+data[i].id+')">Borrar'+
+                                    '</a>'+
+                                    '<a href="#" class="btn btn-warning btn-sm" onclick="desocupar('+id_residente+',0,'+data[i].id+',2)">Borrar'+
+                                    '</a>'+
+                                '</td>'+
                             '</tr>'+
                         '</tbody>'
                     );
@@ -419,5 +454,16 @@
         $('#id_residenteBorrar').val(id_residente);
         $('#id_estacionamientoBorrar').val(id_estacionamiento);
         $('#id_inmuebleBorrar').val(id_inmueble);
+    }
+    function desocupar(id_residente, id_inmueble, id_estacionamiento,opcion) {
+        $('#desocuparModal').modal('show');
+        $('#opcion_des').val(opcion);
+
+        $('#id_residenteDesocupar').empty();
+        $('#id_estacionamientoDesocupar').empty();
+        $('#id_inmuebleDesocupar').empty();
+        $('#id_residenteDesocupar').val(id_residente);
+        $('#id_estacionamientoDesocupar').val(id_estacionamiento);
+        $('#id_inmuebleDesocupar').val(id_inmueble);
     }
 </script>
