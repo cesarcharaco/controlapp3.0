@@ -537,13 +537,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <hr>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div id="PagoCInmuebles1"></div>
                                                     </div>
                                                 </div>
-                                                <hr>
                                                 <div class="float-right">
                                                     <input type="hidden" name="tipo" value="Inmueble">
                                                     <input type="hidden" name="accion" value="1">
@@ -639,13 +637,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div id="PagoCEstaciona1"></div>
                                             </div>
                                         </div>
-                                        <hr>
                                         <div class="float-right">
                                             <input type="hidden" name="tipo" value="Estacionamiento">
                                             <input type="hidden" name="accion" value="1">
@@ -769,7 +765,7 @@
                                                 <div class="row" id="cuantosEstaciona" style="display: none;">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label>¿Cuántos?</label>
+                                                            <label>Cantidad de estacionamientos</label>
                                                             <input type="number" name="Cuantos" class="form-control" placeholder="1">
                                                         </div>
                                                     </div>
