@@ -230,7 +230,7 @@
 
 
 
-<form action="{{ route('arriendos.retirar') }}" method="POST" name="desocupar" data-parsley-validate>
+<form action="{{ route('arriendos.retirar') }}" method="POST" name="BorrarAsignacion" data-parsley-validate>
     @csrf
     <div class="modal fade" id="BorrarAsignacion" role="dialog">
         <div class="modal-dialog modals-default">
@@ -255,7 +255,7 @@
     </div>
 </form>
 
-<form action="{{ route('desocupacion') }}" method="POST" name="BorrarAsignacion" data-parsley-validate>
+<form action="{{ route('desocupacion') }}" method="POST" name="des" data-parsley-validate>
     @csrf
     <div class="modal fade" id="desocuparModal" role="dialog">
         <div class="modal-dialog modals-default">
@@ -387,7 +387,7 @@
                                 '<td>'+
                                     '<a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+','+data[i].id+',0)">Borrar'+
                                     '</a>'+
-                                    '<a href="#" class="btn btn-warning btn-sm" onclick="desocupar('+id_residente+','+data[i].id+',0,1)">Borrar'+
+                                    '<a href="#" class="btn btn-warning btn-sm" onclick="desocupar('+id_residente+','+data[i].id+',0,1)">Desocupar'+
                                     '</a>'+
                                 '</td>'+
                             '</tr>'+
@@ -430,7 +430,7 @@
                                 '<td>'+
                                     '<a href="#" class="btn btn-danger btn-sm" onclick="borrar('+id_residente+',0,'+data[i].id+')">Borrar'+
                                     '</a>'+
-                                    '<a href="#" class="btn btn-warning btn-sm" onclick="desocupar('+id_residente+',0,'+data[i].id+',2)">Borrar'+
+                                    '<a href="#" class="btn btn-warning btn-sm" onclick="desocupar('+id_residente+',0,'+data[i].id+',2)">Desocupar'+
                                     '</a>'+
                                 '</td>'+
                             '</tr>'+
