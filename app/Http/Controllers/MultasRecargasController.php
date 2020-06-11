@@ -253,8 +253,19 @@ class MultasRecargasController extends Controller
         
         return $multas=\DB::table('multas_recargas')
         ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
         ->where('resi_has_mr.id_residente',$id)
         ->select('multas_recargas.*')
         ->get();
+    }
+
+    public function mostrar_asignados($id_mr)
+    {
+        return $multas=\DB::table('multas_recargas')
+        ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
+        ->where('resi_has_mr.id_mr',$id_mr)
+        ->select('residentes.*')
+        ->get();   
     }
 }

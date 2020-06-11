@@ -115,4 +115,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
 	Route::post('desocupacion','ArriendosController@desocupar')->name('desocupacion');
+	Route::get('mr/{id_mr}/asignados','MultasRecargasController@mostrar_asignados');
+
 });
