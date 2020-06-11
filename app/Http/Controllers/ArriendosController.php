@@ -243,5 +243,8 @@ class ArriendosController extends Controller
         ->get();
     }
 
-
+    public function desocupar(Request $request)
+    {
+        dd($request->all());
+    }
 }

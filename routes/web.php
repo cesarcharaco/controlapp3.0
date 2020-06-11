@@ -113,4 +113,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('anuncios','AnunciosController');
 	Route::resource('administradores','AdminController');
 
+
+	Route::post('desocupacion','ArriendosController@descupar')->name('desocupacion');
 });
