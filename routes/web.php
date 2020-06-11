@@ -114,5 +114,5 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('administradores','AdminController');
 
 
-	Route::post('desocupacion','ArriendosController@descupar')->name('desocupacion');
+	Route::post('desocupacion','ArriendosController@desocupar')->name('desocupacion');
 });

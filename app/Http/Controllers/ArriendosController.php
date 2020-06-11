@@ -9,6 +9,7 @@ use App\Mensualidades;
 use App\MensualidadE;
 use App\Pagos;
 use App\PagosE;
+use App\Residentes;
 class ArriendosController extends Controller
 {
 
@@ -100,7 +101,14 @@ class ArriendosController extends Controller
                 }
                 
             }
-            flash('Retiro de inmueble realizado con éxito!')->success()->important();
+            $residente=Residentes::find($request->id_residente);
+            foreach ($residente->inmuebles as $key) {
+                foreach ($key->mensualidades as $key2) {
+                    $buscar=Pagos::where('id_mensualidad',$key2->id);
+                    $buscar->delete();
+                }
+            }
+            flash('Eliminación del inmueble del Residente realizado con éxito!')->success()->important();
         } elseif($request->id_estacionamiento>0) {
             $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
 
@@ -114,7 +122,14 @@ class ArriendosController extends Controller
                 }
                 
             }
-            flash('Retiro de estacionamiento realizado con éxito!')->success()->important();
+            $residente=Residentes::find($request->id_residente);
+            foreach ($residente->estacionamientos as $key) {
+                foreach ($key->mensualidad as $key2) {
+                    $buscar=PagosE::where('id_mens_estac',$key2->id);
+                    $buscar->delete();
+                }
+            }
+            flash('Eliminación del estacionamiento del Residente realizado con éxito!')->success()->important();
         }
 
         
@@ -245,6 +260,35 @@ class ArriendosController extends Controller
 
     public function desocupar(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        if ($request->opcion_des==1) {
+            $residente=Residentes::find($request->id_residente);
+            //dd($residente->inmuebles);
+            foreach ($residente->inmuebles as $key) {
+                if($key->pivot->id_inmueble==$request->id_inmueble){
+                    $key->pivot->status='Retirado';
+                    $key->pivot->save();
+                    $inmueble=Inmuebles::find($request->id_inmueble);
+                    $inmueble->status="Disponible";
+                    $inmueble->save();
+                }
+
+            }
+            flash('Desocupación del Inmueble realizado con éxito!')->success()->important();
+        } else {
+            $residente=Residentes::find($request->id_residente);
+            foreach ($residente->estacionamientos as $key) {
+                if($key->pivot->id_estacionamiento==$request->id_estacionamiento){
+                    $key->pivot->status='Retirado';
+                    $key->pivot->save();
+                    $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
+                    $estacionamiento->status="Libre";
+                    $estacionamiento->save();
+                }
+
+            }
+            flash('Desocupación del Estacionamiento realizado con éxito!')->success()->important();
+        }
+        return redirect()->back();
     }
 }

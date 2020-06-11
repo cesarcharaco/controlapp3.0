@@ -63,7 +63,7 @@ class PagosController extends Controller
             flash('No ha seleccionado nada a pagar!')->warning()->important();
         return redirect()->back();
         } else {
-            if (is_null($request->mes)==false) {
+            /*if (is_null($request->mes)==false) {
                 for ($i=0; $i < count($request->mes); $i++) {
                     if($request->mes[$i]!==null){
                         $residente=Residentes::find($request->id_user);
@@ -84,7 +84,7 @@ class PagosController extends Controller
                     }
                 }
             }
-            
+            */
             if(is_null($request->mes)==false){
                 for ($i=0; $i < count($request->mes); $i++) { 
                     if($request->mes[$i]!==null){
