@@ -425,10 +425,10 @@
 	                                    "<a href='#' class='btn btn-block btn-warning' onclick='mostrarC(2)'>Monto por año</a>"+
 	                                "</div>"+
 	                            "</div>"+
-	                        "</div"
+	                        "</div>"
 	                    );
-	               		$('#PagoCInmuebles2').append(
-	               			'<div id="mostrarAnioI" style="display:none;">'
+	               		$('#PagoCInmuebles1').append(
+	               			'<div id="mostrarAnioI" style="display:none;">'+
 		                        '<div class="row">'+
 		                            '<div class="col-md-12">'+
 		                                '<div class="form-group">'+
@@ -444,10 +444,11 @@
 		                        '</div>'+
 		                    '</div>'
 	                    );
-                		$('#PagoCInmuebles1').append('<label>Montos por mes</label><br>');
+                		$('#PagoCInmuebles1').append('<div id="mostrarAnioM"><label>Montos por mes</label><br></div>');
+	                    
 	                    for (var i = 0; i < 12; i++) {
 	                    
-	                        $('#PagoCInmuebles1').append(
+	                        $('#mostrarAnioM').append(
 	                            '<div class="row">'+
 	                                '<div class="col-md-4">'+
 	                                    '<div class="form-group">'+
@@ -518,7 +519,19 @@
 		});
 	}
 
-
+	function mostrarC(opcion) {
+        if (opcion==1) {
+            $('#mostrarAnioM').show();
+            $('#mostrarAnioI').css('display','none');
+            $('#montoAnioC').attr('disabled',true);
+            $('#accionCreate').val(1);
+        } else {
+            $('#mostrarAnioM').hide();
+            $('#mostrarAnioI').css('display','block');
+            $('#montoAnioC').attr('disabled',false);
+            $('#accionCreate').val(2);
+        }
+    }
 
 	function NuevoResidente() {
 		console.log('hola');

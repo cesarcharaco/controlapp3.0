@@ -32,71 +32,6 @@
                                     <div class="card-body p-0">
                                         <div class="media p-3">
                                             <div class="media-body">
-                                                <span class="text-muted text-uppercase font-size-12 font-weight-bold">Inmuebles</span>
-                                                <h6 class="mb-0">Existencia: {{ existencia_i() }}</h6>
-                                                <h6 class="mb-0">Alquilados: {{ alquilados_i_t() }}</h6>
-                                            </div>
-                                         
-                                            <div class="form-group">
-                                                <label class="mb-0 text-primary">Nuevo Inmueble</label>
-                                                <h6 class="mb-0"><a href="#" style="width: 100% !important;" data-toggle="modal" data-target="#crearInmueble"  class="btn btn-primary">Agregar</a></h6>
-                                            </div>
-
-                                        
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-xl-6">
-                                <div class="card">
-                                    <div class="card-body p-0">
-                                        <div class="media p-3">
-                                            <div class="media-body">
-                                                <span class="text-muted text-muted text-uppercase font-size-12 font-weight-bold">Estacionamientos</span>
-                                                <h6 class="mb-0">Existencia: {{ existencia_e() }}</h6>
-                                                <h6 class="mb-0">Alquilados: {{ alquilados_e_t() }}</h6>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="mb-0 text-danger">Nuevo Estacionamiento</label>
-                                                <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" data-toggle="modal" data-target="#crearEstacionamiento" class="btn btn-danger">Agregar</a></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-xl-6">
-                                <div class="card">
-                                    <div class="card-body p-0">
-                                        <div class="media p-3">
-                                            <div class="media-body">
-                                                <span class="text-muted text-uppercase font-size-12 font-weight-bold">Residentes</span>
-                                                <h6 class="mb-0">Registrados: {{ residentes() }}</h6>
-                                                <p class="mb-0">C/Inmuebles:{{ residentes_alquilados_i() }}</p>
-                                                <p class="mb-0">C/Estaciona.:{{ residentes_alquilados_e() }}</p>
-                                                
-                                                <br><br>
-                                            </div>
-                                            
-                                        <div class="form-group">
-                                                <label class="mb-0 text-success">Nuevo Residente</label>
-                                                <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" class="btn btn-success" onclick="NuevoResidente()">Agregar</a></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-xl-6">
-                                <div class="card">
-                                    <div class="card-body p-0">
-                                        <div class="media p-3">
-                                            <div class="media-body">
                                                 <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago Común</span>
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-4">
@@ -127,6 +62,73 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-6 col-xl-6">
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="media p-3">
+                                            <div class="media-body">
+                                                <span class="text-muted text-uppercase font-size-12 font-weight-bold">Residentes</span>
+                                                <h6 class="mb-0">Registrados: {{ residentes() }}</h6>
+                                                <p class="mb-0">C/Inmuebles:{{ residentes_alquilados_i() }}</p>
+                                                <p class="mb-0">C/Estaciona.:{{ residentes_alquilados_e() }}</p>
+                                                
+                                                <br><br>
+                                            </div>
+                                            
+                                        <div class="form-group">
+                                                <label class="mb-0 text-success">Nuevo Residente</label>
+                                                <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" class="btn btn-success" onclick="NuevoResidente()">Agregar</a></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-xl-6">
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="media p-3">
+                                            <div class="media-body">
+                                                <span class="text-muted text-uppercase font-size-12 font-weight-bold">Inmuebles</span>
+                                                <h6 class="mb-0">Existencia: {{ existencia_i() }}</h6>
+                                                <h6 class="mb-0">Alquilados: {{ alquilados_i_t() }}</h6>
+                                            </div>
+                                         
+                                            <div class="form-group">
+                                                <label class="mb-0 text-primary">Nuevo Inmueble</label>
+                                                <h6 class="mb-0"><a href="#" style="width: 100% !important;" data-toggle="modal" data-target="#crearInmueble"  class="btn btn-primary">Agregar</a></h6>
+                                            </div>
+
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-6">
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="media p-3">
+                                            <div class="media-body">
+                                                <span class="text-muted text-muted text-uppercase font-size-12 font-weight-bold">Estacionamientos</span>
+                                                <h6 class="mb-0">Existencia: {{ existencia_e() }}</h6>
+                                                <h6 class="mb-0">Alquilados: {{ alquilados_e_t() }}</h6>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="mb-0 text-danger">Nuevo Estacionamiento</label>
+                                                <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" data-toggle="modal" data-target="#crearEstacionamiento" class="btn btn-danger">Agregar</a></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                </div>
+                            </div>
+
+
+                            
 
                            {{--  <div class="col-md-6 col-xl-3">
                                 <div class="card">

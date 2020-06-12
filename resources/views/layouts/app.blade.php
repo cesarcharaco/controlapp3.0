@@ -347,7 +347,7 @@
                                                 </div> 
                                                 --}}
                                                     <input type="hidden" name="opcion" id="opcion" value="1">
-                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;"><i data-feather="check-circle"></i></button>
+                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;">Guardar</i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -458,7 +458,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
-                                                <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
+                                                <button type="submit" class="btn btn-success" style="border-radius: 50px;">Guardar</i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -497,7 +497,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
-                                                <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
+                                                <button type="submit" class="btn btn-success" style="border-radius: 50px;">Guardar</i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -876,7 +876,7 @@
                                                 </div>
                                                 --}}
                                                     <input type="hidden" name="opcion" id="opcion" value="1">
-                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;"><i data-feather="check-circle"></i></button>
+                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;">Guardar</i></button>
                                             </div>
                                         </div>
                                     </div>
