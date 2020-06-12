@@ -60,7 +60,7 @@ class PagosController extends Controller
         $total=0;
 
         if (is_null($request->mes)==true) {
-            flash('No ha seleccionado nada a pagar!')->warning()->important();
+            flash('No ha seleccionado nada a pagar!')->warning();
         return redirect()->back();
         } else {
             if (is_null($request->mes)==false) {
@@ -115,7 +115,7 @@ class PagosController extends Controller
                 'id_residente' => $request->id_user
             ]);
             //dd("---------");
-            flash('Pago realizado con éxito!')->success()->important();
+            flash('Pago realizado con éxito!')->success();
             return redirect()->back();
         }
         
@@ -175,12 +175,102 @@ class PagosController extends Controller
     public function update(Request $request, $id_pago)
     {
     //dd($request->all());
-
+    //id_inmueble trae el numero del mes....
+    //id_residente_edit 
+    //anio
+    //referencia_edit
         switch ($request->opcion) {
             case 1:
-                $pago=Pagos::where('id_mensualidad',$request->id_inmueble)->orderby('id','DESC')->first();
+                $id_mes=$request->id_inmueble;
+                $id_mensualidad_i=array();
+                $id_mensualidad_e=array();
+                $j=0;
+                $i=0;
+                $reporte="";
+                $ref_encontrada=0;
+                $residente=Residentes::find($request->id_residente_edit);
+                foreach ($residente->inmuebles as $key) {
+                    if($key->pivot->status=="En Uso"){
+                        foreach ($key->mensualidades as $key2) {
+                            if($key2->mes==$id_mes && $key2->anio==$request->anio){
+                                    $id_mensualidad_i[$i]=$key2->id;
+                                    $i++;
+                            }
+                        }
+                    }    
+                }
+                foreach ($residente->estacionamientos as $key) {
+                    if($key->pivot->status=="En Uso"){
+                        foreach ($key->mensualidad as $key2) {
+                            if($key2->mes==$id_mes && $key2->anio==$request->anio){
+                                    $id_mensualidad_e[$j]=$key2->id;
+                                    $j++;
+                            }
+                        }
+                    }    
+                }
+                for ($k=0; $k < count($id_mensualidad_i); $k++) { 
+                    
+                    $pago=Pagos::where('id_mensualidad',$id_mensualidad_i[$k])->orderby('id','DESC')->first();
+                    $mes=$this->mostrar_mes($pago->mensualidad->mes);
+                    $inmueble=$pago->mensualidad->inmuebles->idem;
+                    $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$mes."%' ORDER BY id DESC LIMIT 0,1";
+                    $sql2="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$inmueble."%' ORDER BY id DESC LIMIT 0,1";
+                    //dd($sql2);
+                    $buscar1=\DB::select($sql);
+                    $buscar2=\DB::select($sql2);
+                    //echo $sql;
+                    //echo count($buscar1);
+                    if (count($buscar1)>0 AND count($buscar2)>0) {
+                        $ref_encontrada++;
+                        
+                   }
+                }//fin del for recorrido de id_mensualidad_i
+                //si encontró la referencia por inmueble
+                if ($ref_encontrada==count($id_mensualidad_i)) {
+                    for ($k=0; $k < count($id_mensualidad_i); $k++) { 
+                        $pago=Pagos::where('id_mensualidad',$id_mensualidad_i[$k])->orderby('id','DESC')->first();
+                        $reporte.="Se ha colocado como Pendiente al mes de ".$mes." del Inmueble: ".$inmueble;
+                        $pago->status="Pendiente";
+                        $pago->save();
+
+                    }
+                    //---------- ahora voy con estacionamientos-----------------
+                        for ($m=0; $m < count($id_mensualidad_e); $m++) { 
+                            $pagoe=PagosE::where('id_mens_estac',$id_mensualidad_e[$m])->orderby('id','DESC')->first();
+                            //dd($this->mostrar_mes($pago->mensualidad->mes));
+                            $mes=$this->mostrar_mes($pagoe->mensualidad->mes);
+                            $estacionamiento=$pagoe->mensualidad->estacionamientos->idem;
+                            $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$mes."%' ORDER BY id DESC LIMIT 0,1";
+                            $sql2="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$estacionamiento."%' ORDER BY id DESC LIMIT 0,1";
+                            //dd($sql2);
+                            $buscar1e=\DB::select($sql);
+                            $buscar2e=\DB::select($sql2);
+                            if (count($buscar1e)>0 AND count($buscar2e)>0) {
+                                $reporte.="Se ha colocado como Pendiente al mes de ".$mes." del Estacionamiento: ".$estacionamiento;
+                                $pagoe->status="Pendiente";
+                                $pagoe->save();     
+                                
+                           }
+                        }
+                    $reporte_new=new Reportes();
+                    $reporte_new->referencia=$request->referencia_edit;
+                    $reporte_new->reporte=$reporte;
+                    $reporte_new->tipo="Pendiente";
+                    $reporte_new->id_residente=$request->id_residente_edit;
+                    $reporte_new->save();
+                    flash('Se ha colocado como Pendiente el Pago Común del mes '.$mes.'!')->success();
+                        return redirect()->back();
+                    //-------------fin con estacionamientos---------------------
+                } else {
+                    flash('La información no pudo ser encontrada, verifique el código de transacción!')->warning();
+                        return redirect()->back();
+                }
+                
+
+                //dd('-----------');
                 //dd($this->mostrar_mes($pago->mensualidad->mes));
-                $mes=$this->mostrar_mes($pago->mensualidad->mes);
+                /*$mes=$this->mostrar_mes($pago->mensualidad->mes);
                 $inmueble=$pago->mensualidad->inmuebles->idem;
                 $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$mes."%' ORDER BY id DESC LIMIT 0,1";
                 $sql2="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$inmueble."%' ORDER BY id DESC LIMIT 0,1";
@@ -198,13 +288,13 @@ class PagosController extends Controller
                     
                     $pago->status="Pendiente";
                     $pago->save();     
-                    flash('Se ha colocado como Pendiente al mes de '.$mes.' del Inmueble: '.$inmueble.', con éxito!')->success()->important();
+                    flash('Se ha colocado como Pendiente al mes de '.$mes.' del Inmueble: '.$inmueble.', con éxito!')->success();
                     return redirect()->back();
                } else {
-                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
+                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning();
                     return redirect()->back();
                }
-               
+               */
 
                 break;
             case 2:
@@ -231,10 +321,10 @@ class PagosController extends Controller
                         
                         $pago->status="Pendiente";
                         $pago->save();     
-                        flash('Se ha colocado como Pendiente al mes de '.$mes.' del Estacionamiento: '.$estacionamiento.', con éxito!')->success()->important();
+                        flash('Se ha colocado como Pendiente al mes de '.$mes.' del Estacionamiento: '.$estacionamiento.', con éxito!')->success();
                         return redirect()->back();
                    } else {
-                       flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
+                       flash('La información no pudo ser encontrada, verifique la referencia!')->warning();
                         return redirect()->back();
                    }
                 } else {
@@ -254,7 +344,7 @@ class PagosController extends Controller
                         'id_residente' => $id_user
                     ]);
 
-                    flash('Se ha colocado como Cancelado al mes de '.$this->mostrar_mes($pagos->mensualidad->mes).' del Estacionamiento: '.$pagos->mensualidad->estacionamientos->idem.', con éxito!')->success()->important();
+                    flash('Se ha colocado como Cancelado al mes de '.$this->mostrar_mes($pagos->mensualidad->mes).' del Estacionamiento: '.$pagos->mensualidad->estacionamientos->idem.', con éxito!')->success();
                         return redirect()->back();
                 }
                 
@@ -284,10 +374,10 @@ class PagosController extends Controller
                         
                     }
                          
-                    flash('Se ha colocado como Pendiente la '.$pago->tipo.': '.$pago->motivo.', con éxito!')->success()->important();
+                    flash('Se ha colocado como Pendiente la '.$pago->tipo.': '.$pago->motivo.', con éxito!')->success();
                     return redirect()->back();
                } else {
-                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
+                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning();
                     return redirect()->back();
                }
                
