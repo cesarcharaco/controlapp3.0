@@ -7,6 +7,8 @@ use App\PagosComunes;
 use App\Meses;
 use App\Inmuebles;
 use App\Estacionamientos;
+use App\Mensualidades;
+use App\MensualidadE;
 
 class PagosComunesController extends Controller
 {
@@ -14,6 +16,13 @@ class PagosComunesController extends Controller
     {
     	//dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
+        //dd($id_admin);
+        /*"anioI" => "2021"
+          "montoaAnio" => null
+          "mes" => array:12 [▶]
+          "monto" => array:12 [▶]
+          "tipo" => "Inmueble"
+          "accion" => "1"*/
     	$m=date('m');
         $a=date('Y');
         $meses=Meses::all();
@@ -23,7 +32,7 @@ class PagosComunesController extends Controller
         if(!is_null($request->anioE)){
         	$anio=$request->anioE;
         }
-        if ($request->accion==1) {
+        //if ($request->accion==1 || $request->accion==2) {
                 # mensual
             if ($this->nulidad($request->monto)) {
                     flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
@@ -35,9 +44,10 @@ class PagosComunesController extends Controller
                         return redirect()->back();    
                     } else {
                         # code...
-                        $i=0;
+                        if (is_null($request->montoaAnio)) {
+                            $i=0;
                         foreach ($meses as $key) {
-                            if($key->id>=$m && $a==$request->anio){
+                            if($key->id>=$m && $a==$anio){
                                 $pagocomun=new PagosComunes();
                                 $pagocomun->tipo=$request->tipo;
                                 $pagocomun->anio=$anio;
@@ -58,10 +68,39 @@ class PagosComunesController extends Controller
                                 $i++;
                             }
                         }
+                        $this->nuevas_mensualidades($anio,$request->tipo);
+                        } else {
+                            //dd("-------");
+                            foreach ($meses as $key) {
+                            if($key->id>=$m && $a==$anio){
+                                $pagocomun=new PagosComunes();
+                                $pagocomun->tipo=$request->tipo;
+                                $pagocomun->anio=$anio;
+                                $pagocomun->mes=$key->id;
+                                $pagocomun->monto=$request->montoaAnio;
+                                $pagocomun->id_admin=$id_admin;
+                                $pagocomun->save();
+                                
+                            }else{
+
+                                $pagocomun=new PagosComunes();
+                                $pagocomun->tipo=$request->tipo;
+                                $pagocomun->anio=$anio;
+                                $pagocomun->mes=$key->id;
+                                $pagocomun->monto=$request->montoaAnio;
+                                $pagocomun->id_admin=$id_admin;
+                                $pagocomun->save();
+                                
+                            }
+                            }
+                            $this->nuevas_mensualidades($anio,$request->tipo);
+                        }
+                        
+                        
                     }
                     
                 }//nulidad
-            } else {
+            /*} else {
                 # anual
                 foreach ($meses as $key) {
                     if($key->id>=$m && $a==$request->anio){
@@ -83,7 +122,7 @@ class PagosComunesController extends Controller
                     }
                 }
                 
-            }
+            }*/
             flash('Pago Común registrado para el año: <b>'.$anio.'</b> para : <b>'.$request->tipo.'</b>, de manera exitosa!')->success()->important();
             return redirect()->to('home');
     }
@@ -229,5 +268,38 @@ class PagosComunesController extends Controller
         }else{
             return $pagoComun=PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->where('id_admin',$id_admin)->get();
         }
+    }
+
+    protected function nuevas_mensualidades($anio,$tipo)
+    {
+        $id_admin=id_admin(\Auth::user()->email);
+        if ($tipo=="Inmueble") {
+            $inmuebles=Inmuebles::where('id_admin',$id_admin)->get();
+            foreach ($inmuebles as $key) {
+                $pago=PagosComunes::where('anio',$anio)->where('tipo',$tipo)->get();
+                foreach ($pago as $key2) {
+                    $mensualidad=new Mensualidades();
+                    $mensualidad->id_inmueble=$key->id;
+                    $mensualidad->mes=$key2->mes;
+                    $mensualidad->anio=$key2->anio;
+                    $mensualidad->monto=$key2->monto;
+                    $mensualidad->save();
+                }
+            }
+        } else {
+            $estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
+            foreach ($estacionamiento as $key) {
+                $pago=PagosComunes::where('anio',$anio)->where('tipo',$tipo)->get();
+                foreach ($pago as $key2) {
+                    $mensualidad=new MensualidadE();
+                    $mensualidad->id_estacionamiento=$key->id;
+                    $mensualidad->mes=$key2->mes;
+                    $mensualidad->anio=$key2->anio;
+                    $mensualidad->monto=$key2->monto;
+                    $mensualidad->save();
+                }
+            }
+        }
+        
     }
 }

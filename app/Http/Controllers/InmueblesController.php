@@ -74,14 +74,32 @@ class InmueblesController extends Controller
                 $inmueble->save();
 
                 foreach ($mensualidad as $key) {
-                    $reg=\DB::table('mensualidades')->insert([
-                        'id_inmueble' => $inmueble->id,
-                        'mes' => $key->mes,
-                        'anio' => $key->anio,
-                        'monto' => $key->monto
-
-                    ]);
+                    $reg=new Mensualidades();
+                    $reg->id_inmueble=$inmueble->id;
+                    $reg->mes= $key->mes;
+                    $reg->anio= $key->anio;
+                    $reg->monto= $key->monto;
+                    $reg->save();
                 }
+                //buscando pagos en años siguientes al actual
+                $anio_sig=$anio+1;
+                $mens_sig=PagosComunes::where('anio',$anio_sig)->where('tipo','Inmueble')->where('id_admin',$id_admin)->get();
+                $encontrado=count($mens_sig);
+                while ($encontrado > 0) {
+                    foreach ($mens_sig as $key) {
+                        $reg=new Mensualidades();
+                        $reg->id_inmueble=$inmueble->id;
+                        $reg->mes= $key->mes;
+                        $reg->anio= $key->anio;
+                        $reg->monto= $key->monto;
+                        $reg->save();
+                    }
+                    $anio_sig++;
+                    $mens_sig=PagosComunes::where('anio',$anio_sig)->where('tipo','Inmueble')->where('id_admin',$id_admin)->get();
+                    $encontrado=count($mens_sig);
+
+                }
+                //-----------fin de buscar pagos en años siguientes
             }
             
 
