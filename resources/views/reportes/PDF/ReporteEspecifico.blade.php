@@ -220,7 +220,7 @@
 			<tr>
 				<td>{{ $key->idem }}</td>
 				<td>{{ $key->status }}</td>
-				<td>{{ alquiler_e($meses[$i],$key->id_estacionamiento,$anio) }}</td>
+				<td>{{ alquiler_e($meses[$i],$key->id,$anio) }}</td>
 			</tr>
 			@endforeach
 		@endfor

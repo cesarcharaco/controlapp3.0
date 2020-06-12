@@ -71,7 +71,8 @@ class ReportesController extends Controller
         $id_admin=id_admin(\Auth::user()->email);
         //preparando variable para anios de inmuebles
         if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
-            $sql_i="SELECT inmuebles.* FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades,pagos WHERE residentes.id_admin=".$id_admin." AND  residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id AND mensualidades.anio=".$request->anio." ";
+            //$sql_i="SELECT inmuebles.* FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades,pagos WHERE residentes.id_admin=".$id_admin." AND  residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id AND mensualidades.anio=".$request->anio." ";
+            $sql_i="SELECT * FROM inmuebles WHERE id_admin=".$id_admin." ";
         } else {
             $sql_i="";
         }
@@ -79,7 +80,8 @@ class ReportesController extends Controller
         //preparando variable para anios de estacionamientos
         if (!is_null($request->id_estacionamientos) || !is_null($request->EstacionamientosTodos)) {
             
-            $sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos,mens_estac WHERE residentes.id_admin=".$id_admin." AND residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND mens_estac.id_estacionamiento=estacionamientos.id  AND mens_estac.anio=".$request->anio." ";
+            //$sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos,mens_estac WHERE residentes.id_admin=".$id_admin." AND residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND mens_estac.id_estacionamiento=estacionamientos.id  AND mens_estac.anio=".$request->anio." ";
+            $sql_e="SELECT * FROM estacionamientos  WHERE id_admin=".$id_admin." ";
         } else {
            $sql_e="";
         }
@@ -102,12 +104,12 @@ class ReportesController extends Controller
               $sql_r.="AND residentes.id=".$request->id_residentes[$i]." ";
 
           }
-          if($sql_i!==""){
+          /*if($sql_i!==""){
             $sql_i.=$residentes;
-          }
-          if($sql_e!==""){
+          }*/
+          /*if($sql_e!==""){
             $sql_e.=$residentes; 
-          }
+          }*/
           if($sql_mr!==""){
             $sql_mr.=$residentes2;
           }
@@ -121,8 +123,8 @@ class ReportesController extends Controller
             // para agregar los meses
 
             for ($i=0; $i < count($request->id_meses) ; $i++) { 
-                $sql_i.=" OR mensualidades.mes=".$request->id_meses[$i]." ";
-                $sql_e.=" OR mens_estac.mes=".$request->id_meses[$i]." ";
+                //$sql_i.=" OR mensualidades.mes=".$request->id_meses[$i]." ";
+                //$sql_e.=" OR mens_estac.mes=".$request->id_meses[$i]." ";
                 $meses[$i]=$request->id_meses[$i];
             }
         }else{
@@ -130,17 +132,17 @@ class ReportesController extends Controller
                 $meses[$i]=$i+1;
             }
         }
-          if($sql_i!==""){
+          /*if($sql_i!==""){
             $sql_i.=" GROUP BY inmuebles.id";
-          }
-          if($sql_e!==""){
+          }*/
+          /*if($sql_e!==""){
             $sql_e.=" GROUP BY estacionamientos.id"; 
-          }
+          }*/
           if($sql_mr!==""){
             $sql_mr.=" GROUP BY multas_recargas.id";
           }
-        /*echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";
-        dd("-------------");*/
+        /*echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";*/
+        //dd($sql_e);
         //dd($meses);
         if($sql_i!==""){
         $inmuebles=\DB::select($sql_i);
@@ -158,7 +160,7 @@ class ReportesController extends Controller
             $mr=null;
         }
         $anio=$request->anio;
-
+        //dd($estacionamientos);
         $pdf = PDF::loadView('reportes/PDF/ReporteEspecifico', array(
             'inmuebles'=>$inmuebles,
             'estacionamientos'=>$estacionamientos,
