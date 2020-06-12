@@ -544,7 +544,7 @@
                                                 </div>
                                                 <div class="float-right">
                                                     <input type="hidden" name="tipo" value="Inmueble">
-                                                    <input type="hidden" name="accion" value="1">
+                                                    <input type="hidden" id="accionCreate" name="accion" value="1">
                                                     <button type="submit" class="btn btn-success" >Guardar</button>
                                                 </div>
                                             </div>
