@@ -189,22 +189,33 @@ class PagosController extends Controller
                 $buscar2=\DB::select($sql2);
                 
                if (count($buscar1)>0 AND count($buscar2)>0) {
-                    $reporte_new=new Reportes();
-                    $reporte_new->referencia=$request->referencia_edit;
-                    $reporte_new->reporte="Se ha colocado como Pendiente al mes de ".$mes." del Inmueble: ".$inmueble;
-                    $reporte_new->tipo="Pendiente";
-                    $reporte_new->id_residente=$request->id_residente_edit;
-                    $reporte_new->save();
+                    $reporte="Se ha colocado como Pendiente al mes de ".$mes." del Inmueble: ".$inmueble;
                     
                     $pago->status="Pendiente";
-                    $pago->save();     
-                    flash('Se ha colocado como Pendiente al mes de '.$mes.' del Inmueble: '.$inmueble.', con éxito!')->success()->important();
-                    return redirect()->back();
+                    $pago->save();
+
+                    //-----------------------editando pago de estacionamientos-------------
+                    $pagoe=PagosE::where('id_mens_estac',$request->id_estacionamiento)->orderby('id','DESC')->first();
+                    $reporte.="Se ha colocado como Pendiente al mes de ".$mes." del Estacionamiento: ".$estacionamiento;
+                        
+                        $reporte_new=new Reportes();
+                        $reporte_new->referencia=$request->referencia_edit;
+                        $reporte_new->reporte=$reporte;
+                        $reporte_new->tipo="Pendiente";
+                        $reporte_new->id_residente=$request->id_residente_edit;
+                        $reporte_new->save();
+                        
+                        $pagoe->status="Pendiente";
+                        $pagoe->save();     
+                        flash('Se ha colocado como Pendiente al mes de '.$mes.', con éxito!')->success()->important();
+                        return redirect()->back();
+                   
+                   //------------fin de editar pago de estacionamientos--------------------------
                } else {
                    flash('La información no pudo ser encontrada, verifique la referencia!')->warning()->important();
                     return redirect()->back();
                }
-               
+
                 break;
             case 2:
 
