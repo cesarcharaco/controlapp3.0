@@ -65,12 +65,16 @@
                                         <td>{{$key->telefono}}</td>
                                         <td>
                                             @foreach($key->inmuebles as $key2)
+                                                @if($key2->pivot->status=="En Uso")
                                                 <p class="text-primary">{{$key2->idem}}</p>
+                                                @endif
                                             @endforeach
                                         </td>
                                         <td>
                                             @foreach($key->estacionamientos as $key2)
-                                                <p class="text-warning">{{$key2->idem}}</p>
+                                                @if($key2->pivot->status=="En Uso")
+                                                    <p class="text-warning">{{$key2->idem}}</p>
+                                                @endif
                                             @endforeach
                                         </td>
                                     </tr>

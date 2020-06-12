@@ -334,6 +334,7 @@ class ResidentesController extends Controller
         ->join('residentes_has_est','residentes_has_est.id_residente','=','residentes.id')
         ->join('estacionamientos','estacionamientos.id','=','residentes_has_est.id_estacionamiento')
         ->where('residentes.id', $id_residente)
+        ->where('estacionamientos.status','Ocupado')
         ->where('residentes_has_est.status','En Uso')
         ->select('estacionamientos.id','estacionamientos.idem','residentes_has_est.status AS alquiler_status')
         ->get();
