@@ -67,14 +67,33 @@ class EstacionamientosController extends Controller
                 $estacionamiento->save();
                 //$m=date('m');
                 foreach ($mensualidad as $key) {
-                    $reg=\DB::table('mens_estac')->insert([
-                        'id_estacionamiento' => $estacionamiento->id,
-                        'mes' => $key->mes,
-                        'anio' => $key->anio,
-                        'monto' => $key->monto
-
-                    ]);
+                    $reg=new MensualidadE();
+                    $reg->id_estacionamiento=$estacionamiento->id;
+                    $reg->mes=$key->mes;
+                    $reg->anio=$key->anio;
+                    $reg->monto=$key->monto;
+                    $reg->save();
                 }
+
+                //buscando pagos en años siguientes al actual
+                $anio_sig=$anio+1;
+                $mens_sig=PagosComunes::where('anio',$anio_sig)->where('tipo','Estacionamiento')->where('id_admin',$id_admin)->get();
+                $encontrado=count($mens_sig);
+                while ($encontrado > 0) {
+                    foreach ($mens_sig as $key) {
+                        $reg=new MensualidadE();
+                        $reg->id_estacionamiento=$estacionamiento->id;
+                        $reg->mes= $key->mes;
+                        $reg->anio= $key->anio;
+                        $reg->monto= $key->monto;
+                        $reg->save();
+                    }
+                    $anio_sig++;
+                    $mens_sig=PagosComunes::where('anio',$anio_sig)->where('tipo','Estacionamiento')->where('id_admin',$id_admin)->get();
+                    $encontrado=count($mens_sig);
+
+                }
+                //-----------fin de buscar pagos en años siguientes
             }
             
 

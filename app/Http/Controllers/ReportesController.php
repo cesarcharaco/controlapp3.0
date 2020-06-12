@@ -178,6 +178,7 @@ class ReportesController extends Controller
         $id_admin=id_admin(\Auth::user()->email);
         $anio=$request->anio;
         $meses[]=array();
+        //dd($request->all());
         if (is_null($request->id_mes)) {
             flash('No ha seleccionado ningún mes, intente otra vez')->warning()->important();
             return redirect()->back();
