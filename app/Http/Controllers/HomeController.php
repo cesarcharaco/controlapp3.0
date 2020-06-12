@@ -45,7 +45,7 @@ class HomeController extends Controller
 
         $buscarPInmuebles= PagosComunes::where('tipo','Inmueble')->where('anio',$anio)->where('id_admin',$id_admin)->get();
         $buscarPEstaciona= PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->where('id_admin',$id_admin)->get();
-        $anuncios=Anuncios::where('id_admin',$id_admin)->get();
+        $anuncios=Anuncios::all();
 
         //dd('-------------');
 
