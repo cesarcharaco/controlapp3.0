@@ -635,9 +635,6 @@
                     </div>
                     
                 </div>
-                <div class="modal-footer border-bottom">
-                    <button type="submit" class="btn btn-success" >Guardar</button>
-                </div>
             </div>
         </div>
     </div>
