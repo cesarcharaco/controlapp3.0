@@ -70,12 +70,12 @@
 
 
                                                                         <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',1)" >
-                                                                            <span class="text-primary">Inmuebles</span>
+                                                                            <span class="text-primary">Pago Común</span>
                                                                         </a>
 
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
+                                                                        <!-- <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
                                                                             <span class="text-warning">Estacionamientos</span>
-                                                                        </a>
+                                                                        </a> -->
 
                                                                         <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',3)" >
                                                                             <span class="text-danger">Multas</span>
@@ -104,12 +104,12 @@
 
 
                                                                         <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',1)" >
-                                                                            <span class="text-primary">Inmuebles</span>
+                                                                            <span class="text-primary">Pago común</span>
                                                                         </a>
 
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
+                                                                        <!-- <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
                                                                             <span class="text-warning">Estacionamientos</span>
-                                                                        </a>
+                                                                        </a> -->
 
                                                                         <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',3)" >
                                                                             <span class="text-danger">Multas</span>
@@ -164,12 +164,12 @@
 
 
                                                                         <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
-                                                                            <span class="text-primary">Inmuebles</span>
+                                                                            <span class="text-primary">Pago Común</span>
                                                                         </a>
 
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
+                                                                        <!-- <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
                                                                             <span class="text-warning">Estacionamientos</span>
-                                                                        </a>
+                                                                        </a> -->
 
                                                                         <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
                                                                             <span class="text-danger">Multas</span>
@@ -197,12 +197,12 @@
 
 
                                                                         <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',1)" >
-                                                                            <span class="text-primary">Inmuebles</span>
+                                                                            <span class="text-primary">Pago Común</span>
                                                                         </a>
 
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
+                                                                        <!-- <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',2)" >
                                                                             <span class="text-warning">Estacionamientos</span>
-                                                                        </a>
+                                                                        </a> -->
 
                                                                         <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$residentes[$i]->id}}',3)" >
                                                                             <span class="text-danger">Multas</span>
@@ -531,7 +531,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendiente, de acuerdo al inmueble" class="text-primary col-form-label" for="example-static">Inmuebles</label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendiente, de acuerdo al inmueble" class="text-primary col-form-label" for="example-static">Meses</label>
                                         <select   class="border border-primary form-control select2" name="id_inmueble" id="id_inmuebleEditar" disabled>
                                             
                                         </select>
@@ -705,7 +705,8 @@
         $("#id_residente_edit").val(id_residente);
         if (opcion == 1) {
             $('#opcion').val(1);
-            $('#titleE').text('Editar pago de Inmuebles');
+            // $('#titleE').text('Editar pago de Inmuebles');
+            $('#titleE').text('Editar pago común');
             $('#MuestraInmueble').show();
             console.log(id_residente);
             $.get("inmuebles/"+id_residente+"/buscar_anios",function (data) {
@@ -776,9 +777,9 @@
                     $('#id_inmuebleEditar').removeAttr('disabled',false);
                     $('#id_inmuebleEditar').append('<option selected disabled>Seleccione los meses</option>');
                     for(i=0 ; i<data.length ; i++){
-                        $('#id_inmuebleEditar').append(
-                            '<optgroup label="'+data[i].idem+'" id="id_inmuebleEditar'+data[i].id+'">'+inmuebles_meses_editar(data[i].id)+'</optgroup>'
-                        );
+                        // $('#id_inmuebleEditar').append(
+                            inmuebles_meses_editar(data[i].id)
+                        // );
 
                     }
                 }else{
@@ -847,12 +848,12 @@
                 for(var i=0; i < data.length; i++){
                     console.log(i);
                     // if (data[i].status=="Pendiente") {
-                    $('#id_inmuebleEditar'+id_inmueble).append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
+                    $('#id_inmuebleEditar').append('<option value="'+data[i].id+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+mostrar_mes(data[i].mes)+'</font></font></option>');
                     // }
                 }
             
             }else{
-                $('#id_inmuebleEditar'+id_inmueble).append('<option>No hay meses pagados en este inmueble</option>');
+                $('#id_inmuebleEditar').append('<option>No hay meses pagados en estos registros</option>');
             }
         });
     }

@@ -427,24 +427,24 @@
 	                            "</div>"+
 	                        "</div"
 	                    );
-
-	               		$('#PagoCInmuebles1').append(
-	                        '<div class="row">'+
-	                            '<div class="col-md-12">'+
-	                                '<div class="form-group">'+
-	                                    '<label>Monto por todo el año</label>'+
-	                                    '<div class="input-group mb-2">'+
-	                                        '<div class="input-group-prepend">'+
-	                                            '<div class="input-group-text">$</div>'+
-	                                        '</div>'+
-	                                        '<input type="text" id="montoAnioC" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10">'+
-	                                    '</div>'+
-	                                '</div>'+
-	                            '</div>'+
-	                        '</div><br>'
+	               		$('#PagoCInmuebles2').append(
+	               			'<div id="mostrarAnioI" style="display:none;">'
+		                        '<div class="row">'+
+		                            '<div class="col-md-12">'+
+		                                '<div class="form-group">'+
+		                                    '<label>Monto por todo el año</label>'+
+		                                    '<div class="input-group mb-2">'+
+		                                        '<div class="input-group-prepend">'+
+		                                            '<div class="input-group-text">$</div>'+
+		                                        '</div>'+
+		                                        '<input type="text" id="montoAnioC" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10">'+
+		                                    '</div>'+
+		                                '</div>'+
+		                            '</div>'+
+		                        '</div>'+
+		                    '</div>'
 	                    );
                 		$('#PagoCInmuebles1').append('<label>Montos por mes</label><br>');
-                		$('#PagoCInmuebles2').append('<label>Montos por mes</label><br>');
 	                    for (var i = 0; i < 12; i++) {
 	                    
 	                        $('#PagoCInmuebles1').append(
