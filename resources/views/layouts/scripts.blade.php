@@ -521,11 +521,13 @@
 
 	function mostrarC(opcion) {
         if (opcion==1) {
+        	$('#montoAnioC').removeAttr('required',false);
             $('#mostrarAnioM').show();
             $('#mostrarAnioI').css('display','none');
             $('#montoAnioC').attr('disabled',true);
             $('#accionCreate').val(1);
         } else {
+        	$('#montoAnioC').attr('required',true);
             $('#mostrarAnioM').hide();
             $('#mostrarAnioI').css('display','block');
             $('#montoAnioC').attr('disabled',false);
