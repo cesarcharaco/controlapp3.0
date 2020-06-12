@@ -157,7 +157,18 @@ class InmueblesController extends Controller
 
     public function buscar_anios($id)
     {
-        return Mensualidades::where('id_inmueble', $id)->groupBy('anio')->get();
+        //return Mensualidades::where('id_inmueble', $id)->groupBy('anio')->get();
+        return 
+        \DB::table('residentes')
+        ->join('residentes_has_inmuebles','residentes_has_inmuebles.id_residente','=','residentes.id')
+        ->join('inmuebles','inmuebles.id','=','residentes_has_inmuebles.id_inmueble')
+        ->join('mensualidades','mensualidades.id_inmueble','=','inmuebles.id')
+        ->join('pagos','pagos.id_mensualidad','=','mensualidades.id')
+        ->where('residentes.id', $id)
+        ->where('residentes_has_inmuebles.status','En Uso')
+        ->select('mensualidades.anio')
+        ->groupBy('mensualidades.anio')
+        ->get();
     }
 
 	/**

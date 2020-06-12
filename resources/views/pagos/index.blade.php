@@ -684,6 +684,7 @@
 
 
     function EditarPago(id_residente, opcion) {
+        console.log('editar pago');
         $('#MuestraEstacionamiento2').css('display','none');
         $('#verF').val(id_residente);
         $('#editar_p').modal('show');
