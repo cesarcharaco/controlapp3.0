@@ -1319,12 +1319,12 @@
         $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
         })
         .done(function(data) {
-            //console.log(data.length);
+            //console.log(data);
             for(var i=0; i < data.length; i++){
                 $('.inner'+id_inmueble).append(
                     '<div class="row">'+
                         '<div class="col-md-12">'+ 
-                            '<label>'+mes[data[i].mes]+'</label>'+
+                            '<label>'+mostrar_mes(data[i].mes)+'</label>'+
                             '<label style="float: right;">'+data[i].status+'</label>'+
                         '</div>'+
                         
@@ -1477,7 +1477,7 @@
         })
         .done(function(data) {
 
-            
+                //console.log(data.length+'.........');
             //alert(data.length);
             for(i=0 ; i<data.length ; i++){
                 if (i==0) {
