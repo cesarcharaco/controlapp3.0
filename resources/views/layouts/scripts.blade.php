@@ -325,10 +325,39 @@
 
 	               	if (data.length == 0){
 
-
+	                    $('#PagoCEstaciona1').append(
+	                        "<div class='card-box'>"+
+	                            "<div class='row'>"+
+	                                "<div class='col-md-6' width='100%'>"+
+	                                    "<a href='#' class='btn btn-block btn-success' onclick='mostrarC(1)'>Montos por mes</a>"+
+	                                "</div>"+
+	                                "<div class='col-md-6' width='100%'>"+
+	                                    "<a href='#' class='btn btn-block btn-warning' onclick='mostrarC(2)'>Monto por año</a>"+
+	                                "</div>"+
+	                            "</div>"+
+	                        "</div>"
+	                    );
+	               		$('#PagoCEstaciona1').append(
+	               			'<div id="mostrarAnioI" style="display:none;">'+
+		                        '<div class="row">'+
+		                            '<div class="col-md-12">'+
+		                                '<div class="form-group">'+
+		                                    '<label>Monto por todo el año</label>'+
+		                                    '<div class="input-group mb-2">'+
+		                                        '<div class="input-group-prepend">'+
+		                                            '<div class="input-group-text">$</div>'+
+		                                        '</div>'+
+		                                        '<input type="text" id="montoAnioC" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10">'+
+		                                    '</div>'+
+		                                '</div>'+
+		                            '</div>'+
+		                        '</div>'+
+		                    '</div>'
+	                    );
+	               		$('#PagoCEstaciona1').append('<div id="mostrarAnioM"><label>Montos por mes</label><br></div>');
+						
 	                    for (var i = 0; i < 12; i++) {
-	                    
-	                        $('#PagoCEstaciona1').append(
+	                        $('#mostrarAnioM').append(
 	                            '<div class="row">'+
 	                                '<div class="col-md-4">'+
 	                                    '<div class="form-group">'+
@@ -525,13 +554,13 @@
             $('#mostrarAnioM').show();
             $('#mostrarAnioI').css('display','none');
             $('#montoAnioC').attr('disabled',true);
-            $('#accionCreate').val(1);
+            $('.accion').val(1);
         } else {
         	$('#montoAnioC').attr('required',true);
             $('#mostrarAnioM').hide();
             $('#mostrarAnioI').css('display','block');
             $('#montoAnioC').attr('disabled',false);
-            $('#accionCreate').val(2);
+            $('.accion').val(2);
         }
     }
 
