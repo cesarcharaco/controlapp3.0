@@ -63,7 +63,7 @@ class PagosController extends Controller
             flash('No ha seleccionado nada a pagar!')->warning()->important();
         return redirect()->back();
         } else {
-            /*if (is_null($request->mes)==false) {
+            if (is_null($request->mes)==false) {
                 for ($i=0; $i < count($request->mes); $i++) {
                     if($request->mes[$i]!==null){
                         $residente=Residentes::find($request->id_user);
@@ -72,7 +72,7 @@ class PagosController extends Controller
                                 foreach ($key->mensualidades as $key2) {
                                     if ($key2->mes==$request->mes[$i]) {
                                         //echo $key2->id."<br>";
-                                        $pagos=Pagos::where('id_mensualidad',$key2->id)->first();
+                                        $pagos=Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
                                         $pagos->status="Cancelado";
                                         $pagos->save();
                                         $total+=$key2->monto;
@@ -84,7 +84,7 @@ class PagosController extends Controller
                     }
                 }
             }
-            */
+            
             if(is_null($request->mes)==false){
                 for ($i=0; $i < count($request->mes); $i++) { 
                     if($request->mes[$i]!==null){
@@ -94,7 +94,7 @@ class PagosController extends Controller
                                 foreach ($key->mensualidad as $key2) {
                                     if ($key2->mes==$request->mes[$i]) {
                                         //echo $key2->id."<br>";
-                                        $pagos=PagosE::where('id_mens_estac',$key2->id)->first();
+                                        $pagos=PagosE::where('id_mens_estac',$key2->id)->orderby('id','DESC')->first();
                                         $pagos->status="Cancelado";
                                         $pagos->save();
                                         $total+=$key2->monto;
@@ -178,7 +178,7 @@ class PagosController extends Controller
 
         switch ($request->opcion) {
             case 1:
-                $pago=Pagos::where('id_mensualidad',$request->id_inmueble)->first();
+                $pago=Pagos::where('id_mensualidad',$request->id_inmueble)->orderby('id','DESC')->first();
                 //dd($this->mostrar_mes($pago->mensualidad->mes));
                 $mes=$this->mostrar_mes($pago->mensualidad->mes);
                 $inmueble=$pago->mensualidad->inmuebles->idem;
@@ -210,7 +210,7 @@ class PagosController extends Controller
 
                 if ($request->status=="Pendiente") {
                     
-                    $pago=PagosE::where('id_mens_estac',$request->id_estacionamiento)->first();
+                    $pago=PagosE::where('id_mens_estac',$request->id_estacionamiento)->orderby('id','DESC')->first();
                     //dd($this->mostrar_mes($pago->mensualidad->mes));
                     $mes=$this->mostrar_mes($pago->mensualidad->mes);
                     $estacionamiento=$pago->mensualidad->estacionamientos->idem;
