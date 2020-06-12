@@ -131,15 +131,13 @@
                         </a>
                     </li>
                 @endif
-                @if(\Auth::user()->tipo_usuario == 'Admin')
-                    <li>
-                        <a href="{{ url('anuncios') }}">
-                            <i data-feather="columns"></i>
-                            <span> Anuncios </span>
-                        </a>
-                    </li>
-                @endif
             @if(\Auth::user()->tipo_usuario == 'root')
+                <li>
+                    <a href="{{ url('anuncios') }}">
+                        <i data-feather="columns"></i>
+                        <span> Anuncios </span>
+                    </a>
+                </li>
             <li class="menu-title">Configuración </li>
 
             
