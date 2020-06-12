@@ -37,9 +37,15 @@
 			        		<div class="form-group">
 			        			<label class="text-primary">Año</label>
 			        			<select class="form-control select2 border border-default" name="anio">
-			        				<option value="{{ date('Y')-1 }}" selected>{{ date('Y')-1 }}</option>
-			        				<option value="{{ date('Y') }}">{{ date('Y') }}</option>
-			        				<option value="{{ date('Y')+1 }}">{{ date('Y')+1 }}</option>
+			        				@php 
+			        					echo $fecha=date('Y');
+			        					$fecha=$fecha-1;
+			        				@endphp
+			        				@for($i=$fecha; $i<($fecha+4); $i++)
+			        					@if($i != '2019')
+			        						<option value="{{ $i }}">{{ $i }}</option>
+			        					@endif
+			        				@endfor
 			        			</select>
 			        		</div>
 	        			</div>
@@ -82,9 +88,15 @@
 				    		<div class="col-md-12">
 				    			<label  data-toggle="tooltip" data-placement="top" title="Seleccione el año para el reporte">Seleccione el año</label>
 			        			<select class="form-control select2 border border-default" name="anio">
-			        				<option value="{{ date('Y')-1 }}" selected>{{ date('Y')-1 }}</option>
-			        				<option value="{{ date('Y') }}">{{ date('Y') }}</option>
-			        				<option value="{{ date('Y')+1 }}">{{ date('Y')+1 }}</option>
+			        				@php 
+			        					echo $fecha=date('Y');
+			        					$fecha=$fecha-1;
+			        				@endphp
+			        				@for($i=$fecha; $i<($fecha+4); $i++)
+			        					@if($i != '2019')
+			        						<option value="{{ $i }}">{{ $i }}</option>
+			        					@endif
+			        				@endfor
 			        			</select>
 				    		</div>
 				    	</div>
