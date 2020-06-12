@@ -267,6 +267,9 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header">Notificaciones
+                            <div class="float-right">
+                                <a href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
+                            </div>
                                 
                             </div>
                             <div class="card-body">
@@ -332,9 +335,6 @@
                                 @endforeach()
                             </div>
                             <div class="card-footer">
-                                <div class="float-right">
-                                    <a href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -343,6 +343,11 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-header">Noticias
+                                <div class="float-right">
+                                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                                        <a href="#" data-toggle="modal" data-target="#crearNoticia" class="btn btn-success">Nueva</a>
+                                    @endif
+                                </div>
                                 
                             </div>
                             <div class="card-body">
@@ -375,11 +380,6 @@
                                 @endforeach()
                             </div>
                             <div class="card-footer">
-                                <div class="float-right">
-                                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                                        <a href="#" data-toggle="modal" data-target="#crearNoticia" class="btn btn-success">Nueva</a>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                     </div>
