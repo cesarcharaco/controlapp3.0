@@ -72,46 +72,48 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Título del Anuncio</label>
-                                        <span id="ver_idem"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Url</label>
-                                        <span id="ver_tipo"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Estado del Anuncio</label>
-                                        <span id="ver_status"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Pago común</label>
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">$</div>
-                                            </div>
-                                            <input type="number" name="monto[]" class="form-control" placeholder="10">
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Título del Anuncio</label>
+                                            <span id="ver_idem"></span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Url</label>
+                                            <span id="ver_tipo"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Estado del Anuncio</label>
+                                            <span id="ver_status"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Pago común</label>
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">$</div>
+                                                </div>
+                                                <input type="number" name="monto[]" class="form-control" placeholder="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </center>
                         </div>                            
                     </div>
                 </div>
@@ -131,40 +133,42 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Título del anuncio</label>
-                                        <input type="text" id="tituloAnunE" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Título del anuncio</label>
+                                            <input type="text" id="tituloAnunE" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                        </div>
+                                    </div>
+                               
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Link</label>
+                                            <input type="url" id="urlAnunE" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                        </div>
                                     </div>
                                 </div>
-                           
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Link</label>
-                                        <input type="url" id="urlAnunE" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <textarea id="descripAnunE" placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="descripAnunE" placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Imagen</label>
-                                        <div id="mostrarImagenEditar" align="center"></div>
-                                        <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div id="mostrarImagenEditar" align="center"></div>
+                                            <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </center>
                             <input type="hidden" class="form-control" name="id_anuncio" required id="idAnuncioE">
                             <div class="float-right">
                                 <button type="submit" class="btn btn-success" >Editar</button>
@@ -190,18 +194,20 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" name="id" required id="idAnuncio">
+                            <center>
+                                <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="id" required id="idAnuncio">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-danger" >Eliminar</button>
-                            </div>
+                                <div class="float-right">
+                                    <button type="submit" class="btn btn-danger" >Eliminar</button>
+                                </div>
+                            </center>
                         </div>
                     </div>
                 </div>

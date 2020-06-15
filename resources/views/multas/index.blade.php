@@ -99,40 +99,41 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <center>
                         
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" name="motivo" placeholder="Motivo" class="form-control" required="required">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="motivo" placeholder="Motivo" class="form-control" required="required">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea name="observacion" placeholder="Observación" class="form-control"></textarea>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea name="observacion" placeholder="Observación" class="form-control"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="number" name="monto" class="form-control" placeholder="Monto" required="required">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="number" name="monto" class="form-control" placeholder="Monto" required="required">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <select name="tipo" placeholder="Tipo de Multa" class="form-control select2" required="required">
-                                    	<option value="Multa">Multa</option>
-                                    	<option value="Recarga">Recarga</option>
-                                    </select>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select name="tipo" placeholder="Tipo de Multa" class="form-control select2" required="required">
+                                        	<option value="Multa">Multa</option>
+                                        	<option value="Recarga">Recarga</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
+                        </center>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success" >Guardar</button>
@@ -154,38 +155,40 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input id="motivo_e" type="text" name="motivo" class="form-control">
+                        <center>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input id="motivo_e" type="text" name="motivo" class="form-control">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea id="observacion_e" name="observacion" class="form-control"></textarea>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea id="observacion_e" name="observacion" class="form-control"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input id="monto_e" type="number" name="monto" class="form-control" placeholder="Monto">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input id="monto_e" type="number" name="monto" class="form-control" placeholder="Monto">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <select name="tipo" id="tipo_edit" class="select2">
-                                    	<option value="Multa">Multa</option>
-                                    	<option value="Recarga">Recarga</option>
-                                    </select>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select name="tipo" id="tipo_edit" class="select2">
+                                        	<option value="Multa">Multa</option>
+                                        	<option value="Recarga">Recarga</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </center>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="id_edit" name="id">
@@ -230,7 +233,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="ver_multas_asignadas"></div>
+                    <center>
+                        <div id="ver_multas_asignadas"></div>
+                    </center>
                 </div>
             </div>
         </div>

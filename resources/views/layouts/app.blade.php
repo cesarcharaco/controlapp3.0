@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'ControlApp') }}</title>
-    
+
     <link rel="shortcut icon" href="{{ asset('assets/images/logo.jpg') }}">
     
     @include('layouts.css')
@@ -41,7 +41,7 @@
             @toastr_js
             @toastr_render
 
-            
+
             <div class="content-page">
                 <div class="content">
 
@@ -76,48 +76,49 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                @if(\Auth::user()->tipo_usuario == 'Admin')
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div div="form-group">
-                                                                <label>Multas - Recargas</label>
-                                                                <pre><select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
-                                                                </select></pre>
+                                                <center>
+                                                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div div="form-group">
+                                                                    <label>Multas - Recargas</label>
+                                                                    <pre><select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
+                                                                    </select></pre>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div div="form-group">
+                                                                    <label>Residentes</label>
+                                                                    <select multiple class="custom-select custom-select-sm" name="id_residente[]" id="campoResidentes">
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label>¿Quiere asignar las multas y recargas a todos los residentes?</label>
+                                                                <input type="checkbox" value="AsignarTodos" name="registrarTodos" onclick="cambiarResiT()">
+                                                                <input type="hidden" name="opcion" id="opcionAsignaT" value="1">
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div div="form-group">
+                                                                    <label>Multas - Recargas</label>
+                                                                    <pre><select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
+                                                                    </select></pre>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div div="form-group">
-                                                                <label>Residentes</label>
-                                                                <select multiple class="custom-select custom-select-sm" name="id_residente[]" id="campoResidentes">
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label>¿Quiere asignar las multas y recargas a todos los residentes?</label>
-                                                            <input type="checkbox" value="AsignarTodos" name="registrarTodos" onclick="cambiarResiT()">
-                                                            <input type="hidden" name="opcion" id="opcionAsignaT" value="1">
-                                                        </div>
-                                                    </div>
-                                                @else
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div div="form-group">
-                                                                <label>Multas - Recargas</label>
-                                                                <pre><select multiple class="custom-select custom-select-sm" name="id_mr[]" id="campoMultaRecarga" required>
-                                                                </select></pre>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    
-                                                @endif
-
+                                                    @endif
+                                                </center>
 
                                             </div>
                                             <div class="modal-footer border-bottom">
@@ -145,71 +146,70 @@
                                                     <div class="col-lg-6">
                                                         <div class="card">
                                                             <div class="card-body">
-                                                                <div class="text-center mt-3">
-                                                                    <img src="assets/images/logo.jpg" alt="" class="avatar-lg rounded-circle">
-                                                                    <div class="form-group row">
-                                                                        <label class="col-lg-6 col-form-label" for="example-static">Nombres</label>
-
-                                                                        
-                                                                        <div class="col-lg-6">
-                                                                            <input type="text" readonly="" class="form-control-plaintext" id="nombres_profile" value="{{Auth::user()->name}}">
-                                                                            <input type="text" name="nombres" class="form-control" id="nombres_profileE" value="{{Auth::user()->name}}" style="display: none;">
-
-                                                                            <!-- <input type="text" readonly="" class="form-control-plaintext" id="apellidos_profile" value="Mandela">
-                                                                            <input type="text" name="apellidos" class="form-control" id="apellidos_profileE" value="Mandela" style="display: none;"> -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <h6 class="text-muted font-weight-normal mt-1 mb-4">
+                                                                <center>
+                                                                    <div class="text-center mt-3">
+                                                                        <img src="assets/images/logo.jpg" alt="" class="avatar-lg rounded-circle">
                                                                         <div class="form-group row">
-                                                                            <label class="col-lg-4 col-form-label" for="example-static">Rut</label>
-                                                                            <div class="col-lg-8">
-                                                                                <input type="number" readonly="" class="form-control-plaintext" id="rut_profile" value="123124123">
-                                                                                <input type="number" name="rut" class="form-control" id="rut_profileE" value="123124123" style="display: none;">
+                                                                            <label class="col-lg-6 col-form-label" for="example-static">Nombres</label>
+
+                                                                            
+                                                                            <div class="col-lg-6">
+                                                                                <input type="text" readonly="" class="form-control-plaintext" id="nombres_profile" value="{{Auth::user()->name}}">
+                                                                                <input type="text" name="nombres" class="form-control" id="nombres_profileE" value="{{Auth::user()->name}}" style="display: none;">
+
+                                                                                <!-- <input type="text" readonly="" class="form-control-plaintext" id="apellidos_profile" value="Mandela">
+                                                                                <input type="text" name="apellidos" class="form-control" id="apellidos_profileE" value="Mandela" style="display: none;"> -->
                                                                             </div>
                                                                         </div>
-                                                                    </h6>
+                                                                        <h6 class="text-muted font-weight-normal mt-1 mb-4">
+                                                                            <div class="form-group row">
+                                                                                <label class="col-lg-4 col-form-label" for="example-static">Rut</label>
+                                                                                <div class="col-lg-8">
+                                                                                    <input type="number" readonly="" class="form-control-plaintext" id="rut_profile" value="123124123">
+                                                                                    <input type="number" name="rut" class="form-control" id="rut_profileE" value="123124123" style="display: none;">
+                                                                                </div>
+                                                                            </div>
+                                                                        </h6>
 
-                                                                </div>
-
-                                                                <!-- <div class="mt-5 pt-2 border-top">
-                                                                    <h4 class="mb-3 font-size-15">Servicios adquiridos</h4>
-                                                                    <p class="text-muted mb-4">Estacionamientos</p>
-                                                                </div> -->
+                                                                    </div>
+                                                                </center>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="card">
                                                             <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-lg-6">
-                                                                        <a href="#" onclick="EditarProfile()" class="btn btn-success btn-sm" id="buttonEditP" style="width: 100%; border-radius: 30px;">Editar</a>
-                                                                        <a href="#" onclick="EditarProfile2()" class="btn btn-primary btn-sm" id="buttonEditP2" style="width: 100%; border-radius: 30px; display: none;">Volver</a>
-                                                                    </div>
-
-                                                                    <div class="col-lg-6">
-                                                                        <button type="submit" class="btn btn-success btn-sm" id="btnGuardarProfile" style="display: none; border-radius: 30px;">Guardar</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mt-3 pt-2 border-top">
-                                                                    <h4 class="mb-3 font-size-15">Información de contacto</h4>
-
-                                                                    <div class="form-group row">
-                                                                        <label class="col-lg-4 col-form-label" for="example-static">Email</label>
-                                                                        <div class="col-lg-8">
-                                                                            <input type="email" readonly="" class="form-control-plaintext" id="email_profile"value="{{Auth::user()->email}}">
-                                                                            <input type="email" name="email" class="form-control" id="email_profileE"value="{{Auth::user()->email}}" style="display: none;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-lg-6 col-form-label" for="example-static">Teléfono</label>
+                                                                <center>
+                                                                    <div class="row">
                                                                         <div class="col-lg-6">
-                                                                            <input type="number" readonly="" class="form-control-plaintext" id="telefono_profile"value="13123123">
-                                                                            <input type="number" name="telefono" class="form-control" id="telefono_profileE"value="13123123" style="display: none;">
+                                                                            <a href="#" onclick="EditarProfile()" class="btn btn-success btn-sm" id="buttonEditP" style="width: 100%; border-radius: 30px;">Editar</a>
+                                                                            <a href="#" onclick="EditarProfile2()" class="btn btn-primary btn-sm" id="buttonEditP2" style="width: 100%; border-radius: 30px; display: none;">Volver</a>
+                                                                        </div>
+
+                                                                        <div class="col-lg-6">
+                                                                            <button type="submit" class="btn btn-success btn-sm" id="btnGuardarProfile" style="display: none; border-radius: 30px;">Guardar</button>
                                                                         </div>
                                                                     </div>
-                                                                    
-                                                                </div>
+                                                                    <div class="mt-3 pt-2 border-top">
+                                                                        <h4 class="mb-3 font-size-15">Información de contacto</h4>
+
+                                                                        <div class="form-group row">
+                                                                            <label class="col-lg-4 col-form-label" for="example-static">Email</label>
+                                                                            <div class="col-lg-8">
+                                                                                <input type="email" readonly="" class="form-control-plaintext" id="email_profile"value="{{Auth::user()->email}}">
+                                                                                <input type="email" name="email" class="form-control" id="email_profileE"value="{{Auth::user()->email}}" style="display: none;">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-lg-6 col-form-label" for="example-static">Teléfono</label>
+                                                                            <div class="col-lg-6">
+                                                                                <input type="number" readonly="" class="form-control-plaintext" id="telefono_profile"value="13123123">
+                                                                                <input type="number" name="telefono" class="form-control" id="telefono_profileE"value="13123123" style="display: none;">
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </center>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -235,106 +235,108 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
+                                                <center>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="text" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Estado del estacionamiento</label>
-                                                            <select name="status" class="form-control" required placeholder="Introduzca el status del estacionamiento">
-                                                                <option value="Libre" selected="selected">Libre</option>
-                                                                <option value="Ocupado" >Ocupado</option>
-                                                            </select>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Estado del estacionamiento</label>
+                                                                <select name="status" class="form-control" required placeholder="Introduzca el status del estacionamiento">
+                                                                    <option value="Libre" selected="selected">Libre</option>
+                                                                    <option value="Ocupado" >Ocupado</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                
+                                                    
 
-                                                
-                                                <!-- <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Especifique el año para los montos</label>
-                                                            <select name="anio" id="anio2" class="form-control">
-                                                                <?php $anio=date('Y');?>
-                                                                @for($i=0; $i<10; $i++)
-                                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
-                                                                @endfor
-                                                            </select>
+                                                    
+                                                    <!-- <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Especifique el año para los montos</label>
+                                                                <select name="anio" id="anio2" class="form-control">
+                                                                    <?php $anio=date('Y');?>
+                                                                    @for($i=0; $i<10; $i++)
+                                                                        <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                                    @endfor
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div> -->
-                                                
+                                                    </div> -->
+                                                    
 
-                                                {{--
-                                                <hr>
-                                                <h4>Mensualidad del estacionamiento</h4>
+                                                    {{--
+                                                    <hr>
+                                                    <h4>Mensualidad del estacionamiento</h4>
 
 
-                                                    <div class="widget-tabs-list">
-                                                    <ul class="nav nav-tabs tab-nav-left">
-                                                        <li class="active"><a class="active" data-toggle="tab" href="#mes" onclick="opcion(1)">Montos por mes</a></li>
-                                                        <li><a data-toggle="tab" href="#anio" onclick="opcion(2)">Montos por año</a></li>
-                                                    </ul>
-                                                    <div class="tab-content tab-custom-st">
-                                                        <div id="mes" class="tab-pane fade in active show">
-                                                            <div class="tab-ctn">
-                                                                <div class="row">
-                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                        <div class="add-todo-list notika-shadow ">
-                                                                            <div class="card-box">
-                                                                                @php $i=0; @endphp
-                                                                                @foreach($meses as $key)
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-4">
-                                                                                            <div class="form-group">
-                                                                                                <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
-                                                                                                <label>{{$key->mes}}</label>
+                                                        <div class="widget-tabs-list">
+                                                        <ul class="nav nav-tabs tab-nav-left">
+                                                            <li class="active"><a class="active" data-toggle="tab" href="#mes" onclick="opcion(1)">Montos por mes</a></li>
+                                                            <li><a data-toggle="tab" href="#anio" onclick="opcion(2)">Montos por año</a></li>
+                                                        </ul>
+                                                        <div class="tab-content tab-custom-st">
+                                                            <div id="mes" class="tab-pane fade in active show">
+                                                                <div class="tab-ctn">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                            <div class="add-todo-list notika-shadow ">
+                                                                                <div class="card-box">
+                                                                                    @php $i=0; @endphp
+                                                                                    @foreach($meses as $key)
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">
+                                                                                                <div class="form-group">
+                                                                                                    <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
+                                                                                                    <label>{{$key->mes}}</label>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <div class="col-md-6">
-                                                                                            <div class="form-group">
-                                                                                                <div class="input-group mb-2">
-                                                                                                    <div class="input-group-prepend">
-                                                                                                        <div class="input-group-text">$</div>
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="form-group">
+                                                                                                    <div class="input-group mb-2">
+                                                                                                        <div class="input-group-prepend">
+                                                                                                            <div class="input-group-text">$</div>
+                                                                                                        </div>
+                                                                                                        <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
                                                                                                     </div>
-                                                                                                    <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                    @php $i++; @endphp
-                                                                                @endforeach()
+                                                                                        @php $i++; @endphp
+                                                                                    @endforeach()
 
-                                                                                
+                                                                                    
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div id="anio" class="tab-pane fade">
-                                                            <div class="tab-ctn">
-                                                                <div class="row">
-                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                        <div class="add-todo-list notika-shadow ">
-                                                                            <div class="card-box">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label>Monto por todo el año</label>
-                                                                                            <div class="input-group mb-2">
-                                                                                                <div class="input-group-prepend">
-                                                                                                    <div class="input-group-text">$</div>
+                                                            <div id="anio" class="tab-pane fade">
+                                                                <div class="tab-ctn">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                            <div class="add-todo-list notika-shadow ">
+                                                                                <div class="card-box">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>Monto por todo el año</label>
+                                                                                                <div class="input-group mb-2">
+                                                                                                    <div class="input-group-prepend">
+                                                                                                        <div class="input-group-text">$</div>
+                                                                                                    </div>
+                                                                                                    <input type="text" name="montoAnio" class="form-control" id="montoAnio" placeholder="10" disabled>
                                                                                                 </div>
-                                                                                                <input type="text" name="montoAnio" class="form-control" id="montoAnio" placeholder="10" disabled>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -345,11 +347,11 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div> 
-                                                --}}
-                                                    <input type="hidden" name="opcion" id="opcion" value="1">
-                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;">Guardar</i></button>
+                                                    </div> 
+                                                    --}}
+                                                </center>
+                                                <input type="hidden" name="opcion" id="opcion" value="1">
+                                                <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;">Guardar</i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -368,63 +370,65 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        
-                                                        <div class="form-group">
-                                                            <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control">
+                                                <center>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            
+                                                            <div class="form-group">
+                                                                <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" name="rut" placeholder="Rut del residente" class="form-control">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="text" name="rut" placeholder="Rut del residente" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="email" name="email" placeholder="Email del residente" class="form-control">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="email" name="email" placeholder="Email del residente" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>¿Asignar inmueble?</label>
-                                                            <select name="id_inmuebles[]" multiple class="form select2" multiple="" id="asignaInmueResidente">
-                                                                
-                                                            </select>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>¿Asignar inmueble?</label>
+                                                                <select name="id_inmuebles[]" multiple class="form select2" multiple="" id="asignaInmueResidente">
+                                                                    
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>¿Asignar estacionamiento?</label>
-                                                            <select name="id_estacionamientos[]" multiple class="form select2" multiple="" id="asignaEstaResidente">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>¿Asignar estacionamiento?</label>
+                                                                <select name="id_estacionamientos[]" multiple class="form select2" multiple="" id="asignaEstaResidente">
 
-                                                            </select>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </center>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-success" >Guardar</button>
@@ -451,12 +455,14 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div id="muestraMesesAPagar">
-                                                    
-                                                </div>
-                                                <div id="muestraMesesAPagar2" style="display: none;">
-                                                    <h3 align="center">No hay inmuebles que pagar</h3>
-                                                </div>
+                                                <center>
+                                                    <div id="muestraMesesAPagar">
+                                                        
+                                                    </div>
+                                                    <div id="muestraMesesAPagar2" style="display: none;">
+                                                        <h3 align="center">No hay inmuebles que pagar</h3>
+                                                    </div>
+                                                </center>
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
@@ -485,17 +491,18 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Multas</label>
-                                                            <select class="form-control select2" required multiple name="id_multa[]" id="MultasPagarResi">
-                                                                
-                                                            </select>
+                                                <center>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Multas</label>
+                                                                <select class="form-control select2" required multiple name="id_multa[]" id="MultasPagarResi">
+                                                                    
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                
+                                                </center>
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
@@ -530,25 +537,27 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                               <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Seleccione año</label>
-                                                            <select name="anioI" id="anioPagoComunI" class="form-control select2" onchange="montosInmuebleAnio(this.value,1)">
-                                                            </select>
+                                                <center>
+                                                   <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Seleccione año</label>
+                                                                <select name="anioI" id="anioPagoComunI" class="form-control select2" onchange="montosInmuebleAnio(this.value,1)">
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div id="PagoCInmuebles1"></div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div id="PagoCInmuebles1"></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="float-right">
-                                                    <input type="hidden" name="tipo" value="Inmueble">
-                                                    <input type="hidden" class="accion" name="accion" value="1">
-                                                    <button type="submit" class="btn btn-success" >Guardar</button>
-                                                </div>
+                                                    <div class="float-right">
+                                                        <input type="hidden" name="tipo" value="Inmueble">
+                                                        <input type="hidden" class="accion" name="accion" value="1">
+                                                        <button type="submit" class="btn btn-success" >Guardar</button>
+                                                    </div>
+                                                </center>
                                             </div>
                                         </div>
                                     </div>
@@ -577,28 +586,30 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                               <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Seleccione año</label>
-                                                            <select name="anioI" id="anioPagoComunI_E" class="form-control select2" onchange="montosInmuebleAnio(this.value,2)">
-                                                            </select>
+                                                <center>
+                                                   <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Seleccione año</label>
+                                                                <select name="anioI" id="anioPagoComunI_E" class="form-control select2" onchange="montosInmuebleAnio(this.value,2)">
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <hr>
+                                                    <hr>
 
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div id="PagoCInmuebles2"></div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div id="PagoCInmuebles2"></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <hr>
-                                                <div class="float-right">
-                                                    <input type="hidden" name="tipo" value="Inmueble">
-                                                    <input type="hidden" class="accion" name="accion" value="1">
-                                                    <button type="submit" class="btn btn-success" >Editar</button>
-                                                </div>
+                                                    <hr>
+                                                    <div class="float-right">
+                                                        <input type="hidden" name="tipo" value="Inmueble">
+                                                        <input type="hidden" class="accion" name="accion" value="1">
+                                                        <button type="submit" class="btn btn-success" >Editar</button>
+                                                    </div>
+                                                </center>
                                             </div>
                                         </div>
                                     </div>
@@ -630,25 +641,27 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                       <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Seleccione año</label>
-                                                    <select name="anioE" id="anioPagoComunE" class="form-control select2" onchange="montosEstacionaAnio(this.value,1)" >
-                                                    </select>
+                                        <center>
+                                           <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Seleccione año</label>
+                                                        <select name="anioE" id="anioPagoComunE" class="form-control select2" onchange="montosEstacionaAnio(this.value,1)" >
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div id="PagoCEstaciona1"></div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="PagoCEstaciona1"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <input type="hidden" name="tipo" value="Estacionamiento">
-                                            <input type="hidden" class="accion" name="accion" value="1">
-                                            <button type="submit" class="btn btn-success" >Guardar</button>
-                                        </div>
+                                            <div class="float-right">
+                                                <input type="hidden" name="tipo" value="Estacionamiento">
+                                                <input type="hidden" class="accion" name="accion" value="1">
+                                                <button type="submit" class="btn btn-success" >Guardar</button>
+                                            </div>
+                                        </center>
                                     </div>
                                 </div>
                             </div>
@@ -676,27 +689,29 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                       <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Seleccione año</label>
-                                                    <select name="anioE" id="anioPagoComunE2" class="form-control select2" onchange="montosEstacionaAnio(this.value,2)" >
-                                                    </select>
+                                        <center>
+                                           <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Seleccione año</label>
+                                                        <select name="anioE" id="anioPagoComunE2" class="form-control select2" onchange="montosEstacionaAnio(this.value,2)" >
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div id="PagoCEstaciona2"></div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="PagoCEstaciona2"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <div class="float-right">
-                                            <input type="hidden" name="tipo" value="Estacionamiento">
-                                            <input type="hidden" class="accion" name="accion" value="2">
-                                            <button type="submit" class="btn btn-success" >Editar</button>
-                                        </div>
+                                            <hr>
+                                            <div class="float-right">
+                                                <input type="hidden" name="tipo" value="Estacionamiento">
+                                                <input type="hidden" class="accion" name="accion" value="2">
+                                                <button type="submit" class="btn btn-success" >Editar</button>
+                                            </div>
+                                        </center>
                                     </div>
                                 </div>
                             </div>
@@ -717,153 +732,163 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" name="idem" placeholder="Idem del Inmueble" class="form-control" required="required">
+                                                <center>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group" style="text-align:center;">
+                                                                <center>
+                                                                    <input type="text" name="idem" placeholder="Idem del Inmueble" class="form-control" required="required">
+                                                                </center>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Tipo de Inmueble</label>
-                                                            <select name="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble" required="required">
-                                                                <option value="Casa" selected="selected">Casa</option>
-                                                                <option value="Apartamento" >Apartamento</option>
-                                                                <option value="Anexo" >Anexo</option>
-                                                                <option value="Habitación" >Habitación</option>
-                                                                <option value="Otro" >Otro</option>
-                                                            </select>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <center>
+                                                                    <label>Tipo de Inmueble</label>
+                                                                    <select name="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble" required="required">
+                                                                        <option value="Casa" selected="selected">Casa</option>
+                                                                        <option value="Apartamento" >Apartamento</option>
+                                                                        <option value="Anexo" >Anexo</option>
+                                                                        <option value="Habitación" >Habitación</option>
+                                                                        <option value="Otro" >Otro</option>
+                                                                    </select>
+                                                                </center>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Estado del Inmueble</label>
-                                                            <select name="status" class="form-control" required placeholder="Introduzca el status del Inmueble">
-                                                                <option value="Disponible" selected="selected">Disponible</option>
-                                                                <option value="No Disponible" >No Disponible</option>
-                                                            </select>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <center>
+                                                                    <label>Estado del Inmueble</label>
+                                                                    <select name="status" class="form-control" required placeholder="Introduzca el status del Inmueble">
+                                                                        <option value="Disponible" selected="selected">Disponible</option>
+                                                                        <option value="No Disponible" >No Disponible</option>
+                                                                    </select>
+                                                                </center>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>¿El inmueble posee estacionamientos?</label>
-                                                            <select name="estacionamiento" class="form-control select2" onchange="CheckboxCuantos(this.value)" id="PoseeEstacionamientoI" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                                                <option value="Si">Si</option>
-                                                                <option value="No" selected="selected">No</option>
-                                                            </select>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <center>
+                                                                    <label>¿El inmueble posee estacionamientos?</label>
+                                                                    <select name="estacionamiento" class="form-control select2" onchange="CheckboxCuantos(this.value)" id="PoseeEstacionamientoI" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                                                        <option value="Si">Si</option>
+                                                                        <option value="No" selected="selected">No</option>
+                                                                    </select>
+                                                                </center>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="row" id="cuantosEstaciona" style="display: none;">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Cantidad de estacionamientos</label>
-                                                            <input type="number" name="Cuantos" class="form-control" placeholder="1">
+                                                    <div class="row" id="cuantosEstaciona" style="display: none;">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Cantidad de estacionamientos</label>
+                                                                <input type="number" name="Cuantos" class="form-control" placeholder="1">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                
-                                                
+                                                    
+                                                    
 
-                                                {{--<hr><div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
-                                                            <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                                                <option value="0" selected="selected">Seleccionar estacionamientos</option>
-                                                                @foreach($estacionamientos as $key)
-                                                                    <option value="{{$key->id}}">{{$key->idem}}</option>
-                                                                @endforeach()
-                                                            </select>
+                                                    {{--<hr><div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
+                                                                <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                                                    <option value="0" selected="selected">Seleccionar estacionamientos</option>
+                                                                    @foreach($estacionamientos as $key)
+                                                                        <option value="{{$key->id}}">{{$key->idem}}</option>
+                                                                    @endforeach()
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div> --}}
+                                                    </div> --}}
 
-                                                <!-- <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Especifique el año para los montos</label>
-                                                            <select name="anio" id="anio2" class="form-control" onchange="mostrarMCreate(this.value);">
-                                                                <?php $anio=date('Y');?>
-                                                                @for($i=0; $i<10; $i++)
-                                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
-                                                                @endfor
-                                                            </select>
+                                                    <!-- <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Especifique el año para los montos</label>
+                                                                <select name="anio" id="anio2" class="form-control" onchange="mostrarMCreate(this.value);">
+                                                                    <?php $anio=date('Y');?>
+                                                                    @for($i=0; $i<10; $i++)
+                                                                        <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                                    @endfor
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div> -->
+                                                    </div> -->
 
-                                                {{--<h4>Mensualidad del Inmueble</h4>
-                                                <hr>
+                                                    {{--<h4>Mensualidad del Inmueble</h4>
+                                                    <hr>
 
 
-                                                <div class="widget-tabs-list">
-                                                    <ul class="nav nav-tabs tab-nav-left">
-                                                        <li class="active"><a class="active" data-toggle="tab" href="#mes" onclick="opcion(1)">Montos por mes</a></li>
-                                                        <li><a data-toggle="tab" href="#anio" onclick="opcion(2)">Montos por año</a></li>
-                                                    </ul>
-                                                    <div class="tab-content tab-custom-st">
-                                                        <div id="mes" class="tab-pane fade in active show">
-                                                            <div class="tab-ctn">
-                                                                <div class="row">
-                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                        <div class="add-todo-list notika-shadow ">
-                                                                            <div class="card-box">
-                                                                                @php $i=0; @endphp
-                                                                                @foreach($meses as $key)
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-4">
-                                                                                            <div class="form-group">
-                                                                                                <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
-                                                                                                <label>{{$key->mes}}</label>
+                                                    <div class="widget-tabs-list">
+                                                        <ul class="nav nav-tabs tab-nav-left">
+                                                            <li class="active"><a class="active" data-toggle="tab" href="#mes" onclick="opcion(1)">Montos por mes</a></li>
+                                                            <li><a data-toggle="tab" href="#anio" onclick="opcion(2)">Montos por año</a></li>
+                                                        </ul>
+                                                        <div class="tab-content tab-custom-st">
+                                                            <div id="mes" class="tab-pane fade in active show">
+                                                                <div class="tab-ctn">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                            <div class="add-todo-list notika-shadow ">
+                                                                                <div class="card-box">
+                                                                                    @php $i=0; @endphp
+                                                                                    @foreach($meses as $key)
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">
+                                                                                                <div class="form-group">
+                                                                                                    <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
+                                                                                                    <label>{{$key->mes}}</label>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <div class="col-md-6">
-                                                                                            <div class="form-group">
-                                                                                                <div class="input-group mb-2">
-                                                                                                    <div class="input-group-prepend">
-                                                                                                        <div class="input-group-text">$</div>
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="form-group">
+                                                                                                    <div class="input-group mb-2">
+                                                                                                        <div class="input-group-prepend">
+                                                                                                            <div class="input-group-text">$</div>
+                                                                                                        </div>
+                                                                                                        <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
                                                                                                     </div>
-                                                                                                    <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                    @php $i++; @endphp
-                                                                                @endforeach()
+                                                                                        @php $i++; @endphp
+                                                                                    @endforeach()
 
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div id="anio" class="tab-pane fade">
-                                                            <div class="tab-ctn">
-                                                                <div class="row">
-                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                        <div class="add-todo-list notika-shadow ">
-                                                                            <div class="card-box">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label>Monto por todo el año</label>
-                                                                                            <div class="input-group mb-2">
-                                                                                                <div class="input-group-prepend">
-                                                                                                    <div class="input-group-text">$</div>
+                                                            <div id="anio" class="tab-pane fade">
+                                                                <div class="tab-ctn">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                            <div class="add-todo-list notika-shadow ">
+                                                                                <div class="card-box">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>Monto por todo el año</label>
+                                                                                                <div class="input-group mb-2">
+                                                                                                    <div class="input-group-prepend">
+                                                                                                        <div class="input-group-text">$</div>
+                                                                                                    </div>
+                                                                                                    <input type="text" name="montoAnio" class="form-control" id="montoAnio" placeholder="10" disabled>
                                                                                                 </div>
-                                                                                                <input type="text" name="montoAnio" class="form-control" id="montoAnio" placeholder="10" disabled>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -875,10 +900,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                --}}
-                                                    <input type="hidden" name="opcion" id="opcion" value="1">
-                                                    <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;">Guardar</i></button>
+                                                    --}}
+                                                </center>
+                                                <input type="hidden" name="opcion" id="opcion" value="1">
+                                                <button type="submit" class="btn btn-success" style="border-radius: 50px; float: right;">Guardar</i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -899,46 +924,47 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Título del anuncio</label>
-                                        <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
-                                    </div>
-                                </div>
-                           
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Link</label>
-                                        <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Imagen</label>
-                                        <div class="alert alert-primary" role="alert">
-                                            <p><strong>Recordar que:</strong><br>
-                                            - La imagen no debe exceder los 800 KB de tamaño<br>
-                                            - La imagen no debe tener una anchura mayor a 1024 kb<br>
-                                            - La imagen no debe tener una altura mayor a 800 kb</p>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Título del anuncio</label>
+                                            <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
                                         </div>
-                                        <input type="file" class="form-control" id="example-fileinput" name="imagen">
+                                    </div>
+                               
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Link</label>
+                                            <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div class="alert alert-primary" role="alert">
+                                                <p><strong>Recordar que:</strong><br>
+                                                - La imagen no debe exceder los 800 KB de tamaño<br>
+                                                - La imagen no debe tener una anchura mayor a 1024 kb<br>
+                                                - La imagen no debe tener una altura mayor a 800 kb</p>
+                                            </div>
+                                            <input type="file" class="form-control" id="example-fileinput" name="imagen">
+                                        </div>
+                                    </div>
+                                </div>
+                            </center>
                             <div class="float-right">
                                 <button type="submit" class="btn btn-success" >Guardar</button>
                             </div>

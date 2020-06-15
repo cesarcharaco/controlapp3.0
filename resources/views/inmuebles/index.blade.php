@@ -83,46 +83,48 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Nombre del Inmueble</label>
-                                        <span id="ver_idem"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tipo de Inmueble</label>
-                                        <span id="ver_tipo"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Estado del Inmueble</label>
-                                        <span id="ver_status"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Pago común</label>
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">$</div>
-                                            </div>
-                                            <input type="number" name="monto[]" class="form-control" placeholder="10">
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Nombre del Inmueble</label>
+                                            <span id="ver_idem"></span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tipo de Inmueble</label>
+                                            <span id="ver_tipo"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Estado del Inmueble</label>
+                                            <span id="ver_status"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Pago común</label>
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">$</div>
+                                                </div>
+                                                <input type="number" name="monto[]" class="form-control" placeholder="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </center>
                         </div>                            
                     </div>
                 </div>
@@ -140,10 +142,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div id="fechasM"></div>
-                            <div id="buttonShow"></div>
-                            <div id="MesesM"></div>
-                            <input type="hidden" name="id" id="idShowM">
+                            <center>
+                                <div id="fechasM"></div>
+                                <div id="buttonShow"></div>
+                                <div id="MesesM"></div>
+                                <input type="hidden" name="id" id="idShowM">
+                            </center>
                         </div>                            
                     </div>
                 </div>
@@ -167,28 +171,30 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Especifique el año para la mensualidad</label>
-                                        <select name="anio" id="SelectAnio1" class="form-control" onchange="accionM(1,this.value);">
-                                            <option value="0">Seleccione el año</option>
-                                            <?php $anio=date('Y');?>
-                                            @for($i=0; $i<10; $i++)
-                                                <option value="{{$anio++}}">{{$anio-1}}</option>
-                                            @endfor
-                                        </select>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Especifique el año para la mensualidad</label>
+                                            <select name="anio" id="SelectAnio1" class="form-control" onchange="accionM(1,this.value);">
+                                                <option value="0">Seleccione el año</option>
+                                                <?php $anio=date('Y');?>
+                                                @for($i=0; $i<10; $i++)
+                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="buttonCreate"></div>
-                                    <div id="createMensuality1"></div>
-                                    <div id="createMensuality2"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="buttonCreate"></div>
+                                        <div id="createMensuality1"></div>
+                                        <div id="createMensuality2"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </center>
                         </div> 
 
                         <div class="modal-footer">
@@ -222,29 +228,31 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Especifique el año para editar la mensualidad</label>
-                                        <select name="anio" id="SelectAnio2" class="form-control" onchange="accionM(2,this.value);">
-                                            <option value="0">Seleccionar año</option>
-                                            <?php $anio=date('Y');?>
-                                            @for($i=0; $i<10; $i++)
-                                                <option value="{{$anio++}}">{{$anio-1}}</option>
-                                            @endfor
-                                        </select>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Especifique el año para editar la mensualidad</label>
+                                            <select name="anio" id="SelectAnio2" class="form-control" onchange="accionM(2,this.value);">
+                                                <option value="0">Seleccionar año</option>
+                                                <?php $anio=date('Y');?>
+                                                @for($i=0; $i<10; $i++)
+                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="buttonEdit"></div>
-                                    <div id="editMensuality1"></div>
-                                    <div id="editMensuality2"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="buttonEdit"></div>
+                                        <div id="editMensuality1"></div>
+                                        <div id="editMensuality2"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </center>
                         </div> 
 
                         <div class="modal-footer">
@@ -277,26 +285,28 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Especifique el año para eliminar la mensualidad</label>
-                                        <select name="anio" id="SelectAnio3" class="form-control" onchange="accionM(3,this.value);">
-                                            <option value="0">Seleccione el año</option>
-                                            <?php $anio=date('Y');?>
-                                            @for($i=0; $i<10; $i++)
-                                                <option value="{{$anio++}}">{{$anio-1}}</option>
-                                            @endfor
-                                        </select>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Especifique el año para eliminar la mensualidad</label>
+                                            <select name="anio" id="SelectAnio3" class="form-control" onchange="accionM(3,this.value);">
+                                                <option value="0">Seleccione el año</option>
+                                                <?php $anio=date('Y');?>
+                                                @for($i=0; $i<10; $i++)
+                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="deleteMensuality"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="deleteMensuality"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </center>
                         </div> 
 
                         <div class="modal-footer">
@@ -325,77 +335,79 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Nombre del Inmueble</label>
-                                        <input type="text" id="idem" name="idem" placeholder="Idem del Inmueble" class="form-control" required="required">
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Nombre del Inmueble</label>
+                                            <input type="text" id="idem" name="idem" placeholder="Idem del Inmueble" class="form-control" required="required">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tipo de Inmueble</label>
-                                        <select name="tipo" id="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble">
-                                            <option value="Casa" selected="selected">Casa</option>
-                                            <option value="Apartamento" >Apartamento</option>
-                                            <option value="Anexo" >Anexo</option>
-                                            <option value="Habitación" >Habitación</option>
-                                            <option value="Otro" >Otro</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tipo de Inmueble</label>
+                                            <select name="tipo" id="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble">
+                                                <option value="Casa" selected="selected">Casa</option>
+                                                <option value="Apartamento" >Apartamento</option>
+                                                <option value="Anexo" >Anexo</option>
+                                                <option value="Habitación" >Habitación</option>
+                                                <option value="Otro" >Otro</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Estado del Inmueble</label>
-                                        <select name="status" id="status_e" class="form-control" required placeholder="Introduzca el status del Inmueble">
-                                            <option value="Disponible" selected="selected">Disponible</option>
-                                            <option value="No Disponible" >No Disponible</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Estado del Inmueble</label>
+                                            <select name="status" id="status_e" class="form-control" required placeholder="Introduzca el status del Inmueble">
+                                                <option value="Disponible" selected="selected">Disponible</option>
+                                                <option value="No Disponible" >No Disponible</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>¿El inmueble posee estacionamientos?</label>
-                                        <select name="estacionamiento" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                            <option value="Si" selected="selected">Si</option>
-                                            <option value="No">No</option>
+                                <!-- <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>¿El inmueble posee estacionamientos?</label>
+                                            <select name="estacionamiento" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                                <option value="Si" selected="selected">Si</option>
+                                                <option value="No">No</option>
 
-                                            
-                                        </select>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>¿Cuántos?</label>
+                                            <input type="number" name="Cuantos[]" class="form-control" placeholder="1">
+                                        </div>
                                     </div>
                                 </div>
-                            </div> -->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>¿Cuántos?</label>
-                                        <input type="number" name="Cuantos[]" class="form-control" placeholder="1">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
-                                        <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                            <option value="0" selected="selected">Seleccionar estacionamientos</option>
-                                            @foreach($estacionamientos as $key)
-                                                <option value="{{$key->id}}">{{$key->idem}}</option>
-                                            @endforeach()
-                                        </select>
+                                <!-- <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
+                                            <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
+                                                <option value="0" selected="selected">Seleccionar estacionamientos</option>
+                                                @foreach($estacionamientos as $key)
+                                                    <option value="{{$key->id}}">{{$key->idem}}</option>
+                                                @endforeach()
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                            </div> -->
+                                </div> -->
+                            </center>
                         </div>
                             
                         <div class="modal-footer">
@@ -426,6 +438,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <center>
                             <h3>¡ATENCIÓN!</h3>
                             <p>Está a punto de eliminar este inmueble con todos sus registros y mensualidades. Esta opción no se podrá deshacer</p>
                         </div>

@@ -9,58 +9,26 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            
-                            <div class="form-group">
-                                <input type="text" id="name_e" name="name_e" placeholder="Nombre del admin" class="form-control" required>
+                    <center>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <div class="form-group">
+                                    <input type="text" id="name_e" name="name_e" placeholder="Nombre del admin" class="form-control" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="number" id="rut_e" name="rut_e" placeholder="Rut del admin" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="email" id="email_e" name="email_e" placeholder="Email del admin" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <select name="status" id="status_e" class="form-control">
-                                    <option value="activo">Activo</option>
-                                    <option value="suspendido">Suspendido</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>¿Desea cambiar la contraseña de usuario?</label>
-                                <input type="checkbox" name="cambiar" value="si" id="CheckCambiarContraseña" onclick="CambiarContraseña();">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="verCambiarContraseña" style="display: none;">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Ingrese contraseña</label>
-                                    <input type="password" name="password" placeholder="Contraseña" id="contraseñaE" class="form-control" >
+                                    <input type="number" id="rut_e" name="rut_e" placeholder="Rut del admin" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="email" id="email_e" name="email_e" placeholder="Email del admin" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -68,12 +36,45 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Confirmar contraseña</label>
-                                    <input type="password" name="password_confirmation" id="confirmarContraseñaE" placeholder="Confirmar contraseña" class="form-control" >
+                                    <select name="status" id="status_e" class="form-control">
+                                        <option value="activo">Activo</option>
+                                        <option value="suspendido">Suspendido</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>¿Desea cambiar la contraseña de usuario?</label>
+                                    <input type="checkbox" name="cambiar" value="si" id="CheckCambiarContraseña" onclick="CambiarContraseña();">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="verCambiarContraseña" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Ingrese contraseña</label>
+                                        <input type="password" name="password" placeholder="Contraseña" id="contraseñaE" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Confirmar contraseña</label>
+                                        <input type="password" name="password_confirmation" id="confirmarContraseñaE" placeholder="Confirmar contraseña" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id" id="id_admin_e">

@@ -10,47 +10,49 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            
-                            <div class="form-group">
-                                <input type="text" name="name" placeholder="Nombre del admin" class="form-control" required>
+                    <center>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <div class="form-group">
+                                    <input type="text" name="name" placeholder="Nombre del admin" class="form-control" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="number" name="rut" placeholder="Rut del admin" class="form-control" required>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="number" name="rut" placeholder="Rut del admin" class="form-control" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Email del admin" class="form-control" required>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Email del admin" class="form-control" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Ingrese contraseña</label>
-                                <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Ingrese contraseña</label>
+                                    <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Confirmar contraseña</label>
-                                <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" class="form-control" required>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Confirmar contraseña</label>
+                                    <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" class="form-control" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </center>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success" >Guardar</button>

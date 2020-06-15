@@ -125,43 +125,45 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        
-                                        <div class="form-group">
-                                            <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control" id="nombres_e">
+                                <center>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            
+                                            <div class="form-group">
+                                                <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control" id="nombres_e">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control" id="apellidos_e">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control" id="apellidos_e">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" name="rut" placeholder="Rut del residente" class="form-control" id="rut_e">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="text" name="rut" placeholder="Rut del residente" class="form-control" id="rut_e">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="email" name="email" placeholder="Email del residente" class="form-control" id="email_e">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="email" name="email" placeholder="Email del residente" class="form-control" id="email_e">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </center>
+                            </div>
                             <div class="modal-footer">
                                 <input type="hidden" name="id" id="id_e">
                                 <button type="submit" class="btn btn-success" >Editar</button>

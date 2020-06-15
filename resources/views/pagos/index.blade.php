@@ -491,81 +491,82 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class=" col-form-label" for="example-static">Referencia con la que se registró el pago</label>
-                                    <input type="number" name="referencia_edit" data-toggle="tooltip" data-placement="top" title="Ingrese la referencia con la que se registró el pago" placeholder="Ej: 12345678" class="form-control" required="required" >
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div id="MuestraEstacionamiento2" style="display: none;">
+                        <center>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="form-control" name="status" required>
-                                            <option value="Pendiente">Pendiente</option>
-                                            <option value="Cancelado">Cancelado</option>
+                                        <label class=" col-form-label" for="example-static">Referencia con la que se registró el pago</label>
+                                        <input type="number" name="referencia_edit" data-toggle="tooltip" data-placement="top" title="Ingrese la referencia con la que se registró el pago" placeholder="Ej: 12345678" class="form-control" required="required" >
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div id="MuestraEstacionamiento2" style="display: none;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control" name="status" required>
+                                                <option value="Pendiente">Pendiente</option>
+                                                <option value="Cancelado">Cancelado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label data-toggle="tooltip" data-placement="top" title="Seleccione el año al cual corresponde el pago" class=" col-form-label" for="example-static">Año de pago</label>
+                                        <select   class="form-control select2" name="anio" id="anio" onchange="BuscarEditar(this.value)" >
+                                            
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <hr>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label data-toggle="tooltip" data-placement="top" title="Seleccione el año al cual corresponde el pago" class=" col-form-label" for="example-static">Año de pago</label>
-                                    <select   class="form-control select2" name="anio" id="anio" onchange="BuscarEditar(this.value)" >
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
 
-                        <div id="MuestraInmueble">
+                            <div id="MuestraInmueble">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendiente, de acuerdo al inmueble" class="text-primary col-form-label" for="example-static">Meses</label>
-                                        <select   class="border border-primary form-control select2" name="id_inmueble" id="id_inmuebleEditar" disabled>
-                                            
-                                        </select>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendiente, de acuerdo al inmueble" class="text-primary col-form-label" for="example-static">Meses</label>
+                                            <select   class="border border-primary form-control select2" name="id_inmueble" id="id_inmuebleEditar" disabled>
+                                                
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div id="MuestraEstacionamiento">
-                            <div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendient, de acuerdo al estacionamiento" class="text-warning col-form-label" for="example-static">Estacionamientos</label>
-                                        <select   class="border border-warning form-control select2" name="id_estacionamiento" id="id_estacionamientoEditar" disabled>
-                                            
-                                        </select>
+                            <div id="MuestraEstacionamiento">
+                                <div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label data-toggle="tooltip" data-placement="top" title="Seleccione el mes que desea colocar como pendient, de acuerdo al estacionamiento" class="text-warning col-form-label" for="example-static">Estacionamientos</label>
+                                            <select   class="border border-warning form-control select2" name="id_estacionamiento" id="id_estacionamientoEditar" disabled>
+                                                
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div id="MuestraMulta">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label   data-toggle="tooltip" data-placement="top" title="Seleccione la Multa o Recarga que desea colocar como pendiente" class="text-success col-form-label" for="example-static">Multas - Recargas</label>
-                                        <select class="border border-success form-control select2" name="id_multa" id="id_multaEditar" disabled>
-                                            
-                                        </select>
+                            <div id="MuestraMulta">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label   data-toggle="tooltip" data-placement="top" title="Seleccione la Multa o Recarga que desea colocar como pendiente" class="text-success col-form-label" for="example-static">Multas - Recargas</label>
+                                            <select class="border border-success form-control select2" name="id_multa" id="id_multaEditar" disabled>
+                                                
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                        </center>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="opcion" id="opcion">
@@ -616,24 +617,25 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                              <div class="carousel-inner">
-                                
-                              </div>
-                              <a class="carousel-control-prev" style="background-color: gray; margin-left: -100px;" href="#carouselExampleControls" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="carousel-control-next" style="background-color: gray; margin-right: -100px;" href="#carouselExampleControls" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                              </a>
+                    <center>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    
+                                  </div>
+                                  <a class="carousel-control-prev" style="background-color: gray; margin-left: -100px;" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" style="background-color: gray; margin-right: -100px;" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
+                    </center>
                 </div>
             </div>
         </div>

@@ -78,23 +78,25 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Nombre del estacionamiento</label>
-                                        <span id="ver_idem"></span>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Nombre del estacionamiento</label>
+                                            <span id="ver_idem"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Estado del estacionamiento</label>
-                                        <span id="ver_status"></span>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Estado del estacionamiento</label>
+                                            <span id="ver_status"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </center>
                         </div>                            
                     </div>
                 </div>
@@ -112,10 +114,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div id="fechasM"></div>
-                            <div id="buttonShow"></div>
-                            <div id="MesesM"></div>
-                            <input type="hidden" name="id" id="idShowM">
+                            <center>
+                                <div id="fechasM"></div>
+                                <div id="buttonShow"></div>
+                                <div id="MesesM"></div>
+                                <input type="hidden" name="id" id="idShowM">
+                            </center>
                         </div>                            
                     </div>
                 </div>
@@ -139,28 +143,30 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Especifique el año para la mensualidad</label>
-                                        <select name="anio" id="SelectAnio1" class="form-control" onchange="accionM(1,this.value);">
-                                            <option value="0">Seleccione el año</option>
-                                            <?php $anio=date('Y');?>
-                                            @for($i=0; $i<10; $i++)
-                                                <option value="{{$anio++}}">{{$anio-1}}</option>
-                                            @endfor
-                                        </select>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Especifique el año para la mensualidad</label>
+                                            <select name="anio" id="SelectAnio1" class="form-control" onchange="accionM(1,this.value);">
+                                                <option value="0">Seleccione el año</option>
+                                                <?php $anio=date('Y');?>
+                                                @for($i=0; $i<10; $i++)
+                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="buttonCreate"></div>
-                                    <div id="createMensuality1"></div>
-                                    <div id="createMensuality2"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="buttonCreate"></div>
+                                        <div id="createMensuality1"></div>
+                                        <div id="createMensuality2"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </center>
                         </div> 
 
                         <div class="modal-footer">
@@ -194,29 +200,31 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Especifique el año para editar la mensualidad</label>
-                                        <select name="anio" id="SelectAnio2" class="form-control" onchange="accionM(2,this.value);">
-                                            <option value="0">Seleccionar año</option>
-                                            <?php $anio=date('Y');?>
-                                            @for($i=0; $i<10; $i++)
-                                                <option value="{{$anio++}}">{{$anio-1}}</option>
-                                            @endfor
-                                        </select>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Especifique el año para editar la mensualidad</label>
+                                            <select name="anio" id="SelectAnio2" class="form-control" onchange="accionM(2,this.value);">
+                                                <option value="0">Seleccionar año</option>
+                                                <?php $anio=date('Y');?>
+                                                @for($i=0; $i<10; $i++)
+                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="buttonEdit"></div>
-                                    <div id="editMensuality1"></div>
-                                    <div id="editMensuality2"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="buttonEdit"></div>
+                                        <div id="editMensuality1"></div>
+                                        <div id="editMensuality2"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </center>
                         </div> 
 
                         <div class="modal-footer">
@@ -249,26 +257,28 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Especifique el año para eliminar la mensualidad</label>
-                                        <select name="anio" id="SelectAnio3" class="form-control" onchange="accionM(3,this.value);">
-                                            <option value="0">Seleccione el año</option>
-                                            <?php $anio=date('Y');?>
-                                            @for($i=0; $i<10; $i++)
-                                                <option value="{{$anio++}}">{{$anio-1}}</option>
-                                            @endfor
-                                        </select>
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Especifique el año para eliminar la mensualidad</label>
+                                            <select name="anio" id="SelectAnio3" class="form-control" onchange="accionM(3,this.value);">
+                                                <option value="0">Seleccione el año</option>
+                                                <?php $anio=date('Y');?>
+                                                @for($i=0; $i<10; $i++)
+                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="deleteMensuality"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="deleteMensuality"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </center>
                         </div> 
 
                         <div class="modal-footer">
@@ -297,26 +307,28 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Nombre del estacionamiento</label>
-                                        <input type="text" id="idem" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Nombre del estacionamiento</label>
+                                            <input type="text" id="idem" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Estado del estacionamiento</label>
-                                        <select name="status" id="status_e" class="form-control" required placeholder="Introduzca el status del estacionamiento">
-                                            <option value="Libre" selected="selected">Libre</option>
-                                            <option value="Ocupado" >Ocupado</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Estado del estacionamiento</label>
+                                            <select name="status" id="status_e" class="form-control" required placeholder="Introduzca el status del estacionamiento">
+                                                <option value="Libre" selected="selected">Libre</option>
+                                                <option value="Ocupado" >Ocupado</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </center>
                         </div>
                             
                         <div class="modal-footer">
@@ -379,122 +391,46 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Estado del estacionamiento</label>
-                                    <select name="status" class="form-control" required placeholder="Introduzca el status del estacionamiento">
-                                        <option value="Libre" selected="selected">Libre</option>
-                                        <option value="Ocupado" >Ocupado</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                        <!-- <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Especifique el año para los montos</label>
-                                    <select name="anio" id="anio2" class="form-control">
-                                        <?php $anio=date('Y');?>
-                                        @for($i=0; $i<10; $i++)
-                                            <option value="{{$anio++}}">{{$anio-1}}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                            </div>
-                        </div> -->
-                        
-
-                        {{--
-                        <hr>
-                        <h4>Mensualidad del estacionamiento</h4>
-
-
-                            <div class="widget-tabs-list">
-                            <ul class="nav nav-tabs tab-nav-left">
-                                <li class="active"><a class="active" data-toggle="tab" href="#mes" onclick="opcion(1)">Montos por mes</a></li>
-                                <li><a data-toggle="tab" href="#anio" onclick="opcion(2)">Montos por año</a></li>
-                            </ul>
-                            <div class="tab-content tab-custom-st">
-                                <div id="mes" class="tab-pane fade in active show">
-                                    <div class="tab-ctn">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="add-todo-list notika-shadow ">
-                                                    <div class="card-box">
-                                                        @php $i=0; @endphp
-                                                        @foreach($meses as $key)
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <input type="hidden" value="{{$key->mes}}" name="mes[]" id="meses{{$i}}" class="form-control-plaintext">
-                                                                        <label>{{$key->mes}}</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <div class="input-group mb-2">
-                                                                            <div class="input-group-prepend">
-                                                                                <div class="input-group-text">$</div>
-                                                                            </div>
-                                                                            <input type="number" name="monto[]" id="montoMeses{{$i}}" class="form-control" placeholder="10">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            @php $i++; @endphp
-                                                        @endforeach()
-
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="anio" class="tab-pane fade">
-                                    <div class="tab-ctn">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="add-todo-list notika-shadow ">
-                                                    <div class="card-box">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label>Monto por todo el año</label>
-                                                                    <div class="input-group mb-2">
-                                                                        <div class="input-group-prepend">
-                                                                            <div class="input-group-text">$</div>
-                                                                        </div>
-                                                                        <input type="text" name="montoAnio" class="form-control" id="montoAnio" placeholder="10" disabled>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <center>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
                                     </div>
                                 </div>
                             </div>
-                        </div> 
-                        --}}
-                        <div class="modal-footer">
-                            <input type="hidden" name="opcion" id="opcion" value="1">
-                            <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
-                        </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Estado del estacionamiento</label>
+                                        <select name="status" class="form-control" required placeholder="Introduzca el status del estacionamiento">
+                                            <option value="Libre" selected="selected">Libre</option>
+                                            <option value="Ocupado" >Ocupado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Especifique el año para los montos</label>
+                                        <select name="anio" id="anio2" class="form-control">
+                                            <?php $anio=date('Y');?>
+                                            @for($i=0; $i<10; $i++)
+                                                <option value="{{$anio++}}">{{$anio-1}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </center>
+                    </div> 
+                    <div class="modal-footer">
+                        <input type="hidden" name="opcion" id="opcion" value="1">
+                        <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
                     </div>
                 </div>
             </div>

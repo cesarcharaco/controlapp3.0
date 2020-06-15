@@ -106,21 +106,23 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
 
-                                        <label><b>Seleccione un/unos Inmueble(s)</b></label><br>
-                                        <div class="dropdown bootstrap-select show-tick show">
-                                        <select name="id_inmueble[]" class="form-control select2" required="required" title="Seleccione un Inmueble" multiple="multiple">
-                                            @foreach($inmuebles as $key)
-                                                <option value="{{$key->id}}">{{$key->idem}}</option>
-                                            @endforeach()
-                                        </select>
+                                            <label><b>Seleccione un/unos Inmueble(s)</b></label><br>
+                                            <div class="dropdown bootstrap-select show-tick show">
+                                            <select name="id_inmueble[]" class="form-control select2" required="required" title="Seleccione un Inmueble" multiple="multiple">
+                                                @foreach($inmuebles as $key)
+                                                    <option value="{{$key->id}}">{{$key->idem}}</option>
+                                                @endforeach()
+                                            </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </center>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id_residente" id="id_residente">
@@ -144,18 +146,20 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <select name="id_estacionamiento[]" class="form-control" required="required" title="Seleccione un Estacionamiento" multiple="multiple">
-                                            @foreach($estacionamientos as $key)
-                                                <option value="{{$key->id}}">{{$key->idem}}</option>
-                                            @endforeach()
-                                        </select>
-                                        
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select name="id_estacionamiento[]" class="form-control" required="required" title="Seleccione un Estacionamiento" multiple="multiple">
+                                                @foreach($estacionamientos as $key)
+                                                    <option value="{{$key->id}}">{{$key->idem}}</option>
+                                                @endforeach()
+                                            </select>
+                                            
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </center>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id_residente" id="id_residente2">
@@ -183,42 +187,44 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            
-                            <div class="form-group">
-                                <input type="text" name="nombres" placeholder="Nombres del Arriendo" class="form-control">
+                    <center>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <div class="form-group">
+                                    <input type="text" name="nombres" placeholder="Nombres del Arriendo" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="text" name="apellidos" placeholder="Apellidos del Arriendo" class="form-control">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="apellidos" placeholder="Apellidos del Arriendo" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="number" name="rut" placeholder="Rut del Arriendo" class="form-control">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="number" name="rut" placeholder="Rut del Arriendo" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="number" name="telefono" placeholder="Teléfono del Arriendo" class="form-control">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="number" name="telefono" placeholder="Teléfono del Arriendo" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Email del Arriendo" class="form-control">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Email del Arriendo" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </center>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success" >Guardar</button>
