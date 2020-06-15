@@ -43,8 +43,7 @@ class MensualidadesController extends Controller
 		$buscar=Mensualidades::where('id_inmueble',$request->id_inmueble)->get();
 
 		if (count($buscar)>0) {
-			flash('<i class="icon-circle-check"></i> Ya existen mensualidades registradas para este inmueble
-			en el año seleccionado!')->warning()->important();
+			toastr()->warning('intente otra vez!!', 'Ya existen mensualidades registradas para este inmueble en el año seleccionado');
 			return redirect()->back();
 
 		} else {
@@ -57,7 +56,7 @@ class MensualidadesController extends Controller
 				$mensualidad->monto=$request->monto;
 				$mensualidad->save();
 			}
-		flash('<i class="icon-circle-check"></i> Mensualidades registradas con éxito!')->success()->important();
+			toastr()->success('con éxito!!', 'Mensualidades registradas');
 		return redirect()->to('mensualidades');
 	}
 
@@ -131,7 +130,7 @@ class MensualidadesController extends Controller
 		$mensualidad->monto=$request->monto[$i];
 		$mensualidad->save();
 		}
-		flash('<i class="icon-circle-check"></i> Mensualidades actualizadas con éxito!')->success()->important();
+		toastr()->success('con éxito!', 'Mensualidades actualizadas');
 		return redirect()->to('mensualidades');
 
 	}
@@ -147,8 +146,7 @@ class MensualidadesController extends Controller
 		// $me=Mensualidades::where('id_inmueble',$request->id_inmueble)->where('anio',$request->anio)->get();
 		$mensualidad=Mensualidades::find($request->id);
 		$mensualidad->delete();
-
-		flash('<i class="icon-circle-check"></i> Mensualidades eliminadas con éxito!')->success()->important();
+		toastr()->success('con éxito!', 'Mensualidades eliminadas');
 		return redirect()->to('mensualidades');
 	}
 }

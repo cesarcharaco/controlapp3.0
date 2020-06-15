@@ -51,13 +51,13 @@ class EstacionamientosController extends Controller
         $buscar=Estacionamientos::where('idem',$request->idem)->where('id_admin',$id_admin)->get();
         $meses=Meses::all();
         if (count($buscar)>0) {
-            flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'El idem ya se encuentra registrado');
             return redirect()->back();
         } else {
             $anio=date('Y');
             $mensualidad=PagosComunes::where('anio',$anio)->where('tipo','Estacionamiento')->where('id_admin',$id_admin)->get();
             if (count($mensualidad)==0) {
-                flash('No se encuentran Pagos Comunes registrados para estacionamiento este año, intente otra vez!')->warning()->important();
+                toastr()->warning('Deben registrarse los pagos comunes!!', 'No se encuentran Pagos Comunes registrados para estacionamiento este año');
                 return redirect()->back();
             } else {
                 $estacionamiento=new Estacionamientos();
@@ -132,8 +132,7 @@ class EstacionamientosController extends Controller
                 
             }*/
         
-
-            flash('Estacionamiento registrado con éxito!')->success()->important();
+            toastr()->success('con éxito!!', 'Estacionamiento registrado');
             return redirect()->to('estacionamientos');
         }
     }
@@ -197,7 +196,7 @@ class EstacionamientosController extends Controller
         $buscar=Estacionamientos::where('idem',$request->idem)->where('id_admin',$id_admin)->where('id','<>',$request->id)->get();
         //$meses=Meses::all();
         if (count($buscar)>0) {
-            flash('El idem ya se encuentra registrado, intente otra vez!')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'El idem ya se encuentra registrado');
             return redirect()->back();
         } else {
             $estacionamiento= Estacionamientos::find($request->id);
@@ -205,8 +204,7 @@ class EstacionamientosController extends Controller
             $estacionamiento->status=$request->status;
             $estacionamiento->save();
             
-        
-            flash('Estacionamiento actualizado con éxito!')->success()->important();
+            toastr()->success('con éxito!!', 'Estacionamiento actualizado');
             return redirect()->to('estacionamientos');
         }
     }
@@ -230,8 +228,7 @@ class EstacionamientosController extends Controller
                 }
             }
         $estacionamiento->delete();
-
-        flash('Estacionamiento eliminado con éxito!')->success()->important();
+        toastr()->success('con éxito!!', 'Estacionamiento eliminado');
             return redirect()->to('estacionamientos');
     }
 
@@ -245,7 +242,7 @@ class EstacionamientosController extends Controller
         if ($request->accion==1) {
                 # mensual
             if ($this->nulidad($request->monto)) {
-                    flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
+                toastr()->warning('intente otra vez!!', 'Debe agregar todos los montos en los meses indicados');
                     return redirect()->back();    
                 } else {
                     $i=0;
@@ -291,7 +288,7 @@ class EstacionamientosController extends Controller
                 }
                 
             }
-            flash('Mensualidad registrada para el año: <b>'.$request->anio.'</b> en el estacionamiento: <b>'.$estacionamiento->idem.'</b>, de manera exitosa!')->success()->important();
+            toastr()->success('con éxito!!', 'Mensualidad registrada para el año: '.$request->anio.'en el estacionamiento: '.$estacionamiento->idem.'');
             return redirect()->to('estacionamientos');
     }
     public function editar_mensualidad(Request $request)
@@ -299,8 +296,8 @@ class EstacionamientosController extends Controller
         //dd('Editar mensualidad',$request->all());
 
         if ($this->nulidad($request->monto)==true && $request->accion==1) {
-                    flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
-                    return redirect()->back();    
+            toastr()->warning('intente otra vez!!', 'Debe agregar todos los montos en los meses indicados');
+            return redirect()->back();    
                 } else {
 
                 $meses=Meses::all();
@@ -344,8 +341,7 @@ class EstacionamientosController extends Controller
                 }
                 
             }
-
-            flash('Mensualidad actualizada para el año: <b>'.$request->anio.'</b> en el estacionamiento: <b>'.$estacionamiento->idem.'</b>, de manera exitosa!')->success()->important();
+            toastr()->success('con éxito!!', 'Mensualidad actualizada para el año: '.$request->anio.'en el estacionamiento: '.$estacionamiento->idem.'');
             return redirect()->to('estacionamientos');
         }
     }
@@ -368,7 +364,7 @@ class EstacionamientosController extends Controller
                     
                 }
             //----------------------
-                flash('Mensualidad eliminada para el año: <b>'.$request->anio.'</b> en el estacionamiento: <b>'.$estacionamiento->idem.'</b>, de manera exitosa!')->success()->important();
+                toastr()->success('con éxito!!', 'Mensualidad eliminada para el año: '.$request->anio.' en el estacionamiento:'.$estacionamiento->idem.'');
                 return redirect()->to('estacionamientos');
     }
 

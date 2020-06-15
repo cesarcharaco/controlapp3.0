@@ -80,7 +80,7 @@ class ArriendosController extends Controller
                 }
             }
         }
-        flash($request->opcion.' asignado con éxito!')->success()->important();
+        toastr()->success('con éxito!!', $request->opcion.' asignado');
         return redirect()->to('arriendos');
 
     }
@@ -108,7 +108,8 @@ class ArriendosController extends Controller
                     $buscar->delete();
                 }
             }
-            flash('Eliminación del inmueble del Residente realizado con éxito!')->success()->important();
+            toastr()->success('con éxito!!', 'Eliminación del inmueble del Residente realizada');
+            
         } elseif($request->id_estacionamiento>0) {
             $estacionamiento=Estacionamientos::find($request->id_estacionamiento);
 
@@ -129,7 +130,7 @@ class ArriendosController extends Controller
                     $buscar->delete();
                 }
             }
-            flash('Eliminación del estacionamiento del Residente realizado con éxito!')->success()->important();
+            toastr()->success('con éxito!!', 'Eliminación del estacionamiento del Residente realizada');
         }
 
         
@@ -274,7 +275,7 @@ class ArriendosController extends Controller
                 }
 
             }
-            flash('Desocupación del Inmueble realizado con éxito!')->success()->important();
+            toastr()->success('con éxito!!', 'Desocupación del Inmueble realizada');
         } else {
             $residente=Residentes::find($request->id_residente);
             foreach ($residente->estacionamientos as $key) {
@@ -287,7 +288,7 @@ class ArriendosController extends Controller
                 }
 
             }
-            flash('Desocupación del Estacionamiento realizado con éxito!')->success()->important();
+            toastr()->success('con éxito!!', 'Desocupación del Estacionamiento realizada');
         }
         return redirect()->back();
     }

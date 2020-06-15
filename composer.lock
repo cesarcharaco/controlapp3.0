@@ -2050,11 +2050,7 @@
         },
         {
             "name": "symfony/css-selector",
-<<<<<<< HEAD
-            "version": "v5.1.2",
-=======
             "version": "v4.4.10",
->>>>>>> 27250156c1ed4d9af3ea305badf66bd92a3387dd
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -2624,8 +2620,6 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-=======
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -2640,23 +2634,10 @@
                     "type": "tidelift"
                 }
             ],
->>>>>>> 27250156c1ed4d9af3ea305badf66bd92a3387dd
             "time": "2020-06-12T11:15:37+00:00"
         },
         {
             "name": "symfony/mime",
-<<<<<<< HEAD
-            "version": "v5.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/mime.git",
-                "reference": "c0c418f05e727606e85b482a8591519c4712cf45"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/c0c418f05e727606e85b482a8591519c4712cf45",
-                "reference": "c0c418f05e727606e85b482a8591519c4712cf45",
-=======
             "version": "v4.4.10",
             "source": {
                 "type": "git",
@@ -2667,7 +2648,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/mime/zipball/af8e69e7527f752ab0ef6e1b717bac3f7336b8c6",
                 "reference": "af8e69e7527f752ab0ef6e1b717bac3f7336b8c6",
->>>>>>> 27250156c1ed4d9af3ea305badf66bd92a3387dd
                 "shasum": ""
             },
             "require": {
@@ -2716,9 +2696,6 @@
                 "mime",
                 "mime-type"
             ],
-<<<<<<< HEAD
-            "time": "2020-06-09T15:07:35+00:00"
-=======
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -2734,7 +2711,6 @@
                 }
             ],
             "time": "2020-06-09T09:16:12+00:00"
->>>>>>> 27250156c1ed4d9af3ea305badf66bd92a3387dd
         },
         {
             "name": "symfony/polyfill-ctype",

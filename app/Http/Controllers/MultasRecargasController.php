@@ -57,10 +57,10 @@ class MultasRecargasController extends Controller
         $id_admin=id_admin(\Auth::user()->email);
         $anio=date('Y');
         if ($request->motivo=="") {
-            flash('Debe ingresar un motivo')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Debe ingresar un motivo');
             return redirect()->back();
         } elseif($request->monto=="") {
-            flash('Debe Ingresar un Monto')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Debe ingresar un monto');
             return redirect()->back();
         }else{
             $mr=new MultasRecargas();
@@ -71,8 +71,7 @@ class MultasRecargasController extends Controller
             $mr->anio=$anio;
             $mr->id_admin=$id_admin;
             $mr->save();
-
-            flash('La '.$request->tipo.' ha sido registrada con éxito')->success()->important();
+            toastr()->success('con éxito!', 'La '.$request->tipo.' ha sido registrada');
             return redirect()->to('multas_recargas');
         }
         
@@ -112,10 +111,10 @@ class MultasRecargasController extends Controller
         
         $anio=date('Y');
         if ($request->motivo=="") {
-            flash('Debe ingresar un motivo')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Debe ingresar un motivo');
             return redirect()->back();
         } elseif($request->monto=="") {
-            flash('Debe Ingresar un Monto')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Debe ingresar un monto');
             return redirect()->back();
         }else{
             $mr= MultasRecargas::find($request->id);
@@ -126,8 +125,7 @@ class MultasRecargasController extends Controller
             $mr->anio=$anio;
 
             $mr->save();
-
-            flash('La '.$request->tipo.' ha sido actualiza con éxito')->success()->important();
+            toastr()->success('con éxito!!', 'La '.$request->tipo.' ha sido actualiza');
             return redirect()->to('multas_recargas');
         }
     }
@@ -143,10 +141,10 @@ class MultasRecargasController extends Controller
         $mr=MultasRecargas::find($request->id_mr);
         $tipo=$mr->tipo;
         if ($mr->delete()) {
-            flash('La '.$tipo.' ha sido eliminada con éxito')->success()->important();
+            toastr()->success('con éxito!!', 'La '.$tipo.' ha sido eliminada');
             return redirect()->to('multas_recargas');
         } else {
-            flash('La '.$tipo.' no pudo ser eliminada')->warning()->important();
+            toastr()->warning('con éxito!!', 'La '.$tipo.' ha sido no pudo ser eliminada');
             return redirect()->to('multas_recargas');
         }
         
@@ -182,11 +180,10 @@ class MultasRecargasController extends Controller
                     }
 
                 }else{
-                    flash('Hay sanciones que ya estaban registradas al residente '.$residentes[$i]->nombres.' '.$residentes[$i]->apellidos)->warning()->important();
+                    toastr()->warning('intente otra vez!!', 'Hay sanciones que ya estaban registradas al residente '.$residentes[$i]->nombres.' '.$residentes[$i]->apellidos);
                 }
             }
-
-            flash('Sanciones asignadas a todos los residentes con éxito')->success()->important();
+            toastr()->success('con éxito!!', 'Sanciones asignadas a todos los residentes');
 
         }else{
             for ($i=0; $i < count($request->id_residente); $i++) { 
@@ -201,7 +198,7 @@ class MultasRecargasController extends Controller
                 }
             }
 
-            flash('Sanción asignada con éxito')->success()->important();
+            toastr()->success('con éxito!!', 'Sanción asignada');
         }
 
 
@@ -218,8 +215,8 @@ class MultasRecargasController extends Controller
                 $key->save();
             }
         }
-
-        flash('Status de Sanción actualizado a ('.$request->status.') con éxito')->success()->important();
+        toastr()->success('con éxito!!', 'Status de Sanción actualizado a ('.$request->status.')');
+        
             return redirect()->to('multas_recargas');
     }
 
@@ -241,8 +238,7 @@ class MultasRecargasController extends Controller
                 $key->delete();
             }
         }
-
-        flash('Sanción eliminada con éxito')->success()->important();
+        toastr()->success('con éxito!!', 'Sanción eliminada');
             return redirect()->to('multas_recargas');
     }
 

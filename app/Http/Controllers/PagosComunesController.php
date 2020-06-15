@@ -35,12 +35,12 @@ class PagosComunesController extends Controller
         //if ($request->accion==1 || $request->accion==2) {
                 # mensual
             if ($this->nulidad($request->monto)) {
-                    flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
+                toastr()->warning('intente otra vez!!', 'Debe agregar todos los montos en los meses indicados');
                     return redirect()->back();    
                 } else {
                     $buscar=PagosComunes::where('tipo',$request->tipo)->where('anio',$anio)->where('id_admin',$id_admin)->get();
                     if (count($buscar)>0) {
-                        flash('Ya existen Pagos Comunes de '.$request->tipo.' registrados para '.$anio.', intente otra vez!')->warning()->important();
+                        toastr()->warning('intente otra vez!!', 'Ya existen Pagos Comunes de '.$request->tipo.' registrados para '.$anio.'');
                         return redirect()->back();    
                     } else {
                         # code...
@@ -123,7 +123,7 @@ class PagosComunesController extends Controller
                 }
                 
             }*/
-            flash('Pago Común registrado para el año: <b>'.$anio.'</b> para : <b>'.$request->tipo.'</b>, de manera exitosa!')->success()->important();
+            toastr()->success('con éxito!', 'Pago Común registrado para el año:'.$anio.' para :'.$request->tipo.'');
             return redirect()->to('home');
     }
 
@@ -138,7 +138,7 @@ class PagosComunesController extends Controller
         	$anio=$request->anioE;
         }
     	if ($this->nulidad($request->monto)==true && $request->accion==1) {
-                    flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Debe agregar todos los montos en los meses indicados');
                     return redirect()->back();    
                 } else {
 
@@ -239,8 +239,7 @@ class PagosComunesController extends Controller
                 }
                 
             }
-
-            flash('Pago Común actualizado para el año: <b>'.$request->anio.'</b> para el <b>'.$request->tipo.'</b>, de manera exitosa!')->success()->important();
+            toastr()->success('con éxito!!', 'Pago Común actualizado para el año:'.$request->anio.' para el'.$request->tipo.'');
             return redirect()->to('home');
         }
     }

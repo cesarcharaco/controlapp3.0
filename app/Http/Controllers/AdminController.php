@@ -57,8 +57,8 @@ class AdminController extends Controller
         $user2->tipo_usuario='Admin';
         $user2->password=\Hash::make($request->password);
         $user2->save();
-
-        flash('Usuario Admin registrado con éxito!')->success()->important();
+        toastr()->success('con éxito!', 'Usuario Admin registrado');
+        
             return redirect()->back();
 
     }
@@ -98,12 +98,12 @@ class AdminController extends Controller
         //dd($request->all());
         $buscar=UsersAdmin::where('email',$request->email_e)->where('id','<>',$request->id)->get();
         if (count($buscar)>0) {
-            flash('El correo electrónico ya se encuentra registrado, intente otra vez!')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'El correo electrónico ya se encuentra registrado');
                 return redirect()->back();
         } else {
             $buscar2=UsersAdmin::where('rut',$request->rut_e)->where('id','<>',$request->id)->get();
             if (count($buscar2)) {
-                flash('El RUT ya se encuentra registrado, intente otra vez!')->warning()->important();
+                toastr()->warning('intente otra vez!!', 'El RUT ya se encuentra registrado');
                 return redirect()->back();
             } else {
                 if (is_null($request->cambiar)) {
@@ -122,7 +122,7 @@ class AdminController extends Controller
                     $user2->rut=$request->rut_e;
                     $user2->email=$request->email_e;
                     $user2->save();
-                     flash('Admin actualizado con éxito!')->success()->important();
+                    toastr()->success('con éxito!!', 'Admin Actualizado');
                         return redirect()->back();
                 } else {
                     # en caso de querer cambiar la contraseña
@@ -142,10 +142,11 @@ class AdminController extends Controller
                         $user2->email=$request->email_e;
                         $user2->password=\Hash::make($request->password);
                         $user2->save();    
-                        flash('Admin actualizado con éxito!')->success()->important();
+
+                        toastr()->success('con éxito!!', 'Admin Actualizado');
                         return redirect()->back();
                     } else {
-                        flash('Las contraseñas no coinciden!')->warning()->important();
+                        toastr()->error('intente otra vez!!', 'Las contraseñas no coinciden');
                         return redirect()->back();
                     }
                 

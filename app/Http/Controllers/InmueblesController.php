@@ -46,12 +46,12 @@ class InmueblesController extends Controller
 	{
 		// dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
-
+        
 		$buscar=Inmuebles::where('idem',$request->idem)->where('id_admin',$id_admin)->get();
 		//dd(count($buscar));
         $meses=Meses::all();
 		if (count($buscar)>0) {
-			flash('El Idem ya se encuentra registrado, intente otra vez')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'El Idem ya se encuentra registrado');
 			return redirect()->back();
 		} else {
 			
@@ -59,7 +59,7 @@ class InmueblesController extends Controller
             $mensualidad=PagosComunes::where('anio',$anio)->where('tipo','Inmueble')->where('id_admin',$id_admin)->get();
             //dd(count($mensualidad));
             if (count($mensualidad)==0) {
-                flash('No existen Pagos Comunes registrados para el presente año')->warning()->important();
+                toastr()->warning('intente otra vez!!', 'No existen Pagos Comunes registrados para el presente año');
                 return redirect()->back();
             } else {
                 $inmueble=new Inmuebles();
@@ -139,7 +139,7 @@ class InmueblesController extends Controller
                 }
                 
             }*/
-			flash('Inmueble registrado con éxito!')->important();
+            toastr()->success('con éxito!!', 'Inmueble registrado');
 			return redirect()->to('inmuebles');
 		}
 
@@ -203,7 +203,7 @@ class InmueblesController extends Controller
         
 		$buscar=Inmuebles::where('idem',$request->idem)->where('id','<>',$request->id)->where('id_admin',$id_admin)->get();
 		if (count($buscar)>0) {
-			flash('Ya hay un inmueble registrado con ese idem!')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Ya hay un inmueble registrado con ese idem');
 			return redirect()->back();
 		} else {
 			$inmueble=Inmuebles::find($request->id);
@@ -217,7 +217,7 @@ class InmueblesController extends Controller
             
 			$inmueble->save();
 
-			flash('Inmueble actualizado')->success()->important();
+			toastr()->success('con éxito!!', 'Inmueble actualizado');
 			return redirect()->to('inmuebles');
 		}
 	}
@@ -243,8 +243,7 @@ class InmueblesController extends Controller
             }
 
 		$inmueble->delete();
-
-		flash('Inmueble eliminado')->success()->important();
+        toastr()->success('con éxito!!', 'Inmueble eliminado');
 		return redirect()->to('inmuebles');
 
 	}
@@ -259,7 +258,7 @@ class InmueblesController extends Controller
         if ($request->accion==1) {
                 # mensual
             if ($this->nulidad($request->monto)) {
-                    flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
+                toastr()->warning('intente otra vez!!', 'Debe agregar todos los montos en los meses indicados');
                     return redirect()->back();    
                 } else {
                     $i=0;
@@ -305,7 +304,7 @@ class InmueblesController extends Controller
                 }
                 
             }
-            flash('Mensualidad registrada para el año: <b>'.$request->anio.'</b> en el inmueble: <b>'.$inmueble->idem.'</b>, de manera exitosa!')->success()->important();
+            toastr()->success('con éxito!!', 'Mensualidad registrada para el año: '.$request->anio.' en el inmueble: '.$inmueble->idem.'');
             return redirect()->to('inmuebles');
     }
     public function editar_mensualidad(Request $request)
@@ -313,7 +312,7 @@ class InmueblesController extends Controller
         //dd('Editar mensualidad',$request->all());
 
         if ($this->nulidad($request->monto)==true && $request->accion==1) {
-                    flash('Debe agregar todos los montos en los meses indicados, intente otra vez!')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Debe agregar todos los montos en los meses indicados');
                     return redirect()->back();    
                 } else {
 
@@ -358,8 +357,7 @@ class InmueblesController extends Controller
                 }
                 
             }
-
-            flash('Mensualidad actualizada para el año: <b>'.$request->anio.'</b> en el inmueble: <b>'.$inmueble->idem.'</b>, de manera exitosa!')->success()->important();
+            toastr()->success('con éxito!!', 'Mensualidad actualizada para el año:'.$request->anio.' en el inmueble:'.$inmueble->idem.'');
             return redirect()->to('inmuebles');
         }
     }
@@ -382,7 +380,7 @@ class InmueblesController extends Controller
                     
                 }
             //----------------------
-                flash('Mensualidad eliminada para el año: <b>'.$request->anio.'</b> en el inmueble: <b>'.$inmueble->idem.'</b>, de manera exitosa!')->success()->important();
+                toastr()->success('con éxito!!', 'Mensualidad eliminada para el año:'.$request->anio.' en el inmueble:'.$inmueble->idem.'');
                 return redirect()->to('inmuebles');
     }
 

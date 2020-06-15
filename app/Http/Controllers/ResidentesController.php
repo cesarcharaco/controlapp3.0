@@ -61,12 +61,12 @@ class ResidentesController extends Controller
             }
         }
         if ($cont>0) {
-            flash('Email ya registrado, intente otra vez')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Email ya registrado');
             return redirect()->back();
         } else {
             $buscar2=Residentes::where('rut',$request->rut)->where('id_admin',$id_admin)->get();
             if (count($buscar2)>0) {
-                flash('RUT ya registrado, intente otra vez')->warning()->important();
+                toastr()->warning('intente otra vez!!', 'RUT ya registrado');
             return redirect()->back();
             } else {
                 $user=new User();
@@ -154,7 +154,7 @@ class ResidentesController extends Controller
                             }
                         }
                     }
-                flash('Residente registrado exitosamente!')->success()->important();
+                    toastr()->success('con éxito!!', 'Residente registrado');
                 return redirect()->back();       
             }
         }
@@ -209,12 +209,12 @@ class ResidentesController extends Controller
         }
         //dd($cont);
         if ($cont>0) {
-            flash('Email ya registrado, intente otra vez')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Email ya registrado');
             return redirect()->back();
         } else {
             $buscar2=Residentes::where('rut',$request->rut)->where('id','<>',$request->id)->where('id_admin',$id_admin)->get();
             if (count($buscar2)>0) {
-                flash('RUT ya registrado, intente otra vez')->warning()->important();
+                toastr()->warning('intente otra vez!!', 'RUT ya registrado');
             return redirect()->back();
             } else {
                 $residente= Residentes::find($request->id);
@@ -234,8 +234,7 @@ class ResidentesController extends Controller
                 $user->email=$request->email;
                 $user->password=bcrypt($request->rut);
                 $user->save();
-
-                flash('Residente actualizado!')->success()->important();
+                toastr()->success('con éxito!!', 'Residente actualizado');
                 return redirect()->back();
             }
         }
@@ -446,8 +445,7 @@ class ResidentesController extends Controller
         if($eliminar = User::find($id)){
             $eliminar->delete();
         }
-
-        flash('Residente eliminado!')->success();
+        toastr()->success('con éxito!!', 'Residente eliminado');
         return redirect()->back();
     }
 

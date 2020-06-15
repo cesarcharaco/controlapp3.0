@@ -39,7 +39,7 @@ class NotificacionesController extends Controller
         //dd(!is_null($request->todos));
         $id_admin=id_admin(\Auth::user()->email);
         if ($request->titulo=="" || $request->motivo=="") {
-            flash('Los campos no deben de estar vacíos!')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'Los campos no deben de estar vacíos');
             return redirect()->back();
         } else {
             if (!is_null($request->todos)) {
@@ -56,12 +56,11 @@ class NotificacionesController extends Controller
                         'id_notificacion' => $notif->id
                      ]);
                 }
-
-                flash('Notificación registrada con éxito!')->success()->important();
+                toastr()->success('con éxito!!', 'Notificación registrada');
                     return redirect()->back();    
             }else{
                 if (is_null($request->id_residente)) {
-                    flash('No ha seleccionado ningún residente!')->warning()->important();
+                    toastr()->warning('intente otra vez!!', 'No ha seleccionado ningún residente');
                     return redirect()->back();    
                 } else {
                     
@@ -79,7 +78,7 @@ class NotificacionesController extends Controller
                          ]);
                      } 
 
-                     flash('Notificación registrada y enviada con éxito!')->success()->important();
+                    toastr()->success('con éxito!!', 'Notificación registrada y enviada');
                     return redirect()->back();    
                 }
                 
@@ -129,8 +128,7 @@ class NotificacionesController extends Controller
         $notificacion->titulo=$request->titulo;
         $notificacion->motivo=$request->motivo;
         $notificacion->save();
-
-        flash('Notificación actualizada!')->important();
+        toastr()->success('con éxito!!', 'Notificación actualizada');
         return redirect()->back();
     }
 
@@ -145,7 +143,7 @@ class NotificacionesController extends Controller
         $notificacion=Notificaciones::find($id);
         $notificacion->delete();
 
-        flash('Notificación eliminada!')->important();
+        toastr()->success('con éxito!!', 'Notificación eliminada');
         return redirect('home');
     }
 
@@ -160,7 +158,7 @@ class NotificacionesController extends Controller
             ]);
         }
 
-        flash('Notificación enviada con éxito')->success()->important();
+        toastr()->success('con éxito!!', 'Notificación enviada');
             return redirect()->to('notificaciones');
     }
 
@@ -174,8 +172,7 @@ class NotificacionesController extends Controller
                 $key->save();
             }
         }
-
-        flash('Status de Notificación actualizado a ('.$request->status.') con éxito')->success()->important();
+        toastr()->success('con éxito!!', 'Status de Notificación actualizado a ('.$request->status.')');
             return redirect()->to('notificaciones');
     }
 
@@ -189,8 +186,7 @@ class NotificacionesController extends Controller
                 $key->delete();
             }
         }
-
-        flash('Notificación eliminada con éxito')->success()->important();
+        toastr()->success('con éxito!!', 'Notificación eliminada');
             return redirect()->to('notificaciones');
     }
 }

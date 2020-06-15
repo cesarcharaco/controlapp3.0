@@ -42,7 +42,7 @@ class NoticiasController extends Controller
             'id_admin' => $id_admin
 
         ]);
-        flash('Noticia registrada!')->important();
+        toastr()->success('con éxito!!', 'Noticia registrada');
         return redirect()->back();
     }
 
@@ -83,7 +83,7 @@ class NoticiasController extends Controller
         $noticia->contenido=$request->contenido;
         $noticia->save();
 
-        flash('Noticia actualizada!')->important();
+        toastr()->success('con éxito!!', 'Noticia actualizada');
         return redirect()->back();
 
 
@@ -100,8 +100,7 @@ class NoticiasController extends Controller
         // dd('asdasd');
         $noticias=Noticias::find($id);
         $noticias->delete();
-
-        flash('Noticia eliminada!')->important();
+        toastr()->success('con éxito!!', 'Noticia eliminada');
         return redirect('home');
     }
 }

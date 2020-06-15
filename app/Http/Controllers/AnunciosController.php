@@ -20,7 +20,7 @@ class AnunciosController extends Controller
             $anuncios=Anuncios::all();
             return view('anuncios.index',compact('anuncios'));
         }else{
-            flash('ACCESO DENEGADO!')->warning()->important();
+            toastr()->warning('no puede acceder!!', 'ACCESO DENEGADO');
             return redirect()->back();
         }
     }
@@ -46,7 +46,7 @@ class AnunciosController extends Controller
         $validacion=$this->validar_imagen($request->file('imagen'));
         
         if(!$validacion['valida']){
-            flash($validacion['mensaje'].'!')->warning()->important();
+            toastr()->warning('intente otra vez!!', $validacion['mensaje'].'');
             return redirect()->back();
         }
         $codigo=$this->generarCodigo();
@@ -71,8 +71,7 @@ class AnunciosController extends Controller
             $anuncio->url_img=$url;
             $anuncio->save();
        
-            
-        flash('Anuncio registrado con éxito!')->success()->important();
+        toastr()->success('con éxito!!','Anuncio registrado');
         return redirect()->back();
         
     }
@@ -119,7 +118,7 @@ class AnunciosController extends Controller
             $validacion=$this->validar_imagen($request->file('imagen'));
 
             if(!$validacion['valida']){
-                flash($validacion['mensaje'].'!')->warning()->important();
+                toastr()->warning('intente otra vez!!', $validacion['mensaje'].'');
                 return redirect()->back();
             }else{
             $nombre=$anuncio->nombre_img;
@@ -144,7 +143,7 @@ class AnunciosController extends Controller
             }
             $anuncio->save();
 
-            flash('Anuncio actualizado con éxito!')->success()->important();
+            toastr()->success('con éxito!!', 'Anuncio actualizado');
             return redirect()->back();
     }
 
@@ -161,11 +160,10 @@ class AnunciosController extends Controller
         $nombre=$anuncio->nombre_img;
         if ($anuncio->delete()) {
             unlink(public_path().'/images_anuncios/'.$nombre);
-            
-            flash('Anuncio eliminado con éxito!')->success()->important();
+            toastr()->success('con éxito!!', 'Anuncio eliminado');
             return redirect()->back();
         } else {
-            flash('El Anuncio no pudo ser elimnado, intente otra vez!')->success()->important();
+            toastr()->error('intente otra vez!!', 'El Anuncio no pudo ser eliminado');
             return redirect()->back();
         }
         

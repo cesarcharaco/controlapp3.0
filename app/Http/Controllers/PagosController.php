@@ -60,7 +60,7 @@ class PagosController extends Controller
         $total=0;
 
         if (is_null($request->mes)==true) {
-            flash('No ha seleccionado nada a pagar!')->warning();
+            toastr()->warning('intente otra vez!!', 'No ha seleccionado algo a pagar');
         return redirect()->back();
         } else {
             if (is_null($request->mes)==false) {
@@ -115,7 +115,7 @@ class PagosController extends Controller
                 'id_residente' => $request->id_user
             ]);
             //dd("---------");
-            flash('Pago realizado con éxito!')->success();
+            toastr()->success('con éxito!!', 'Pago realizado');
             return redirect()->back();
         }
         
@@ -259,11 +259,11 @@ class PagosController extends Controller
                     $reporte_new->tipo="Pendiente";
                     $reporte_new->id_residente=$request->id_residente_edit;
                     $reporte_new->save();
-                    flash('Se ha colocado como Pendiente el Pago Común del mes '.$mes.'!')->success();
+                    toastr()->success('con éxito!!', 'Se ha colocado como Pendiente el Pago Común del mes '.$mes.'');
                         return redirect()->back();
                     //-------------fin con estacionamientos---------------------
                 } else {
-                    flash('La información no pudo ser encontrada, verifique el código de transacción!')->warning();
+                    toastr()->warning('verifique el código de transacción!!', 'La información no pudo ser encontrada');
                         return redirect()->back();
                 }
                 
@@ -321,10 +321,10 @@ class PagosController extends Controller
                         
                         $pago->status="Pendiente";
                         $pago->save();     
-                        flash('Se ha colocado como Pendiente al mes de '.$mes.' del Estacionamiento: '.$estacionamiento.', con éxito!')->success();
+                        toastr()->success('con éxito!!', 'Se ha colocado como Pendiente al mes de '.$mes.' del Estacionamiento: '.$estacionamiento.'');
                         return redirect()->back();
                    } else {
-                       flash('La información no pudo ser encontrada, verifique la referencia!')->warning();
+                       toastr()->warning('verifique el código de transacción!!', 'La información no pudo ser encontrada');
                         return redirect()->back();
                    }
                 } else {
@@ -343,8 +343,7 @@ class PagosController extends Controller
                         'reporte' => $factura,
                         'id_residente' => $id_user
                     ]);
-
-                    flash('Se ha colocado como Cancelado al mes de '.$this->mostrar_mes($pagos->mensualidad->mes).' del Estacionamiento: '.$pagos->mensualidad->estacionamientos->idem.', con éxito!')->success();
+                    toastr()->success('con éxito!!', 'Se ha colocado como Cancelado al mes de '.$this->mostrar_mes($pagos->mensualidad->mes).' del Estacionamiento: '.$pagos->mensualidad->estacionamientos->idem.'');
                         return redirect()->back();
                 }
                 
@@ -373,11 +372,10 @@ class PagosController extends Controller
                         }
                         
                     }
-                         
-                    flash('Se ha colocado como Pendiente la '.$pago->tipo.': '.$pago->motivo.', con éxito!')->success();
+                   toastr()->success('con éxito!!', 'Se ha colocado como Pendiente la '.$pago->tipo.': '.$pago->motivo.'');
                     return redirect()->back();
                } else {
-                   flash('La información no pudo ser encontrada, verifique la referencia!')->warning();
+                   toastr()->warning('verifique el código de transacción!!', 'La información no pudo ser encontrada');
                     return redirect()->back();
                }
                

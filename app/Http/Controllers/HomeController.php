@@ -34,7 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        toastr()->success('Funciona!', 'Título de prueba');
+        //toastr()->warning('Éxito!', 'Usuario Admin registrado');
         $id_admin=id_admin(\Auth::user()->email);
         $anio=Date('Y');
         $noticias=Noticias::where('id_admin',$id_admin)->get();
