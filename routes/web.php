@@ -117,4 +117,8 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::post('desocupacion','ArriendosController@desocupar')->name('desocupacion');
 	Route::get('mr/{id_mr}/asignados','MultasRecargasController@mostrar_asignados');
 
+	Route::get('consultas','ResidentesController@consultas');
+	Route::get('consulta/{anio}/buscar','ResidentesController@consulta_anual');
+	
+
 });

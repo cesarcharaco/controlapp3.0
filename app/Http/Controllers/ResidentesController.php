@@ -489,4 +489,48 @@ class ResidentesController extends Controller
         ->select('multas_recargas.*','resi_has_mr.id AS id_resi_mr')
         ->get();
     }
+
+
+    public function consultas()
+    {
+        $anio=date('Y');
+        $status_pago=array();
+        $i=0;
+        $buscar=Residentes::where('id_usuario',\Auth::user()->id)->first();
+        foreach ($buscar->inmuebles as $key) {
+            if($key->pivot->status=="En Uso"){
+                foreach ($key->mensualidades as $key2) {
+                    if($key2->anio==$anio){
+                        $pago=\App\Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
+                            $status_pago[$i][0]=meses($pago->mes);
+                            $status_pago[$i][1]=$pago->status;
+                        
+                    }
+                    $i++;
+                }
+            }
+        }
+        return view('consultas.index',compact('status_pago'));
+    }
+
+    public function consulta_anual($anio)
+    {
+        $status_pago=array();
+        $i=0;
+        $buscar=Residentes::where('id_usuario',\Auth::user()->id)->first();
+        foreach ($buscar->inmuebles as $key) {
+            if($key->pivot->status=="En Uso"){
+                foreach ($key->mensualidades as $key2) {
+                    if($key2->anio==$anio){
+                        $pago=\App\Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
+                            $status_pago[$i][0]=meses($pago->mes);
+                            $status_pago[$i][1]=$pago->status;
+                        
+                    }
+                    $i++;
+                }
+            }
+        }
+        return $status_pago;
+    }
 }
