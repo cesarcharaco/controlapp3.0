@@ -34,6 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        toastr()->success('Have fun storming the castle!', 'Miracle Max Says');
         $id_admin=id_admin(\Auth::user()->email);
         $anio=Date('Y');
         $noticias=Noticias::where('id_admin',$id_admin)->get();
