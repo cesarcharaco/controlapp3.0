@@ -387,7 +387,7 @@
                         <p id="ResidenteTieneMultas" style="display: none;">El residente no posee multas ni recargas</p>
                     </div>
                 </div>
-                <hr>
+                
                     <div class="row" id="mis_mr">
                         <!-- <div class="col-md-6">
                             <div class="form-group">
@@ -409,7 +409,7 @@
                             </div>
                         </div>
                     </div>
-                <hr>
+                
                 <div class="row justify-content-md-center">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -500,7 +500,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr>
+                            
                             <div id="MuestraEstacionamiento2" style="display: none;">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -513,7 +513,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
+                                
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -525,7 +525,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr>
+                            
 
                             <div id="MuestraInmueble">
 
@@ -1289,7 +1289,7 @@
                                 '<center>'+
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
-                                '<hr>'+
+                                ''+
                                 '<label><h4>Montos por mes</h4></label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
@@ -1301,7 +1301,7 @@
                                 '<center>'+
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
-                                '<hr>'+
+                                ''+
                                 '<label><h4>Montos por mes</h4></label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
@@ -1332,7 +1332,7 @@
                             '<label style="float: right;">'+data[i].status+'</label>'+
                         '</div>'+
                         
-                    '</div><hr>'
+                    '</div>'
                 );
             }
 
@@ -1490,7 +1490,7 @@
                                 '<center>'+
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
-                                '<hr>'+
+                                ''+
                                 '<label><h4>Montos por mes</h4></label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
@@ -1502,7 +1502,7 @@
                                 '<center>'+
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
-                                '<hr>'+
+                                ''+
                                 '<label><h4>Montos por mes</h4></label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
@@ -1529,7 +1529,7 @@
                                 '<label>'+mostrar_mes(data[i].mes)+'</label>'+
                                 '<label style="float:right;">'+data[i].status+'</label>'+
                             '</div>'+
-                        '</div><hr>'
+                        '</div>'
                     );
                 }
 
