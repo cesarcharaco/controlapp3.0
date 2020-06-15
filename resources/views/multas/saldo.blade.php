@@ -53,7 +53,7 @@
 
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade active show" id="pills-activity" role="tabpanel" aria-labelledby="pills-activity-tab">
-                                    <a href="#" class="btn btn-sm btn-rounded btn-success" onclick="NuevoAsignaInm()"><i data-feather="plus"></i></a>
+                                    <a href="#" class="btn btn-sm btn-rounded btn-success" onclick="NuevoAsignaInm()">Nuevo</a>
                                     <br><br>
                                     <div id="VerInmuebles"></div>
                                 </div>
@@ -61,7 +61,7 @@
 
                                 <div class="tab-pane fade" id="pills-projects" role="tabpanel" aria-labelledby="pills-projects-tab">
 
-                                    <a href="#" class="btn btn-sm btn-rounded btn-success" onclick="NuevoAsignaEst()"><i data-feather="plus"></i></a>
+                                    <a href="#" class="btn btn-sm btn-rounded btn-success" onclick="NuevoAsignaEst()">Nuevo</a>
                                     <br><br>
                                     <div id="VerEstacionamientos"></div>
                                 </div>
@@ -108,7 +108,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="id_residente" id="id_residente">
                             <input type="hidden" name="opcion" value="inmueble">
-                            <button type="submit" class="btn btn-sm btn-rounded btn-success"><i data-feather="plus"></i></button>
+                            <button type="submit" class="btn btn-sm btn-rounded btn-success">Nuevo</i></button>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="id_residente" id="id_residente2">
                             <input type="hidden" name="opcion" value="estacionacionamiento">
-                            <button type="submit" class="btn btn-sm btn-rounded btn-success"><i data-feather="plus"></i></button>
+                            <button type="submit" class="btn btn-sm btn-rounded btn-success">Nuevo</i></button>
                         </div>
                     </div>
                 </div>

@@ -44,9 +44,9 @@
                                 <tr>
                                     <td align="center">
                                         @if(\Auth::user()->tipo_usuario == 'Admin')
-                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="edit"></i></a>
+                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">Editar</a>
 
-                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
+                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">Eliminar</a>
                                         @endif
                                     </td>
                                     <td>{{$key->idem}}</td>
@@ -201,7 +201,7 @@
                             <input type="hidden" name="id_inmueble" id="idCreateM">
                             <input type="hidden" name="anio" id="anioCreateM">
                             <input type="hidden" id="accionCreate" name="accion" value="1">
-                            <button type="submit" class="btn btn-success" disabled id="buttonC" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
+                            <button type="submit" class="btn btn-success" disabled id="buttonC" style="border-radius: 50px;">Guardar</button>
                         </div>                           
                     </div>
                 </div>
@@ -259,7 +259,7 @@
                             <input type="hidden" name="id_inmueble" id="idEditM">
                             <input type="hidden" name="anio" id="anioEditM">
                             <input type="hidden" id="accionEdit" name="accion" value="1">
-                            <button type="submit" id="buttonE" disabled class="btn btn-warning" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
+                            <button type="submit" id="buttonE" disabled class="btn btn-warning" style="border-radius: 50px;">Guardar</button>
                         </div>                                                  
                     </div>
                 </div>
@@ -312,7 +312,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="id_inmueble" id="idDeleteM">
                             <input type="hidden" name="anio" id="anioDeleteM">
-                            <button type="submit" class="btn btn-danger" id="buttonD" disabled style="border-radius: 50px;"><i data-feather="trash-2"></i></button>
+                            <button type="submit" class="btn btn-danger" id="buttonD" disabled style="border-radius: 50px;">Eliminar</button>
                         </div>                            
                     </div>
                 </div>
@@ -413,7 +413,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="id" id="id_e">
                             <input type="hidden" name="opcion" id="opcion_e" value="1">
-                            <button type="submit" class="btn btn-warning" style="border-radius: 50px;"><i data-feather="edit"></i></button>
+                            <button type="submit" class="btn btn-warning" style="border-radius: 50px;">Editar</button>
                         </div>
                     </div>
                 </div>
@@ -444,7 +444,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id" id="id">
-                            <button type="submit" class="btn btn-danger" style="border-radius: 50px;"><i data-feather="trash-2"></i></button>
+                            <button type="submit" class="btn btn-danger" style="border-radius: 50px;">Eliminar</button>
                         </div>
                     </div>
                 </div>

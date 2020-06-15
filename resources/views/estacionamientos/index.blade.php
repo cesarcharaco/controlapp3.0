@@ -42,9 +42,9 @@
                                 <tr>
                                     <td align="center">
                                         @if(\Auth::user()->tipo_usuario == 'Admin')
-                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="edit"></i></a>
+                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">Eliminar</a>
 
-                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')"><i data-feather="trash-2"></i></a>
+                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">Editar</a>
                                         @endif
                                         
                                     </td>
@@ -430,7 +430,7 @@
                     </div> 
                     <div class="modal-footer">
                         <input type="hidden" name="opcion" id="opcion" value="1">
-                        <button type="submit" class="btn btn-success" style="border-radius: 50px;"><i data-feather="check-circle"></i></button>
+                        <button type="submit" class="btn btn-success" style="border-radius: 50px;">Guardar</button>
                     </div>
                 </div>
             </div>

@@ -47,10 +47,10 @@
                                     <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" width="250" height="200"></td>
                                     <td>
                                         <a href="#" style="border-radius: 50px;float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
-                                            <i data-feather="trash-2"></i>
+                                            Eliminar
                                         </a>
                                         <a href="#" style="border-radius: 50px;float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
-                                            <i data-feather="edit"></i>
+                                            Editar
                                         </a>
                                     </td>
                                 </tr>
