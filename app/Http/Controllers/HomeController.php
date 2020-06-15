@@ -34,6 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //actualizando
         $id_admin=id_admin(\Auth::user()->email);
         $anio=Date('Y');
         $noticias=Noticias::where('id_admin',$id_admin)->get();
