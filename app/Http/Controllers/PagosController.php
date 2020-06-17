@@ -58,7 +58,9 @@ class PagosController extends Controller
         //dd(count($request->mes));
         $factura="";
         $total=0;
-
+        if ($request->opcion==1) {
+          
+        //---------------------------------- para pagar como residente o admin-----------------------------------------------
         if (is_null($request->mes)==true) {
             toastr()->warning('intente otra vez!!', 'No ha seleccionado algo a pagar');
         return redirect()->back();
@@ -125,6 +127,73 @@ class PagosController extends Controller
             //dd("---------");
             toastr()->success('con éxito!!', 'Pago realizado');
             return redirect()->back();
+            //---------------------------------- fin para pagar como residente o admin-----------------------------------------------
+            }
+
+        } else {
+            # cambiando status de por confirmar a cancelado
+            if (is_null($request->mes)==true) {
+            toastr()->warning('intente otra vez!!', 'No ha seleccionado algo a pagar');
+        return redirect()->back();
+        } else {
+            if (is_null($request->mes)==false) {
+                for ($i=0; $i < count($request->mes); $i++) {
+                    if($request->mes[$i]!==null){
+                        $residente=Residentes::find($request->id_residente);
+                        foreach ($residente->inmuebles as $key) {
+                            if ($key->pivot->status=="En Uso") {
+                                foreach ($key->mensualidades as $key2) {
+                                    if ($key2->mes==$request->mes[$i]) {
+                                        //echo $key2->id."<br>";
+                                        $pagos=Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
+                                        $pagos->status="Cancelado";
+                                        
+                                        $pagos->save();
+                                        $total+=$key2->monto;
+                                        $factura.="Inmueble: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if(is_null($request->mes)==false){
+                for ($i=0; $i < count($request->mes); $i++) { 
+                    if($request->mes[$i]!==null){
+                        $residente=Residentes::find($request->id_residente);
+                        foreach ($residente->estacionamientos as $key) {
+                            if ($key->pivot->status=="En Uso") {
+                                foreach ($key->mensualidad as $key2) {
+                                    if ($key2->mes==$request->mes[$i]) {
+                                        //echo $key2->id."<br>";
+                                        $pagos=PagosE::where('id_mens_estac',$key2->id)->orderby('id','DESC')->first();
+                                        $pagos->status="Cancelado";
+                                        
+                                        $pagos->save();
+                                        $total+=$key2->monto;
+                                        $factura.="Estacionamiento: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            
+            $factura.="<br></br>Total Cancelado: ".$total."";
+            $reporte=\DB::table('reportes_pagos')->insert([
+                'referencia' => 0,
+                'reporte' => $factura,
+                'id_residente' => $request->id_residente
+            ]);
+            //dd("---------");
+            toastr()->success('con éxito!!', 'Pago confirmado');
+            return redirect()->back();
+            //---------------------------------- fin para pagar como residente o admin-----------------------------------------------
+            }
         }
         
     }
