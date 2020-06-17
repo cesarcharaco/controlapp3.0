@@ -813,13 +813,14 @@
 			.done(function(data2) {
 				var j=0;
 				if(data2.length>0){
+					var k=0;
 					for (var i = 0; i < data2.length; i++) {
-
 						if(data2[i].status == 'Por Confirmar'){
 							j=j+1;
 						}
 						if(j>0){
 
+							var k=k+1;
 							if(data2[i].status == 'Por Confirmar'){
 								$('#muestraMesesAComprob').append(
 									'<div class="row">'+
@@ -845,11 +846,12 @@
 					                '</div><hr>'
 					            );
 							}
-						}else{
-							if(i == 1 && j == 0){
-								$('#muestraMesesAComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
-							}
 						}
+						// else{
+						// 	if(i == 1 && k == 0){
+						// 		$('#muestraMesesAComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
+						// 	}
+						// }
 					}//cierre del for
 		            $('#muestraMesesAComprob').append('<input type="hidden" name="id_residente" value="'+id_residente+'" >');
 		            $('#muestraMesesAComprob').append('<input type="hidden" name="opcion" value="3" >');

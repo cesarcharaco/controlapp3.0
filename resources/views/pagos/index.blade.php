@@ -91,7 +91,7 @@
                                                                 <a style="border-radius: 50px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
 
                                                                 <br><br>
-                                                                <center><a href="#" class=" btn btn-sm btn-warning" onclick="pagosPorComprobar('{{$key->id}}')">Pagos por confirmar</a></center>
+                                                                <center><a href="#" class="btn btn-soft-warning btn-sm" style="width: 100%" onclick="pagosPorComprobar('{{$key->id}}')">Pagos por confirmar</a></center>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -129,7 +129,7 @@
                                                                 <a style="border-radius: 50px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
 
                                                                 <br><br>
-                                                                <center><a href="#" class=" btn btn-sm btn-warning" onclick="pagosPorComprobar('{{$key->id}}')">Pagos por confirmar</a></center>
+                                                                <center><a href="#" class="btn btn-soft-warning btn-sm" style="width: 100%" onclick="pagosPorComprobar('{{$key->id}}')">Pagos por confirmar</a></center>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
