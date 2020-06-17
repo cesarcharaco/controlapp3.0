@@ -73,7 +73,11 @@ class PagosController extends Controller
                                     if ($key2->mes==$request->mes[$i]) {
                                         //echo $key2->id."<br>";
                                         $pagos=Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
-                                        $pagos->status="Cancelado";
+                                        if (\Auth::user()->tipo_usuario=="Residente") {
+                                            $pagos->status="Por Confirmar";
+                                        } else {
+                                            $pagos->status="Cancelado";
+                                        }
                                         $pagos->save();
                                         $total+=$key2->monto;
                                         $factura.="Inmueble: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
@@ -95,7 +99,11 @@ class PagosController extends Controller
                                     if ($key2->mes==$request->mes[$i]) {
                                         //echo $key2->id."<br>";
                                         $pagos=PagosE::where('id_mens_estac',$key2->id)->orderby('id','DESC')->first();
-                                        $pagos->status="Cancelado";
+                                        if (\Auth::user()->tipo_usuario=="Residente") {
+                                            $pagos->status="Por Confirmar";
+                                        } else {
+                                            $pagos->status="Cancelado";
+                                        }
                                         $pagos->save();
                                         $total+=$key2->monto;
                                         $factura.="Estacionamiento: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
