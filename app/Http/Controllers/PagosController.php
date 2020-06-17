@@ -461,4 +461,10 @@ class PagosController extends Controller
         # code...
     }
 
+
+    public function pagosConfirmar($id)
+    {
+        
+    }
+
 }

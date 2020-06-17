@@ -674,7 +674,32 @@
 						                    '</div>'+
 						                '</div><hr>'
 						            );
-								}else{
+								}else if(data2[i].status == 'Por Confirmar'){
+									$('#muestraMesesAPagar').append(
+										'<div class="row border">'+
+						                    '<div class="col-md-4">'+
+						                        '<div class="form-group">'+
+						                            '<input type="hidden" name="mes[]" class="form-control-plaintext">'+
+						                            '<label style="color:gray;">'+mes[i]+ '</label>'+
+						                        '</div>'+
+						                    '</div>'+
+						                    '<div class="col-md-4">'+
+						                    	'<p class="text-warning"><strong>' +data2[i].status+'</strong></p>'+
+						                    '</div>'+
+						                    '<div class="col-md-4">'+
+						                    	'<div class="form-group">'+
+							                        '<div style="font-size: 1em; ">'+
+						                                '<svg class="bi bi-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
+														  '<rect width="11" height="9" x="2.5" y="7" rx="2"/>'+
+														  '<path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>'+
+														'</svg>'+
+							                        '</div>'+
+												'</div>'+
+						                    '</div>'+
+						                '</div>'
+						            );
+								}
+								else{
 									$('#muestraMesesAPagar').append(
 										'<div class="row border">'+
 						                    '<div class="col-md-4">'+
@@ -770,6 +795,72 @@
 		$('#idAnuncio').val(id);
 	}
 
+	function pagosPorComprobar(id_residente) {
+        $('#PagoConfir').modal('show');
+  //       $('#MesComprobResi').empty();
+		$('#muestraMesesAComprob').empty();
+		$('#CargandoPagosComprobar').css('display','block');
+		var m=f.getMonth();
+
+		$.get("arriendos/"+id_residente+"/buscar_inmuebles2", function(data) {
+		})
+		.done(function(data) {
+			
+			$.get("arriendos/"+data[0].id+"/buscar_inmuebles3",function (data2) {
+			})
+
+
+			.done(function(data2) {
+				var j=0;
+				if(data2.length>0){
+					for (var i = 0; i < data2.length; i++) {
+
+						if(data2[i].status == 'Por Confirmar'){
+							j=j+1;
+						}
+						if(j>0){
+
+							if(data2[i].status == 'Por Confirmar'){
+								$('#muestraMesesAComprob').append(
+									'<div class="row">'+
+					                    '<div class="col-md-4">'+
+					                        '<div class="form-group">'+
+					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
+					                            '<label>'+mes[i]+ '</label>'+
+					                        '</div>'+
+					                    '</div>'+
+					                    '<div class="col-md-4">'+
+					                    	'<p class="text-success">' +data2[i].status+'</p>'+
+					                    '</div>'+
+					                    '<div class="col-md-4">'+
+					                    	'<div class="form-group">'+
+												'<div class="mt-3">'+
+		                                            '<div class="custom-control custom-checkbox mb-2">'+
+		                                                '<input type="checkbox"  name="mes[]" value="'+data2[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
+		                                                '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
+		                                            '</div>'+
+		                                        '</div>'+
+		                                    '</div>'+
+					                    '</div>'+
+					                '</div><hr>'
+					            );
+							}
+						}else{
+							if(i == 1 && j == 0){
+								$('#muestraMesesAComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
+							}
+						}
+					}//cierre del for
+		            $('#muestraMesesAComprob').append('<input type="hidden" name="id_residente" value="'+id_residente+'" >');
+		            $('#muestraMesesAComprob').append('<input type="hidden" name="opcion" value="3" >');
+				}else{
+					$('#muestraMesesAPagar2').css('display','block');
+				}
+
+			});
+			$('#CargandoPagosComprobar').css('display','none');
+		});
+    }
 
 
 

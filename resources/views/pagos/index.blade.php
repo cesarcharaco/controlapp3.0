@@ -42,7 +42,7 @@
                                             <td>
                                                 @foreach($asignaIn as $key2)
                                                     @if($key2->id_residente == $key->id)
-                                                            <a style="width: 56%;" class="btn btn-primary" onclick="VerResi('{{$key2->id_residente}}')" href="#">
+                                                            <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key2->id_residente}}')" href="#">
                                                                 Ver inmuebles
                                                             </a>
                                                     @endif
@@ -50,7 +50,7 @@
                                                 <br><br>
                                                 @foreach($asignaEs as $key2)
                                                     @if($key2->id_residente == $key->id)
-                                                            <a class="btn btn-warning" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
+                                                            <a style="width: 100%" class="btn btn-warning" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
                                                                 Ver Estacionamiento
                                                             </a>
                                                     @endif
@@ -89,6 +89,9 @@
                                                                 <br>
 
                                                                 <a style="border-radius: 50px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
+
+                                                                <br><br>
+                                                                <center><a href="#" class=" btn btn-sm btn-warning" onclick="pagosPorComprobar('{{$key->id}}')">Pagos por confirmar</a></center>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -124,6 +127,9 @@
 
 
                                                                 <a style="border-radius: 50px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
+
+                                                                <br><br>
+                                                                <center><a href="#" class=" btn btn-sm btn-warning" onclick="pagosPorComprobar('{{$key->id}}')">Pagos por confirmar</a></center>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -238,7 +244,7 @@
                                             
                                             @foreach($asignaIn as $key)
                                                 @if($key->id_residente == $residentes[$i]->id)
-                                                        <a style="width: 56%;" class="btn btn-primary" onclick="VerResi('{{$key->id_residente}}')" href="#">
+                                                        <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key->id_residente}}')" href="#">
                                                             Ver inmuebles
                                                         </a>
                                                 @endif
@@ -246,7 +252,7 @@
                                             <br>
                                             @foreach($asignaEs as $key)<br>
                                                 @if($key->id_residente == $residentes[$i]->id)
-                                                        <a class="btn btn-warning" onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#">
+                                                        <a class="btn btn-warning" onclick="VerEstacionamientos('{{$key->id_residente}}')"  style="width: 100%"href="#">
                                                             Ver Estacionamiento
                                                         </a>
                                                 @endif
@@ -312,7 +318,7 @@
                                                 
                                                 @foreach($asignaIn as $key)
                                                     @if($key->id_residente == $residentes[$i]->id)
-                                                            <a style="width: 56%;" class="btn btn-primary" onclick="VerResi('{{$key->id_residente}}')" href="#">
+                                                            <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key->id_residente}}')" href="#">
                                                                 Ver inmuebles
                                                             </a>
                                                     @endif
@@ -320,7 +326,7 @@
                                                 <br><br>
                                                 @foreach($asignaEs as $key)
                                                     @if($key->id_residente == $residentes[$i]->id)
-                                                            <a class="btn btn-warning" onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#">
+                                                            <a style="width: 100%" class="btn btn-warning" onclick="VerEstacionamientos('{{$key->id_residente}}')" href="#">
                                                                 Ver Estacionamiento
                                                             </a>
                                                     @endif
@@ -617,29 +623,56 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <center>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                  <div class="carousel-inner">
-                                    
-                                  </div>
-                                  <a class="carousel-control-prev" style="background-color: gray; margin-left: -100px;" href="#carouselExampleControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                  </a>
-                                  <a class="carousel-control-next" style="background-color: gray; margin-right: -100px;" href="#carouselExampleControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                  </a>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                              <div class="carousel-inner">
+                                
+                              </div>
+                              <a class="carousel-control-prev" style="background-color: gray; margin-left: -100px;" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" style="background-color: gray; margin-right: -100px;" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
                             </div>
                         </div>
-                    </center>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    {!! Form::open(['route' => ['pagos.store'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
+        <div class="modal fade" id="PagoConfir" role="dialog">
+            <div class="modal-dialog modals-default">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Pagos por confirmar del residente <span id="nombreResidente"></span></h4>
+                        <div id="CargandoPagosComprobar" style="display: none;">
+                            <div class="spinner-border text-warning m-2" role="status">
+                                <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       <div id="muestraMesesAComprob">
+                                                            
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning" >Comprobar</button>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
 
 
 @endsection
@@ -1593,6 +1626,11 @@
             }
         });
     }
+
+
+
+
+
 
 </script>
 @section('scripts')
