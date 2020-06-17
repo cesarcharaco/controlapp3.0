@@ -364,7 +364,7 @@
                         </div>
                     </div>
                 </div>
-                <hr>
+                
                     <div class="row" id="mis_mr">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -385,7 +385,7 @@
                             </div>
                         </div>
                     </div>
-                <hr>
+                
                 <div class="row justify-content-md-center">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -485,7 +485,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr>
+                        
 
                         <div id="MuestraInmueble">
 
@@ -1155,7 +1155,7 @@
                                 '<center>'+
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
-                                '<hr>'+
+                                ''+
                                 '<label>Montos por mes</label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
@@ -1167,7 +1167,7 @@
                                 '<center>'+
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
-                                '<hr>'+
+                                ''+
                                 '<label>Montos por mes</label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
@@ -1353,7 +1353,7 @@
                                 '<center>'+
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
-                                '<hr>'+
+                                ''+
                                 '<label>Montos por mes</label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
@@ -1365,7 +1365,7 @@
                                 '<center>'+
                                     '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
                                 '</center>'+
-                                '<hr>'+
+                                ''+
                                 '<label>Montos por mes</label><br>'+
                                 '<div class="inner'+data[i].id+'"></div>'
                         );
