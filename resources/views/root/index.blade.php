@@ -37,9 +37,8 @@
                     
             
             <div class="col-md-12">
-                <hr>
                 <div style="overflow-x: auto;">
-                    <table class="data-table-basic table-striped" id="myTable" width="100%">
+                    <table class="table table-hover table-striped" id="myTable" width="100%">
                             <thead>
                                 <tr>
                                     <th>Nombres</th>
@@ -121,4 +120,17 @@
             $('#eliminarAdmin').modal('show');
             $('#id_admin').val(id);
         }
+        // function decimal(valor) {
+        //     alert(valor.length);
+        //     var valor2='';
+
+        //     if(valor.length=<3){
+        //         valor2=String(valor.substr(1,2,3)+'.'+valor.substr(4,5,6));
+        //     }
+
+        //     alert(valor2);
+
+
+
+        // }
     </script>

@@ -159,7 +159,9 @@
                 </a>
             </li>
             @endif
+            <li class="menu-title">Un proyecto desarrollado por EICHE</li>
         </ul>
+
     </div>
     <!-- End Sidebar -->
 

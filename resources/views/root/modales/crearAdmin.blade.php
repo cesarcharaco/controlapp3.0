@@ -12,29 +12,37 @@
                 <div class="modal-body">
                     <center>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 
                                 <div class="form-group">
-                                    <input type="text" name="name" placeholder="Nombre del admin" class="form-control" required>
+                                    <label>Nombre del Admin</label>
+                                    <input type="text" name="name" placeholder="Nombre"  class="form-control" required>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>RUT</label>
+                                    <input type="text" name="rut" placeholder="Rut" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label><br></label>
+                                    <input type="text" name="verificador" value="-1" class="form-control" required disabled>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="number" name="rut" placeholder="Rut del admin" class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
+                                    <label>Email</label>
                                     <input type="email" name="email" placeholder="Email del admin" class="form-control" required>
                                 </div>
                             </div>
                         </div>
 
-                        <hr>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
