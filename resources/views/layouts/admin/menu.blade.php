@@ -159,7 +159,9 @@
                 </a>
             </li>
             @endif
-            <li class="menu-title">Un proyecto desarrollado por EICHE</li>
+            <li class="menu-title">ControlApp
+                <label class="badge badge-soft-danger">v1.0.1.</label>
+                <br>Un proyecto desarrollado por <div class="text-primary" style="font-size: 16px;">EICHE</div>.</li>
         </ul>
 
     </div>

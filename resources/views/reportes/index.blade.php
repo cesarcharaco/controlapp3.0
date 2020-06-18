@@ -100,7 +100,6 @@
 			        			</select>
 				    		</div>
 				    	</div>
-				    	<hr>
 				        <div class="row justify-content-center">
 				        	<div class="col-md-6">
 				        		<div class="form-group">
@@ -164,7 +163,6 @@
 					        		</div>
 					        	</div>
 				        </div>
-				        <hr>
 				        <div class="form-group">
 				        	<label>¿Incluir Multas y recargas? </label>
 				        	<input type="checkbox" value="Si" name="MultasRecargas">

@@ -26,7 +26,6 @@
                     
         
             <div class="col-md-12">
-                <hr>
                 <div style="overflow-x: auto;">
                     <table class="data-table-basic" id="myTable" width="100%">
                         <thead>
@@ -65,12 +64,10 @@
             <div class="modal fade" id="VerAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Ver Anuncio</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
+                        <h4>Ver Anuncio</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
                         <div class="modal-body">
                             <center>
                                 <div class="row">
@@ -126,12 +123,10 @@
             <div class="modal fade" id="editarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Editar anuncio</h4>                
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
+                        <h4>Editar anuncio</h4>                
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
                         <div class="modal-body">
                             <center>
                                 <div class="row">
@@ -187,12 +182,10 @@
             <div class="modal fade" id="eliminarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Eliminar anuncio</h4>                
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
+                        <h4>Eliminar anuncio</h4>                
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
                         <div class="modal-body">
                             <center>
                                 <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>

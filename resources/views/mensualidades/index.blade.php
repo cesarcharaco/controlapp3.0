@@ -27,7 +27,7 @@
                     
         
             <div class="col-md-12">
-                <hr>
+                
 
                 <table class="table table-hover" id="myTable" width="100%">
                     <thead>

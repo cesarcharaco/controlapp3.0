@@ -191,7 +191,6 @@
                                             <p class="text-dark">{{$key->descripcion}}</p>
                                         </div>
 
-                                        <hr>
                                     @endforeach()
                                 </div>
                             </div>
@@ -267,9 +266,11 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header">Notificaciones
-                            <div class="float-right">
-                                <a href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
-                            </div>
+                                @if(\Auth::user()->tipo_usuario=="Admin")
+                                    <div class="float-right">
+                                        <a href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
+                                    </div>
+                                @endif
                                 
                             </div>
                             <div class="card-body">
@@ -376,7 +377,6 @@
                                     </div>
                                     
                                     
-                                    <hr>
                                 @endforeach()
                             </div>
                             <div class="card-footer">
@@ -413,7 +413,6 @@
                                 <p class="text-dark">{{$key->descripcion}}</p>
                             </div>
 
-                            <hr>
                         @endforeach()
                     </div>
                 </div>

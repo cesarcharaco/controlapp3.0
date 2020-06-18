@@ -274,7 +274,7 @@
                                                     
 
                                                     {{--
-                                                    <hr>
+                                                    
                                                     <h4>Mensualidad del estacionamiento</h4>
 
 
@@ -407,7 +407,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <hr>
+                                                    
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
@@ -596,14 +596,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <hr>
+                                                    
 
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div id="PagoCInmuebles2"></div>
                                                         </div>
                                                     </div>
-                                                    <hr>
+                                                    
                                                     <div class="float-right">
                                                         <input type="hidden" name="tipo" value="Inmueble">
                                                         <input type="hidden" class="accion" name="accion" value="1">
@@ -699,13 +699,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
+                                            
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div id="PagoCEstaciona2"></div>
                                                 </div>
                                             </div>
-                                            <hr>
+                                            
                                             <div class="float-right">
                                                 <input type="hidden" name="tipo" value="Estacionamiento">
                                                 <input type="hidden" class="accion" name="accion" value="2">
@@ -799,7 +799,7 @@
                                                     
                                                     
 
-                                                    {{--<hr><div class="row">
+                                                    {{--<div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
@@ -828,7 +828,7 @@
                                                     </div> -->
 
                                                     {{--<h4>Mensualidad del Inmueble</h4>
-                                                    <hr>
+                                                    
 
 
                                                     <div class="widget-tabs-list">
@@ -987,7 +987,7 @@
 
             
         </div>
-    @include('layouts.admin.footer')
+    {{-- @include('layouts.admin.footer') --}}
     </div>
     
 

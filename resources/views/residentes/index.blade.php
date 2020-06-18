@@ -37,7 +37,7 @@
                     
             
             <div class="col-md-12">
-                <hr>
+                
                 <div style="overflow-x: auto;">
                     <table class="data-table-basic table-striped" id="myTable" width="100%">
                             <thead>
