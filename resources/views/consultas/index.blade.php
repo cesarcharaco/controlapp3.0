@@ -17,9 +17,11 @@
                     <div class="col-md-12">
                         <label>Años</label>
                         <select class="form-control select2" onchange="consulta_anual(this.value)">
-                            @foreach($status_pago as $key)
-                            	<option value="{{$key->anio}}"></option>
-                            @endforeach()
+                            @for($i=0; $i<count($status_pago); $i++)
+                            <option value="">Mes:{{ $status_pago[$i][0] }}- status: {{ $status_pago[$i][1] }}</option>}
+                            option
+                            	{{-- <option value="{{$key->anio}}"></option> --}}
+                            @endfor
                         </select>
                     </div>
                 </div>
