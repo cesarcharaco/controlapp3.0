@@ -21,7 +21,7 @@
                 </ul>
             </div>
         @endif
-        <div class="card">
+        <div class="card" style="margin-right: 50px; margin-left: 50px;">
             <div class="card-body">
                 
                 <div class="row justify-content-center">

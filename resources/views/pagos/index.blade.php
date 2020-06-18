@@ -14,7 +14,7 @@
             
         
             @if(\Auth::user()->tipo_usuario == 'Admin')
-                <div class="card">
+                <div class="card" style="margin-right: 50px; margin-left: 50px;">
                     <div class="card-body">
                         <div style="overflow-x: auto;">                            
                             <table class="data-table-basic table table-hover mb-0" id="myTable" width="100%">

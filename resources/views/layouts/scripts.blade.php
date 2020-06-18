@@ -316,14 +316,14 @@
                 $('#PagoCEstaciona1').empty();
                 $('#PagoCEstaciona2').empty();
                 
-                $('#PagoCEstaciona1').append('<label>Montos por mes</label><br>');
-                $('#PagoCEstaciona2').append('<label>Montos por mes</label><br>');
 
+                
 
                 if (opcion == 1) {
 
 
 	               	if (data.length == 0){
+                	// $('#PagoCEstaciona1').append('<label>Montos por mes</label><br>');
 
 	                    $('#PagoCEstaciona1').append(
 	                        "<div class='card-box'>"+
@@ -382,10 +382,41 @@
 	                	$('#PagoCEstaciona1').append('<h3>Ya hay registros de pago común para este año para este año</h3>');
 	                }
                 }else{
-
 	               	if (data.length > 0){
+					// $('#PagoCEstaciona2').append('<label>Montos por mes</label><br>');
 
 
+
+	               		$('#PagoCEstaciona2').append(
+	                        "<div class='card-box'>"+
+	                            "<div class='row'>"+
+	                                "<div class='col-md-6' width='100%'>"+
+	                                    "<a href='#' class='btn btn-block btn-success' onclick='mostrarC(1)'>Montos por mes</a>"+
+	                                "</div>"+
+	                                "<div class='col-md-6' width='100%'>"+
+	                                    "<a href='#' class='btn btn-block btn-warning' onclick='mostrarC(2)'>Monto por año</a>"+
+	                                "</div>"+
+	                            "</div>"+
+	                        "</div>"
+	                    );
+	               		$('#PagoCEstaciona2').append(
+	               			'<div id="mostrarAnioI" style="display:none;">'+
+		                        '<div class="row">'+
+		                            '<div class="col-md-12">'+
+		                                '<div class="form-group">'+
+		                                    '<label>Monto por todo el año</label>'+
+		                                    '<div class="input-group mb-2">'+
+		                                        '<div class="input-group-prepend">'+
+		                                            '<div class="input-group-text">$</div>'+
+		                                        '</div>'+
+		                                        '<input type="text" id="montoAnioC" name="montoaAnio" value="'+data[0].monto+'" class="form-control" id="montoAnio_e" placeholder="10">'+
+		                                    '</div>'+
+		                                '</div>'+
+		                            '</div>'+
+		                        '</div>'+
+		                    '</div>'
+	                    );
+	               		$('#PagoCEstaciona2').append('<div id="mostrarAnioM"><label>Montos por mes</label><br></div>');
 	                    for (var i = 0; i < 12; i++) {
 
 	                    	var monto=0;
@@ -396,7 +427,7 @@
 	                    		monto=0;
 	                    	}
 	                    
-	                        $('#PagoCEstaciona2').append(
+	                        $('#mostrarAnioM').append(
 	                            '<div class="row">'+
 	                                '<div class="col-md-4">'+
 	                                    '<div class="form-group">'+
@@ -505,7 +536,36 @@
                 }else{
 
 	               	if (data.length > 0){
-
+	               		$('#PagoCInmuebles2').append(
+	                        "<div class='card-box'>"+
+	                            "<div class='row'>"+
+	                                "<div class='col-md-6' width='100%'>"+
+	                                    "<a href='#' class='btn btn-block btn-success' onclick='mostrarC(1)'>Montos por mes</a>"+
+	                                "</div>"+
+	                                "<div class='col-md-6' width='100%'>"+
+	                                    "<a href='#' class='btn btn-block btn-warning' onclick='mostrarC(2)'>Monto por año</a>"+
+	                                "</div>"+
+	                            "</div>"+
+	                        "</div>"
+	                    );
+	               		$('#PagoCInmuebles2').append(
+	               			'<div id="mostrarAnioI" style="display:none;">'+
+		                        '<div class="row">'+
+		                            '<div class="col-md-12">'+
+		                                '<div class="form-group">'+
+		                                    '<label>Monto por todo el año</label>'+
+		                                    '<div class="input-group mb-2">'+
+		                                        '<div class="input-group-prepend">'+
+		                                            '<div class="input-group-text">$</div>'+
+		                                        '</div>'+
+		                                        '<input type="text" id="montoAnioC" value="'+data[0].monto+'" name="montoaAnio" class="form-control" id="montoAnio_e" placeholder="10">'+
+		                                    '</div>'+
+		                                '</div>'+
+		                            '</div>'+
+		                        '</div>'+
+		                    '</div>'
+	                    );
+                		$('#PagoCInmuebles2').append('<div id="mostrarAnioM"><label>Montos por mes</label><br></div>');
 
 	                    for (var i = 0; i < 12; i++) {
 	                    	
@@ -516,7 +576,7 @@
 	                    	}else{
 	                    		monto=0;
 	                    	}
-	                        $('#PagoCInmuebles2').append(
+	                        $('#mostrarAnioM').append(
 	                            '<div class="row">'+
 	                                '<div class="col-md-4">'+
 	                                    '<div class="form-group">'+

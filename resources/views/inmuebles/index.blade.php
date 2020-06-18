@@ -9,7 +9,7 @@
             </div>
         </div>
         @include('flash::message')
-        <div class="card">
+        <div class="card" style="margin-right: 50px; margin-left: 50px;">
             <div class="card-body">
                 <div class="row justify-content-center">
                     @if(\Auth::user()->tipo_usuario == 'Admin')
@@ -27,7 +27,7 @@
         
             <div class="col-md-12">
                 <div style="overflow-x: auto;">
-                    <table class="data-table-basic" id="myTable" width="100%">
+                    <table class="data-table-basic" id="myTable">
                         <thead>
                             <tr>
                                 <th></th>
@@ -69,7 +69,8 @@
                     </table>
                 </div>
             </div>
-            
+        </div>
+    </div>
 
 <!-- --------------------------------------------VER InmuebleS--------------------------------------------------------- -->
             <div class="modal fade" id="VerInmueble" role="dialog">

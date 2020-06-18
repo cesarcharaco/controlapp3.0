@@ -3,8 +3,13 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-9">
+        @if(count($anuncios) >0)
+            <div class="col-md-9">
             <div style="margin-right: -25px;">
+        @else
+            <div class="col-md-12" style="margin-right: 25px;">
+            <div style="margin-right: 0px;">
+        @endif
                 @if(\Auth::user()->tipo_usuario=="Admin")
                     <div class="row justify-content-center">
                         <div class="col-md-12">
@@ -386,8 +391,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            @if(count($anuncios) >0)
+        @if(count($anuncios) >0)
+            <div class="col-md-3">
                 <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
                     @if(\Auth::user()->tipo_usuario == 'root')
                         <div class="card-header">
@@ -416,8 +421,8 @@
                         @endforeach()
                     </div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
     </div>
 
 @endif
