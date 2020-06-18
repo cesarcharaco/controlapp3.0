@@ -88,7 +88,7 @@
         <div class="card">
             <div class="card-body">
                 <div style="overflow-x: auto;">                            
-                    <table class="data-table-basic table table-hover mb-0" id="myTable" width="100%">
+                    <table class="table table-hover table-striped" id="myTable" width="100%">
                         <thead>
                             <tr>
                                 <th>Mes</th>
@@ -97,9 +97,18 @@
                         </thead>
                         <tbody id="muestraConsultas">
                             @for($i=0; $i < count($status_pago); $i++)
+                                
                                 <tr>
                                     <td>{{ $status_pago[$i][0] }}</td>
-                                    <td>{{ $status_pago[$i][1] }}</td>
+                                    @if ($status_pago[$i][1] == 'Pendiente') 
+                                            <td class="text-warning">{{ $status_pago[$i][1] }}</td>
+                                    @endif
+                                    @if ($status_pago[$i][1]== 'Cancelado')
+                                            <td class="text-success">{{ $status_pago[$i][1] }}</td>
+                                    @endif
+                                    @if ($status_pago[$i][1]== 'No aplica')
+                                            <td class="text-danger">{{ $status_pago[$i][1] }}</td>
+                                    @endif
                                 </tr>
                             @endfor
                         </tbody>
@@ -123,10 +132,18 @@
             .done(function(data) {
             	if (data.length >0) {
                     for (var i = 0; i < data.length; i++) {
+                        var status = data[i][1];
+                        if (status == 'Pendiente') {
+                            var status_color = '<div class="text-warning">'+status+'</div>';
+                        }else if(status== 'Cancelado'){
+                            var status_color = '<div class="text-success">'+status+'</div>';
+                        }else{
+                            var status_color = '<div class="text-danger">'+status+'</div>';
+                        }
                         $('#muestraConsultas').append(
                             '<tr>'+
                                 '<td>'+data[i][0]+'</td>'+
-                                '<td>'+data[i][1]+'</td>'+
+                                '<td>'+status_color+'</td>'+
                             '</tr>'
                         );
                     }
