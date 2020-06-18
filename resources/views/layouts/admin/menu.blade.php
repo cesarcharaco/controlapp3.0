@@ -99,12 +99,23 @@
             @if(\Auth::user()->tipo_usuario != 'root')
                 <li class="menu-title">Transacciones </li>
 
-                <li>
-                    <a href="{{ url('pagos') }}">
-                        <i data-feather="credit-card"></i>
-                        <span> Pagos </span>
-                    </a>
-                </li>
+                @if(\Auth::user()->tipo_usuario != 'Residente')
+                    <li>
+                        <a href="{{ url('pagos') }}">
+                            <i data-feather="credit-card"></i>
+                            <span> Pagos </span>
+                        </a>
+                    </li>
+                @endif
+
+                @if(\Auth::user()->tipo_usuario == 'Residente')
+                    <li>
+                        <a href="{{ url('consultas') }}">
+                            <i data-feather="credit-card"></i>
+                            <span> Consultas </span>
+                        </a>
+                    </li>
+                @endif
 
                 <li>
                     <a href="{{ url('multas_recargas')}}">
