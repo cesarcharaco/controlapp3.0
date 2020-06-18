@@ -960,7 +960,7 @@
                                                 - La imagen no debe tener una anchura mayor a 1024 kb<br>
                                                 - La imagen no debe tener una altura mayor a 800 kb</p>
                                             </div>
-                                            <input type="file" class="form-control" id="example-fileinput" name="imagen">
+                                            <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
                                         </div>
                                     </div>
                                 </div>
