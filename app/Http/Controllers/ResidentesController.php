@@ -511,7 +511,7 @@ class ResidentesController extends Controller
             }
         }
         //dd($status_pago);
-        return view('consultas.index',compact('status_pago'));
+        return view('consultas.index',compact('status_pago','buscar'));
     }
 
     public function consulta_anual($anio)
