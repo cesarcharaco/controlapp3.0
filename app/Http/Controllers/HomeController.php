@@ -45,8 +45,17 @@ class HomeController extends Controller
         }
         if (($entrar=="Si" && \Auth::user()->tipo_usuario=="Admin") || \Auth::user()->tipo_usuario!="Admin") {
             $anio=Date('Y');
-            $noticias=Noticias::where('id_admin',$id_admin)->get();
-            $notificaciones=Notificaciones::where('id_admin',$id_admin)->get();
+            if (\Auth::user()->tipo_usuario=="Residente") {
+                $residente=Residentes::where('id_usuario',\Auth::user()->id)->first();
+                $noticias=Noticias::where('id_admin',$residente->id_admin)->get();
+                $notificaciones=Notificaciones::where('id_admin',$residente->id_admin)->get();
+            } else {
+                $noticias=Noticias::where('id_admin',$id_admin)->get();
+                $notificaciones=Notificaciones::where('id_admin',$id_admin)->get();
+                # code...
+            }
+            
+
             $residentes=Residentes::where('id_admin',$id_admin)->get();
             $residente=Residentes::where('id_usuario',\Auth::user()->id)->first();
             $estacionamientos=Estacionamientos::where('status','<>','Ocupado')->where('id_admin',$id_admin)->get();
