@@ -35,7 +35,8 @@ class NotificacionesController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd(count($request->id_residente[0]));
+
         //dd(!is_null($request->todos));
         $id_admin=id_admin(\Auth::user()->email);
         if ($request->titulo=="" || $request->motivo=="") {
@@ -71,12 +72,13 @@ class NotificacionesController extends Controller
                    $notif->id_admin=$id_admin;
                    $notif->save();
 
+
                     for ($i=0; $i < count($request->id_residente) ; $i++) { 
-                         \DB::table('resi_has_notif')->insert([
+                        \DB::table('resi_has_notif')->insert([
                             'id_residente' => $request->id_residente[$i],
                             'id_notificacion' => $notif->id
-                         ]);
-                     } 
+                        ]);
+                    } 
 
                     toastr()->success('con éxito!!', 'Notificación registrada y enviada');
                     return redirect()->back();    

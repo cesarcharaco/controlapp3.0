@@ -440,12 +440,15 @@ function mostrar_resi_has_notif($id_notificacion)
 	$tr=count($residentes);
 
 	foreach ($notificacion->residentes as $key) {
-		$texto.="<li>".$key->apellidos.", ".$key->nombres." | RUT: ".$key->rut." </li>";
+		
+		// $texto=  $key->apellidos.", ".$key->nombres." | RUT: ".$key->rut;
 		$cont++;
 	}
 
 	if($cont==$tr){
 		$texto="Todos los Residentes";
+	}else{
+		echo("<li>" .$key->apellidos.", ".$key->nombres." | RUT: ".$key->rut."</li>");
 	}
 
 	return $texto;

@@ -498,7 +498,7 @@
                                     <input type="checkbox" name="todos" onchange="bloquear(this)" id="todos"  data-toggle="tooltip" data-placement="top" checked="checked" title="Seleccione si desea que la notificación sea para todos" >
                                     <label for="todos">Para Todos</label>
                                     
-                                    <select name="id_residente" disabled="disabled" id="id_residente" multiple="multiple" class="form-control select2">
+                                    <select name="id_residente[]" disabled="disabled" id="id_residente" multiple="multiple" class="form-control select2">
                                         <option value="#" disabled="disabled">Seleccione El/Los Residente(s)</option>
                                         @foreach($residentes as $key)
                                         <option value="{{ $key->id }}"> {{ $key->apellidos }}, {{ $key->nombres }} - RUT: {{ $key->rut }}</option>
