@@ -171,7 +171,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card" style="width:250px;background:#fff;margin-left: 270px; margin-right: -270px;">
+                            <div class="card" >
                                 @if(\Auth::user()->tipo_usuario == 'root')
                                     <div class="card-header">
                                         <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
