@@ -159,7 +159,7 @@
                 @elseif(\Auth::user()->tipo_usuario=="root")
                 <br>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="row justify-content-center">
                                 <div class="col-md-4">
                                 </div>
@@ -170,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="card" >
                                 @if(\Auth::user()->tipo_usuario == 'root')
                                     <div class="card-header">
