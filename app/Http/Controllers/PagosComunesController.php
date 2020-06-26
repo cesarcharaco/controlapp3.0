@@ -136,7 +136,7 @@ class PagosComunesController extends Controller
 
     public function update(Request $request)
     {
-    	dd($request->all());
+    	//dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
     	if(!is_null($request->anioI)){
         	$anio=$request->anioI;
