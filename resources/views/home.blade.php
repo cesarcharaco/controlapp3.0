@@ -3,14 +3,14 @@
 @section('content')
 
     <div class="row">
-        @if(count($anuncios) >0)
-            <div class="col-md-9">
-            <div style="margin-right: -25px;">
-        @else
-            <div class="col-md-12" style="margin-right: 25px;">
-            <div style="margin-right: 0px;">
-        @endif
                 @if(\Auth::user()->tipo_usuario=="Admin")
+                    @if(count($anuncios) >0)
+                        <div class="col-md-9">
+                        <div style="margin-right: -25px;">
+                    @else
+                        <div class="col-md-12" style="margin-right: 25px;">
+                        <div style="margin-right: 0px;">
+                    @endif
                     <div class="row justify-content-center">
                         <div class="col-md-12">
                             @include('flash::message')
@@ -157,51 +157,67 @@
 
                     </div>
                 @elseif(\Auth::user()->tipo_usuario=="root")
-                <br>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="row justify-content-center">
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="{{ asset('assets/images/logo.jpg') }}" style="border-radius: 50%;" alt="" height="500" width="500" />
-                                </div>
-                                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <br>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="{{ asset('assets/images/logo.jpg') }}" style="border-radius: 50%;" alt="" height="500" width="500" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <br><br>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card" >
-                                @if(\Auth::user()->tipo_usuario == 'root')
-                                    <div class="card-header">
-                                        <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
-                                        <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
-                                    </div>
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-4">
+                                @if(count($anuncios)>0)
+                                    <div style="float: right; margin-top: -30px; margin-right: -30px;">
+                                @else
+                                    <div style="margin-right: -30px;margin-top: -30px; margin-left: 30px;">
                                 @endif
-                                <div class="card-body">
-                                    @foreach($anuncios as $key)
-                                        @if(\Auth::user()->tipo_usuario == 'Admin')
-                                            <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
-                                                x
-                                            </a>
-                                            <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
-                                                e
-                                            </a>
-                                        @endif
-                                        <div onclick="window.open('{{$key->link}}', '_blank');">
-                                            
-                                            <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
-                                            <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200">
-
-                                            <p class="text-dark">{{$key->descripcion}}</p>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
+                                            <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
                                         </div>
+                                        <div class="card-body">
+                                            @foreach($anuncios as $key)
+                                                @if(\Auth::user()->tipo_usuario == 'Admin')
+                                                    <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
+                                                        x
+                                                    </a>
+                                                    <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                                        e
+                                                    </a>
+                                                @endif
+                                                <div onclick="window.open('{{$key->link}}', '_blank');">
+                                                    
+                                                    <span class="text-dark"><strong>{{$key->titulo}}</strong></span><br>
+                                                    <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" style="width: 250px;">
 
-                                    @endforeach()
+                                                    <p class="text-dark">{{$key->descripcion}}</p>
+                                                </div>
+
+                                            @endforeach()
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @else
+                    @if(count($anuncios) >0)
+                        <div class="col-md-9">
+                        <div style="margin-right: -25px;">
+                    @else
+                        <div class="col-md-12" style="margin-right: 25px;">
+                        <div style="margin-right: 0px;">
+                    @endif
                     <div class="row justify-content-center">
                         <div class="col-md-12">
                             @include('flash::message')
