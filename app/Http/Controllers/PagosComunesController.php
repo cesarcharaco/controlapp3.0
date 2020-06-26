@@ -162,7 +162,7 @@ class PagosComunesController extends Controller
                 }
             //----------------------
         //dd($request->all());
-        if ($request->tipo=="Inmuebles") {
+        if ($request->tipo=="Inmueble") {
             //dd($request->all());
                 # mensual
             $meses=Meses::all();
