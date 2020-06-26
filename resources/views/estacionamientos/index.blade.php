@@ -41,9 +41,9 @@
                                 <tr>
                                     <td align="center">
                                         @if(\Auth::user()->tipo_usuario == 'Admin')
-                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">Eliminar</a>
+                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">Editar</a>
 
-                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">Editar</a>
+                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">Eliminar</a>
                                         @endif
                                         
                                     </td>

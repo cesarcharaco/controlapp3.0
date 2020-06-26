@@ -133,8 +133,8 @@
                                                 
                             {!! Form::open(['route' => ['asignar_mr'],'method' => 'POST', 'name' => 'asignar_multa', 'id' => 'asignar_multa', 'data-parsley-validate']) !!}
                                 @csrf
-                                <div class="modal fade" id="Profile" role="dialog" aria-labelledby="myLargeModalLabel">
-                                    <div class="modal-dialog modals-default">
+                                <div class="modal fade bd-example-modal-lg" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-body">
                                                 <button type="button" class="close" data-dismiss="modal">
@@ -148,14 +148,14 @@
                                                             <div class="card-body">
                                                                 <center>
                                                                     <div class="text-center mt-3">
-                                                                        <img src="assets/images/logo.jpg" alt="" class="avatar-lg rounded-circle">
+                                                                        <img src="assets/images/logo.jpg" alt="" class="rounded-circle" width="80" height="80">
                                                                         <div class="form-group row">
-                                                                            <label class="col-lg-6 col-form-label" for="example-static">Nombres</label>
-
-                                                                            
-                                                                            <div class="col-lg-6">
-                                                                                <input type="text" readonly="" class="form-control-plaintext" id="nombres_profile" value="{{Auth::user()->name}}">
-                                                                                <input type="text" name="nombres" class="form-control" id="nombres_profileE" value="{{Auth::user()->name}}" style="display: none;">
+                                                                            <div class="col-md-12">
+                                                                                <center>
+                                                                                    <label class="col-md-6 col-form-label" for="example-static">Nombres</label>
+                                                                                    <input type="text" readonly="" class="form-control-plaintext" id="nombres_profile" value="{{Auth::user()->name}}">
+                                                                                    <input type="text" name="nombres" class="form-control" id="nombres_profileE" value="{{Auth::user()->name}}" style="display: none;" required>
+                                                                                </center>
 
                                                                                 <!-- <input type="text" readonly="" class="form-control-plaintext" id="apellidos_profile" value="Mandela">
                                                                                 <input type="text" name="apellidos" class="form-control" id="apellidos_profileE" value="Mandela" style="display: none;"> -->
@@ -163,10 +163,12 @@
                                                                         </div>
                                                                         <h6 class="text-muted font-weight-normal mt-1 mb-4">
                                                                             <div class="form-group row">
-                                                                                <label class="col-lg-4 col-form-label" for="example-static">Rut</label>
-                                                                                <div class="col-lg-8">
-                                                                                    <input type="number" readonly="" class="form-control-plaintext" id="rut_profile" value="123124123">
-                                                                                    <input type="number" name="rut" class="form-control" id="rut_profileE" value="123124123" style="display: none;">
+                                                                                <div class="col-lg-12">
+                                                                                    <center>
+                                                                                        <label class="col-md-4 col-form-label" for="example-static">Rut</label>
+                                                                                        <input type="text" readonly="" class="form-control-plaintext" id="rut_profile" value="123124123">
+                                                                                        <input type="text" name="rut" class="form-control" id="rut_profileE" value="123124123" style="display: none;" required>
+                                                                                    </center>
                                                                                 </div>
                                                                             </div>
                                                                         </h6>
@@ -176,35 +178,39 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-md-6">
                                                         <div class="card">
                                                             <div class="card-body">
                                                                 <center>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6">
-                                                                            <a href="#" onclick="EditarProfile()" class="btn btn-success btn-sm" id="buttonEditP" style="width: 100%; border-radius: 30px;">Editar</a>
-                                                                            <a href="#" onclick="EditarProfile2()" class="btn btn-primary btn-sm" id="buttonEditP2" style="width: 100%; border-radius: 30px; display: none;">Volver</a>
+                                                                    <div class="row" id="buttonEditP2" style="display: none;">
+                                                                        <div class="col-md-6">
+                                                                            <a href="#" onclick="EditarProfile2()" class="btn btn-primary" style="width: 100%; border-radius: 30px;">Volver</a>
                                                                         </div>
-
-                                                                        <div class="col-lg-6">
-                                                                            <button type="submit" class="btn btn-success btn-sm" id="btnGuardarProfile" style="display: none; border-radius: 30px;">Guardar</button>
+                                                                        <div class="col-md-6">
+                                                                            <center><button type="submit" class="btn btn-success" id="btnGuardarProfile" style="width: 100%; border-radius: 30px;">Guardar</button></center>
+                                                                            
                                                                         </div>
                                                                     </div>
-                                                                    <div class="mt-3 pt-2 border-top">
+                                                                    <div class="row" id="buttonEditP">
+                                                                        <div class="col-md-12">
+                                                                            <a href="#" onclick="EditarProfile()" class="btn btn-success" style="width: 100%; border-radius: 30px;">Editar</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 pt-2">
                                                                         <h4 class="mb-3 font-size-15">Información de contacto</h4>
 
                                                                         <div class="form-group row">
-                                                                            <label class="col-lg-4 col-form-label" for="example-static">Email</label>
-                                                                            <div class="col-lg-8">
+                                                                            <div class="col-lg-12">
+                                                                                <label>Email</label>
+                                                                                <input type="email" name="email" class="form-control" id="email_profileE"value="{{Auth::user()->email}}" style="display: none;" required>
                                                                                 <input type="email" readonly="" class="form-control-plaintext" id="email_profile"value="{{Auth::user()->email}}">
-                                                                                <input type="email" name="email" class="form-control" id="email_profileE"value="{{Auth::user()->email}}" style="display: none;">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
-                                                                            <label class="col-lg-6 col-form-label" for="example-static">Teléfono</label>
-                                                                            <div class="col-lg-6">
-                                                                                <input type="number" readonly="" class="form-control-plaintext" id="telefono_profile"value="13123123">
-                                                                                <input type="number" name="telefono" class="form-control" id="telefono_profileE"value="13123123" style="display: none;">
+                                                                            <div class="col-lg-12">
+                                                                                <label>Teléfono</label>
+                                                                                <input type="text" readonly="" class="form-control-plaintext" id="telefono_profile"value="13123123">
+                                                                                <input type="text" name="telefono" class="form-control" id="telefono_profileE"value="13123123" style="display: none;" required>
                                                                             </div>
                                                                         </div>
                                                                         
@@ -213,6 +219,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                            
