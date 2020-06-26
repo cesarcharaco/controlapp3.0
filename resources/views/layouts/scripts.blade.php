@@ -255,8 +255,9 @@
 		
 	}
 	function PagoC(opcion) {
-		
-
+		$('#PagoCInmuebles2').empty();
+		$('#PagoCEstaciona2').empty();
+		$('.accion').val(1);
 		if (opcion ==1) {
 			$('#anioPagoComunI').empty();
 			$('#anioPagoComunI').append('<option selected>Seleccione año</option>');

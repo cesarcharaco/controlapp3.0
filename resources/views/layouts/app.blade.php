@@ -715,7 +715,7 @@
                                             
                                             <div class="float-right">
                                                 <input type="hidden" name="tipo" value="Estacionamiento">
-                                                <input type="hidden" class="accion" name="accion" value="2">
+                                                <input type="hidden" class="accion" name="accion" value="1">
                                                 <button type="submit" class="btn btn-success" >Editar</button>
                                             </div>
                                         </center>
