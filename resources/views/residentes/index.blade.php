@@ -130,35 +130,40 @@
                                         <div class="col-md-12">
                                             
                                             <div class="form-group">
-                                                <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control" id="nombres_e">
+                                                <label>Nombres</label>
+                                                <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control" id="nombres_e" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control" id="apellidos_e">
+                                                <label>Apellidos</label>
+                                                <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control" id="apellidos_e" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="text" name="rut" placeholder="Rut del residente" class="form-control" id="rut_e">
+                                                <label>Rut</label>
+                                                <input type="text" name="rut" placeholder="Rut del residente" class="form-control" id="rut_e" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e">
+                                                <label>Teléfono</label>
+                                                <input type="number" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="email" name="email" placeholder="Email del residente" class="form-control" id="email_e">
+                                                <label>Email</label>
+                                                <input type="email" name="email" placeholder="Email del residente" class="form-control" id="email_e" required>
                                             </div>
                                         </div>
                                     </div>

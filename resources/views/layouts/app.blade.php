@@ -414,12 +414,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+                                                    <p class="text-success"><strong>Debe seleccionar al menos inmueble para proceder con el registro</strong></p>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>¿Asignar inmueble?</label>
-                                                                <select name="id_inmuebles[]" multiple class="form select2" multiple="" id="asignaInmueResidente">
+                                                                <select name="id_inmuebles[]" multiple class="form select2" multiple="" id="asignaInmueResidente" required>
                                                                     
                                                                 </select>
                                                             </div>

@@ -270,13 +270,17 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">Notificaciones
-                                @if(\Auth::user()->tipo_usuario=="Admin")
-                                    <div class="float-right">
-                                        <a href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <center><h4>Notificaciones</h4></center>
                                     </div>
-                                @endif
-                                
+                                    <div class="col-md-3">
+                                        @if(\Auth::user()->tipo_usuario=="Admin")
+                                            <a style="width: 100%" href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 @foreach($notificaciones as $key)
@@ -348,13 +352,17 @@
 
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-header">Noticias
-                                <div class="float-right">
-                                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                                        <a href="#" data-toggle="modal" data-target="#crearNoticia" class="btn btn-success">Nueva</a>
-                                    @endif
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <center><h4>Noticias</h4></center>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @if(\Auth::user()->tipo_usuario=="Admin")
+                                            <a style="width: 100%" href="#" data-toggle="modal" data-target="#crearNoticia" class="btn btn-success">Nueva</a>
+                                        @endif
+                                    </div>
                                 </div>
-                                
                             </div>
                             <div class="card-body">
                                 

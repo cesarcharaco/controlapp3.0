@@ -105,7 +105,7 @@
 		</table>
 	</div>
 	<div style="text-align: right">
-		<img width="250" height="250" style="border-radius: 50px;" src="../public/assets/images/logo.jpg">
+		<center><img width="300" height="300" style="border-radius: 50px;" src="../public/assets/images/logo.jpg"></center>
 	</div>
 @if(count($residentes)>0)
 	<table width="100%" border="1">

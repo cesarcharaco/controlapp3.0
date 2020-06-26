@@ -110,7 +110,7 @@
 		</table>
 	</div>
 	<div style="text-align: right">
-		<img width="250" height="250" style="border-radius: 50px;" src="../public/assets/images/logo.jpg">
+		<center><img width="300" height="300" style="border-radius: 50px;" src="../public/assets/images/logo.jpg"></center>
 	</div>
 	<!-- <p> Formato PDF para explicar la gestión y datos que se han almacenado hasta ahora</p> -->
 	<table width="100%" border="1">
