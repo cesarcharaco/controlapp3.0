@@ -58,6 +58,7 @@ class ReportesController extends Controller
     
     public function store(Request $request)
     {
+        //dd($request->all());
         /*"id_meses" => array:2 [▶]
           "MesesTodos" => "MesesTodos"
           "id_estacionamientos" => array:1 [▶]
@@ -177,6 +178,7 @@ class ReportesController extends Controller
    
     public function general(Request $request)
     {
+        //dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
         $anio=$request->anio;
         $meses[]=array();
