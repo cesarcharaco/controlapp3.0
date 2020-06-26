@@ -136,7 +136,7 @@ class PagosComunesController extends Controller
 
     public function update(Request $request)
     {
-    	//dd($request->all());
+    	dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
     	if(!is_null($request->anioI)){
         	$anio=$request->anioI;
@@ -162,10 +162,13 @@ class PagosComunesController extends Controller
                 }
             //----------------------
         //dd($request->all());
-        if ($request->accion==1) {
+        if ($request->tipo=="Inmuebles") {
+            //dd($request->all());
                 # mensual
             $meses=Meses::all();
             //dd($meses);
+            //si es por mes
+            if ($request->accion==1) {
                 $i=0;
                 foreach($meses as $key){
                     
@@ -180,70 +183,107 @@ class PagosComunesController extends Controller
                         //cambiando montos de inmuebles
                         $inmuebles=Inmuebles::where('id_admin',$id_admin)->get();
                         foreach ($inmuebles as $key2) {
-                        	foreach ($key2->mensualidades as $key3) {
-                        		if($key3->mes==$key->id){
-                        			$key3->monto=$pagocomun->monto;
-                        			$key3->save();
-                        		}
-                        	}
-                        }
-                        //-----------------------------
-                        //cambiando montos de estacionamientos
-                        /*$estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
-                        foreach ($estacionamiento as $key2) {
-                        	foreach ($key2->mensualidad as $key3) {
-                        		if($key3->mes==$key->id){
-                        			$key3->monto=$pagocomun->monto;
-                        			$key3->save();
-                        		}
-                        	}
-                        }*/
-                        //-----------------------------
-                        $i++;
-                }
-                        
-                    	
-            } else {
-                # anual
-                /*for($i=0;$i<count($request->mes);$i++){
-                   
-                        $pagocomun=new PagosComunes();
-                        $pagocomun->tipo=$request->tipo;
-                        $pagocomun->anio=$anio;
-                        $pagocomun->mes=$request->mes[$i];
-                        $pagocomun->monto=$request->montoaAnio;
-                        $pagocomun->id_admin=$id_admin;
-                        $pagocomun->save();
-                    
-                }*/
-                $meses=Meses::all();
-            //dd($meses);
-                $i=0;
-                foreach($meses as $key){
-                    
-                        $pagocomun=new PagosComunes();
-                        $pagocomun->tipo=$request->tipo;
-                        $pagocomun->anio=$anio;
-                        $pagocomun->mes=$key->id;
-                        $pagocomun->monto=$request->monto[$i];
-                        $pagocomun->id_admin=$id_admin;
-                        $pagocomun->save();
-
-                        
-                        //-----------------------------
-                        //cambiando montos de estacionamientos
-                        $estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
-                        foreach ($estacionamiento as $key2) {
-                            foreach ($key2->mensualidad as $key3) {
+                            foreach ($key2->mensualidades as $key3) {
                                 if($key3->mes==$key->id){
                                     $key3->monto=$pagocomun->monto;
                                     $key3->save();
                                 }
                             }
                         }
-                        //-----------------------------
+                        
                         $i++;
                 }
+            } else {
+               
+                foreach($meses as $key){
+                    
+                        $pagocomun=new PagosComunes();
+                        $pagocomun->tipo=$request->tipo;
+                        $pagocomun->anio=$anio;
+                        $pagocomun->mes=$key->id;
+                        $pagocomun->monto=$request->montoaAnio;
+                        $pagocomun->id_admin=$id_admin;
+                        $pagocomun->save();
+
+                        //cambiando montos de inmuebles
+                        $inmuebles=Inmuebles::where('id_admin',$id_admin)->get();
+                        foreach ($inmuebles as $key2) {
+                            foreach ($key2->mensualidades as $key3) {
+                                if($key3->mes==$key->id){
+                                    $key3->monto=$pagocomun->monto;
+                                    $key3->save();
+                                }
+                            }
+                        }
+                        
+                        
+                }
+            }
+            
+                
+                        
+                    	
+            } elseif($request->tipo=="Estacionamiento") {
+                //dd($request->all());
+                $meses=Meses::all();
+            //dd($meses);
+                if ($request->accion==1) {
+                    $i=0;
+                    foreach($meses as $key){
+                        
+                            $pagocomun=new PagosComunes();
+                            $pagocomun->tipo=$request->tipo;
+                            $pagocomun->anio=$anio;
+                            $pagocomun->mes=$key->id;
+                            $pagocomun->monto=$request->monto[$i];
+                            $pagocomun->id_admin=$id_admin;
+                            $pagocomun->save();
+
+                            
+                            //-----------------------------
+                            //cambiando montos de estacionamientos
+                            $estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
+                            foreach ($estacionamiento as $key2) {
+                                foreach ($key2->mensualidad as $key3) {
+                                    if($key3->mes==$key->id){
+                                        $key3->monto=$pagocomun->monto;
+                                        $key3->save();
+                                    }
+                                }
+                            }
+                            //-----------------------------
+                            
+                    }
+                } else {
+                    
+                    foreach($meses as $key){
+                        
+                            $pagocomun=new PagosComunes();
+                            $pagocomun->tipo=$request->tipo;
+                            $pagocomun->anio=$anio;
+                            $pagocomun->mes=$key->id;
+                            $pagocomun->monto=$request->montoaAnio;
+                            $pagocomun->id_admin=$id_admin;
+                            $pagocomun->save();
+
+                            
+                            //-----------------------------
+                            //cambiando montos de estacionamientos
+                            $estacionamiento=Estacionamientos::where('id_admin',$id_admin)->get();
+                            foreach ($estacionamiento as $key2) {
+                                foreach ($key2->mensualidad as $key3) {
+                                    if($key3->mes==$key->id){
+                                        $key3->monto=$pagocomun->monto;
+                                        $key3->save();
+                                    }
+                                }
+                            }
+                            //-----------------------------
+                            
+                    }
+                }
+                
+                
                 
             }
             toastr()->success('con éxito!!', 'Pago Común actualizado para el año:'.$request->anio.' para el'.$request->tipo.'');
