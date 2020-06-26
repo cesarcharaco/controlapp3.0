@@ -23,6 +23,7 @@ class PagosComunesController extends Controller
           "monto" => array:12 [▶]
           "tipo" => "Inmueble"
           "accion" => "1"*/
+        //dd(is_null($request->montoaAnio));
     	$m=date('m');
         $a=date('Y');
         $meses=Meses::all();
@@ -32,7 +33,10 @@ class PagosComunesController extends Controller
         if(!is_null($request->anioE)){
         	$anio=$request->anioE;
         }
-        //if ($request->accion==1 || $request->accion==2) {
+        if ($this->nulidad($request->monto)==false && is_null($request->montoaAnio)==true) {
+            toastr()->warning('intente otra vez!!', 'Debe agregar el o los monto(s)');
+                    return redirect()->back();
+            }else{
                 # mensual
             if ($this->nulidad($request->monto)) {
                 toastr()->warning('intente otra vez!!', 'Debe agregar todos los montos en los meses indicados');
@@ -70,30 +74,32 @@ class PagosComunesController extends Controller
                         }
                         $this->nuevas_mensualidades($anio,$request->tipo);
                         } else {
-                            //dd("-------");
-                            foreach ($meses as $key) {
-                            if($key->id>=$m && $a==$anio){
-                                $pagocomun=new PagosComunes();
-                                $pagocomun->tipo=$request->tipo;
-                                $pagocomun->anio=$anio;
-                                $pagocomun->mes=$key->id;
-                                $pagocomun->monto=$request->montoaAnio;
-                                $pagocomun->id_admin=$id_admin;
-                                $pagocomun->save();
-                                
-                            }else{
+                            
+                                foreach ($meses as $key) {
+                                if($key->id>=$m && $a==$anio){
+                                    $pagocomun=new PagosComunes();
+                                    $pagocomun->tipo=$request->tipo;
+                                    $pagocomun->anio=$anio;
+                                    $pagocomun->mes=$key->id;
+                                    $pagocomun->monto=$request->montoaAnio;
+                                    $pagocomun->id_admin=$id_admin;
+                                    $pagocomun->save();
+                                    
+                                }else{
 
-                                $pagocomun=new PagosComunes();
-                                $pagocomun->tipo=$request->tipo;
-                                $pagocomun->anio=$anio;
-                                $pagocomun->mes=$key->id;
-                                $pagocomun->monto=$request->montoaAnio;
-                                $pagocomun->id_admin=$id_admin;
-                                $pagocomun->save();
-                                
-                            }
-                            }
+                                    $pagocomun=new PagosComunes();
+                                    $pagocomun->tipo=$request->tipo;
+                                    $pagocomun->anio=$anio;
+                                    $pagocomun->mes=$key->id;
+                                    $pagocomun->monto=$request->montoaAnio;
+                                    $pagocomun->id_admin=$id_admin;
+                                    $pagocomun->save();
+                                    
+                                }
+                                }
+
                             $this->nuevas_mensualidades($anio,$request->tipo);
+                        
                         }
                         
                         
@@ -125,6 +131,7 @@ class PagosComunesController extends Controller
             }*/
             toastr()->success('con éxito!', 'Pago Común registrado para el año:'.$anio.' para :'.$request->tipo.'');
             return redirect()->to('home');
+        }
     }
 
     public function update(Request $request)
