@@ -662,7 +662,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                       <div id="muestraMesesAComprob">
+                        <div id="muestraMesesAComprob">
+                                                            
+                        </div>
+                        <div id="muestraMesesAComprob2">
                                                             
                         </div>
                     </div>

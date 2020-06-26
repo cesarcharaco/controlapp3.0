@@ -379,7 +379,7 @@
 	                        );
 	                    }
 	                }else{
-	                	$('#PagoCEstaciona1').append('<h3>Ya hay registros de pago común para este año para este año</h3>');
+	                	$('#PagoCEstaciona1').append('<h3>Ya hay registros de pago común para este año</h3>');
 	                }
                 }else{
 	               	if (data.length > 0){
@@ -531,7 +531,7 @@
 
 	                    }
 	                }else{
-	                	$('#PagoCInmuebles1').append('<h3>Ya hay registros de pago común para este año para este año</h3>');
+	                	$('#PagoCInmuebles1').append('<h3>Ya hay registros de pago común para este año</h3>');
 	                }
                 }else{
 
@@ -859,6 +859,7 @@
         $('#PagoConfir').modal('show');
   //       $('#MesComprobResi').empty();
 		$('#muestraMesesAComprob').empty();
+		$('#muestraMesesAComprob2').empty();
 		$('#CargandoPagosComprobar').css('display','block');
 		var m=f.getMonth();
 
@@ -872,16 +873,17 @@
 
 			.done(function(data2) {
 				var j=0;
+				var l=0;
+				var k=0;
 				if(data2.length>0){
-					var k=0;
 					for (var i = 0; i < data2.length; i++) {
 						if(data2[i].status == 'Por Confirmar'){
 							j=j+1;
 						}
 						if(j>0){
 
-							var k=k+1;
 							if(data2[i].status == 'Por Confirmar'){
+								k++;
 								$('#muestraMesesAComprob').append(
 									'<div class="row">'+
 					                    '<div class="col-md-4">'+
@@ -903,20 +905,22 @@
 		                                        '</div>'+
 		                                    '</div>'+
 					                    '</div>'+
-					                '</div><hr>'
+					                '</div>'
 					            );
+							}else{
+								k=0;
+								l++;
 							}
 						}
-						// else{
-						// 	if(i == 1 && k == 0){
-						// 		$('#muestraMesesAComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
-						// 	}
-						// }
 					}//cierre del for
+					if(l == 0 && k == 0){
+						$('#muestraMesesAComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
+					}
 		            $('#muestraMesesAComprob').append('<input type="hidden" name="id_residente" value="'+id_residente+'" >');
 		            $('#muestraMesesAComprob').append('<input type="hidden" name="opcion" value="3" >');
 				}else{
 					$('#muestraMesesAPagar2').css('display','block');
+					// $('#muestraMesesAComprob2').append('El residente no tiene pagos por confirmar');
 				}
 
 			});
