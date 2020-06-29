@@ -269,7 +269,7 @@
                                                 
                                                 <div class="form-group">
                                                     <!-- <label class="mb-0 text-danger">Pagar multa</label> -->
-                                                    <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente()" class="btn btn-danger">Pagar</a></h6>
+                                                    <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente('{{$residente->id}}')" class="btn btn-danger">Pagar</a></h6>
                                                 </div>
                                             </div>
                                         </div>                            
