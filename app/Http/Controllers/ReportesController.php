@@ -49,10 +49,14 @@ class ReportesController extends Controller
             $residentes=0;
         }
         
-
-        
-        //dd(count($anios));
-        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes'));
+        $anio= array();
+        $year=Date('Y');
+        $n=0;
+        for ($i=$year; $i <= $year; $i++) { 
+            $anio[$n]=$i;
+            $n++;
+        }
+        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes','anio'));
     }
 
     
