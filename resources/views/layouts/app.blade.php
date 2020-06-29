@@ -938,9 +938,7 @@
                                             <label>Seleccionar admin</label> 
                                             <input type="checkbox" name="">
                                             <select class="for-control">
-                                                @foreach($users_admin as $key)
-                                                <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
-                                                @endforeach
+                                                
                                             </select>
                                         </div>
                                     </div>
