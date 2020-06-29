@@ -44,4 +44,8 @@ class UsersAdmin extends Model
     {
         return $this->hasMany('App\PagosComunes','id_admin','id');
     }
+
+    public function anuncios() {
+        return $this->belongsToMany('App\Anuncios','admins_has_anuncios','id_anuncios','id_users_admin');
+    }
 }

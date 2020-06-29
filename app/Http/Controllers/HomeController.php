@@ -64,10 +64,11 @@ class HomeController extends Controller
             $buscarPInmuebles= PagosComunes::where('tipo','Inmueble')->where('anio',$anio)->where('id_admin',$id_admin)->get();
             $buscarPEstaciona= PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->where('id_admin',$id_admin)->get();
             $anuncios=Anuncios::all();
+            $users_admin = UsersAdmin::all();
 
             //dd('-------------');
 
-            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios'));    
+            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin'));    
         } else {
             # code...
             

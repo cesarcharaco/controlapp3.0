@@ -933,6 +933,19 @@
                         <div class="modal-body">
                             <center>
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Seleccionar admin</label> 
+                                            <input type="checkbox" name="">
+                                            <select class="for-control">
+                                                @foreach($users_admin as $key)
+                                                <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Título del anuncio</label>
