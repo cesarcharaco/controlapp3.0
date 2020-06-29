@@ -61,6 +61,13 @@ class AnunciosController extends Controller
             $file->move(public_path().'/images_anuncios/', $name);  
             $url ='images_anuncios/'.$name;
             
+            if ($request->anuncios_todos="1") {
+                dd('hola mundo');
+                $admins_anuncios = new AdminsAnuncios();
+
+            } else {
+                # code...
+            }
         
             $anuncio=new Anuncios();
 
@@ -70,6 +77,8 @@ class AnunciosController extends Controller
             $anuncio->nombre_img=$name;
             $anuncio->url_img=$url;
             $anuncio->save();
+
+            
        
         toastr()->success('con éxito!!','Anuncio registrado');
         return redirect()->back();

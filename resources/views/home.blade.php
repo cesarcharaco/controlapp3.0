@@ -185,6 +185,86 @@
                                             <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
                                             <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
                                         </div>
+                                        <!-- -------------------------------- ANUNCIOS ------------------------------------- -->
+                                        <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="modal fade" id="crearAnuncio" role="dialog">
+                                                <div class="modal-dialog modals-default">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4>Nuevo anuncio</h4>                
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                                <span>&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <center>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label>Seleccionar admin</label> 
+                                                                            <div class="">
+                                                                                
+                                                                                <input type="checkbox" name="anuncios_todos" onchange="seleccionar_todos(this)" id="anuncios_todos"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
+                                                                                <label for="anuncios_todos">Seleccionar todos</label>
+                                                                            </div>
+                                                                            <select class="selec2" name="admins" id="admins">
+                                                                                <option value="">Seleccione admins...</option>
+                                                                                @foreach($users_admin as $key)
+                                                                                <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label>Título del anuncio</label>
+                                                                            <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                                                        </div>
+                                                                    </div>
+                                                               
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label>Link</label>
+                                                                            <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label>Descripción</label>
+                                                                            <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label>Imagen</label>
+                                                                            <div class="alert alert-primary" role="alert">
+                                                                                <p><strong>Recordar que:</strong><br>
+                                                                                - La imagen no debe exceder los 800 KB de tamaño<br>
+                                                                                - La imagen no debe tener una anchura mayor a 1024 kb<br>
+                                                                                - La imagen no debe tener una altura mayor a 800 kb</p>
+                                                                            </div>
+                                                                            <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </center>
+                                                            <div class="float-right">
+                                                                <button type="submit" class="btn btn-success" >Guardar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <div class="card-body">
                                             @foreach($anuncios as $key)
                                                 <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
@@ -631,6 +711,19 @@
         } else {  
             console.log('no chequeado');
             $('#id_residente').removeAttr('disabled');
+        }
+   
+    }
+</script>
+<script type="text/javascript">
+    function seleccionar_todos(event) {
+        
+        if($('input:checkbox[name=anuncios_todos]').is(':checked')) { 
+            console.log('chequeado');
+            $('#admins').attr('disabled', true);
+        } else {  
+            console.log('no chequeado');
+            $('#admins').removeAttr('disabled');
         }
    
     }
