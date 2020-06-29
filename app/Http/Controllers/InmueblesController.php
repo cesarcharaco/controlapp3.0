@@ -8,6 +8,7 @@ use App\Meses;
 use App\Mensualidades;
 use App\Estacionamientos;
 use App\PagosComunes;
+use App\Pagos;
 class InmueblesController extends Controller
 {
 	/**
@@ -236,12 +237,17 @@ class InmueblesController extends Controller
 		$inmueble=Inmuebles::find($request->id);
 
 		foreach($meses as $key){
-                $mensualidad= Mensualidades::where('id_inmueble',$request->id)->where('mes',$key->mes)->first();
+                $mensualidad= Mensualidades::where('id_inmueble',$request->id)->where('mes',$key->id)->first();
+                //dd($mensualidad);
                 if ($mensualidad!=null) {
+                    $pagos=Pagos::where('id_mensualidad',$mensualidad->id)->get();
+                    foreach ($pagos as $key2) {
+                        $key2->delete();
+                    }
                     $mensualidad->delete();
                 }
             }
-
+        //dd('-----------------');
 		$inmueble->delete();
         toastr()->success('con éxito!!', 'Inmueble eliminado');
 		return redirect()->to('inmuebles');

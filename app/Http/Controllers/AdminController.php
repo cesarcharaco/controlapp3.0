@@ -7,6 +7,17 @@ use App\User;
 use App\UsersAdmin;
 use App\Http\Requests\AdminRequest;
 use App\Http\Requests\AdminURequest;
+use App\Meses;
+use App\Inmuebles;
+use App\Pagos;
+use App\Mensualidades;
+use App\Estacionamientos;
+use App\PagosE;
+use App\MensualidadE;
+use App\MultasRecargas;
+use App\Notificaciones;
+use App\Noticias;
+use App\Residentes;
 class AdminController extends Controller
 {
     /**
@@ -165,8 +176,92 @@ class AdminController extends Controller
      */
     public function destroy(Request $request)
     {
-        dd($request->all());
-    }
+        //dd($request->all());
+        $meses=Meses::all();
+       //para eliminar el admin se deben eliminar el resto de los registros 
+    //comenzamos con los inmuebles registrados
 
-    
+        $inmuebles=Inmuebles::where('id_admin',$request->id)->get();
+        if (count($inmuebles)>0) {
+            foreach ($inmuebles as $key) {
+                foreach($meses as $key2){
+                    $mensualidad= Mensualidades::where('id_inmueble',$key->id)->where('mes',$key2->id)->first();
+                    //dd($mensualidad);
+                    if ($mensualidad!=null) {
+                        $pagos=Pagos::where('id_mensualidad',$mensualidad->id)->get();
+                        foreach ($pagos as $key3) {
+                            $key3->delete();
+                        }
+                        $mensualidad->delete();
+                    }
+                }
+            //dd('-----------------');
+            $key->delete();
+            }
+        }
+        
+        //ahora con estacionamientos
+        $estacionamientos=Estacionamientos::where('id_admin',$request->id)->get();
+        if(count($estacionamientos)>0){
+            foreach ($estacionamientos as $key) {
+                foreach($meses as $key2){
+                    $mensualidad= MensualidadE::where('id_estacionamiento',$key->id)->where('mes',$key2->id)->first();
+                    if ($mensualidad!=null) {
+                        $pagos=PagosE::where('id_mens_estac',$mensualidad->id)->get();
+                        foreach ($pagos as $key3) {
+                            $key3->delete();
+                        }
+                        $mensualidad->delete();
+                    }
+                }
+            $key->delete();
+            }
+        }
+        //multas y recargas
+        $mr=MultasRecargas::where('id_admin',$request->id)->get();
+        if (count($mr)>0) {
+            foreach ($mr as $key) {
+                $key->delete();
+            }
+        }
+        //notificaciones
+        $notif=Notificaciones::where('id_admin',$request->id)->get();
+        if(count($notif)>0){
+            foreach ($notif as $key) {
+                $key->delete();
+            }
+        }
+
+        //noticias
+        $noti=Noticias::where('id_admin',$request->id)->get();
+        if(count($noti)>0){
+            foreach ($noti as $key) {
+                $key->delete();
+            }
+        }
+
+        //residentes
+        $residentes=Residentes::where('id_admin',$request->id)->get();
+        if(count($residentes)>0){      
+            foreach ($residentes as $key) {
+                $key->usuario->delete();
+                foreach ($key->reportes as $key2) {
+                   $key2->delete();
+                }
+                $key->delete();
+            }
+        }
+
+        //anuncios asignados
+        $user_admin=UsersAdmin::find($request->id);
+        /*foreach ($user_admin->anuncios as $key) {
+            $key->delete();
+        }*/
+        $user=User::where('email',$user_admin->email)->first();
+        $user->delete();
+        $user_admin->delete();
+
+        toastr()->success('con éxito!!', 'Usuario Admin eliminado');
+            return redirect()->back();
+    }
 }
