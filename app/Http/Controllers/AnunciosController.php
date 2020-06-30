@@ -6,6 +6,9 @@ use App\Anuncios;
 use Illuminate\Http\Request;
 use App\Http\Requests\AnunciosRequest;
 use App\Http\Requests\AnunciosUpdateRequest;
+use App\AdminsAnuncios;
+use App\UsersAdmin;
+use DB;
 class AnunciosController extends Controller
 {
     /**
@@ -59,25 +62,32 @@ class AnunciosController extends Controller
 
             $name=$codigo."_".$file->getClientOriginalName();
             $file->move(public_path().'/images_anuncios/', $name);  
-            $url ='images_anuncios/'.$name;
+            $url ='images_anuncios/'.$name;            
             
-            if ($request->anuncios_todos="1") {
-                dd('hola mundo');
-                $admins_anuncios = new AdminsAnuncios();
-
-            } else {
-                # code...
-            }
         
             $anuncio=new Anuncios();
-
             $anuncio->titulo=$request->titulo;
             $anuncio->link=$request->link;
             $anuncio->descripcion=$request->descripcion;
             $anuncio->nombre_img=$name;
             $anuncio->url_img=$url;
             $anuncio->save();
+            
+            $datos = $request['admins'];
+            //dd($datos);
+            if ($request->admins_todos!="1") {
+                //dd('hola mundo');                
+                foreach($datos as $selected){
+                    //dd($selected);
+                    $admins_anuncios = new AdminsAnuncios();
+                    $admins_anuncios->id_users_admin=$selected;
+                    $admins_anuncios->id_anuncios=$anuncio->id;
+                    $admins_anuncios->save();
+                }
 
+            } else {
+                $users = UsersAdmin::all(['id'])->toArray();
+            }
             
        
         toastr()->success('con éxito!!','Anuncio registrado');

@@ -17,6 +17,6 @@ class AdminsAnuncios extends Model
 
 	public function anuncios()
 	  {
-	  	return $this->belongsTo('App\Anuncios','id_anuncio','id');
+	  	return $this->belongsTo('App\Anuncios','id_anuncios','id');
 	  }
 }

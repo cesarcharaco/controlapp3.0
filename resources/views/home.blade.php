@@ -203,16 +203,16 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label>Seleccionar admin</label> 
-                                                                            <div class="">
-                                                                                
-                                                                                <input type="checkbox" name="anuncios_todos" onchange="seleccionar_todos(this)" id="anuncios_todos"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
-                                                                                <label for="anuncios_todos">Seleccionar todos</label>
+                                                                            <div class="">                                                                                
+                                                                                <input type="checkbox" name="admins_todos" onchange="seleccionar_todos(this)" id="admins_todos"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
+                                                                                <label for="admins_todos">Seleccionar todos</label>
                                                                             </div>
-                                                                            <select class="selec2" name="admins" id="admins">
+                                                                            <select name="admins[]" id="admins" class="form-control select2 border border-default" multiple="multiple" >
                                                                                 <option value="">Seleccione admins...</option>
                                                                                 @foreach($users_admin as $key)
                                                                                 <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
                                                                                 @endforeach
+                                                                                <option value="10">prueba</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
