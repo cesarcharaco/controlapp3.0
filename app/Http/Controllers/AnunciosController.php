@@ -86,7 +86,25 @@ class AnunciosController extends Controller
                 }
 
             } else {
-                $users = UsersAdmin::all(['id'])->toArray();
+                $users_admin = UsersAdmin::where('status','activo')->get();
+                $count=count($users_admin);
+                //dd(($count));
+                //$admins_anuncios = array();
+                for($i=1;$i<=$count;$i++){
+                    \DB::table('admins_has_anuncios')->insert([
+                        'id_users_admin' => $i,
+                        'id_anuncios' => $anuncio->id
+                    ]);
+                }
+
+                /*foreach ($users_admin as $key) {
+                    dd($key);
+                    $admins_anuncios = new AdminsAnuncios();
+                    $admins_anuncios->id_users_admin=$value;
+                    $admins_anuncios->id_anuncios=$anuncio->id;
+                    $admins_anuncios->save();
+                }*/
+                 
             }
             
        
