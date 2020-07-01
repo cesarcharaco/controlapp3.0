@@ -11,6 +11,7 @@ use App\Estacionamientos;
 use App\Inmuebles;
 use App\Anuncios;
 use App\UsersAdmin;
+use App\AdminsAnuncios;
 class HomeController extends Controller
 {
 
@@ -65,7 +66,7 @@ class HomeController extends Controller
             $buscarPEstaciona= PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->where('id_admin',$id_admin)->get();
             $anuncios=Anuncios::all();
             $users_admin = UsersAdmin::all();
-
+            
             //dd('-------------');
 
             return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin'));    
