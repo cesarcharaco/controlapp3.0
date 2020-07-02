@@ -256,9 +256,9 @@
 							        		<div class="form-group">
 							        			<label class="text-danger">Multas - Recargas</label>
 							        			<select class="form-control select2 border border-success" multiple name="id_multa[]" id="selectTodosMultas">
-							        				{{--@foreach($multas as $key)
+							        				@foreach($multas as $key)
 							        					<option value="{{$key->id}}">{{$key->motivo}} {{$key->tipo}} - {{$key->monto}}</option>
-							        				@endforeach--}}
+							        				@endforeach
 							        			</select>
 							        		</div>
 							        		<div class="form-group">

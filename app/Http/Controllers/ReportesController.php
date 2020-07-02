@@ -56,7 +56,10 @@ class ReportesController extends Controller
             $anio[$n]=$i;
             $n++;
         }
-        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes','anio'));
+
+        $multas=MultasRecargas::where('id_admin',$id_admin)->get();
+
+        return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes','anio','multas'));
     }
 
     
@@ -124,7 +127,7 @@ class ReportesController extends Controller
         } else {
            $sql_e="";
         }
-        
+        //dd($sql_e);
         //preparando la variable de anios multas/recargas
         if (!is_null($request->MultasRecargas)) {
                 $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id_admin=".$id_admin." AND residentes.id=resi_has_mr.id_residente AND resi_has_mr.id_mr=multas_recargas.id AND multas_recargas.anio=".$request->anio." ";
