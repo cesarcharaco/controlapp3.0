@@ -125,7 +125,7 @@
 				        					<div class="row justify-content-center">
 					        					<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="id_meses_inmueble[]" id="selectMesesInmuebles">
+									        			<select class="form-control select2 border border-default" multiple name="meses_inmueble[]" id="selectMesesInmuebles">
 									        				@foreach($meses as $key)
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
@@ -133,12 +133,12 @@
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los meses del año?</label>
-									        			<input type="checkbox" value="MesesTodosInmuebles" name="MesesTodosInmuebles" id="MesesTodosInmuebles" onchange="TodosMeses()">
+									        			<input type="checkbox" value="MesesTodosInmuebles" name="MesesTodosInmuebles" id="MesesTodosInmuebles" onchange="TodosMesesInmuebles()">
 									        		</div>
 									        	</div>
 									        	<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="id_anios_inmueble[]" id="selectTodosAniosInmuebles">
+									        			<select class="form-control select2 border border-default" multiple name="anios_inmueble[]" id="selectTodosAniosInmuebles">
 									        				@for($i=0; $i< count($anio); $i++)
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
@@ -146,7 +146,7 @@
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los años?</label>
-									        			<input type="checkbox" value="AniosTodosInmuebles" name="AniosTodosInmuebles" id="AniosTodosInmuebles" onchange="TodosMeses()">
+									        			<input type="checkbox" value="AniosTodosInmuebles" name="AniosTodosInmuebles" id="AniosTodosInmuebles" onchange="TodosAniosInmuebles()">
 									        		</div>
 									        	</div>
 									        </div>
@@ -173,7 +173,7 @@
 							        		<div class="row justify-content-center">
 					        					<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="id_meses_estaciona[]" id="selectMesesEstaciona">
+									        			<select class="form-control select2 border border-default" multiple name="meses_estaciona[]" id="selectMesesEstaciona">
 									        				@foreach($meses as $key)
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
@@ -181,28 +181,20 @@
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los meses del año?</label>
-									        			<input type="checkbox" value="MesesTodosEstaciona" name="MesesTodosEstaciona" id="MesesTodosEstaciona" onchange="TodosMeses()">
+									        			<input type="checkbox" value="MesesTodosEstaciona" name="MesesTodosEstaciona" id="MesesTodosEstaciona" onchange="TodosMesesEstaciona()">
 									        		</div>
 									        	</div>
 									        	<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="id_meses_inmueble[]" id="selectTodosAniosEstaciona">
+									        			<select class="form-control select2 border border-default" multiple name="anios_estaciona[]" id="selectAniosEstaciona">
 									        				@for($i=0; $i< count($anio); $i++)
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
 									        			</select>
-									        			<div style="display: none;">
-										        			<select class="form-control select2 border border-default" multiple name="id_meses_inmueble[]" id="AniosTodosEstaciona" style="display: none;">
-										        				@for($i=0; $i< count($anio); $i++)
-										        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
-										        				@endfor
-										        			</select>
-									        				
-									        			</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los años?</label>
-									        			<input type="checkbox" value="AniosTodosEstaciona" name="AniosTodosEstaciona" id="AniosTodosEstaciona" onchange="TodosMeses()">
+									        			<input type="checkbox" value="AniosTodosEstaciona" name="AniosTodosEstaciona" id="AniosTodosEstaciona" onchange="TodosAniosEstaciona()">
 									        		</div>
 									        	</div>
 									        </div>
@@ -270,22 +262,8 @@
         $('#id').val(id);
     }
 
-    function TodosMeses() {
-    	if($('#MesesTodos').prop('checked')){
-    		$('#selectTodosMeses').attr('disabled',true);
-    	}else{
-    		$('#selectTodosMeses').removeAttr('disabled',false);
-    	}
-    }
 
-    function TodosEstacionamientos() {
-    	if($('#EstacionamientosTodos').prop('checked')){
-    		$('#selectTodosEstacionamientos').attr('disabled',true);
-    	}else{
-    		$('#selectTodosEstacionamientos').removeAttr('disabled',false);
-    	}
-    }
-
+    // -----------------------------INMUEBLES --------------------------------------
     function TodosInmuebles() {
     	if($('#InmueblesTodos').prop('checked')){
     		$('#selectTodosInmuebles').attr('disabled',true);
@@ -294,6 +272,48 @@
     	}
     }
 
+    function TodosMesesInmuebles() {
+    	if($('#MesesTodosInmuebles').prop('checked')){
+    		$('#selectMesesInmuebles').attr('disabled',true);
+    	}else{
+    		$('#selectMesesInmuebles').removeAttr('disabled',false);
+    	}
+    }
+
+    function TodosAniosInmuebles() {
+    	if($('#AniosTodosInmuebles').prop('checked')){
+    		$('#selectTodosAniosInmuebles').attr('disabled',true);
+    	}else{
+    		$('#selectTodosAniosInmuebles').removeAttr('disabled',false);
+    	}
+    }
+
+    //-------------------------------ESTACIONAMIENTOS-------------------------------
+
+    function TodosEstacionamientos() {
+    	if($('#EstacionamientosTodos').prop('checked')){
+    		$('#selectTodosEstacionamientos').attr('disabled',true);
+    	}else{
+    		$('#selectTodosEstacionamientos').removeAttr('disabled',false);
+    	}
+    }
+    function TodosMesesEstaciona() {
+    	if($('#MesesTodosEstaciona').prop('checked')){
+    		$('#selectMesesEstaciona').attr('disabled',true);
+    	}else{
+    		$('#selectMesesEstaciona').removeAttr('disabled',false);
+    	}
+    }
+
+    function TodosAniosEstaciona() {
+    	if($('#AniosTodosEstaciona').prop('checked')){
+    		$('#selectAniosEstaciona').attr('disabled',true);
+    	}else{
+    		$('#selectAniosEstaciona').removeAttr('disabled',false);
+    	}
+    }
+
+    //-------------------------------------residentes------------------------------
     function TodosResidentes() {
     	if($('#ResidentesTodos').prop('checked')){
     		$('#selectTodosResidentes').attr('disabled',true);

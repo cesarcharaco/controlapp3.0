@@ -62,9 +62,7 @@ class ReportesController extends Controller
     
     public function store(Request $request)
     {
-        $request->anio=Date('Y');
-
-        dd($request->all());
+        //dd($request->all());
         /*"id_meses" => array:2 [▶]
           "MesesTodos" => "MesesTodos"
           "id_estacionamientos" => array:1 [▶]
@@ -79,39 +77,7 @@ class ReportesController extends Controller
         //preparando variable para anios de inmuebles
         if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
             //$sql_i="SELECT inmuebles.* FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades,pagos WHERE residentes.id_admin=".$id_admin." AND  residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id AND mensualidades.anio=".$request->anio." ";
-            
-            $sql_i="SELECT * FROM residentes, inmuebles, pagos_comunes 
-                WHERE residentes.id_admin=".$id_admin." 
-                AND residentes.id=pagos_comunes.id_residente 
-                AND pagos_comunes.tipo='Inmueble' 
-                AND i.anio=".$request->anio." ";
-
-            if($request->MesesTodosInmuebles == 'MesesTodosInmuebles'){
-                $meses_inmuebles="";
-            }else{
-                for ($i=0; $i < count($request->meses_inmueble); $i++) { 
-                    $meses_inmuebles.="AND pagos_comunes.mes=".$request->meses_inmuebles[$i];
-                }
-            }
-
-            if($request->AniosTodosInmuebles == 'AniosTodosInmuebles'){
-                $anios_inmuebles="";
-            }else{
-                for ($i=0; $i < count($request->anios_inmueble); $i++) { 
-                    $anios_inmuebles.="AND pagos_comunes.anio=".$request->anios_inmuebles[$i];
-                }
-            }
-
-            if($sql_i!==""){
-                if ($meses_inmuebles!=="") {
-                    $sql_i.=$meses_inmuebles;
-                }
-                if ($anios_inmuebles!=="") {
-                    $sql_i.=$anios_inmuebles;
-                }
-            }
-
-            // $sql_i="SELECT * FROM inmuebles WHERE id_admin=".$id_admin." ";
+            $sql_i="SELECT * FROM inmuebles WHERE id_admin=".$id_admin." ";
         } else {
             $sql_i="";
         }
@@ -121,8 +87,6 @@ class ReportesController extends Controller
             
             //$sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos,mens_estac WHERE residentes.id_admin=".$id_admin." AND residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND mens_estac.id_estacionamiento=estacionamientos.id  AND mens_estac.anio=".$request->anio." ";
             $sql_e="SELECT * FROM estacionamientos  WHERE id_admin=".$id_admin." ";
-
-
         } else {
            $sql_e="";
         }
