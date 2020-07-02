@@ -163,7 +163,37 @@ class ReportesController extends Controller
         
         //haciendo arrays de meses y años de inmuebles
 
+            $mesesInmuebles[]=array();
+            $aniosInmuebles[]=array();
 
+            //Meses de los inmuebles
+            if(is_null($request->MesesTodosInmuebles)){
+                // para agregar los meses
+
+                for ($i=0; $i < count($request->meses_inmueble) ; $i++) { 
+                    
+                    $mesesInmuebles[$i]=$request->meses_inmueble[$i];
+                }
+            }else{
+                for ($i=0; $i < 12; $i++) { 
+                    $mesesInmuebles[$i]=$i+1;
+                }
+            }
+
+            //Anios de los inmuebles
+            if(is_null($request->AniosTodosInmuebles)){
+                // para agregar los meses
+
+                for ($i=0; $i < count($request->anios_inmueble) ; $i++) { 
+                    
+                    $aniosInmuebles[$i]=$request->anios_inmueble[$i];
+                }
+            }else{
+                for ($i=0; $i < 12; $i++) { 
+                    $aniosInmuebles[$i]=$i+1;
+                }
+            }
+            
         //---------------------------------------------
 
         //haciendo arrays de meses y años de estacionamientos
@@ -179,34 +209,17 @@ class ReportesController extends Controller
 
 
         //---------------------------------------------
-        $mesesInmuebles[]=array();
-        $aniosInmuebles[]=array();
-
-        //Meses de los inmuebles
-        if(is_null($request->MesesTodosInmuebles)){
+        $meses[]=array();
+        if(is_null($request->MesesTodos)){
             // para agregar los meses
 
-            for ($i=0; $i < count($request->meses_inmueble) ; $i++) { 
+            for ($i=0; $i < count($request->id_meses) ; $i++) { 
                 
-                $mesesInmuebles[$i]=$request->meses_inmueble[$i];
+                $meses[$i]=$request->id_meses[$i];
             }
         }else{
             for ($i=0; $i < 12; $i++) { 
-                $mesesInmuebles[$i]=$i+1;
-            }
-        }
-
-        //Anios de los inmuebles
-        if(is_null($request->AniosTodosInmuebles)){
-            // para agregar los meses
-
-            for ($i=0; $i < count($request->anios_inmueble) ; $i++) { 
-                
-                $aniosInmuebles[$i]=$request->anios_inmueble[$i];
-            }
-        }else{
-            for ($i=0; $i < 12; $i++) { 
-                $aniosInmuebles[$i]=$i+1;
+                $meses[$i]=$i+1;
             }
         }
         
