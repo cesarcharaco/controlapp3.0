@@ -122,7 +122,7 @@ class ReportesController extends Controller
         //dd($sql_e);
         //preparando la variable de anios multas/recargas
         if (!is_null($request->MultasRecargas)) {
-                $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id_admin=".$id_admin." AND residentes.id=resi_has_mr.id_residente AND resi_has_mr.id_mr=multas_recargas.id AND multas_recargas.anio=".$request->anio." ";
+                $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin." ";
 
                 if (in_null($request->id_multa)) {
                     $sql_mr.= ' AND ';
@@ -160,6 +160,25 @@ class ReportesController extends Controller
         }
         //dd($sql_r);
         $residentes=\DB::select($sql_r);
+        
+        //haciendo arrays de meses y años de inmuebles
+
+
+        //---------------------------------------------
+
+        //haciendo arrays de meses y años de estacionamientos
+
+
+        //---------------------------------------------
+
+        //haciendo arrays de meses y años de residentes
+
+
+        //---------------------------------------------
+        //haciendo arrays de meses y años de multas_recargas
+
+
+        //---------------------------------------------
         $meses[]=array();
         if(is_null($request->MesesTodos)){
             // para agregar los meses
