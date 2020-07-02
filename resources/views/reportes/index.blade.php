@@ -203,7 +203,7 @@
 					        	</div>
 					        </div>
 					         <div class="row justify-content-center">
-					        	<div class="col-md-12">
+					        	<div class="col-md-6">
 					        		<div class="card border border-success rounded">
 				        				<div class="card-body">
 							        		<div class="form-group">
@@ -218,6 +218,81 @@
 							        			<label>¿Todos los residentes?</label>
 							        			<input type="checkbox" value="Si" name="ResidentesTodos" id="ResidentesTodos" onchange="TodosResidentes()">
 							        		</div>
+									        <div class="row justify-content-center">
+					        					<div class="col-md-6">
+									        		<div class="form-group">
+									        			<select class="form-control select2 border border-default" multiple name="meses_residentes[]" id="selectMesesResidentes">
+									        				@foreach($meses as $key)
+									        					<option value="{{$key->id}}">{{$key->mes}}</option>
+									        				@endforeach
+									        			</select>
+									        		</div>
+									        		<div class="form-group">
+									        			<label>¿Todos los meses del año?</label>
+									        			<input type="checkbox" value="MesesTodosResidentes" name="MesesTodosResidentes" id="MesesTodosResidentes" onchange="TodosMesesResidentes()">
+									        		</div>
+									        	</div>
+									        	<div class="col-md-6">
+									        		<div class="form-group">
+									        			<select class="form-control select2 border border-default" multiple name="anios_residentes[]" id="selectAniosResidentes">
+									        				@for($i=0; $i< count($anio); $i++)
+									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
+									        				@endfor
+									        			</select>
+									        		</div>
+									        		<div class="form-group">
+									        			<label>¿Todos los años?</label>
+									        			<input type="checkbox" value="AniosTodosResidentes" name="AniosTodosResidentes" id="AniosTodosResidentes" onchange="TodosAniosResidentes()">
+									        		</div>
+									        	</div>
+									        </div>
+							        	</div>
+							        </div>
+					        	</div>
+
+					        	<div class="col-md-6">
+					        		<div class="card border border-danger rounded">
+				        				<div class="card-body">
+							        		<div class="form-group">
+							        			<label class="text-danger">Multas - Recargas</label>
+							        			<select class="form-control select2 border border-success" multiple name="id_multa[]" id="selectTodosMultas">
+							        				{{--@foreach($multas as $key)
+							        					<option value="{{$key->id}}">{{$key->motivo}} {{$key->tipo}} - {{$key->monto}}</option>
+							        				@endforeach--}}
+							        			</select>
+							        		</div>
+							        		<div class="form-group">
+									        	<label>¿Todas las Multas y recargas? </label>
+									        	<input type="checkbox" value="Si" name="MultasRecargas" id="MultasTodas" onclick="TodosMultas()">
+									        </div>
+									        <div class="row justify-content-center">
+					        					<div class="col-md-6">
+									        		<div class="form-group">
+									        			<select class="form-control select2 border border-default" multiple name="meses_multas[]" id="selectMesesMultas">
+									        				@foreach($meses as $key)
+									        					<option value="{{$key->id}}">{{$key->mes}}</option>
+									        				@endforeach
+									        			</select>
+									        		</div>
+									        		<div class="form-group">
+									        			<label>¿Todos los meses del año?</label>
+									        			<input type="checkbox" value="MesesTodosMultas" name="MesesTodosMultas" id="MesesTodosMultas" onchange="TodosMesesMultas()">
+									        		</div>
+									        	</div>
+									        	<div class="col-md-6">
+									        		<div class="form-group">
+									        			<select class="form-control select2 border border-default" multiple name="anios_multas[]" id="selectAniosMultas">
+									        				@for($i=0; $i< count($anio); $i++)
+									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
+									        				@endfor
+									        			</select>
+									        		</div>
+									        		<div class="form-group">
+									        			<label>¿Todos los años?</label>
+									        			<input type="checkbox" value="AniosTodosMultas" name="AniosTodosMultas" id="AniosTodosMultas" onchange="TodosAniosMultas()">
+									        		</div>
+									        	</div>
+									        </div>
 							        	</div>
 							        </div>
 					        	</div>
@@ -226,10 +301,7 @@
 
 			        	<!-- <div class="card border border-warning rounded"> -->
 				        	<!-- <div class="card-body"> -->
-						        <div class="form-group">
-						        	<label>¿Incluir Multas y recargas? </label>
-						        	<input type="checkbox" value="Si" name="MultasRecargas">
-						        </div>
+						        
 						    <!-- </div> -->
 						<!-- </div> -->
 
@@ -319,6 +391,47 @@
     		$('#selectTodosResidentes').attr('disabled',true);
     	}else{
     		$('#selectTodosResidentes').removeAttr('disabled',false);
+    	}
+    }
+
+    function TodosMesesResidentes() {
+    	if($('#MesesTodosResidentes').prop('checked')){
+    		$('#selectMesesResidentes').attr('disabled',true);
+    	}else{
+    		$('#selectMesesResidentes').removeAttr('disabled',false);
+    	}
+    }
+
+    function TodosAniosResidentes() {
+    	if($('#AniosTodosResidentes').prop('checked')){
+    		$('#selectAniosResidentes').attr('disabled',true);
+    	}else{
+    		$('#selectAniosResidentes').removeAttr('disabled',false);
+    	}
+    }
+
+    //-------------------------------------MULTAS------------------------------
+    function TodosMultas() {
+    	if($('#MultasTodas').prop('checked')){
+    		$('#selectTodosMultas').attr('disabled',true);
+    	}else{
+    		$('#selectTodosMultas').removeAttr('disabled',false);
+    	}
+    }
+
+    function TodosMesesMultas() {
+    	if($('#MesesTodosMultas').prop('checked')){
+    		$('#selectMesesMultas').attr('disabled',true);
+    	}else{
+    		$('#selectMesesMultas').removeAttr('disabled',false);
+    	}
+    }
+
+    function TodosAniosMultas() {
+    	if($('#AniosTodosMultas').prop('checked')){
+    		$('#selectAniosMultas').attr('disabled',true);
+    	}else{
+    		$('#selectAniosMultas').removeAttr('disabled',false);
     	}
     }
 
