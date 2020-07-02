@@ -66,7 +66,7 @@ class ReportesController extends Controller
     public function store(Request $request)
     {
         
-        //dd($request->all());
+        dd($request->all());
         /*"id_meses" => array:2 [▶]
           "MesesTodos" => "MesesTodos"
           "id_estacionamientos" => array:1 [▶]
@@ -123,6 +123,18 @@ class ReportesController extends Controller
         //preparando la variable de anios multas/recargas
         if (!is_null($request->MultasRecargas)) {
                 $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id_admin=".$id_admin." AND residentes.id=resi_has_mr.id_residente AND resi_has_mr.id_mr=multas_recargas.id AND multas_recargas.anio=".$request->anio." ";
+
+                if (in_null($request->id_multa)) {
+                    $sql_mr.= ' AND ';
+                    $limit = count($request->id_multa) -1;
+
+                    for ($z=0; $z < count($request->id_multa); $z++) { 
+                        $sql_mr.= " multas_recargas.id=".$request->id_multa[$z];
+                        if ($z != $limit) {
+                            $sql_mr.= " OR ";
+                        }
+                    }
+                }
         } else {
             $sql_mr="";
         }
