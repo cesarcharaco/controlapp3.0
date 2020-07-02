@@ -199,17 +199,111 @@ class ReportesController extends Controller
 
         //haciendo arrays de meses y años de estacionamientos
 
+            $mesesEstaciona[]=array();
+            $aniosEstaciona[]=array();
+            if(is_null($request->MesesTodosEstaciona)){
+                // para agregar los meses
+
+                for ($i=0; $i < count($request->meses_estaciona) ; $i++) { 
+                    
+                    $mesesEstaciona[$i]=$request->meses_estaciona[$i];
+                }
+            }else{
+                for ($i=0; $i < 12; $i++) { 
+                    $mesesEstaciona[$i]=$i+1;
+                }
+            }
+
+            //Anios de los inmuebles
+            if(is_null($request->AniosTodosInmuebles)){
+                // para agregar los meses
+
+                for ($i=0; $i < count($request->anios_estaciona) ; $i++) { 
+                    
+                    $aniosEstaciona[$i]=$request->anios_estaciona[$i];
+                }
+            }else{
+                 $a=anios_registros();
+        
+                for ($i=0; $i < count(anios_registros()); $i++) { 
+                    $aniosEstaciona[$i]=$a[$i]['anio'];
+                }
+            }
 
         //---------------------------------------------
 
         //haciendo arrays de meses y años de residentes
+            $mesesResidentes[]=array();
+            $aniosResidentes[]=array();
+            if(is_null($request->MesesTodosResidentes)){
+                // para agregar los meses
 
+                for ($i=0; $i < count($request->meses_residentes) ; $i++) { 
+                    
+                    $mesesResidentes[$i]=$request->meses_residentes[$i];
+                }
+            }else{
+                for ($i=0; $i < 12; $i++) { 
+                    $mesesResidentes[$i]=$i+1;
+                }
+            }
+
+            //Anios de los inmuebles
+            if(is_null($request->AniosTodosResidentes)){
+                // para agregar los meses
+
+                for ($i=0; $i < count($request->anios_residentes) ; $i++) { 
+                    
+                    $aniosResidentes[$i]=$request->anios_residentes[$i];
+                }
+            }else{
+                 $a=anios_registros();
+        
+                for ($i=0; $i < count(anios_registros()); $i++) { 
+                    $aniosResidentes[$i]=$a[$i]['anio'];
+                }
+            }
 
         //---------------------------------------------
         //haciendo arrays de meses y años de multas_recargas
+            $mesesMultas[]=array();
+            $aniosMultas[]=array();
+            if(is_null($request->MesesTodosMultas)){
+                // para agregar los meses
+
+                for ($i=0; $i < count($request->meses_multas) ; $i++) { 
+                    
+                    $mesesMultas[$i]=$request->meses_multas[$i];
+                }
+            }else{
+                for ($i=0; $i < 12; $i++) { 
+                    $mesesMultas[$i]=$i+1;
+                }
+            }
+
+            //Anios de los inmuebles
+            if(is_null($request->AniosTodosMultas)){
+                // para agregar los meses
+
+                for ($i=0; $i < count($request->anios_multas) ; $i++) { 
+                    
+                    $aniosMultas[$i]=$request->anios_multas[$i];
+                }
+            }else{
+                 $a=anios_registros();
+        
+                for ($i=0; $i < count(anios_registros()); $i++) { 
+                    $aniosMultas[$i]=$a[$i]['anio'];
+                }
+            }
 
 
         //---------------------------------------------
+
+
+
+
+
         $meses[]=array();
         if(is_null($request->MesesTodos)){
             // para agregar los meses
