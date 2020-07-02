@@ -65,7 +65,7 @@ class ReportesController extends Controller
     public function store(Request $request)
     {
         
-        dd($request->all());
+        //dd($request->all());
         /*"id_meses" => array:2 [▶]
           "MesesTodos" => "MesesTodos"
           "id_estacionamientos" => array:1 [▶]
@@ -120,6 +120,8 @@ class ReportesController extends Controller
         }
         //dd($sql_e);
         //preparando la variable de anios multas/recargas
+        if (!is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
+
         if (!is_null($request->MultasRecargas)) {
                 $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin." ";
 
@@ -135,30 +137,36 @@ class ReportesController extends Controller
                     }
                 }
         } else {
+            $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin;
+        }
+        } else {
             $sql_mr="";
         }
         
         //agregando los residentes
-        $sql_r="SELECT * FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
-        if (is_null($request->ResidentesTodos)) {
-            $sql_r.=" AND ";// agrego un AND para comenzar a agregar condicionales
-            $limit=count($request->id_residentes) -1;// variable que me permite saber cual es la última vuelta del for
-          for ($i=0; $i < count($request->id_residentes); $i++) { 
-              $sql_r.=" residentes.id=".$request->id_residentes[$i]." ";// anexo la condición para cada id_residente que está en el array
-              if ($i!=$limit) {
-                $sql_r.=" OR ";// agrego OR para que me los traiga todos
-              }elseif($i==$limit){
-                $sql_r.=" GROUP BY residentes.id "; // cuando sea la ultima vuelta le agrego el group by
-              }
-              
+        if (!is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
+            $sql_r="SELECT * FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
+            if (is_null($request->ResidentesTodos)) {
+                $sql_r.=" AND ";// agrego un AND para comenzar a agregar condicionales
+                $limit=count($request->id_residentes) -1;// variable que me permite saber cual es la última vuelta del for
+              for ($i=0; $i < count($request->id_residentes); $i++) { 
+                  $sql_r.=" residentes.id=".$request->id_residentes[$i]." ";// anexo la condición para cada id_residente que está en el array
+                  if ($i!=$limit) {
+                    $sql_r.=" OR ";// agrego OR para que me los traiga todos
+                  }elseif($i==$limit){
+                    $sql_r.=" GROUP BY residentes.id "; // cuando sea la ultima vuelta le agrego el group by
+                  }
+                  
 
-          }
+              }
+            }else{
+              
+                $sql_r="SELECT residentes.*,users.email FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
+            }
         }else{
-          
-            $sql_r="SELECT residentes.*,users.email FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
+            $sql_r="";
         }
-        //dd($sql_r);
-        $residentes=\DB::select($sql_r);
+        
         
         //haciendo arrays de meses y años de inmuebles
 
@@ -297,7 +305,7 @@ class ReportesController extends Controller
 
         //---------------------------------------------
 
-
+/*
 
 
 
@@ -315,10 +323,15 @@ class ReportesController extends Controller
             }
         }
         
+*/        
         
-        
-        dd($sql_i);
+        //dd($sql_r);
         //dd($meses);
+        if($sql_r!==""){
+        $residentes=\DB::select($sql_r);
+        }else{
+            $residentes=null;
+        }
         if($sql_i!==""){
         $inmuebles=\DB::select($sql_i);
         }else{
@@ -341,8 +354,14 @@ class ReportesController extends Controller
             'estacionamientos'=>$estacionamientos,
             'mr'=>$mr,
             'residentes' => $residentes,
-            'meses' => $meses,
-            'anio' => $anio
+            'mesesResidentes' => $mesesResidentes,
+            'mesesInmuebles' => $mesesInmuebles,
+            'mesesEstaciona' => $mesesEstaciona,
+            'mesesMultas' => $mesesMultas,
+            'aniosResidentes' => $aniosResidentes,
+            'aniosInmuebles' => $aniosInmuebles,
+            'aniosEstaciona' => $aniosEstaciona,
+            'aniosMultas' => $aniosMultas
         ));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream('reportes/ReporteEspecifico.pdf');

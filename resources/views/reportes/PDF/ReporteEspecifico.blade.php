@@ -92,6 +92,8 @@
 	</style>
 </head>
 <body>
+@if(count($residentes)>0)
+	@for($ra=0;$ra<count($aniosResidentes);$ra++)
 	<div style="float: left">
 		<table style="width: 500px !important;">
 			<tbody>
@@ -99,7 +101,7 @@
 					<th>Año</th>
 				</tr>
 				<tr>
-					<td>{{ $anio }}</td>
+					<td>{{ $aniosResidentes[$ra] }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -107,12 +109,11 @@
 	<div style="text-align: right">
 		<center><img width="300" height="300" style="border-radius: 50px;" src="../public/assets/images/logo.jpg"></center>
 	</div>
-@if(count($residentes)>0)
 	<table width="100%" border="1">
 		<!-- <tr><th colspan="6">RESIDENTES</th></tr> -->
-		@for($i=0; $i < count($meses); $i++)	
+		@for($i=0; $i < count($mesesResidentes); $i++)	
 		<tr>
-			<th colspan="6" align="center"><div align="float-right">MES:{{ meses($meses[$i]) }}</div></th>
+			<th colspan="6" align="center"><div align="float-right">MES:{{ meses($mesesResidentes[$i]) }}</div></th>
 		</tr>
 			@foreach($residentes as $key)
 				<tr>
@@ -139,14 +140,14 @@
 			</tr>
 			<tr>
 				<td>{{ estacionamientos_asig($key->id) }}</td>
-				<td>{{ gasto_comun_mes($meses[$i],$key->id,$anio) }}</td>
+				<td>{{ gasto_comun_mes($mesesResidentes[$i],$key->id,$aniosResidentes[$ra]) }}</td>
 				<td> 
-					{{ status_gastos_i($meses[$i],$key->id,$anio) }}
+					{{ status_gastos_i($mesesResidentes[$i],$key->id,$aniosResidentes[$ra]) }}
 					<br>
-					{{ status_gastos_e($meses[$i],$key->id,$anio) }}
+					{{ status_gastos_e($mesesResidentes[$i],$key->id,$aniosResidentes[$ra]) }}
 				</td>
-				<td>{{ montos_mr($meses[$i],$key->id,$anio) }}</td>
-				<td>{{ status_montos_mr($meses[$i],$key->id,$anio) }}</td>
+				<td>{{ montos_mr($mesesResidentes[$i],$key->id,$aniosResidentes[$ra]) }}</td>
+				<td>{{ status_montos_mr($mesesResidentes[$i],$key->id,$aniosResidentes[$ra]) }}</td>
 				<td></td>
 			</tr>
 			<tr>
@@ -162,17 +163,34 @@
 			<td colspan="6" style="background-color: blue;"><br></td>
 		</tr>
 	</table>
+	@endfor
 @endif
 @if(count($inmuebles)>0)
 <hr><br>
+@for($ia=0;$ia<count($aniosInmuebles);$ia++)
+	<div style="float: left">
+		<table style="width: 500px !important;">
+			<tbody>
+				<tr>
+					<th>Año</th>
+				</tr>
+				<tr>
+					<td>{{ $aniosInmuebles[$ia] }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="text-align: right">
+		<center><img width="300" height="300" style="border-radius: 50px;" src="../public/assets/images/logo.jpg"></center>
+	</div>
 <table width="100%" border="1">
 	<tbody>
 		<tr>
 			<th>INMUEBLES</th>
 		</tr>
-		@for($i=0; $i < count($meses); $i++)
+		@for($i=0; $i < count($mesesInmuebles); $i++)
 			<tr>
-				<th colspan="6">Mes: {{ meses($meses[$i]) }}</th>
+				<th colspan="6">Mes: {{ meses($mesesInmuebles[$i]) }}</th>
 			</tr>
 		<tr>
 			<th>IDEM</th>
@@ -189,7 +207,7 @@
 				<td>{{ $key->status }}</td>
 				<td>{{ $key->estacionamiento }}</td>
 				<td>{{ $key->cuantos }}</td>
-				<td>{{ alquiler_i($meses[$i],$key->id,$anio) }}</td>
+				<td>{{ alquiler_i($mesesInmuebles[$i],$key->id,$aniosInmuebles[$ia]) }}</td>
 			</tr>
 			@endforeach
 		@endfor
@@ -198,17 +216,35 @@
 		</tr>
 	</tbody>
 </table>
+	@endfor
 @endif
 @if(count($estacionamientos)>0)
+<hr><br>
+@for($ea=0;$ea<count($aniosEstaciona);$ea++)
+	<div style="float: left">
+		<table style="width: 500px !important;">
+			<tbody>
+				<tr>
+					<th>Año</th>
+				</tr>
+				<tr>
+					<td>{{ $aniosEstaciona[$ea] }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="text-align: right">
+		<center><img width="300" height="300" style="border-radius: 50px;" src="../public/assets/images/logo.jpg"></center>
+	</div>
 <table width="100%" border="1">
 	<tbody>
 		<tr>
 			<th colspan="3">ESTACIONAMIENTOS</th>
 		</tr>
-		@for($i=0; $i < count($meses); $i++)
+		@for($i=0; $i < count($mesesEstaciona); $i++)
 			<tr>
-				<th>Año: {{ $anio }} </th>
-				<th >Mes: {{ meses($meses[$i]) }}</th>
+				<th>Año: {{ $aniosEstaciona[$ea] }} </th>
+				<th >Mes: {{ meses($mesesEstaciona[$i]) }}</th>
 				<th></th>
 			</tr>
 		<tr>
@@ -220,7 +256,7 @@
 			<tr>
 				<td>{{ $key->idem }}</td>
 				<td>{{ $key->status }}</td>
-				<td>{{ alquiler_e($meses[$i],$key->id,$anio) }}</td>
+				<td>{{ alquiler_e($mesesEstaciona[$i],$key->id,$aniosEstaciona[$ea]) }}</td>
 			</tr>
 			@endforeach
 		@endfor
@@ -229,6 +265,59 @@
 		</tr>
 	</tbody>
 </table>
+	@endfor
+@endif
+@if(count($mr)>0)
+<hr><br>
+@for($ea=0;$ea<count($aniosMultas);$ea++)
+	<div style="float: left">
+		<table style="width: 500px !important;">
+			<tbody>
+				<tr>
+					<th>Año</th>
+				</tr>
+				<tr>
+					<td>{{ $aniosMultas[$ea] }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="text-align: right">
+		<center><img width="300" height="300" style="border-radius: 50px;" src="../public/assets/images/logo.jpg"></center>
+	</div>
+<table width="100%" border="1">
+	<tbody>
+		<tr>
+			<th colspan="3">MULTAS-RECARGAS</th>
+		</tr>
+		@for($i=0; $i < count($mesesMultas); $i++)
+			<tr>
+				<th>Año: {{ $anio }} </th>
+				<th >Mes: {{ meses($mesesMultas[$i]) }}</th>
+				<th></th>
+			</tr>
+		<tr>
+			<th>MOTIVO</th>
+			<th>OBSERVACIÓN</th>
+			<th>MONTO</th>
+			<TH>TIPO</TH>
+		</tr>
+			@foreach($mr as $key)
+			<tr>
+				<td>{{ $key->motivo }}</td>
+				<td>{{ $key->observacion }}</td>
+				<td>{{ $key->monto }}</td>
+				<td>{{ $key->tipo }}</td>
+				{{-- <td>{{ alquiler_e($mesesEstaciona[$i],$key->id,$aniosEstaciona[$ea]) }}</td> --}}
+			</tr>
+			@endforeach
+		@endfor
+		<tr>
+			<td colspan="6" style="background-color: green;"><br></td>
+		</tr>
+	</tbody>
+</table>
+	@endfor
 @endif
 @if(count($residentes)==0 && count($inmuebles)==0 && count($estacionamientos)==0)
 <center><h1></h1></center>
