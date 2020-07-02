@@ -453,3 +453,10 @@ function mostrar_resi_has_notif($id_notificacion)
 
 	return $texto;
 }
+
+function mi_admin($id_usuario)
+{
+	$buscar=\App\Residentes::where('id_usuario',$id_usuario)->first();
+
+	return $buscar->id_admin;
+}

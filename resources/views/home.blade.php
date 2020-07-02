@@ -251,6 +251,7 @@
                                 </form>
                                 <div class="card-body">
                                     @foreach($anuncios as $key)
+                                    
                                         <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
                                             x
                                         </a>
@@ -475,12 +476,16 @@
                                 {{--<a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>--}}
                             </div>
                         <div class="card-body">
-                            @foreach($anuncios as $key)                                
+                            @foreach($anuncios as $key)
+                                @foreach($key->admins as $key2)
+                                @if($key2->pivot->id_users_admin==mi_admin(\Auth::user()->id))                                
                                 <div onclick="window.open('{{$key->link}}', '_blank');">                                    
                                     <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
                                     <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200" style="padding: 15px 15px 15px 15px; border-radius: 10%;">
                                     <p class="text-dark" align="center">{{$key->descripcion}}</p>
                                 </div>
+                                @endif
+                                @endforeach
                             @endforeach()
                         </div>
                     </div>
