@@ -162,6 +162,7 @@ class ReportesController extends Controller
         
         //haciendo arrays de meses y años de inmuebles
 
+            $a=anios_registros();
             $mesesInmuebles[]=array();
             $aniosInmuebles[]=array();
 
@@ -188,7 +189,6 @@ class ReportesController extends Controller
                     $aniosInmuebles[$i]=$request->anios_inmueble[$i];
                 }
             }else{
-                 $a=anios_registros();
         
                 for ($i=0; $i < count(anios_registros()); $i++) { 
                     $aniosInmuebles[$i]=$a[$i]['anio'];
@@ -223,7 +223,6 @@ class ReportesController extends Controller
                     $aniosEstaciona[$i]=$request->anios_estaciona[$i];
                 }
             }else{
-                 $a=anios_registros();
         
                 for ($i=0; $i < count(anios_registros()); $i++) { 
                     $aniosEstaciona[$i]=$a[$i]['anio'];
@@ -257,7 +256,6 @@ class ReportesController extends Controller
                     $aniosResidentes[$i]=$request->anios_residentes[$i];
                 }
             }else{
-                 $a=anios_registros();
         
                 for ($i=0; $i < count(anios_registros()); $i++) { 
                     $aniosResidentes[$i]=$a[$i]['anio'];
@@ -290,7 +288,6 @@ class ReportesController extends Controller
                     $aniosMultas[$i]=$request->anios_multas[$i];
                 }
             }else{
-                 $a=anios_registros();
         
                 for ($i=0; $i < count(anios_registros()); $i++) { 
                     $aniosMultas[$i]=$a[$i]['anio'];
