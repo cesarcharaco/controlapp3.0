@@ -98,7 +98,6 @@ class ReportesController extends Controller
                    
                 }
              }
-             
         } else {
             $sql_i="";
         }
@@ -108,6 +107,18 @@ class ReportesController extends Controller
             
             //$sql_e="SELECT * FROM residentes, residentes_has_est, estacionamientos,mens_estac WHERE residentes.id_admin=".$id_admin." AND residentes.id=residentes_has_est.id_residente AND estacionamientos.id=residentes_has_est.id_estacionamiento AND mens_estac.id_estacionamiento=estacionamientos.id  AND mens_estac.anio=".$request->anio." ";
             $sql_e="SELECT * FROM estacionamientos  WHERE id_admin=".$id_admin." ";
+
+            if(is_null($request->EstacionamientosTodos)){
+                $sql_e.= ' AND ';
+                $limit=count($request->id_estacionamientos) -1;
+
+                for ($y=0; $y < count($request->id_estacionamientos); $y++) { 
+                    $sql_e.=" estacionamientos.id=".$request->id_estacionamientos[$y];
+                    if ($y!=$limit) {
+                        $sql_e.= " OR ";
+                    }
+                }
+            }
 
 
         } else {
