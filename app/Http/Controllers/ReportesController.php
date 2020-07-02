@@ -179,17 +179,34 @@ class ReportesController extends Controller
 
 
         //---------------------------------------------
-        $meses[]=array();
-        if(is_null($request->MesesTodos)){
+        $mesesInmuebles[]=array();
+        $aniosInmuebles[]=array();
+
+        //Meses de los inmuebles
+        if(is_null($request->MesesTodosInmuebles)){
             // para agregar los meses
 
-            for ($i=0; $i < count($request->id_meses) ; $i++) { 
+            for ($i=0; $i < count($request->meses_inmueble) ; $i++) { 
                 
-                $meses[$i]=$request->id_meses[$i];
+                $mesesInmuebles[$i]=$request->meses_inmueble[$i];
             }
         }else{
             for ($i=0; $i < 12; $i++) { 
-                $meses[$i]=$i+1;
+                $mesesInmuebles[$i]=$i+1;
+            }
+        }
+
+        //Anios de los inmuebles
+        if(is_null($request->AniosTodosInmuebles)){
+            // para agregar los meses
+
+            for ($i=0; $i < count($request->anios_inmueble) ; $i++) { 
+                
+                $aniosInmuebles[$i]=$request->anios_inmueble[$i];
+            }
+        }else{
+            for ($i=0; $i < 12; $i++) { 
+                $aniosInmuebles[$i]=$i+1;
             }
         }
         
