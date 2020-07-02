@@ -64,7 +64,7 @@ class ReportesController extends Controller
     {
         $request->anio=Date('Y');
 
-        dd($request->all());
+        //dd($request->all());
         /*"id_meses" => array:2 [▶]
           "MesesTodos" => "MesesTodos"
           "id_estacionamientos" => array:1 [▶]
@@ -80,42 +80,29 @@ class ReportesController extends Controller
         if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
             //$sql_i="SELECT inmuebles.* FROM residentes, inmuebles, residentes_has_inmuebles, mensualidades,pagos WHERE residentes.id_admin=".$id_admin." AND  residentes.id=residentes_has_inmuebles.id_residente AND inmuebles.id=residentes_has_inmuebles.id_inmueble AND mensualidades.id_inmueble=inmuebles.id AND mensualidades.anio=".$request->anio." ";
             
-            $sql_i="SELECT * FROM residentes, inmuebles, pagos_comunes 
+            /*$sql_i="SELECT * FROM residentes, inmuebles, pagos_comunes 
                 WHERE residentes.id_admin=".$id_admin." 
                 AND residentes.id=pagos_comunes.id_residente 
                 AND pagos_comunes.tipo='Inmueble' 
-                AND i.anio=".$request->anio." ";
-
-            if($request->MesesTodosInmuebles == 'MesesTodosInmuebles'){
-                $meses_inmuebles="";
-            }else{
-                for ($i=0; $i < count($request->meses_inmueble); $i++) { 
-                    $meses_inmuebles.="AND pagos_comunes.mes=".$request->meses_inmuebles[$i];
+                AND i.anio=".$request->anio." ";*/
+             $sql_i="SELECT * FROM inmuebles WHERE id_admin=".$id_admin." ";
+             if (is_null($request->InmueblesTodos)) {
+                //dd("----------------");
+                $sql_i.=" AND ";// agrego un AND para comenzar a agregar condicionales
+                $limit=count($request->id_inmuebles) -1;// variable que me permite saber cual es la última vuelta del for
+                for ($x=0; $x < count($request->id_inmuebles); $x++) { 
+                   $sql_i.=" inmuebles.id=".$request->id_inmuebles[$x];
+                   if ($x!=$limit) {
+                       $sql_i.=" OR ";
+                   }
+                   
                 }
-            }
-
-            if($request->AniosTodosInmuebles == 'AniosTodosInmuebles'){
-                $anios_inmuebles="";
-            }else{
-                for ($i=0; $i < count($request->anios_inmueble); $i++) { 
-                    $anios_inmuebles.="AND pagos_comunes.anio=".$request->anios_inmuebles[$i];
-                }
-            }
-
-            if($sql_i!==""){
-                if ($meses_inmuebles!=="") {
-                    $sql_i.=$meses_inmuebles;
-                }
-                if ($anios_inmuebles!=="") {
-                    $sql_i.=$anios_inmuebles;
-                }
-            }
-
-            // $sql_i="SELECT * FROM inmuebles WHERE id_admin=".$id_admin." ";
+             }
+             
         } else {
             $sql_i="";
         }
-
+        //dd($sql_i);
         //preparando variable para anios de estacionamientos
         if (!is_null($request->id_estacionamientos) || !is_null($request->EstacionamientosTodos)) {
             
@@ -129,7 +116,7 @@ class ReportesController extends Controller
         
         //preparando la variable de anios multas/recargas
         if (!is_null($request->MultasRecargas)) {
-            $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id_admin=".$id_admin." AND residentes.id=resi_has_mr.id_residente AND resi_has_mr.id_mr=multas_recargas.id AND multas_recargas.anio=".$request->anio." ";
+                $sql_mr="SELECT * FROM residentes, multas_recargas, resi_has_mr WHERE residentes.id_admin=".$id_admin." AND residentes.id=resi_has_mr.id_residente AND resi_has_mr.id_mr=multas_recargas.id AND multas_recargas.anio=".$request->anio." ";
         } else {
             $sql_mr="";
         }
@@ -137,12 +124,24 @@ class ReportesController extends Controller
         //agregando los residentes
         $sql_r="SELECT * FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
         if (is_null($request->ResidentesTodos)) {
-            $residentes="";
-            $residentes2="";
+            $residentes=" AND ";
+            $residentes2=" AND ";
+            $sql_r.=" AND ";// agrego un AND para comenzar a agregar condicionales
+            $limit=count($request->id_residentes) -1;// variable que me permite saber cual es la última vuelta del for
           for ($i=0; $i < count($request->id_residentes); $i++) { 
-              $residentes.=" AND residentes.id=".$request->id_residentes[$i]." ";
-              $residentes2.=" AND resi_has_mr.id_residente=".$request->id_residentes[$i]." ";
-              $sql_r.="AND residentes.id=".$request->id_residentes[$i]." ";
+              $residentes.=" residentes.id=".$request->id_residentes[$i]." ";
+              $residentes2.=" resi_has_mr.id_residente=".$request->id_residentes[$i]." ";
+              $sql_r.=" residentes.id=".$request->id_residentes[$i]." ";// anexo la condición para cada id_residente que está en el array
+              if ($i!=$limit) {
+                $sql_r.=" OR ";// agrego OR para que me los traiga todos
+                $residentes.=" OR ";
+                $residentes2.=" OR ";
+              }elseif($i==$limit){
+                $sql_r.=" GROUP BY residentes.id "; // cuando sea la ultima vuelta le agrego el group by
+                $residentes.=" GROUP BY residentes.id ";
+                $residentes2.=" GROUP BY residentes.id ";
+              }
+              
 
           }
           /*if($sql_i!==""){
@@ -151,14 +150,15 @@ class ReportesController extends Controller
           /*if($sql_e!==""){
             $sql_e.=$residentes; 
           }*/
-          if($sql_mr!==""){
+          /*if($sql_mr!==""){
             $sql_mr.=$residentes2;
-          }
+          }*/
         }else{
           
             $sql_r="SELECT residentes.*,users.email FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
         }
-            $residentes=\DB::select($sql_r);
+        //dd($sql_r);
+        $residentes=\DB::select($sql_r);
         $meses[]=array();
         if(is_null($request->MesesTodos)){
             // para agregar los meses
@@ -183,7 +183,7 @@ class ReportesController extends Controller
             $sql_mr.=" GROUP BY multas_recargas.id";
           }
         /*echo $sql_i."<br>".$sql_e."<br>".$sql_mr."<br>";*/
-        //dd($sql_e);
+        dd($sql_i);
         //dd($meses);
         if($sql_i!==""){
         $inmuebles=\DB::select($sql_i);
