@@ -50,13 +50,12 @@ class ReportesController extends Controller
         }
         
         $anio= array();
-        $year=Date('Y');
-        $n=0;
-        for ($i=$year; $i <= $year; $i++) { 
-            $anio[$n]=$i;
-            $n++;
+        $a=anios_registros();
+        
+        for ($i=0; $i < count(anios_registros()); $i++) { 
+            $anio[$i]=$a[$i]['anio'];
         }
-
+        
         $multas=MultasRecargas::where('id_admin',$id_admin)->get();
 
         return View('reportes.index', compact('meses','inmuebles','estacionamientos','residentes','anio','multas'));
@@ -189,8 +188,10 @@ class ReportesController extends Controller
                     $aniosInmuebles[$i]=$request->anios_inmueble[$i];
                 }
             }else{
-                for ($i=0; $i < 12; $i++) { 
-                    $aniosInmuebles[$i]=$i+1;
+                 $a=anios_registros();
+        
+                for ($i=0; $i < count(anios_registros()); $i++) { 
+                    $aniosInmuebles[$i]=$a[$i]['anio'];
                 }
             }
             

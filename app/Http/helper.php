@@ -460,3 +460,14 @@ function mi_admin($id_usuario)
 
 	return $buscar->id_admin;
 }
+
+function anios_registros()
+{
+
+	$anio=date('Y');
+	$buscar=App\PagosComunes::select('anio',\DB::raw('anio'))->where('anio','<=',$anio)->groupBy('anio')->orderBy('id','DESC')->get();
+
+
+	return $buscar;
+
+}

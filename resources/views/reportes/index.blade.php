@@ -37,14 +37,9 @@
 			        		<div class="form-group">
 			        			<label class="text-primary">Año</label>
 			        			<select class="form-control select2 border border-default" name="anio">
-			        				@php 
-			        					echo $fecha=date('Y');
-			        					$fecha=$fecha-1;
-			        				@endphp
-			        				@for($i=$fecha; $i<($fecha+4); $i++)
-			        					@if($i != '2019')
-			        						<option value="{{ $i }}">{{ $i }}</option>
-			        					@endif
+			        				@for($j=0;$j<count($anio);$j++)
+			        					<option value="{{ $anio[$j] }}">{{ $anio[$j] }}</option>}
+			        					option
 			        				@endfor
 			        			</select>
 			        		</div>
