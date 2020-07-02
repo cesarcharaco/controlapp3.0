@@ -214,8 +214,8 @@ class ReportesController extends Controller
                 }
             }
 
-            //Anios de los inmuebles
-            if(is_null($request->AniosTodosInmuebles)){
+            //Anios de los estacionamientos
+            if(is_null($request->AniosTodosEstaciona)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->anios_estaciona) ; $i++) { 
@@ -247,7 +247,7 @@ class ReportesController extends Controller
                 }
             }
 
-            //Anios de los inmuebles
+            //Anios de los residentes
             if(is_null($request->AniosTodosResidentes)){
                 // para agregar los meses
 
@@ -279,7 +279,7 @@ class ReportesController extends Controller
                 }
             }
 
-            //Anios de los inmuebles
+            //Anios de los multas
             if(is_null($request->AniosTodosMultas)){
                 // para agregar los meses
 
