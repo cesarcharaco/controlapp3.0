@@ -106,7 +106,7 @@
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-primary">Inmuebles</label>
-							        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]" id="selectTodosInmuebles">
+							        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]" id="selectTodosInmuebles" required>
 							        				@foreach($inmuebles as $key)
 							        					<option value="{{$key->id}}">{{$key->idem}}</option>
 							        				@endforeach
@@ -120,7 +120,7 @@
 				        					<div class="row justify-content-center">
 					        					<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="meses_inmueble[]" id="selectMesesInmuebles">
+									        			<select class="form-control select2 border border-default" multiple name="meses_inmuebles[]" id="selectMesesInmuebles" required>
 									        				@foreach($meses as $key)
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
@@ -133,7 +133,7 @@
 									        	</div>
 									        	<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="anios_inmueble[]" id="selectTodosAniosInmuebles">
+									        			<select class="form-control select2 border border-default" multiple name="anios_inmueble[]" id="selectTodosAniosInmuebles" required>
 									        				@for($i=0; $i< count($anio); $i++)
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
@@ -154,7 +154,7 @@
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-warning">Estacionamientos</label>
-							        			<select class="form-control select2 border border-warning" multiple name="id_estacionamientos[]" id="selectTodosEstacionamientos">
+							        			<select class="form-control select2 border border-warning" multiple name="id_estacionamientos[]" id="selectTodosEstacionamientos" required>
 							        				@foreach($estacionamientos as $key)
 							        					<option value="{{$key->id}}">{{$key->idem}}</option>
 							        				@endforeach
@@ -168,7 +168,7 @@
 							        		<div class="row justify-content-center">
 					        					<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="meses_estaciona[]" id="selectMesesEstaciona">
+									        			<select class="form-control select2 border border-default" multiple name="meses_estaciona[]" id="selectMesesEstaciona" required>
 									        				@foreach($meses as $key)
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
@@ -181,7 +181,7 @@
 									        	</div>
 									        	<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="anios_estaciona[]" id="selectAniosEstaciona">
+									        			<select class="form-control select2 border border-default" multiple name="anios_estaciona[]" id="selectAniosEstaciona" required>
 									        				@for($i=0; $i< count($anio); $i++)
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
@@ -203,7 +203,7 @@
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-success">Residentes</label>
-							        			<select class="form-control select2 border border-success" multiple name="id_residentes[]" id="selectTodosResidentes">
+							        			<select class="form-control select2 border border-success" multiple name="id_residentes[]" id="selectTodosResidentes" required>
 							        				@foreach($residentes as $key)
 							        					<option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
 							        				@endforeach
@@ -216,7 +216,7 @@
 									        <div class="row justify-content-center">
 					        					<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="meses_residentes[]" id="selectMesesResidentes">
+									        			<select class="form-control select2 border border-default" multiple name="meses_residentes[]" id="selectMesesResidentes" required>
 									        				@foreach($meses as $key)
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
@@ -229,7 +229,7 @@
 									        	</div>
 									        	<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="anios_residentes[]" id="selectAniosResidentes">
+									        			<select class="form-control select2 border border-default" multiple name="anios_residentes[]" id="selectAniosResidentes" required>
 									        				@for($i=0; $i< count($anio); $i++)
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
@@ -250,7 +250,7 @@
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-danger">Multas - Recargas</label>
-							        			<select class="form-control select2 border border-success" multiple name="id_multa[]" id="selectTodosMultas">
+							        			<select class="form-control select2 border border-success" multiple name="id_multa[]" id="selectTodosMultas" required>
 							        				@foreach($multas as $key)
 							        					<option value="{{$key->id}}">{{$key->motivo}} {{$key->tipo}} - {{$key->monto}}</option>
 							        				@endforeach
@@ -263,7 +263,7 @@
 									        <div class="row justify-content-center">
 					        					<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="meses_multas[]" id="selectMesesMultas">
+									        			<select class="form-control select2 border border-default" multiple name="meses_multas[]" id="selectMesesMultas" required>
 									        				@foreach($meses as $key)
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
@@ -276,7 +276,7 @@
 									        	</div>
 									        	<div class="col-md-6">
 									        		<div class="form-group">
-									        			<select class="form-control select2 border border-default" multiple name="anios_multas[]" id="selectAniosMultas">
+									        			<select class="form-control select2 border border-default" multiple name="anios_multas[]" id="selectAniosMultas" required>
 									        				@for($i=0; $i< count($anio); $i++)
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
@@ -334,24 +334,30 @@
     function TodosInmuebles() {
     	if($('#InmueblesTodos').prop('checked')){
     		$('#selectTodosInmuebles').attr('disabled',true);
+    		$('#selectTodosInmuebles').removeAttr('required',false);
     	}else{
     		$('#selectTodosInmuebles').removeAttr('disabled',false);
+    		$('#selectTodosInmuebles').attr('required',true);
     	}
     }
 
     function TodosMesesInmuebles() {
     	if($('#MesesTodosInmuebles').prop('checked')){
     		$('#selectMesesInmuebles').attr('disabled',true);
+    		$('#selectMesesInmuebles').removeAttr('required',false);
     	}else{
     		$('#selectMesesInmuebles').removeAttr('disabled',false);
+    		$('#selectMesesInmuebles').attr('required',false);
     	}
     }
 
     function TodosAniosInmuebles() {
     	if($('#AniosTodosInmuebles').prop('checked')){
     		$('#selectTodosAniosInmuebles').attr('disabled',true);
+    		$('#selectTodosAniosInmuebles').removeAttr('required',false);
     	}else{
     		$('#selectTodosAniosInmuebles').removeAttr('disabled',false);
+    		$('#selectTodosAniosInmuebles').attr('required',false);
     	}
     }
 
@@ -360,23 +366,29 @@
     function TodosEstacionamientos() {
     	if($('#EstacionamientosTodos').prop('checked')){
     		$('#selectTodosEstacionamientos').attr('disabled',true);
+    		$('#selectTodosEstacionamientos').removeAttr('required',false);
     	}else{
     		$('#selectTodosEstacionamientos').removeAttr('disabled',false);
+    		$('#selectTodosEstacionamientos').attr('required',false);
     	}
     }
     function TodosMesesEstaciona() {
     	if($('#MesesTodosEstaciona').prop('checked')){
     		$('#selectMesesEstaciona').attr('disabled',true);
+    		$('#selectMesesEstaciona').removeAttr('required',false);
     	}else{
     		$('#selectMesesEstaciona').removeAttr('disabled',false);
+    		$('#selectMesesEstaciona').attr('required',false);
     	}
     }
 
     function TodosAniosEstaciona() {
     	if($('#AniosTodosEstaciona').prop('checked')){
     		$('#selectAniosEstaciona').attr('disabled',true);
+    		$('#selectAniosEstaciona').removeAttr('required',false);
     	}else{
     		$('#selectAniosEstaciona').removeAttr('disabled',false);
+    		$('#selectAniosEstaciona').attr('required',false);
     	}
     }
 
@@ -384,24 +396,30 @@
     function TodosResidentes() {
     	if($('#ResidentesTodos').prop('checked')){
     		$('#selectTodosResidentes').attr('disabled',true);
+    		$('#selectTodosResidentes').removeAttr('required',false);
     	}else{
     		$('#selectTodosResidentes').removeAttr('disabled',false);
+    		$('#selectTodosResidentes').attr('required',false);
     	}
     }
 
     function TodosMesesResidentes() {
     	if($('#MesesTodosResidentes').prop('checked')){
     		$('#selectMesesResidentes').attr('disabled',true);
+    		$('#selectMesesResidentes').removeAttr('required',false);
     	}else{
     		$('#selectMesesResidentes').removeAttr('disabled',false);
+    		$('#selectMesesResidentes').attr('required',false);
     	}
     }
 
     function TodosAniosResidentes() {
     	if($('#AniosTodosResidentes').prop('checked')){
     		$('#selectAniosResidentes').attr('disabled',true);
+    		$('#selectAniosResidentes').removeAttr('required',false);
     	}else{
     		$('#selectAniosResidentes').removeAttr('disabled',false);
+    		$('#selectAniosResidentes').attr('required',false);
     	}
     }
 
@@ -409,24 +427,30 @@
     function TodosMultas() {
     	if($('#MultasTodas').prop('checked')){
     		$('#selectTodosMultas').attr('disabled',true);
+    		$('#selectTodosMultas').removeAttr('required',false);
     	}else{
     		$('#selectTodosMultas').removeAttr('disabled',false);
+    		$('#selectTodosMultas').attr('required',false);
     	}
     }
 
     function TodosMesesMultas() {
     	if($('#MesesTodosMultas').prop('checked')){
     		$('#selectMesesMultas').attr('disabled',true);
+    		$('#selectMesesMultas').removeAttr('required',false);
     	}else{
     		$('#selectMesesMultas').removeAttr('disabled',false);
+    		$('#selectMesesMultas').attr('required',false);
     	}
     }
 
     function TodosAniosMultas() {
     	if($('#AniosTodosMultas').prop('checked')){
     		$('#selectAniosMultas').attr('disabled',true);
+    		$('#selectAniosMultas').removeAttr('required',false);
     	}else{
     		$('#selectAniosMultas').removeAttr('disabled',false);
+    		$('#selectAniosMultas').attr('required',false);
     	}
     }
 

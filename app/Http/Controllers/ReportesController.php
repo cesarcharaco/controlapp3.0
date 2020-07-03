@@ -65,7 +65,7 @@ class ReportesController extends Controller
     public function store(Request $request)
     {
         
-        //dd($request->all());
+        // dd($request->all());
         /*"id_meses" => array:2 [▶]
           "MesesTodos" => "MesesTodos"
           "id_estacionamientos" => array:1 [▶]
@@ -122,23 +122,23 @@ class ReportesController extends Controller
         //preparando la variable de anios multas/recargas
         if (!is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
 
-        if (!is_null($request->MultasRecargas)) {
-                $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin." ";
+            if (!is_null($request->MultasRecargas)) {
+                    $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin." ";
 
-                if (in_null($request->id_multa)) {
-                    $sql_mr.= ' AND ';
-                    $limit = count($request->id_multa) -1;
+                    if (!is_null($request->id_multa)) {
+                        $sql_mr.= ' AND ';
+                        $limit = count($request->id_multa) -1;
 
-                    for ($z=0; $z < count($request->id_multa); $z++) { 
-                        $sql_mr.= " multas_recargas.id=".$request->id_multa[$z];
-                        if ($z != $limit) {
-                            $sql_mr.= " OR ";
+                        for ($z=0; $z < count($request->id_multa); $z++) { 
+                            $sql_mr.= " multas_recargas.id=".$request->id_multa[$z];
+                            if ($z != $limit) {
+                                $sql_mr.= " OR ";
+                            }
                         }
                     }
-                }
-        } else {
-            $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin;
-        }
+            } else {
+                $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin;
+            }
         } else {
             $sql_mr="";
         }
@@ -178,9 +178,9 @@ class ReportesController extends Controller
             if(is_null($request->MesesTodosInmuebles)){
                 // para agregar los meses
 
-                for ($i=0; $i < count($request->meses_inmueble) ; $i++) { 
+                for ($i=0; $i < count($request->meses_inmuebles) ; $i++) { 
                     
-                    $mesesInmuebles[$i]=$request->meses_inmueble[$i];
+                    $mesesInmuebles[$i]=$request->meses_inmuebles[$i];
                 }
             }else{
                 for ($i=0; $i < 12; $i++) { 
