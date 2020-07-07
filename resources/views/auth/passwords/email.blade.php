@@ -1,47 +1,78 @@
-@extends('layouts.app')
+<link rel="shortcut icon" href="{{ asset('assets/images/logo.jpg') }}">
+<link href="{{ asset('assets/css/login.min.css') }}" rel="stylesheet" type="text/css" style="border-radius: 30px;" />
+@include('layouts.css')
+<body>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <!-- content -->
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+    <div class="container-fluid">
+        <div class="content row">
+
+            <div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100">
+                        <div class="login100-pic js-tilt" data-tilt>
+                            <img src="{{ asset('assets/images/logo.jpg') }}" alt="IMG">
                         </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="logo-mobile">
+                            <img src="{{ asset('assets/images/logo.jpg') }}" style="height: 280px;" alt="IMG" class="logo-mobile">
+                        </div>
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
                             </div>
-                        </div>
+                        @endif
+                        <form method="POST" action="{{ route('password.email') }}">
+                            @csrf
+                            <span class="login50-form-title">
+                                {{ __('Reset Password') }}
+                            </span>
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <center>
+                                            <div class="form-group">
+                                                <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                            </div>
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </center>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="form-group row">
+                                <button type="submit" class="btn btn-primary" style="width: 100%">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                            <a href="{{ route('login')}}">Regresar</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    ControlApp <label class="badge badge-soft-danger">v1.0.1.</label> Un proyecto desarrollado por <a href="https://eiche.cl/" target="_blank" id="eiche">EICHE</a>.
+                </div>
+            </div>
+        </div>
+    </footer>
+    @include('layouts.scripts')
+</body>
+</html>
