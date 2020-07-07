@@ -251,7 +251,9 @@ class AdminController extends Controller
                 foreach ($key->reportes as $key2) {
                    $key2->delete();
                 }
+                $user=User::find($key->id_usuario);
                 $key->delete();
+                $user->delete();
             }
         }
 

@@ -249,11 +249,14 @@ function inmuebles_asig($id_residente)
 	$mostrar="";
 
 	$residente=App\Residentes::find($id_residente);
-	foreach ($residente->inmuebles as $key) {
-		if($key->pivot->status=="En Uso"){
-			$mostrar.=$key->idem."\n";
+	if (!is_null($residente)) {
+		foreach ($residente->inmuebles as $key) {
+			if($key->pivot->status=="En Uso"){
+				$mostrar.=$key->idem."\n";
+			}
 		}
 	}
+	
 
 	return $mostrar;
 }
@@ -262,11 +265,14 @@ function estacionamientos_asig($id_residente)
 	$mostrar="";
 
 	$residente=App\Residentes::find($id_residente);
-	foreach ($residente->estacionamientos as $key) {
-		if($key->pivot->status=="En Uso"){
-			$mostrar.=$key->idem."\n";
+	if (!is_null($residente)) {
+		foreach ($residente->estacionamientos as $key) {
+			if($key->pivot->status=="En Uso"){
+				$mostrar.=$key->idem."\n";
+			}
 		}
 	}
+	
 
 	return $mostrar;
 }
@@ -276,18 +282,20 @@ function gasto_comun_mes($mes,$id_residente,$anio)
 	$cont=0;
 	$cont2=0;
 	$residente=App\Residentes::find($id_residente);
-	
-	foreach ($residente->inmuebles as $key) {
-		if($key->pivot->status=="En Uso"){
-			$cont++;
+	if (!is_null($residente)) {
+		foreach ($residente->inmuebles as $key) {
+			if($key->pivot->status=="En Uso"){
+				$cont++;
+			}
 		}
-	}
 
-	foreach ($residente->estacionamientos as $key) {
-		if($key->pivot->status=="Ocupado"){
-			$cont2++;
+		foreach ($residente->estacionamientos as $key) {
+			if($key->pivot->status=="Ocupado"){
+				$cont2++;
+			}
 		}
 	}
+	
 	$total=0;
 	$id_admin=id_admin(\Auth::user()->email);
 	$monto_i=App\PagosComunes::where('anio',$anio)->where('mes',$mes)->where('tipo','Inmueble')->where('id_admin',$id_admin)->first();
@@ -307,21 +315,22 @@ function status_gastos_i($mes,$id_residente,$anio)
 {
 	$inmueble="";
 	$residente=App\Residentes::find($id_residente);
-	
-	foreach ($residente->inmuebles as $key) {
-        if ($key->pivot->status=="En Uso") {
-        	$inmueble.=$key->idem.": ";
-        	foreach ($key->mensualidades as $key2) {
-	            if($key2->mes==$mes && $key2->anio==$anio){
-	                $pago=\App\Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
-	                    $inmueble.=$pago->status." \n ";
-	                
-	            }
-	        }	
-        }
-        
-        
-    }
+	if (!is_null($residente)) {
+		foreach ($residente->inmuebles as $key) {
+	        if ($key->pivot->status=="En Uso") {
+	        	$inmueble.=$key->idem.": ";
+	        	foreach ($key->mensualidades as $key2) {
+		            if($key2->mes==$mes && $key2->anio==$anio){
+		                $pago=\App\Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
+		                    $inmueble.=$pago->status." \n ";
+		                
+		            }
+		        }	
+	        }
+	        
+	        
+	    }
+	}
 	
 	return $inmueble;
 }
@@ -331,21 +340,22 @@ function status_gastos_e($mes,$id_residente,$anio)
 	$estacionamiento="";
 	$residente=App\Residentes::find($id_residente);
 	
-	
-    foreach ($residente->estacionamientos as $key) {
-    	if ($key->pivot->status=="En Uso") {
-	        $estacionamiento.=$key->idem.": ";
-	        foreach ($key->mensualidad as $key2) {
-	            if($key2->mes==$mes && $key2->anio==$anio){
-	            	$pago=\App\PagosE::where('id_mens_estac',$key2->id)->orderby('id','DESC')->first();
-	                
-	                    $estacionamiento.=$pago->status." \n ";
-	                
-	            }
-	        }
-    	}
-    }
-    
+	if (!is_null($residente)) {
+	    foreach ($residente->estacionamientos as $key) {
+	    	if ($key->pivot->status=="En Uso") {
+		        $estacionamiento.=$key->idem.": ";
+		        foreach ($key->mensualidad as $key2) {
+		            if($key2->mes==$mes && $key2->anio==$anio){
+		            	$pago=\App\PagosE::where('id_mens_estac',$key2->id)->orderby('id','DESC')->first();
+		                
+		                    $estacionamiento.=$pago->status." \n ";
+		                
+		            }
+		        }
+	    	}
+	    }
+	}
+
     return $estacionamiento;
 }
 
@@ -353,12 +363,14 @@ function montos_mr($mes,$id_residente,$anio)
 {
 	$total=0;
 	$residente=App\Residentes::find($id_residente);
-
-	foreach ($residente->mr as $key) {
-		if($key->pivot->mes==$mes && $key->anio==$anio){
-			$total+=$key->monto;
+	if (!is_null($residente)) {
+		foreach ($residente->mr as $key) {
+			if($key->pivot->mes==$mes && $key->anio==$anio){
+				$total+=$key->monto;
+			}
 		}
 	}
+	
 	return $total;
 }
 function status_montos_mr($mes,$id_residente,$anio)
@@ -368,26 +380,28 @@ $pagada=0;
 $por_confirmar=0;
 $resumen="";
 	$residente=App\Residentes::find($id_residente);
-	
-	foreach ($residente->mr as $key) {
-		if($key->pivot->mes==$mes && $key->anio==$anio){
-			switch ($key->pivot->status) {
-			case 'Enviada':
-				$enviada++;
-				break;
-			case 'Pagada':
-				$pagada++;
-				break;
-			case 'Por Confirmar':
-				$por_confirmar++;
-				break;
-			
-			default:
-				# code...
-				break;
-		}			
+	if (!is_null($residente)) {
+		foreach ($residente->mr as $key) {
+			if($key->pivot->mes==$mes && $key->anio==$anio){
+				switch ($key->pivot->status) {
+				case 'Enviada':
+					$enviada++;
+					break;
+				case 'Pagada':
+					$pagada++;
+					break;
+				case 'Por Confirmar':
+					$por_confirmar++;
+					break;
+				
+				default:
+					# code...
+					break;
+			}			
+			}
 		}
 	}
+	
 	$resumen='Enviada: '.$enviada.' | Pagada: '.$pagada.' | Por Confirmar: '.$por_confirmar;
 	return $resumen;
 }
