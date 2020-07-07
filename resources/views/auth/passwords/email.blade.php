@@ -24,31 +24,33 @@
                             </span>
                             <div class="row">
                                 <div class="col-md-12">
+                                    @if(count($errors))
+                                        <div class="alert alert-danger" role="alert">
+                                            <ul>
+                                                @foreach($errors->all() as $error)
+                                                <li>
+                                                    {{$error}}
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     @if (session('status'))
                                         <div class="alert alert-success" role="alert">
                                             {{ session('status') }}
                                         </div>
                                     @endif
-                                        <center>
-                                            <div class="form-group">
-                                                <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                            </div>
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </center>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <center>
+                                        <div class="form-group">
+                                            <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        </div>
+                                    </center>
                                 </div>
                             </div>
 

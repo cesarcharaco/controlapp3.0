@@ -641,7 +641,7 @@
 					$('#asignaInmueResidente').append('<option value="'+data[i].id+'">'+data[i].idem+'</option>');
 				}
 			}else{
-				$('#asignaInmueResidente').append('<option>No hay inmuebles disponibles para asignar</option>');
+				$('#asignaInmueResidente').append('<option disabled>No hay inmuebles disponibles para asignar</option>');
 			}
 
 		});
@@ -656,7 +656,7 @@
 					$('#asignaEstaResidente').append('<option value="'+data[i].id+'">'+data[i].idem+'</option>');
 				}
 			}else{
-				$('#asignaEstaResidente').append('<option>No hay estacionamientos disponibles para asignar</option>');
+				$('#asignaEstaResidente').append('<option disabled>No hay estacionamientos disponibles para asignar</option>');
 			}
 
 		});
