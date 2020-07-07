@@ -19,6 +19,7 @@
                         </div>
                         <form method="POST" action="{{ route('password.update') }}">
                             @csrf
+                            <input type="hidden" name="token" value="{{ $token }}">
                             @if(count($errors))
                                 <div class="alert alert-danger" role="alert">
                                     <ul>
@@ -46,21 +47,20 @@
                                 </span>
                             @enderror
 
-                            <input type="hidden" name="token" value="{{ $token }}">
 
-                            <div class="wrap-input100 validate-input">
+                            <div class="wrap-input100">
                                 <div class="form-group">
                                     <label for="email">{{ __('E-Mail Address') }}</label>
                                     <input id="email" type="email" disabled class="input100 @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
                                 </div>
                             </div>
-                            <div class="wrap-input100 validate-input">
+                            <div class="wrap-input100">
                                 <div class="form-group">
                                     <label for="password">{{ __('Password') }}</label>
                                     <input id="password" type="password" class="input100 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 </div>
                             </div>
-                            <div class="wrap-input100 validate-input">
+                            <div class="wrap-input100">
                                 <div class="form-group ">
                                     <label for="password-confirm">{{ __('Confirm Password') }}</label>
                                     <input id="password-confirm" type="password" class="input100" name="password_confirmation" required autocomplete="new-password">
