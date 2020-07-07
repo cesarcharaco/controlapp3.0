@@ -48,7 +48,7 @@
 
                             <input type="hidden" name="token" value="{{ $token }}">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 rap-input100 validate-input">
                                         <div class="form-group">
                                             <label for="email">{{ __('E-Mail Address') }}</label>
 
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 rap-input100 validate-input">
                                         <div class="form-group">
                                             <label for="password">{{ __('Password') }}</label>
 
@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 rap-input100 validate-input">
                                         <div class="form-group ">
                                             <label for="password-confirm">{{ __('Confirm Password') }}</label>
 
