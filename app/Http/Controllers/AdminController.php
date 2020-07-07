@@ -243,8 +243,9 @@ class AdminController extends Controller
         //residentes
         $residentes=Residentes::where('id_admin',$request->id)->get();
         if(count($residentes)>0){      
-            dd($residentes);
+
             foreach ($residentes as $key) {
+                dd($key->usuario);
                 $key->usuario->delete();
                 dd($key->reportes);
                 foreach ($key->reportes as $key2) {
