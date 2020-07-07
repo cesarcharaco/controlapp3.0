@@ -259,11 +259,12 @@ class AdminController extends Controller
 
         //anuncios asignados
         $user_admin=UsersAdmin::find($request->id);
-        /*foreach ($user_admin->anuncios as $key) {
+        foreach ($user_admin->anuncios as $key) {
             $key->delete();
-        }*/
+        }
         $user=User::where('email',$user_admin->email)->first();
         $user->delete();
+        
         $user_admin->delete();
 
         toastr()->success('con éxito!!', 'Usuario Admin eliminado');
