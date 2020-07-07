@@ -347,7 +347,7 @@ class ReportesController extends Controller
         }else{
             $mr=null;
         }
-        $anio=$request->anio;
+        //$anio=$request->anio;
         //dd($estacionamientos);
         $pdf = PDF::loadView('reportes/PDF/ReporteEspecifico', array(
             'inmuebles'=>$inmuebles,
