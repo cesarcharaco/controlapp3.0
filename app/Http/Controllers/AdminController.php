@@ -245,6 +245,7 @@ class AdminController extends Controller
         if(count($residentes)>0){      
             foreach ($residentes as $key) {
                 $key->usuario->delete();
+                dd($key->reportes);
                 foreach ($key->reportes as $key2) {
                    $key2->delete();
                 }
