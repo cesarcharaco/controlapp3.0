@@ -20,7 +20,6 @@
 
                         <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
                             @csrf
-                            {{ __('Please confirm your password before continuing.') }}
                             <span class="login100-form-title">
                                 {{ __('Login') }}
                             </span>

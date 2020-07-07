@@ -19,7 +19,7 @@
                         </div>
                         <form method="POST" action="{{ route('password.email') }}">
                             @csrf
-                            <span class="login50-form-title">
+                            <span class="login100-form-title">
                                 {{ __('Reset Password') }}
                             </span>
                             <div class="row">
