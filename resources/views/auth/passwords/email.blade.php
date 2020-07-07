@@ -17,11 +17,6 @@
                         <div class="logo-mobile">
                             <img src="{{ asset('assets/images/logo.jpg') }}" style="height: 280px;" alt="IMG" class="logo-mobile">
                         </div>
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
                         <form method="POST" action="{{ route('password.email') }}">
                             @csrf
                             <span class="login50-form-title">
@@ -29,6 +24,11 @@
                             </span>
                             <div class="row">
                                 <div class="col-md-12">
+                                    @if (session('status'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
                                         <center>
                                             <div class="form-group">
                                                 <label for="email" class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
