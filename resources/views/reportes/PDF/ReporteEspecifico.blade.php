@@ -292,7 +292,7 @@
 		</tr>
 		@for($i=0; $i < count($mesesMultas); $i++)
 			<tr>
-				<th>Año: {{ $anio }} </th>
+				<th>Año: {{ $aniosMultas[$ea] }} </th>
 				<th >Mes: {{ meses($mesesMultas[$i]) }}</th>
 				<th></th>
 			</tr>
