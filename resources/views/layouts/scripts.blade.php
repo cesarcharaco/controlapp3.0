@@ -3,11 +3,11 @@
 {{-- <script src="{{ asset('assets/js/jquery.js') }}"></script> --}}
 
 
-<script src="{{ asset('assets/js/app.min.js') }}" ></script>
+<!-- <script src="{{ asset('assets/js/app.min.js') }}" ></script> -->
 <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}" prefer></script>
 <script type="text/javascript" src="{{ asset('slick/slick.min.js') }}"></script>
 
 
