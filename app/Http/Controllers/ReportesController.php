@@ -175,7 +175,7 @@ class ReportesController extends Controller
             $aniosInmuebles[]=array();
 
             //Meses de los inmuebles
-            if(is_null($request->MesesTodosInmuebles)){
+            if(is_null($request->MesesTodosInmuebles) && !is_null($request->meses_inmuebles)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->meses_inmuebles) ; $i++) { 
@@ -189,7 +189,7 @@ class ReportesController extends Controller
             }
 
             //Anios de los inmuebles
-            if(is_null($request->AniosTodosInmuebles)){
+            if(is_null($request->AniosTodosInmuebles) && !is_null($request->anios_inmueble)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->anios_inmueble) ; $i++) { 
@@ -209,7 +209,7 @@ class ReportesController extends Controller
 
             $mesesEstaciona[]=array();
             $aniosEstaciona[]=array();
-            if(is_null($request->MesesTodosEstaciona)){
+            if(is_null($request->MesesTodosEstaciona) && !is_null($request->meses_estaciona)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->meses_estaciona) ; $i++) { 
@@ -223,7 +223,7 @@ class ReportesController extends Controller
             }
 
             //Anios de los estacionamientos
-            if(is_null($request->AniosTodosEstaciona)){
+            if(is_null($request->AniosTodosEstaciona) && !is_null($request->anios_estaciona)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->anios_estaciona) ; $i++) { 
@@ -242,7 +242,7 @@ class ReportesController extends Controller
         //haciendo arrays de meses y años de residentes
             $mesesResidentes[]=array();
             $aniosResidentes[]=array();
-            if(is_null($request->MesesTodosResidentes)){
+            if(is_null($request->MesesTodosResidentes) && !is_null($request->meses_residentes)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->meses_residentes) ; $i++) { 
@@ -256,7 +256,7 @@ class ReportesController extends Controller
             }
 
             //Anios de los residentes
-            if(is_null($request->AniosTodosResidentes)){
+            if(is_null($request->AniosTodosResidentes) && !is_null($request->anios_residentes)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->anios_residentes) ; $i++) { 
@@ -274,7 +274,7 @@ class ReportesController extends Controller
         //haciendo arrays de meses y años de multas_recargas
             $mesesMultas[]=array();
             $aniosMultas[]=array();
-            if(is_null($request->MesesTodosMultas)){
+            if(is_null($request->MesesTodosMultas) && !is_null($request->meses_multas)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->meses_multas) ; $i++) { 
@@ -288,7 +288,7 @@ class ReportesController extends Controller
             }
 
             //Anios de los multas
-            if(is_null($request->AniosTodosMultas)){
+            if(is_null($request->AniosTodosMultas) && !is_null($request->anios_multas)){
                 // para agregar los meses
 
                 for ($i=0; $i < count($request->anios_multas) ; $i++) { 

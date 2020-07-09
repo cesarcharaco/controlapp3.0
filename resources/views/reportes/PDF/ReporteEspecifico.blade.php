@@ -92,8 +92,8 @@
 	</style>
 </head>
 <body>
-@if(count($residentes)>0)
-	@for($ra=0;$ra<count($aniosResidentes);$ra++)
+@if(!is_null($residentes))
+	@for($ra=0;$ra< count($aniosResidentes) ; $ra++)
 	<div style="float: left">
 		<table style="width: 500px !important;">
 			<tbody>
@@ -165,7 +165,7 @@
 	</table>
 	@endfor
 @endif
-@if(count($inmuebles)>0)
+@if(!is_null($inmuebles))
 <hr><br>
 @for($ia=0;$ia<count($aniosInmuebles);$ia++)
 	<div style="float: left">
@@ -218,7 +218,7 @@
 </table>
 	@endfor
 @endif
-@if(count($estacionamientos)>0)
+@if(!is_null($estacionamientos))
 <hr><br>
 @for($ea=0;$ea<count($aniosEstaciona);$ea++)
 	<div style="float: left">
@@ -267,7 +267,7 @@
 </table>
 	@endfor
 @endif
-@if(count($mr)>0)
+@if(!is_null($mr))
 <hr><br>
 @for($ea=0;$ea<count($aniosMultas);$ea++)
 	<div style="float: left">
@@ -319,7 +319,7 @@
 </table>
 	@endfor
 @endif
-@if(count($residentes)==0 && count($inmuebles)==0 && count($estacionamientos)==0)
+@if(!is_null($residentes) && !is_null($inmuebles) && !is_null($estacionamientos))
 <center><h1></h1></center>
 @endif
 </body>
