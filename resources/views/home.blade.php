@@ -476,7 +476,7 @@
                                 {{--<a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>--}}
                             </div>
                         <div class="card-body">
-                            @foreach($anuncios as $key)
+                            {{--@foreach($anuncios as $key)
                                 @foreach($key->admins as $key2)
                                     @if($key2->pivot->id_users_admin==mi_admin(\Auth::user()->id))                                
                                         <div onclick="window.open('{{$key->link}}', '_blank');">                                    
@@ -486,7 +486,7 @@
                                         </div>
                                     @endif
                                 @endforeach
-                            @endforeach()
+                            @endforeach()--}}
                         </div>
                     </div>
                 </div>
