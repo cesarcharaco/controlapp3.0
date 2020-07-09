@@ -144,10 +144,15 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-10">
                                             <div class="form-group">
-                                                <label>Rut</label>
-                                                <input type="text" name="rut" placeholder="Rut del residente" class="form-control" id="rut_e" required>
+                                                <input type="text" name="rut" placeholder="Rut del residente" id="rut_e" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <input type="number" name="verificador" id="verificador_e" min="1" maxlength="2" value="1" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -183,11 +188,11 @@
 
 <script type="text/javascript">
         function Editar(id,nombres,apellidos,rut,telefono,email,id_usuario) {
-            // alert('asdasd');
             $('#id_e').val(id);
             $('#nombres_e').val(nombres);
             $('#apellidos_e').val(apellidos);
-            $('#rut_e').val(rut);
+            $('#rut_e').val(rut.substr(0,(rut.length-2)));
+            $('#verificador_e').val(rut.substr(-1,(rut.length)));
             $('#telefono_e').val(telefono);
             $('#email_e').val(email);
         }

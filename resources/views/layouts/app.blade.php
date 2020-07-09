@@ -394,9 +394,17 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-10">
                                                             <div class="form-group">
                                                                 <input type="text" name="rut" placeholder="Rut del residente" class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <div style="float: left !important;">
+                                                                    <input type="number" name="verificador" min="1" maxlength="2" value="1" class="form-control" required>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

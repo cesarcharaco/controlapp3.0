@@ -57,13 +57,13 @@ class AdminController extends Controller
         $user=new UsersAdmin();
 
         $user->name=$request->name;
-        $user->rut=$request->rut;
+        $user->rut=$request->rut.'-'.$request->verificador;
         $user->email=$request->email;
         $user->save();
 
         $user2=new User();
         $user2->name=$request->name;
-        $user2->rut=$request->rut;
+        $user2->rut=$request->rut.'-'.$request->verificador;
         $user2->email=$request->email;
         $user2->tipo_usuario='Admin';
         $user2->password=\Hash::make($request->password);
@@ -123,7 +123,7 @@ class AdminController extends Controller
                     $email=$user->email;
 
                     $user->name=$request->name_e;
-                    $user->rut=$request->rut_e;
+                    $user->rut=$request->rut_e.'-'.$request->verificador_e;
                     $user->email=$request->email_e;
                     $user->status=$request->status;
                     $user->save();
@@ -142,7 +142,7 @@ class AdminController extends Controller
                         $email=$user->email;
 
                         $user->name=$request->name_e;
-                        $user->rut=$request->rut_e;
+                        $user->rut=$request->rut_e.'-'.$request->verificador_e;
                         $user->email=$request->email_e;
                         $user->status=$request->status;
                         $user->save();

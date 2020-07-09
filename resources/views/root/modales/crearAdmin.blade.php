@@ -12,27 +12,29 @@
                 <div class="modal-body">
                     <center>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 
                                 <div class="form-group">
                                     <label>Nombre del Admin</label>
                                     <input type="text" name="name" placeholder="Nombre"  class="form-control" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
                                 <div class="form-group">
                                     <label>RUT</label>
-                                    <input type="text" name="rut" placeholder="Rut" class="form-control" required>
+                                    <input type="text" name="rut" id="rut" placeholder="Rut" class="form-control" required>
                                 </div>
                             </div>
-
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label><br></label>
-                                    <input type="text" name="verificador" value="-1" class="form-control" required disabled>
+                                    <div style="float: left !important;">
+                                        <label><br></label>
+                                        <input type="number" name="verificador" min="1" maxlength="2" value="1" class="form-control" required>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-md-12">

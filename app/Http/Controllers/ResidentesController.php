@@ -200,7 +200,7 @@ class ResidentesController extends Controller
      */
     public function update(ResidentesRequest $request)
     {
-        //dd($request->all());
+        dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
 
         $buscar=Residentes::where('id_admin',$id_admin)->get();
@@ -238,7 +238,7 @@ class ResidentesController extends Controller
 
                         $residente->nombres=$request->nombres;
                         $residente->apellidos=$request->apellidos;
-                        $residente->rut=$request->rut;
+                        $residente->rut=$request->rut.'-'.$request->verificador;
                         if(!is_null($request->telefono)){
                             $residente->telefono=$request->telefono;
                         }
@@ -247,7 +247,7 @@ class ResidentesController extends Controller
                         $user=User::find($residente->id_usuario);
 
                         $user->name=$request->nombres;
-                        $user->rut=$request->rut;
+                        $user->rut=$request->rut.'-'.$request->verificador;
                         $user->email=$request->email;
                         $user->password=bcrypt($request->rut);
                         $user->save();

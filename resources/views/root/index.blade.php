@@ -90,7 +90,8 @@
             $('#editarAdmin').modal('show');
             $('#id_admin_e').val(id);
             $('#name_e').val(name);
-            $('#rut_e').val(rut);
+            $('#rut_e').val(rut.substr(0,(rut.length-2)));
+            $('#verificador_e').val(rut.substr(-1,(rut.length)));
             $('#email_e').val(email);
             $('#status_e').val(status);
         }
