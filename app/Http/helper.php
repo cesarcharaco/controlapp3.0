@@ -1,5 +1,25 @@
 <?php
 
+
+
+
+
+function apellido()
+{
+	$apellido="";
+	if (\Auth::user()->tipo_usuario == 'Residente') {
+		$apellido_resi=\DB::table('residentes')
+		->where('id_usuario',\Auth::user()->id)
+		->select('residentes.apellidos')
+		->first();
+
+		$apellido=$apellido_resi->apellidos;
+
+		return $apellido;
+	}else{
+		return 0;
+	}
+}
 function id_admin($email)
 {
 	$id=0;

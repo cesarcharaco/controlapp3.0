@@ -131,7 +131,7 @@
                             {!! Form::close() !!}
 
                                                 
-                            {!! Form::open(['route' => ['asignar_mr'],'method' => 'POST', 'name' => 'asignar_multa', 'id' => 'asignar_multa', 'data-parsley-validate']) !!}
+                            {!! Form::open(['route' => ['Editar_perfil'],'method' => 'POST', 'name' => 'Editar_perfil', 'id' => 'Editar_perfil', 'data-parsley-validate']) !!}
                                 @csrf
                                 <div class="modal fade bd-example-modal-lg" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
@@ -152,13 +152,15 @@
                                                                         <div class="form-group row">
                                                                             <div class="col-md-12">
                                                                                 <center>
+                                                                                    <input type="hidden" name="id_user" value="{{Auth::user()->id}}">
                                                                                     <label class="col-md-6 col-form-label" for="example-static">Nombres</label>
                                                                                     <input type="text" readonly="" class="form-control-plaintext" id="nombres_profile" value="{{Auth::user()->name}}">
                                                                                     <input type="text" name="nombres" class="form-control" id="nombres_profileE" value="{{Auth::user()->name}}" style="display: none;" required>
+                                                                                    @if(\Auth::user()->tipo_usuario=="Residente")
+                                                                                        <input type="text" readonly="" class="form-control-plaintext" id="apellidos_profile" value="{{ apellido() }}">
+                                                                                        <input type="text" name="apellidos" class="form-control" id="apellidos_profileE" value="{{ apellido() }}" style="display: none;">
+                                                                                    @endif
                                                                                 </center>
-
-                                                                                <!-- <input type="text" readonly="" class="form-control-plaintext" id="apellidos_profile" value="Mandela">
-                                                                                <input type="text" name="apellidos" class="form-control" id="apellidos_profileE" value="Mandela" style="display: none;"> -->
                                                                             </div>
                                                                         </div>
                                                                         <h6 class="text-muted font-weight-normal mt-1 mb-4">
@@ -166,8 +168,18 @@
                                                                                 <div class="col-lg-12">
                                                                                     <center>
                                                                                         <label class="col-md-4 col-form-label" for="example-static">Rut</label>
-                                                                                        <input type="text" readonly="" class="form-control-plaintext" id="rut_profile" value="123124123">
-                                                                                        <input type="text" name="rut" class="form-control" id="rut_profileE" value="123124123" style="display: none;" required>
+                                                                                        <input type="text" readonly="" class="form-control-plaintext" id="rut_profile" value="{{Auth::user()->rut}}">
+
+                                                                                        <div  id="rut_profileE" style="display: none;">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-7">
+                                                                                                    <input type="text" name="rut" class="form-control" id="rut_profileEdit" value="123124123" required>
+                                                                                                </div>
+                                                                                                <div class="col-md-3">
+                                                                                                    <input type="text" name="verificador" class="form-control" id="verificadorEdit" value="123124123" required>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </center>
                                                                                 </div>
                                                                             </div>

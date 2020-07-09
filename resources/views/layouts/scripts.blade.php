@@ -120,6 +120,9 @@
 
 	function EditarProfile() {
 		$('#btnGuardarProfile').fadeIn(300);
+		var rut=$('#rut_profile').val();
+		$('#rut_profileEdit').val(rut.substr(0,(rut.length-2)));
+		$('#verificadorEdit').val(rut.substr(-1,(rut.length)));
 
 		$('#buttonEditP').fadeOut('slow',
 			function() { 

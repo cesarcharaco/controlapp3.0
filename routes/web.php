@@ -121,4 +121,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('consulta/{anio}/buscar','ResidentesController@consulta_anual');
 	
 
+
+	Route::post('editar_perfil','UserController@profileEdit')->name('Editar_perfil');
+
 });
