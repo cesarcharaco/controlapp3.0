@@ -418,7 +418,7 @@ class ReportesController extends Controller
         $meses[]=array();
         //dd($request->all());
         if (is_null($request->id_mes)) {
-            flash('No ha seleccionado ningún mes, intente otra vez')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'No ha seleccionado ningún mes');
             return redirect()->back();
         } else {
             for ($i=0; $i < count($request->id_mes); $i++) { 
@@ -433,7 +433,7 @@ class ReportesController extends Controller
             
         }
         if (count($residentes)==0) {
-           flash('No existen datos para mostrar')->warning()->important();
+            toastr()->warning('intente otra vez!!', 'No existen datos para mostrar');
             return redirect()->back();
         } else {
             
