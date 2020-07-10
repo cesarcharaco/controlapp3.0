@@ -32,20 +32,23 @@
         #footer{
 
             position: relative; 
-            bottom: 0px;
+            bottom: -5px;
             left: 0;
             right: 0;
-            top: 15px;
+            top: 100px;
             height: 100px;
         }
         @media screen and (max-width: -480px) {
             #inner{
+                top: 500px;
                 position: relative; 
                 width: 50%;
             }
         }
         @media screen and (max-width: 480px) {
             #footer {
+                top: 500px;
+                margin-top: -5px;
                 position: relative; 
                 width: 10%;
             }
@@ -53,6 +56,7 @@
 
         @media screen and (max-width: 800px) {
             #footer {
+                top: 100px;
                 position: relative; 
                 /*width: 100%;*/
             }

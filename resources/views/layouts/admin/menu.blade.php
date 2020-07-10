@@ -163,11 +163,11 @@
                     <div id="footer">
                         
                         <li class="menu-title">
-                             <div style="background-color: white;">
+                             <div style="background-color: white;font-size: 9px;">
                                 ControlApp
                                 <label class="badge badge-soft-danger">v1.0.1.</label>
                                 <br>Un proyecto desarrollado por 
-                                <div class="text-primary" style="font-size: 16px;">EICHE</div>.
+                                <div class="text-primary" style=""><strong>EICHE</strong></div>.
                             </div>
                         </li>
                     </div>
