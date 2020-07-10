@@ -269,54 +269,54 @@
 @endif
 @if(!is_null($mr))
 <hr><br>
-@for($ea=0;$ea<count($aniosMultas);$ea++)
-	<div style="float: left">
-		<table style="width: 500px !important;">
+	@for($ea=0;$ea < count($aniosMultas);$ea++)
+		<div style="float: left">
+			<table style="width: 500px !important;">
+				<tbody>
+					<tr>
+						<th>Año</th>
+					</tr>
+					<tr>
+						<td>{{ $aniosMultas[$ea] }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style="text-align: right">
+			<center><img width="300" height="300" style="border-radius: 50px;" src="../public/assets/images/logo.jpg"></center>
+		</div>
+		<table width="100%" border="1">
 			<tbody>
 				<tr>
-					<th>Año</th>
+					<th colspan="4">MULTAS-RECARGAS</th>
 				</tr>
+				@for($i=0; $i < count($mesesMultas); $i++)
+					<tr>
+						<th>Año: {{ $aniosMultas[$ea] }} </th>
+						<th >Mes: {{ meses($mesesMultas[$i]) }}</th>
+						<th></th>
+					</tr>
 				<tr>
-					<td>{{ $aniosMultas[$ea] }}</td>
+					<th>MOTIVO</th>
+					<th>OBSERVACIÓN</th>
+					<th>MONTO</th>
+					<TH>TIPO</TH>
+				</tr>
+					@foreach($mr as $key)
+					<tr>
+						<td>{{ $key->motivo }}</td>
+						<td>{{ $key->observacion }}</td>
+						<td>{{ $key->monto }}</td>
+						<td style="border-top-color: black;">{{ $key->tipo }}</td>
+						{{-- <td>{{ alquiler_e($mesesEstaciona[$i],$key->id,$aniosEstaciona[$ea]) }}</td> --}}
+					</tr>
+					@endforeach
+				@endfor
+				<tr>
+					<td colspan="6" style="background-color: green;"><br></td>
 				</tr>
 			</tbody>
 		</table>
-	</div>
-	<div style="text-align: right">
-		<center><img width="300" height="300" style="border-radius: 50px;" src="../public/assets/images/logo.jpg"></center>
-	</div>
-<table width="100%" border="1">
-	<tbody>
-		<tr>
-			<th colspan="3">MULTAS-RECARGAS</th>
-		</tr>
-		@for($i=0; $i < count($mesesMultas); $i++)
-			<tr>
-				<th>Año: {{ $aniosMultas[$ea] }} </th>
-				<th >Mes: {{ meses($mesesMultas[$i]) }}</th>
-				<th></th>
-			</tr>
-		<tr>
-			<th>MOTIVO</th>
-			<th>OBSERVACIÓN</th>
-			<th>MONTO</th>
-			<TH>TIPO</TH>
-		</tr>
-			@foreach($mr as $key)
-			<tr>
-				<td>{{ $key->motivo }}</td>
-				<td>{{ $key->observacion }}</td>
-				<td>{{ $key->monto }}</td>
-				<td>{{ $key->tipo }}</td>
-				{{-- <td>{{ alquiler_e($mesesEstaciona[$i],$key->id,$aniosEstaciona[$ea]) }}</td> --}}
-			</tr>
-			@endforeach
-		@endfor
-		<tr>
-			<td colspan="6" style="background-color: green;"><br></td>
-		</tr>
-	</tbody>
-</table>
 	@endfor
 @endif
 @if(!is_null($residentes) && !is_null($inmuebles) && !is_null($estacionamientos))
