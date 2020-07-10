@@ -613,30 +613,38 @@
 
     <!--   -------------------------------------------------------------- ESTACIONAMIENTOS   -->
 
-    <div class="modal fade" id="VerEsta" role="dialog">
-        <div class="modal-dialog modals-default">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Sus <span id="titleModal"></span></h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
+    <div class="modal fade bd-example-modal-lg" id="VerEsta" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="
+                background-image: url('{{asset('assets/images/fondos/fondo2.jpg')}}');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                border: 0;
+                height: 700px;">
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                              <div class="carousel-inner">
-                                
-                              </div>
-                              <a class="carousel-control-prev" style="background-color: gray; margin-left: -100px;" href="#carouselExampleControls" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="carousel-control-next" style="background-color: gray; margin-right: -100px;" href="#carouselExampleControls" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                              </a>
+                    <!-- <div class="modal-header">
+                        <h4>Sus <span id="titleModal"></span></h4>
+                    </div> -->
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    <div id="VerEstaFade" style="display: none">
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    
+                                  </div>
+                                  <a class="carousel-control-prev" style="margin-left: -100px;" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" style="margin-right: -100px;" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1304,6 +1312,7 @@
     }
 
     function VerResi(id_residente) {
+        $('#VerEstaFade').css('display','none');
         $('#titleModal').empty();
         $('#titleModal').append('residencias');
         $('.carousel-inner').empty();
@@ -1323,11 +1332,26 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item active">'+
                                 '<center>'+
-                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
-                                '</center>'+
-                                ''+
-                                '<label><h4>Montos por mes</h4></label><br>'+
-                                '<div class="inner'+data[i].id+'"></div>'
+                                    '<h1 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-white">'+data[i].idem+'</strong></h1>'+
+                                    '<div class="row justify-content-center">'+
+                                        '<div class="col-md-12">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
+                                                '<thead><center>'+
+                                                    '<tr class="bg-info text-white" align="center">'+
+                                                        '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
+                                                        '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
+                                                    '</tr>'+
+                                                '</center></thead>'+
+                                                '<tbody class="inmuebleBody'+data[i].id+'">'+
+                                                '</tbody>'+
+                                            '</table>'+
+                                        '</div>'+
+                                    '</div>'+
+
+                                '</center>'
+                                // ''+
+                                // '<label><h4>Montos por mes</h4></label><br>'+
+                                // '<div class="inner'+data[i].id+'"></div>'
                         );
 
                         detalles(data[i].id);
@@ -1335,23 +1359,35 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item">'+
                                 '<center>'+
-                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
-                                '</center>'+
-                                ''+
-                                '<label><h4>Montos por mes</h4></label><br>'+
-                                '<div class="inner'+data[i].id+'"></div>'
+                                    '<h1 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-white">'+data[i].idem+'</strong></h1>'+
+                                    '<div class="row justify-content-center">'+
+                                        '<div class="col-md-12">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
+                                                '<thead><center>'+
+                                                    '<tr class="bg-info text-white" align="center">'+
+                                                        '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
+                                                        '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
+                                                    '</tr>'+
+                                                '</center></thead>'+
+                                                '<tbody class="inmuebleBody'+data[i].id+'">'+
+
+                                                '</tbody>'+
+                                            '</table>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</center>'
                         );
 
                         detalles(data[i].id);
                     }
                     $('.carousel-inner').append('</div>');
                 }
-
             }else{
                 $('.carousel-inner').append('<h3>El residente no tiene Inmuebles registrados</h3>');
             }
                         
             
+        
         });
     }
     function detalles(id_inmueble){
@@ -1361,35 +1397,30 @@
         .done(function(data) {
             //console.log(data);
             for(var i=0; i < data.length; i++){
-                if(data[i].status == 'Pendiente'){
-                    $('.inner'+id_inmueble).append(
-                        '<div class="row">'+
-                            '<div class="col-md-12">'+ 
-                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
-                                '<label style="float: right;" class="text-success">'+data[i].status+'</label>'+
-                            '</div>'+
-                        '</div>'
-                    );
-                }else if(data[i].status == 'Por Confirmar'){
-                    $('.inner'+id_inmueble).append(
-                        '<div class="row">'+
-                            '<div class="col-md-12">'+ 
-                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
-                                '<label style="float: right;" class="text-warning">'+data[i].status+'</label>'+
-                            '</div>'+
-                        '</div>'
-                    );
-                }else{
-                    $('.inner'+id_inmueble).append(
-                        '<div class="row">'+
-                            '<div class="col-md-12">'+ 
-                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
-                                '<label style="float: right;" class="text-danger">'+data[i].status+'</label>'+
-                            '</div>'+
-                        '</div>'
-                    );
+                $('.inmuebleBody'+id_inmueble).append('<tr>');
+                    if(data[i].status == 'Pendiente'){
+                        $('.inmuebleBody'+id_inmueble).append(
+                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center" class="text-success"><strong>'+data[i].status+'</strong></td>'
+                        );
+                    }else if(data[i].status == 'Por Confirmar'){
+                        $('.inmuebleBody'+id_inmueble).append(
+                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'
+                        );
+                    }else{
+                        $('.inmuebleBody'+id_inmueble).append(
+                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center" class="text-danger"><strong>'+data[i].status+'</strong></td>'
+                        );
+                    }
+                $('.inmuebleBody'+id_inmueble).append('</tr>');
+                if(i==data.length-1){
+                    $('#VerEstaFade').fadeIn('slow');
                 }
             }
+
+
 
         });
     }
