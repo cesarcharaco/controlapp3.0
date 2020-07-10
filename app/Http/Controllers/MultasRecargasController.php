@@ -172,45 +172,65 @@ class MultasRecargasController extends Controller
 
         // dd($request->all());
         if($request->registrarTodos== 'AsignarTodos'){
+            $cont=0;
+            if (!is_null($residentes)) {
+                foreach ($residentes as $key) {
+                    for ($i=0; $i < count($request->id_mr) ; $i++) { 
+                        if ($this->buscar_asignado($key->id,$request->id_mr[$i])==0) {
+                            \DB::table('resi_has_mr')->insert([
+                                'id_residente' => $key->id,
+                                'id_mr' => $request->id_mr[$i],
+                                'mes' => date('m')
+                            ]);
+                        } else {
+                            $cont++;
+                        }
+                        
+                    }
+                }
+                $mensaje="";
+                if($cont==count($residentes)){
+                    toastr()->warning('verifique!!', 'Ya los residentes seleccionados habían sido asignados a las sanciones para éste mes');
+                }elseif($cont>0){
+                    $mensaje=", y Algunos residentes ya poseían Sanciones asignadas para éste mes";
+                    toastr()->success('con éxito!!', 'Sanciones asignadas'.$mensaje);
+                }else{
+                    toastr()->success('con éxito!!', 'Sanciones asignadas');
+                }
+                    return redirect()->back();
+            } else {
+                toastr()->warning('intente otra vez!!', 'No existen residentes registrados');
+                return redirect()->back();
+            }
+            
+        }else{
 
-            for ($i=0; $i < count($residentes); $i++) {
-
-                $asignados=\DB::table('resi_has_mr')->where('id_residente',$residentes[$i]->id)->get();
-                if(count($asignados)==0){
-
-                    for ($j=0; $j < count($request->id_mr); $j++) { 
-
+            $cont=0;
+            for ($i=0; $i < count($request->id_residente); $i++) { 
+                for ($j=0; $j < count($request->id_mr); $j++) { 
+                    if ($this->buscar_asignado($request->id_residente[$i],$request->id_mr[$j])==0) {
                         \DB::table('resi_has_mr')->insert([
-                            'id_residente' => $residentes[$i]->id,
+                            'id_residente' => $request->id_residente[$i],
                             'id_mr' => $request->id_mr[$j],
                             'mes' => date('m')
                         ]);
+                    } else {
+                        $cont++;
                     }
-
+                }
+            }
+            $mensaje="";
+            //dd($cont);
+                if($cont==count($request->id_residente)){
+                    toastr()->warning('verifique!!', 'Ya los residentes seleccionados habían sido asignados a las sanciones para éste mes');
+                }elseif($cont>0){
+                    $mensaje=", y Algunos residentes ya poseían Sanciones asignadas para éste mes";
+                    toastr()->success('con éxito!!', 'Sanciones asignadas'.$mensaje);
                 }else{
-                    toastr()->warning('intente otra vez!!', 'Hay sanciones que ya estaban registradas al residente '.$residentes[$i]->nombres.' '.$residentes[$i]->apellidos);
+                    toastr()->success('con éxito!!', 'Sanciones asignadas');
                 }
-            }
-            toastr()->success('con éxito!!', 'Sanciones asignadas a todos los residentes');
-
-        }else{
-            for ($i=0; $i < count($request->id_residente); $i++) { 
-
-                for ($j=0; $j < count($request->id_mr); $j++) { 
-
-                    \DB::table('resi_has_mr')->insert([
-                        'id_residente' => $request->id_residente[$i],
-                        'id_mr' => $request->id_mr[$j],
-                        'mes' => date('m')
-                    ]);
-                }
-            }
-
-            toastr()->success('con éxito!!', 'Sanción asignada');
+                    return redirect()->back();
         }
-
-
-        return redirect()->back();
     }
 
     public function status_mr(Request $request)
@@ -271,5 +291,12 @@ class MultasRecargasController extends Controller
         ->where('resi_has_mr.id_mr',$id_mr)
         ->select('residentes.*')
         ->get();   
+    }
+
+    protected function buscar_asignado($id_residente,$id_mr)
+    {
+        $mes=date('m');
+        $asignado=\DB::table('resi_has_mr')->where('id_residente',$id_residente)->where('id_mr',$id_mr)->get();
+        return count($asignado);
     }
 }
