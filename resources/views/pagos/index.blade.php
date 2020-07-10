@@ -1361,15 +1361,34 @@
         .done(function(data) {
             //console.log(data);
             for(var i=0; i < data.length; i++){
-                $('.inner'+id_inmueble).append(
-                    '<div class="row">'+
-                        '<div class="col-md-12">'+ 
-                            '<label>'+mostrar_mes(data[i].mes)+'</label>'+
-                            '<label style="float: right;">'+data[i].status+'</label>'+
-                        '</div>'+
-                        
-                    '</div>'
-                );
+                if(data[i].status == 'Pendiente'){
+                    $('.inner'+id_inmueble).append(
+                        '<div class="row">'+
+                            '<div class="col-md-12">'+ 
+                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
+                                '<label style="float: right;" class="text-success">'+data[i].status+'</label>'+
+                            '</div>'+
+                        '</div>'
+                    );
+                }else if(data[i].status == 'Por Confirmar'){
+                    $('.inner'+id_inmueble).append(
+                        '<div class="row">'+
+                            '<div class="col-md-12">'+ 
+                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
+                                '<label style="float: right;" class="text-warning">'+data[i].status+'</label>'+
+                            '</div>'+
+                        '</div>'
+                    );
+                }else{
+                    $('.inner'+id_inmueble).append(
+                        '<div class="row">'+
+                            '<div class="col-md-12">'+ 
+                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
+                                '<label style="float: right;" class="text-danger">'+data[i].status+'</label>'+
+                            '</div>'+
+                        '</div>'
+                    );
+                }
             }
 
         });
