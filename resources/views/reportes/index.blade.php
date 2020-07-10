@@ -38,8 +38,7 @@
 			        			<label class="text-primary">Año</label>
 			        			<select class="form-control select2 border border-default" name="anio">
 			        				@for($j=0;$j<count($anio);$j++)
-			        					<option value="{{ $anio[$j] }}">{{ $anio[$j] }}</option>}
-			        					option
+			        					<option value="{{ $anio[$j] }}">{{ $anio[$j] }}</option>
 			        				@endfor
 			        			</select>
 			        		</div>
