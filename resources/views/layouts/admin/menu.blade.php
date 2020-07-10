@@ -159,16 +159,40 @@
                     </a>
                 </li>
                 @endif
-                    <div id="footer">                        
-                        <li class="menu-title">
-                             <div style="background-color: white;font-size: 9px;">
-                                ControlApp
-                                <label class="badge badge-soft-danger">v1.0.1.</label>
-                                <br>Un proyecto desarrollado por 
-                                <div class="text-primary" style=""><strong>EICHE</strong></div>.
-                            </div>
-                        </li>
-                    </div>
+                    @if(\Auth::user()->tipo_usuario == 'Residente')
+                        <div id="footer">
+                            <li class="menu-title">
+                                 <div style="background-color: white;font-size: 9px; margin-top: 110px; position: absolute;">
+                                    ControlApp
+                                    <label class="badge badge-soft-danger">v1.0.1.</label>
+                                    <br>Un proyecto desarrollado por 
+                                    <div class="text-primary" style=""><strong>EICHE</strong></div>.
+                                </div>
+                            </li>
+                        </div>
+                    @elseif(\Auth::user()->tipo_usuario == 'root')
+                        <div id="footer2">
+                            <li class="menu-title">
+                                 <div style="background-color: white;font-size: 9px; margin-top: 110px; position: absolute;">
+                                    ControlApp
+                                    <label class="badge badge-soft-danger">v1.0.1.</label>
+                                    <br>Un proyecto desarrollado por 
+                                    <div class="text-primary" style=""><strong>EICHE</strong></div>.
+                                </div>
+                            </li>
+                        </div>
+                    @else
+                        <div id="footer3">
+                            <li class="menu-title">
+                                 <div style="background-color: white;font-size: 9px;">
+                                    ControlApp
+                                    <label class="badge badge-soft-danger">v1.0.1.</label>
+                                    <br>Un proyecto desarrollado por 
+                                    <div class="text-primary" style=""><strong>EICHE</strong></div>.
+                                </div>
+                            </li>
+                        </div>
+                    @endif
             </ul>
 
         </div>

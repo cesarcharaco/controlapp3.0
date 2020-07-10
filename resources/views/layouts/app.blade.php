@@ -39,13 +39,35 @@
             
             /*margin-top: 500px;*/
         }
-        @media screen and (max-width: -480px) {
+
+        #footer2{
+
+            position: relative; 
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            top: 60px;
+            
+            /*margin-top: 500px;*/
+        }
+
+        #footer3{
+
+            position: relative; 
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            top: 60px;
+            
+            /*margin-top: 500px;*/
+        }
+        /*@media screen and (max-width: -480px) {
             #inner{
                 top: 500px;
                 position: relative; 
                 width: 50%;
             }
-        }
+        }*/
         @media screen and (max-width: 480px) {
             #footer{
                 height: 100px;

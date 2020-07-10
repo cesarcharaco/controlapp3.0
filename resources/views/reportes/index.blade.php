@@ -18,7 +18,7 @@
 
 
 
-        		<form action="{{ route('reportes.general') }}" method="POST" accept-charset="utf-8">
+        		<form action="{{ route('reportes.general') }}" target="_blank" method="POST" accept-charset="utf-8">
 			   	@csrf
 
 	        		<div class="row">
@@ -76,7 +76,7 @@
 
 				    	
 
-				    <form action="{{ route('reportes.store') }}" method="POST" accept-charset="utf-8">
+				    <form action="{{ route('reportes.store') }}" target="_blank" method="POST" accept-charset="utf-8">
 				   	@csrf
 
 				    	{{--<div class="row justify-content-center">
