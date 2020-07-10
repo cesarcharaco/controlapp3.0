@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\MultasRecargas;
 use Illuminate\Http\Request;
 use App\Residentes;
+use App\UsersAdmin;
 class MultasRecargasController extends Controller
 {
     /**
@@ -14,14 +15,21 @@ class MultasRecargasController extends Controller
      */
     public function index()
     {
-        $id_admin=id_admin(\Auth::user()->email);
+        if(\Auth::user()->tipo_usuario == "Residente"){
+            $residente=Residentes::where('id_usuario',\Auth::user()->id)->first();
+            $admin=UsersAdmin::find($residente->id_admin);
+            $id_admin=id_admin($admin->email);
+        }else{
+            $id_admin=id_admin(\Auth::user()->email);
+        }
+        // dd($id_admin);
         $asignacion = \DB::table('residentes')
-        ->join('resi_has_mr','resi_has_mr.id_residente','=','residentes.id')
-        ->join('multas_recargas','multas_recargas.id','=','resi_has_mr.id_mr')
-        ->where('residentes.id_usuario',\Auth::user()->id)
-        ->where('multas_recargas.id_admin',$id_admin)
-        ->select('multas_recargas.*','resi_has_mr.mes')
-        ->get();
+            ->join('resi_has_mr','resi_has_mr.id_residente','=','residentes.id')
+            ->join('multas_recargas','multas_recargas.id','=','resi_has_mr.id_mr')
+            ->where('residentes.id_usuario',\Auth::user()->id)
+            ->where('multas_recargas.id_admin',$id_admin)
+            ->select('multas_recargas.*','resi_has_mr.mes')
+            ->get();
 
         // dd(count($asignacion));
 

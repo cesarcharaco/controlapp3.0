@@ -307,7 +307,7 @@
 						<td>{{ $key->motivo }}</td>
 						<td>{{ $key->observacion }}</td>
 						<td>{{ $key->monto }}</td>
-						<td style="border-top-color: black;">{{ $key->tipo }}</td>
+						<td>{{ $key->tipo }}</td>
 						{{-- <td>{{ alquiler_e($mesesEstaciona[$i],$key->id,$aniosEstaciona[$ea]) }}</td> --}}
 					</tr>
 					@endforeach
