@@ -2,7 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -26,6 +27,34 @@
             /*margin-right: -100px;*/
             /*height: 80%;*/
             /*margin:auto;*/
+        }
+
+        #footer{
+
+            position: fixed; 
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            height: 100px;
+        }
+        @media screen and (max-width: -480px) {
+            #inner{
+                position: relative; 
+                width: 50%;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            #footer {
+                position: relative; 
+                width: 10%;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            #footer {
+                position: relative; 
+                /*width: 100%;*/
+            }
         }
     </style>
     

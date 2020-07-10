@@ -467,7 +467,7 @@
                 </div>
             </div>
         </div>        
-        @if(count($anuncios) >0)
+        @if(is_null($anuncios))
             @if(\Auth::user()->tipo_usuario!='Admin')
                 <div class="col-md-3">
                     <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
