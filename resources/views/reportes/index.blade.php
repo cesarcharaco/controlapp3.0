@@ -334,6 +334,7 @@
     function TodosInmuebles() {
     	if($('#InmueblesTodos').prop('checked')){
     		$('#selectTodosInmuebles').attr('disabled',true);
+    		$("#selectTodosInmuebles option:selected").prop("selected", false);
     	}else{
     		$('#selectTodosInmuebles').removeAttr('disabled',false);
     	}
