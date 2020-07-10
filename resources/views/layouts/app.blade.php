@@ -203,10 +203,10 @@
                                                                                         <div  id="rut_profileE" style="display: none;">
                                                                                             <div class="row">
                                                                                                 <div class="col-md-7">
-                                                                                                    <input type="text" name="rut" class="form-control" id="rut_profileEdit" value="123124123" required>
+                                                                                                    <input type="text" name="rut" minlength="7" maxlength="8" class="form-control" id="rut_profileEdit" value="123124123" required>
                                                                                                 </div>
                                                                                                 <div class="col-md-3">
-                                                                                                    <input type="text" name="verificador" class="form-control" id="verificadorEdit" value="123124123" required>
+                                                                                                    <input type="text" name="verificador" minlength="1" maxlength="2" class="form-control" id="verificadorEdit" value="123124123" required>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>

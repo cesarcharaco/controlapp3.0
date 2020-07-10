@@ -133,6 +133,13 @@
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
 									        			</select>
+									        			<div style="display: none">
+										        			<select class="form-control select2 border border-default" multiple name="meses_inmuebles[]" id="selectMesesInmuebles2" style="display: none;">
+										        				@foreach($meses as $key)
+										        					<option value="{{$key->id}}">{{$key->mes}}</option>
+										        				@endforeach
+										        			</select>
+										        		</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los meses del año?</label>
@@ -146,6 +153,13 @@
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
 									        			</select>
+									        			<div style="display: none">
+										        			<select class="form-control select2 border border-default" multiple name="anios_inmueble[]" id="selectTodosAniosInmuebles2" style="display: none">
+										        				@for($i=0; $i< count($anio); $i++)
+										        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
+										        				@endfor
+										        			</select>
+										        		</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los años?</label>
@@ -169,10 +183,10 @@
 							        			</select>
 							        			<div style="display: none">
 							        				<select class="form-control select2 border border-warning" multiple name="id_estacionamientos[]" id="selectTodosEstacionamientos2">
-							        				@foreach($estacionamientos as $key)
-							        					<option value="{{$key->id}}">{{$key->idem}}</option>
-							        				@endforeach
-							        			</select>
+								        				@foreach($estacionamientos as $key)
+								        					<option value="{{$key->id}}">{{$key->idem}}</option>
+								        				@endforeach
+							        				</select>
 							        			</div>
 							        		</div>
 							        		<div class="form-group">
@@ -188,6 +202,13 @@
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
 									        			</select>
+									        			<div style="display: none">
+										        			<select class="form-control select2 border border-default" multiple name="meses_estaciona[]" id="selectMesesEstaciona2" style="display: none;">
+										        				@foreach($meses as $key)
+										        					<option value="{{$key->id}}">{{$key->mes}}</option>
+										        				@endforeach
+										        			</select>
+										        		</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los meses del año?</label>
@@ -201,6 +222,13 @@
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
 									        			</select>
+									        			<div style="display: none">
+										        			<select class="form-control select2 border border-default" multiple name="anios_estaciona[]" id="selectAniosEstaciona2" style="display: none;">
+										        				@for($i=0; $i< count($anio); $i++)
+										        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
+										        				@endfor
+										        			</select>
+										        		</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los años?</label>
@@ -243,6 +271,13 @@
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
 									        			</select>
+									        			<div style="display: none">
+										        			<select class="form-control select2 border border-default" multiple name="meses_residentes[]" id="selectMesesResidentes2" style="display: none">
+										        				@foreach($meses as $key)
+										        					<option value="{{$key->id}}">{{$key->mes}}</option>
+										        				@endforeach
+										        			</select>
+										        		</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los meses del año?</label>
@@ -256,6 +291,13 @@
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
 									        			</select>
+									        			<div style="display: none">
+										        			<select class="form-control select2 border border-default" multiple name="anios_residentes[]" id="selectAniosResidentes2" style="display: none">
+										        				@for($i=0; $i< count($anio); $i++)
+										        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
+										        				@endfor
+										        			</select>
+										        		</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los años?</label>
@@ -297,6 +339,13 @@
 									        					<option value="{{$key->id}}">{{$key->mes}}</option>
 									        				@endforeach
 									        			</select>
+									        			<div style="display: none">
+										        			<select class="form-control select2 border border-default" multiple name="meses_multas[]" id="selectMesesMultas2" style="display: none">
+										        				@foreach($meses as $key)
+										        					<option value="{{$key->id}}">{{$key->mes}}</option>
+										        				@endforeach
+										        			</select>
+										        		</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los meses del año?</label>
@@ -310,6 +359,13 @@
 									        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
 									        				@endfor
 									        			</select>
+									        			<div style="display: none">
+										        			<select class="form-control select2 border border-default" multiple name="anios_multas[]" id="selectAniosMultas2" style="display: none">
+										        				@for($i=0; $i< count($anio); $i++)
+										        					<option value="{{$anio[$i]}}">{{$anio[$i]}}</option>
+										        				@endfor
+										        			</select>
+										        		</div>
 									        		</div>
 									        		<div class="form-group">
 									        			<label>¿Todos los años?</label>
@@ -377,6 +433,9 @@
     function TodosMesesInmuebles() {
     	if($('#MesesTodosInmuebles').prop('checked')){
     		$('#selectMesesInmuebles').attr('disabled',true);
+    		var options = $("#selectMesesInmuebles2 > option").clone();
+    		$("#selectMesesInmuebles > option").remove();
+    		$("#selectMesesInmuebles").append(options);
     	}else{
     		$('#selectMesesInmuebles').removeAttr('disabled',false);
     	}
@@ -385,6 +444,9 @@
     function TodosAniosInmuebles() {
     	if($('#AniosTodosInmuebles').prop('checked')){
     		$('#selectTodosAniosInmuebles').attr('disabled',true);
+    		var options = $("#selectTodosAniosInmuebles2 > option").clone();
+    		$("#selectTodosAniosInmuebles > option").remove();
+    		$("#selectTodosAniosInmuebles").append(options);
     	}else{
     		$('#selectTodosAniosInmuebles').removeAttr('disabled',false);
     	}
@@ -405,6 +467,9 @@
     function TodosMesesEstaciona() {
     	if($('#MesesTodosEstaciona').prop('checked')){
     		$('#selectMesesEstaciona').attr('disabled',true);
+    		var options = $("#selectMesesEstaciona2 > option").clone();
+    		$("#selectMesesEstaciona > option").remove();
+    		$("#selectMesesEstaciona").append(options);
     	}else{
     		$('#selectMesesEstaciona').removeAttr('disabled',false);
     	}
@@ -413,6 +478,9 @@
     function TodosAniosEstaciona() {
     	if($('#AniosTodosEstaciona').prop('checked')){
     		$('#selectAniosEstaciona').attr('disabled',true);
+    		var options = $("#selectAniosEstaciona2 > option").clone();
+    		$("#selectAniosEstaciona > option").remove();
+    		$("#selectAniosEstaciona").append(options);
     	}else{
     		$('#selectAniosEstaciona').removeAttr('disabled',false);
     	}
@@ -433,6 +501,9 @@
     function TodosMesesResidentes() {
     	if($('#MesesTodosResidentes').prop('checked')){
     		$('#selectMesesResidentes').attr('disabled',true);
+    		var options = $("#selectMesesResidentes2 > option").clone();
+    		$("#selectMesesResidentes > option").remove();
+    		$("#selectMesesResidentes").append(options);
     	}else{
     		$('#selectMesesResidentes').removeAttr('disabled',false);
     	}
@@ -441,6 +512,9 @@
     function TodosAniosResidentes() {
     	if($('#AniosTodosResidentes').prop('checked')){
     		$('#selectAniosResidentes').attr('disabled',true);
+    		var options = $("#selectAniosResidentes2 > option").clone();
+    		$("#selectAniosResidentes > option").remove();
+    		$("#selectAniosResidentes").append(options);
     	}else{
     		$('#selectAniosResidentes').removeAttr('disabled',false);
     	}
@@ -461,6 +535,9 @@
     function TodosMesesMultas() {
     	if($('#MesesTodosMultas').prop('checked')){
     		$('#selectMesesMultas').attr('disabled',true);
+    		var options = $("#selectMesesMultas2 > option").clone();
+    		$("#selectMesesMultas > option").remove();
+    		$("#selectMesesMultas").append(options);
     	}else{
     		$('#selectMesesMultas').removeAttr('disabled',false);
     	}
@@ -469,6 +546,9 @@
     function TodosAniosMultas() {
     	if($('#AniosTodosMultas').prop('checked')){
     		$('#selectAniosMultas').attr('disabled',true);
+    		var options = $("#selectAniosMultas2 > option").clone();
+    		$("#selectAniosMultas > option").remove();
+    		$("#selectAniosMultas").append(options);
     	}else{
     		$('#selectAniosMultas').removeAttr('disabled',false);
     	}
