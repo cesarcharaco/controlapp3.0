@@ -146,13 +146,13 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <div class="form-group">
-                                                <input type="text" name="rut" placeholder="Rut del residente" id="rut_e" class="form-control" required>
+                                                <input type="text" name="rut" placeholder="Rut del residente" minlength="7" maxlength="8" id="rut_e" class="form-control" required>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <input type="number" name="verificador" id="verificador_e" min="1" maxlength="2" value="1" class="form-control" required>
+                                                <input type="number" name="verificador" id="verificador_e" minlength="1" maxlength="2" value="1" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>

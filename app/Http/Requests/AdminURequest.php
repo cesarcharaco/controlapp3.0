@@ -26,7 +26,7 @@ class AdminURequest extends FormRequest
         
             return [
             'name_e' => 'required|max:255',
-            'rut_e' => 'required|numeric|max:10',
+            'rut_e' => 'required|numeric|max:8',
             'email_e' => 'required|email|max:255',
             'password' => 'required|min:8|confirmed'
             ];

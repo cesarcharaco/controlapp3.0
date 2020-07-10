@@ -430,7 +430,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Rereferencias</label>
-                                <input type="number" required="required" name="referencia" class="form-control">
+                                <input type="text" required="required" name="referencia" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -502,7 +502,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class=" col-form-label" for="example-static">Referencia con la que se registró el pago</label>
-                                        <input type="number" name="referencia_edit" data-toggle="tooltip" data-placement="top" title="Ingrese la referencia con la que se registró el pago" placeholder="Ej: 12345678" class="form-control" required="required" >
+                                        <input type="text" name="referencia_edit" data-toggle="tooltip" data-placement="top" title="Ingrese la referencia con la que se registró el pago" placeholder="Ej: 12345678" class="form-control" required="required" >
                                     </div>
                                 </div>
                             </div>

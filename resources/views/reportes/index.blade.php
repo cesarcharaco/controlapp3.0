@@ -106,11 +106,19 @@
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-primary">Inmuebles</label>
-							        			<select class="form-control select2 border border-primary" multiple name="id_inmuebles[]" id="selectTodosInmuebles">
+							        			<select multiple name="id_inmuebles[]" id="selectTodosInmuebles">
 							        				@foreach($inmuebles as $key)
 							        					<option value="{{$key->id}}">{{$key->idem}}</option>
 							        				@endforeach
 							        			</select>
+							        			<div style="display: none">
+								        			<select multiple id="selectTodosInmuebles2" style="display: none;">
+								        				@foreach($inmuebles as $key)
+								        					<option value="{{$key->id}}">{{$key->idem}}</option>
+								        				@endforeach
+								        			</select>
+							        				
+							        			</div>
 							        		</div>
 							        		<div class="form-group">
 							        			<label>¿Todos los inmuebles?</label>
@@ -159,6 +167,13 @@
 							        					<option value="{{$key->id}}">{{$key->idem}}</option>
 							        				@endforeach
 							        			</select>
+							        			<div style="display: none">
+							        				<select class="form-control select2 border border-warning" multiple name="id_estacionamientos[]" id="selectTodosEstacionamientos2">
+							        				@foreach($estacionamientos as $key)
+							        					<option value="{{$key->id}}">{{$key->idem}}</option>
+							        				@endforeach
+							        			</select>
+							        			</div>
 							        		</div>
 							        		<div class="form-group">
 							        			<label>¿Todos los estacionamientos?</label>
@@ -208,6 +223,13 @@
 							        					<option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
 							        				@endforeach
 							        			</select>
+							        			<div style="display: none">
+							        				<select class="form-control select2 border border-success" multiple name="id_residentes[]" id="selectTodosResidentes2">
+							        				@foreach($residentes as $key)
+							        					<option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+							        				@endforeach
+							        			</select>
+							        			</div>
 							        		</div>
 							        		<div class="form-group">
 							        			<label>¿Todos los residentes?</label>
@@ -255,6 +277,13 @@
 							        					<option value="{{$key->id}}">{{$key->motivo}} {{$key->tipo}} - {{$key->monto}}</option>
 							        				@endforeach
 							        			</select>
+							        			<div style="display: none">
+							        				<select class="form-control select2 border border-success" multiple name="id_multa[]" id="selectTodosMultas2">
+							        				@foreach($multas as $key)
+							        					<option value="{{$key->id}}">{{$key->motivo}} {{$key->tipo}} - {{$key->monto}}</option>
+							        				@endforeach
+							        			</select>
+							        			</div>
 							        		</div>
 							        		<div class="form-group">
 									        	<label>¿Todas las Multas y recargas? </label>
@@ -334,7 +363,12 @@
     function TodosInmuebles() {
     	if($('#InmueblesTodos').prop('checked')){
     		$('#selectTodosInmuebles').attr('disabled',true);
-    		$("#selectTodosInmuebles option:selected").prop("selected", false);
+    		var options = $("#selectTodosInmuebles2 > option").clone();
+    		$("#selectTodosInmuebles > option").remove();
+    		$("#selectTodosInmuebles").append(options);
+
+    		// $("#selectTodosInmuebles").multiselect("clearSelection");
+			// $("#selectTodosInmuebles").multiselect( 'refresh' );
     	}else{
     		$('#selectTodosInmuebles').removeAttr('disabled',false);
     	}
@@ -361,6 +395,9 @@
     function TodosEstacionamientos() {
     	if($('#EstacionamientosTodos').prop('checked')){
     		$('#selectTodosEstacionamientos').attr('disabled',true);
+    		var options = $("#selectTodosEstacionamientos2 > option").clone();
+    		$("#selectTodosEstacionamientos > option").remove();
+    		$("#selectTodosEstacionamientos").append(options);
     	}else{
     		$('#selectTodosEstacionamientos').removeAttr('disabled',false);
     	}
@@ -385,6 +422,9 @@
     function TodosResidentes() {
     	if($('#ResidentesTodos').prop('checked')){
     		$('#selectTodosResidentes').attr('disabled',true);
+    		var options = $("#selectTodosResidentes2 > option").clone();
+    		$("#selectTodosResidentes > option").remove();
+    		$("#selectTodosResidentes").append(options);
     	}else{
     		$('#selectTodosResidentes').removeAttr('disabled',false);
     	}
@@ -410,6 +450,9 @@
     function TodosMultas() {
     	if($('#MultasTodas').prop('checked')){
     		$('#selectTodosMultas').attr('disabled',true);
+    		var options = $("#selectTodosMultas2 > option").clone();
+    		$("#selectTodosMultas > option").remove();
+    		$("#selectTodosMultas").append(options);
     	}else{
     		$('#selectTodosMultas').removeAttr('disabled',false);
     	}

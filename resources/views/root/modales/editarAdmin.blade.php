@@ -23,13 +23,13 @@
                             <div class="col-md-10">
                                 <div class="form-group">
                                     <label>RUT</label>
-                                    <input type="text" name="rut_e" id="rut_e" placeholder="Rut" class="form-control" required>
+                                    <input type="text" name="rut_e" id="rut_e" placeholder="Rut" minlength="7" maxlength="8" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label><br></label>
-                                    <input type="number" id="verificador_e" name="verificador_e" min="1" maxlength="2" value="1" class="form-control" required>
+                                    <input type="number" id="verificador_e" name="verificador_e" minlength="1" maxlength="2" value="1" class="form-control" required>
                                 </div>
                             </div>
                         </div>

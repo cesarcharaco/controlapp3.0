@@ -796,7 +796,7 @@
 		                    '<div class="col-md-12">'+
 		                        '<div class="form-group">'+
 		                            '<label>Referencia</label>'+
-		                            '<input type="number" name="referencia" class="form-control" required="required">'+
+		                            '<input type="text" name="referencia" class="form-control" required="required">'+
 		                        '</div>'+
 		                    '</div>'+
 		                '</div>'

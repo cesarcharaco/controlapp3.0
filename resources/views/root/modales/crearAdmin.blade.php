@@ -24,14 +24,14 @@
                             <div class="col-md-10">
                                 <div class="form-group">
                                     <label>RUT</label>
-                                    <input type="text" name="rut" id="rut" placeholder="Rut" class="form-control" required>
+                                    <input type="text" name="rut" id="rut" placeholder="Rut" minlength="7" maxlength="8" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <div style="float: left !important;">
                                         <label><br></label>
-                                        <input type="number" name="verificador" min="1" maxlength="2" value="1" class="form-control" required>
+                                        <input type="number" name="verificador" minlength="1" maxlength="2" value="1" class="form-control" required>
                                     </div>
                                 </div>
                             </div>

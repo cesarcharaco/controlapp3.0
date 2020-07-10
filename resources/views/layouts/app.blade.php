@@ -32,11 +32,12 @@
         #footer{
 
             position: relative; 
-            bottom: -5px;
+            bottom: 0px;
             left: 0;
             right: 0;
-            top: 100px;
-            height: 100px;
+            top: 60px;
+            
+            /*margin-top: 500px;*/
         }
         @media screen and (max-width: -480px) {
             #inner{
@@ -46,19 +47,14 @@
             }
         }
         @media screen and (max-width: 480px) {
-            #footer {
-                top: 500px;
-                margin-top: -5px;
-                position: relative; 
-                width: 10%;
+            #footer{
+                height: 100px;
             }
         }
 
         @media screen and (max-width: 800px) {
-            #footer {
-                top: 100px;
-                position: relative; 
-                /*width: 100%;*/
+            #footer{
+                height: 100px;
             }
         }
     </style>
@@ -442,14 +438,14 @@
                                                     <div class="row">
                                                         <div class="col-md-10">
                                                             <div class="form-group">
-                                                                <input type="text" name="rut" placeholder="Rut del residente" class="form-control" required>
+                                                                <input type="text" name="rut" placeholder="Rut del residente" minlength="7" maxlength="8" class="form-control" required>
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <div style="float: left !important;">
-                                                                    <input type="number" name="verificador" min="1" maxlength="2" value="1" class="form-control" required>
+                                                                    <input type="number" name="verificador" minlength="1" maxlength="2" value="1" class="form-control" required>
                                                                 </div>
                                                             </div>
                                                         </div>

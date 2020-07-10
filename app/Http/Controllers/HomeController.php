@@ -64,7 +64,19 @@ class HomeController extends Controller
 
             $buscarPInmuebles= PagosComunes::where('tipo','Inmueble')->where('anio',$anio)->where('id_admin',$id_admin)->get();
             $buscarPEstaciona= PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->where('id_admin',$id_admin)->get();
-            $anuncios=Anuncios::all();
+            if(\Auth::user()->tipo_usuario=="Residentes"){
+                $anuncios=\DB::table('anuncios')
+                    ->join('users_admin','users_admin.id','=','anuncios.id_users_admin')
+                    ->join('residentes','residentes.id_admin','=','users_admin.id')
+                    ->where('residentes.id',$residentes->id)
+                    ->select('anuncios.*')
+                    ->get();
+                }else{
+                    $anuncios=Anuncios::all();
+                }
+            // dd(count($anuncios));
+
+            
             $users_admin = UsersAdmin::all();
             
             //dd('-------------');

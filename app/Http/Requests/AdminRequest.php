@@ -25,7 +25,7 @@ class AdminRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'rut' => 'required|numeric|digits_between:9,10|unique:users_admin',
+            'rut' => 'required|numeric|digits_between:7,8|unique:users_admin',
             'email' => 'required|email|max:255|unique:users_admin',
             'password' => 'required|min:8|confirmed',
         ];
@@ -38,7 +38,7 @@ class AdminRequest extends FormRequest
             'name.max' => 'El nombre no puede contener mas de 255 caracteres',
             'rut.required' => 'El RUT es obligatorio',
             'rut.numeric' => 'El RUT solo debe contener números',
-            'rut.max' => 'El RUT solo debe contener máximo 10 números',
+            'rut.max' => 'El RUT solo debe contener máximo 8 números',
             'email.required' => 'El correo es obligatorio',
             'email.email' => 'El correo debe ser válido',
             'email.max' => 'El correo no debe contener mas de 255 caracteres',

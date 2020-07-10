@@ -159,11 +159,9 @@
                     </a>
                 </li>
                 @endif
-                    <div id="footer">
-                        
-                        
+                    <div id="footer">                        
                         <li class="menu-title">
-                             <div style="background-color: white;font-size: 9px;">
+                             <div style="background-color: purple;font-size: 9px;">
                                 ControlApp
                                 <label class="badge badge-soft-danger">v1.0.1.</label>
                                 <br>Un proyecto desarrollado por 

@@ -274,7 +274,7 @@
                     </div>
                 </div>
             @else
-                @if(!is_null($anuncios))
+                @if(count($anuncios)>0)
                     <div class="col-md-9">
                     <div style="margin-right: -25px;">
                 @else
@@ -467,7 +467,7 @@
                 </div>
             </div>
         </div>        
-        @if(is_null($anuncios))
+        @if(count($anuncios)>0)
             @if(\Auth::user()->tipo_usuario!='Admin')
                 <div class="col-md-3">
                     <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
@@ -477,15 +477,11 @@
                             </div>
                         <div class="card-body">
                             @foreach($anuncios as $key)
-                                @foreach($key->admins as $key2)
-                                    @if($key2->pivot->id_users_admin==mi_admin(\Auth::user()->id))                                
-                                        <div onclick="window.open('{{$key->link}}', '_blank');">                                    
-                                            <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
-                                            <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200" style="padding: 15px 15px 15px 15px; border-radius: 10%;">
-                                            <p class="text-dark" align="center">{{$key->descripcion}}</p>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                <div onclick="window.open('{{$key->link}}', '_blank');">                                    
+                                    <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
+                                    <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200" style="padding: 15px 15px 15px 15px; border-radius: 10%;">
+                                    <p class="text-dark" align="center">{{$key->descripcion}}</p>
+                                </div>
                             @endforeach()
                         </div>
                     </div>

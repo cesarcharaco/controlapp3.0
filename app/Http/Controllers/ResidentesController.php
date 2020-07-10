@@ -49,7 +49,7 @@ class ResidentesController extends Controller
      */
     public function store(Request $request)
     {
-         //dd($request->all());
+        // dd($request->all());
         $id_admin=id_admin(\Auth::user()->email);
         $buscar=Residentes::where('id_admin',$id_admin)->get();
         $cont=0;
@@ -78,7 +78,7 @@ class ResidentesController extends Controller
                     } else {
                         $user=new User();
                         $user->name=$request->nombres;
-                        $user->rut= $request->rut;
+                        $user->rut= $request->rut.'-'.$request->verificador;
                         $user->email=$request->email;
                         $user->password=bcrypt($request->rut);
                         $user->tipo_usuario='Residente';
@@ -88,7 +88,7 @@ class ResidentesController extends Controller
                         $residente=new Residentes();
                         $residente->nombres = $request->nombres;
                         $residente->apellidos = $request->apellidos;
-                        $residente->rut = $request->rut;
+                        $residente->rut = $request->rut.'-'.$request->verificador;
                         if(!is_null($request->telefono)){
                             $residente->telefono = $request->telefono;
                         }
@@ -200,24 +200,27 @@ class ResidentesController extends Controller
      */
     public function update(ResidentesRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        $residente=Residentes::find($request->id);
+
+        $buscar=User::where('email', $request->email)->where('id','<>',$residente->id_usuario)->get();
         $id_admin=id_admin(\Auth::user()->email);
 
-        $buscar=Residentes::where('id_admin',$id_admin)->get();
-        $cont=0;
-        foreach ($buscar as $key) {
+        // $buscar=Residentes::where('id_admin',$id_admin)->get();
+        // $cont=0;
+        // foreach ($buscar as $key) {
             
-            if ($key->id!=$request->id) {
+        //     if ($key->id==$request->id) {
                 
-                $usuario=User::find($key->id_usuario);
-                if($usuario->email==$request->email){
-                    $cont++;
-                }
-            }
+        //         $usuario=User::find($key->id_usuario);
+        //         if($usuario->email==$request->email){
+        //             $cont++;
+        //         }
+        //     }
             
-        }
-        //dd($cont);
-        if ($cont>0) {
+        // }
+        if (count($buscar)>0) {
             toastr()->warning('intente otra vez!!', 'Email ya registrado');
             return redirect()->back();
         } else {

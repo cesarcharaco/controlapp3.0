@@ -44,6 +44,7 @@
                                     <th>Nombres</th>
                                     <th>Rut</th>
                                     <th>Email</th>
+                                    <th>Registrado el</th>
                                     <th>Status</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -54,6 +55,7 @@
                                         <td>{{$key->name}}</td>
                                         <td>{{$key->rut}}</td>
                                         <td>{{$key->email}}</td>
+                                        <td>{{$key->created_at}}</td>
                                         <td>
                                             @if($key->status == 'activo')
                                                 <a href="#" class="btn btn-success" style="border-radius: 50px;">{{$key->status}}</a>
