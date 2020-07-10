@@ -24,7 +24,7 @@
 
 	$(function () {
 
-		$('.data-table-basic2').DataTable({
+		$('.data-table-basic').DataTable({
 	        "pageLength": 30,
 	        language: {
 	        "decimal": "",
@@ -73,8 +73,13 @@
 	function cambiarResiT() {
 		var valor = $('#opcionAsignaT').val();
 		if (valor==1) {
+
 			$("#campoResidentes").attr('disabled',true);
 			$('#opcionAsignaT').val(2);
+			
+			var options = $("#campoResidentes2 > option").clone();
+            $("#campoResidentes > option").remove();
+            $("#campoResidentes").append(options);
 		}else{
 			$("#campoResidentes").removeAttr('disabled');
 			$('#opcionAsignaT').val(1);
@@ -105,10 +110,13 @@
 	        if (data.length>0) {
 	            for (var i = 0; i < data.length; i++) {
 	               $("#campoResidentes").append('<option value="'+data[i].id+'">'+data[i].nombres+' '+data[i].apellidos+' - '+data[i].rut+'</option>');
+	               $("#campoResidentes2").append('<option value="'+data[i].id+'">'+data[i].nombres+' '+data[i].apellidos+' - '+data[i].rut+'</option>');
 	            }
 	        }else{
 	        	$("#campoResidentes").attr('disabled',true);
 	        	$("#campoResidentes").append('<option selected disabled><font style="vertical-align: inherit; color: red">No hay residentes registrados</font></option>');
+	        	$("#campoResidentes2").attr('disabled',true);
+	        	$("#campoResidentes2").append('<option selected disabled><font style="vertical-align: inherit; color: red">No hay residentes registrados</font></option>');
 	        }
 
 	    });

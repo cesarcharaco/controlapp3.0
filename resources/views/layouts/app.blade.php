@@ -18,6 +18,37 @@
     
 
     <style type="text/css">
+        .table-curved  style="table-layout: fixed;"{
+        border-collapse: separate;
+        }
+        .table-curved  style="table-layout: fixed;"{
+            border: solid #ccc 1px;
+            border-radius: 6px;
+            border-left:0px;
+        }
+        .table-curved td, .table-curved th  style="table-layout: fixed;"{
+            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+        .table-curved th  style="table-layout: fixed;"{
+            border-top: none;
+        }
+        .table-curved th:first-child  style="table-layout: fixed;"{
+            border-radius: 6px 0 0 0;
+        }
+        .table-curved th:last-child  style="table-layout: fixed;"{
+            border-radius: 0 6px 0 0;
+        }
+        .table-curved th:only-child style="table-layout: fixed;"{
+            border-radius: 6px 6px 0 0;
+        }
+        .table-curved tr:last-child td:first-child  style="table-layout: fixed;"{
+            border-radius: 0 0 0 6px;
+        }
+        .table-curved tr:last-child td:last-child  style="table-layout: fixed;"{
+            border-radius: 0 0 6px 0;
+        }
+
         .anuncio{
 
         }
@@ -25,6 +56,7 @@
         .tabla-estilo{
             position: relative;
             table-layout: fixed;
+            border-radius: 30px;
         }
         .imagenAnun{
             /*width: 100%;*/
@@ -65,6 +97,9 @@
             top: 60px;
             
             /*margin-top: 500px;*/
+        }
+        .card-tabla{
+            border-radius: 30px !important;
         }
         /*@media screen and (max-width: -480px) {
             #inner{
@@ -167,6 +202,10 @@
                                                                     <label>Residentes</label>
                                                                     <select multiple class="custom-select custom-select-sm" name="id_residente[]" id="campoResidentes">
                                                                     </select>
+                                                                    <div style="display: none;">
+                                                                        <select multiple class="custom-select custom-select-sm" name="id_residente[]" id="campoResidentes2">
+                                                                    </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
