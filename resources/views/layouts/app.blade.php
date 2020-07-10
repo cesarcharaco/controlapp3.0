@@ -21,6 +21,11 @@
         .anuncio{
 
         }
+
+        .tabla-estilo{
+            position: relative;
+            table-layout: fixed;
+        }
         .imagenAnun{
             /*width: 100%;*/
             margin-left: -20px;
@@ -29,7 +34,7 @@
             /*margin:auto;*/
         }
 
-        #footer{
+        #footer1{
 
             position: relative; 
             bottom: 0px;
@@ -69,13 +74,28 @@
             }
         }*/
         @media screen and (max-width: 480px) {
-            #footer{
+            #footer1{
+                height: 50;
+            }
+            #footer3{
                 height: 100px;
+            }
+            .tabla-estilo{
+                font-size: 7px;
+            }
+            .boton-tabla{
+                font-size: 7px;
+                width: 50px;
+                height: 20px;
+                border-radius: 30px;
+            }
+            .card-tabla{
+                width: 100%
             }
         }
 
         @media screen and (max-width: 800px) {
-            #footer{
+            #footer1{
                 height: 100px;
             }
         }

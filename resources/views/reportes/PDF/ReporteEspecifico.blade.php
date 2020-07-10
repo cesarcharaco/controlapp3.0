@@ -167,7 +167,7 @@
 @endif
 @if(!is_null($inmuebles))
 <hr><br>
-@for($ia=0;$ia<count($aniosInmuebles);$ia++)
+@for($ia=0;$ia < count($aniosInmuebles);$ia++)
 	<div style="float: left">
 		<table style="width: 500px !important;">
 			<tbody>
@@ -220,7 +220,7 @@
 @endif
 @if(!is_null($estacionamientos))
 <hr><br>
-@for($ea=0;$ea<count($aniosEstaciona);$ea++)
+@for($ea=0;$ea < count($aniosEstaciona);$ea++)
 	<div style="float: left">
 		<table style="width: 500px !important;">
 			<tbody>
@@ -293,8 +293,8 @@
 				@for($i=0; $i < count($mesesMultas); $i++)
 					<tr>
 						<th>Año: {{ $aniosMultas[$ea] }} </th>
-						<th >Mes: {{ meses($mesesMultas[$i]) }}</th>
-						<th></th>
+						<th>Mes: {{ meses($mesesMultas[$i]) }}</th>
+						<th colspan="2"></th>
 					</tr>
 				<tr>
 					<th>MOTIVO</th>

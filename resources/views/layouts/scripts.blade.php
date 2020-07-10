@@ -24,7 +24,7 @@
 
 	$(function () {
 
-		$('.data-table-basic').DataTable({
+		$('.data-table-basic2').DataTable({
 	        "pageLength": 30,
 	        language: {
 	        "decimal": "",
