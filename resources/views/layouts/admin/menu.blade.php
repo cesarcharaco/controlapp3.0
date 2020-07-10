@@ -160,18 +160,17 @@
                 </li>
                 @endif
                
-                    <!-- <div id="footer"> -->
+                    <div id="footer">
                         
                         <li class="menu-title">
-                             <!-- <div style="background-color: white; position: absolute;"> -->
+                             <div style="background-color: white;">
                                 ControlApp
                                 <label class="badge badge-soft-danger">v1.0.1.</label>
                                 <br>Un proyecto desarrollado por 
                                 <div class="text-primary" style="font-size: 16px;">EICHE</div>.
-                                <br><br>
-                            <!-- </div> -->
+                            </div>
                         </li>
-                    <!-- </div> -->
+                    </div>
             </ul>
 
         </div>

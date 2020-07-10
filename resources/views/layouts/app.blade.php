@@ -31,10 +31,11 @@
 
         #footer{
 
-            position: fixed; 
+            position: relative; 
             bottom: 0px;
             left: 0;
             right: 0;
+            top: 15px;
             height: 100px;
         }
         @media screen and (max-width: -480px) {
