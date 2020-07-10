@@ -120,9 +120,9 @@ class ReportesController extends Controller
         }
         //dd($sql_e);
         //preparando la variable de anios multas/recargas
-        if (!is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
-
-            if (!is_null($request->MultasRecargas)) {
+        if (is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
+            if (!is_null($request->MultasRecargas) && !is_null($request->ResidentesTodos)) {
+            dd('adasd');
                     $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin." ";
 
                     if (!is_null($request->id_multa)) {
@@ -144,9 +144,9 @@ class ReportesController extends Controller
         }
         
         //agregando los residentes
-        if (!is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
+        if (is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
             $sql_r="SELECT * FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
-            if (is_null($request->ResidentesTodos)) {
+            if (!is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
                 $sql_r.=" AND ";// agrego un AND para comenzar a agregar condicionales
                 $limit=count($request->id_residentes) -1;// variable que me permite saber cual es la última vuelta del for
               for ($i=0; $i < count($request->id_residentes); $i++) { 
@@ -161,6 +161,7 @@ class ReportesController extends Controller
               }
             }else{
               
+            
                 $sql_r="SELECT residentes.*,users.email FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
             }
         }else{

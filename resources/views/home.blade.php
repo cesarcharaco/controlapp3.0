@@ -274,7 +274,7 @@
                     </div>
                 </div>
             @else
-                @if(count($anuncios) >0)
+                @if(is_null($anuncios))
                     <div class="col-md-9">
                     <div style="margin-right: -25px;">
                 @else
