@@ -78,96 +78,136 @@ class ReportesController extends Controller
         
         $id_admin=id_admin(\Auth::user()->email);
         //preparando variable para anios de inmuebles
+        if ((is_null($request->id_inmuebles) && is_null($request->InmueblesTodos)) && (is_null($request->id_estacionamientos) && is_null($request->EstacionamientosTodos)) && (is_null($request->id_multa) && is_null($request->MultasRecargas)) && (is_null($request->id_residentes) && is_null($request->ResidentesTodos))) {
+            toastr()->warning('intente otra vez!!', 'No ha seleccionado ningún dato para realizar un reporte');;
+                    return redirect()->back();
+        }
         if (!is_null($request->id_inmuebles) || !is_null($request->InmueblesTodos)) {
-            
-             $sql_i="SELECT * FROM inmuebles WHERE id_admin=".$id_admin." ";
-             if (is_null($request->InmueblesTodos)) {
-                //dd("----------------");
-                $sql_i.=" AND ";// agrego un AND para comenzar a agregar condicionales
-                $limit=count($request->id_inmuebles) -1;// variable que me permite saber cual es la última vuelta del for
-                for ($x=0; $x < count($request->id_inmuebles); $x++) { 
-                   $sql_i.=" inmuebles.id=".$request->id_inmuebles[$x];
-                   if ($x!=$limit) {
-                       $sql_i.=" OR ";
-                   }
-                   
+            if (!is_null($request->meses_inmuebles) || !is_null($request->MesesTodosInmuebles)) {
+                if(!is_null($request->anios_inmueble) || !is_null($request->AniosTodosInmuebles)){
+                     $sql_i="SELECT * FROM inmuebles WHERE id_admin=".$id_admin." ";
+                     if (is_null($request->InmueblesTodos)) {
+                        //dd("----------------");
+                        $sql_i.=" AND ";// agrego un AND para comenzar a agregar condicionales
+                        $limit=count($request->id_inmuebles) -1;// variable que me permite saber cual es la última vuelta del for
+                        for ($x=0; $x < count($request->id_inmuebles); $x++) { 
+                           $sql_i.=" inmuebles.id=".$request->id_inmuebles[$x];
+                           if ($x!=$limit) {
+                               $sql_i.=" OR ";
+                           }
+                           
+                        }
+                     }
+                }else{
+                //en caso de no seleccionar años
+                    toastr()->warning('intente otra vez!!', 'No ha seleccionado Años para reporte de Inmuebles');;
+                    return redirect()->back();
                 }
-             }
+            }else{
+                //en caso de no seleccionar meses
+                toastr()->warning('intente otra vez!!', 'No ha seleccionado Meses para reporte de Inmuebles');;
+                return redirect()->back();
+            }
         } else {
             $sql_i="";
         }
         //dd($sql_i);
         //preparando variable para anios de estacionamientos
         if (!is_null($request->id_estacionamientos) || !is_null($request->EstacionamientosTodos)) {
-            
-            $sql_e="SELECT * FROM estacionamientos  WHERE id_admin=".$id_admin." ";
+            if (!is_null($request->meses_estaciona) || !is_null($request->MesesTodosEstaciona)) {
+                if(!is_null($request->anios_estaciona) || !is_null($request->AniosTodosEstaciona)){
+                    $sql_e="SELECT * FROM estacionamientos  WHERE id_admin=".$id_admin." ";
 
-            if(is_null($request->EstacionamientosTodos)){
-                $sql_e.= ' AND ';
-                $limit=count($request->id_estacionamientos) -1;
+                    if(is_null($request->EstacionamientosTodos)){
+                        $sql_e.= ' AND ';
+                        $limit=count($request->id_estacionamientos) -1;
 
-                for ($y=0; $y < count($request->id_estacionamientos); $y++) { 
-                    $sql_e.=" estacionamientos.id=".$request->id_estacionamientos[$y];
-                    if ($y!=$limit) {
-                        $sql_e.= " OR ";
+                        for ($y=0; $y < count($request->id_estacionamientos); $y++) { 
+                            $sql_e.=" estacionamientos.id=".$request->id_estacionamientos[$y];
+                            if ($y!=$limit) {
+                                $sql_e.= " OR ";
+                            }
+                        }
                     }
+                }else{
+                //en caso de no seleccionar años
+                    toastr()->warning('intente otra vez!!', 'No ha seleccionado Años para reporte de Estacionamientos');;
+                    return redirect()->back();
                 }
+            }else{
+                //en caso de no seleccionar meses
+                toastr()->warning('intente otra vez!!', 'No ha seleccionado Meses para reporte de Estacionamientos');;
+                return redirect()->back();
             }
-
-
         } else {
            $sql_e="";
         }
         //dd($sql_e);
         //preparando la variable de anios multas/recargas
-        if (is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
-            if (!is_null($request->MultasRecargas) && !is_null($request->ResidentesTodos)) {
-            dd('adasd');
+        if (!is_null($request->id_multa) || !is_null($request->MultasRecargas)) {
+            if (!is_null($request->meses_multas) || !is_null($request->MesesTodosMultas)) {
+                if(!is_null($request->anios_multas) || !is_null($request->AniosTodosMultas)){
                     $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin." ";
+                        if (!is_null($request->id_multa)) {
+                            $sql_mr.= ' AND ';
+                            $limit = count($request->id_multa) -1;
 
-                    if (!is_null($request->id_multa)) {
-                        $sql_mr.= ' AND ';
-                        $limit = count($request->id_multa) -1;
-
-                        for ($z=0; $z < count($request->id_multa); $z++) { 
-                            $sql_mr.= " multas_recargas.id=".$request->id_multa[$z];
-                            if ($z != $limit) {
-                                $sql_mr.= " OR ";
+                            for ($z=0; $z < count($request->id_multa); $z++) { 
+                                $sql_mr.= " multas_recargas.id=".$request->id_multa[$z];
+                                if ($z != $limit) {
+                                    $sql_mr.= " OR ";
+                                }
                             }
                         }
-                    }
-            } else {
-                $sql_mr="SELECT * FROM multas_recargas WHERE id_admin=".$id_admin;
+                }else{
+                //en caso de no seleccionar años
+                    toastr()->warning('intente otra vez!!', 'No ha seleccionado Años para reporte de Multas');;
+                    return redirect()->back();
+                }
+            }else{
+                //en caso de no seleccionar meses
+                toastr()->warning('intente otra vez!!', 'No ha seleccionado Meses para reporte de Multas');;
+                return redirect()->back();
             }
         } else {
             $sql_mr="";
         }
+
         
         //agregando los residentes
-        if (is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
-            $sql_r="SELECT * FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
-            if (!is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
-                $sql_r.=" AND ";// agrego un AND para comenzar a agregar condicionales
-                $limit=count($request->id_residentes) -1;// variable que me permite saber cual es la última vuelta del for
-              for ($i=0; $i < count($request->id_residentes); $i++) { 
-                  $sql_r.=" residentes.id=".$request->id_residentes[$i]." ";// anexo la condición para cada id_residente que está en el array
-                  if ($i!=$limit) {
-                    $sql_r.=" OR ";// agrego OR para que me los traiga todos
-                  }elseif($i==$limit){
-                    $sql_r.=" GROUP BY residentes.id "; // cuando sea la ultima vuelta le agrego el group by
-                  }
-                  
+        //condicion para que seleccione cualquiera de los otros campos
+        if (!is_null($request->id_residentes) || !is_null($request->ResidentesTodos)) {
+            if (!is_null($request->meses_residentes) || !is_null($request->MesesTodosResidentes)) {
+                if(!is_null($request->anios_residentes) || !is_null($request->AniosTodosResidentes)){
+                    $sql_r="SELECT residentes.*,users.email FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
+                        if (!is_null($request->id_residentes)) {
+                            $sql_r.=" AND ";// agrego un AND para comenzar a agregar condicionales
+                            $limit=count($request->id_residentes) -1;// variable que me permite saber cual es la última vuelta del for
+                          for ($i=0; $i < count($request->id_residentes); $i++) { 
+                              $sql_r.=" residentes.id=".$request->id_residentes[$i]." ";// anexo la condición para cada id_residente que está en el array
+                              if ($i!=$limit) {
+                                $sql_r.=" OR ";// agrego OR para que me los traiga todos
+                              }elseif($i==$limit){
+                                $sql_r.=" GROUP BY residentes.id "; // cuando sea la ultima vuelta le agrego el group by
+                              }
+                              
 
-              }
+                          }
+                        }
+                }else{
+                //en caso de no seleccionar años
+                    toastr()->warning('intente otra vez!!', 'No ha seleccionado Años para reporte de Residentes');;
+                    return redirect()->back();
+                }
             }else{
-              
-            
-                $sql_r="SELECT residentes.*,users.email FROM residentes,users WHERE residentes.id_admin=".$id_admin." AND residentes.id_usuario=users.id ";
+                //en caso de no seleccionar meses
+                toastr()->warning('intente otra vez!!', 'No ha seleccionado Meses para reporte de Residentes');;
+                return redirect()->back();
             }
         }else{
             $sql_r="";
         }
-        
+        //dd($sql_r);
         
         //haciendo arrays de meses y años de inmuebles
 
