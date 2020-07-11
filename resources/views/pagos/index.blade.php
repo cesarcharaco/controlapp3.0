@@ -10,14 +10,15 @@
             </div>
         </div>
     </div>
+</div>
+</div>
         @include('flash::message')
         <div id="ElCarrousel">
             
         
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <div class="card" style="margin-right: 50px; margin-left: 50px;">
-                    <div class="card-body">
-                        <table class="data-table-basic table table-hover mb-0 tabla-estilo" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
+                        <table class="data-table-basic2 table table-hover mb-0 tabla-estilo" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -143,7 +144,6 @@
                                 @endforeach()
                             </tbody>
                         </table>
-                    </div>
                 </div>
             @endif
 
