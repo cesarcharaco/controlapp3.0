@@ -37,8 +37,8 @@
         }
         @media only screen and (max-width: 200px)  {
             .avatar{
-                width: 15px;
-                height: 15px;
+                width: 25px;
+                height: 25px;
                 /*display: none;   */
             }
             .iconosMetaforas2{
@@ -58,8 +58,8 @@
                 height: 15px;    
             }
             .avatar{
-                width: 15px;
-                height: 15px;    
+                width: 45px;
+                height: 45px;    
             }
         }
 
