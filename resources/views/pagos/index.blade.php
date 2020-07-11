@@ -3,7 +3,7 @@
 
 @section('content')
     <style type="text/css">
-        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
         {
             display: none;
         }
@@ -30,8 +30,39 @@
             .iconosMetaforas{
                 display: none;    
             }
+            .card-table{
+                width: 100%
+            }
 
         }
+        @media only screen and (max-width: 200px)  {
+            .avatar{
+                width: 15px;
+                height: 15px;
+                /*display: none;   */
+            }
+            .iconosMetaforas2{
+                width: 5px;
+                height: 5px;    
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .tituloTabla{
+                display: none;
+            }
+            .tituloTabla2{
+                display: block;
+            }
+            .iconosMetaforas2{
+                width: 15px;
+                height: 15px;    
+            }
+            .avatar{
+                width: 15px;
+                height: 15px;    
+            }
+        }
+
 
     </style>
     <div class="container">
@@ -41,21 +72,28 @@
             </div>
         </div>
     </div>
-</div>
-</div>
         @include('flash::message')
         <div id="ElCarrousel">
             
         
             @if(\Auth::user()->tipo_usuario == 'Admin')
-                <div class="card" style="margin-right: 50px; margin-left: 50px;">
+                <div class="card card-table" style="width: 100%">
                         <table class="data-table-basic2 table table-hover mb-0 tabla-estilo" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Nombres</th>
-                                    <th>Asignaciones</th>
-                                    <th>Opciones</th>
+                                    <th>
+                                        <span class="tituloTabla">Nombres</span>
+                                        <span class="tituloTabla2">N</span>
+                                    </th>
+                                    <th>
+                                        <span class="tituloTabla">Asignaciones</span>
+                                        <span class="tituloTabla2">A</span>
+                                    </th>
+                                    <th>
+                                        <span class="tituloTabla">Opciones</span>
+                                        <span class="tituloTabla2">O</span>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,12 +101,12 @@
                                     <tr>
                                         <td align="center">
                                                 
-                                            <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
+                                            <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle avatar" />
                                             
 
 
                                         </td>
-                                        <td>
+                                        <td align="center">
                                             <div class="form-group">
                                                 {{$key->nombres}} {{$key->apellidos}}
                                                 <br>
@@ -104,7 +142,7 @@
                                                                 
                                                                 <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" class="iconosMetaforas" style="float:left;"></i>
                                                                     <span class="PalabraEditarPago" style="position: relative;">Editar<br> Pago</span>
-                                                                    <center><span class="PalabraEditarPago2"><i data-feather="edit"></i></span></center>
+                                                                    <center><span class="PalabraEditarPago2"><i data-feather="edit" class="iconosMetaforas2"></i></span></center>
                                                                 </a>
 
                                                                 <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
@@ -131,13 +169,13 @@
 
                                                             <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
                                                                 <span class="PalabraRealizarPago">Realizar Pago</span>
-                                                                <center><span class="PalabraEditarPago2"><i data-feather="dollar-sign"></i></span></center>
+                                                                <center><span class="PalabraEditarPago2"><i data-feather="dollar-sign" class="iconosMetaforas2"></i></span></center>
                                                             </a>
 
                                                             <br><br>
                                                             <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
                                                                 <span class="PalabraPagoConfirmar">Pagos por Confirmar</span>
-                                                                <center><span class="PalabraEditarPago2"><i data-feather="eye"></i></span></center>
+                                                                <center><span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i></span></center>
                                                             </a></center>
                                                             @php $cuenta++; @endphp
                                                         @endif
@@ -150,7 +188,7 @@
                                                                 
                                                                 <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" class="iconosMetaforas" style="float:left;"></i>
                                                                     <span class="PalabraEditarPago" style="position: relative;">Editar<br> Pago</span>
-                                                                    <center><span class="PalabraEditarPago2"><i data-feather="edit"></i></span></center>
+                                                                    <center><span class="PalabraEditarPago2"><i data-feather="edit" class="iconosMetaforas2"></i></span></center>
                                                                 </a>
 
                                                                 <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
@@ -178,13 +216,13 @@
 
                                                             <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
                                                                 <span class="PalabraRealizarPago">Realizar Pago</span>
-                                                                <center><span class="PalabraEditarPago2"><i data-feather="dollar-sign"></i></span></center>
+                                                                <center><span class="PalabraEditarPago2"><i data-feather="dollar-sign" class="iconosMetaforas2"></i></span></center>
                                                             </a>
 
                                                             <br><br>
                                                             <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
                                                                 <span class="PalabraPagoConfirmar">Pagos por Confirmar</span>
-                                                                <center><span class="PalabraEditarPago2"><i data-feather="eye"></i></span></center>
+                                                                <center><span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i></span></center>
                                                             </a></center>
                                                             @php $cuenta++; @endphp
                                                         @endif
@@ -273,7 +311,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Total a pagar</label>
-                            <center style="color: grey; font-size: 100px; width:100%; font-size: 10vw;">$<span id="TotalPagar">0</span></center>
+                            <center style="color: grey; font-size: 100px; width:100%; font-size: 10vw;">$<span id="TotalPag class="iconosMetaforas2"ar">0</span></center>
                             <input type="hidden" name="total" id="total" value="0">
                         </div>
                     </div>
