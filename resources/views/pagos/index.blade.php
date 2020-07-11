@@ -1330,7 +1330,7 @@
                                     '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:100%;">'+
                                                 '<thead><center>'+
                                                     '<tr class="bg-info text-white" align="center">'+
                                                         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
@@ -1357,7 +1357,7 @@
                                     '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:100%;">'+
                                                 '<thead><center>'+
                                                     '<tr class="bg-info text-white" align="center">'+
                                                         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
@@ -1573,7 +1573,7 @@
                                     '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:100%;">'+
                                                 '<thead><center>'+
                                                     '<tr class="bg-info text-white" align="center">'+
                                                         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
@@ -1597,7 +1597,7 @@
                                     '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:100%;">'+
                                                 '<thead><center>'+
                                                     '<tr class="bg-info text-white" align="center">'+
                                                         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
