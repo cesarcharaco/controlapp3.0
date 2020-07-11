@@ -9,6 +9,7 @@
                 <h1>Pagos</h1>
             </div>
         </div>
+    </div>
         @include('flash::message')
         <div id="ElCarrousel">
             
@@ -16,130 +17,128 @@
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <div class="card" style="margin-right: 50px; margin-left: 50px;">
                     <div class="card-body">
-                        <div style="overflow-x: auto;">                            
-                            <table class="data-table-basic table table-hover mb-0" id="myTable" width="100%">
-                                <thead>
+                        <table class="data-table-basic table table-hover mb-0" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Nombres</th>
+                                    <th>Rut</th>
+                                    <th>Asignaciones</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($residentes as $key)
                                     <tr>
-                                        <th></th>
-                                        <th>Nombres</th>
-                                        <th>Rut</th>
-                                        <th>Asignaciones</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($residentes as $key)
-                                        <tr>
-                                            <td align="center">
-                                                    
-                                                <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
+                                        <td align="center">
                                                 
+                                            <img src="{{ asset('assets/images/avatar-user.png') }}" class="avatar-md rounded-circle"/>
+                                            
 
 
-                                            </td>
-                                            <td>{{$key->nombres}} {{$key->apellidos}}</td>
-                                            <td>{{$key->rut}}</td>
-                                            <td>
-                                                @foreach($asignaIn as $key2)
+                                        </td>
+                                        <td>{{$key->nombres}} {{$key->apellidos}}</td>
+                                        <td>{{$key->rut}}</td>
+                                        <td>
+                                            @foreach($asignaIn as $key2)
+                                                @if($key2->id_residente == $key->id)
+                                                        <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key2->id_residente}}')" href="#">
+                                                            Ver Inmuebles
+                                                        </a>
+                                                @endif
+                                            @endforeach
+                                            <br><br>
+                                            @foreach($asignaEs as $key2)
+                                                @if($key2->id_residente == $key->id)
+                                                        <a style="width: 100%" class="btn btn-warning" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
+                                                            Ver Estacionamiento
+                                                        </a>
+                                                @endif
+                                            @endforeach
+                                                                                     
+                                        </td>
+                                        <td>
+                                            @php $cuenta=0; @endphp
+                                            @foreach($asignaIn as $key2)
                                                     @if($key2->id_residente == $key->id)
-                                                            <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key2->id_residente}}')" href="#">
-                                                                Ver Inmuebles
-                                                            </a>
+                                                        @if($cuenta==0)   
+                                                            <div class="dropdown align-self-center profile-dropdown-menu">
+                                                                
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i>Editar Pago</a>
+
+                                                                <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+
+                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',1)" >
+                                                                        <span class="text-primary">Pago Común</span>
+                                                                    </a>
+
+                                                                    <!-- <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
+                                                                        <span class="text-warning">Estacionamientos</span>
+                                                                    </a> -->
+
+                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',3)" >
+                                                                        <span class="text-danger">Multas</span>
+                                                                    </a>
+
+                                                                    
+                                                                    <!-- <div class="dropdown-divider"></div> -->
+
+                                                                </div>
+                                                            </div>
+                                                            <br>
+
+                                                            <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i>Realizar Pago</i></a>
+
+                                                            <br><br>
+                                                            <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" style="float:left;"></i>Pagos por Confirmar</a></center>
+                                                            @php $cuenta++; @endphp
+                                                        @endif
                                                     @endif
-                                                @endforeach
-                                                <br><br>
-                                                @foreach($asignaEs as $key2)
+                                            @endforeach
+                                            @foreach($asignaEs as $key2)
                                                     @if($key2->id_residente == $key->id)
-                                                            <a style="width: 100%" class="btn btn-warning" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
-                                                                Ver Estacionamiento
-                                                            </a>
+                                                        @if($cuenta==0) 
+                                                            <div class="dropdown align-self-center profile-dropdown-menu">
+                                                                
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i>Editar Pago</a>
+
+                                                                <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+
+                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',1)" >
+                                                                        <span class="text-primary">Pago común</span>
+                                                                    </a>
+
+                                                                    <!-- <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
+                                                                        <span class="text-warning">Estacionamientos</span>
+                                                                    </a> -->
+
+                                                                    <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',3)" >
+                                                                        <span class="text-danger">Multas</span>
+                                                                    </a>
+
+                                                                    
+                                                                    <!-- <div class="dropdown-divider"></div> -->
+
+                                                                </div>
+                                                            </div>
+                                                            <br>
+
+
+                                                            <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i>Realizar Pago</i></a>
+
+                                                            <br><br>
+                                                            <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" style="float:left;"></i>Pagos por Confirmar</a></center>
+                                                            @php $cuenta++; @endphp
+                                                        @endif
                                                     @endif
-                                                @endforeach
-                                                                                         
-                                            </td>
-                                            <td>
-                                                @php $cuenta=0; @endphp
-                                                @foreach($asignaIn as $key2)
-                                                        @if($key2->id_residente == $key->id)
-                                                            @if($cuenta==0)   
-                                                                <div class="dropdown align-self-center profile-dropdown-menu">
-                                                                    
-                                                                    <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i>Editar Pago</a>
-
-                                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',1)" >
-                                                                            <span class="text-primary">Pago Común</span>
-                                                                        </a>
-
-                                                                        <!-- <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
-                                                                            <span class="text-warning">Estacionamientos</span>
-                                                                        </a> -->
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',3)" >
-                                                                            <span class="text-danger">Multas</span>
-                                                                        </a>
-
-                                                                        
-                                                                        <!-- <div class="dropdown-divider"></div> -->
-
-                                                                    </div>
-                                                                </div>
-                                                                <br>
-
-                                                                <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i>Realizar Pago</i></a>
-
-                                                                <br><br>
-                                                                <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" style="float:left;"></i>Pagos por Confirmar</a></center>
-                                                                @php $cuenta++; @endphp
-                                                            @endif
-                                                        @endif
-                                                @endforeach
-                                                @foreach($asignaEs as $key2)
-                                                        @if($key2->id_residente == $key->id)
-                                                            @if($cuenta==0) 
-                                                                <div class="dropdown align-self-center profile-dropdown-menu">
-                                                                    
-                                                                    <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i>Editar Pago</a>
-
-                                                                    <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',1)" >
-                                                                            <span class="text-primary">Pago común</span>
-                                                                        </a>
-
-                                                                        <!-- <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',2)" >
-                                                                            <span class="text-warning">Estacionamientos</span>
-                                                                        </a> -->
-
-                                                                        <a href="#" class="dropdown-item notify-item" onclick="EditarPago('{{$key->id}}',3)" >
-                                                                            <span class="text-danger">Multas</span>
-                                                                        </a>
-
-                                                                        
-                                                                        <!-- <div class="dropdown-divider"></div> -->
-
-                                                                    </div>
-                                                                </div>
-                                                                <br>
-
-
-                                                                <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i>Realizar Pago</i></a>
-
-                                                                <br><br>
-                                                                <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" style="float:left;"></i>Pagos por Confirmar</a></center>
-                                                                @php $cuenta++; @endphp
-                                                            @endif
-                                                        @endif
-                                                @endforeach
-                                            </td>
-                                        </tr>
-                                    @endforeach()
-                                </tbody>
-                            </table>
-                        </div>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach()
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             @endif
@@ -346,6 +345,8 @@
                 
             </div>--}}
         </div>
+    </div>
+</div>
 </div>
 
         <div class="card" id="VerFomulario" style="display: none" >
@@ -408,11 +409,9 @@
                             </div>
                         </div> -->
                         <div class="col-md-12">
-                            <div class="overflow-auto">
-                                <table id="mrSeleccionado" class="data-table-basic" style="width: 100%;" alt="Max-width 100%">
-                                    
-                                </table>
-                            </div>
+                            <table id="mrSeleccionado" class="data-table-basic" style="width: 100%;" alt="Max-width 100%">
+                                
+                            </table>
                         </div>
                     </div>
                 
