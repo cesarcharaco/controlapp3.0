@@ -1551,6 +1551,7 @@
     }
 
     function VerEstacionamientos(id_residente) {
+        $('#VerEstaFade').css('display','none');
         $('#titleModal').empty();
         $('#titleModal').append('estacionamientos');
         $('.carousel-inner').empty();
@@ -1569,11 +1570,23 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item active">'+
                                 '<center>'+
-                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
-                                '</center>'+
-                                ''+
-                                '<label><h4>Montos por mes</h4></label><br>'+
-                                '<div class="inner'+data[i].id+'"></div>'
+                                    '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
+                                    '<div class="row justify-content-center">'+
+                                        '<div class="col-md-12">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
+                                                '<thead><center>'+
+                                                    '<tr class="bg-info text-white" align="center">'+
+                                                        '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
+                                                        '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
+                                                    '</tr>'+
+                                                '</center></thead>'+
+                                                '<tbody class="EstacionaBody'+data[i].id+'">'+
+                                                '</tbody>'+
+                                            '</table>'+
+                                        '</div>'+
+                                    '</div>'+
+
+                                '</center>'
                         );
 
                         detalles2(data[i].id);
@@ -1581,11 +1594,23 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item">'+
                                 '<center>'+
-                                    '<h3 alt="'+i+' slide">'+data[i].idem+'</h3>'+
-                                '</center>'+
-                                ''+
-                                '<label><h4>Montos por mes</h4></label><br>'+
-                                '<div class="inner'+data[i].id+'"></div>'
+                                    '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
+                                    '<div class="row justify-content-center">'+
+                                        '<div class="col-md-12">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
+                                                '<thead><center>'+
+                                                    '<tr class="bg-info text-white" align="center">'+
+                                                        '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
+                                                        '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
+                                                    '</tr>'+
+                                                '</center></thead>'+
+                                                '<tbody class="EstacionaBody'+data[i].id+'">'+
+                                                '</tbody>'+
+                                            '</table>'+
+                                        '</div>'+
+                                    '</div>'+
+
+                                '</center>'
                         );
 
                         detalles2(data[i].id);
@@ -1603,15 +1628,38 @@
             })
             .done(function(data) {
                 console.log(data.length);
+                // for(var i=0; i < data.length; i++){
+                //     $('.inner'+id_estacionamiento).append(
+                //         '<div class="row">'+
+                //             '<div class="col-md-12">'+ 
+                //                 '<label>'+mostrar_mes(data[i].mes)+'</label>'+
+                //                 '<label style="float:right;">'+data[i].status+'</label>'+
+                //             '</div>'+
+                //         '</div>'
+                //     );
+                // }
                 for(var i=0; i < data.length; i++){
-                    $('.inner'+id_estacionamiento).append(
-                        '<div class="row">'+
-                            '<div class="col-md-12">'+ 
-                                '<label>'+mostrar_mes(data[i].mes)+'</label>'+
-                                '<label style="float:right;">'+data[i].status+'</label>'+
-                            '</div>'+
-                        '</div>'
-                    );
+                    $('.EstacionaBody'+id_estacionamiento).append('<tr>');
+                    if(data[i].status == 'Pendiente'){
+                        $('.EstacionaBody'+id_estacionamiento).append(
+                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center" class="text-success"><strong>'+data[i].status+'</strong></td>'
+                        );
+                    }else if(data[i].status == 'Por Confirmar'){
+                        $('.EstacionaBody'+id_estacionamiento).append(
+                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'
+                        );
+                    }else{
+                        $('.EstacionaBody'+id_estacionamiento).append(
+                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center" class="text-danger"><strong>'+data[i].status+'</strong></td>'
+                        );
+                    }
+                    $('.EstacionaBody'+id_estacionamiento).append('</tr>');
+                    if(i==data.length-1){
+                        $('#VerEstaFade').fadeIn('slow');
+                    }
                 }
 
             });
