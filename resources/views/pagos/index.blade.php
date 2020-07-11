@@ -17,12 +17,11 @@
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <div class="card" style="margin-right: 50px; margin-left: 50px;">
                     <div class="card-body">
-                        <table class="data-table-basic table table-hover mb-0" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
+                        <table class="data-table-basic table table-hover mb-0 tabla-estilo" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>Nombres</th>
-                                    <th>Rut</th>
                                     <th>Asignaciones</th>
                                     <th>Opciones</th>
                                 </tr>
@@ -37,8 +36,13 @@
 
 
                                         </td>
-                                        <td>{{$key->nombres}} {{$key->apellidos}}</td>
-                                        <td>{{$key->rut}}</td>
+                                        <td>
+                                            <div class="form-group">
+                                                {{$key->nombres}} {{$key->apellidos}}
+                                                <br>
+                                                <strong>{{$key->rut}}</strong>
+                                            </div>
+                                        </td>
                                         <td>
                                             @foreach($asignaIn as $key2)
                                                 @if($key2->id_residente == $key->id)
@@ -64,7 +68,7 @@
                                                         @if($cuenta==0)   
                                                             <div class="dropdown align-self-center profile-dropdown-menu">
                                                                 
-                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i>Editar Pago</a>
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i><span>Editar<br> Pago</span></a>
 
                                                                 <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
 
@@ -101,7 +105,7 @@
                                                         @if($cuenta==0) 
                                                             <div class="dropdown align-self-center profile-dropdown-menu">
                                                                 
-                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i>Editar Pago</a>
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i><span>Editar<br> Pago</span></a>
 
                                                                 <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
 
