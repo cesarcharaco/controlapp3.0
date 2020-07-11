@@ -43,7 +43,7 @@
                                                 @foreach($asignaIn as $key2)
                                                     @if($key2->id_residente == $key->id)
                                                             <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key2->id_residente}}')" href="#">
-                                                                Ver inmuebles
+                                                                Ver Inmuebles
                                                             </a>
                                                     @endif
                                                 @endforeach
@@ -64,7 +64,7 @@
                                                             @if($cuenta==0)   
                                                                 <div class="dropdown align-self-center profile-dropdown-menu">
                                                                     
-                                                                    <a style="border-radius: 50px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i>Editar pago</a>
+                                                                    <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i>Editar Pago</a>
 
                                                                     <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
 
@@ -88,10 +88,10 @@
                                                                 </div>
                                                                 <br>
 
-                                                                <a style="border-radius: 50px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i>Realizar Pago</i></a>
 
                                                                 <br><br>
-                                                                <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 50px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')">Pagos por confirmar</a></center>
+                                                                <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" style="float:left;"></i>Pagos por Confirmar</a></center>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -101,7 +101,7 @@
                                                             @if($cuenta==0) 
                                                                 <div class="dropdown align-self-center profile-dropdown-menu">
                                                                     
-                                                                    <a style="border-radius: 50px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i>Editar pago</a>
+                                                                    <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i>Editar Pago</a>
 
                                                                     <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
 
@@ -126,10 +126,10 @@
                                                                 <br>
 
 
-                                                                <a style="border-radius: 50px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i>Realizar pago</i></a>
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i>Realizar Pago</i></a>
 
                                                                 <br><br>
-                                                                <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 50px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')">Pagos por confirmar</a></center>
+                                                                <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" style="float:left;"></i>Pagos por Confirmar</a></center>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -164,7 +164,7 @@
                                                             @if($cuenta==0)   
                                                                 <div class="dropdown align-self-center profile-dropdown-menu">
                                                                     
-                                                                    <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
+                                                                    <a style="border-radius: 5px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i></a>
 
                                                                     <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
 
@@ -187,7 +187,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <a style="border-radius: 50px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                <a style="border-radius: 5px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i></a>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -197,7 +197,7 @@
                                                             @if($cuenta==0) 
                                                                 <div class="dropdown align-self-center profile-dropdown-menu">
                                                                     
-                                                                    <a style="border-radius: 50px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit"></i></a>
+                                                                    <a style="border-radius: 5px;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i></a>
 
                                                                     <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
 
@@ -221,7 +221,7 @@
                                                                 </div>
 
 
-                                                                <a style="border-radius: 50px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                <a style="border-radius: 5px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i></a>
                                                                 @php $cuenta++; @endphp
                                                             @endif
                                                         @endif
@@ -245,7 +245,7 @@
                                             @foreach($asignaIn as $key)
                                                 @if($key->id_residente == $residentes[$i]->id)
                                                         <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key->id_residente}}')" href="#">
-                                                            Ver inmuebles
+                                                            Ver Inmuebles
                                                         </a>
                                                 @endif
                                             @endforeach
@@ -284,7 +284,7 @@
                                                                 @if($cuenta==0)   
                                                                    
 
-                                                                    <a style="border-radius: 50px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                    <a style="border-radius: 5px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i></a>
                                                                     @php $cuenta++; @endphp
                                                                 @endif
                                                             @endif
@@ -295,7 +295,7 @@
                                                                     
 
 
-                                                                    <a style="border-radius: 50px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign"></i></a>
+                                                                    <a style="border-radius: 5px;" href="#" onclick="BMesesResidente('{{$residentes[$i]->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i></a>
                                                                     @php $cuenta++; @endphp
                                                                 @endif
                                                             @endif
@@ -319,7 +319,7 @@
                                                 @foreach($asignaIn as $key)
                                                     @if($key->id_residente == $residentes[$i]->id)
                                                             <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key->id_residente}}')" href="#">
-                                                                Ver inmuebles
+                                                                Ver Inmuebles
                                                             </a>
                                                     @endif
                                                 @endforeach
@@ -654,7 +654,7 @@
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4>Pagos por confirmar del residente <span id="nombreResidente"></span></h4>
+                        <h4>Pagos por Confirmar del Residente <span id="nombreResidente"></span></h4>
                         <div id="CargandoPagosComprobar" style="display: none;">
                             <div class="spinner-border text-warning m-2" role="status">
                                 <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
@@ -1327,10 +1327,10 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item active">'+
                                 '<center>'+
-                                    '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
+                                    '<h3 alt="'+i+' slide"background-color:gray; width: 100%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:100%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:90%;">'+
                                                 '<thead><center>'+
                                                     '<tr class="bg-info text-white" align="center">'+
                                                         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
@@ -1354,10 +1354,10 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item">'+
                                 '<center>'+
-                                    '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
+                                    '<h3 alt="'+i+' slide"background-color:gray; width: 100%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:100%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:90%;">'+
                                                 '<thead><center>'+
                                                     '<tr class="bg-info text-white" align="center">'+
                                                         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
@@ -1570,10 +1570,10 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item active">'+
                                 '<center>'+
-                                    '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
+                                    '<h3 alt="'+i+' slide"background-color:gray; width: 100%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:100%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:90%;">'+
                                                 '<thead><center>'+
                                                     '<tr class="bg-info text-white" align="center">'+
                                                         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
@@ -1594,10 +1594,10 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item">'+
                                 '<center>'+
-                                    '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
+                                    '<h3 alt="'+i+' slide"background-color:gray; width: 100%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:100%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:90%;">'+
                                                 '<thead><center>'+
                                                     '<tr class="bg-info text-white" align="center">'+
                                                         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
