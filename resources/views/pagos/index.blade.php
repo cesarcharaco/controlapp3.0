@@ -613,14 +613,9 @@
 
     <!--   -------------------------------------------------------------- ESTACIONAMIENTOS   -->
 
-    <div class="modal fade bd-example-modal-lg" id="VerEsta" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="
-                background-image: url('{{asset('assets/images/fondos/fondo2.jpg')}}');
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                border: 0;
-                height: 700px;">
+    <div class="modal fade" id="VerEsta" role="dialog">
+            <div class="modal-dialog modals-default">
+            <div class="modal-content">
                 <div class="modal-body">
                     <!-- <div class="modal-header">
                         <h4>Sus <span id="titleModal"></span></h4>
@@ -1332,7 +1327,7 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item active">'+
                                 '<center>'+
-                                    '<h1 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-white">'+data[i].idem+'</strong></h1>'+
+                                    '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
                                             '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
@@ -1359,7 +1354,7 @@
                         $('.carousel-inner').append(
                             '<div class="carousel-item">'+
                                 '<center>'+
-                                    '<h1 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-white">'+data[i].idem+'</strong></h1>'+
+                                    '<h3 alt="'+i+' slide"background-color:gray; width: 96%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
                                             '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:60%;">'+
