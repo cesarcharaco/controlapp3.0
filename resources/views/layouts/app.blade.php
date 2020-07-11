@@ -101,14 +101,7 @@
         .card-tabla{
             border-radius: 30px !important;
         }
-        .palabraVerInmueble2
-        {
-            display: none;
-        }
-        .palabraVerEstaciona2
-        {
-            display: none;
-        }
+        
         /*@media screen and (max-width: -480px) {
             #inner{
                 top: 500px;
@@ -135,21 +128,7 @@
             .card-tabla{
                 width: 100%
             }
-            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
-                display: none;
-            }
-            .palabraVerInmueble{
-                display: none;
-            }
-            .palabraVerInmueble2{
-                display: block;
-            }
-            .palabraVerEstaciona{
-                display: none;
-            }
-            .palabraVerEstaciona2{
-                display: block;
-            }
+            
         }
 
         @media screen and (max-width: 800px) {

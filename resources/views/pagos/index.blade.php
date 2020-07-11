@@ -2,7 +2,38 @@
 
 
 @section('content')
+    <style type="text/css">
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2
+        {
+            display: none;
+        }
+        @media only screen and (max-width: 800px)  {
 
+            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
+                display: none;
+            }
+            .palabraVerInmueble{
+                display: none;
+            }
+            .palabraVerInmueble2{
+                display: block;
+            }
+            .palabraVerEstaciona{
+                display: none;
+            }
+            .palabraVerEstaciona2{
+                display: block;
+            }
+            .PalabraEditarPago2{
+                display: block;
+            }
+            .iconosMetaforas{
+                display: none;    
+            }
+
+        }
+
+    </style>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -49,7 +80,7 @@
                                                 @if($key2->id_residente == $key->id)
                                                         <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key2->id_residente}}')" href="#">
                                                             <span class="palabraVerInmueble">Ver Inmuebles</span>
-                                                            <span class="palabraVerInmueble2">I.</span>
+                                                            <span class="palabraVerInmueble2">I</span>
                                                         </a>
                                                 @endif
                                             @endforeach
@@ -58,7 +89,7 @@
                                                 @if($key2->id_residente == $key->id)
                                                         <a style="width: 100%" class="btn btn-warning" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
                                                             <span class="palabraVerEstaciona">Ver Estacionamiento</span>
-                                                            <span class="palabraVerEstaciona2">E.</span>
+                                                            <span class="palabraVerEstaciona2">E</span>
                                                         </a>
                                                 @endif
                                             @endforeach
@@ -71,7 +102,10 @@
                                                         @if($cuenta==0)   
                                                             <div class="dropdown align-self-center profile-dropdown-menu">
                                                                 
-                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i><span class="PalabraEditarPago">Editar<br> Pago</span></a>
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" class="iconosMetaforas" style="float:left;"></i>
+                                                                    <span class="PalabraEditarPago" style="position: relative;">Editar<br> Pago</span>
+                                                                    <center><span class="PalabraEditarPago2"><i data-feather="edit"></i></span></center>
+                                                                </a>
 
                                                                 <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
 
@@ -95,10 +129,16 @@
                                                             </div>
                                                             <br>
 
-                                                            <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i><span class="PalabraRealizarPago">Realizar Pago</span></a>
+                                                            <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
+                                                                <span class="PalabraRealizarPago">Realizar Pago</span>
+                                                                <center><span class="PalabraEditarPago2"><i data-feather="dollar-sign"></i></span></center>
+                                                            </a>
 
                                                             <br><br>
-                                                            <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" style="float:left;"></i><span class="PalabraPagoConfirmar">Pagos por Confirmar</span></a></center>
+                                                            <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
+                                                                <span class="PalabraPagoConfirmar">Pagos por Confirmar</span>
+                                                                <center><span class="PalabraEditarPago2"><i data-feather="eye"></i></span></center>
+                                                            </a></center>
                                                             @php $cuenta++; @endphp
                                                         @endif
                                                     @endif
@@ -108,7 +148,10 @@
                                                         @if($cuenta==0) 
                                                             <div class="dropdown align-self-center profile-dropdown-menu">
                                                                 
-                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" style="float:left;"></i><span class="PalabraEditarPago">Editar<br> Pago</span></a>
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" class="iconosMetaforas" style="float:left;"></i>
+                                                                    <span class="PalabraEditarPago" style="position: relative;">Editar<br> Pago</span>
+                                                                    <center><span class="PalabraEditarPago2"><i data-feather="edit"></i></span></center>
+                                                                </a>
 
                                                                 <div class="dropdown-menu profile-dropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
 
@@ -133,10 +176,16 @@
                                                             <br>
 
 
-                                                            <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" style="float:left;"></i><span class="PalabraRealizarPago">Realizar Pago</span></a>
+                                                            <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
+                                                                <span class="PalabraRealizarPago">Realizar Pago</span>
+                                                                <center><span class="PalabraEditarPago2"><i data-feather="dollar-sign"></i></span></center>
+                                                            </a>
 
                                                             <br><br>
-                                                            <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" style="float:left;"></i><span class="PalabraPagoConfirmar">Pagos por Confirmar</span></a></center>
+                                                            <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
+                                                                <span class="PalabraPagoConfirmar">Pagos por Confirmar</span>
+                                                                <center><span class="PalabraEditarPago2"><i data-feather="eye"></i></span></center>
+                                                            </a></center>
                                                             @php $cuenta++; @endphp
                                                         @endif
                                                     @endif
