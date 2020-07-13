@@ -472,7 +472,7 @@
                                     <div class="card-body p-0">
                                         <div class="media p-3">
                                             <div class="media-body">
-                                                <span class="text-danger text-uppercase font-size-12 font-weight-bold">Multas/Recarga Asignadas</span>
+                                                <span class="text-danger text-uppercase font-size-12 font-weight-bold">Multas/Recargas Asignadas</span>
                                                 <h6 class="mb-0">Total de Multas/Recargas: </h6>
                                             </div>
                                             
