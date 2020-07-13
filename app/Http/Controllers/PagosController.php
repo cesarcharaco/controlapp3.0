@@ -203,6 +203,7 @@ class PagosController extends Controller
     }
     public function pagarmultas(Request $request)
     {
+        $total=0;
         if(is_null($request->id_mensMulta)==false){
                 for ($i=0; $i < count($request->id_mensMulta) ; $i++) { 
                     $mr=MultasRecargas::find($request->id_mensMulta[$i]);
@@ -213,11 +214,12 @@ class PagosController extends Controller
                             $key->pivot->status="Pagada";
                             $key->pivot->save();
                             $factura.="Multa o Recarga: ".$mr->motivo.", Monto: ".$mr->monto." status:Pagada<br>";
+                            $total+=$mr->monto;
                         }
                     }
                 }
             }
-            $factura.="<br></br>Total Cancelado: ".$request->total.", con la referencia: ".$request->referencia."<br>";
+            $factura.="<br></br>Total Cancelado: ".$total.", con la referencia: ".$request->referencia."<br>";
             $reporte=\DB::table('reportes_pagos')->insert([
                 'referencia' => $request->referencia,
                 'reporte' => $factura,
