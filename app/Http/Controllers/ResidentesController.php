@@ -73,7 +73,7 @@ class ResidentesController extends Controller
                 if (!is_numeric($request->rut)) {
                     toastr()->warning('intente otra vez!!', 'El RUT debe ser numérico');
                 } else {
-                    if ($request->telefono!="" && is_numeric($request->rut)==false) {
+                    if ($request->telefono!="" && is_numeric($request->telefono)==false) {
                         toastr()->warning('intente otra vez!!', 'El teléfono debe ser numérico');
                     } else {
                         $user=new User();
