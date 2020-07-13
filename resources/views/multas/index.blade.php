@@ -79,6 +79,22 @@
             </div>
         </div>
         @include('flash::message')
+        @if(count($errors))
+            <div class="alert-list m-4">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                        <li>
+                            {{$error}}
+                        </li>
+                        @endforeach
+
+                    </ul>
+                </div>
+            </div>
+        @endif
     </div>
     <div class="card border border-danger rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="row justify-content-center">
