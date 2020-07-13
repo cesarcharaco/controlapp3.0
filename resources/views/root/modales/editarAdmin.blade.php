@@ -29,7 +29,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label><br></label>
-                                    <input type="number" id="verificador_e" min="1" name="verificador_e" minlength="1" maxlength="2" value="1" class="form-control" required>
+                                    <input type="number" id="verificador_e" min="1" name="verificador_e" minlength="1" maxlength="2" value="0" max="9" class="form-control" required>
                                 </div>
                             </div>
                         </div>

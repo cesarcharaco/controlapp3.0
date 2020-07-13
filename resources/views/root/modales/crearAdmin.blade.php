@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <div style="float: left !important;">
                                         <label><br></label>
-                                        <input type="number" name="verificador" min="1" minlength="1" maxlength="2" value="1" class="form-control" required>
+                                        <input type="number" name="verificador" min="0" minlength="1" maxlength="2" max="9" value="0" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
