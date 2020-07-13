@@ -663,11 +663,20 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Total a Pagar(En proceso)</label>
+                                                                <input type="text" class="form-control" name="total" required value="0">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </center>
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
-                                                <button type="submit" class="btn btn-success" style="border-radius: 50px;">Guardar</i></button>
+                                                <input type="hidd" name="id_residente" value="{{ \Auth::user()->id }}">
+                                                <button type="submit" class="btn btn-danger" style="border-radius: 50px;">Pagar</i></button>
                                             </div>
                                         </div>
                                     </div>
