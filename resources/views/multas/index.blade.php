@@ -38,6 +38,7 @@
                                                     <th>Observación</th>
                                                     <th>Monto</th>
                                                     <th>Tipo</th>
+                                                    <th>Status</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -48,7 +49,19 @@
                                                             <td>{{$key->motivo}}</td>
                                                             <td>{{$key->observacion}}</td>
                                                             <td>{{$key->monto}}</td>
-                                                             <td>{{$key->tipo}}</td>
+                                                            <td>{{$key->tipo}}</td>
+                                                            <td>
+                                                                @if($key->status == 'Enviada')
+                                                                    <span class="text-primary"><strong>Enviada</strong></span>
+                                                                    
+                                                                @elseif($key->status == 'Pagada')
+                                                                    <span class="text-success"><strong>Pagada</strong></span>
+
+                                                                @else
+                                                                    <span class="text-warning"><strong>Por Confirmar</strong></span>
+
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 <a href="#" data-toggle="modal" data-target="#editarMulta" onclick="EditarMR('{{$key->id}}','{{$key->motivo}}','{{$key->monto}}','{{$key->tipo}}','{{$key->observacion}}')" class="btn btn-warning btn-sm">Editar</a>
 
@@ -66,7 +79,16 @@
                                                             <td>{{$key->monto}}</td>
                                                              <td>{{$key->tipo}}</td>
                                                             <td>
-                                                               
+                                                                @if($key->status == 'Enviada')
+                                                                    <span class="text-primary"><strong>Enviada</strong></span>
+                                                                    
+                                                                @elseif($key->status == 'Pagada')
+                                                                    <span class="text-success"><strong>Pagada</strong></span>
+
+                                                                @else
+                                                                    <span class="text-warning"><strong>Por Confirmar</strong></span>
+
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach()

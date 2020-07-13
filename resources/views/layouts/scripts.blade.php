@@ -871,7 +871,9 @@
 		.done(function(data) {
 			if(data.length){
 				for (var i = 0; i < data.length; i++) {
-					$('#MultasPagarResi').append('<option class="text-danger" value="'+data[i].id+'">'+data[i].motivo+' -  '+data[i].tipo+' -  '+data[i].monto+'  -  '+data[i].anio+'</option>');					
+					if (data[i].status != 'Pagada') {
+						$('#MultasPagarResi').append('<option class="text-danger" value="'+data[i].id+'">'+data[i].motivo+' -  '+data[i].tipo+' - '+data[i].monto+'  -  '+data[i].anio+'</option>');					
+					}
 				}
 			}else{
 				$('#MultasPagarResi').append('<option disabled selected>El residente no tiene multas disponibles para pagar</option>');
