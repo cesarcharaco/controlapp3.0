@@ -152,7 +152,7 @@
                                         
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <input type="number" name="verificador" id="verificador_e" minlength="1" maxlength="2" value="1" class="form-control" required>
+                                                <input type="number" name="verificador" min="1" id="verificador_e" minlength="1" maxlength="2" value="1" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Teléfono</label>
-                                                <input type="number" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e" required>
+                                                <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e" required>
                                             </div>
                                         </div>
                                     </div>

@@ -112,7 +112,7 @@
         @media only screen and (max-width: 200px)  {
             .footer3{
                 height: 100px;
-                display: none;
+                /*display: none;*/
             }
         }
         @media screen and (max-width: 480px) {
@@ -302,7 +302,7 @@
                                                                                                     <input type="text" name="rut" minlength="7" maxlength="8" class="form-control" id="rut_profileEdit" value="123124123" required>
                                                                                                 </div>
                                                                                                 <div class="col-md-3">
-                                                                                                    <input type="text" name="verificador" minlength="1" maxlength="2" class="form-control" id="verificadorEdit" value="123124123" required>
+                                                                                                    <input type="text" name="verificador" min="1" minlength="1" maxlength="2" class="form-control" id="verificadorEdit" value="123124123" required>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -541,7 +541,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <div style="float: left !important;">
-                                                                    <input type="number" name="verificador" minlength="1" maxlength="2" value="1" class="form-control" required>
+                                                                    <input type="number" name="verificador" min="1" minlength="1" maxlength="2" value="1" class="form-control" required>
                                                                 </div>
                                                             </div>
                                                         </div>

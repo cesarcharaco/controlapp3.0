@@ -870,18 +870,8 @@
 		})
 		.done(function(data) {
 			if(data.length){
-				var n=0;
-				var j=0;
 				for (var i = 0; i < data.length; i++) {
-					if(data[i].tipo == 'Multa'){
-						$('#MultasPagarResi').append('<option class="text-danger" value="'+data[i].id+'">'+data[i].motivo+'  -  '+data[i].monto+'  -  '+data[i].anio+'</option>');
-						n++;
-					}else{
-						if(n==0 && j==0){
-							$('#MultasPagarResi').append('<option disabled selected>El residente tiene Recargas pero no tiene multas por pagar</option>');
-							j++;
-						}
-					}
+					$('#MultasPagarResi').append('<option class="text-danger" value="'+data[i].id+'">'+data[i].motivo+' -  '+data[i].tipo+' -  '+data[i].monto+'  -  '+data[i].anio+'</option>');					
 				}
 			}else{
 				$('#MultasPagarResi').append('<option disabled selected>El residente no tiene multas disponibles para pagar</option>');

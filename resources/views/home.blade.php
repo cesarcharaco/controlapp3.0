@@ -108,6 +108,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-xl-6">
@@ -161,6 +163,129 @@
                                 </div>
                             </div>
                         </div> --}}
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card border border-success rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <center><h4>Notificaciones</h4></center>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @if(\Auth::user()->tipo_usuario=="Admin")
+                                                <a style="width: 100%" href="#" data-toggle="modal" data-target="#crearNotficacion" class="btn btn-success">Nueva</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    @foreach($notificaciones as $key)
+                                    @if(\Auth::user()->tipo_usuario=="Admin")
+                                    <h4>{{$key->titulo}}</h4>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <p>{{$key->motivo}}</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <ul>
+                                                {{ mostrar_resi_has_notif($key->id) }}
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="dropdown align-self-center float-right">
+                                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="uil uil-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-177px, 20px, 0px);">
+                                                        <!-- item-->
+                                                        <!-- <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editarNotificacion"><i class="uil uil-edit-alt mr-2"></i>Editar</a> -->
+                                                        <!-- item-->
+                                                        <div class="dropdown-divider"></div>
+                                                        <!-- item-->
+                                                        <a href="{{ route('eliminarNotificacion', $key->id)}}" class="dropdown-item text-danger"><i class="uil uil-trash mr-2"></i>Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @elseif(\Auth::user()->tipo_usuario!=="Admin")
+                                        @if($key->publicar=="Todos" || buscar_notificacion($residente->id,$key->id)>0)
+                                        <h4>{{$key->titulo}}</h4>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <p>{{$key->motivo}}</p>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="dropdown align-self-center float-right">
+                                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="uil uil-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-177px, 20px, 0px);">
+                                                        <!-- item-->
+                                                        <!-- <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editarNotificacion"><i class="uil uil-edit-alt mr-2"></i>Editar</a> -->
+                                                        <!-- item-->
+                                                        <div class="dropdown-divider"></div>
+                                                        <!-- item-->
+                                                        <a href="{{ route('eliminarNotificacion', $key->id)}}" class="dropdown-item text-danger"><i class="uil uil-trash mr-2"></i>Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                    @endif
+                                    @endforeach()
+                                </div>
+                                <div class="card-footer">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border border-success rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <center><h4>Noticias</h4></center>
+                                        </div>
+                                        <div class="col-md-5">
+                                            @if(\Auth::user()->tipo_usuario=="Admin")
+                                                <a style="width: 100%" href="#" data-toggle="modal" data-target="#crearNoticia" class="btn btn-success">Nueva</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    @foreach($noticias as $key)
+                                    <h4>{{$key->titulo}}</h4>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <p>{{$key->contenido }}</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="dropdown align-self-center float-right">
+                                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="uil uil-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-177px, 20px, 0px);">
+                                                        <!-- item-->
+                                                        <!-- <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editarNoticia" ><i class="uil uil-edit-alt mr-2"></i>Editar</a> -->
+                                                        <!-- item-->
+                                                        <div class="dropdown-divider"></div>
+                                                        <!-- item-->
+                                                        <a href="{{ route('eliminarNoticia', $key->id)}}" class="dropdown-item text-danger"><i class="uil uil-trash mr-2"></i>Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    @endforeach()
+                                </div>
+                                <div class="card-footer">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -326,13 +451,13 @@
                         @endif
                         <div class="row">
                             <div class="col-md-6 col-xl-6">
-                                <div class="card border border-info rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                                <div class="card border border-primary rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                     <input type="hidden" name="id_residente" id="id_reside" value="{{\Auth::user()->id}}">
                                     <div class="card-body p-0">
                                         <div class="media p-3">
                                             <div class="media-body">
-                                                <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago de condominio</span>
-                                                <h6 class="mb-0">Pagos retrasados: </h6>
+                                                <span class="text-primary text-uppercase font-size-12 font-weight-bold">Pago de Condominio</span>
+                                                <h6 class="mb-0">Pagos Retrasados: </h6>
                                             </div>                                             
                                             <div class="form-group">
                                                 <!-- <label class="mb-0 text-primary">Pagar mes</label> -->
@@ -343,12 +468,12 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-xl-6">
-                                <div class="card border border-info rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                                <div class="card border border-danger rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                     <div class="card-body p-0">
                                         <div class="media p-3">
                                             <div class="media-body">
-                                                <span class="text-muted text-muted text-uppercase font-size-12 font-weight-bold">Multas asignadas</span>
-                                                <h6 class="mb-0">Total de multas: </h6>
+                                                <span class="text-danger text-uppercase font-size-12 font-weight-bold">Multas/Recarga Asignadas</span>
+                                                <h6 class="mb-0">Total de Multas/Recargas: </h6>
                                             </div>
                                             
                                             <div class="form-group">
