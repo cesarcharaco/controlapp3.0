@@ -13,8 +13,25 @@
 
 
 <script src="{{ asset('assets/js/data-table/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/js/data-table/data-table-act.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/dataTables.keyTable.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/dataTables.select.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/js/data-table/four_button.js') }}"></script>
 
+<!-- <script src="{{ asset('assets/js/data-table/data-table-act.js') }}"></script> -->
+
+
+
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.jqueryui.min.js"></script> -->
 
 
 <script type="text/javascript">
@@ -25,7 +42,16 @@
 	$(function () {
 
 		$('.data-table-basic').DataTable({
-	        "pageLength": 30,
+	        "pageLength": 10,
+            // "paging": false,
+            // "bPaginate": false,
+            "ordering": false,
+            "lengthChange": false,
+            "lengthMenu": false,
+            "pagingType": "simple_numbers",
+            // "searching": false,
+            // "bFilter": false,
+            // "info":     false,
 	        language: {
 	        "decimal": "",
 	        "emptyTable": "No hay información",
@@ -37,17 +63,27 @@
 	        "lengthMenu": "Mostrar _MENU_ Entradas",
 	        "loadingRecords": "Cargando...",
 	        "processing": "Procesando...",
-	        "search": "Buscar:",
+	        "search": "",
 	        "zeroRecords": "Sin resultados encontrados",
 	        "paginate": {
 	            "first": "Primero",
 	            "last": "Ultimo",
-	            "next": "Siguiente",
-	            "previous": "Anterior"
+	            "next": "<buttom class='btn btn-info' style='border-radius:50%;'><strong> > </strong></buttom>",
+	            "previous": "<buttom class='btn btn-info' style='border-radius:50%;'><strong> < </strong></buttom>",
+            	// "pagingType": "scrolling",
+            	"sPaginationType": "four_button",
 	          }
 	        }
 
 	    });
+
+	    $('.dataTables_length').css('display','none');
+	    $('.dataTables_info').attr('align','center');
+
+	    // $('.dataTables_paginate').removeChild('span');
+	    $('.card').fadeIn(500);
+
+	    // $('.paginate_button').addClass('btn btn-sm text-dark').attr('onclick="paginateButton();"');
 
     
 		
@@ -69,6 +105,10 @@
 		});
 
 	});
+
+	// function paginateButton(){
+	// 	 $('.paginate_button').addClass('btn btn-sm text-dark').attr('onclick="paginateButton();"');
+	// }
 
 	function cambiarResiT() {
 		var valor = $('#opcionAsignaT').val();

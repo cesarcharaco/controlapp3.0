@@ -11,6 +11,14 @@ class InmueblesSeeder extends Seeder
      */
     public function run()
     {
-        //
+    	for ($i=0; $i < 50; $i++) { 
+	        \DB::table('inmuebles')->insert([
+	        	'idem' => 'Inmueble'.$i,
+	        	'tipo' => 'Casa',
+	        	'Status' => 'Disponible',
+	        	'estacionamiento' => 'No',
+	        	'id_admin' => 1
+	        ]);
+    	}
     }
 }

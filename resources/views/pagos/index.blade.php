@@ -78,9 +78,10 @@
         
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <div class="card card-table" style="width: 100%">
-                        <table class="data-table-basic2 table table-hover mb-0 tabla-estilo" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
+                    <div class="card-body">
+                        <table class="data-table-basic table table-hover mb-0 tabla-estilo" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
                             <thead>
-                                <tr>
+                                <tr class="bg-info text-white">
                                     <th></th>
                                     <th>
                                         <span class="tituloTabla">Nombres</span>
@@ -233,6 +234,7 @@
                                 @endforeach()
                             </tbody>
                         </table>
+                    </div>
                 </div>
             @endif
 

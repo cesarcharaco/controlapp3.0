@@ -21,6 +21,12 @@
 
 <!-- Data Table CSS
 		============================================ -->
-		<link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}"> -->
+<!-- <link href="https://cdn.datatables.net/1.10.21/css/dataTables.jqueryui.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="{{ asset('assets/css/data-table/css/buttons.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/data-table/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/data-table/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/data-table/css/select.bootstrap4.min.css') }}">
+
 
 <!-- App css -->

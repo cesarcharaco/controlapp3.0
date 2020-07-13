@@ -66,7 +66,7 @@
             /*margin:auto;*/
         }
 
-        #footer1{
+        .footer1{
 
             position: relative; 
             bottom: 0px;
@@ -77,7 +77,7 @@
             /*margin-top: 500px;*/
         }
 
-        #footer2{
+        .footer2{
 
             position: relative; 
             bottom: 0px;
@@ -88,7 +88,7 @@
             /*margin-top: 500px;*/
         }
 
-        #footer3{
+        .footer3{
 
             position: relative; 
             bottom: 0px;
@@ -109,12 +109,19 @@
                 width: 50%;
             }
         }*/
+        @media only screen and (max-width: 200px)  {
+            .footer3{
+                height: 100px;
+                display: none;
+            }
+        }
         @media screen and (max-width: 480px) {
-            #footer1{
+            .footer1{
                 height: 50;
             }
-            #footer3{
-                height: 100px;
+            .footer3{
+                height: 500px;
+                display: none;
             }
             .tabla-estilo{
                 font-size: 7px;
@@ -132,8 +139,14 @@
         }
 
         @media screen and (max-width: 800px) {
-            #footer1{
+            .footer1{
                 height: 100px;
+            }
+            .footer3{
+                height: 101px;
+            }
+            .anuncioRoot{
+                width: 100%;
             }
         }
     </style>

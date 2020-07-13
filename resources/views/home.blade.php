@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+    
     <div class="row">
         @if(\Auth::user()->tipo_usuario=="Admin")
             @if(count($anuncios) >0 && \Auth::user()->tipo_usuario!="Admin")
@@ -12,12 +12,17 @@
             @endif
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    @include('flash::message')
-                    <div class="row">
+                    <div class="row page-title">
                         <div class="col-md-12">
-                            <h1>Vista principal</h1>
+                            <nav aria-label="breadcrumb" class="float-right mt-1">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                                </ol>
+                            </nav>
+                            <h4 class="mb-1 mt-0">Vista Principal</h4>
                         </div>
                     </div>
+                    @include('flash::message')
                     @if(!empty($errors->all()))
                         <div class="notification is-danger">
                             <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
@@ -32,31 +37,31 @@
                     @endif
                     <div class="row">
                         <div class="col-md-6 col-xl-6">
-                            <div class="card">
+                            <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                 <div class="card-body p-0">
                                     <div class="media p-3">
                                         <div class="media-body">
-                                            <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago Comúnes</span>
+                                            <span class="text-info text-uppercase font-size-12 font-weight-bold">Pago Comúnes</span>
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4">
-                                                    <h6><input type="text" readonly="" class="form-control-plaintext text-primary" id="example-static" value="Costo Inmueble"></h6>
+                                                    <h6 class="text-primary" style="margin-top: 24px;" align="center">Costo Inmueble</h6>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4">
-                                                    <h6><a href="#" style="width: 100% !important;" onclick="PagoC(1)" class="btn btn-primary">Registrar</a></h6>
+                                                    <h6><a href="#" style="width: 100% !important;" onclick="PagoC(1)" class="btn btn-primary shadow">Registrar</a></h6>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4">
-                                                    <h6><a href="#" style="width: 100% !important;" onclick="PagoC(3)" class="btn btn-warning">Editar</a></h6>
+                                                    <h6><a href="#" style="width: 100% !important;" onclick="PagoC(3)" class="btn btn-warning shadow">Editar</a></h6>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4">
-                                                    <h6><input type="text" readonly="" class="form-control-plaintext text-danger" id="example-static" value="Costo Estacionamiento"></h6>
+                                                    <h6 class="text-danger" style="margin-top: 10px;" align="center">Costo Estacionamiento</h6>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4">
-                                                    <h6><a href="#" style="width: 100% !important;" onclick="PagoC(2)" class="btn btn-primary">Registrar</a></h6>
+                                                    <h6><a href="#" style="width: 100% !important;" onclick="PagoC(2)" class="btn btn-primary shadow">Registrar</a></h6>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4">
-                                                    <h6><a href="#" style="width: 100% !important;" onclick="PagoC(4)" class="btn btn-warning">Editar</a></h6>
+                                                    <h6><a href="#" style="width: 100% !important;" onclick="PagoC(4)" class="btn btn-warning shadow">Editar</a></h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -67,21 +72,37 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-6">
-                            <div class="card">
+                            <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                 <div class="card-body p-0">
                                     <div class="media p-3">
                                         <div class="media-body">
-                                            <span class="text-muted text-uppercase font-size-12 font-weight-bold">Residentes</span>
-                                            <h6 class="mb-0">Registrados: {{ residentes() }}</h6>
-                                            <p class="mb-0">C/Inmuebles:{{ residentes_alquilados_i() }}</p>
-                                            <p class="mb-0">C/Estaciona.:{{ residentes_alquilados_e() }}</p>
-                                            
-                                            <br><br>
-                                        </div>
-                                        
-                                    <div class="form-group">
-                                            <label class="mb-0 text-success">Nuevo Residente</label>
-                                            <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" class="btn btn-success" onclick="NuevoResidente()">Agregar</a></h6>
+                                            <span class="text-success text-uppercase font-size-12 font-weight-bold">Residentes</span>
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-6">
+                                                    <table width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th><span>Registrados: </span></th>
+                                                                <th align="left">{{ residentes() }}</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><span class="text-primary">C/Inmuebles:</span></td>
+                                                                <td align="left">{{ residentes_alquilados_i() }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><span class="text-danger">C/Estaciona.:</span></td>
+                                                                <td align="left">{{ residentes_alquilados_e() }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group" align="center">
+                                                        <label class="text-success">Nuevo Residente</label>
+                                                        <a href="#" style="width: 100% !important; position: relative;" class="btn btn-success shadow" onclick="NuevoResidente()"><strong class="text-white">Agregar</strong></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -90,41 +111,41 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-xl-6">
-                            <div class="card">
+                            <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                 <div class="card-body p-0">
                                     <div class="media p-3">
                                         <div class="media-body">
-                                            <span class="text-muted text-uppercase font-size-12 font-weight-bold">Inmuebles</span>
+                                            <span class="text-primary text-uppercase font-size-12 font-weight-bold">Inmuebles</span>
                                             <h6 class="mb-0">Existencia: {{ existencia_i() }}</h6>
                                             <h6 class="mb-0">Alquilados: {{ alquilados_i_t() }}</h6>
                                         </div>                                         
                                         <div class="form-group">
                                             <label class="mb-0 text-primary">Nuevo Inmueble</label>
-                                            <h6 class="mb-0"><a href="#" style="width: 100% !important;" data-toggle="modal" data-target="#crearInmueble"  class="btn btn-primary">Agregar</a></h6>
+                                            <h6 class="mb-0"><a href="#" style="width: 100% !important;" data-toggle="modal" data-target="#crearInmueble"  class="btn btn-primary shadow">Agregar</a></h6>
                                         </div>                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-6">
-                            <div class="card">
+                            <div class="card border border-danger rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                 <div class="card-body p-0">
                                     <div class="media p-3">
                                         <div class="media-body">
-                                            <span class="text-muted text-muted text-uppercase font-size-12 font-weight-bold">Estacionamientos</span>
+                                            <span class="text-danger text-danger text-uppercase font-size-12 font-weight-bold">Estacionamientos</span>
                                             <h6 class="mb-0">Existencia: {{ existencia_e() }}</h6>
                                             <h6 class="mb-0">Alquilados: {{ alquilados_e_t() }}</h6>
                                         </div>                                            
                                         <div class="form-group">
                                             <label class="mb-0 text-danger">Nuevo Estacionamiento</label>
-                                            <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" data-toggle="modal" data-target="#crearEstacionamiento" class="btn btn-danger">Agregar</a></h6>
+                                            <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" data-toggle="modal" data-target="#crearEstacionamiento" class="btn btn-danger shadow">Agregar</a></h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                        {{--  <div class="col-md-6 col-xl-3">
-                            <div class="card">
+                            <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                 <div class="card-body p-0">
                                     <div class="media p-3">
                                         <div class="media-body">
@@ -145,17 +166,14 @@
             </div>
         @elseif(\Auth::user()->tipo_usuario=="root")
             <div class="col-md-12">
-                        <br>
+                <br>
                 <div class="row">
                     <div class="col-md-5">
                         <div class="row justify-content-center">
-                            <div class="col-md-4">
-                            </div>
-                            <div class="col-md-4">
-                                <img src="{{ asset('assets/images/logo.jpg') }}" style="border-radius: 50%;" alt="" height="500" width="500" />
-                            </div>
-                            <div class="col-md-4">
-                                <br><br>
+                            <div class="col-md-12">
+                                <div style="width: 100px; height:100px;">
+                                    <img src="{{ asset('assets/images/logo.jpg') }}" class="rounded-circle avatar" alt=""/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -163,11 +181,11 @@
                     </div>
                     <div class="col-md-4 mt-3">
                         @if(count($anuncios)>0)
-                            <div style="float: right; margin-top: -30px; margin-right: 10px;">
+                            <div style="float: right; margin-top: -40px;">
                         @else
-                            <div style="margin-right: -30px; margin-top: -30px; margin-left: 30px;">
+                            <div style="margin-right: 40px; margin-left: 30px;">
                         @endif
-                            <div class="card">
+                            <div class="card anuncioRoot" style="display: none; position: relative; margin-right: -30px;">
                                 <div class="card-header">
                                     <strong class="text-dark" style="font-size: 20px;">Crear Anuncio</strong>
                                     <a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>
@@ -273,78 +291,82 @@
                         </div>
                     </div>
                 </div>
+        @else
+            @if(count($anuncios)>0)
+                <div class="col-md-9">
+                <div style="margin-right: -10px;">
             @else
-                @if(count($anuncios)>0)
-                    <div class="col-md-9">
-                    <div style="margin-right: -25px;">
-                @else
-                    <div class="col-md-12" style="margin-right: 25px;">
-                    <div style="margin-right: 0px;">
-                @endif
-                    <div class="row justify-content-center">
+                <div class="col-md-12" style="margin-right: 25px;">
+                <div style="margin-right: 0px;">
+            @endif
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        @include('flash::message')
+                        <div class="row page-title">
                         <div class="col-md-12">
-                            @include('flash::message')
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h1>Vista principal</h1>
-                                </div>
+                            <nav aria-label="breadcrumb" class="float-right mt-1">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                                </ol>
+                            </nav>
+                            <h4 class="mb-1 mt-0">Vista Principal</h4>
+                        </div>
+                    </div>
+                        @if(!empty($errors->all()))
+                            <div class="notification is-danger">
+                                <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
+                                <ul>
+                                    @foreach ($errors->all() as $mensaje)
+                                        <li>
+                                            {{$mensaje}}
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            @if(!empty($errors->all()))
-                                <div class="notification is-danger">
-                                    <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
-                                    <ul>
-                                        @foreach ($errors->all() as $mensaje)
-                                            <li>
-                                                {{$mensaje}}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                            <div class="row">
-                                <div class="col-md-6 col-xl-6">
-                                    <div class="card">
-                                        <input type="hidden" name="id_residente" id="id_reside" value="{{\Auth::user()->id}}">
-                                        <div class="card-body p-0">
-                                            <div class="media p-3">
-                                                <div class="media-body">
-                                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago de condominio</span>
-                                                    <h6 class="mb-0">Pagos retrasados: </h6>
-                                                </div>                                             
-                                                <div class="form-group">
-                                                    <!-- <label class="mb-0 text-primary">Pagar mes</label> -->
-                                                    <h6 class="mb-0"><a href="#" style="width: 100% !important;" onclick="BMesesResidente('{{$residente->id}}')" class="btn btn-primary">Pagar</a></h6>
-                                                </div>                                           
-                                            </div>
+                        @endif
+                        <div class="row">
+                            <div class="col-md-6 col-xl-6">
+                                <div class="card border border-info rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                                    <input type="hidden" name="id_residente" id="id_reside" value="{{\Auth::user()->id}}">
+                                    <div class="card-body p-0">
+                                        <div class="media p-3">
+                                            <div class="media-body">
+                                                <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago de condominio</span>
+                                                <h6 class="mb-0">Pagos retrasados: </h6>
+                                            </div>                                             
+                                            <div class="form-group">
+                                                <!-- <label class="mb-0 text-primary">Pagar mes</label> -->
+                                                <h6 class="mb-0"><a href="#" style="width: 100% !important;" onclick="BMesesResidente('{{$residente->id}}')" class="btn btn-primary">Pagar</a></h6>
+                                            </div>                                           
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-xl-6">
-                                    <div class="card">
-                                        <div class="card-body p-0">
-                                            <div class="media p-3">
-                                                <div class="media-body">
-                                                    <span class="text-muted text-muted text-uppercase font-size-12 font-weight-bold">Multas asignadas</span>
-                                                    <h6 class="mb-0">Total de multas: </h6>
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <!-- <label class="mb-0 text-danger">Pagar multa</label> -->
-                                                    <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente('{{$residente->id}}')" class="btn btn-danger">Pagar</a></h6>
-                                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-6">
+                                <div class="card border border-info rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                                    <div class="card-body p-0">
+                                        <div class="media p-3">
+                                            <div class="media-body">
+                                                <span class="text-muted text-muted text-uppercase font-size-12 font-weight-bold">Multas asignadas</span>
+                                                <h6 class="mb-0">Total de multas: </h6>
                                             </div>
-                                        </div>                            
-                                    </div>
+                                            
+                                            <div class="form-group">
+                                                <!-- <label class="mb-0 text-danger">Pagar multa</label> -->
+                                                <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente('{{$residente->id}}')" class="btn btn-danger">Pagar</a></h6>
+                                            </div>
+                                        </div>
+                                    </div>                            
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endif
+                </div>
 
-                @if(\Auth::user()->tipo_usuario=="Residente")
+
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="card">
+                        <div class="card border border-success rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-md-9">
@@ -419,7 +441,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card">
+                        <div class="card border border-success rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-md-7">
@@ -470,16 +492,15 @@
         @if(count($anuncios)>0)
             @if(\Auth::user()->tipo_usuario!='Admin')
                 <div class="col-md-3">
-                    <div class="card" style="width:250px;background:#fff;margin-left: 25px; margin-right: -25px;">
+                    <div class="card anuncioRoot" style="display: none; position: absolute; margin-right: -30px;">
                             <div class="card-header">
                                 <strong class="text-dark" style="font-size: 20px;">Anuncios</strong>
-                                {{--<a href="#" style="float: right" class="btn btn-success btn-sm" onclick="AnuncioCreate()"><strong>Crear</strong></a>--}}
                             </div>
                         <div class="card-body">
                             @foreach($anuncios as $key)
                                 <div onclick="window.open('{{$key->link}}', '_blank');">                                    
                                     <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
-                                    <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200" style="padding: 15px 15px 15px 15px; border-radius: 10%;">
+                                    <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" width="250" height="200" style="padding: 15px 15px 15px 15px; border-radius: 10%; position: relative;">
                                     <p class="text-dark" align="center">{{$key->descripcion}}</p>
                                 </div>
                             @endforeach()

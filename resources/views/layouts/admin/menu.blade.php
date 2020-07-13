@@ -160,7 +160,7 @@
                 </li>
                 @endif
                     @if(\Auth::user()->tipo_usuario == 'Residente')
-                        <div id="footer1">
+                        <div class="footer1">
                             <li class="menu-title">
                                  <div style="background-color: white;font-size: 9px; margin-top: 110px; position: relative;">
                                     ControlApp
@@ -171,9 +171,9 @@
                             </li>
                         </div>
                     @elseif(\Auth::user()->tipo_usuario == 'root')
-                        <div id="footer2">
+                        <div class="footer2">
                             <li class="menu-title">
-                                 <div style="background-color: white;font-size: 9px; margin-top: 110px; position: absolute;">
+                                 <div style="background-color: white;font-size: 9px; margin-top: 110px;">
                                     ControlApp
                                     <label class="badge badge-soft-danger">v1.0.1.</label>
                                     <br>Un proyecto desarrollado por 
@@ -182,7 +182,7 @@
                             </li>
                         </div>
                     @else
-                        <div id="footer3">
+                        <div class="footer3">
                             <li class="menu-title">
                                  <div style="background-color: white;font-size: 9px;">
                                     ControlApp
