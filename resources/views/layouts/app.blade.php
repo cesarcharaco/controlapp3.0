@@ -649,9 +649,17 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Multas</label>
-                                                                <select class="form-control select2" required multiple name="id_multa[]" id="MultasPagarResi">
+                                                                <select required multiple name="id_multa[]" id="MultasPagarResi">
                                                                     
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Referencia</label>
+                                                                <input type="text" class="form-control" name="referencia" required>
                                                             </div>
                                                         </div>
                                                     </div>
