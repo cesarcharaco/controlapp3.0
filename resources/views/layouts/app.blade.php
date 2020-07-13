@@ -627,7 +627,7 @@
                             </form>
 
                 <!-----------------------------------------------PAGAR MULTAS RESIDENTE---------------------------------------- -->
-                            <form action="#" method="POST">
+                            <form action="{{ route('pagar.mr') }}" method="POST">
                                 @csrf
                                 <div class="modal fade" id="pagarMultasModal" role="dialog">
                                     <div class="modal-dialog modals-default">
@@ -675,7 +675,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
-                                                <input type="hidd" name="id_residente" value="{{ \Auth::user()->id }}">
+                                                <input type="hidden" name="id_residente" value="{{ \Auth::user()->id }}">
                                                 <button type="submit" class="btn btn-danger" style="border-radius: 50px;">Pagar</i></button>
                                             </div>
                                         </div>
