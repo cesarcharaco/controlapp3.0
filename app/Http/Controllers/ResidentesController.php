@@ -233,7 +233,7 @@ class ResidentesController extends Controller
                     toastr()->warning('intente otra vez!!', 'El RUT debe ser numérico');
                     return redirect()->back();
                 } else {
-                    if ($request->telefono!="" && is_numeric($request->rut)==false) {
+                    if ($request->telefono!="" && is_numeric($request->telefono)==false) {
                         toastr()->warning('intente otra vez!!', 'El teléfono debe ser numérico');
                         return redirect()->back();
                     } else {
