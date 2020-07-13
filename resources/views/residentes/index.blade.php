@@ -123,10 +123,18 @@
                 
     
             <div class="col-md-12">
-                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                
+                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" id="tablaResidentes" style="width: 100%;">
                     <thead>
-                        <tr class="bg-success text-white">
-                            <th></th>
+                        <tr class="table-default text-white">
+                            <td colspan="5" align="center">
+                                <div class="card border border-success" >
+                                    <span class="text-success p-1 mb-1"><strong>Aviso: </strong>Seleccione a un residente para ver mas opciones</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="bg-success text-white" id="th1">
+                            <th width="10"></th>
                             <th>
                                 <span class="PalabraEditarPago">Nombres</span>
                                 <span class="PalabraEditarPago2">N</span>
@@ -143,22 +151,65 @@
                                 <span class="PalabraEditarPago">Teléfono</span>
                                 <span class="PalabraEditarPago2">Tel</span>
                             </th>
+                        </tr>
+                        <tr class="bg-info text-white" id="th2" style="display: none">
+                            <th width="10"></th>
+                            <th>
+                                <span class="PalabraEditarPago">Nombres</span>
+                                <span class="PalabraEditarPago2">N</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Opciones</span>
+                                <span class="PalabraEditarPago2">O</span>
+                            </th>
                             <th>
                                 <span class="PalabraEditarPago">Inmuebles</span>
                                 <span class="PalabraEditarPago2">I</span>
                             </th>
                             <th>
-                                <span class="PalabraEditarPago">Estaciona.</span>
+                                <span class="PalabraEditarPago">Estacionamientos</span>
                                 <span class="PalabraEditarPago2">E</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $colorn=1; $color="";?>
                         @foreach($residentes as $key)
-                            <tr>
+                            <?php 
+                                if($colorn == 1){
+                                    $color = "bg-active";
+                                    $colorn = 2;
+                                }else{
+                                    $color = "bg-default";
+                                    $colorn = 1;
+                                }
+
+                            ?>
+                            <tr id="residente{{$key->id}}" class="{{$color}}" onclick="opciones(1,'{{$key->id}}')">
+                                <td width="10"></td>
+                                <td>{{$key->nombres}} {{$key->apellidos}}</td>
+                                <td>{{$key->rut}}</td>
+                                <td>{{$key->usuario->email}}</td>
+                                <td>{{$key->telefono}}</td>
+                            </tr>
+                            <tr id="residente{{$key->id}}-2" class="table-success" style="display: none;">
+                                <td width="10">
+                                    <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opciones(2,'{{$key->id}}')">
+                                        <span class="PalabraEditarPago ">Regresar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </button>
+                                </td>
+                                <td>
+                                    
+                                    <span>{{$key->nombres}} {{$key->apellidos}}</span>
+                                </td>
                                 <td align="center">
                                     @if(\Auth::user()->tipo_usuario == 'Admin')
-                                        <a href="#" data-toggle="modal" data-target="#editarResidente" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="Editar('{{$key->id}}','{{$key->nombres}}','{{$key->apellidos}}','{{$key->rut}}','{{$key->telefono}}','{{$key->usuario->email}}')">
+                                        <a href="#" data-toggle="modal" data-target="#editarResidente" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px; width: auto;" onclick="Editar('{{$key->id}}','{{$key->nombres}}','{{$key->apellidos}}','{{$key->rut}}','{{$key->telefono}}','{{$key->usuario->email}}')">
                                             <span class="PalabraEditarPago ">Editar</span>
                                             <center>
                                                 <span class="PalabraEditarPago2 ">
@@ -167,7 +218,7 @@
                                             </center>
                                         </a>
 
-                                        <a href="#" data-toggle="modal" data-target="#eliminarResidente" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="Eliminar('{{$key->id}}')">
+                                        <a href="#" data-toggle="modal" data-target="#eliminarResidente" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px; width: auto;" onclick="Eliminar('{{$key->id}}')">
                                             <span class="PalabraEditarPago ">Eliminar</span>
                                             <center>
                                                 <span class="PalabraEditarPago2 ">
@@ -177,25 +228,22 @@
                                         </a>
                                     @endif
                                 </td>
-                                <td>{{$key->nombres}} {{$key->apellidos}}</td>
-                                <td>{{$key->rut}}</td>
-                                <td>{{$key->usuario->email}}</td>
-                                <td>{{$key->telefono}}</td>
                                 <td>
                                     @foreach($key->inmuebles as $key2)
                                         @if($key2->pivot->status=="En Uso")
-                                        <p class="text-primary">{{$key2->idem}}</p>
+                                        <span class="text-primary"><strong>{{$key2->idem}}</strong></span><br>
                                         @endif
                                     @endforeach
                                 </td>
                                 <td>
                                     @foreach($key->estacionamientos as $key2)
                                         @if($key2->pivot->status=="En Uso")
-                                            <p class="text-warning">{{$key2->idem}}</p>
+                                        <span class="text-warning"><strong>{{$key2->idem}}</strong></span><br>
                                         @endif
                                     @endforeach
                                 </td>
                             </tr>
+                            <?php $colorn=2;?>
                         @endforeach()
                     </tbody>
                 </table>
@@ -311,6 +359,31 @@
             $('#verificador_e').val(rut.substr(-1,(rut.length)));
             $('#telefono_e').val(telefono);
             $('#email_e').val(email);
+        }
+        function opciones(tipo,id_residente) {
+            if (tipo == 1) {
+                $('#residente'+id_residente).fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('#residente'+id_residente+'-2').fadeIn(300);
+                });
+                $('#th1').fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('#th2').fadeIn(300);
+                });
+            }else{
+                $('#residente'+id_residente+'-2').fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('#residente'+id_residente).fadeIn(300);
+                });
+                $('#th2').fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('#th1').fadeIn(300);
+                });
+            }
         }
         
     </script>
