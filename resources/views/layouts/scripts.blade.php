@@ -865,11 +865,17 @@
 	function pagarMultasResidente(id_residente) {
 		$('#CargandoMultasResi').css('display','block');
 		$('#MultasPagarResi').empty();
+		$('#idMultaForm').empty();
+		$('#mrSeleccionado').empty();
+		$('#id_mensMultaR').empty();
+		 $('#TotalPagar').html(parseInt(0));
+		$('#total').val(0);
 		$('#pagarMultasModal').modal('show');
 		$.get('multas_residentes/'+id_residente+'/buscar', function(data) {
 		})
 		.done(function(data) {
 			if(data.length){
+				$('#MultasPagarResi').append('<option value="0" selected disabled>Seleccione Multa/Recarga</option>');	
 				for (var i = 0; i < data.length; i++) {
 					if (data[i].status != 'Pagada') {
 						$('#MultasPagarResi').append('<option class="text-danger" value="'+data[i].id+'">'+data[i].motivo+' -  '+data[i].tipo+' - '+data[i].monto+'  -  '+data[i].anio+'</option>');					
@@ -976,6 +982,81 @@
 		});
     }
 
+    function montoTotalMulta(id_multa){
+    	// alert(id_multa);
+        if(id_multa!= null){
+            $.get("multas_recargas/"+id_multa+"/buscar",function (data) {
+            })
+            .done(function(data) {
+            	$('#MultasPagarResi').val(0);
+            	var m = data[0].motivo;
+            	if (m.length > 25) {
+            		motivo = m.substr(0,25)+"...";
+            	}else{
+            		motivo=m;
+            	}
+                var monto= parseFloat(data[0].monto);
+                var tipo= ""+data[0].tipo+"";
+
+                if(data[0].tipo == 'Recarga'){
+                	var tipo2 = 1;
+                	var textcolor ="text-success";
+                }else{
+                	var tipo2 = 2;
+                	var textcolor ="text-danger";
+                }
+                $('#mrSeleccionado').append(
+                    '<tr id="trMulta'+data[0].id+'" style="width:100%; position:relative;">'+
+                        '<th style="position:relative;" width="30%">'+
+                            '<div class="'+textcolor+'">'+motivo+'</div>'+
+                        '</th>'+
+                        '<td align="right">'+
+                            '<div class="'+textcolor+'"><strong>'+data[0].tipo +'</strong></div>'+
+                        '</td>'+
+                        '<td align="left">'+
+                            '<div class="'+textcolor+'"><strong>$'+monto+'</strong></div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<button type="button" onclick="borrarMultaT('+data[0].id+','+monto+','+tipo2+')" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+
+                            '</td>'+
+                    '</tr>'
+                );
+
+                $('#idMultaForm').append('<input type="hidden" name="id_mensMulta[]" id="inputM'+id_multa+'" value="'+id_multa+'">');
+                    
+                montoTotal(2,monto);
+                $("#MultasPagarResi option[value=" + id_multa + "]").attr('disabled',true);
+                
+
+                $('#id_mensMultaR').append('<option selected id="multaR'+data[0].id+'" value="'+data[0].id+'">'+data[0].id+'</option>');
+            });
+        }
+    }
+    function borrarMultaT(id_multa, monto, tipo) {
+        $("#MultasPagarResi option[value=" + id_multa + "]").removeAttr('disabled');
+        $("#inputM"+id_multa).remove();
+        $("#trMulta"+id_multa).remove();
+        montoTotal(1,monto);
+
+        
+    }
+
+    function montoTotal(tipo, monto){
+        var total=0;
+        // var cuentaFilas = $('#mrSeleccionado tr').length;
+        // if (cuentaFilas == 0) {
+            // $('#TotalPagar').html(parseInt(0));
+            //$('#total').val(0);
+        // } else {
+            if (tipo == 1) {
+                $('#TotalPagar').html(parseInt($('#TotalPagar').html())-monto);
+                $("#total").val($("#TotalPagar").html());
+            } else if(tipo == 2) {
+                $('#TotalPagar').html(parseInt($('#TotalPagar').html())+monto);
+                $("#total").val($("#TotalPagar").html());
+            }
+        // }
+    }
 
 
 </script>

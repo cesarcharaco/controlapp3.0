@@ -2,72 +2,178 @@
 
 @section('content')
 
+        <style type="text/css">
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
+        {
+            display: none;
+        }
+        @media only screen and (max-width: 800px)  {
+
+            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
+                display: none;
+            }
+            .palabraVerInmueble{
+                display: none;
+            }
+            .palabraVerInmueble2{
+                display: block;
+            }
+            .palabraVerEstaciona{
+                display: none;
+            }
+            .palabraVerEstaciona2{
+                display: block;
+            }
+            .PalabraEditarPago2{
+                display: block;
+            }
+            .iconosMetaforas{
+                display: none;    
+            }
+            .card-table{
+                width: 100%
+            }
+
+        }
+        @media only screen and (max-width: 200px)  {
+            .botonesEditEli{
+                width: 15px;
+                height: 15px;
+            }
+            .iconosMetaforas2{
+                width: 5px;
+                height: 5px;    
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .tituloTabla{
+                display: none;
+            }
+            .tituloTabla2{
+                display: block;
+            }
+            .iconosMetaforas2{
+                width: 15px;
+                height: 15px;    
+            }
+            .botonesEditEli{
+                width: 30px;
+                height: 30px;
+                margin-top: 5px;
+                    
+            }
+        }
+
+
+    </style>
     <div class="container">
-        <div class="row">
+        <div class="row page-title">
             <div class="col-md-12">
-                <h1>Anuncios</h1>
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Anuncios</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Anuncios</h4>
             </div>
         </div>
         @include('flash::message')
-        <div class="card">
-            <div class="card-body">
-                <div class="row justify-content-center">
-                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 offset-md-9">
-                                    <a class="btn btn-success" onclick="AnuncioCreate()" style="border-radius: 30px; color: white;">
-                                        <span> Nuevo Anuncio </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    
-        
+    
+    <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+        <div class="row justify-content-center">
             <div class="col-md-12">
-                <div style="overflow-x: auto;">
-                    <table class="data-table-basic" id="myTable" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Título</th>
-                                <th>Url</th>
-                                <th>Descripción</th>
-                                <th>Imagen</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($anuncios as $key)
-                                <tr>
-                                    <td>{{$key->titulo}}</td>
-                                    <td>{{$key->link}}</td>
-                                    <td>{{$key->descripcion}}</td>
-                                    <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" width="250" height="200"></td>
-                                    <td>
-                                        <a href="#" style="border-radius: 50px;float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
-                                            Eliminar
-                                        </a>
-                                        <a href="#" style="border-radius: 50px;float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
-                                            Editar
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach()
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-md-12 offset-md-12">
+                        <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                            border-radius: 10px;
+                            color: white;
+                            height: 35px;
+                            margin-bottom: 5px;
+                            margin-top: 5px;
+                            float: right;">
+                            <span class="PalabraEditarPago ">Nuevo Anuncio</span>
+                            <center>
+                                <span class="PalabraEditarPago2 ">
+                                    <i data-feather="plus" class="iconosMetaforas2"></i>
+                                </span>
+                            </center>
+                        </a>
+                    </div>
                 </div>
             </div>
             
+
+            <div class="col-md-12">
+                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                    <thead>
+                        <tr class="bg-info text-white">
+                            <th></th>
+                            <th>
+                                <span class="tituloTabla">Título</span>
+                                <span class="tituloTabla2">T</span>
+                            </th>
+                            <th>
+                                <span class="tituloTabla">URL</span>
+                                <span class="tituloTabla2">URL</span>
+                            </th>
+                            <!-- <th>Estacionamientos</th> -->
+                            <th>
+                                <span class="tituloTabla">Descripción</span>
+                                <span class="tituloTabla2">S</span>
+                            </th>
+                            <th>
+                                <span class="tituloTabla">Imagen</span>
+                                <span class="tituloTabla2"></span>
+                            </th>
+                            <!-- <th>Mensualidades</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($anuncios as $key)
+                            <tr>
+                                <td align="center">
+                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')">
+                                        <span class="PalabraEditarPago ">Editar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="edit" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </a>
+
+                                    <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EliminarAnuncio('{{$key->id}}')">
+                                        <span class="PalabraEditarPago ">Eliminar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="trash" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </a>
+                                </td>
+                                <td>{{$key->titulo}}</td>
+                                <td>{{$key->link}}</td>
+                                <td>{{$key->descripcion}}</td>
+                                <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar"></td>
+                            </tr>
+                        @endforeach()
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- --------------------------------------------VER AnuncioS--------------------------------------------------------- -->
             <div class="modal fade" id="VerAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
-                        <h4>Ver Anuncio</h4>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
+                        <div class="modal-header">
+                            <h4>Ver Anuncio</h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
                         <div class="modal-body">
                             <center>
                                 <div class="row">
@@ -123,10 +229,12 @@
             <div class="modal fade" id="editarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
-                        <h4>Editar anuncio</h4>                
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
+                        <div class="modal-header">
+                            <h4>Editar anuncio</h4>                
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
                         <div class="modal-body">
                             <center>
                                 <div class="row">
@@ -182,10 +290,12 @@
             <div class="modal fade" id="eliminarAnuncio" role="dialog">
                 <div class="modal-dialog modals-default">
                     <div class="modal-content">
-                        <h4>Eliminar anuncio</h4>                
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
+                        <div class="modal-header">
+                            <h4>Eliminar anuncio</h4>                
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
                         <div class="modal-body">
                             <center>
                                 <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
@@ -207,9 +317,79 @@
             </div>
         {!! Form::close() !!}
 
-    </div>
 
+               <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal fade" id="crearAnuncio" role="dialog">
+                <div class="modal-dialog modals-default">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Nuevo anuncio</h4>                
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <center>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Seleccionar admin</label> 
+                                            <input type="checkbox" name="">
+                                            <select class="for-control">
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Título del anuncio</label>
+                                            <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                        </div>
+                                    </div>
+                               
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Link</label>
+                                            <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div class="alert alert-primary" role="alert">
+                                                <p><strong>Recordar que:</strong><br>
+                                                - La imagen no debe exceder los 800 KB de tamaño<br>
+                                                - La imagen no debe tener una anchura mayor a 1024 kb<br>
+                                                - La imagen no debe tener una altura mayor a 800 kb</p>
+                                            </div>
+                                            <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </center>
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-success" >Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
 
 

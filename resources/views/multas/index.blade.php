@@ -2,111 +2,236 @@
 
 @section('content')
 
+        <style type="text/css">
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
+        {
+            display: none;
+        }
+        @media only screen and (max-width: 800px)  {
+
+            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
+                display: none;
+            }
+            .palabraVerInmueble{
+                display: none;
+            }
+            .palabraVerInmueble2{
+                display: block;
+            }
+            .palabraVerEstaciona{
+                display: none;
+            }
+            .palabraVerEstaciona2{
+                display: block;
+            }
+            .PalabraEditarPago2{
+                display: block;
+            }
+            .iconosMetaforas{
+                display: none;    
+            }
+            .card-table{
+                width: 100%
+            }
+
+        }
+        @media only screen and (max-width: 200px)  {
+            .botonesEditEli{
+                width: 15px;
+                height: 15px;
+            }
+            .iconosMetaforas2{
+                width: 5px;
+                height: 5px;    
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .tituloTabla{
+                display: none;
+            }
+            .tituloTabla2{
+                display: block;
+            }
+            .iconosMetaforas2{
+                width: 15px;
+                height: 15px;    
+            }
+            .botonesEditEli{
+                width: 30px;
+                height: 30px;
+                margin-top: 5px;
+                    
+            }
+        }
+
+
+    </style>
     <div class="container">
-        <div class="row">
+        <div class="row page-title">
             <div class="col-md-12">
-                <h1>Multas y Recargas</h1>
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Multas/Recargas</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Multas/Recargas</h4>
             </div>
         </div>
         @include('flash::message')
-        <div class="card" style="margin-right: 50px; margin-left: 50px;">
-            <div class="card-body">
+    </div>
+    <div class="card border border-danger rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+            <div class="row justify-content-center">
                 @if(\Auth::user()->tipo_usuario == 'Admin')
-                    <div class="float-right">
-                        <a class="btn btn-warning" onclick="asignar_mr()" data-toggle="modal" data-target="#AsignarMR" style="border-radius: 30px; color: white;">
-                            <span> Asignar M/R </span>
-                        </a>
-
-                        <a class="btn btn-success" data-toggle="modal" data-target="#crearMulta" style="border-radius: 30px; color: white;">
-                            <span> Nuevo Multa - Recarga </span>
-                        </a>
-                    </div>
-                @endif
-            
-                <br> <br>
-        
-                <div class="col-md-12">
-                    <div class="data-table-list">
-                        <div class="table-responsive">
-                            <div class="data-table-list">
-                                <div class="table-responsive">
-                                     <div style="overflow-x: auto;">
-                                        <table class="data-table-basic" id="myTable" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>Motivo</th>
-                                                    <th>Observación</th>
-                                                    <th>Monto</th>
-                                                    <th>Tipo</th>
-                                                    <th>Status</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @if(\Auth::user()->tipo_usuario == 'Admin')
-                                                    @foreach($mr as $key)
-                                                        <tr>
-                                                            <td>{{$key->motivo}}</td>
-                                                            <td>{{$key->observacion}}</td>
-                                                            <td>{{$key->monto}}</td>
-                                                            <td>{{$key->tipo}}</td>
-                                                            <td>
-                                                                @if($key->status == 'Enviada')
-                                                                    <span class="text-primary"><strong>Enviada</strong></span>
-                                                                    
-                                                                @elseif($key->status == 'Pagada')
-                                                                    <span class="text-success"><strong>Pagada</strong></span>
-
-                                                                @else
-                                                                    <span class="text-warning"><strong>Por Confirmar</strong></span>
-
-                                                                @endif
-                                                            </td>
-                                                            <td>
-                                                                <a href="#" data-toggle="modal" data-target="#editarMulta" onclick="EditarMR('{{$key->id}}','{{$key->motivo}}','{{$key->monto}}','{{$key->tipo}}','{{$key->observacion}}')" class="btn btn-warning btn-sm">Editar</a>
-
-                                                                <a href="#" data-toggle="modal" data-target="#eliminarMulta" onclick="eliminar('{{$key->id}}')" class="btn btn-danger btn-sm">Eliminar</a>
-
-                                                                <a href="#" onclick="verAsignados('{{$key->id}}')" class="btn btn-info btn-sm">Ver asignados</a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach()
-                                                @else
-                                                    @foreach($asignacion as $key)
-                                                        <tr>
-                                                            <td>{{$key->motivo}}</td>
-                                                            <td>{{$key->observacion}}</td>
-                                                            <td>{{$key->monto}}</td>
-                                                             <td>{{$key->tipo}}</td>
-                                                            <td>
-                                                                @if($key->status == 'Enviada')
-                                                                    <span class="text-primary"><strong>Enviada</strong></span>
-                                                                    
-                                                                @elseif($key->status == 'Pagada')
-                                                                    <span class="text-success"><strong>Pagada</strong></span>
-
-                                                                @else
-                                                                    <span class="text-warning"><strong>Por Confirmar</strong></span>
-
-                                                                @endif
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach()
-                                                @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 offset-md-12">
+                                <a class="btn btn-warning boton-tabla shadow" data-toggle="modal" data-target="#AsignarMR" onclick="asignar_mr()" style="
+                                    border-radius: 10px;
+                                    color: white;
+                                    height: 35px;
+                                    margin-bottom: 5px;
+                                    margin-top: 5px;
+                                    float: right;">
+                                    <span class="PalabraEditarPago ">Asignar M/R</span>
+                                    <center>
+                                        <span class="PalabraEditarPago2 ">
+                                            <i data-feather="plus" class="iconosMetaforas2"></i>
+                                        </span>
+                                    </center>
+                                </a>
+                                <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearMulta" onclick="asignar_mr()" style="
+                                    border-radius: 10px;
+                                    color: white;
+                                    height: 35px;
+                                    margin-bottom: 5px;
+                                    margin-top: 5px;
+                                    float: right;">
+                                    <span class="PalabraEditarPago ">Nuevo Multa/Recarga</span>
+                                    <center>
+                                        <span class="PalabraEditarPago2 ">
+                                            <i data-feather="key" class="iconosMetaforas2"></i>
+                                        </span>
+                                    </center>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-               
-            </div>
-        </div>
-    </div>
-        
+                @endif
+                
+    
+            <div class="col-md-12">
+                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                    <thead>
+                        <tr class="bg-danger text-white">
+                            <th></th>
+                            <th>
+                                <span class="PalabraEditarPago">Motivo</span>
+                                <span class="PalabraEditarPago2">M</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Observación</span>
+                                <span class="PalabraEditarPago2">O</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Monto</span>
+                                <span class="PalabraEditarPago2">$</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Tipo</span>
+                                <span class="PalabraEditarPago2">T</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Status</span>
+                                <span class="PalabraEditarPago2">I</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(\Auth::user()->tipo_usuario == 'Admin')
+                            @foreach($mr as $key)
+                                <tr>
+                                    <td align="center">
+                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" data-toggle="modal" data-target="#editarMulta" onclick="EditarMR('{{$key->id}}','{{$key->motivo}}','{{$key->monto}}','{{$key->tipo}}','{{$key->observacion}}')" >
+                                            <span class="PalabraEditarPago ">Editar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
 
+                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli"data-toggle="modal" data-target="#eliminarMulta" onclick="eliminar('{{$key->id}}')" class="btn btn-danger btn-sm">
+                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+
+                                        <a href="#" class="btn btn-info btn-sm boton-tabla shadow botonesEditEli" onclick="verAsignados('{{$key->id}}')" class="btn btn-danger btn-sm">
+                                            <span class="PalabraEditarPago ">Ver Asignados</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="eye" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+                                    </td>
+                                   <td>{{$key->motivo}}</td>
+                                    <td>{{$key->observacion}}</td>
+                                    <td>{{$key->monto}}</td>
+                                    <td>{{$key->tipo}}</td>
+                                    @if($key->status == 'Pagada')
+                                        <td style="position: all;">
+                                                <span class="tituloTabla text-success"><strong>Pagada</strong></span>
+                                                <span class="tituloTabla2 text-success"><strong>P</strong></span>
+                                        </td>
+                                     @elseif($key->status == 'Enviada')
+                                        <td style="position: all;">
+                                                <span class="tituloTabla text-info"><strong>Enviada</strong></span>
+                                                <span class="tituloTabla2 text-info"><strong>W</strong></span>
+                                        </td>
+                                    @else
+                                        <td style="position: all;">
+                                                <span class="tituloTabla text-warning"><strong>Por Confirmar</strong></span>
+                                                <span class="tituloTabla2 text-warning"><strong>P/C</strong></span>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach()
+                        @else
+                            @foreach($asignacion as $key)
+                                <tr>
+                                    <td align="center">
+                                    </td>
+                                   <td>{{$key->motivo}}</td>
+                                    <td>{{$key->observacion}}</td>
+                                    <td>{{$key->monto}}</td>
+                                    <td>{{$key->tipo}}</td>
+                                    @if($key->status == 'Pagada')
+                                        <td style="position: all;">
+                                                <span class="tituloTabla text-success"><strong>Pagada</strong></span>
+                                                <span class="tituloTabla2 text-success"><strong>P</strong></span>
+                                        </td>
+                                     @elseif($key->status == 'Enviada')
+                                        <td style="position: all;">
+                                                <span class="tituloTabla text-info"><strong>Enviada</strong></span>
+                                                <span class="tituloTabla2 text-info"><strong>W</strong></span>
+                                        </td>
+                                    @else
+                                        <td style="position: all;">
+                                                <span class="tituloTabla text-warning"><strong>Por Confirmar</strong></span>
+                                                <span class="tituloTabla2 text-warning"><strong>P/C</strong></span>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach()
+                        @endif
+                    </tbody>
+                </table>
+            </div>
     </div>
 
     <form action="{{ route('multas_recargas.store') }}" method="POST">

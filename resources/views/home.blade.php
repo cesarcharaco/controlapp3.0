@@ -296,9 +296,7 @@
                     <div class="col-md-5">
                         <div class="row justify-content-center">
                             <div class="col-md-12">
-                                <div style="width: 100px; height:100px;">
-                                    <img src="{{ asset('assets/images/logo.jpg') }}" class="rounded-circle avatar" alt=""/>
-                                </div>
+                                    <img src="{{ asset('assets/images/logo.jpg') }}" class="rounded-circle" alt="" style="position: relative;" />
                             </div>
                         </div>
                     </div>

@@ -303,7 +303,7 @@
                             </div>
                         </div> -->
                         <div class="col-md-12">
-                            <table id="mrSeleccionado" class="data-table-basic" style="width: 100%;" alt="Max-width 100%">
+                            <table id="mrSeleccionado" class="data-table-basic" style="width: 100%; table-layout: auto;" alt="Max-width 100%">
                                 
                             </table>
                         </div>

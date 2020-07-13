@@ -173,7 +173,7 @@
                     @elseif(\Auth::user()->tipo_usuario == 'root')
                         <div class="footer2">
                             <li class="menu-title">
-                                 <div style="background-color: white;font-size: 9px; margin-top: 110px;">
+                                 <div style="background-color: white;font-size: 9px; margin-top: 157px;">
                                     ControlApp
                                     <label class="badge badge-soft-danger">v1.0.1.</label>
                                     <br>Un proyecto desarrollado por 

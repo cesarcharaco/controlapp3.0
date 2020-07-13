@@ -79,110 +79,109 @@
         </div>
         @include('flash::message')
     </div>
-        <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
-                <div class="row justify-content-center">
-                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 offset-md-12">
-                                    <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearInmueble" style="
-                                        border-radius: 10px;
-                                        color: white;
-                                        height: 35px;
-                                        margin-bottom: 5px;
-                                        margin-top: 5px;
-                                        float: right;">
-                                        <span class="PalabraEditarPago ">Nuevo Inmueble</span>
+    <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+        <div class="row justify-content-center">
+            @if(\Auth::user()->tipo_usuario == 'Admin')
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 offset-md-12">
+                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearInmueble" style="
+                                border-radius: 10px;
+                                color: white;
+                                height: 35px;
+                                margin-bottom: 5px;
+                                margin-top: 5px;
+                                float: right;">
+                                <span class="PalabraEditarPago ">Nuevo Inmueble</span>
+                                <center>
+                                    <span class="PalabraEditarPago2 ">
+                                        <i data-feather="plus" class="iconosMetaforas2"></i>
+                                    </span>
+                                </center>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            
+
+        <div class="col-md-12">
+            <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                <thead>
+                    <tr class="bg-info text-white">
+                        <th></th>
+                        <th>
+                            <span class="tituloTabla">Idem</span>
+                            <span class="tituloTabla2">I</span>
+                        </th>
+                        <th>
+                            <span class="tituloTabla">Tipo</span>
+                            <span class="tituloTabla2">T</span>
+                        </th>
+                        <!-- <th>Estacionamientos</th> -->
+                        <th>
+                            <span class="tituloTabla">Status</span>
+                            <span class="tituloTabla2">S</span>
+                        </th>
+                        <!-- <th>Mensualidades</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($inmuebles as $key)
+                        <tr>
+                            <td align="center">
+                                @if(\Auth::user()->tipo_usuario == 'Admin')
+                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">
+                                        <span class="PalabraEditarPago ">Editar</span>
                                         <center>
                                             <span class="PalabraEditarPago2 ">
-                                                <i data-feather="plus" class="iconosMetaforas2"></i>
+                                                <i data-feather="edit" class="iconosMetaforas2"></i>
                                             </span>
                                         </center>
                                     </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    
-        
-                <div class="col-md-12">
-                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
-                        <thead>
-                            <tr class="bg-info text-white">
-                                <th></th>
-                                <th>
-                                    <span class="tituloTabla">Idem</span>
-                                    <span class="tituloTabla2">I</span>
-                                </th>
-                                <th>
-                                    <span class="tituloTabla">Tipo</span>
-                                    <span class="tituloTabla2">T</span>
-                                </th>
-                                <!-- <th>Estacionamientos</th> -->
-                                <th>
-                                    <span class="tituloTabla">Status</span>
-                                    <span class="tituloTabla2">S</span>
-                                </th>
-                                <!-- <th>Mensualidades</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($inmuebles as $key)
-                                <tr>
-                                    <td align="center">
-                                        @if(\Auth::user()->tipo_usuario == 'Admin')
-                                            <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">
-                                                <span class="PalabraEditarPago ">Editar</span>
-                                                <center>
-                                                    <span class="PalabraEditarPago2 ">
-                                                        <i data-feather="edit" class="iconosMetaforas2"></i>
-                                                    </span>
-                                                </center>
-                                            </a>
 
-                                            <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">
-                                                <span class="PalabraEditarPago ">Eliminar</span>
-                                                <center>
-                                                    <span class="PalabraEditarPago2 ">
-                                                        <i data-feather="trash" class="iconosMetaforas2"></i>
-                                                    </span>
-                                                </center>
-                                            </a>
-                                        @endif
-                                    </td>
-                                    <td style="position: all;">{{$key->idem}}</td>
-                                    <td style="position: all;">{{$key->tipo}}</td>
-                                    <!-- <td>Si</td> -->
-                                    @if(\Auth::user()->tipo_usuario == 'Disponible')
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-success"><strong>Disponible</strong></span>
-                                                <span class="tituloTabla2 text-success"><strong>D</strong></span>
-                                        </td>
-                                    @else
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-danger"><strong>No Disponible</strong></span>
-                                                <span class="tituloTabla2 text-danger"><strong>N/D</strong></span>
-                                        </td>
-                                    @endif
-                                    {{--<td>
-                                        @if(\Auth::user()->tipo_usuario == 'Admin')
-                                            <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
-                                                <option value="0">Seleccionar opción</option>
-                                                <option value="1">Registrar</option>
-                                                <option value="2">Editar</option>
-                                                <option value="3">Eliminar</opt     ion>
-                                                <option value="4">Ver registros</option>
-                                            </select>
-                                        @endif                                          
-                                    </td>--}}
-                                </tr>
-                            @endforeach()
-                        </tbody>
-                    </table>
-                </div>
+                                    <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">
+                                        <span class="PalabraEditarPago ">Eliminar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="trash" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </a>
+                                @endif
+                            </td>
+                            <td style="position: all;">{{$key->idem}}</td>
+                            <td style="position: all;">{{$key->tipo}}</td>
+                            <!-- <td>Si</td> -->
+                            @if(\Auth::user()->tipo_usuario == 'Disponible')
+                                <td style="position: all;">
+                                        <span class="tituloTabla text-success"><strong>Disponible</strong></span>
+                                        <span class="tituloTabla2 text-success"><strong>D</strong></span>
+                                </td>
+                            @else
+                                <td style="position: all;">
+                                        <span class="tituloTabla text-danger"><strong>No Disponible</strong></span>
+                                        <span class="tituloTabla2 text-danger"><strong>N/D</strong></span>
+                                </td>
+                            @endif
+                            {{--<td>
+                                @if(\Auth::user()->tipo_usuario == 'Admin')
+                                    <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
+                                        <option value="0">Seleccionar opción</option>
+                                        <option value="1">Registrar</option>
+                                        <option value="2">Editar</option>
+                                        <option value="3">Eliminar</opt     ion>
+                                        <option value="4">Ver registros</option>
+                                    </select>
+                                @endif                                          
+                            </td>--}}
+                        </tr>
+                    @endforeach()
+                </tbody>
+            </table>
         </div>
-
     </div>
+
 
 <!-- --------------------------------------------VER InmuebleS--------------------------------------------------------- -->
             <div class="modal fade" id="VerInmueble" role="dialog">

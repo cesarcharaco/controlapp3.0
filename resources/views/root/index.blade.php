@@ -2,80 +2,180 @@
 
 @section('content')
 
+    <style type="text/css">
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
+        {
+            display: none;
+        }
+        @media only screen and (max-width: 800px)  {
+
+            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
+                display: none;
+            }
+            .palabraVerInmueble{
+                display: none;
+            }
+            .palabraVerInmueble2{
+                display: block;
+            }
+            .palabraVerEstaciona{
+                display: none;
+            }
+            .palabraVerEstaciona2{
+                display: block;
+            }
+            .PalabraEditarPago2{
+                display: block;
+            }
+            .iconosMetaforas{
+                display: none;    
+            }
+            .card-table{
+                width: 100%
+            }
+
+        }
+        @media only screen and (max-width: 200px)  {
+            .botonesEditEli{
+                width: 15px;
+                height: 15px;
+            }
+            .iconosMetaforas2{
+                width: 5px;
+                height: 5px;    
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .tituloTabla{
+                display: none;
+            }
+            .tituloTabla2{
+                display: block;
+            }
+            .iconosMetaforas2{
+                width: 15px;
+                height: 15px;    
+            }
+            .botonesEditEli{
+                width: 30px;
+                height: 30px;
+                margin-top: 5px;
+                    
+            }
+        }
+
+
+    </style>
     <div class="container">
-        <div class="row">
+        <div class="row page-title">
             <div class="col-md-12">
-                <h1>Gestión de admin</h1>
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Root</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Root</h4>
             </div>
         </div>
         @include('flash::message')
-        @if(!empty($errors->all()))
-            <div class="notification is-danger">
-                <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
-                <ul>
-                    @foreach ($errors->all() as $mensaje)
-                        <li>
-                            {{$mensaje}}
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="card">
-            <div class="card-body">
-                
-                <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12 offset-md-9">
-                            <a class="btn btn-success" data-toggle="modal" data-target="#crearAdmin" style="border-radius: 30px; color: white;">
-                                <span> Nuevo usuario Admin </span>
-                            </a>
-                        </div>
+    </div>
+    <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12 offset-md-12">
+                        <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAdmin" style="
+                            border-radius: 10px;
+                            color: white;
+                            height: 35px;
+                            margin-bottom: 5px;
+                            margin-top: 5px;
+                            float: right;">
+                            <span class="PalabraEditarPago ">Nuevo Admin</span>
+                            <center>
+                                <span class="PalabraEditarPago2 ">
+                                    <i data-feather="plus" class="iconosMetaforas2"></i>
+                                </span>
+                            </center>
+                        </a>
                     </div>
                 </div>
-                    
-            
-            <div class="col-md-12">
-                <div style="overflow-x: auto;">
-                    <table class="table table-hover table-striped" id="myTable" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Nombres</th>
-                                    <th>Rut</th>
-                                    <th>Email</th>
-                                    <th>Registrado el</th>
-                                    <th>Status</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($admin as $key)
-                                    <tr>
-                                        <td>{{$key->name}}</td>
-                                        <td>{{$key->rut}}</td>
-                                        <td>{{$key->email}}</td>
-                                        <td>{{$key->created_at}}</td>
-                                        <td>
-                                            @if($key->status == 'activo')
-                                                <a href="#" class="btn btn-success" style="border-radius: 50px;">{{$key->status}}</a>
-                                            @else
-                                                <a href="#" class="btn btn-warning" style="border-radius: 50px;">{{$key->status}}</a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#editarResidente" class="btn btn-warning btn-sm" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}')">Editar</a>
-
-                                            <a href="#" data-toggle="modal" data-target="#eliminarResidente" class="btn btn-danger btn-sm" onclick="Eliminar('{{$key->id}}')">Eliminar</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                    </table>
-                </div>
             </div>
             
+
+            <div class="col-md-12">
+                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                    <thead>
+                        <tr class="bg-info text-white">
+                            <th></th>
+                            <th>
+                                <span class="tituloTabla">Nombres</span>
+                                <span class="tituloTabla2">N</span>
+                            </th>
+                            <th>
+                                <span class="tituloTabla">Rut</span>
+                                <span class="tituloTabla2">R</span>
+                            </th>
+                            <th>
+                                <span class="tituloTabla">Email</span>
+                                <span class="tituloTabla2">@</span>
+                            </th>
+                            <th>
+                                <span class="tituloTabla">Registrado el</span>
+                                <span class="tituloTabla2">R</span>
+                            </th>
+                            <th>
+                                <span class="tituloTabla">Status</span>
+                                <span class="tituloTabla2">S</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($admin as $key)
+                            <tr>
+                                <td align="center">
+                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" data-toggle="modal" data-target="#editarResidente" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}')">
+                                        <span class="PalabraEditarPago ">Editar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="edit" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </a>
+
+                                    <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;"data-toggle="modal" data-target="#eliminarResidente" onclick="Eliminar('{{$key->id}}')">
+                                        <span class="PalabraEditarPago ">Eliminar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="trash" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </a>
+                                </td>
+                                <td style="position: all;">{{$key->name}}</td>
+                                <td style="position: all;">{{$key->rut}}</td>
+                                <td style="position: all;">{{$key->email}}</td>
+                                <td style="position: all;">{{$key->created_at}}</td>
+                                 @if($key->status == 'activo')
+                                    <td style="position: all;">
+                                            <span class="tituloTabla text-success"><strong>Activo</strong></span>
+                                            <span class="tituloTabla2 text-success"><strong>A</strong></span>
+                                    </td>
+                                @else
+                                    <td style="position: all;">
+                                            <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
+                                            <span class="tituloTabla2 text-danger"><strong>I</strong></span>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach()
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </div>
+
         
 
 

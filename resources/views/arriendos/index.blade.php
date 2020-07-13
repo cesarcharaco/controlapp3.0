@@ -3,16 +3,22 @@
 @section('content')
 
     <div class="container">
-        <div class="row">
+        <div class="row page-title">
             <div class="col-md-12">
-                <h1>Arriendos</h1>
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Asignación</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Asignación</h4>
             </div>
         </div>
         @include('flash::message')
 
 
         @if(\Auth::user()->tipo_usuario == 'Admin')
-            <div class="card">
+            <div class="card border border-success rounded shadow p-3 mb-5 bg-white">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-md-12">
@@ -29,7 +35,7 @@
                 </div>
             </div>
         @else
-            <div class="card">
+            <div class="card border border-success rounded shadow p-3 mb-5 bg-white">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-md-12">

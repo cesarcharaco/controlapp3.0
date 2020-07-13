@@ -2,70 +2,169 @@
 
 @section('content')
 
+<style type="text/css">
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
+        {
+            display: none;
+        }
+        @media only screen and (max-width: 800px)  {
+
+            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
+                display: none;
+            }
+            .palabraVerInmueble{
+                display: none;
+            }
+            .palabraVerInmueble2{
+                display: block;
+            }
+            .palabraVerEstaciona{
+                display: none;
+            }
+            .palabraVerEstaciona2{
+                display: block;
+            }
+            .PalabraEditarPago2{
+                display: block;
+            }
+            .iconosMetaforas{
+                display: none;    
+            }
+            .card-table{
+                width: 100%
+            }
+
+        }
+        @media only screen and (max-width: 200px)  {
+            .botonesEditEli{
+                width: 15px;
+                height: 15px;
+            }
+            .iconosMetaforas2{
+                width: 5px;
+                height: 5px;    
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .tituloTabla{
+                display: none;
+            }
+            .tituloTabla2{
+                display: block;
+            }
+            .iconosMetaforas2{
+                width: 15px;
+                height: 15px;    
+            }
+            .botonesEditEli{
+                width: 30px;
+                height: 30px;
+                margin-top: 5px;
+                    
+            }
+        }
+
+
+    </style>
     <div class="container">
-        <div class="row">
+        <div class="row page-title">
             <div class="col-md-12">
-                <h1>Estacionamientos</h1>
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Estacionamientos</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Estacionamientos</h4>
             </div>
         </div>
         @include('flash::message')
-        <div class="card" style="margin-right: 50px; margin-left: 50px;">
-            <div class="card-body">
-                <div class="row justify-content-center">
-                    @if(\Auth::user()->tipo_usuario == 'Admin')
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 offset-md-9">
-                                    <a class="btn btn-success" data-toggle="modal" data-target="#crearEstacionamiento" style="border-radius: 30px; color: white;">
-                                        <span> Nuevo Estacionamiento </span>
-                                    </a>
-                                </div>
-                            </div>
+    </div>
+    <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+        <div class="row justify-content-center">
+            @if(\Auth::user()->tipo_usuario == 'Admin')
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 offset-md-12">
+                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearEstacionamiento" style="
+                                border-radius: 10px;
+                                color: white;
+                                height: 35px;
+                                margin-bottom: 5px;
+                                margin-top: 5px;
+                                float: right;">
+                                <span class="PalabraEditarPago ">Nuevo Estacionamientos</span>
+                                <center>
+                                    <span class="PalabraEditarPago2 ">
+                                        <i data-feather="plus" class="iconosMetaforas2"></i>
+                                    </span>
+                                </center>
+                            </a>
                         </div>
-                    @endif
-                    
-        
-            <div class="col-md-12">
-                <div style="overflow-x: auto;">
-                    <table class="data-table-basic" id="myTable" width="100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Idem</th>
-                                <th>Status</th>
-                                <!-- <th>Mensualidades</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($estacionamientos as $key)
-                                <tr>
-                                    <td align="center">
-                                        @if(\Auth::user()->tipo_usuario == 'Admin')
-                                            <a href="#" class="btn btn-warning btn-sm" style="border-radius: 50px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">Editar</a>
-
-                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 50px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">Eliminar</a>
-                                        @endif
-                                        
-                                    </td>
-                                    <td>{{$key->idem}}</td>
-                                    <td>{{$key->status}}</td>
-                                    <!-- <td>
-                                        <select class="form-control" id="selectO" onchange="mensual(this.value,'{{$key->id}}');">
-                                            <option value="0">Seleccionar opción</option>
-                                            <option value="1">Registrar</option>
-                                            <option value="2">Editar</option>
-                                            <option value="3">Eliminar</opt     ion>
-                                            <option value="4">Ver registros</option>
-                                        </select>                                            
-                                    </td> -->
-                                </tr>
-                            @endforeach()
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
-            </div>
+            @endif
             
 
+        <div class="col-md-12">
+            <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                <thead>
+                    <tr class="bg-warning text-white">
+                        <th></th>
+                        <th>
+                            <span class="tituloTabla">Idem</span>
+                            <span class="tituloTabla2">I</span>
+                        </th>
+                        <th>
+                            <span class="tituloTabla">Status</span>
+                            <span class="tituloTabla2">S</span>
+                        </th>
+                        <!-- <th>Mensualidades</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($estacionamientos as $key)
+                        <tr>
+                            <td align="center">
+                                @if(\Auth::user()->tipo_usuario == 'Admin')
+                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">
+                                        <span class="PalabraEditarPago ">Editar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="edit" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </a>
+
+                                    <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">
+                                        <span class="PalabraEditarPago ">Eliminar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="trash" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </a>
+                                @endif
+                            </td>
+                            <td style="position: all;">{{$key->idem}}</td>
+                            <!-- <td>Si</td> -->
+                            @if(\Auth::user()->tipo_usuario == 'En Uso')
+                                <td style="position: all;">
+                                        <span class="tituloTabla text-success"><strong>En Uso</strong></span>
+                                        <span class="tituloTabla2 text-success"><strong>U</strong></span>
+                                </td>
+                            @else
+                                <td style="position: all;">
+                                        <span class="tituloTabla text-danger"><strong>Retirado</strong></span>
+                                        <span class="tituloTabla2 text-danger"><strong>R</strong></span>
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach()
+                </tbody>
+            </table>
+        </div>
+    </div>
 <!-- --------------------------------------------VER ESTACIONAMIENTOS--------------------------------------------------------- -->
             <div class="modal fade" id="VerEstacionamiento" role="dialog">
                 <div class="modal-dialog modals-default">

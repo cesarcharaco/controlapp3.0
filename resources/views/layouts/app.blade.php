@@ -114,14 +114,23 @@
                 height: 100px;
                 /*display: none;*/
             }
+            .footer2{
+                height: 200px;
+            }
         }
         @media screen and (max-width: 480px) {
             .footer1{
                 height: 50;
             }
+            .footer2{
+                /*margin-bottom: 40px;*/
+                height: 60px;
+                position: relative;
+                /*display: none;*/
+            }
             .footer3{
-                height: 500px;
                 display: none;
+                height: 500px;
             }
             .tabla-estilo{
                 font-size: 7px;
@@ -142,9 +151,16 @@
             .footer1{
                 height: 100px;
             }
+            .footer2{
+                margin-bottom: 160px;
+                margin-top: 0px;
+                height: 100px;
+                /*position: relative;*/
+            }
             .footer3{
                 height: 101px;
             }
+
             .anuncioRoot{
                 width: 100%;
             }
@@ -633,7 +649,7 @@
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4>Pagar</h4>
+                                                <h4>Pagar Multas/Recargas</h4>
                                                 <div id="CargandoMultasResi" style="display: none;">
                                                     <div class="spinner-border text-warning m-2" role="status">
                                                         <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
@@ -648,8 +664,8 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Multas</label>
-                                                                <select required multiple name="id_mensMulta[]" id="MultasPagarResi">
+                                                                <label>Multas/Recargas</label>
+                                                                <select name="id_mensMulta[]" class="selectpicker" id="MultasPagarResi" onchange="montoTotalMulta(this.value)">
                                                                     
                                                                 </select>
                                                             </div>
@@ -663,19 +679,35 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Total a Pagar(En proceso)</label>
-                                                                <input type="text" class="form-control" name="total" required value="0">
+                                                    <div class="card border border-info shadow p-3 mb-5 bg-white">
+                                                        <div class="row" id="mis_mr">
+                                                            <div class="col-md-12">
+                                                                <table id="mrSeleccionado" class="table tabla-estilo" style="width: 100%;" alt="Max-width 100%">
+                                                                    
+                                                                </table>
                                                             </div>
                                                         </div>
+                                                    </div>
+
+                                                    <label align="center">Total a Pagar</label>
+                                                    <div class="card border border-dark shadow p-1 mb-3 bg-white">
+                                                        <div class="row" id="mis_mr">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <span style="font-size: 20px" class="text-dark" id="TotalPagar">0</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="display: none;" id="idMultaForm">
+                                                        
                                                     </div>
                                                 </center>
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
                                                 <input type="hidden" name="id_residente" value="{{ \Auth::user()->id }}">
+                                                <input type="hidden" id="total" class="form-control" name="total">
                                                 <button type="submit" class="btn btn-danger" style="border-radius: 50px;">Pagar</i></button>
                                             </div>
                                         </div>
@@ -1082,78 +1114,7 @@
 
 
         <!-- -------------------------------- ANUNCIOS ------------------------------------- -->
-        <!-- <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="modal fade" id="crearAnuncio" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Nuevo anuncio</h4>                
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Seleccionar admin</label> 
-                                            <input type="checkbox" name="">
-                                            <select class="for-control">
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Título del anuncio</label>
-                                            <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
-                                        </div>
-                                    </div>
-                               
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Link</label>
-                                            <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Descripción</label>
-                                            <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Imagen</label>
-                                            <div class="alert alert-primary" role="alert">
-                                                <p><strong>Recordar que:</strong><br>
-                                                - La imagen no debe exceder los 800 KB de tamaño<br>
-                                                - La imagen no debe tener una anchura mayor a 1024 kb<br>
-                                                - La imagen no debe tener una altura mayor a 800 kb</p>
-                                            </div>
-                                            <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </center>
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-success" >Guardar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form> -->
+ 
 
 
        

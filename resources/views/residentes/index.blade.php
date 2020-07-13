@@ -2,89 +2,189 @@
 
 @section('content')
 
+    <style type="text/css">
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
+        {
+            display: none;
+        }
+        @media only screen and (max-width: 800px)  {
+
+            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
+                display: none;
+            }
+            .palabraVerInmueble{
+                display: none;
+            }
+            .palabraVerInmueble2{
+                display: block;
+            }
+            .palabraVerEstaciona{
+                display: none;
+            }
+            .palabraVerEstaciona2{
+                display: block;
+            }
+            .PalabraEditarPago2{
+                display: block;
+            }
+            .iconosMetaforas{
+                display: none;    
+            }
+            .card-table{
+                width: 100%
+            }
+
+        }
+        @media only screen and (max-width: 200px)  {
+            .botonesEditEli{
+                width: 15px;
+                height: 15px;
+            }
+            .iconosMetaforas2{
+                width: 5px;
+                height: 5px;    
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .tituloTabla{
+                display: none;
+            }
+            .tituloTabla2{
+                display: block;
+            }
+            .iconosMetaforas2{
+                width: 15px;
+                height: 15px;    
+            }
+            .botonesEditEli{
+                width: 30px;
+                height: 30px;
+                margin-top: 5px;
+                    
+            }
+        }
+
+
+    </style>
     <div class="container">
-        <div class="row">
+        <div class="row page-title">
             <div class="col-md-12">
-                <h1>Residentes</h1>
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Residentes</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Residentes</h4>
             </div>
         </div>
         @include('flash::message')
-        @if(!empty($errors->all()))
-            <div class="notification is-danger">
-                <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
-                <ul>
-                    @foreach ($errors->all() as $mensaje)
-                        <li>
-                            {{$mensaje}}
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="card" style="margin-right: 50px; margin-left: 50px;">
-            <div class="card-body">
-                
-                <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12 offset-md-9">
-                            <a class="btn btn-success" onclick="NuevoResidente()" style="border-radius: 30px; color: white;">
-                                <span> Nuevo Residente </span>
-                            </a>
+    </div>
+    <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+            <div class="row justify-content-center">
+                @if(\Auth::user()->tipo_usuario == 'Admin')
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 offset-md-12">
+                                <a class="btn btn-success boton-tabla shadow" onclick="NuevoResidente()" style="
+                                    border-radius: 10px;
+                                    color: white;
+                                    height: 35px;
+                                    margin-bottom: 5px;
+                                    margin-top: 5px;
+                                    float: right;">
+                                    <span class="PalabraEditarPago ">Nuevo Residente</span>
+                                    <center>
+                                        <span class="PalabraEditarPago2 ">
+                                            <i data-feather="plus" class="iconosMetaforas2"></i>
+                                        </span>
+                                    </center>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                    
-            
-            <div class="col-md-12">
+                @endif
                 
-                <div style="overflow-x: auto;">
-                    <table class="data-table-basic table-striped" id="myTable" width="100%">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Nombres</th>
-                                    <th>Rut</th>
-                                    <th>Correo</th>
-                                    <th>Telefono</th>
-                                    <th>Inmuebles asignados</th>
-                                    <th>Estacionamientos asignados</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($residentes as $key)
-                                    <tr>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#editarResidente" class="btn btn-warning btn-sm" onclick="Editar('{{$key->id}}','{{$key->nombres}}','{{$key->apellidos}}','{{$key->rut}}','{{$key->telefono}}','{{$key->usuario->email}}')">Editar</a>
+    
+            <div class="col-md-12">
+                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                    <thead>
+                        <tr class="bg-success text-white">
+                            <th></th>
+                            <th>
+                                <span class="PalabraEditarPago">Nombres</span>
+                                <span class="PalabraEditarPago2">N</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Rut</span>
+                                <span class="PalabraEditarPago2">R</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Correo</span>
+                                <span class="PalabraEditarPago2">@</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Teléfono</span>
+                                <span class="PalabraEditarPago2">Tel</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Inmuebles</span>
+                                <span class="PalabraEditarPago2">I</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Estaciona.</span>
+                                <span class="PalabraEditarPago2">E</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($residentes as $key)
+                            <tr>
+                                <td align="center">
+                                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                                        <a href="#" data-toggle="modal" data-target="#editarResidente" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="Editar('{{$key->id}}','{{$key->nombres}}','{{$key->apellidos}}','{{$key->rut}}','{{$key->telefono}}','{{$key->usuario->email}}')">
+                                            <span class="PalabraEditarPago ">Editar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
 
-                                            <a href="#" data-toggle="modal" data-target="#eliminarResidente" class="btn btn-danger btn-sm" onclick="Eliminar('{{$key->id}}')">Eliminar</a>
-                                        </td>
-                                        <td>{{$key->nombres}} {{$key->apellidos}}</td>
-                                        <td>{{$key->rut}}</td>
-                                        <td>{{$key->usuario->email}}</td>
-                                        <td>{{$key->telefono}}</td>
-                                        <td>
-                                            @foreach($key->inmuebles as $key2)
-                                                @if($key2->pivot->status=="En Uso")
-                                                <p class="text-primary">{{$key2->idem}}</p>
-                                                @endif
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach($key->estacionamientos as $key2)
-                                                @if($key2->pivot->status=="En Uso")
-                                                    <p class="text-warning">{{$key2->idem}}</p>
-                                                @endif
-                                            @endforeach
-                                        </td>
-                                    </tr>
-                                @endforeach()
-                            </tbody>
-                    </table>
-                </div>
+                                        <a href="#" data-toggle="modal" data-target="#eliminarResidente" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="Eliminar('{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+                                    @endif
+                                </td>
+                                <td>{{$key->nombres}} {{$key->apellidos}}</td>
+                                <td>{{$key->rut}}</td>
+                                <td>{{$key->usuario->email}}</td>
+                                <td>{{$key->telefono}}</td>
+                                <td>
+                                    @foreach($key->inmuebles as $key2)
+                                        @if($key2->pivot->status=="En Uso")
+                                        <p class="text-primary">{{$key2->idem}}</p>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($key->estacionamientos as $key2)
+                                        @if($key2->pivot->status=="En Uso")
+                                            <p class="text-warning">{{$key2->idem}}</p>
+                                        @endif
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endforeach()
+                    </tbody>
+                </table>
             </div>
-            
-        </div>
+    </div>
         
 
 
