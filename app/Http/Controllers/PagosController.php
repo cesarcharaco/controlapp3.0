@@ -203,8 +203,9 @@ class PagosController extends Controller
     }
     public function pagarmultas(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $total=0;
+        $factura="";
         $residente=Residentes::where('id_usuario',$request->id_residente)->first();
         if(is_null($request->id_mensMulta)==false){
                 for ($i=0; $i < count($request->id_mensMulta) ; $i++) { 
@@ -227,6 +228,8 @@ class PagosController extends Controller
                 'reporte' => $factura,
                 'id_residente' => $residente->id
             ]);
+            toastr()->success('con éxito!!', 'Multas/Recargas Pagadas');
+            return redirect()->back();
     }
     /**
      * Display the specified resource.
