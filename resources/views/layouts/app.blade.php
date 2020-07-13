@@ -649,7 +649,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Multas</label>
-                                                                <select required multiple name="id_multa[]" id="MultasPagarResi">
+                                                                <select required multiple name="id_mensMulta[]" id="MultasPagarResi">
                                                                     
                                                                 </select>
                                                             </div>
