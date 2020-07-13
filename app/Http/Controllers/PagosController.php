@@ -203,13 +203,15 @@ class PagosController extends Controller
     }
     public function pagarmultas(Request $request)
     {
+        dd($request->all());
         $total=0;
+        $residente=Residentes::where('id_usuario',$request->id_residente)->first();
         if(is_null($request->id_mensMulta)==false){
                 for ($i=0; $i < count($request->id_mensMulta) ; $i++) { 
                     $mr=MultasRecargas::find($request->id_mensMulta[$i]);
                     //dd($mr->residentes);
                     foreach ($mr->residentes as $key) {
-                        if($key->pivot->id_residente==$request->id_residente){
+                        if($key->pivot->id_residente==$residente->id){
                             //dd("asas");
                             $key->pivot->status="Pagada";
                             $key->pivot->save();
@@ -223,7 +225,7 @@ class PagosController extends Controller
             $reporte=\DB::table('reportes_pagos')->insert([
                 'referencia' => $request->referencia,
                 'reporte' => $factura,
-                'id_residente' => $request->id_residente
+                'id_residente' => $residente->id
             ]);
     }
     /**

@@ -83,6 +83,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
 	Route::resource('pagos','PagosController');
+	Route::post('pagos/mr','PagosController@pagarmultas')->name('pagar.mr');
 
 
 	Route::post('arriendos/retirar','ArriendosController@retirando')->name('arriendos.retirar');
