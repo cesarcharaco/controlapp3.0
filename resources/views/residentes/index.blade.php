@@ -127,11 +127,12 @@
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" id="tablaResidentes" style="width: 100%;">
                     <thead>
                         <tr class="table-default text-white">
-                            <td colspan="5" align="center">
-                                <div class="card border border-success" >
-                                    <span class="text-success p-1 mb-1"><strong>Aviso: </strong>Seleccione a un residente para ver mas opciones</span>
+                            <td colspan="2" align="center">
+                                <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un residente para ver mas opciones.</span>
                                 </div>
                             </td>
+                            <td colspan="3"></td>
                         </tr>
                         <tr class="bg-success text-white" id="th1">
                             <th width="10"></th>
@@ -324,7 +325,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Teléfono</label>
-                                                <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control" id="telefono_e" required>
+                                                <input type="text" name="telefono" maxlength="20" placeholder="Teléfono del residente" class="form-control" id="telefono_e" required>
                                             </div>
                                         </div>
                                     </div>

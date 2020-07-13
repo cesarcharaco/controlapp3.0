@@ -364,7 +364,7 @@
                                                                             <div class="col-lg-12">
                                                                                 <label>Teléfono</label>
                                                                                 <input type="text" readonly="" class="form-control-plaintext" id="telefono_profile"value="13123123">
-                                                                                <input type="text" name="telefono" class="form-control" id="telefono_profileE"value="13123123" style="display: none;" required>
+                                                                                <input type="text" name="telefono" maxlength="20" class="form-control" id="telefono_profileE"value="13123123" style="display: none;" required>
                                                                             </div>
                                                                         </div>
                                                                         
@@ -565,7 +565,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <input type="text" name="telefono" placeholder="Teléfono del residente" class="form-control" required>
+                                                                <input type="text" name="telefono" maxlength="20" placeholder="Teléfono del residente" class="form-control" required>
                                                             </div>
                                                         </div>
                                                     </div>
