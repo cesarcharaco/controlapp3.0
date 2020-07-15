@@ -154,7 +154,7 @@
                             </th>
                         </tr>
                         <tr class="bg-info text-white" id="th1">
-                            <th></th>
+                            <th style="width: 1px !important;">#</th>
                             <th>
                                 <span class="PalabraEditarPago">Nombres</span>
                                 <span class="PalabraEditarPago2">N</span>
@@ -178,10 +178,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $num=0 @endphp
                         @foreach($admin as $key)
                             <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
                                 <td align="center">
-                                    
+                                    {{$num=$num+1}}
                                 </td>
                                 <td style="position: all;">{{$key->name}}</td>
                                 <td style="position: all;">{{$key->rut}}</td>
