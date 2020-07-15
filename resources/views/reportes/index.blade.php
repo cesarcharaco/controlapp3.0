@@ -112,7 +112,7 @@
 
 					        <div class="row justify-content-center">
 					        	<div class="col-md-6">
-				        			<div class="card border border-primary rounded">
+				        			<div class="card border border-primary rounded shadow">
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-primary">Inmuebles</label>
@@ -182,7 +182,7 @@
 					        	</div>
 
 					        	<div class="col-md-6">
-					        		<div class="card border border-warning rounded">
+					        		<div class="card border border-warning rounded shadow">
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-warning">Estacionamientos</label>
@@ -252,7 +252,7 @@
 					        </div>
 					         <div class="row justify-content-center">
 					        	<div class="col-md-6">
-					        		<div class="card border border-success rounded">
+					        		<div class="card border border-success rounded shadow">
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-success">Residentes</label>
@@ -320,7 +320,7 @@
 					        	</div>
 
 					        	<div class="col-md-6">
-					        		<div class="card border border-danger rounded">
+					        		<div class="card border border-danger rounded shadow">
 				        				<div class="card-body">
 							        		<div class="form-group">
 							        			<label class="text-danger">Multas - Recargas</label>
