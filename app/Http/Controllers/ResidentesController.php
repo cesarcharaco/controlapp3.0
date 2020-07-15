@@ -530,8 +530,14 @@ class ResidentesController extends Controller
                 }
             }
         }
+        $anio= array();
+        $a=anios_registros();
+        
+        for ($i=0; $i < count(anios_registros()); $i++) { 
+            $anio[$i]=$a[$i]['anio'];
+        }
         //dd($status_pago);
-        return view('consultas.index',compact('status_pago','buscar'));
+        return view('consultas.index',compact('status_pago','buscar','anio'));
     }
 
     public function consulta_anual($anio)
