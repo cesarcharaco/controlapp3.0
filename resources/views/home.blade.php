@@ -348,7 +348,6 @@
                                         <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                                             <thead>
                                                 <tr class="bg-primary text-white" id="th2" style="display: none">
-                                                    <th width="10"></th>
                                                     <th>
                                                         <span class="PalabraEditarPago">Nombres</span>
                                                         <span class="PalabraEditarPago2">N</span>
@@ -369,7 +368,6 @@
                                                     </th>
                                                 </tr>
                                                 <tr class="bg-info text-white" id="th1">
-                                                    <th></th>
                                                     <th>
                                                         <span class="PalabraEditarPago">Nombres</span>
                                                         <span class="PalabraEditarPago2">N</span>
@@ -395,9 +393,7 @@
                                             <tbody>
                                                 @foreach($admin as $key)
                                                     <tr id="vista1-{{$key->id}}">
-                                                        <td align="center">
-                                                            
-                                                        </td>
+
                                                         <td style="position: all;">{{$key->name}}</td>
                                                         <td style="position: all;">{{$key->rut}}</td>
                                                         <td style="position: all;">{{$key->email}}</td>
