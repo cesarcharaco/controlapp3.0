@@ -66,6 +66,7 @@
 
     </style>
     <div class="container">
+        <input type="hidden" id="colorView" value="#25c2e3 !important">
         <div class="row">
             <div class="col-md-12">
                 <h1>Pagos</h1>

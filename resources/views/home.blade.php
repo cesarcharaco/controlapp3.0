@@ -44,7 +44,7 @@
                                             <span class="text-info text-uppercase font-size-12 font-weight-bold">Pago Comúnes</span>
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4">
-                                                    <h6 class="text-primary" style="margin-top: 24px;" align="center">Costo Inmueble</h6>
+                                                    <h6 style="margin-top: 24px;color: #CB8C4D !important;" align="center">Costo Inmueble</h6>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4">
                                                     <h6><a href="#" style="width: 100% !important;" onclick="PagoC(1)" class="btn btn-primary shadow">Registrar</a></h6>
@@ -55,7 +55,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4">
-                                                    <h6 class="text-danger" style="margin-top: 10px;" align="center">Costo Estacionamiento</h6>
+                                                    <h6 style="margin-top: 10px;color: #cccc00 !important;" align="center">Costo Estacionamiento</h6>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4">
                                                     <h6><a href="#" style="width: 100% !important;" onclick="PagoC(2)" class="btn btn-primary shadow">Registrar</a></h6>

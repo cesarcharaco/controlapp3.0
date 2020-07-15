@@ -71,6 +71,7 @@
 
     </style>
     <div class="container">
+        <input type="hidden" id="colorView" value="#ff3e36 !important">
         <div class="row page-title">
             <div class="col-md-12">
                 <nav aria-label="breadcrumb" class="float-right mt-1">
@@ -151,14 +152,14 @@
                     <thead>
                         @if(\Auth::user()->tipo_usuario == 'Admin')
                             <tr class="table-default text-white">
-                            <td colspan="3" align="center">
-                                <div class="card border border-danger" style="" role="alert">
-                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a una multa/recarga para ver mas opciones.</span>
-                                </div>
-                            </td>
-                            <td colspan="3"></td>
+                                <td colspan="3" align="center">
+                                    <div class="card border border-danger" style="" role="alert">
+                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a una multa/recarga para ver mas opciones.</span>
+                                    </div>
+                                </td>
+                                <td colspan="3"></td>
+                            </tr>
                         @endif
-                        </tr>
                         <tr class="bg-primary text-white" id="th2" style="display: none">
                             <th width="10"></th>
                             <th>

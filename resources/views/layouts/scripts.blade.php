@@ -41,6 +41,13 @@
 
 	$(function () {
 
+		if( $('#colorView').val() != 0 ){
+			colorP=$('#colorView').val();
+			colorPaginador = "background-color: "+colorP+";";
+		}else{
+			colorPaginador = "background-color: aqua";
+		}
+
 		$('.data-table-basic').DataTable({
 	        "pageLength": 30,
             // "paging": false,
@@ -68,8 +75,8 @@
 	        "paginate": {
 	            "first": "Primero",
 	            "last": "Ultimo",
-	            "next": "<buttom class='btn btn-info' style='border-radius:50%;'><strong> > </strong></buttom>",
-	            "previous": "<buttom class='btn btn-info' style='border-radius:50%;'><strong> < </strong></buttom>",
+	            "next": "<buttom class='btn' style='border-radius:50%;"+colorPaginador+"'><strong> > </strong></buttom>",
+	            "previous": "<buttom class='btn' style='border-radius:50%;"+colorPaginador+"'><strong> < </strong></buttom>",
             	// "pagingType": "scrolling",
             	"sPaginationType": "four_button",
 	          }

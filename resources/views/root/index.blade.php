@@ -67,6 +67,7 @@
 
     </style>
     <div class="container">
+        <input type="hidden" id="colorView" value="#25c2e3 !important">
         <div class="row page-title">
             <div class="col-md-12">
                 <nav aria-label="breadcrumb" class="float-right mt-1">

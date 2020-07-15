@@ -4,6 +4,7 @@
 @section('content')
 
     <div class="container">
+        <input type="hidden" id="colorView" value="#5369f8 !important">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="row page-title">

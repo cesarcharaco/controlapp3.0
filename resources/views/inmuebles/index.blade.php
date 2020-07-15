@@ -69,6 +69,7 @@
 
 
     </style>
+    <input type="hidden" id="colorView" value="#CB8C4D !important">
     <div class="container">
         <div class="row page-title">
             <div class="col-md-12">
