@@ -91,11 +91,11 @@
             </div>
         </div>
 
-        <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+        <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="card-body">
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                     <thead>
-                        <tr>
+                        <tr class="bg-primary text-white">
                             <th>Mes</th>
                             <th>Status</th>
                         </tr>
