@@ -1090,5 +1090,24 @@
             }
         }
 
+    function VerAdminHome(opcion) {
+    	if (opcion == 1) {
+	        $('#mostrarAdmins').fadeIn(300);
+
+	    	$('#botonAdmins').fadeOut('slow',
+	            function() { 
+	                $(this).hide();
+	                $('#botonAdmins2').fadeIn(300);
+	        });
+    	}else{
+	        $('#botonAdmins2').fadeOut('slow');
+	    	$('#mostrarAdmins').fadeOut('slow',
+	            function() { 
+	                $(this).hide();
+	                $('#botonAdmins').fadeIn(300);
+	        });
+    	}
+    }
+
 
 </script>

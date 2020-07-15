@@ -316,21 +316,215 @@
                 </div>
             </div>
         @elseif(\Auth::user()->tipo_usuario=="root")
+
             <div class="col-md-12">
                 <br>
                 <div class="row">
-                    <div class="col-md-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                    <img src="{{ asset('assets/images/logo.jpg') }}" class="rounded-circle" alt="" style="position: relative;" />
+                    
+                    <div class="col-md-7" style="float: left;">
+                        <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                            <div class="card-body p-0">
+                                <div class="media p-3">
+                                    <div class="media-body">
+                                        <span class="text-info text-uppercase font-size-12 font-weight-bold">Usuarios administradores</span>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAdmin" style="
+                                                    border-radius: 10px;
+                                                    color: white;
+                                                    height: 35px;
+                                                    margin-bottom: 5px;
+                                                    margin-top: 5px;
+                                                    float: right;">
+                                                    <span class="PalabraEditarPago ">Nuevo Administrador</span>
+                                                    <center>
+                                                        <span class="PalabraEditarPago2 ">
+                                                            <i data-feather="plus" class="iconosMetaforas2"></i>
+                                                        </span>
+                                                    </center>
+                                                </a>
+                                                <a class="btn btn-info boton-tabla shadow" id="botonAdmins" onclick="VerAdminHome(1)" style="
+                                                    border-radius: 10px;
+                                                    color: white;
+                                                    height: 35px;
+                                                    margin-bottom: 5px;
+                                                    margin-top: 5px;
+                                                    float: right;">
+                                                    <span class="PalabraEditarPago ">Ver listado de Admin</span>
+                                                    <center>
+                                                        <span class="PalabraEditarPago2 ">
+                                                            <i data-feather="eye" class="iconosMetaforas2"></i>
+                                                        </span>
+                                                    </center>
+                                                </a>
+                                                 <a class="btn btn-warning boton-tabla shadow" onclick="VerAdminHome(2)" id="botonAdmins2" style="
+                                                    border-radius: 10px;
+                                                    color: white;
+                                                    height: 35px;
+                                                    margin-bottom: 5px;
+                                                    margin-top: 5px;
+                                                    float: right; display: none;">
+                                                    <span class="PalabraEditarPago ">Ocultar listado</span>
+                                                    <center>
+                                                        <span class="PalabraEditarPago2 ">
+                                                            <i data-feather="eye" class="iconosMetaforas2"></i>
+                                                        </span>
+                                                    </center>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="mostrarAdmins" style="display: none">
+                                    
+                                
+                                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                                        <thead>
+                                            <tr class="table-default text-white">
+                                                <td colspan="3" align="center">
+                                                    <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un usuario administrador para ver mas opciones.</span>
+                                                    </div>
+                                                </td>
+                                                <td colspan="3"></td>
+                                            </tr>
+                                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                                                <th width="10"></th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Nombres</span>
+                                                    <span class="PalabraEditarPago2">N</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Rut</span>
+                                                    <span class="PalabraEditarPago2">R</span>
+                                                </th>
+                                                <th colspan="2">
+                                                    <center>
+                                                        <span class="PalabraEditarPago">Opciones</span>
+                                                        <span class="PalabraEditarPago2">O</span>
+                                                    </center>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Status</span>
+                                                    <span class="PalabraEditarPago2">S</span>
+                                                </th>
+                                            </tr>
+                                            <tr class="bg-info text-white" id="th1">
+                                                <th></th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Nombres</span>
+                                                    <span class="PalabraEditarPago2">N</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Rut</span>
+                                                    <span class="PalabraEditarPago2">R</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Email</span>
+                                                    <span class="PalabraEditarPago2">@</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Registrado el</span>
+                                                    <span class="PalabraEditarPago2">R</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Status</span>
+                                                    <span class="PalabraEditarPago2">S</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($admin as $key)
+                                                <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
+                                                    <td align="center">
+                                                        
+                                                    </td>
+                                                    <td style="position: all;">{{$key->name}}</td>
+                                                    <td style="position: all;">{{$key->rut}}</td>
+                                                    <td style="position: all;">{{$key->email}}</td>
+                                                    <td style="position: all;">{{$key->created_at}}</td>
+                                                     @if($key->status == 'activo')
+                                                        <td style="position: all;">
+                                                                <span class="tituloTabla text-success"><strong>Activo</strong></span>
+                                                                <span class="tituloTabla2 text-success"><strong>A</strong></span>
+                                                        </td>
+                                                    @else
+                                                        <td style="position: all;">
+                                                                <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
+                                                                <span class="tituloTabla2 text-danger"><strong>I</strong></span>
+                                                        </td>
+                                                    @endif
+                                                </tr>
+                                                <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                                    <td width="10">
+                                                        <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                                            <span class="PalabraEditarPago ">Regresar</span>
+                                                            <center>
+                                                                <span class="PalabraEditarPago2 ">
+                                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                                                </span>
+                                                            </center>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{$key->name}}</span>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <span>{{$key->rut}}</span>
+                                                    </td>
+                                                    <td style="display: none"></td>
+                                                    <td align="center" colspan="2">
+                                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" data-toggle="modal" data-target="#editarResidente" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}')">
+                                                            <span class="PalabraEditarPago ">Editar</span>
+                                                            <center>
+                                                                <span class="PalabraEditarPago2 ">
+                                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                                </span>
+                                                            </center>
+                                                        </a>
+
+                                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;"data-toggle="modal" data-target="#eliminarResidente" onclick="Eliminar('{{$key->id}}')">
+                                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                                            <center>
+                                                                <span class="PalabraEditarPago2 ">
+                                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                                </span>
+                                                            </center>
+                                                        </a>
+                                                    </td>
+                                                    @if($key->status == 'activo')
+                                                        <td style="position: all;">
+                                                                <span class="tituloTabla text-success"><strong>Activo</strong></span>
+                                                                <span class="tituloTabla2 text-success"><strong>A</strong></span>
+                                                        </td>
+                                                    @else
+                                                        <td style="position: all;">
+                                                                <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
+                                                                <span class="tituloTabla2 text-danger"><strong>I</strong></span>
+                                                        </td>
+                                                    @endif
+
+
+                                                </tr>
+                                            <!-- <tr style="display: none;">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr> -->
+                                            @endforeach()
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-2"></div>
                     <div class="col-md-3">
-                    </div>
-                    <div class="col-md-4 mt-3">
                         @if(count($anuncios)>0)
-                            <div style="float: right; margin-top: -40px;">
+                            <div style="float: right; margin-top: -30px;">
                         @else
                             <div style="margin-right: 40px; margin-left: 30px;">
                         @endif
@@ -440,6 +634,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         @else
             @if(count($anuncios)>0)
                 <div class="col-md-9">
@@ -770,7 +965,9 @@
                 </div>
             </div>
         {!! Form::close() !!}
-
+@include('root.modales.crearAdmin')
+@include('root.modales.eliminarAdmin')
+@include('root.modales.editarAdmin')
 
 @endsection
 <script type="text/javascript">

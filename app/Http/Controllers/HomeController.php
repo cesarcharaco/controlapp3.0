@@ -36,6 +36,7 @@ class HomeController extends Controller
     public function index()
     {
         //toastr()->warning('Éxito!', 'Usuario Admin registrado');
+        $admin=UsersAdmin::all();
         $entrar="";
         $id_admin=id_admin(\Auth::user()->email);
         if(\Auth::user()->tipo_usuario=="Admin"){
@@ -81,7 +82,7 @@ class HomeController extends Controller
             
             //dd('-------------');
 
-            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin'));    
+            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin','admin'));    
         } else {
             # code...
             

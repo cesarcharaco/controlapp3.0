@@ -15,9 +15,84 @@
     @include('layouts.css')
     @toastr_css
 
-    
+        <style type="text/css">
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
+        {
+            display: none;
+        }
+        @media only screen and (max-width: 800px)  {
+
+            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
+                display: none;
+            }
+            .palabraVerInmueble{
+                display: none;
+            }
+            .palabraVerInmueble2{
+                display: block;
+            }
+            .palabraVerEstaciona{
+                display: none;
+            }
+            .palabraVerEstaciona2{
+                display: block;
+            }
+            .PalabraEditarPago2{
+                display: block;
+            }
+            .iconosMetaforas{
+                display: none;    
+            }
+            .card-table{
+                width: 100%
+            }
+
+        }
+        @media only screen and (max-width: 200px)  {
+            .botonesEditEli{
+                width: 15px;
+                height: 15px;
+            }
+            .iconosMetaforas2{
+                width: 5px;
+                height: 5px;    
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .tituloTabla{
+                display: none;
+            }
+            .tituloTabla2{
+                display: block;
+            }
+            .iconosMetaforas2{
+                width: 15px;
+                height: 15px;    
+            }
+            .botonesEditEli{
+                width: 30px;
+                height: 30px;
+                margin-top: 5px;
+                    
+            }
+        }
+
+
+    </style>
 
     <style type="text/css">
+        #body1{
+            background-color: white;
+            background-image: url("{{ asset('assets/images/logo.jpg') }}");
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: 90%;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: auto;
+                height: auto;
+        }
         .table-curved  style="table-layout: fixed;"{
         border-collapse: separate;
         }
@@ -168,7 +243,12 @@
     </style>
     
 </head>
-<body>
+@if(\Auth::user()->tipo_usuario=="root")
+    <body id="body1">
+@else
+    <body>
+@endif
+    <!-- <img src="" class="rounded-circle" alt="" style="position: relative;" /> -->
     <div id="app">
         <div class="" style="min-height: 100% !important; position: relative !important;">
             @include('layouts.admin.header')
