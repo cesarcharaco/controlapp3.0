@@ -128,7 +128,7 @@
                     <tr class="table-default text-white">
                         <td colspan="2" align="center">
                             <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
-                                <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un inmueble para ver mas opciones.</span>
+                                <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un estacionamiento para ver mas opciones.</span>
                             </div>
                         </td>
                         <td colspan="2"></td>

@@ -123,7 +123,30 @@
             <div class="col-md-12">
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                     <thead>
-                        <tr class="bg-info text-white">
+                        <tr class="table-default text-white">
+                            <td colspan="2" align="center">
+                                <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un anuncio para ver mas opciones.</span>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                        </tr>
+                        <tr class="bg-primary text-white" id="th2" style="display: none">
+                            <th width="10"></th>
+                            <th>
+                                <span class="PalabraEditarPago">Título</span>
+                                <span class="PalabraEditarPago2">T</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Inmuebles</span>
+                                <span class="PalabraEditarPago2">I</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Status</span>
+                                <span class="PalabraEditarPago2">S</span>
+                            </th>
+                        </tr>
+                        <tr class="bg-info text-white" id="th1">
                             <th></th>
                             <th>
                                 <span class="tituloTabla">Título</span>
@@ -170,7 +193,7 @@
                                 <td>{{$key->titulo}}</td>
                                 <td>{{$key->link}}</td>
                                 <td>{{$key->descripcion}}</td>
-                                <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar"></td>
+                                <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;"></td>
                             </tr>
                         @endforeach()
                     </tbody>
