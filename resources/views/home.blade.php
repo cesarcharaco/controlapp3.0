@@ -436,7 +436,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach($admin as $key)
-                                                <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
+                                                <tr id="vista1-{{$key->id}}">
                                                     <td align="center">
                                                         
                                                     </td>
