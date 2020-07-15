@@ -150,7 +150,7 @@
                             </th>
                         </tr>
                         <tr class="bg-info text-white" id="th1">
-                            <th></th>
+                            <th>#</th>
                             <th>
                                 <span class="tituloTabla">Título</span>
                                 <span class="tituloTabla2">T</span>
@@ -172,10 +172,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $num=0 @endphp
                         @foreach($anuncios as $key)
                             <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
                                 <td align="center">
-                                    
+                                    {{$num=$num+1}}
                                 </td>
                                 <td>{{$key->titulo}}</td>
                                 <td>{{$key->link}}</td>
