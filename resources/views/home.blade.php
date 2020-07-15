@@ -502,8 +502,8 @@
                                                 </a>
                                                 <div onclick="window.open('{{$key->link}}', '_blank');">
                                                     
-                                                    <span class="text-dark"><strong>{{$key->titulo}}</strong></span><br>
-                                                    <img class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" style="width: 250px; padding: 15px 15px 15px 15px; border-radius: 10%;" >
+                                                    <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
+                                                    <center><img align="center" class="imagenAnun text-dark" src="{{ asset($key->url_img) }}" style="width: 100%; padding: 15px 15px 15px 15px; border-radius: 10%;" ></center>
 
                                                     <p class="text-dark" align="center">{{$key->descripcion}}</p>
                                                 </div>
