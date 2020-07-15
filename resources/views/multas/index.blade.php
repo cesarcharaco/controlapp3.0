@@ -3,6 +3,10 @@
 @section('content')
 
         <style type="text/css">
+        .card {
+            border: 1px solid #f6f6f7!important;
+            border-color: #ff3e36 !important;
+        }
         .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
         {
             display: none;
@@ -108,8 +112,11 @@
                                     height: 35px;
                                     margin-bottom: 5px;
                                     margin-top: 5px;
-                                    float: right;">
-                                    <span class="PalabraEditarPago ">Asignar M/R</span>
+                                    float: right;
+                                    border: 1px solid #f6f6f7!important;
+                                    border-color: #35e930  !important;
+                                    background-color: #35e930  !important;">
+                                    <span class="PalabraEditarPago "><strong>Asignar M/R</strong>   </span>
                                     <center>
                                         <span class="PalabraEditarPago2 ">
                                             <i data-feather="plus" class="iconosMetaforas2"></i>
@@ -122,8 +129,11 @@
                                     height: 35px;
                                     margin-bottom: 5px;
                                     margin-top: 5px;
-                                    float: right;">
-                                    <span class="PalabraEditarPago ">Nuevo Multa/Recarga</span>
+                                    float: right;
+                                    border: 1px solid #f6f6f7!important;
+                                    border-color: #ff3e36 !important;
+                                    background-color: #ff3e36 !important;">
+                                    <span class="PalabraEditarPago "><strong>Nuevo Multa/Recarga</strong>   </span>
                                     <center>
                                         <span class="PalabraEditarPago2 ">
                                             <i data-feather="key" class="iconosMetaforas2"></i>
@@ -168,7 +178,7 @@
                                 <span class="PalabraEditarPago2">S</span>
                             </th>
                         </tr>
-                        <tr class="bg-danger text-white" id="th1">
+                        <tr class="text-white" id="th1" style="background-color: #ff3e36 !important;">
                             <th></th>
                             <th>
                                 <span class="PalabraEditarPago" align="center">Motivo</span>

@@ -72,11 +72,15 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-6">
-                            <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                            <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="
+                                    display: none;
+                                    border: 1px solid #f6f6f7!important;
+                                    border-color: #2d572c !important;
+                                    ">
                                 <div class="card-body p-0">
                                     <div class="media p-3">
                                         <div class="media-body">
-                                            <span class="text-success text-uppercase font-size-12 font-weight-bold">Residentes</span>
+                                            <span class="text-success text-uppercase font-size-12 font-weight-bold" style="color:#2d572c !important;">Residentes</span>
                                             <div class="row justify-content-center">
                                                 <div class="col-md-6">
                                                     <table width="100%">
@@ -98,8 +102,13 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group" align="center">
-                                                        <label class="text-success">Nuevo Residente</label>
-                                                        <a href="#" style="width: 100% !important; position: relative;" class="btn btn-success shadow" onclick="NuevoResidente()"><strong class="text-white">Agregar</strong></a>
+                                                        <label style="color: #2d572c !important;">Nuevo Residente</label>
+                                                        <a href="#" style="
+                                                            width: 100% !important;
+                                                            position: relative;
+                                                            border: 1px solid #f6f6f7!important;
+                                                            border-color: #2d572c !important;
+                                                            background-color: #2d572c !important;" class="btn shadow" onclick="NuevoResidente()"><strong class="text-white">Agregar</strong></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -113,34 +122,51 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-xl-6">
-                            <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                            <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="
+                                display: none;
+                                border: 1px solid #f6f6f7!important;
+                                border-color: #CB8C4D !important; ">
                                 <div class="card-body p-0">
                                     <div class="media p-3">
                                         <div class="media-body">
-                                            <span class="text-primary text-uppercase font-size-12 font-weight-bold">Inmuebles</span>
+                                            <span class="text-uppercase font-size-12 font-weight-bold" style="color: #CB8C4D  !important">Inmuebles</span>
                                             <h6 class="mb-0">Existencia: {{ existencia_i() }}</h6>
                                             <h6 class="mb-0">Alquilados: {{ alquilados_i_t() }}</h6>
                                         </div>                                         
                                         <div class="form-group">
-                                            <label class="mb-0 text-primary">Nuevo Inmueble</label>
-                                            <h6 class="mb-0"><a href="#" style="width: 100% !important;" data-toggle="modal" data-target="#crearInmueble"  class="btn btn-primary shadow">Agregar</a></h6>
+                                            <label class="mb-0" style="color: #CB8C4D !important">Nuevo Inmueble</label>
+                                            <a href="#" data-toggle="modal" data-target="#crearInmueble" style="
+                                                            width: 100% !important;
+                                                            position: relative;
+                                                            border: 1px solid #f6f6f7!important;
+                                                            border-color: #CB8C4D !important; 
+                                                            background-color: #CB8C4D !important; " class="btn shadow"><strong class="text-white">Agregar</strong></a>
                                         </div>                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-6">
-                            <div class="card border border-danger rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                            <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="
+                                display: none;
+                                border: 1px solid #f6f6f7!important;
+                                border-color:#cccc00 !important;">
                                 <div class="card-body p-0">
                                     <div class="media p-3">
                                         <div class="media-body">
-                                            <span class="text-danger text-danger text-uppercase font-size-12 font-weight-bold">Estacionamientos</span>
+                                            <span class="text-uppercase font-size-12 font-weight-bold" style="color: #cccc00 !important;">Estacionamientos</span>
                                             <h6 class="mb-0">Existencia: {{ existencia_e() }}</h6>
                                             <h6 class="mb-0">Alquilados: {{ alquilados_e_t() }}</h6>
                                         </div>                                            
                                         <div class="form-group">
-                                            <label class="mb-0 text-danger">Nuevo Estacionamiento</label>
-                                            <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" data-toggle="modal" data-target="#crearEstacionamiento" class="btn btn-danger shadow">Agregar</a></h6>
+                                            <label class="mb-0" style="color: #cccc00 !important;">Nuevo Estacionamiento</label>
+                                            <h6 class="mb-0"><a href="#" style="
+                                                width: 100% !important;
+                                                position: relative;
+                                                border: 1px solid #f6f6f7!important;
+                                                border-color: #cccc00 !important;
+                                                background-color: #cccc00 !important;
+                                                " data-toggle="modal" data-target="#crearEstacionamiento" class="btn btn-danger shadow">Agregar</a></h6>
                                         </div>
                                     </div>
                                 </div>

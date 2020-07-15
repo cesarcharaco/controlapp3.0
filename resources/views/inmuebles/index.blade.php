@@ -2,6 +2,10 @@
 
 @section('content')
      <style type="text/css">
+        .card {
+            border: 1px solid #f6f6f7!important;
+            border-color: #CB8C4D !important;
+        }
         .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
         {
             display: none;
@@ -95,7 +99,7 @@
             </div>
         @endif
     </div>
-    <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+    <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
         <div class="row justify-content-center">
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <div class="col-md-12">
@@ -107,10 +111,13 @@
                                 height: 35px;
                                 margin-bottom: 5px;
                                 margin-top: 5px;
-                                float: right;">
-                                <span class="PalabraEditarPago ">Nuevo Inmueble</span>
+                                float: right;
+                                border: 1px solid #f6f6f7!important;
+                                border-color: #CB8C4D !important;
+                                background-color: #CB8C4D !important">
+                                <span class="PalabraEditarPago text-white">Nuevo Inmueble</span>
                                 <center>
-                                    <span class="PalabraEditarPago2 ">
+                                    <span class="PalabraEditarPago2 text-white">
                                         <i data-feather="plus" class="iconosMetaforas2"></i>
                                     </span>
                                 </center>
@@ -126,13 +133,13 @@
                 <thead>
                     <tr class="table-default text-white">
                         <td colspan="2" align="center">
-                            <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                            <div class="card border border-info" role="alert">
                                 <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un inmueble para ver mas opciones.</span>
                             </div>
                         </td>
                         <td colspan="2"></td>
                     </tr>
-                    <tr class="bg-info text-white" id="th1">
+                    <tr class="text-white" id="th1" style="background-color: #CB8C4D;">
                         <th></th>
                         <th>
                             <span class="tituloTabla">Idem</span>
@@ -156,8 +163,10 @@
                             <span class="PalabraEditarPago2">I</span>
                         </th>
                         <th>
-                            <span class="PalabraEditarPago">Inmuebles</span>
-                            <span class="PalabraEditarPago2">I</span>
+                            <center>
+                                <span class="PalabraEditarPago">Opciones</span>
+                                <span class="PalabraEditarPago2">O</span>
+                            </center>
                         </th>
                         <th>
                             <span class="PalabraEditarPago">Status</span>

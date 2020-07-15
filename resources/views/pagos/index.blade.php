@@ -133,18 +133,26 @@
                                         <td>
                                             @foreach($asignaIn as $key2)
                                                 @if($key2->id_residente == $key->id)
-                                                        <a style="width: 100%;" class="btn btn-primary" onclick="VerResi('{{$key2->id_residente}}')" href="#">
-                                                            <span class="palabraVerInmueble">Ver Inmuebles</span>
-                                                            <span class="palabraVerInmueble2">I</span>
+                                                        <a style="width: 100% !important;
+                                                            position: relative;
+                                                            border: 1px solid #f6f6f7!important;
+                                                            border-color: #CB8C4D !important;
+                                                            background-color: #CB8C4D !important;" class="btn" onclick="VerResi('{{$key2->id_residente}}')" href="#">
+                                                            <span class="palabraVerInmueble text-white">Ver Inmuebles</span>
+                                                            <span class="palabraVerInmueble2 text-white">I</span>
                                                         </a>
                                                 @endif
                                             @endforeach
                                             <br><br>
                                             @foreach($asignaEs as $key2)
                                                 @if($key2->id_residente == $key->id)
-                                                        <a style="width: 100%" class="btn btn-warning" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
-                                                            <span class="palabraVerEstaciona">Ver Estacionamiento</span>
-                                                            <span class="palabraVerEstaciona2">E</span>
+                                                        <a style="width: 100% !important;
+                                                        position: relative;
+                                                        border: 1px solid #f6f6f7!important;
+                                                        border-color: #cccc00 !important;
+                                                        background-color: #cccc00 !important;" class="btn" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
+                                                            <span class="palabraVerEstaciona text-white">Ver Estacionamiento</span>
+                                                            <span class="palabraVerEstaciona2 text-white">E</span>
                                                         </a>
                                                 @endif
                                             @endforeach

@@ -3,6 +3,10 @@
 @section('content')
 
 <style type="text/css">
+    .card {
+            border: 1px solid #f6f6f7!important;
+            border-color: #cccc00 !important;
+        }
         .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
         {
             display: none;
@@ -96,22 +100,26 @@
             </div>
         @endif
     </div>
-    <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+    <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
         <div class="row justify-content-center">
             @if(\Auth::user()->tipo_usuario == 'Admin')
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12 offset-md-12">
-                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearEstacionamiento" style="
+                            <a class="btn boton-tabla shadow" data-toggle="modal" data-target="#crearEstacionamiento" style="
                                 border-radius: 10px;
                                 color: white;
                                 height: 35px;
                                 margin-bottom: 5px;
                                 margin-top: 5px;
-                                float: right;">
-                                <span class="PalabraEditarPago ">Nuevo Estacionamientos</span>
+                                float: right;
+                                border: 1px solid #f6f6f7!important;
+                                border-color: #cccc00 !important;
+                                background-color: #cccc00 !important;">
+
+                                <span class="PalabraEditarPago text-white">Nuevo Estacionamientos</span>
                                 <center>
-                                    <span class="PalabraEditarPago2 ">
+                                    <span class="PalabraEditarPago2 text-white">
                                         <i data-feather="plus" class="iconosMetaforas2"></i>
                                     </span>
                                 </center>
@@ -127,13 +135,13 @@
                 <thead>
                     <tr class="table-default text-white">
                         <td colspan="2" align="center">
-                            <div class="card border border-warning" style="" role="alert">
+                            <div class="card" style="" role="alert">
                                 <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un estacionamiento para ver mas opciones.</span>
                             </div>
                         </td>
                         <td colspan="2"></td>
                     </tr>
-                    <tr class="bg-warning text-white" id="th1">
+                    <tr class="text-white" id="th1" style="background-color: #cccc00 ;">
                         <th></th>
                         <th colspan="2">
                             <span class="tituloTabla">Idem</span>

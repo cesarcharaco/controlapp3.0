@@ -3,6 +3,10 @@
 @section('content')
 
     <style type="text/css">
+        .card {
+            border: 1px solid #f6f6f7!important;
+            border-color: #2d572c !important;
+        }
         .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
         {
             display: none;
@@ -96,7 +100,7 @@
             </div>
         @endif
     </div>
-    <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+    <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="row justify-content-center">
                 @if(\Auth::user()->tipo_usuario == 'Admin')
                     <div class="col-md-12">
@@ -108,7 +112,11 @@
                                     height: 35px;
                                     margin-bottom: 5px;
                                     margin-top: 5px;
-                                    float: right;">
+                                    float: right;
+                                    border: 1px solid #f6f6f7!important;
+                                    border-color: #2d572c !important;
+                                    background-color: #2d572c !important;">
+
                                     <span class="PalabraEditarPago">Nuevo Residente</span>
                                     <center>
                                         <span class="PalabraEditarPago2">
@@ -128,13 +136,13 @@
                     <thead>
                         <tr class="table-default text-white">
                             <td colspan="2" align="center">
-                                <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                <div class="card border border-info" style="" role="alert">
                                     <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un residente para ver mas opciones.</span>
                                 </div>
                             </td>
                             <td colspan="3"></td>
                         </tr>
-                        <tr class="bg-info text-white" id="th1">
+                        <tr class="text-white" id="th1" style="background-color: #2d572c !important;">
                             <th width="10"></th>
                             <th>
                                 <span class="PalabraEditarPago">Nombres</span>
