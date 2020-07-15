@@ -6,12 +6,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                @include('flash::message')
-                <div class="row">
+                <div class="row page-title">
                     <div class="col-md-12">
-                        <h1>Consultas</h1>
+                        <nav aria-label="breadcrumb" class="float-right mt-1">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Consultas</li>
+                            </ol>
+                        </nav>
+                        <h4 class="mb-1 mt-0">Consultas</h4>
                     </div>
                 </div>
+                @include('flash::message')
                 @if(!empty($errors->all()))
                     <div class="notification is-danger">
                         <h4 class="is-size-4">Por favor, valida los siguientes errores:</h4>
@@ -26,7 +32,7 @@
                 @endif
                 <div class="row">
                     <div class="col-md-6 col-xl-6">
-                        <div class="card">
+                        <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                             <input type="hidden" name="id_residente" id="id_reside" value="{{\Auth::user()->id}}">
                             <div class="card-body p-0">
                                 <div class="media p-3">
@@ -66,7 +72,7 @@
             </div>
         </div>
         @include('flash::message')
-        <div class="card">
+        <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -85,35 +91,33 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="card-body">
-                <div style="overflow-x: auto;">                            
-                    <table class="table table-hover table-striped" id="myTable" width="100%">
-                        <thead>
+                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Mes</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="muestraConsultas">
+                        @for($i=0; $i < count($status_pago); $i++)
+                            
                             <tr>
-                                <th>Mes</th>
-                                <th>Status</th>
+                                <td>{{ $status_pago[$i][0] }}</td>
+                                @if ($status_pago[$i][1] == 'Pendiente') 
+                                        <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong></td>
+                                @endif
+                                @if ($status_pago[$i][1]== 'Cancelado')
+                                        <td class="text-success"><strong>{{ $status_pago[$i][1] }}</strong></td>
+                                @endif
+                                @if ($status_pago[$i][1]== 'No aplica')
+                                        <td class="text-danger"><strong>{{ $status_pago[$i][1] }}</strong></td>
+                                @endif
                             </tr>
-                        </thead>
-                        <tbody id="muestraConsultas">
-                            @for($i=0; $i < count($status_pago); $i++)
-                                
-                                <tr>
-                                    <td>{{ $status_pago[$i][0] }}</td>
-                                    @if ($status_pago[$i][1] == 'Pendiente') 
-                                            <td class="text-warning">{{ $status_pago[$i][1] }}</td>
-                                    @endif
-                                    @if ($status_pago[$i][1]== 'Cancelado')
-                                            <td class="text-success">{{ $status_pago[$i][1] }}</td>
-                                    @endif
-                                    @if ($status_pago[$i][1]== 'No aplica')
-                                            <td class="text-danger">{{ $status_pago[$i][1] }}</td>
-                                    @endif
-                                </tr>
-                            @endfor
-                        </tbody>
-                    </table>
-                </div>
+                        @endfor
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>                           

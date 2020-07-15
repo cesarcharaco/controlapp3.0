@@ -25,10 +25,8 @@
                 </div>
             </div>
         @endif
-        <div class="card">
-        	<div class="card-header">
-        		<h3>Reporte General</h3>
-        	</div>
+        <div class="card border border-danger rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+        	<h3 align="center">Reporte General</h3>
         	<div class="card-body">
 
 
@@ -52,7 +50,7 @@
 			        		<div class="form-group">
 			        			<label class="text-primary">Año</label>
 			        			<select class="form-control select2 border border-default" name="anio">
-			        				@for($j=0;$j<count($anio);$j++)
+			        				@for($j=0;$j< count($anio);$j++)
 			        					<option value="{{ $anio[$j] }}">{{ $anio[$j] }}</option>
 			        				@endfor
 			        			</select>
@@ -70,10 +68,8 @@
 
 				        
         @if(\Auth::user()->tipo_usuario == 'Admin')
-	        <div class="card">
-	            <div class="card-header">
-	    			<h3>Reporte</h3>
-	    		</div>
+	        <div class="card border border-danger rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+	    			<h3 align="center">Reporte</h3>
 	            <div class="card-body">
 	                <div class="row justify-content-center">
 			            <!-- <div class="col-md-12">

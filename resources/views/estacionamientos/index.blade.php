@@ -125,9 +125,17 @@
         <div class="col-md-12">
             <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                 <thead>
-                    <tr class="bg-warning text-white">
+                    <tr class="table-default text-white">
+                        <td colspan="2" align="center">
+                            <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un inmueble para ver mas opciones.</span>
+                            </div>
+                        </td>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr class="bg-warning text-white" id="th1">
                         <th></th>
-                        <th>
+                        <th colspan="2">
                             <span class="tituloTabla">Idem</span>
                             <span class="tituloTabla2">I</span>
                         </th>
@@ -135,14 +143,60 @@
                             <span class="tituloTabla">Status</span>
                             <span class="tituloTabla2">S</span>
                         </th>
-                        <!-- <th>Mensualidades</th> -->
+                    </tr>
+                    <tr class="bg-primary text-white" id="th2" style="display: none">
+                        <th width="10"></th>
+                        <th>
+                            <span class="PalabraEditarPago">Idem</span>
+                            <span class="PalabraEditarPago2">I</span>
+                        </th>
+                        <th>
+                            <span class="PalabraEditarPago">Opciones</span>
+                            <span class="PalabraEditarPago2">O</span>
+                        </th>
+                        <th>
+                            <span class="PalabraEditarPago">Status</span>
+                            <span class="PalabraEditarPago2">S</span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($estacionamientos as $key)
-                        <tr>
+                        <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
                             <td align="center">
-                                @if(\Auth::user()->tipo_usuario == 'Admin')
+                               
+                            </td>
+                            <th colspan="2">{{$key->idem}}</th>
+                            <td style="display: none"></td>
+                            @if(\Auth::user()->tipo_usuario == 'En Uso')
+                                <td style="position: all;">
+                                        <span class="tituloTabla text-success"><strong>En Uso</strong></span>
+                                        <span class="tituloTabla2 text-success"><strong>U</strong></span>
+                                </td>
+                            @else
+                                <td style="position: all;">
+                                        <span class="tituloTabla text-danger"><strong>Retirado</strong></span>
+                                        <span class="tituloTabla2 text-danger"><strong>R</strong></span>
+                                </td>
+                            @endif
+                        </tr>
+                        <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                            <td width="10">
+                                <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                    <span class="PalabraEditarPago ">Regresar</span>
+                                    <center>
+                                        <span class="PalabraEditarPago2 ">
+                                            <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                        </span>
+                                    </center>
+                                </button>
+                            </td>
+                            <td>
+                                
+                                <span>{{$key->idem}}</span>
+                            </td>
+                            <td align="center">
+                                 @if(\Auth::user()->tipo_usuario == 'Admin')
                                     <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">
                                         <span class="PalabraEditarPago ">Editar</span>
                                         <center>
@@ -162,19 +216,24 @@
                                     </a>
                                 @endif
                             </td>
-                            <td style="position: all;">{{$key->idem}}</td>
-                            <!-- <td>Si</td> -->
-                            @if(\Auth::user()->tipo_usuario == 'En Uso')
+                            @if(\Auth::user()->tipo_usuario == 'Disponible')
                                 <td style="position: all;">
-                                        <span class="tituloTabla text-success"><strong>En Uso</strong></span>
-                                        <span class="tituloTabla2 text-success"><strong>U</strong></span>
+                                        <span class="tituloTabla text-success"><strong>Disponible</strong></span>
+                                        <span class="tituloTabla2 text-success"><strong>D</strong></span>
                                 </td>
                             @else
                                 <td style="position: all;">
-                                        <span class="tituloTabla text-danger"><strong>Retirado</strong></span>
-                                        <span class="tituloTabla2 text-danger"><strong>R</strong></span>
+                                        <span class="tituloTabla text-danger"><strong>No Disponible</strong></span>
+                                        <span class="tituloTabla2 text-danger"><strong>N/D</strong></span>
                                 </td>
                             @endif
+
+                        </tr>
+                        <tr style="display: none;">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     @endforeach()
                 </tbody>

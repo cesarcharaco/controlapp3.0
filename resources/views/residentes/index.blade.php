@@ -102,16 +102,16 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-12 offset-md-12">
-                                <a class="btn btn-success boton-tabla shadow" onclick="NuevoResidente()" style="
+                                <a class="btn btn-success shadow" onclick="NuevoResidente()" style="
                                     border-radius: 10px;
                                     color: white;
                                     height: 35px;
                                     margin-bottom: 5px;
                                     margin-top: 5px;
                                     float: right;">
-                                    <span class="PalabraEditarPago ">Nuevo Residente</span>
+                                    <span class="PalabraEditarPago">Nuevo Residente</span>
                                     <center>
-                                        <span class="PalabraEditarPago2 ">
+                                        <span class="PalabraEditarPago2">
                                             <i data-feather="plus" class="iconosMetaforas2"></i>
                                         </span>
                                     </center>
@@ -134,7 +134,7 @@
                             </td>
                             <td colspan="3"></td>
                         </tr>
-                        <tr class="bg-success text-white" id="th1">
+                        <tr class="bg-info text-white" id="th1">
                             <th width="10"></th>
                             <th>
                                 <span class="PalabraEditarPago">Nombres</span>
@@ -153,7 +153,7 @@
                                 <span class="PalabraEditarPago2">Tel</span>
                             </th>
                         </tr>
-                        <tr class="bg-info text-white" id="th2" style="display: none">
+                        <tr class="bg-primary text-white" id="th2" style="display: none">
                             <th width="10"></th>
                             <th>
                                 <span class="PalabraEditarPago">Nombres</span>
@@ -174,28 +174,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $colorn=1; $color="";?>
                         @foreach($residentes as $key)
-                            <?php 
-                                if($colorn == 1){
-                                    $color = "bg-active";
-                                    $colorn = 2;
-                                }else{
-                                    $color = "bg-default";
-                                    $colorn = 1;
-                                }
-
-                            ?>
-                            <tr id="residente{{$key->id}}" class="{{$color}}" onclick="opciones(1,'{{$key->id}}')">
+                            <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
                                 <td width="10"></td>
                                 <td>{{$key->nombres}} {{$key->apellidos}}</td>
                                 <td>{{$key->rut}}</td>
                                 <td>{{$key->usuario->email}}</td>
                                 <td>{{$key->telefono}}</td>
                             </tr>
-                            <tr id="residente{{$key->id}}-2" class="table-success" style="display: none;">
+                            <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
                                 <td width="10">
-                                    <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opciones(2,'{{$key->id}}')">
+                                    <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
                                         <span class="PalabraEditarPago ">Regresar</span>
                                         <center>
                                             <span class="PalabraEditarPago2 ">
@@ -244,7 +233,13 @@
                                     @endforeach
                                 </td>
                             </tr>
-                            <?php $colorn=2;?>
+                            <tr style="display: none;">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         @endforeach()
                     </tbody>
                 </table>
@@ -361,31 +356,7 @@
             $('#telefono_e').val(telefono);
             $('#email_e').val(email);
         }
-        function opciones(tipo,id_residente) {
-            if (tipo == 1) {
-                $('#residente'+id_residente).fadeOut('slow',
-                    function() { 
-                        $(this).hide();
-                        $('#residente'+id_residente+'-2').fadeIn(300);
-                });
-                $('#th1').fadeOut('slow',
-                    function() { 
-                        $(this).hide();
-                        $('#th2').fadeIn(300);
-                });
-            }else{
-                $('#residente'+id_residente+'-2').fadeOut('slow',
-                    function() { 
-                        $(this).hide();
-                        $('#residente'+id_residente).fadeIn(300);
-                });
-                $('#th2').fadeOut('slow',
-                    function() { 
-                        $(this).hide();
-                        $('#th1').fadeIn(300);
-                });
-            }
-        }
+        
         
     </script>
     <script type="text/javascript">
