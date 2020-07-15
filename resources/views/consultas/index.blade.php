@@ -76,14 +76,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        @php 
-                            $anio=date('Y');
-                        @endphp
-                        <label>Meses</label>
+                        
+                        <label>Año</label>
                         <select class="form-control select2" onchange="consulta_anual(this.value)">
                             <option value="0" disabled selected>Seleccione año</option>
-                            @for($i=$anio;$i<$anio+3;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                            @for($j=0;$j< count($anio);$j++)
+                                <option value="{{ $anio[$j] }}">{{ $anio[$j] }}</option>
                             @endfor
                         </select>
                     </div>
