@@ -489,7 +489,7 @@
                     </div>
                     
                     <div class="col-md-4">
-                        <div style="margin-top: -30px; width: 100%; margin-left: 30px;" id="anuncioRoot">
+                        <div style="margin-top: -30px; width: 100%;" id="anuncioRoot">
                             <table class="table table-striped">
                                 <thead>
                                     <th>
