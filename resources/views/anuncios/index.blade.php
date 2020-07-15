@@ -138,12 +138,14 @@
                                 <span class="PalabraEditarPago2">T</span>
                             </th>
                             <th>
-                                <span class="PalabraEditarPago">Inmuebles</span>
-                                <span class="PalabraEditarPago2">I</span>
+                                <span class="PalabraEditarPago">URL</span>
+                                <span class="PalabraEditarPago2">@</span>
                             </th>
-                            <th>
-                                <span class="PalabraEditarPago">Status</span>
-                                <span class="PalabraEditarPago2">S</span>
+                            <th colspan="2">
+                                <center>
+                                    <span class="PalabraEditarPago">Opciones</span>
+                                    <span class="PalabraEditarPago2">O</span>
+                                </center>
                             </th>
                         </tr>
                         <tr class="bg-info text-white" id="th1">
@@ -154,7 +156,7 @@
                             </th>
                             <th>
                                 <span class="tituloTabla">URL</span>
-                                <span class="tituloTabla2">URL</span>
+                                <span class="tituloTabla2">@</span>
                             </th>
                             <!-- <th>Estacionamientos</th> -->
                             <th>
@@ -163,15 +165,41 @@
                             </th>
                             <th>
                                 <span class="tituloTabla">Imagen</span>
-                                <span class="tituloTabla2"></span>
+                                <span class="tituloTabla2">I</span>
                             </th>
                             <!-- <th>Mensualidades</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($anuncios as $key)
-                            <tr>
+                            <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
                                 <td align="center">
+                                    
+                                </td>
+                                <td>{{$key->titulo}}</td>
+                                <td>{{$key->link}}</td>
+                                <td>{{$key->descripcion}}</td>
+                                <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;"></td>
+                            </tr>
+                            <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                <td width="10">
+                                    <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                        <span class="PalabraEditarPago ">Regresar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </button>
+                                </td>
+                                <td>
+                                    
+                                    <span>{{$key->titulo}}</span>
+                                </td>
+                                <td>
+                                    <span>{{$key->link}}</span>
+                                </td>
+                                <td colspan="2" align="center">
                                     <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')">
                                         <span class="PalabraEditarPago ">Editar</span>
                                         <center>
@@ -190,10 +218,16 @@
                                         </center>
                                     </a>
                                 </td>
-                                <td>{{$key->titulo}}</td>
-                                <td>{{$key->link}}</td>
-                                <td>{{$key->descripcion}}</td>
-                                <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;"></td>
+                                <td style="display: none"></td>
+                                
+
+                            </tr>
+                            <tr style="display: none;">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         @endforeach()
                     </tbody>
