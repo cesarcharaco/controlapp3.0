@@ -549,8 +549,8 @@ class ResidentesController extends Controller
             if($key->pivot->status=="En Uso"){
                 foreach ($key->mensualidades as $key2) {
                     if($key2->anio==$anio){
-                        $pago=\App\Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
-                            $status_pago[$i][0]=meses($pago->mes);
+                        $pago=Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
+                            $status_pago[$i][0]=meses($pago->mensualidad->mes);
                             $status_pago[$i][1]=$pago->status;
                         
                     }
