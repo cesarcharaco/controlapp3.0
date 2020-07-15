@@ -81,7 +81,7 @@
     </style>
 
     <style type="text/css">
-        #body1{
+        /*#body1{
             background-color: white;
             background-image: url("{{ asset('assets/images/logo.jpg') }}");
                 -webkit-background-size: cover;
@@ -92,7 +92,7 @@
                 background-position: center;
                 width: auto;
                 height: auto;
-        }
+        }*/
         .table-curved  style="table-layout: fixed;"{
         border-collapse: separate;
         }

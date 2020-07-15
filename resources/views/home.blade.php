@@ -316,7 +316,7 @@
                 </div>
             </div>
         @elseif(\Auth::user()->tipo_usuario=="root")
-
+            <input type="hidden" id="colorView" value="#25c2e3 !important">
             <div class="col-md-12">
                 <br>
                 <div class="row">
@@ -343,42 +343,11 @@
                                                         </span>
                                                     </center>
                                                 </a>
-                                                <a class="btn btn-info boton-tabla shadow" id="botonAdmins" onclick="VerAdminHome(1)" style="
-                                                    border-radius: 10px;
-                                                    color: white;
-                                                    height: 35px;
-                                                    margin-bottom: 5px;
-                                                    margin-top: 5px;
-                                                    float: right;">
-                                                    <span class="PalabraEditarPago ">Ver listado de Admin</span>
-                                                    <center>
-                                                        <span class="PalabraEditarPago2 ">
-                                                            <i data-feather="eye" class="iconosMetaforas2"></i>
-                                                        </span>
-                                                    </center>
-                                                </a>
-                                                 <a class="btn btn-warning boton-tabla shadow" onclick="VerAdminHome(2)" id="botonAdmins2" style="
-                                                    border-radius: 10px;
-                                                    color: white;
-                                                    height: 35px;
-                                                    margin-bottom: 5px;
-                                                    margin-top: 5px;
-                                                    float: right; display: none;">
-                                                    <span class="PalabraEditarPago ">Ocultar listado</span>
-                                                    <center>
-                                                        <span class="PalabraEditarPago2 ">
-                                                            <i data-feather="eye" class="iconosMetaforas2"></i>
-                                                        </span>
-                                                    </center>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div id="mostrarAdmins" style="display: none">
-                                    
-                                
                                     <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                                         <thead>
                                             <tr class="table-default text-white">
@@ -517,7 +486,6 @@
                                             @endforeach()
                                         </tbody>
                                     </table>
-                                </div>
                             </div>
                         </div>
                     </div>
