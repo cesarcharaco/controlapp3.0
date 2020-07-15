@@ -21,7 +21,10 @@
             display: none;
         }
         @media only screen and (max-width: 800px)  {
+            #anuncioRoot{
 
+                margin-left: -20px !important;
+            }
             .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
                 display: none;
             }
