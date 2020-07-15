@@ -139,33 +139,35 @@
             <div class="col-md-12">
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                     <thead>
-                        <tr class="table-default text-white">
-                        <td colspan="3" align="center">
-                            <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
-                                <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a una multa/recarga para ver mas opciones.</span>
-                            </div>
-                        </td>
-                        <td colspan="3"></td>
-                    </tr>
-                    <tr class="bg-primary text-white" id="th2" style="display: none">
-                        <th width="10"></th>
-                        <th>
-                            <span class="PalabraEditarPago">Motivo</span>
-                            <span class="PalabraEditarPago2">M</span>
-                        </th>
-                        <th colspan="2" align="center">
-                            <center>
-                                <span class="PalabraEditarPago">Opciones</span>
-                                <span class="PalabraEditarPago2">O</span>
-                            </center>
-                        </th>
-                        <th><span class="PalabraEditarPago">Asignados</span>
-                            <span class="PalabraEditarPago2">A</span></th>
-                        <th>
-                            <span class="PalabraEditarPago">Status</span>
-                            <span class="PalabraEditarPago2">S</span>
-                        </th>
-                    </tr>
+                        @if(\Auth::user()->tipo_usuario == 'Admin')
+                            <tr class="table-default text-white">
+                            <td colspan="3" align="center">
+                                <div class="card border border-danger" style="" role="alert">
+                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a una multa/recarga para ver mas opciones.</span>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                        @endif
+                        </tr>
+                        <tr class="bg-primary text-white" id="th2" style="display: none">
+                            <th width="10"></th>
+                            <th>
+                                <span class="PalabraEditarPago">Motivo</span>
+                                <span class="PalabraEditarPago2">M</span>
+                            </th>
+                            <th colspan="2" align="center">
+                                <center>
+                                    <span class="PalabraEditarPago">Opciones</span>
+                                    <span class="PalabraEditarPago2">O</span>
+                                </center>
+                            </th>
+                            <th><span class="PalabraEditarPago">Asignados</span>
+                                <span class="PalabraEditarPago2">A</span></th>
+                            <th>
+                                <span class="PalabraEditarPago">Status</span>
+                                <span class="PalabraEditarPago2">S</span>
+                            </th>
+                        </tr>
                         <tr class="bg-danger text-white" id="th1">
                             <th></th>
                             <th>
