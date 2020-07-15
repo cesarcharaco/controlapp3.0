@@ -321,11 +321,9 @@
                 <br>
                 <div class="row">
                     
-                    <div class="col-md-7" style="float: left;">
+                    <div class="col-md-9" style="float: left;">
                         <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                             <div class="card-body p-0">
-                                <div class="media p-3">
-                                    <div class="media-body">
                                         <span class="text-info text-uppercase font-size-12 font-weight-bold">Usuarios administradores</span>
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
@@ -345,8 +343,6 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
                                     <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                                         <thead>
@@ -489,7 +485,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2"></div>
                     <div class="col-md-3">
                         @if(count($anuncios)>0)
                             <div style="float: right; margin-top: -30px;">
