@@ -421,16 +421,24 @@
                                     <div class="form-group">
                                         <label>Seleccionar admin</label> 
                                         <div class="">                                                                                
-                                            <input type="checkbox" name="admins_todos" onchange="seleccionar_todos(this)" id="admins_todos"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
+                                            <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
                                             <label for="admins_todos">Seleccionar todos</label>
                                         </div>
-                                        <select name="admins[]" id="admins" class="form-control select2 border border-default" multiple="multiple" >
-                                            <option value="">Seleccione admins...</option>
+                                        <select name="admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple" >
                                             @foreach($users_admin as $key)
                                                 <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
                                             @endforeach
                                             <option value="10">prueba</option>
                                         </select>
+
+                                        <div style="display: none">
+                                            <select name="admins[]" id="SelectAdminA2" class="form-control select2 border border-default" multiple="multiple" style="display: none;">
+                                                @foreach($users_admin as $key)
+                                                    <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
+                                                @endforeach
+                                                <option value="10">prueba</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

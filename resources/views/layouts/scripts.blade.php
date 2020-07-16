@@ -1148,4 +1148,15 @@
 	        $('#CargandoAdminsAsignados').hide();
 		});	
     }
+    function TodosAdmins() {
+    	if($('#todoAdmin').prop('checked')){
+    		$('#SelectAdminA').attr('disabled',true);
+
+    		var options = $("#SelectAdminA2 > option").clone();
+    		$("#SelectAdminA > option").remove();
+    		$("#SelectAdminA").append(options);
+    	}else{
+    		$('#SelectAdminA').removeAttr('disabled',false);
+    	}
+    }
 </script>
