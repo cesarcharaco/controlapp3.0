@@ -270,4 +270,9 @@ class AdminController extends Controller
         toastr()->success('con éxito!!', 'Usuario Admin eliminado');
             return redirect()->back();
     }
+
+    public function admin_asignados($id_anuncio)
+    {
+        return $asignados=\DB::table('anuncios')->join('admins_anuncios','admins_anuncios.id_anuncios','anuncios.id')->join('users_admin','users_admin.id','=','admins_anuncios.id_users_admin')->where('anuncios.id',$id_anuncio)->select('users_admin.*')->get();
+    }
 }
