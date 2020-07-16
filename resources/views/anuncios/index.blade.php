@@ -202,6 +202,16 @@
                                     <span>{{$key->link}}</span>
                                 </td>
                                 <td colspan="2" align="center">
+
+                                    <a href="#" class="border border-light btn btn-info btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="VerAdminAsignado('{{$key->id}}')">
+                                        <span class="PalabraEditarPago "><strong>Ver Asignados</strong></span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <strong><i data-feather="eye" class="iconosMetaforas2"></i></strong>
+                                            </span>
+                                        </center>
+                                    </a>
+
                                     <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')">
                                         <span class="PalabraEditarPago ">Editar</span>
                                         <center>
@@ -393,78 +403,82 @@
         {!! Form::close() !!}
 
 
-               <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="modal fade" id="crearAnuncio" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Nuevo anuncio</h4>                
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Seleccionar admin</label> 
-                                            <input type="checkbox" name="">
-                                            <select class="for-control">
-                                                
-                                            </select>
+            <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal fade" id="crearAnuncio" role="dialog">
+            <div class="modal-dialog modals-default">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Nuevo anuncio</h4>                
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <center>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Seleccionar admin</label> 
+                                        <div class="">                                                                                
+                                            <input type="checkbox" name="admins_todos" onchange="seleccionar_todos(this)" id="admins_todos"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
+                                            <label for="admins_todos">Seleccionar todos</label>
                                         </div>
+                                        <select name="admins[]" id="admins" class="form-control select2 border border-default" multiple="multiple" >
+                                            <option value="">Seleccione admins...</option>
+                                            @foreach($users_admin as $key)
+                                                <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
+                                            @endforeach
+                                            <option value="10">prueba</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Título del anuncio</label>
-                                            <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
-                                        </div>
-                                    </div>
-                               
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Link</label>
-                                            <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Descripción</label>
-                                            <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Imagen</label>
-                                            <div class="alert alert-primary" role="alert">
-                                                <p><strong>Recordar que:</strong><br>
-                                                - La imagen no debe exceder los 800 KB de tamaño<br>
-                                                - La imagen no debe tener una anchura mayor a 1024 kb<br>
-                                                - La imagen no debe tener una altura mayor a 800 kb</p>
-                                            </div>
-                                            <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </center>
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-success" >Guardar</button>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Título del anuncio</label>
+                                        <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                    </div>
+                                </div>                                                       
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Link</label>
+                                        <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Descripción</label>
+                                        <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Imagen</label>
+                                        <div class="alert alert-primary" role="alert">
+                                            <p><strong>Recordar que:</strong><br>
+                                            - La imagen no debe exceder los 800 KB de tamaño<br>
+                                            - La imagen no debe tener una anchura mayor a 1024 kb<br>
+                                            - La imagen no debe tener una altura mayor a 800 kb</p>
+                                        </div>
+                                        <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success" >Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
 
 
 

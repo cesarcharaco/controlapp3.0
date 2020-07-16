@@ -1109,5 +1109,43 @@
     	}
     }
 
+    function VerAdminAsignado(id_anuncio) {
+    	$('#CargandoAdminsAsignados').show();
+    	$('#administradoresA').empty();
+    	$('#verAsignadosAnuncios').modal('show');
 
+    	$.get('anuncios/'+id_anuncio+'/admin_asignados',function (data) {
+	    })
+	    .done(function(data) {
+	    	if (data.length>0) {
+    			$("#administradoresA").append(
+    				'<table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width:100%; table-layout: auto;">'+
+    					'<thead>'+
+    						'<tr class="bg-info text-white">'+
+    							'<th>Nombre</th>'+
+    							'<th>Rut</th>'+
+    							'<th>Email</th>'+
+    						'</tr>'+
+    					'</thead>'+
+    					'<tbody id="tablaBodyAnunciosA">'+
+    						
+    					'</tbody>'+
+    				'</table>'
+    			);
+
+	    		for (var i = 0; i < data.length; i++) {
+	    			$("#tablaBodyAnunciosA").append(
+	    				'<tr>'+
+							'<td>'+data[i].name+'</td>'+
+							'<td>'+data[i].rut+'</td>'+
+							'<td>'+data[i].email+'</td>'+
+						'</tr>'
+	    			);
+	    		}
+			}else{
+	        	$("#administradoresA").append('<h3 align="center">Sin administradores asignados</h3>');
+	        }
+	        $('#CargandoAdminsAsignados').hide();
+		});	
+    }
 </script>

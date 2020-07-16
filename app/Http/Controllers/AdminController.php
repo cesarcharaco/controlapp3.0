@@ -273,6 +273,11 @@ class AdminController extends Controller
 
     public function admin_asignados($id_anuncio)
     {
-        return $asignados=\DB::table('anuncios')->join('admins_anuncios','admins_anuncios.id_anuncios','anuncios.id')->join('users_admin','users_admin.id','=','admins_anuncios.id_users_admin')->where('anuncios.id',$id_anuncio)->select('users_admin.*')->get();
+        return $asignados=\DB::table('anuncios')
+            ->join('admins_has_anuncios','admins_has_anuncios.id_anuncios','anuncios.id')
+            ->join('users_admin','users_admin.id','=','admins_has_anuncios.id_users_admin')
+            ->where('anuncios.id',$id_anuncio)
+            ->select('users_admin.*')
+            ->get();
     }
 }

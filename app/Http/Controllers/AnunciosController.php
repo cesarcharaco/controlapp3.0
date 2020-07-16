@@ -19,9 +19,9 @@ class AnunciosController extends Controller
     public function index()
     {
         if(\Auth::user()->tipo_usuario == 'root'){
-            
+            $users_admin = UsersAdmin::all();
             $anuncios=Anuncios::all();
-            return view('anuncios.index',compact('anuncios'));
+            return view('anuncios.index',compact('anuncios','users_admin'));
         }else{
             toastr()->warning('no puede acceder!!', 'ACCESO DENEGADO');
             return redirect()->back();

@@ -1198,7 +1198,29 @@
 
         <!-- -------------------------------- ANUNCIOS ------------------------------------- -->
  
-
+                    <div class="modal fade" id="verAsignadosAnuncios" role="dialog">
+                        <div class="modal-dialog modals-default">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Administradores asignados</h4>
+                                    <div id="CargandoAdminsAsignados" style="display: none;">
+                                        <div class="spinner-border text-warning m-2" role="status"></div>
+                                    </div>               
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span>&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <center>
+                                        <div id="administradoresA"></div>
+                                    </center>
+                                    <div class="float-right">
+                                        <button type="submit" class="btn btn-info" data-dismiss="modal">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
        
 

@@ -325,159 +325,159 @@
                         <div style="width: 100%;" id="vistaAdminRoot">
                             <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                 <div class="card-body p-0">
-                                            <span class="text-info text-uppercase font-size-12 font-weight-bold">Usuarios administradores</span>
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12">
-                                                    <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAdmin" style="
-                                                        border-radius: 10px;
-                                                        color: white;
-                                                        height: 35px;
-                                                        margin-bottom: 5px;
-                                                        margin-top: 5px;
-                                                        float: right;">
-                                                        <span class="PalabraEditarPago ">Nuevo Administrador</span>
-                                                        <center>
-                                                            <span class="PalabraEditarPago2 ">
-                                                                <i data-feather="plus" class="iconosMetaforas2"></i>
-                                                            </span>
-                                                        </center>
-                                                    </a>
-                                                </div>
+                                        <span class="text-info text-uppercase font-size-12 font-weight-bold">Usuarios administradores</span>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAdmin" style="
+                                                    border-radius: 10px;
+                                                    color: white;
+                                                    height: 35px;
+                                                    margin-bottom: 5px;
+                                                    margin-top: 5px;
+                                                    float: right;">
+                                                    <span class="PalabraEditarPago ">Nuevo Administrador</span>
+                                                    <center>
+                                                        <span class="PalabraEditarPago2 ">
+                                                            <i data-feather="plus" class="iconosMetaforas2"></i>
+                                                        </span>
+                                                    </center>
+                                                </a>
                                             </div>
+                                        </div>
 
-                                        <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
-                                            <thead>
-                                                <tr class="bg-primary text-white" id="th2" style="display: none">
-                                                    <th>
-                                                        <span class="PalabraEditarPago">Nombres</span>
-                                                        <span class="PalabraEditarPago2">N</span>
-                                                    </th>
-                                                    <th>
-                                                        <span class="PalabraEditarPago">Rut</span>
-                                                        <span class="PalabraEditarPago2">R</span>
-                                                    </th>
-                                                    <th colspan="2">
-                                                        <center>
-                                                            <span class="PalabraEditarPago">Opciones</span>
-                                                            <span class="PalabraEditarPago2">O</span>
-                                                        </center>
-                                                    </th>
-                                                    <th>
-                                                        <span class="PalabraEditarPago">Status</span>
-                                                        <span class="PalabraEditarPago2">S</span>
-                                                    </th>
+                                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                                        <thead>
+                                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                                                <th>
+                                                    <span class="PalabraEditarPago">Nombres</span>
+                                                    <span class="PalabraEditarPago2">N</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Rut</span>
+                                                    <span class="PalabraEditarPago2">R</span>
+                                                </th>
+                                                <th colspan="2">
+                                                    <center>
+                                                        <span class="PalabraEditarPago">Opciones</span>
+                                                        <span class="PalabraEditarPago2">O</span>
+                                                    </center>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Status</span>
+                                                    <span class="PalabraEditarPago2">S</span>
+                                                </th>
+                                            </tr>
+                                            <tr class="bg-info text-white" id="th1">
+                                                <th>
+                                                    <span class="PalabraEditarPago">Nombres</span>
+                                                    <span class="PalabraEditarPago2">N</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Rut</span>
+                                                    <span class="PalabraEditarPago2">R</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Email</span>
+                                                    <span class="PalabraEditarPago2">@</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Registrado el</span>
+                                                    <span class="PalabraEditarPago2">R</span>
+                                                </th>
+                                                <th>
+                                                    <span class="PalabraEditarPago">Status</span>
+                                                    <span class="PalabraEditarPago2">S</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($admin as $key)
+                                                <tr id="vista1-{{$key->id}}">
+
+                                                    <td style="position: all;">{{$key->name}}</td>
+                                                    <td style="position: all;">{{$key->rut}}</td>
+                                                    <td style="position: all;">{{$key->email}}</td>
+                                                    <td style="position: all;">{{$key->created_at}}</td>
+                                                     @if($key->status == 'activo')
+                                                        <td style="position: all;">
+                                                                <span class="tituloTabla text-success"><strong>Activo</strong></span>
+                                                                <span class="tituloTabla2 text-success"><strong>A</strong></span>
+                                                        </td>
+                                                    @else
+                                                        <td style="position: all;">
+                                                                <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
+                                                                <span class="tituloTabla2 text-danger"><strong>I</strong></span>
+                                                        </td>
+                                                    @endif
                                                 </tr>
-                                                <tr class="bg-info text-white" id="th1">
-                                                    <th>
-                                                        <span class="PalabraEditarPago">Nombres</span>
-                                                        <span class="PalabraEditarPago2">N</span>
-                                                    </th>
-                                                    <th>
-                                                        <span class="PalabraEditarPago">Rut</span>
-                                                        <span class="PalabraEditarPago2">R</span>
-                                                    </th>
-                                                    <th>
-                                                        <span class="PalabraEditarPago">Email</span>
-                                                        <span class="PalabraEditarPago2">@</span>
-                                                    </th>
-                                                    <th>
-                                                        <span class="PalabraEditarPago">Registrado el</span>
-                                                        <span class="PalabraEditarPago2">R</span>
-                                                    </th>
-                                                    <th>
-                                                        <span class="PalabraEditarPago">Status</span>
-                                                        <span class="PalabraEditarPago2">S</span>
-                                                    </th>
+                                                <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                                    <td width="10">
+                                                        <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                                            <span class="PalabraEditarPago ">Regresar</span>
+                                                            <center>
+                                                                <span class="PalabraEditarPago2 ">
+                                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                                                </span>
+                                                            </center>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{$key->name}}</span>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <span>{{$key->rut}}</span>
+                                                    </td>
+                                                    <td style="display: none"></td>
+                                                    <td align="center" colspan="2">
+                                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" data-toggle="modal" data-target="#editarResidente" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}')">
+                                                            <span class="PalabraEditarPago ">Editar</span>
+                                                            <center>
+                                                                <span class="PalabraEditarPago2 ">
+                                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                                </span>
+                                                            </center>
+                                                        </a>
+
+                                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;"data-toggle="modal" data-target="#eliminarResidente" onclick="Eliminar('{{$key->id}}')">
+                                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                                            <center>
+                                                                <span class="PalabraEditarPago2 ">
+                                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                                </span>
+                                                            </center>
+                                                        </a>
+                                                    </td>
+                                                    @if($key->status == 'activo')
+                                                        <td style="position: all;">
+                                                                <span class="tituloTabla text-success"><strong>Activo</strong></span>
+                                                                <span class="tituloTabla2 text-success"><strong>A</strong></span>
+                                                        </td>
+                                                    @else
+                                                        <td style="position: all;">
+                                                                <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
+                                                                <span class="tituloTabla2 text-danger"><strong>I</strong></span>
+                                                        </td>
+                                                    @endif
+
+
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($admin as $key)
-                                                    <tr id="vista1-{{$key->id}}">
-
-                                                        <td style="position: all;">{{$key->name}}</td>
-                                                        <td style="position: all;">{{$key->rut}}</td>
-                                                        <td style="position: all;">{{$key->email}}</td>
-                                                        <td style="position: all;">{{$key->created_at}}</td>
-                                                         @if($key->status == 'activo')
-                                                            <td style="position: all;">
-                                                                    <span class="tituloTabla text-success"><strong>Activo</strong></span>
-                                                                    <span class="tituloTabla2 text-success"><strong>A</strong></span>
-                                                            </td>
-                                                        @else
-                                                            <td style="position: all;">
-                                                                    <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
-                                                                    <span class="tituloTabla2 text-danger"><strong>I</strong></span>
-                                                            </td>
-                                                        @endif
-                                                    </tr>
-                                                    <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
-                                                        <td width="10">
-                                                            <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
-                                                                <span class="PalabraEditarPago ">Regresar</span>
-                                                                <center>
-                                                                    <span class="PalabraEditarPago2 ">
-                                                                        <i data-feather="arrow-left" class="iconosMetaforas2"></i>
-                                                                    </span>
-                                                                </center>
-                                                            </button>
-                                                        </td>
-                                                        <td>
-                                                            <span>{{$key->name}}</span>
-                                                        </td>
-                                                        <td>
-                                                            
-                                                            <span>{{$key->rut}}</span>
-                                                        </td>
-                                                        <td style="display: none"></td>
-                                                        <td align="center" colspan="2">
-                                                            <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" data-toggle="modal" data-target="#editarResidente" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}')">
-                                                                <span class="PalabraEditarPago ">Editar</span>
-                                                                <center>
-                                                                    <span class="PalabraEditarPago2 ">
-                                                                        <i data-feather="edit" class="iconosMetaforas2"></i>
-                                                                    </span>
-                                                                </center>
-                                                            </a>
-
-                                                            <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;"data-toggle="modal" data-target="#eliminarResidente" onclick="Eliminar('{{$key->id}}')">
-                                                                <span class="PalabraEditarPago ">Eliminar</span>
-                                                                <center>
-                                                                    <span class="PalabraEditarPago2 ">
-                                                                        <i data-feather="trash" class="iconosMetaforas2"></i>
-                                                                    </span>
-                                                                </center>
-                                                            </a>
-                                                        </td>
-                                                        @if($key->status == 'activo')
-                                                            <td style="position: all;">
-                                                                    <span class="tituloTabla text-success"><strong>Activo</strong></span>
-                                                                    <span class="tituloTabla2 text-success"><strong>A</strong></span>
-                                                            </td>
-                                                        @else
-                                                            <td style="position: all;">
-                                                                    <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
-                                                                    <span class="tituloTabla2 text-danger"><strong>I</strong></span>
-                                                            </td>
-                                                        @endif
-
-
-                                                    </tr>
-                                                <!-- <tr style="display: none;">
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr> -->
-                                                @endforeach()
-                                            </tbody>
-                                        </table>
+                                            <!-- <tr style="display: none;">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr> -->
+                                            @endforeach()
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="col-md-4">
-                        <div style="margin-top: -30px; width: 100%;" id="anuncioRoot">
+                        <div style="margin-top: -30px; margin-left: -20px; width: auto;" id="anuncioRoot">
                             <table class="table table-striped">
                                 <thead>
                                     <th>
@@ -494,12 +494,16 @@
                                     @foreach($anuncios as $key)
                                         <tr style="background-color: white;">
                                             <td align="center">
-                                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
-                                                    x
+                                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="VerAdminAsignado('{{$key->id}}')" class="btn btn-info btn-sm">
+                                                    a
                                                 </a>
-                                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px; float: right;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
                                                     e
                                                 </a>
+                                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
+                                                    x
+                                                </a>
+
                                                 <div onclick="window.open('{{$key->link}}', '_blank');">
                                                     
                                                     <span class="text-dark"><strong>{{$key->titulo}}</strong></span>
@@ -759,168 +763,175 @@
     </form>
 
      {!! Form::open(['route' => ['anuncios.update',1], 'enctype' => 'multipart/form-data', 'method' => 'PUT', 'name' => 'editar_anunc', 'id' => 'editar_anunc', 'data-parsley-validate']) !!}
-            @csrf
-            <div class="modal fade" id="editarAnuncio" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Editar anuncio</h4>                
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
+        @csrf
+        <div class="modal fade" id="editarAnuncio" role="dialog">
+            <div class="modal-dialog modals-default">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Editar anuncio</h4>                
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Título del anuncio</label>
+                                    <input type="text" id="tituloAnunE" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                </div>
+                            </div>
+                       
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Link</label>
+                                    <input type="url" id="urlAnunE" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Descripción</label>
+                                    <textarea id="descripAnunE" placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Imagen</label>
+                                    <div id="mostrarImagenEditar" align="center"></div>
+                                    <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" class="form-control" name="id_anuncio" required id="idAnuncioE">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success" >Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
+
+    <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal fade" id="crearAnuncio" role="dialog">
+            <div class="modal-dialog modals-default">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Nuevo anuncio</h4>                
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <center>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Seleccionar admin</label> 
+                                        <div class="">                                                                                
+                                            <input type="checkbox" name="admins_todos" onchange="seleccionar_todos(this)" id="admins_todos"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
+                                            <label for="admins_todos">Seleccionar todos</label>
+                                        </div>
+                                        <select name="admins[]" id="admins" class="form-control select2 border border-default" multiple="multiple" >
+                                            <option value="">Seleccione admins...</option>
+                                            @foreach($users_admin as $key)
+                                                <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
+                                            @endforeach
+                                            <option value="10">prueba</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Título del anuncio</label>
-                                        <input type="text" id="tituloAnunE" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                        <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
                                     </div>
-                                </div>
-                           
+                                </div>                                                       
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Link</label>
-                                        <input type="url" id="urlAnunE" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                        <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Descripción</label>
-                                        <textarea id="descripAnunE" placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                        <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Imagen</label>
-                                        <div id="mostrarImagenEditar" align="center"></div>
-                                        <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
+                                        <div class="alert alert-primary" role="alert">
+                                            <p><strong>Recordar que:</strong><br>
+                                            - La imagen no debe exceder los 800 KB de tamaño<br>
+                                            - La imagen no debe tener una anchura mayor a 1024 kb<br>
+                                            - La imagen no debe tener una altura mayor a 800 kb</p>
+                                        </div>
+                                        <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" class="form-control" name="id_anuncio" required id="idAnuncioE">
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-success" >Editar</button>
-                            </div>
+                        </center>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success" >Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        {!! Form::close() !!}
+        </div>
+    </form>
 
-        <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="modal fade" id="crearAnuncio" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Nuevo anuncio</h4>                
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Seleccionar admin</label> 
-                                            <div class="">                                                                                
-                                                <input type="checkbox" name="admins_todos" onchange="seleccionar_todos(this)" id="admins_todos"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
-                                                <label for="admins_todos">Seleccionar todos</label>
-                                            </div>
-                                            <select name="admins[]" id="admins" class="form-control select2 border border-default" multiple="multiple" >
-                                                <option value="">Seleccione admins...</option>
-                                                @foreach($users_admin as $key)
-                                                <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
-                                                @endforeach
-                                                <option value="10">prueba</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
+    {!! Form::open(['route' => ['anuncios.destroy',1033], 'method' => 'DELETE']) !!}
+        @csrf
+        <div class="modal fade" id="eliminarAnuncio" role="dialog">
+            <div class="modal-dialog modals-default">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Eliminar anuncio</h4>                
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="id" required id="idAnuncio">
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Título del anuncio</label>
-                                            <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
-                                        </div>
-                                    </div>                                                       
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Link</label>
-                                            <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Descripción</label>
-                                            <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Imagen</label>
-                                            <div class="alert alert-primary" role="alert">
-                                                <p><strong>Recordar que:</strong><br>
-                                                - La imagen no debe exceder los 800 KB de tamaño<br>
-                                                - La imagen no debe tener una anchura mayor a 1024 kb<br>
-                                                - La imagen no debe tener una altura mayor a 800 kb</p>
-                                            </div>
-                                            <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </center>
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-success" >Guardar</button>
                             </div>
+                        </div>
+
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-danger" >Eliminar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    {!! Form::close() !!}
+
+    
 
 
-        {!! Form::open(['route' => ['anuncios.destroy',1033], 'method' => 'DELETE']) !!}
-            @csrf
-            <div class="modal fade" id="eliminarAnuncio" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Eliminar anuncio</h4>                
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" name="id" required id="idAnuncio">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-danger" >Eliminar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
+
+
 @include('root.modales.crearAdmin')
 @include('root.modales.eliminarAdmin')
 @include('root.modales.editarAdmin')
