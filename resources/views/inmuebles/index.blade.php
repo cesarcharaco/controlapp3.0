@@ -141,7 +141,7 @@
                         <td colspan="2"></td>
                     </tr>
                     <tr class="text-white" id="th1" style="background-color: #CB8C4D;">
-                        <th></th>
+                        <th>#</th>
                         <th>
                             <span class="tituloTabla">Idem</span>
                             <span class="tituloTabla2">I</span>
@@ -176,11 +176,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $num=0 @endphp
                     @foreach($inmuebles as $key)
                         <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                            <td align="center">
-                                
-                            </td>
+                            <td align="center">{{$num=$num+1}}</td>
                             <td style="position: all;">{{$key->idem}}</td>
                             <td style="position: all;">{{$key->tipo}}</td>
                             <!-- <td>Si</td> -->

@@ -144,7 +144,7 @@
                             <td colspan="3"></td>
                         </tr>
                         <tr class="text-white" id="th1" style="background-color: #2d572c !important;">
-                            <th width="10"></th>
+                            <th width="10">#</th>
                             <th>
                                 <span class="PalabraEditarPago">Nombres</span>
                                 <span class="PalabraEditarPago2">N</span>
@@ -183,9 +183,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $num=0 @endphp
                         @foreach($residentes as $key)
                             <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                                <td width="10"></td>
+                                <td align="center">{{$num=$num+1}}</td>
                                 <td>{{$key->nombres}} {{$key->apellidos}}</td>
                                 <td>{{$key->rut}}</td>
                                 <td>{{$key->usuario->email}}</td>

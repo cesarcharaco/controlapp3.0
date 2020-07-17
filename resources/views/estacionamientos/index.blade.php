@@ -143,7 +143,7 @@
                         <td colspan="2"></td>
                     </tr>
                     <tr class="text-white" id="th1" style="background-color: #cccc00 ;">
-                        <th></th>
+                        <th>#</th>
                         <th colspan="2">
                             <span class="tituloTabla">Idem</span>
                             <span class="tituloTabla2">I</span>
@@ -170,11 +170,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $num=0 @endphp
                     @foreach($estacionamientos as $key)
                         <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                            <td align="center">
-                               
-                            </td>
+                            <td align="center">{{$num=$num+1}}</td>
                             <th colspan="2">{{$key->idem}}</th>
                             <td style="display: none"></td>
                             @if(\Auth::user()->tipo_usuario == 'En Uso')

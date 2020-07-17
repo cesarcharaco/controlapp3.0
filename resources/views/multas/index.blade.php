@@ -180,7 +180,7 @@
                             </th>
                         </tr>
                         <tr class="text-white" id="th1" style="background-color: #ff3e36 !important;">
-                            <th></th>
+                            <th>#</th>
                             <th>
                                 <span class="PalabraEditarPago" align="center">Motivo</span>
                                 <span class="PalabraEditarPago2" align="center">M</span>
@@ -204,10 +204,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $num=0 @endphp
                         @if(\Auth::user()->tipo_usuario == 'Admin')
                             @foreach($mr as $key)
                                 <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                                    <td></td>
+                                    <td align="center">{{$num=$num+1}}</td>
                                     <td>{{$key->motivo}}</td>
                                     <td>{{$key->observacion}}</td>
                                     <td>{{$key->monto}}</td>
