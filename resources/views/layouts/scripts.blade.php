@@ -803,7 +803,7 @@
 						                        '</div>'+
 						                    '</div>'+
 						                    '<div class="col-md-4">'+
-						                    	'<p class="text-warning"><strong>' +data2[i].status+'</strong></p>'+
+						                    	'<p class="text-warning"><strong>' +data2[i].status+'</strong> | CÓDIGO TRANS.: <b>'+data2[i].referencia+'</b></p>'+
 						                    '</div>'+
 						                    '<div class="col-md-4">'+
 						                    	'<div class="form-group">'+
@@ -954,7 +954,7 @@
 					                        '</div>'+
 					                    '</div>'+
 					                    '<div class="col-md-4">'+
-					                    	'<p class="text-success">' +data2[i].status+'</p>'+
+					                    	'<p class="text-success">' +data2[i].status+'</p> CÓDIGO TRANS.: <b>'+data2[i].referencia+'</b>'+
 					                    '</div>'+
 					                    '<div class="col-md-4">'+
 					                    	'<div class="form-group">'+

@@ -329,7 +329,7 @@ class ResidentesController extends Controller
         ->where('inmuebles.id',$id_inmueble)
         ->where('mensualidades.anio',$anio)
         ->where('residentes_has_inmuebles.status','En Uso')
-        ->select('mensualidades.mes','mensualidades.id','pagos.status','residentes_has_inmuebles.status AS alquiler_status')
+        ->select('mensualidades.mes','mensualidades.id','pagos.status','pagos.referencia','residentes_has_inmuebles.status AS alquiler_status')
         ->get();
         $limite_inf=count($consulta)-13;
         if (count($consulta)>12) {
@@ -341,7 +341,7 @@ class ResidentesController extends Controller
             ->where('inmuebles.id',$id_inmueble)
             ->where('mensualidades.anio',$anio)
             ->where('residentes_has_inmuebles.status','En Uso')
-            ->select('mensualidades.mes','mensualidades.id','pagos.status','residentes_has_inmuebles.status AS alquiler_status')
+            ->select('mensualidades.mes','mensualidades.id','pagos.status','pagos.referencia','residentes_has_inmuebles.status AS alquiler_status')
             ->offset($limite_inf)
             ->limit(12)
             ->get();
@@ -354,7 +354,7 @@ class ResidentesController extends Controller
             ->where('inmuebles.id',$id_inmueble)
             ->where('mensualidades.anio',$anio)
             ->where('residentes_has_inmuebles.status','En Uso')
-            ->select('mensualidades.mes','mensualidades.id','pagos.status','residentes_has_inmuebles.status AS alquiler_status')
+            ->select('mensualidades.mes','mensualidades.id','pagos.status','pagos.referencia','residentes_has_inmuebles.status AS alquiler_status')
             ->get();
         }
         
@@ -524,6 +524,11 @@ class ResidentesController extends Controller
                         $pago=\App\Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
                             $status_pago[$i][0]=meses($key2->mes);
                             $status_pago[$i][1]=$pago->status;
+                            if(!is_null($pago->referencia)){
+                            $status_pago[$i][2]=$pago->referencia;
+                            }else{
+                                $status_pago[$i][2]="";
+                            }
                         
                     }
                     $i++;
@@ -552,7 +557,11 @@ class ResidentesController extends Controller
                         $pago=Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
                             $status_pago[$i][0]=meses($pago->mensualidad->mes);
                             $status_pago[$i][1]=$pago->status;
-                        
+                            if(!is_null($pago->referencia)){
+                            $status_pago[$i][2]=$pago->referencia;
+                            }else{
+                                $status_pago[$i][2]="";
+                            }
                     }
                     $i++;
                 }

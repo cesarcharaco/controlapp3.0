@@ -8,10 +8,15 @@ class Pagos extends Model
 {
     protected $table='pagos';
 
-	protected $fillable=['id','id_mensualidad','status'];
+	protected $fillable=['id','id_mensualidad','status','referencia'];
 
 	public function mensualidad()
 	{
 		return $this->belongsTo('App\Mensualidades','id_mensualidad');
+	}
+
+	public function referencias()
+	{
+		return $this->hasMany('App\Referencias','id_pago','id');
 	}
 }

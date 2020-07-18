@@ -12,6 +12,7 @@ use App\PagosE;
 use App\MensualidadE;
 use App\Mensualidades;
 use App\Reportes;
+use App\Referencias;
 use Illuminate\Http\Request;
 
 class PagosController extends Controller
@@ -81,7 +82,9 @@ class PagosController extends Controller
                                             } else {
                                                 $pagos->status="Cancelado";
                                             }
+                                            $pagos->referencia=$request->referencia;
                                             $pagos->save();
+
                                             $total+=$key2->monto;
                                             $factura.="Inmueble: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
                                         }
@@ -151,7 +154,7 @@ class PagosController extends Controller
                                         //echo $key2->id."<br>";
                                         $pagos=Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
                                         $pagos->status="Cancelado";
-                                        
+                                        $pagos->referencia=$request->referencia;
                                         $pagos->save();
                                         $total+=$key2->monto;
                                         $factura.="Inmueble: ".$key->idem." Mes: ".$this->mostrar_mes($request->mes[$i])." Monto: ".$key2->monto."<br>";
@@ -215,6 +218,7 @@ class PagosController extends Controller
                         if($key->pivot->id_residente==$residente->id){
                             //dd("asas");
                             $key->pivot->status="Pagada";
+                            $key->pivot->referencia=$request->referencia;
                             $key->pivot->save();
                             $factura.="Multa o Recarga: ".$mr->motivo.", Monto: ".$mr->monto." status:Pagada<br>";
                             $total+=$mr->monto;
@@ -535,16 +539,5 @@ class PagosController extends Controller
         }
     }
 
-
-    public function inmuebles_residente($id)
-    {
-        # code...
-    }
-
-
-    public function pagosConfirmar($id)
-    {
-        
-    }
 
 }

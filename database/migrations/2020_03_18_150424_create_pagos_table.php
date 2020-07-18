@@ -17,6 +17,7 @@ class CreatePagosTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_mensualidad');
             $table->enum('status',['Cancelado','Pendiente','No aplica','Por Confirmar'])->default('Pendiente');
+            $table->string('referencia')->nullable();
 
             $table->foreign('id_mensualidad')->references('id')->on('mensualidades');
             $table->timestamps();

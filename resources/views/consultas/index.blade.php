@@ -73,7 +73,7 @@
             </div>
         </div>
         @include('flash::message')
-        <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+        <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: block;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+        <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: block;">
             <div class="card-body">
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                     <thead>
@@ -107,8 +107,11 @@
                                 @if ($status_pago[$i][1] == 'Pendiente') 
                                         <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong></td>
                                 @endif
+                                @if ($status_pago[$i][1] == 'Por Confirmar') 
+                                        <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong> | CÓDIGO DE TRANS.: <b>{{ $status_pago[$i][2] }}</b></td>
+                                @endif
                                 @if ($status_pago[$i][1]== 'Cancelado')
-                                        <td class="text-success"><strong>{{ $status_pago[$i][1] }}</strong></td>
+                                        <td class="text-success"><strong>{{ $status_pago[$i][1] }}</strong></b></td>
                                 @endif
                                 @if ($status_pago[$i][1]== 'No aplica')
                                         <td class="text-danger"><strong>{{ $status_pago[$i][1] }}</strong></td>
@@ -137,11 +140,13 @@
                     for (var i = 0; i < data.length; i++) {
                         var status = data[i][1];
                         if (status == 'Pendiente') {
-                            var status_color = '<div class="text-warning">'+status+'</div>';
+                            var status_color = '<div class="text-warning"><b>'+status+'</b></div>';
                         }else if(status== 'Cancelado'){
-                            var status_color = '<div class="text-success">'+status+'</div>';
+                            var status_color = '<div class="text-success"><b>'+status+'</b></div>';
+                        }else if(status == 'Por Confirmar'){
+                            var status_color = '<div class="text-warning"><b>'+status+'</b> | CÓDIGO DE TRANS.: <b>'+data[i][2]+'</b></div>';
                         }else{
-                            var status_color = '<div class="text-danger">'+status+'</div>';
+                            var status_color = '<div class="text-danger"><b>'+status+'</b></div>';
                         }
                         $('#muestraConsultas').append(
                             '<tr>'+

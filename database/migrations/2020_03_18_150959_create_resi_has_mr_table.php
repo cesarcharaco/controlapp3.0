@@ -19,6 +19,7 @@ class CreateResiHasMrTable extends Migration
             $table->unsignedBigInteger('id_mr');
             $table->integer('mes');
             $table->enum('status',['Enviada','Pagada','Por Confirmar'])->default('Enviada');
+            $table->string('referencia')->nullable();
 
             $table->foreign('id_residente')->references('id')->on('residentes')->onDelete('cascade');
             $table->foreign('id_mr')->references('id')->on('multas_recargas')->onDelete('cascade');
