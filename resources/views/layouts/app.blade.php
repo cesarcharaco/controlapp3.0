@@ -16,6 +16,37 @@
     @toastr_css
 
         <style type="text/css">
+
+            .botonParpadeante {
+  
+              animation-name: parpadeo;
+              animation-duration: 3s;
+              animation-timing-function: linear;
+              animation-iteration-count: infinite;
+
+              -webkit-animation-name:parpadeo;
+              -webkit-animation-duration: 3s;
+              -webkit-animation-timing-function: linear;
+              -webkit-animation-iteration-count: infinite;
+            }
+
+            @-moz-keyframes parpadeo{  
+              0% { opacity: 1.0; }
+              50% { opacity: 0.0; }
+              100% { opacity: 1.0; }
+            }
+
+            @-webkit-keyframes parpadeo {  
+              0% { opacity: 1.0; }
+              50% { opacity: 0.0; }
+               100% { opacity: 1.0; }
+            }
+
+            @keyframes parpadeo {  
+              0% { opacity: 1.0; }
+               50% { opacity: 0.0; }
+              100% { opacity: 1.0; }
+            }
         .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
         {
             display: none;
@@ -791,6 +822,40 @@
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
                                                 <input type="hidden" name="id_residente" value="{{ \Auth::user()->id }}">
                                                 <input type="hidden" id="total" class="form-control" name="total">
+                                                <button type="submit" class="btn btn-danger" style="border-radius: 50px;">Pagar</i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form action="{{ route('pagar.mr') }}" method="POST">
+                                @csrf
+                                <div class="modal fade" id="pagarMultasModal2" role="dialog">
+                                    <div class="modal-dialog modals-default">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Pagar Multas/Recargas</h4>
+                                                <div id="CargandoMultasResi" style="display: none;">
+                                                    <div class="spinner-border text-warning m-2" role="status">
+                                                        <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <center>
+                                                    <p>Estos residentes han confirmado un pago a esta multa/Recarga</p>
+                                                    <div id="VerConfirmarPagoR"></div>
+                                                    <div id="VerConfirmarPagoR2"></div>
+                                                </center>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="hidden" name="opcion" id="opcion" value="1">
+                                                <input type="hidden" name="id_residente" id="idResidenteConfirmar">
+                                                <input type="hidden" name="id_multa" id="idMultaConfirmar">
                                                 <button type="submit" class="btn btn-danger" style="border-radius: 50px;">Pagar</i></button>
                                             </div>
                                         </div>

@@ -73,7 +73,7 @@
             </div>
         </div>
         @include('flash::message')
-        <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: block;">
+        <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: block;">
+        <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="card-body">
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                     <thead>
@@ -106,14 +106,11 @@
                                 <td>{{ $status_pago[$i][0] }}</td>
                                 @if ($status_pago[$i][1] == 'Pendiente') 
                                         <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong></td>
-                                @endif
-                                @if ($status_pago[$i][1] == 'Por Confirmar') 
+                                @elseif ($status_pago[$i][1] == 'Por Confirmar') 
                                         <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong> | CÓDIGO DE TRANS.: <b>{{ $status_pago[$i][2] }}</b></td>
-                                @endif
-                                @if ($status_pago[$i][1]== 'Cancelado')
+                                @elseif ($status_pago[$i][1]== 'Cancelado')
                                         <td class="text-success"><strong>{{ $status_pago[$i][1] }}</strong></b></td>
-                                @endif
-                                @if ($status_pago[$i][1]== 'No aplica')
+                                @else ($status_pago[$i][1]== 'No aplica')
                                         <td class="text-danger"><strong>{{ $status_pago[$i][1] }}</strong></td>
                                 @endif
                             </tr>

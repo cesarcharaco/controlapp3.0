@@ -288,8 +288,8 @@
                                         </td>
                                     @else
                                         <td style="position: all;">
-                                                <span class="tituloTabla text-warning"><strong>Por Confirmar</strong></span>
-                                                <span class="tituloTabla2 text-warning"><strong>P/C</strong></span>
+                                            <button class="botonParpadeante btn btn-warning tituloTabla" onclick="PagarMultasAdmin('{{ $key->id }}')"><strong>Por Confirmar</strong></button>
+                                            <button class="botonParpadeante btn btn-warning tituloTabla2" onclick="PagarMultasAdmin('{{ $key->id }}')"><strong>P/C</strong></button>
                                         </td>
                                     @endif
                                     

@@ -895,6 +895,69 @@
 		});
 	}
 
+	function PagarMultasAdmin(id_multa){
+		$('#VerConfirmarPagoR').empty();
+		$('#VerConfirmarPagoR2').empty();
+		$('#CargandoMultasResi').css('display','block');
+		$('#pagarMultasModal2').modal('show');
+
+		$.get("residentes_confirmar/"+id_multa+"/buscar", function(data) {
+		})
+		.done(function(data) {
+			if(data.length>0){
+				$('#VerConfirmarPagoR').append(
+					'<select class="form-control select2" id="SelectConfirmarPagoR" onchange="selectResiMulta('+id_multa+',this.value)" name="id_residente">'+
+					'</select>'
+				);
+
+
+				$('#SelectConfirmarPagoR').append('<option disabled selected>Seleccione residente</option>');
+				for (var i = 0; i < data.length; i++) {
+					$('#SelectConfirmarPagoR').append(
+						'<option value="'+data[i].id+'">'+data[i].nombres+' '+data[i].apellidos+' - '+data[i].rut+'</option>'
+					);
+				}
+			}
+			else{
+				alert('nada');
+			}
+		$('#CargandoMultasResi').css('display','none');
+		});
+	}
+
+	function selectResiMulta(id_multa,id_residente){
+		$('#idResidenteConfirmar').val(id_residente);
+		$('#idMultaConfirmar').val(id_multa);
+		$('#VerConfirmarPagoR2').append(
+			'<br><div class="row">'+
+                '<div class="col-md-12">'+
+                    '<div class="form-group">'+
+                        '<label>Referencia</label>'+
+                        '<input type="text" class="form-control" name="referencia" placeholder="Ingrese el número de Referencia" required>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'
+		);
+		$('#VerConfirmarPagoR2').append(
+			'<br><div class="row">'+
+                '<div class="col-md-5">'+
+                    '<center>'+
+                    	'<h3 class="text-warning">Por Confirmar</h3>'+
+                    '</center>'+
+                '</div>'+
+                '<div class="col-md-2">'+
+                    '<center>'+
+                    	'<h3>></h3>'+
+                    '</center>'+
+                '</div>'+
+                '<div class="col-md-5">'+
+                    '<center>'+
+                    	'<h3 class="text-success">Pagado</h3>'+
+                    '</center>'+
+                '</div>'+
+            '</div>'
+		);
+	}
 	//------------------------FIN VISTA RESIDENTES---------------------------------
 	function AnuncioCreate(){
 		$('#crearAnuncio').modal('show');
@@ -918,7 +981,6 @@
 
 	function pagosPorComprobar(id_residente) {
         $('#PagoConfir').modal('show');
-  //       $('#MesComprobResi').empty();
 		$('#muestraMesesAComprob').empty();
 		$('#muestraMesesAComprob2').empty();
 		$('#CargandoPagosComprobar').css('display','block');

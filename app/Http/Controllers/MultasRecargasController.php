@@ -33,9 +33,13 @@ class MultasRecargasController extends Controller
 
         // dd(count($asignacion));
 
+
+
+
+
         $mr=MultasRecargas::where('id_admin',$id_admin)->get();
 
-        return view('multas.index',compact('mr','asignacion'));
+        return view('multas.index',compact('mr','asignacion','id_admin'));
     }
 
     public function buscar_multa($id_multa)
@@ -280,6 +284,16 @@ class MultasRecargasController extends Controller
         ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
         ->where('resi_has_mr.id_residente',$id)
         ->select('multas_recargas.*','resi_has_mr.mes','resi_has_mr.status')
+        ->get();
+    }
+
+    function residentes_confirmar($id){
+        return $multas=\DB::table('multas_recargas')
+        ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
+        ->where('resi_has_mr.id_mr',$id)
+        ->where('resi_has_mr.status','Por Confirmar')
+        ->select('residentes.*')
         ->get();
     }
 

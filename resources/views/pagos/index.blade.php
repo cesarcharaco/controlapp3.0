@@ -1319,7 +1319,8 @@
                     }else if(data[i].status == 'Por Confirmar'){
                         $('.inmuebleBody'+id_inmueble).append(
                             '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
-                            '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'
+                            // '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'
+                            '<td align="center" class="text-warning"><strong>' +data[i].status+'</strong><br> CÓDIGO TRANS.: <b>'+data[i].referencia+'</b></td>'
                         );
                     }else{
                         $('.inmuebleBody'+id_inmueble).append(

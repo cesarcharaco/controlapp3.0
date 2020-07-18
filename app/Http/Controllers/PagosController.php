@@ -209,31 +209,55 @@ class PagosController extends Controller
         //dd($request->all());
         $total=0;
         $factura="";
+        $statusP="";
         $residente=Residentes::where('id_usuario',$request->id_residente)->first();
+            if(is_null($residente)){
+                $residente=Residentes::find($request->id_residente)->first();
+            }
         if(is_null($request->id_mensMulta)==false){
-                for ($i=0; $i < count($request->id_mensMulta) ; $i++) { 
-                    $mr=MultasRecargas::find($request->id_mensMulta[$i]);
-                    //dd($mr->residentes);
-                    foreach ($mr->residentes as $key) {
-                        if($key->pivot->id_residente==$residente->id){
-                            //dd("asas");
-                            $key->pivot->status="Pagada";
-                            $key->pivot->referencia=$request->referencia;
-                            $key->pivot->save();
-                            $factura.="Multa o Recarga: ".$mr->motivo.", Monto: ".$mr->monto." status:Pagada<br>";
-                            $total+=$mr->monto;
+            for ($i=0; $i < count($request->id_mensMulta) ; $i++) { 
+                $mr=MultasRecargas::find($request->id_mensMulta[$i]);
+                //dd($mr->residentes);
+                foreach ($mr->residentes as $key) {
+                    if($key->pivot->id_residente==$residente->id){
+                        if(\Auth::user()->tipo_usuario == 'Admin'){
+                            $statusP='Pagada';
+                        }else{
+                            $statusP='Por Confirmar';
                         }
+                        $key->pivot->status=$statusP;
+                        $key->pivot->referencia=$request->referencia;
+                        $key->pivot->save();
+                        $factura.="Multa o Recarga: ".$mr->motivo.", Monto: ".$mr->monto." status:Pagada<br>";
+                        $total+=$mr->monto;
                     }
                 }
             }
-            $factura.="<br></br>Total Cancelado: ".$total.", con la referencia: ".$request->referencia."<br>";
-            $reporte=\DB::table('reportes_pagos')->insert([
-                'referencia' => $request->referencia,
-                'reporte' => $factura,
-                'id_residente' => $residente->id
-            ]);
-            toastr()->success('con éxito!!', 'Multas/Recargas Pagadas');
-            return redirect()->back();
+        }else{
+            $mr=MultasRecargas::find($request->id_multa);
+            foreach ($mr->residentes as $key) {
+                if($key->pivot->id_residente==$residente->id){
+                    if(\Auth::user()->tipo_usuario == 'Admin'){
+                        $statusP='Pagada';
+                    }else{
+                        $statusP='Por Confirmar';
+                    }
+                    $key->pivot->status=$statusP;
+                    $key->pivot->referencia=$request->referencia;
+                    $key->pivot->save();
+                    $factura.="Multa o Recarga: ".$mr->motivo.", Monto: ".$mr->monto." status:Pagada<br>";
+                    $total+=$mr->monto;
+                }
+            }
+        }
+        $factura.="<br></br>Total Cancelado: ".$total.", con la referencia: ".$request->referencia."<br>";
+        $reporte=\DB::table('reportes_pagos')->insert([
+            'referencia' => $request->referencia,
+            'reporte' => $factura,
+            'id_residente' => $residente->id
+        ]);
+        toastr()->success('con éxito!!', 'Multas/Recargas Pagadas');
+        return redirect()->back();
     }
     /**
      * Display the specified resource.
