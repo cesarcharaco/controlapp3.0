@@ -570,7 +570,7 @@
                                 '<tr class='+clase+'>'+
                                     '<td align="center"><center>'+data[i].motivo+'</center></td>'+
                                     '<td align="center"><center>'+data[i].monto+'</center></td>'+
-                                    '<td align="center" class="text-success"><center><strong>'+data[i].status+''+referencia+'</strong></center></td>'+
+                                    '<td align="center" class="text-success"><center><strong>'+data[i].status+'</strong>'+referencia+'</center></td>'+
                                 '</tr>'
                             );
                         }else if(data[i].status == 'Por Confirmar'){
@@ -588,7 +588,7 @@
                                 '<tr class='+clase+'>'+
                                     '<td align="center"><center>'+data[i].motivo+'</center></td>'+
                                     '<td align="center"><center>'+data[i].monto+'</center></td>'+
-                                    '<td align="center" class="text-info"><center><strong>'+data[i].status+''+referencia+'</strong></center></td>'+
+                                    '<td align="center" class="text-info"><center><strong>'+data[i].status+'</strong>'+referencia+'</center></td>'+
                                 '</tr>'
                             );
                         }
