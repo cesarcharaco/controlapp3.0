@@ -475,20 +475,24 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <center>
-                            <table class="table dataTable table-curved table-striped tabla-estilo" style="width: 100%;">
-                                <thead>
-                                    <tr class="table-danger text-white">
-                                        <th align="center"><center>Motivo</center></th>
-                                        <th align="center"><center>Fecha</center></th>
-                                        <th align="center"><center>Status</center></th>
-                                        <th align="center"><center>Confirmar</center></th>
-                                </thead>
-                                <tbody id="muestraMesesMultasComprob">
-                                    
-                                </tbody>
-                            </table>
-                        </center>
+                        <div id="ResidenteTienePagosC">
+                            <center>
+                                <table class="table dataTable table-curved table-striped tabla-estilo" style="width: 100%;">
+                                    <thead>
+                                        <tr class="table-danger text-white">
+                                            <th align="center"><center>Motivo</center></th>
+                                            <th align="center"><center>Fecha</center></th>
+                                            <th align="center"><center>Status</center></th>
+                                            <th align="center"><center>Confirmar</center></th>
+                                    </thead>
+                                    <tbody id="muestraMesesMultasComprob">
+                                        
+                                    </tbody>
+                                </table>
+                            </center>
+                        </div>
+                        <div id="ResidenteTienePagosC2">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-warning" >Confirmar</button>  

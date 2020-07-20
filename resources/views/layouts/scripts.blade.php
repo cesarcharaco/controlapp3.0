@@ -1104,6 +1104,7 @@
     }
 
     function multasPorComprobar(id_residente) {
+    	$('#ResidenteTienePagosC').css('display','none');
         $('#PagoConfir').modal('show');
 		$('#muestraMesesMultasComprob').empty();
 		$('#muestraMesesMultasComprob2').empty();
@@ -1118,6 +1119,7 @@
 			var l=0;
 			var k=0;
 			if(data.length>0){
+				$('#ResidenteTienePagosC').css('display','block');
 				for (var i = 0; i < data.length; i++) {
 					if(data[i].tipo == 'Multa'){
 						$('#muestraMesesMultasComprob').append(
@@ -1161,8 +1163,9 @@
 	            $('#muestraMesesMultasComprob').append('<input type="hidden" name="id_residente" value="'+id_residente+'" >');
 	            $('#muestraMesesMultasComprob').append('<input type="hidden" name="opcion" value="3" >');
 			}else{
+				$('#ResidenteTienePagosC').css('display','none');
 				$('#muestraMesesAPagar2').css('display','block');
-				$('#muestraMesesMultasComprob').append('El residente no tiene pagos por confirmar');
+				$('#ResidenteTienePagosC2').append('<h3 align="center">El residente no tiene multas o recargas</h3>');
 			}
 			$('#CargandoPagosComprobar').css('display','none');
 		});
