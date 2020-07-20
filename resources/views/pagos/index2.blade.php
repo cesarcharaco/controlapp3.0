@@ -149,7 +149,13 @@
                                             </a>                                                
                                         </td>
                                         <td>
+                                            <a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente('{{$key->id}}')" class="btn btn-success">
+                                                <span class="palabraVerInmueble text-white">Pagar Multas/Recargas</span>
+                                                <span class="palabraVerInmueble2 text-white">
+                                                    <i data-feather="dollar-sign"></i>
+                                                </span>
 
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach()
@@ -272,10 +278,11 @@
                     <center>
                         <table class="table dataTable table-curved table-striped tabla-estilo" style="width: 100%;">
                             <thead>
-                                <tr class="table-info text-white">
+                                <tr class="bg-info text-white">
                                     <th>Motivo</th>
                                     <th>Montos</th>
                                     <th>Status</th>
+                                </tr>
                             </thead>
                             <tbody id="ver_multas_asignadas">
                                 
@@ -562,7 +569,7 @@
                                 '<tr class='+clase+'>'+
                                     '<td align="center"><center>'+data[i].motivo+'</center></td>'+
                                     '<td align="center"><center>'+data[i].monto+'</center></td>'+
-                                    '<td align="center" class="text-success"><center>'+data[i].status+'</center></td>'+
+                                    '<td align="center" class="text-success"><center><strong>'+data[i].status+'</strong></center></td>'+
                                 '</tr>'
                             );
                         }else if(data[i].status == 'Por Confirmar'){
@@ -580,7 +587,7 @@
                                 '<tr class='+clase+'>'+
                                     '<td align="center"><center>'+data[i].motivo+'</center></td>'+
                                     '<td align="center"><center>'+data[i].monto+'</center></td>'+
-                                    '<td align="center" class="text-info"><center>'+data[i].status+'</center></td>'+
+                                    '<td align="center" class="text-info"><center><strong>'+data[i].status+'</strong></center></td>'+
                                 '</tr>'
                             );
                         }

@@ -779,7 +779,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Multas/Recargas</label>
-                                                                <select name="id_mensMulta[]" class="selectpicker" id="MultasPagarResi" onchange="montoTotalMulta(this.value)">
+                                                                <select class="form-control select2" name="id_mensMulta[]" id="MultasPagarResi" onchange="montoTotalMulta(this.value)">
                                                                     
                                                                 </select>
                                                             </div>
@@ -793,15 +793,27 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="card border border-info shadow p-3 mb-5 bg-white">
-                                                        <div class="row" id="mis_mr">
-                                                            <div class="col-md-12">
-                                                                <table id="mrSeleccionado" class="table tabla-estilo" style="width: 100%;" alt="Max-width 100%">
-                                                                    
-                                                                </table>
+                                                    @if(\Auth::user()->tipo_usuario=="admin")
+                                                        <div class="card border border-info shadow p-3 mb-5 bg-white">
+                                                            <div class="row" id="mis_mr">
+                                                                <div class="col-md-12">
+                                                                    <table id="mrSeleccionado" class="table tabla-estilo" style="width: 100%;" alt="Max-width 100%">
+                                                                        
+                                                                    </table>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @else
+                                                        <div class="card border border-info shadow p-3 mb-5 bg-white">
+                                                            <div class="row" id="mis_mr">
+                                                                <div class="col-md-12">
+                                                                    <table id="mrSeleccionado2" class="table tabla-estilo" style="width: 100%;" alt="Max-width 100%">
+                                                                        
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
 
                                                     <label align="center">Total a Pagar</label>
                                                     <div class="card border border-dark shadow p-1 mb-3 bg-white">

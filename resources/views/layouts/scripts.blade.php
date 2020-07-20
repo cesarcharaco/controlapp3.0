@@ -874,6 +874,7 @@
 		$('#MultasPagarResi').empty();
 		$('#idMultaForm').empty();
 		$('#mrSeleccionado').empty();
+		$('#mrSeleccionado2').empty();
 		$('#id_mensMultaR').empty();
 		 $('#TotalPagar').html(parseInt(0));
 		$('#total').val(0);
@@ -1090,6 +1091,22 @@
                             '</td>'+
                     '</tr>'
                 );
+                $('#mrSeleccionado2').append(
+                    '<tr id="trMulta'+data[0].id+'-2" style="width:100%; position:relative;">'+
+                        '<th style="position:relative;" width="30%">'+
+                            '<div class="'+textcolor+'">'+motivo+'</div>'+
+                        '</th>'+
+                        '<td align="right">'+
+                            '<div class="'+textcolor+'"><strong>'+data[0].tipo +'</strong></div>'+
+                        '</td>'+
+                        '<td align="left">'+
+                            '<div class="'+textcolor+'"><strong>$'+monto+'</strong></div>'+
+                        '</td>'+
+                        '<td>'+
+                            '<button type="button" onclick="borrarMultaT('+data[0].id+','+monto+','+tipo2+')" class="btn btn-danger btn-rounded btn-sm">Borrar</button>'+
+                            '</td>'+
+                    '</tr>'
+                );
 
                 $('#idMultaForm').append('<input type="hidden" name="id_mensMulta[]" id="inputM'+id_multa+'" value="'+id_multa+'">');
                     
@@ -1104,7 +1121,10 @@
     function borrarMultaT(id_multa, monto, tipo) {
         $("#MultasPagarResi option[value=" + id_multa + "]").removeAttr('disabled');
         $("#inputM"+id_multa).remove();
+        $("#inputM"+id_multa+'-2').remove();
         $("#trMulta"+id_multa).remove();
+        $("#trMulta"+id_multa+'-2').remove();
+
         montoTotal(1,monto);
 
         
