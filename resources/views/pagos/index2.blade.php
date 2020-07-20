@@ -151,7 +151,7 @@
                                             <center>
                                                 <a href="#" class="btn btn-success btn-sm" style="border-radius: 5px; width: 100%" onclick="pagarMultasResidente('{{$key->id}}')" >
                                                     <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
-                                                    <span class="PalabraPagoConfirmar">Pagar Multas/Recargas</span>
+                                                    <span class="PalabraPagoConfirmar">Pagar</span>
                                                     <span class="PalabraEditarPago2"><i data-feather="dollar-sign" class="iconosMetaforas2"></i>
                                                     </span>
                                                 </a>
@@ -160,7 +160,7 @@
                                             <center>
                                                 <a href="#" class="btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="multasPorComprobar('{{$key->id}}')">
                                                     <i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
-                                                    <span class="PalabraPagoConfirmar">Multas/Recargas por Confirmar</span>
+                                                    <span class="PalabraPagoConfirmar">Confirmar</span>
                                                     <span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i></span>
                                                 </a>
                                             </center>
