@@ -885,7 +885,7 @@
 			if(data.length){
 				$('#MultasPagarResi').append('<option value="0" selected disabled>Seleccione Multa/Recarga</option>');	
 				for (var i = 0; i < data.length; i++) {
-					if (data[i].status != 'Pagada') {
+					if (data[i].status == 'Enviada') {
 						$('#MultasPagarResi').append('<option class="text-danger" value="'+data[i].id+'">'+data[i].motivo+' -  '+data[i].tipo+' - '+data[i].monto+'  -  '+data[i].anio+'</option>');					
 					}
 				}
@@ -1045,6 +1045,78 @@
 				}else{
 					$('#muestraMesesAPagar2').css('display','block');
 					// $('#muestraMesesAComprob2').append('El residente no tiene pagos por confirmar');
+				}
+
+			});
+			$('#CargandoPagosComprobar').css('display','none');
+		});
+    }
+
+    function multasPorComprobar(id_residente) {
+        $('#PagoConfir').modal('show');
+		$('#muestraMesesMultasComprob').empty();
+		$('#muestraMesesMultasComprob2').empty();
+		$('#CargandoPagosComprobar').css('display','block');
+		var m=f.getMonth();
+
+		$.get("arriendos/"+id_residente+"/buscar_inmuebles2", function(data) {
+		})
+		.done(function(data) {
+			
+			$.get("arriendos/"+data[0].id+"/buscar_inmuebles3",function (data2) {
+			})
+
+
+			.done(function(data2) {
+				var j=0;
+				var l=0;
+				var k=0;
+				if(data2.length>0){
+					for (var i = 0; i < data2.length; i++) {
+						if(data2[i].status == 'Por Confirmar'){
+							j=j+1;
+						}
+						if(j>0){
+
+							if(data2[i].status == 'Por Confirmar'){
+								k++;
+								$('#muestraMesesMultasComprob').append(
+									'<div class="row">'+
+					                    '<div class="col-md-4">'+
+					                        '<div class="form-group">'+
+					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
+					                            '<label>'+mes[i]+ '</label>'+
+					                        '</div>'+
+					                    '</div>'+
+					                    '<div class="col-md-4">'+
+					                    	'<p class="text-success">' +data2[i].status+'</p> CÓDIGO TRANS.: <b>'+data2[i].referencia+'</b>'+
+					                    '</div>'+
+					                    '<div class="col-md-4">'+
+					                    	'<div class="form-group">'+
+												'<div class="mt-3">'+
+		                                            '<div class="custom-control custom-checkbox mb-2">'+
+		                                                '<input type="checkbox"  name="mes[]" value="'+data2[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
+		                                                '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
+		                                            '</div>'+
+		                                        '</div>'+
+		                                    '</div>'+
+					                    '</div>'+
+					                '</div>'
+					            );
+							}else{
+								k=0;
+								l++;
+							}
+						}
+					}//cierre del for
+					if(l == 0 && k == 0){
+						$('#muestraMesesMultasComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
+					}
+		            $('#muestraMesesMultasComprob').append('<input type="hidden" name="id_residente" value="'+id_residente+'" >');
+		            $('#muestraMesesMultasComprob').append('<input type="hidden" name="opcion" value="3" >');
+				}else{
+					$('#muestraMesesAPagar2').css('display','block');
+					// $('#muestraMesesMultasComprob2').append('El residente no tiene pagos por confirmar');
 				}
 
 			});

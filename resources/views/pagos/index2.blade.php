@@ -154,8 +154,16 @@
                                                 <span class="palabraVerInmueble2 text-white">
                                                     <i data-feather="dollar-sign"></i>
                                                 </span>
-
                                             </a>
+                                            <br><br>
+                                            <center>
+                                                <a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="multasPorComprobar('{{$key->id}}')">
+                                                    <i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
+                                                    <span class="PalabraPagoConfirmar">Multas por Confirmar</span>
+                                                    <span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i></span>
+                                                </a>
+                                            </center>
+                                            
                                         </td>
                                     </tr>
                                 @endforeach()
@@ -450,7 +458,36 @@
     
     <!--   -------------------------------------------------------------- RESIDENCIAS   -->
 
-    
+        {!! Form::open(['route' => ['pagos.store'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
+        <div class="modal fade" id="PagoConfir" role="dialog">
+            <div class="modal-dialog modals-default">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Multas por Confirmar del Residente <span id="nombreResidente"></span></h4>
+                        <div id="CargandoPagosComprobar" style="display: none;">
+                            <div class="spinner-border text-warning m-2" role="status">
+                                <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="muestraMesesMultasComprob">
+                                                            
+                        </div>
+                        <div id="muestraMesesMultasComprob2">
+                                                            
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning" >Comprobar</button>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
 
     <!--   -------------------------------------------------------------- ESTACIONAMIENTOS   -->
 
