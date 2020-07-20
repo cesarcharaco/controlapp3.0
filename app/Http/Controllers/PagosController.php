@@ -38,6 +38,7 @@ class PagosController extends Controller
     }
 
     public function pagos_multas(){
+        // dd('asdasdasd');
         $id_admin=id_admin(\Auth::user()->email);
         $residentes=Residentes::where('id_admin',$id_admin)->get();
         $meses=Meses::all();
