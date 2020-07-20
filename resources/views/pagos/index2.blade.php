@@ -559,17 +559,18 @@
                 if(data.length>0){
                     for (var i = 0; i < data.length; i++) {
                         var clase="";
-                        if(data[i].tipo == 'Multa'){
-                            clase == "bg-danger text-white";
+                        var referencia="";
+                        if(data[i].referencia > 0){
+                            referencia="<br>CÓDIGO TRANS.: <b>"+data[i].referencia+"</b>";
                         }else{
-                            clase == "bg-info text-white";
+                            referencia="";
                         }
                         if(data[i].status == 'Pagada'){
                             $('#ver_multas_asignadas').append(
                                 '<tr class='+clase+'>'+
                                     '<td align="center"><center>'+data[i].motivo+'</center></td>'+
                                     '<td align="center"><center>'+data[i].monto+'</center></td>'+
-                                    '<td align="center" class="text-success"><center><strong>'+data[i].status+'</strong></center></td>'+
+                                    '<td align="center" class="text-success"><center><strong>'+data[i].status+''+referencia+'</strong></center></td>'+
                                 '</tr>'
                             );
                         }else if(data[i].status == 'Por Confirmar'){
@@ -587,7 +588,7 @@
                                 '<tr class='+clase+'>'+
                                     '<td align="center"><center>'+data[i].motivo+'</center></td>'+
                                     '<td align="center"><center>'+data[i].monto+'</center></td>'+
-                                    '<td align="center" class="text-info"><center><strong>'+data[i].status+'</strong></center></td>'+
+                                    '<td align="center" class="text-info"><center><strong>'+data[i].status+''+referencia+'</strong></center></td>'+
                                 '</tr>'
                             );
                         }
