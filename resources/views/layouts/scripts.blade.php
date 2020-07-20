@@ -1128,7 +1128,7 @@
 								'<td>'+
 									'<center>'+
                                         '<div class="custom-control custom-checkbox">'+
-                                            '<input type="checkbox"  name="mes[]" value="'+data[i].id_resi_mr+'" class="custom-control-input" id="customCheck'+i+'">'+
+                                            '<input type="checkbox"  name="id_mr[]" value="'+data[i].id_resi_mr+'" class="custom-control-input" id="customCheck'+i+'">'+
                                             '<input type="hidden"  name="referencia[]" value="'+data[i].referencia+'">'+
                                             '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
                                         '</div>'+
@@ -1145,7 +1145,7 @@
 								'<td>'+
 									'<center>'+
                                         '<div class="custom-control custom-checkbox">'+
-                                            '<input type="checkbox"  name="mes[]" value="'+data[i].id_resi_mr+'" class="custom-control-input" id="customCheck'+i+'">'+
+                                            '<input type="checkbox"  name="id_mr[]" value="'+data[i].id_resi_mr+'" class="custom-control-input" id="customCheck'+i+'">'+
                                             '<input type="hidden"  name="referencia[]" value="'+data[i].referencia+'">'+
                                             '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
                                         '</div>'+

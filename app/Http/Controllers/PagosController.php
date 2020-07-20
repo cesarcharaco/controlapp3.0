@@ -577,6 +577,47 @@ class PagosController extends Controller
             
         }
     }
+    public function confirmar_multa(Request $request)
+    {
+        //dd($request->all());
 
+        if (is_null($request->id_mr)) {
+            toastr()->warning('intente otra vez!!', 'No se ha seleccionado ningún pago a confirmar');
+            return redirect()->back();
+        } else {
+            $cont=0;
+            $ref_ne[]=array();
+            $j=0;
+            for ($i=0; $i < count($request->id_mr); $i++) { 
+                $residente=Residentes::find($request->id_residente);
+                foreach ($residente->mr as $key) {
+                    if($key->pivot->referencia==$request->referencia[$i] && $key->pivot->id_mr==$request->id_mr[$i] && $key->pivot->status=="Por Confirmar"){
+                        $key->pivot->status="Pagada";
+                        $key->pivot->save();
+                    }else{
+                        $ref_ne[$j]=$request->referencia[$i];
+                    }
+                }
+            }
+
+            //referencias no encontradas
+                if(count($ref_ne)>0 && count($ref_ne)<count($request->id_mr)){
+                    $mensaje="No fueron encontradas las siguientes referencias: ";
+                    for ($i=0; $i < count($ref_ne); $i++) { 
+                        $mensaje.=$ref_ne[$i];
+                        if($i<count($ref_ne)){
+                            $mensaje.",";
+                        }
+                    }
+                    toastr()->succes('con éxito!!', 'Fueron confirmadas las Multas/Recargar, sin embargo: '.$mensaje);
+                }elseif(count($ref_ne)>0 && count($ref_ne)==count($request->id_mr)){
+                    toastr()->warning('intente otra vez!!', 'No fue encontrada ningún código de transacción como registrado');
+                }else{
+                    toastr()->succes('con éxito!!', 'Multas/Recargas confirmadas con éxito');
+                }
+                return redirect()->back();
+        }
+        
+    }
 
 }

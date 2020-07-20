@@ -459,7 +459,7 @@
     
     <!--   -------------------------------------------------------------- RESIDENCIAS   -->
 
-        {!! Form::open(['route' => ['pagos.store'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
+        {!! Form::open(['route' => ['multas_recargas.confirmar'],'method' => 'POST', 'name' => 'confirmar_multa', 'id' => 'confirmar_multa', 'data-parsley-validate']) !!}
         <div class="modal fade" tabindex="-1" id="PagoConfir" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
