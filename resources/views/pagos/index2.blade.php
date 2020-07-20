@@ -464,7 +464,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4>Multas por Confirmar del Residente <span id="nombreResidente"></span></h4>
+                        <h4>Multas/Recargas por Confirmar del Residente <span id="nombreResidente"></span></h4>
                         <div id="CargandoPagosComprobar" style="display: none;">
                             <div class="spinner-border text-warning m-2" role="status">
                                 <!-- <span class="sr-only">Cargando multas y recargas...</span> -->
