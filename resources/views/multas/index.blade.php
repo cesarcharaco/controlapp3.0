@@ -175,8 +175,8 @@
                             <th><span class="PalabraEditarPago">Asignados</span>
                                 <span class="PalabraEditarPago2">A</span></th>
                             <th>
-                                <span class="PalabraEditarPago">Status</span>
-                                <span class="PalabraEditarPago2">S</span>
+                                <span class="PalabraEditarPago">Anio</span>
+                                <span class="PalabraEditarPago2">A</span>
                             </th>
                         </tr>
                         <tr class="text-white" id="th1" style="background-color: #ff3e36 !important;">
@@ -198,13 +198,13 @@
                                 <span class="PalabraEditarPago2" align="center">T</span>
                             </th>
                             <th>
-                                <span class="PalabraEditarPago" align="center">Status</span>
-                                <span class="PalabraEditarPago2" align="center">I</span>
+                                <span class="PalabraEditarPago" align="center">Anio</span>
+                                <span class="PalabraEditarPago2" align="center">A</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @php $num=0 @endphp
+                        <?php $num=0; ?>
                         @if(\Auth::user()->tipo_usuario == 'Admin')
                             @foreach($mr as $key)
                                 <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
@@ -213,22 +213,7 @@
                                     <td>{{$key->observacion}}</td>
                                     <td>{{$key->monto}}</td>
                                     <td>{{$key->tipo}}</td>
-                                    @if($key->status == 'Pagada')
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-success"><strong>Pagada</strong></span>
-                                                <span class="tituloTabla2 text-success"><strong>P</strong></span>
-                                        </td>
-                                     @elseif($key->status == 'Enviada')
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-info"><strong>Enviada</strong></span>
-                                                <span class="tituloTabla2 text-info"><strong>W</strong></span>
-                                        </td>
-                                    @else
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-warning"><strong>Por Confirmar</strong></span>
-                                                <span class="tituloTabla2 text-warning"><strong>P/C</strong></span>
-                                        </td>
-                                    @endif
+                                    <td>{{$key->anio}}</td>
                                 </tr>
                                 <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
                                     <td width="10">
@@ -276,22 +261,7 @@
                                             </center>
                                         </a>
                                     </td>
-                                    @if($key->status == 'Pagada')
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-success"><strong>Pagada</strong></span>
-                                                <span class="tituloTabla2 text-success"><strong>P</strong></span>
-                                        </td>
-                                     @elseif($key->status == 'Enviada')
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-info"><strong>Enviada</strong></span>
-                                                <span class="tituloTabla2 text-info"><strong>W</strong></span>
-                                        </td>
-                                    @else
-                                        <td style="position: all;">
-                                            <button class="botonParpadeante btn btn-warning tituloTabla" onclick="PagarMultasAdmin('{{ $key->id }}')"><strong>Por Confirmar</strong></button>
-                                            <button class="botonParpadeante btn btn-warning tituloTabla2" onclick="PagarMultasAdmin('{{ $key->id }}')"><strong>P/C</strong></button>
-                                        </td>
-                                    @endif
+                                    <td>{{$key->anio}}</td>
                                     
 
                                 </tr>
@@ -480,13 +450,27 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4>Asignaciones de la Multa/Recarga</h4>
+                    <div id="CargandoAsignadosComprobar" style="display: none;">
+                            <div class="spinner-border text-warning m-2" role="status">
+                            </div>
+                        </div>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <center>
-                        <div id="ver_multas_asignadas"></div>
+                        <table class="table dataTable table-curved table-striped tabla-estilo" style="width: 100%;">
+                            <thead>
+                                <tr class="table-info text-white">
+                                    <th>Nombres</th>
+                                    <th>RUT</th>
+                                    <th>Status</th>
+                            </thead>
+                            <tbody id="ver_multas_asignadas">
+                                
+                            </tbody>
+                        </table>
                     </center>
                 </div>
             </div>
@@ -512,39 +496,64 @@
         $('#id_delete').val(id);
     }
     function verAsignados(id_multa){
+        $('#CargandoAsignadosComprobar').css('display','block');
         $('#ver_multas_asignadas').empty();
         $('#verAsignadosMulta').modal('show');
         
         $.get('mr/'+id_multa+'/asignados', function(data) {
         })
         .done(function(data) {
-            if(data.length>0){
-                for (var i = 0; i < data.length; i++) {
+                if(data.length>0){
+                    for (var i = 0; i < data.length; i++) {
+                        if(data[i].status == 'Pagada'){
+                            $('#ver_multas_asignadas').append(
+                                '<tr>'+
+                                    '<td align="center"><center>'+data[i].nombres+' '+data[i].apellidos+'</center></td>'+
+                                    '<td align="center"><center>'+data[i].rut+'</center></td>'+
+                                    '<td align="center" class="text-success"><center>'+data[i].status+'</center></td>'+
+                                '</tr>'
+                            );
+                        }else if(data[i].status == 'Por Confirmar'){
+                            $('#ver_multas_asignadas').append(
+                                '<tr>'+
+                                    '<td align="center"><center>'+data[i].nombres+' '+data[i].apellidos+'</center></td>'+
+                                    '<td align="center"><center>'+data[i].rut+'</center></td>'+
+                                    '<td align="center" class="text-success"><center>'+
+                                        '<div class="text-warning"><strong>' +data[i].status+'</strong> | CÓDIGO TRANS.: <b>'+data[i].referencia+'</b></div>'+'</center>'+
+                                    '</td>'+
+                                '</tr>'
+                            );
+                        }else{
+                            $('#ver_multas_asignadas').append(
+                                '<tr>'+
+                                    '<td align="center"><center>'+data[i].nombres+' '+data[i].apellidos+'</center></td>'+
+                                    '<td align="center"><center>'+data[i].rut+'</center></td>'+
+                                    '<td align="center" class="text-info"><center>'+data[i].status+'</center></td>'+
+                                '</tr>'
+                            );
+                        }
+                        // $.get('mr/'+data[i].id+'/asignados2',function (data2) {
+                        // })
+                        // .done(function(data2) {
+                        //     if(data2[i].status == 'Por Confirmar'){
+                        //         $('#ver_multas_asignadas').append(
+                        //             '<p class="text-warning"><strong>' +data2[i].status+'</strong> | CÓDIGO TRANS.: <b>'+data2[i].referencia+'</b></p>'
+                        //         );
+                        //     }else{
+                        //         $('#ver_multas_asignadas').append(
+                        //             '<center><label>'+data[i].rut+'</label></center>'+
+                        //         );
+                        //     }
+                        // });
+                    }
+                }else{
                     $('#ver_multas_asignadas').append(
-                        '<div style="background-color:#AEFBFF; border-radius:10px; height:30px;">'+
-                            '<div class="row justify-content-md-center">'+
-                                '<div class="col-md-4">'+
-                                    '<div class="form-group">'+
-                                        '<center><label>'+data[i].nombres+' '+data[i].apellidos+'</label></center>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="col-md-4">'+
-                                    '<div class="form-group">'+
-                                        '<center><label>'+data[i].rut+'</label></center>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="col-md-4">'+
-                                    '<div class="form-group">'+
-                                        '<center><label>'+data[i].telefono+'</label></center>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div><br>'
-                    );
+                                '<tr>'+
+                                    '<td align="center" colspan="3"><center>No se encuentra asiganda a ningún residente</center></td>'+
+                                '</tr>'
+                            );
                 }
-            }else{
-                $('#ver_multas_asignadas').append('<h5>No se encuentra asignada a ningún residente</5>');
-            }
         });
+        $('#CargandoAsignadosComprobar').css('display','none');
     }
 </script>

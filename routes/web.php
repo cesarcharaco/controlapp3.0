@@ -84,6 +84,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
 	Route::resource('pagos','PagosController');
+	Route::get('pagos_multas','PagosController@pagos_multas')->name('pagos_multas');
 	Route::post('pagos/mr','PagosController@pagarmultas')->name('pagar.mr');
 
 
@@ -119,6 +120,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 	Route::post('desocupacion','ArriendosController@desocupar')->name('desocupacion');
 	Route::get('mr/{id_mr}/asignados','MultasRecargasController@mostrar_asignados');
+	Route::get('mr/{id_residente}/asignados2','MultasRecargasController@mostrar_asignados2');
 
 	Route::get('consultas','ResidentesController@consultas');
 	Route::get('consulta/{anio}/buscar','ResidentesController@consulta_anual');

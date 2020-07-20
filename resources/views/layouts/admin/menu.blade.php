@@ -101,11 +101,21 @@
 
                     @if(\Auth::user()->tipo_usuario != 'Residente')
                         <li>
-                            <a href="{{ url('pagos') }}">
-                                <i data-feather="credit-card"></i>
-                                <span> Pagos </span>
-                            </a>
-                        </li>
+                                <a href="javascript: void(0);" aria-expanded="false">
+                                    <i data-feather="credit-card"></i>
+                                    <span> Pagos </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+    
+                                <ul class="nav-second-level mm-collapse" aria-expanded="false">
+                                    <li>
+                                        <a href="{{ url('pagos') }}">Pagos Comunes</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('pagos_multas')}}">Multas/Recargas</a>
+                                    </li>
+                                </ul>
+                            </li>
                     @endif
 
                     @if(\Auth::user()->tipo_usuario == 'Residente')

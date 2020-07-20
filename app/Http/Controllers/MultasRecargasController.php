@@ -33,7 +33,11 @@ class MultasRecargasController extends Controller
 
         // dd(count($asignacion));
 
-
+        // $confirmacion = \DB::table('multas_recargas')
+        //     ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        //     ->where('multas_recargas.id_admin',$id_admin)
+        //     ->select('multas_recargas.*','resi_has_mr.status')
+        //     ->get();
 
 
 
@@ -303,7 +307,17 @@ class MultasRecargasController extends Controller
         ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
         ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
         ->where('resi_has_mr.id_mr',$id_mr)
-        ->select('residentes.*')
+        ->select('residentes.*','resi_has_mr.status','resi_has_mr.referencia')
+        ->get();   
+    }
+
+    public function mostrar_asignados2($id_residente)
+    {
+        return $status=\DB::table('multas_recargas')
+        ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
+        ->where('resi_has_mr.id_residente',$id_residente)
+        ->select('multas_recargas.*','resi_has_mr.status','resi_has_mr.referencia')
         ->get();   
     }
 

@@ -37,6 +37,20 @@ class PagosController extends Controller
         return View('pagos.index', compact('residentes','pagos','inmuebles','estacionamientos','meses','asignaEs','asignaIn'));
     }
 
+    public function pagos_multas(){
+        $id_admin=id_admin(\Auth::user()->email);
+        $residentes=Residentes::where('id_admin',$id_admin)->get();
+        $meses=Meses::all();
+        $pagos=Pagos::all();
+        $inmuebles=Inmuebles::where('id_admin',$id_admin)->get();
+        $estacionamientos=Estacionamientos::where('id_admin',$id_admin)->get();
+
+        $asignaIn= \DB::table('residentes_has_inmuebles')->where('status','En Uso')->groupBy('id_residente')->get();
+        $asignaEs= \DB::table('residentes_has_est')->where('status','En Uso')->groupBy('id_residente')->get();
+
+        return View('pagos.index2', compact('residentes','pagos','inmuebles','estacionamientos','meses','asignaEs','asignaIn'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

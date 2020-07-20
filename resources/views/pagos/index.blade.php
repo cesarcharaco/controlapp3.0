@@ -67,12 +67,20 @@
     </style>
     <div class="container">
         <input type="hidden" id="colorView" value="#25c2e3 !important">
-        <div class="row">
+        <div class="row page-title">
             <div class="col-md-12">
-                <h1>Pagos</h1>
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Pagos</li>
+                        <li class="breadcrumb-item active" aria-current="page">Pagos Comunes</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Pagos - Pagos Comunes</h4>
             </div>
         </div>
     </div>
+
         @include('flash::message')
         @if(count($errors))
             <div class="alert-list m-4">
@@ -90,11 +98,10 @@
                 </div>
             </div>
         @endif
-        <div id="ElCarrousel">
             
         
             @if(\Auth::user()->tipo_usuario == 'Admin')
-                <div class="card card-table" style="width: 100%">
+                <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded">
                     <div class="card-body">
                         <table class="data-table-basic table table-hover mb-0 tabla-estilo" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
                             <thead>
@@ -263,7 +270,6 @@
                 </div>
             @endif
 
-        </div>
     </div>
 </div>
 </div>
@@ -1641,11 +1647,6 @@
             }
         });
     }
-
-
-
-
-
 
 </script>
 @section('scripts')
