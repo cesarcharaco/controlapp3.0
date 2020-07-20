@@ -98,7 +98,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('mostrar/{id_estacionamiento}/meses_estacionamientos','ArriendosController@meses_estacionamientos');
 	Route::get('mr/{id_residente}/buscar_anios','ArriendosController@buscar_anios_mr');	
 	Route::get('mr/{id_residente}/{anio}/buscar_mr','ArriendosController@buscar_mr');
-
+	Route::get('mr/{id_residente}/{anio}/buscar_mr_confirmar','ArriendosController@buscar_mr_confirmar');
 	//-----------------Buscar inmuebles y estacionamientos disponibles
 	Route::get('inmuebles_disponibles/{id}/buscar','InmueblesController@inmuebles_disponibles');
 	Route::get('estacionamientos_disponibles/{id}/buscar','EstacionamientosController@estacionamientos_disponibles');

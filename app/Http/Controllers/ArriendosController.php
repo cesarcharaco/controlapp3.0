@@ -259,6 +259,18 @@ class ArriendosController extends Controller
         ->get();
     }
 
+    public function buscar_mr_confirmar($id_residente,$anio)
+    {
+        return \DB::table('multas_recargas')
+        ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
+        ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
+        ->where('residentes.id',$id_residente)
+        ->where('resi_has_mr.status','Por Confirmar')
+        ->where('multas_recargas.anio',$anio)
+        ->select('multas_recargas.*','resi_has_mr.id AS id_resi_mr')
+        ->get();
+    }
+
     public function desocupar(Request $request)
     {
         //dd($request->all());
