@@ -609,11 +609,11 @@ class PagosController extends Controller
                             $mensaje.",";
                         }
                     }
-                    toastr()->succes('con éxito!!', 'Fueron confirmadas las Multas/Recargar, sin embargo: '.$mensaje);
+                    toastr()->success('con éxito!!', 'Fueron confirmadas las Multas/Recargar, sin embargo: '.$mensaje);
                 }elseif(count($ref_ne)>0 && count($ref_ne)==count($request->id_mr)){
                     toastr()->warning('intente otra vez!!', 'No fue encontrada ningún código de transacción como registrado');
                 }else{
-                    toastr()->succes('con éxito!!', 'Multas/Recargas confirmadas con éxito');
+                    toastr()->success('con éxito!!', 'Multas/Recargas confirmadas con éxito');
                 }
                 return redirect()->back();
         }
