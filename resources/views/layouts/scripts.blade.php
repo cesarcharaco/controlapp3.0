@@ -38,7 +38,58 @@
 	var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
 	var f = new Date();
     var a=f.getFullYear();
-
+    function mostrar_mes(num) {
+        switch (num) {
+            case 1:
+                return 'Enero';
+                break;
+            case 2:
+                return 'Febrero';
+                break;
+            
+            case 3:
+                return 'Marzo';
+                break;
+            
+            case 4:
+                return 'Abril';
+                break;
+            
+            case 5:
+                return 'Mayo';
+                break;
+            
+            case 6:
+                return 'Junio';
+                break;
+            
+            case 7:
+                return 'Julio';
+                break;
+            
+            case 8:
+                return 'Agosto';
+                break;
+            
+            case 9:
+                return 'Septiembre';
+                break;
+            
+            case 10:
+                return 'Octubre';
+                break;
+            
+            case 11:
+                return 'Noviembre';
+                break;
+            
+            case 12:
+                return 'Diciembre';
+                break;
+            
+            
+        }
+    }
 	$(function () {
 
 		if( $('#colorView').val() != 0 ){
@@ -1059,67 +1110,66 @@
 		$('#CargandoPagosComprobar').css('display','block');
 		var m=f.getMonth();
 
-		$.get("arriendos/"+id_residente+"/buscar_inmuebles2", function(data) {
+		$.get('mr/'+id_residente+'/'+a+'/buscar_mr_confirmar', function(data) {
 		})
 		.done(function(data) {
 			
-			$.get("arriendos/"+data[0].id+"/buscar_inmuebles3",function (data2) {
-			})
-
-
-			.done(function(data2) {
-				var j=0;
-				var l=0;
-				var k=0;
-				if(data2.length>0){
-					for (var i = 0; i < data2.length; i++) {
-						if(data2[i].status == 'Por Confirmar'){
-							j=j+1;
-						}
-						if(j>0){
-
-							if(data2[i].status == 'Por Confirmar'){
-								k++;
-								$('#muestraMesesMultasComprob').append(
-									'<div class="row">'+
-					                    '<div class="col-md-4">'+
-					                        '<div class="form-group">'+
-					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
-					                            '<label>'+mes[i]+ '</label>'+
-					                        '</div>'+
-					                    '</div>'+
-					                    '<div class="col-md-4">'+
-					                    	'<p class="text-success">' +data2[i].status+'</p> CÓDIGO TRANS.: <b>'+data2[i].referencia+'</b>'+
-					                    '</div>'+
-					                    '<div class="col-md-4">'+
-					                    	'<div class="form-group">'+
-												'<div class="mt-3">'+
-		                                            '<div class="custom-control custom-checkbox mb-2">'+
-		                                                '<input type="checkbox"  name="mes[]" value="'+data2[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
-		                                                '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
-		                                            '</div>'+
+			var j=0;
+			var l=0;
+			var k=0;
+			if(data.length>0){
+				for (var i = 0; i < data.length; i++) {
+					$('#muestraMesesMultasComprob').append(
+						'<div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded">'+
+							'<div class="card-body">'+
+								'<div class="row bg-info">'+
+									'<div class="col-md-6">'+
+				                        '<div class="form-group">'+
+				                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
+				                            '<label><center>'+data[i].motivo+ '</center></label>'+
+				                        '</div>'+
+				                    '</div>'+
+				                    '<div class="col-md-6">'+
+				                        '<div class="form-group">'+
+				                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
+				                            '<label><center>CÓDIGO TRANS.: <strong>'+data[i].referencia+ '</center></strong></label>'+
+				                        '</div>'+
+				                    '</div>'+
+				                '</div>'+
+				                '<div class="row bg-info">'+
+				                	'<div class="col-md-4">'+
+				                        '<div class="form-group">'+
+				                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
+				                            '<label><br>'+mes[data[i].mes]+ '</label>'+
+				                        '</div>'+
+				                    '</div>'+
+				                    '<div class="col-md-4">'+
+				                    	'<p class="text-success"><center><strong>Por<br>Confirmar</strong></center></p>'+
+				                    '</div>'+
+				                    '<div class="col-md-4">'+
+				                    	'<div class="form-group">'+
+											'<div class="mt-4">'+
+		                                        '<div class="custom-control custom-checkbox">'+
+		                                            '<input type="checkbox"  name="mes[]" value="'+data[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
+		                                            '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
 		                                        '</div>'+
 		                                    '</div>'+
-					                    '</div>'+
-					                '</div>'
-					            );
-							}else{
-								k=0;
-								l++;
-							}
-						}
-					}//cierre del for
-					if(l == 0 && k == 0){
-						$('#muestraMesesMultasComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
-					}
-		            $('#muestraMesesMultasComprob').append('<input type="hidden" name="id_residente" value="'+id_residente+'" >');
-		            $('#muestraMesesMultasComprob').append('<input type="hidden" name="opcion" value="3" >');
-				}else{
-					$('#muestraMesesAPagar2').css('display','block');
-					// $('#muestraMesesMultasComprob2').append('El residente no tiene pagos por confirmar');
-				}
-
-			});
+		                                '</div>'+
+				                    '</div>'+
+				                '</div>'+
+				            '</div>'+
+				        '</div>'
+		            );
+				}//cierre del for
+				// if(l == 0 && k == 0){
+				// 	$('#muestraMesesMultasComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
+				// }
+	            $('#muestraMesesMultasComprob').append('<input type="hidden" name="id_residente" value="'+id_residente+'" >');
+	            $('#muestraMesesMultasComprob').append('<input type="hidden" name="opcion" value="3" >');
+			}else{
+				$('#muestraMesesAPagar2').css('display','block');
+				$('#muestraMesesMultasComprob2').append('El residente no tiene pagos por confirmar');
+			}
 			$('#CargandoPagosComprobar').css('display','none');
 		});
     }

@@ -267,7 +267,7 @@ class ArriendosController extends Controller
         ->where('residentes.id',$id_residente)
         ->where('resi_has_mr.status','Por Confirmar')
         ->where('multas_recargas.anio',$anio)
-        ->select('multas_recargas.*','resi_has_mr.id AS id_resi_mr')
+        ->select('multas_recargas.*','resi_has_mr.id AS id_resi_mr','resi_has_mr.status','resi_has_mr.referencia','resi_has_mr.mes')
         ->get();
     }
 
