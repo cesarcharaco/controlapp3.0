@@ -597,7 +597,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-warning" >Comprobar</button>  
+                        <button type="submit" class="btn btn-warning" >Confirmar</button>  
                     </div>
                 </div>
             </div>

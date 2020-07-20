@@ -66,7 +66,7 @@
 
     </style>
     <div class="container">
-        <input type="hidden" id="colorView" value="#25c2e3 !important">
+        <input type="hidden" id="colorView" value="#ff5c75!important">
         <div class="row page-title">
             <div class="col-md-12">
                 <nav aria-label="breadcrumb" class="float-right mt-1">
@@ -156,11 +156,11 @@
                                                     </span>
                                                 </a>
                                             </center>
-                                            <br><br>
+                                            <br>
                                             <center>
                                                 <a href="#" class="btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="multasPorComprobar('{{$key->id}}')">
                                                     <i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
-                                                    <span class="PalabraPagoConfirmar">Multas por Confirmar</span>
+                                                    <span class="PalabraPagoConfirmar">Multas/Recargas por Confirmar</span>
                                                     <span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i></span>
                                                 </a>
                                             </center>

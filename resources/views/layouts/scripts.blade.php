@@ -1089,7 +1089,7 @@
 						}
 					}//cierre del for
 					if(l == 0 && k == 0){
-						$('#muestraMesesAComprob').append('<h3>El residente no posee pagos por confirmar</h3>');
+						$('#muestraMesesAComprob').append('<h3>El residente no posee pagos por comprobar</h3>');
 					}
 		            $('#muestraMesesAComprob').append('<input type="hidden" name="id_residente" value="'+id_residente+'" >');
 		            $('#muestraMesesAComprob').append('<input type="hidden" name="opcion" value="3" >');
@@ -1122,7 +1122,7 @@
 					if(data[i].tipo == 'Multa'){
 						$('#muestraMesesMultasComprob').append(
 							'<tr>'+
-								'<td><span class="text-danger"><b>'+data[i].tipo+':</b></span>'+data[i].motivo+'</td>'+
+								'<td><span class="text-danger"><b>'+data[i].tipo+': </b></span>'+data[i].motivo+'</td>'+
 								'<td align="center">'+mostrar_mes(data[i].mes)+'<br>'+data[i].anio+'</td>'+
 								'<td class="text-warning" align="center"><b>'+data[i].status+'</b><br><center>CÓDIGO TRANS.: <br><strong>'+data[i].referencia+ '</strong></center></td>'+
 								'<td>'+
@@ -1138,7 +1138,7 @@
 					}else{
 						$('#muestraMesesMultasComprob').append(
 							'<tr>'+
-								'<td><span class="text-success"><b>'+data[i].tipo+':</b></span>'+data[i].motivo+'</td>'+
+								'<td><span class="text-success"><b>'+data[i].tipo+': </b></span>'+data[i].motivo+'</td>'+
 								'<td align="center">'+mostrar_mes(data[i].mes)+'<br>'+data[i].anio+'</td>'+
 								'<td class="text-warning" align="center"><b>'+data[i].status+'</b><br><center>CÓDIGO TRANS.: <br><strong>'+data[i].referencia+ '</strong></center></td>'+
 								'<td>'+
