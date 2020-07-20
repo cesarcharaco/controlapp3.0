@@ -101,11 +101,11 @@
             
         
             @if(\Auth::user()->tipo_usuario == 'Admin')
-                <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded">
+                <div class="card border border-danger rounded card-tabla shadow p-3 mb-5 bg-white rounded">
                     <div class="card-body">
                         <table class="data-table-basic table table-hover mb-0 tabla-estilo" id="myTable" width="100%" style="position: relative; table-layout: fixed;">
                             <thead>
-                                <tr class="bg-info text-white">
+                                <tr class="bg-danger text-white">
                                     <th></th>
                                     <th>
                                         <span class="tituloTabla">Nombres</span>
@@ -141,7 +141,7 @@
                                         <td>
                                             
                                             <a style="width: 100% !important;
-                                                " class="btn btn-info" onclick="verAsignadosM('{{$key->id}}')" href="#">
+                                                " class="btn btn-danger" onclick="verAsignadosM('{{$key->id}}')" href="#">
                                                 <span class="palabraVerInmueble text-white">Ver Asignaciones</span>
                                                 <span class="palabraVerInmueble2 text-white">
                                                     <i data-feather="eye"></i>
@@ -150,6 +150,7 @@
                                         </td>
                                         <td>
                                             <a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente('{{$key->id}}')" class="btn btn-success">
+                                                <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
                                                 <span class="palabraVerInmueble text-white">Pagar Multas/Recargas</span>
                                                 <span class="palabraVerInmueble2 text-white">
                                                     <i data-feather="dollar-sign"></i>
@@ -286,7 +287,7 @@
                     <center>
                         <table class="table dataTable table-curved table-striped tabla-estilo" style="width: 100%;">
                             <thead>
-                                <tr class="bg-info text-white">
+                                <tr class="bg-danger text-white">
                                     <th>Motivo</th>
                                     <th>Montos</th>
                                     <th>Status</th>
@@ -477,7 +478,7 @@
                         <center>
                             <table class="table dataTable table-curved table-striped tabla-estilo" style="width: 100%;">
                                 <thead>
-                                    <tr class="table-info text-white">
+                                    <tr class="table-danger text-white">
                                         <th align="center"><center>Motivo</center></th>
                                         <th align="center"><center>Fecha</center></th>
                                         <th align="center"><center>Status</center></th>
@@ -490,7 +491,7 @@
                         </center>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-warning" >Comprobar</button>  
+                        <button type="submit" class="btn btn-warning" >Confirmar</button>  
                     </div>
                 </div>
             </div>
