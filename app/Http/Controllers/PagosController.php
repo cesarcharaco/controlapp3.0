@@ -620,4 +620,11 @@ class PagosController extends Controller
         
     }
 
+    public function editar_referencia(Request $request)
+    {
+        dd($request->all());
+
+        
+    }
+
 }

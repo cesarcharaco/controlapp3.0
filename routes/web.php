@@ -77,6 +77,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::post('sanciones/eliminar','MensualidadesController@eliminar_mr')->name('sanciones.eliminar_mr');
 	Route::get('multas_recargas/{num}/buscar_mr_all','MultasRecargasController@buscar_mr_all');
 	Route::post('multas_recargas/confirmar','PagosController@confirmar_multa')->name('multas_recargas.confirmar');
+	Route::post('multas_recargas/editar_referencia','PagosController@editar_referencia')->name('editar_referencia');
 	
 	// ------------------------Buscar multas del residente
 	Route::get('multas_residentes/{id_residente}/buscar','MultasRecargasController@multas_residentes');
@@ -87,7 +88,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('pagos','PagosController');
 	Route::get('pagos_multas','PagosController@pagos_multas')->name('pagos_multas');
 	Route::post('pagos/mr','PagosController@pagarmultas')->name('pagar.mr');
-
 
 	Route::post('arriendos/retirar','ArriendosController@retirando')->name('arriendos.retirar');
 	
