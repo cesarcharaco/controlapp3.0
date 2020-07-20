@@ -140,25 +140,25 @@
                                         </td>
                                         <td>
                                             
-                                            <a style="width: 100% !important;
-                                                " class="btn btn-danger" onclick="verAsignadosM('{{$key->id}}')" href="#">
-                                                <span class="palabraVerInmueble text-white">Ver Asignaciones</span>
-                                                <span class="palabraVerInmueble2 text-white">
-                                                    <i data-feather="eye"></i>
+                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 5px; width: 100%" onclick="verAsignadosM('{{$key->id}}')" >
+                                                <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
+                                                <span class="PalabraPagoConfirmar">Ver Asignaciones</span>
+                                                <span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i>
                                                 </span>
                                             </a>                                                
                                         </td>
                                         <td>
-                                            <a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente('{{$key->id}}')" class="btn btn-success">
-                                                <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
-                                                <span class="palabraVerInmueble text-white">Pagar Multas/Recargas</span>
-                                                <span class="palabraVerInmueble2 text-white">
-                                                    <i data-feather="dollar-sign"></i>
-                                                </span>
-                                            </a>
+                                            <center>
+                                                <a href="#" class="btn btn-success btn-sm" style="border-radius: 5px; width: 100%" onclick="pagarMultasResidente('{{$key->id}}')" >
+                                                    <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
+                                                    <span class="PalabraPagoConfirmar">Pagar Multas/Recargas</span>
+                                                    <span class="PalabraEditarPago2"><i data-feather="dollar-sign" class="iconosMetaforas2"></i>
+                                                    </span>
+                                                </a>
+                                            </center>
                                             <br><br>
                                             <center>
-                                                <a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="multasPorComprobar('{{$key->id}}')">
+                                                <a href="#" class="btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="multasPorComprobar('{{$key->id}}')">
                                                     <i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
                                                     <span class="PalabraPagoConfirmar">Multas por Confirmar</span>
                                                     <span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i></span>
