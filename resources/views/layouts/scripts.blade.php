@@ -1121,91 +1121,35 @@
 				for (var i = 0; i < data.length; i++) {
 					if(data[i].tipo == 'Multa'){
 						$('#muestraMesesMultasComprob').append(
-							'<div class="card border border-danger rounded card-tabla shadow bg-white rounded">'+
-								'<div class="bg-danger rounded border border-danger" style="border-radius: 30px 30px 0px 0px !important;margin-top:-1px !important;">'+
-									'<div class="row">'+
-										'<div class="col-md-6"><br>'+
-					                        '<div class="form-group"><center>'+
-					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
-					                            '<label class="text-white"><center>'+data[i].motivo+ '</center></label>'+
-					                        '</center></div>'+
-					                    '</div>'+
-					                    '<div class="col-md-6"><br>'+
-					                        '<div class="form-group">'+
-					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
-					                            '<label class="text-white"><center>CÓDIGO TRANS.: <br><strong>'+data[i].referencia+ '</strong></center></label>'+
-					                        '</div>'+
-					                    '</div>'+
-					                '</div>'+
-								'</div>'+
-								'<div class="card-body rounded">'+
-					                '<div class="row">'+
-					                	'<div class="col-md-4">'+
-					                        '<div class="form-group">'+
-					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
-					                            '<label>'+mes[data[i].mes]+ '</label>'+
-					                        '</div>'+
-					                    '</div>'+
-					                    '<div class="col-md-4">'+
-					                    	'<center><p class="text-success"><strong>'+data[i].status+ '</strong></p></center>'+
-					                    '</div>'+
-					                    '<div class="col-md-4">'+
-					                    	'<div class="form-group">'+
-					                    		'<center>'+
-			                                        '<div class="custom-control custom-checkbox">'+
-			                                            '<input type="checkbox"  name="mes[]" value="'+data[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
-			                                            '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
-			                                        '</div>'+
-				                                '</center>'+
-			                                '</div>'+
-					                    '</div>'+
-					                '</div>'+
-					            '</div>'+
-					        '</div>'
+							'<tr>'+
+								'<td align="center">'+data[i].motivo+'<br><span class="text-danger"><b>'+data[i].tipo+'</b></span></td>'+
+								'<td align="center">'+mostrar_mes(data[i].mes)+'<br>'+data[i].anio+'</td>'+
+								'<td class="text-warning" align="center"><b>'+data[i].status+'</b><br><center>CÓDIGO TRANS.: <br><strong>'+data[i].referencia+ '</strong></center></td>'+
+								'<td>'+
+									'<center>'+
+                                        '<div class="custom-control custom-checkbox">'+
+                                            '<input type="checkbox"  name="mes[]" value="'+data[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
+                                            '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
+                                        '</div>'+
+	                                '</center>'+
+								'</td>'+
+							'</tr>'
 			            );
 					}else{
 						$('#muestraMesesMultasComprob').append(
-							'<div class="card border border-success rounded card-tabla shadow bg-white rounded">'+
-								'<div class="bg-success rounded border border-success" style="border-radius: 30px 30px 0px 0px !important;margin-top:-1px !important;">'+
-									'<div class="row">'+
-										'<div class="col-md-6"><br>'+
-					                        '<div class="form-group"><center>'+
-					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
-					                            '<label class="text-white"><center>'+data[i].motivo+ '</center></label>'+
-					                        '</center></div>'+
-					                    '</div>'+
-					                    '<div class="col-md-6"><br>'+
-					                        '<div class="form-group">'+
-					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
-					                            '<label class="text-white"><center>CÓDIGO TRANS.: <br><strong>'+data[i].referencia+ '</strong></center></label>'+
-					                        '</div>'+
-					                    '</div>'+
-					                '</div>'+
-								'</div>'+
-								'<div class="card-body rounded">'+
-					                '<div class="row">'+
-					                	'<div class="col-md-4">'+
-					                        '<div class="form-group">'+
-					                            '<input type="hidden" name="id_mes[]" class="form-control-plaintext">'+
-					                            '<label>'+mes[data[i].mes]+ '</label>'+
-					                        '</div>'+
-					                    '</div>'+
-					                    '<div class="col-md-4">'+
-					                    	'<center><p class="text-success"><strong>'+data[i].status+ '</strong></p></center>'+
-					                    '</div>'+
-					                    '<div class="col-md-4">'+
-					                    	'<div class="form-group">'+
-					                    		'<center>'+
-			                                        '<div class="custom-control custom-checkbox">'+
-			                                            '<input type="checkbox"  name="mes[]" value="'+data[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
-			                                            '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
-			                                        '</div>'+
-				                                '</center>'+
-			                                '</div>'+
-					                    '</div>'+
-					                '</div>'+
-					            '</div>'+
-					        '</div>'
+							'<tr>'+
+								'<td align="center">'+data[i].motivo+'<br><span class="text-success"><b>'+data[i].tipo+'</b></span></td>'+
+								'<td align="center">'+mostrar_mes(data[i].mes)+'<br>'+data[i].anio+'</td>'+
+								'<td class="text-warning" align="center"><b>'+data[i].status+'</b><br><center>CÓDIGO TRANS.: <br><strong>'+data[i].referencia+ '</strong></center></td>'+
+								'<td>'+
+									'<center>'+
+                                        '<div class="custom-control custom-checkbox">'+
+                                            '<input type="checkbox"  name="mes[]" value="'+data[i].mes+'" class="custom-control-input" id="customCheck'+i+'">'+
+                                            '<label class="custom-control-label" for="customCheck'+i+'"></label>'+
+                                        '</div>'+
+	                                '</center>'+
+								'</td>'+
+							'</tr>'
 			            );
 					}
 				}//cierre del for
@@ -1216,7 +1160,7 @@
 	            $('#muestraMesesMultasComprob').append('<input type="hidden" name="opcion" value="3" >');
 			}else{
 				$('#muestraMesesAPagar2').css('display','block');
-				$('#muestraMesesMultasComprob2').append('El residente no tiene pagos por confirmar');
+				$('#muestraMesesMultasComprob').append('El residente no tiene pagos por confirmar');
 			}
 			$('#CargandoPagosComprobar').css('display','none');
 		});
