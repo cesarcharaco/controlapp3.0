@@ -658,7 +658,7 @@ class PagosController extends Controller
                             }else{
                                 $status_pago[$i][2]="";
                             }
-                        
+                            $status_pago[$i][3]=$pago->id;
                     }
                     $i++;
                 }
