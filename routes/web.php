@@ -86,6 +86,8 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
 	Route::resource('pagos','PagosController');
+	Route::get('pagos/{id_residente}/consultas','PagosController@consultas')->name('pagos.consultas');
+	Route::post('pagos/editar_referencia','PagosController@editar_referencia2')->name('pagos.editar_referencia');
 	Route::get('pagos_multas','PagosController@pagos_multas')->name('pagos_multas');
 	Route::post('pagos/mr','PagosController@pagarmultas')->name('pagar.mr');
 

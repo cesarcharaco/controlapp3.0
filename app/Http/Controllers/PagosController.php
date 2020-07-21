@@ -635,4 +635,42 @@ class PagosController extends Controller
 
     }
 
+    public function editar_referencia2(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function consultas($id_residente)
+    {
+        $anio=date('Y');
+        $status_pago=array();
+        $i=0;
+        $buscar=Residentes::find($id_residente);
+        foreach ($buscar->inmuebles as $key) {
+            if($key->pivot->status=="En Uso"){
+                foreach ($key->mensualidades as $key2) {
+                    if($key2->anio==$anio){
+                        $pago=\App\Pagos::where('id_mensualidad',$key2->id)->orderby('id','DESC')->first();
+                            $status_pago[$i][0]=meses($key2->mes);
+                            $status_pago[$i][1]=$pago->status;
+                            if(!is_null($pago->referencia)){
+                            $status_pago[$i][2]=$pago->referencia;
+                            }else{
+                                $status_pago[$i][2]="";
+                            }
+                        
+                    }
+                    $i++;
+                }
+            }
+        }
+        $anio= array();
+        $a=anios_registros();
+        
+        for ($i=0; $i < count(anios_registros()); $i++) { 
+            $anio[$i]=$a[$i]['anio'];
+        }
+        //dd($status_pago);
+        return view('consultas.index',compact('status_pago','buscar','anio'));
+    }
 }
