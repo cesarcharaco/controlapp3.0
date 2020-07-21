@@ -12,10 +12,11 @@
                         <nav aria-label="breadcrumb" class="float-right mt-1">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Consultas</li>
+                                <li class="breadcrumb-item active" aria-current="page">Consulta</li>
+                                <li class="breadcrumb-item active" aria-current="page">Pagos de Condominio</li>
                             </ol>
                         </nav>
-                        <h4 class="mb-1 mt-0">Consultas</h4>
+                        <h4 class="mb-1 mt-0">Consulta - Pagos de Condominio</h4>
                     </div>
                 </div>
                 @include('flash::message')
@@ -31,45 +32,47 @@
                         </ul>
                     </div>
                 @endif
-                <div class="row">
-                    <div class="col-md-6 col-xl-6">
-                        <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
-                            <input type="hidden" name="id_residente" id="id_reside" value="{{\Auth::user()->id}}">
-                            <div class="card-body p-0">
-                                <div class="media p-3">
-                                    <div class="media-body">
-                                        <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago de condominio</span>
-                                        <!-- <h6 class="mb-0">Pagos retrasados: </h6> -->
-                                    </div>
-                                 
-                                    <div class="form-group">
-                                        <!-- <label class="mb-0 text-primary">Pagar mes</label> -->
-                                        <h6 class="mb-0"><a href="#" style="width: 100% !important;" onclick="BMesesResidente('{{$buscar->id}}')" class="btn btn-primary">Pagar</a></h6>
-                                    </div>
+                @if(\Auth::user()->tipo_usuario != 'Admin')
+                    <div class="row">
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                                <input type="hidden" name="id_residente" id="id_reside" value="{{\Auth::user()->id}}">
+                                <div class="card-body p-0">
+                                    <div class="media p-3">
+                                        <div class="media-body">
+                                            <span class="text-muted text-uppercase font-size-12 font-weight-bold">Pago de condominio</span>
+                                            <!-- <h6 class="mb-0">Pagos retrasados: </h6> -->
+                                        </div>
+                                     
+                                        <div class="form-group">
+                                            <!-- <label class="mb-0 text-primary">Pagar mes</label> -->
+                                            <h6 class="mb-0"><a href="#" style="width: 100% !important;" onclick="BMesesResidente('{{$buscar->id}}')" class="btn btn-primary">Pagar</a></h6>
+                                        </div>
 
-                                
+                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- <div class="col-md-6 col-xl-6">
-                        <div class="card">
-                            <div class="card-body p-0">
-                                <div class="media p-3">
-                                    <div class="media-body">
-                                        <span class="text-muted text-muted text-uppercase font-size-12 font-weight-bold">Multas asignadas</span>
-                                        <h6 class="mb-0">Total de multas: </h6>
+                        <!-- <div class="col-md-6 col-xl-6">
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="media p-3">
+                                        <div class="media-body">
+                                            <span class="text-muted text-muted text-uppercase font-size-12 font-weight-bold">Multas asignadas</span>
+                                            <h6 class="mb-0">Total de multas: </h6>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente()" class="btn btn-danger">Pagar</a></h6>
+                                        </div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <h6 class="mb-0"><a href="#" style="width: 100% !important; position: relative;" onclick="pagarMultasResidente()" class="btn btn-danger">Pagar</a></h6>
-                                    </div>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div> -->
-                </div>
+                                </div>                            
+                            </div>
+                        </div> -->
+                    </div>
+                @endif
             </div>
         </div>
         @include('flash::message')
@@ -111,11 +114,12 @@
                                 @elseif ($status_pago[$i][1] == 'Por Confirmar') 
                                         <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong> | CÓDIGO DE TRANS.: <b>{{ $status_pago[$i][2] }}</b>
                                             @if(\Auth::user()->tipo_usuario == 'Residente')
+                                                <br>
                                                 <button class="btn btn-warning btn-sm" onclick="editarReferenciaCP('{{ $status_pago[$i][3] }}','{{ $status_pago[$i][2] }}')">
                                                     <span class="PalabraPagoConfirmar">Editar Código de Trans.</span>
                                                     <center>
                                                         <span class="PalabraEditarPago2">
-                                                            <i data-feather="eye" class="iconosMetaforas2"></i></span>
+                                                            <i data-feather="edit" class="iconosMetaforas2"></i></span>
                                                     </center>
                                                 </button>
                                             @endif
@@ -142,9 +146,6 @@
             </div>
         </div>
     </div>                           
-
-@endsection
-
     {!! Form::open(['route' => ['pagos.editar_referencia'],'method' => 'POST', 'name' => 'EditarReferencia', 'id' => 'editar_referencia', 'data-parsley-validate']) !!}
         @csrf
         <div class="modal fade" id="editarReferenciaPC" role="dialog">
@@ -190,6 +191,9 @@
             </div>
         </div>
     {!! Form::close() !!}
+
+@endsection
+
 
 <script type="text/javascript">
 

@@ -73,10 +73,10 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Pagos</li>
-                        <li class="breadcrumb-item active" aria-current="page">Pagos Comunes</li>
+                        <li class="breadcrumb-item active" aria-current="page">Pagos de Condominio</li>
                     </ol>
                 </nav>
-                <h4 class="mb-1 mt-0">Pagos - Pagos Comunes</h4>
+                <h4 class="mb-1 mt-0">Pagos - Pagos de Condominio</h4>
             </div>
         </div>
     </div>
