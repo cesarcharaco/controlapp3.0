@@ -637,7 +637,13 @@ class PagosController extends Controller
 
     public function editar_referencia2(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        $pago=Pagos::find($request->id_pago);
+        $pago->referencia=$request->ReferenciaNueva;
+        $pago->save();
+
+        toastr()->success('con éxito!!', 'Referencia modificada');
+        return redirect()->back();        
     }
 
     public function consultas($id_residente)
