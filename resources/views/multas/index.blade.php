@@ -495,7 +495,16 @@
                     <div class="modal-body">
                         <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded">
                             <div class="card-body">
-                                <div id="codigoActualRef"></div>
+                                <center>
+                                   <div class="row">
+                                       <div class="col-md-12">
+                                           <div class="form-group">
+                                               <label for="">Código de Trans. Actual</label>
+                                               <input type="text" name="ReferenciaActual" class="form-control" disabled id="codigoActualRef" required>
+                                           </div>
+                                       </div>
+                                   </div>
+                                </center>
                                 <center>
                                    <div class="row">
                                        <div class="col-md-12">
@@ -608,18 +617,7 @@
             if(data.length>0){
                 for (var i = 0; i < data.length; i++) {
                     if(data[i].id_pivot == id_pivot){
-                        $('#codigoActualRef').append(
-                            '<center>'+
-                                '<div class="row">'+
-                                    '<div class="col-md-12">'+
-                                        '<div class="form-group">'+
-                                            '<label for="">Código de Trans. Actual</label>'+
-                                            '<input type="text" name="ReferenciaNueva" class="form-control" disabled value="'+data[i].referencia+'" required>'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</center>'
-                        );
+                        $('#codigoActualRef').val(data[i].referencia);
                     }
                 }
             }else{
