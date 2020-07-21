@@ -28,7 +28,7 @@ class MultasRecargasController extends Controller
             ->join('multas_recargas','multas_recargas.id','=','resi_has_mr.id_mr')
             ->where('residentes.id_usuario',\Auth::user()->id)
             ->where('multas_recargas.id_admin',$id_admin)
-            ->select('multas_recargas.*','resi_has_mr.mes','resi_has_mr.status')
+            ->select('multas_recargas.*','resi_has_mr.id AS id_pivot','resi_has_mr.mes','resi_has_mr.status')
             ->get();
 
         // dd(count($asignacion));
