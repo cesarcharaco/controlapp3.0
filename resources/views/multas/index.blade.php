@@ -157,7 +157,7 @@
                                         <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a una multa/recarga para ver mas opciones.</span>
                                     </div>
                                 </td>
-                                <td colspan="3"></td>
+                                <td colspan="2"></td>
                             </tr>
                         @endif
                         <tr class="bg-primary text-white" id="th2" style="display: none">
@@ -175,10 +175,6 @@
                             </th>
                             <th><span class="PalabraEditarPago">Asignados</span>
                                 <span class="PalabraEditarPago2">A</span></th>
-                            <th>
-                                <span class="PalabraEditarPago">Anio</span>
-                                <span class="PalabraEditarPago2">A</span>
-                            </th>
                         </tr>
                         <tr class="text-white" id="th1" style="background-color: #ff3e36 !important;">
                             <th>#</th>
@@ -198,10 +194,6 @@
                                 <span class="PalabraEditarPago" align="center">Tipo</span>
                                 <span class="PalabraEditarPago2" align="center">T</span>
                             </th>
-                            <th>
-                                <span class="PalabraEditarPago" align="center">Año</span>
-                                <span class="PalabraEditarPago2" align="center">A</span>
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -214,7 +206,6 @@
                                     <td>{{$key->observacion}}</td>
                                     <td>{{$key->monto}}</td>
                                     <td>{{$key->tipo}}</td>
-                                    <td>{{$key->anio}}</td>
                                 </tr>
                                 <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
                                     <td width="10">
@@ -262,12 +253,10 @@
                                             </center>
                                         </a>
                                     </td>
-                                    <td>{{$key->anio}}</td>
                                     
 
                                 </tr>
                                 <tr style="display: none;">
-                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -278,8 +267,8 @@
                         @else
                             @foreach($asignacion as $key)
                                 <tr>
-                                    <td align="center">
-                                        <button class="btn btn-warning rounded" onclick="editarReferencia('{{$key->id}}','{{$key->id_pivot}}');">
+                                    <td>
+                                        <button class="btn btn-warning rounded btn-sm" onclick="editarReferencia('{{$key->id}}','{{$key->id_pivot}}');">
                                             <span class="PalabraEditarPago" align="center">Editar Código de Trans.</span>
                                             <span class="PalabraEditarPago2" align="center">
                                                 <i data-feather="edit" class="iconosMetaforas2"></i>
@@ -290,7 +279,6 @@
                                     <td>{{$key->observacion}}</td>
                                     <td>{{$key->monto}}</td>
                                     <td>{{$key->tipo}}</td>
-                                    <td>{{$key->anio}}</td>
                                 </tr>
                             @endforeach()
                         @endif
