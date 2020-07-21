@@ -317,7 +317,7 @@ class MultasRecargasController extends Controller
         ->join('resi_has_mr','resi_has_mr.id_mr','=','multas_recargas.id')
         ->join('residentes','residentes.id','=','resi_has_mr.id_residente')
         ->where('resi_has_mr.id_residente',$id_residente)
-        ->select('multas_recargas.*','resi_has_mr.status','resi_has_mr.referencia')
+        ->select('multas_recargas.*','resi_has_mr.status','resi_has_mr.referencia','resi_has_mr.id AS id_pivot')
         ->get();   
     }
 

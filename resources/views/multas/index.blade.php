@@ -199,7 +199,7 @@
                                 <span class="PalabraEditarPago2" align="center">T</span>
                             </th>
                             <th>
-                                <span class="PalabraEditarPago" align="center">Anio</span>
+                                <span class="PalabraEditarPago" align="center">Año</span>
                                 <span class="PalabraEditarPago2" align="center">A</span>
                             </th>
                         </tr>
@@ -279,28 +279,18 @@
                             @foreach($asignacion as $key)
                                 <tr>
                                     <td align="center">
-                                        <button class="btn btn-warning rounded" onclick="editarReferencia('{{$key->id}}','{{$key->id_pivot}}');">Editar Código de Trans.</button>
+                                        <button class="btn btn-warning rounded" onclick="editarReferencia('{{$key->id}}','{{$key->id_pivot}}');">
+                                            <span class="PalabraEditarPago" align="center">Editar Código de Trans.</span>
+                                            <span class="PalabraEditarPago2" align="center">
+                                                <i data-feather="edit" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </button>
                                     </td>
                                     <td>{{$key->motivo}}</td>
                                     <td>{{$key->observacion}}</td>
                                     <td>{{$key->monto}}</td>
                                     <td>{{$key->tipo}}</td>
-                                    @if($key->status == 'Pagada')
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-success"><strong>Pagada</strong></span>
-                                                <span class="tituloTabla2 text-success"><strong>P</strong></span>
-                                        </td>
-                                     @elseif($key->status == 'Enviada')
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-info"><strong>Enviada</strong></span>
-                                                <span class="tituloTabla2 text-info"><strong>W</strong></span>
-                                        </td>
-                                    @else
-                                        <td style="position: all;">
-                                                <span class="tituloTabla text-warning"><strong>Por Confirmar</strong></span>
-                                                <span class="tituloTabla2 text-warning"><strong>P/C</strong></span>
-                                        </td>
-                                    @endif
+                                    <td>{{$key->anio}}</td>
                                 </tr>
                             @endforeach()
                         @endif
@@ -447,8 +437,8 @@
         </div>
     {!! Form::close() !!}
 
-    <div class="modal fade" id="verAsignadosMulta" role="dialog">
-        <div class="modal-dialog modals-default">
+    <div class="modal fade" tabindex="-1" id="verAsignadosMulta" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4>Asignaciones de la Multa/Recarga</h4>
@@ -495,16 +485,7 @@
                     <div class="modal-body">
                         <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded">
                             <div class="card-body">
-                                <center>
-                                   <div class="row">
-                                       <div class="col-md-12">
-                                           <div class="form-group">
-                                               <label for="">Código de Trans. Actual</label>
-                                               <input type="text" name="ReferenciaActual" class="form-control" disabled id="codigoActualRef" required>
-                                           </div>
-                                       </div>
-                                   </div>
-                                </center>
+                                <div id="codigoActualRef"></div>
                                 <center>
                                    <div class="row">
                                        <div class="col-md-12">
@@ -617,7 +598,18 @@
             if(data.length>0){
                 for (var i = 0; i < data.length; i++) {
                     if(data[i].id_pivot == id_pivot){
-                        $('#codigoActualRef').val(data[i].referencia);
+                        $('#codigoActualRef').append(
+                            '<center>'+
+                                '<div class="row">'+
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">'+
+                                            '<label for="">Código de Trans. Actual</label>'+
+                                            '<h3 align="center" class="text-warning">'+data[i].refe+'</h3>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</center>'
+                        );
                     }
                 }
             }else{

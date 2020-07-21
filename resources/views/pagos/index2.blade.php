@@ -270,8 +270,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="verAsignadosMulta" role="dialog">
-        <div class="modal-dialog modals-default">
+   <div class="modal fade" tabindex="-1" id="verAsignadosMulta" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4>Asignaciones de la Multa/Recarga</h4>
@@ -539,6 +539,43 @@
         </div>
     </div>
 
+    {!! Form::open(['route' => ['editar_referencia'],'method' => 'POST', 'name' => 'EditarReferencia', 'id' => 'editar_referencia', 'data-parsley-validate']) !!}
+        @csrf
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" id="editarReferencia" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Editar Código de Transacción</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded">
+                            <div class="card-body">
+                                <div id="codigoActualRef"></div>
+                                <center>
+                                   <div class="row">
+                                       <div class="col-md-12">
+                                           <div class="form-group">
+                                               <label for="">Código de Trans. Nueva</label>
+                                               <input type="text" name="ReferenciaNueva" class="form-control" required>
+                                           </div>
+                                       </div>
+                                   </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="id_pivot" name="id_pivot">
+                        <button type="submit" class="btn btn-warning" >Editar Código de Trans.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
+
 
 
 @endsection
@@ -620,7 +657,12 @@
                                 '<tr class='+clase+'>'+
                                     '<td align="center"><center>'+data[i].motivo+'</center></td>'+
                                     '<td align="center"><center>'+data[i].monto+'</center></td>'+
-                                    '<td align="center" class="text-success"><center><strong>'+data[i].status+'</strong>'+referencia+'</center></td>'+
+                                    '<td align="center" class="text-success"><center><strong>'+data[i].status+'</strong>'+referencia+'</center>'+
+                                        '<button style="width:100% !important;" class="btn btn-warning rounded btn-sm" onclick="editarReferencia('+data[i].id+','+data[i].id_pivot+');">'+
+                                            '<span class="PalabraPagoConfirmar">Editar Código de Trans.</span>'+
+                                            '<span class="PalabraEditarPago2">Editar</span>'+
+                                        '</button>'+
+                                    '</td>'+
                                 '</tr>'
                             );
                         }else if(data[i].status == 'Por Confirmar'){
@@ -652,6 +694,38 @@
                 }
         });
         $('#CargandoAsignadosComprobar').css('display','none');
+    }
+
+    function editarReferencia(id_multa, id_pivot) {
+        $('#verAsignadosMulta').modal('hide');
+        $('#editarReferencia').modal('show');
+        $('#codigoActualRef').empty();
+        $('#id_pivot').val(id_pivot);
+
+        $.get('mr/'+id_multa+'/asignados', function(data) {
+        })
+        .done(function(data) {
+            if(data.length>0){
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i].id_pivot == id_pivot){
+                        $('#codigoActualRef').append(
+                            '<center>'+
+                                '<div class="row">'+
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">'+
+                                            '<label for="">Código de Trans. Actual</label>'+
+                                            '<h3 align="center" class="text-warning">'+data[i].referencia+'</h3>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</center>'
+                        );
+                    }
+                }
+            }else{
+                alert('no hay');
+            }
+        });
     }
 </script>
 @section('scripts')
