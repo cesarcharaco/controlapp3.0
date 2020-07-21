@@ -1572,17 +1572,17 @@
                     $('.EstacionaBody'+id_estacionamiento).append('<tr>');
                     if(data[i].status == 'Pendiente'){
                         $('.EstacionaBody'+id_estacionamiento).append(
-                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
                             '<td align="center" class="text-success"><strong>'+data[i].status+'</strong></td>'
                         );
                     }else if(data[i].status == 'Por Confirmar'){
                         $('.EstacionaBody'+id_estacionamiento).append(
-                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
                             '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'
                         );
                     }else{
                         $('.EstacionaBody'+id_estacionamiento).append(
-                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
                             '<td align="center" class="text-danger"><strong>'+data[i].status+'</strong></td>'
                         );
                     }
