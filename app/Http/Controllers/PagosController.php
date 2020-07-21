@@ -622,9 +622,17 @@ class PagosController extends Controller
 
     public function editar_referencia(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        \DB::table('resi_has_mr')
+        ->where('id',$request->id_pivot)
+        ->update([
+            'referencia' => $request->ReferenciaNueva,
+        ]);
 
-        
+        toastr()->success('con éxito!!', 'Referencia modificada');
+        return redirect()->back();
+
+
     }
 
 }
