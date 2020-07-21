@@ -1313,6 +1313,7 @@
         
         });
     }
+
     function detalles(id_inmueble){
         //console.log(id_inmueble);
         $.get("arriendos/"+id_inmueble+"/buscar_inmuebles3",function (data) {
@@ -1323,18 +1324,18 @@
                 $('.inmuebleBody'+id_inmueble).append('<tr>');
                     if(data[i].status == 'Pendiente'){
                         $('.inmuebleBody'+id_inmueble).append(
-                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
                             '<td align="center" class="text-success"><strong>'+data[i].status+'</strong></td>'
                         );
                     }else if(data[i].status == 'Por Confirmar'){
                         $('.inmuebleBody'+id_inmueble).append(
-                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
                             // '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'
                             '<td align="center" class="text-warning"><strong>' +data[i].status+'</strong><br> CÓDIGO TRANS.: <b>'+data[i].referencia+'</b></td>'
                         );
                     }else{
                         $('.inmuebleBody'+id_inmueble).append(
-                            '<td align="center"><strong>'+mostrar_mes(data[i].mes)+'</strong></td>'+
+                            '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
                             '<td align="center" class="text-danger"><strong>'+data[i].status+'</strong></td>'
                         );
                     }
