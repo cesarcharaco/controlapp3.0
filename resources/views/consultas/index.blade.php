@@ -97,6 +97,12 @@
 
         <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="card-body">
+                @if(\Auth::user()->tipo_usuario == 'Admin')
+                    <a href="{{ url('pagos') }}" class="btn btn-info text-white shadow">
+                        <i data-feather="arrow-left-circle"></i>
+                        Regresar a Pagos de Condominio
+                    </a>
+                @endif
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                     <thead>
                         <tr class="bg-primary text-white">
