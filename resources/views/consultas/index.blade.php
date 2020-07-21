@@ -73,22 +73,24 @@
             </div>
         </div>
         @include('flash::message')
-        <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        
-                        <label>Año</label>
-                        <select class="form-control select2" onchange="consulta_anual(this.value)">
-                            <option value="0" disabled selected>Seleccione año</option>
-                            @for($j=0;$j< count($anio);$j++)
-                                <option value="{{ $anio[$j] }}">{{ $anio[$j] }}</option>
-                            @endfor
-                        </select>
+        @if(\Auth::user()->tipo_usuario != 'Admin')
+            <div class="card border border-success rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <label>Año</label>
+                            <select class="form-control select2" onchange="consulta_anual(this.value)">
+                                <option value="0" disabled selected>Seleccione año</option>
+                                @for($j=0;$j< count($anio);$j++)
+                                    <option value="{{ $anio[$j] }}">{{ $anio[$j] }}</option>
+                                @endfor
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
 
         <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
             <div class="card-body">
@@ -107,9 +109,29 @@
                                 @if ($status_pago[$i][1] == 'Pendiente') 
                                         <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong></td>
                                 @elseif ($status_pago[$i][1] == 'Por Confirmar') 
-                                        <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong> | CÓDIGO DE TRANS.: <b>{{ $status_pago[$i][2] }}</b></td>
+                                        <td class="text-warning"><strong>{{ $status_pago[$i][1] }}</strong> | CÓDIGO DE TRANS.: <b>{{ $status_pago[$i][2] }}</b>
+                                            @if(\Auth::user()->tipo_usuario == 'Residente')
+                                                <button class="btn btn-warning btn-sm" onclick="editarReferenciaCP('{{ $status_pago[$i][3] }}','{{ $status_pago[$i][2] }}')">
+                                                    <span class="PalabraPagoConfirmar">Editar Código de Trans.</span>
+                                                    <center>
+                                                        <span class="PalabraEditarPago2">
+                                                            <i data-feather="eye" class="iconosMetaforas2"></i></span>
+                                                    </center>
+                                                </button>
+                                            @endif
+                                        </td>
                                 @elseif ($status_pago[$i][1]== 'Cancelado')
-                                        <td class="text-success"><strong>{{ $status_pago[$i][1] }}</strong></b></td>
+                                        <td class="text-success"><strong>{{ $status_pago[$i][1] }}</strong> | CÓDIGO DE TRANS.: <b>{{ $status_pago[$i][2] }}</b>
+                                            @if(\Auth::user()->tipo_usuario == 'Admin')
+                                                <button class="btn btn-warning btn-sm" onclick="editarReferenciaCP('{{ $status_pago[$i][3] }}','{{ $status_pago[$i][2] }}')">
+                                                    <span class="PalabraPagoConfirmar">Editar Código de Trans.</span>
+                                                    <center>
+                                                        <span class="PalabraEditarPago2">
+                                                            <i data-feather="eye" class="iconosMetaforas2"></i></span>
+                                                    </center>
+                                                </button>
+                                            @endif
+                                        </td>
                                 @else ($status_pago[$i][1]== 'No aplica')
                                         <td class="text-danger"><strong>{{ $status_pago[$i][1] }}</strong></td>
                                 @endif
@@ -122,6 +144,52 @@
     </div>                           
 
 @endsection
+
+    {!! Form::open(['route' => ['pagos.editar_referencia'],'method' => 'POST', 'name' => 'EditarReferencia', 'id' => 'editar_referencia', 'data-parsley-validate']) !!}
+        @csrf
+        <div class="modal fade" id="editarReferenciaPC" role="dialog">
+            <div class="modal-dialog modals-default">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Editar Código de Transacción</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded">
+                            <div class="card-body">
+                                <center>
+                                   <div class="row">
+                                       <div class="col-md-12">
+                                           <div class="form-group">
+                                               <label for="">Código de Trans. Actual</label>
+                                               <h3 class="text-warning"><span id="CodeRefActual"></span></h3>
+                                           </div>
+                                       </div>
+                                   </div>
+                                </center>
+                                <center>
+                                   <div class="row">
+                                       <div class="col-md-12">
+                                           <div class="form-group">
+                                               <label for="">Código de Trans. Nueva</label>
+                                               <input type="text" name="ReferenciaNueva" class="form-control" required>
+                                           </div>
+                                       </div>
+                                   </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="id_pago" name="id_pago">
+                        <button type="submit" class="btn btn-warning" >Editar Código de Trans.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
 
 <script type="text/javascript">
 
@@ -158,6 +226,12 @@
      		});
         }
 	}
+
+    function editarReferenciaCP(id_pago,codigo_referencia){
+        $('#editarReferenciaPC').modal('show');
+        $('#CodeRefActual').html(codigo_referencia);
+        $('#id_pago').val(id_pago);
+    }
 </script>
 @section('scripts')
 

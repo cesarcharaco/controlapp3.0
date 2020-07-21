@@ -148,9 +148,13 @@
                                                             background-color: #CB8C4D !important;" class="btn" onclick="VerResi('{{$key2->id_residente}}')" href="#">
                                                             <span class="palabraVerInmueble text-white">Ver Inmuebles</span>
                                                             <span class="palabraVerInmueble2 text-white">I</span>
-                                                        </a>
+                                                        </a><br><br>
                                                 @endif
                                             @endforeach
+                                            <a href="{{ url('pagos/'.$key->id.'/consultas')}}" style="width: 100% !important;" class="btn btn-danger">
+                                                <span class="palabraVerInmueble text-white">Consulta de Pago</span>
+                                                <span class="palabraVerInmueble2 text-white">C/P</span>
+                                            </a>
                                             <br><br>
                                             @foreach($asignaEs as $key2)
                                                 @if($key2->id_residente == $key->id)
