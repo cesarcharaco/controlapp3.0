@@ -279,10 +279,10 @@
                             @foreach($asignacion as $key)
                                 <tr>
                                     <td align="center">
-                                        <button class="btn btn-warning rounded" onclick="editarReferencia();">Editar Código de Trans.</button>
+                                        <button class="btn btn-warning rounded" onclick="editarReferencia('{{$key->id}}','{{$key->id_pivot}}');">Editar Código de Trans.</button>
                                     </td>
                                     <td>{{$key->motivo}}</td>
-                                    <td>{{$key->id_pivot}}</td>
+                                    <td>{{$key->observacion}}</td>
                                     <td>{{$key->monto}}</td>
                                     <td>{{$key->tipo}}</td>
                                     @if($key->status == 'Pagada')
@@ -495,16 +495,8 @@
                     <div class="modal-body">
                         <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded">
                             <div class="card-body">
+                                <div id="codigoActualRef"></div>
                                 <center>
-                                   <div class="row">
-                                       <div class="col-md-12">
-                                           <div class="form-group">
-                                               <label for="">Código de Trans. Actual</label>
-                                               <br>
-                                               <span>32413243241341324</span>
-                                           </div>
-                                       </div>
-                                   </div>
                                    <div class="row">
                                        <div class="col-md-12">
                                            <div class="form-group">
@@ -518,7 +510,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" id="id_edit" name="id">
+                        <input type="hidden" id="id_pivot" name="id_pivot">
                         <button type="submit" class="btn btn-warning" >Editar Código de Trans.</button>
                     </div>
                 </div>
@@ -605,7 +597,34 @@
         $('#CargandoAsignadosComprobar').css('display','none');
     }
 
-    function editarReferencia() {
+    function editarReferencia(id_multa, id_pivot) {
         $('#editarReferencia').modal('show');
+        $('#codigoActualRef').empty();
+        $('#id_pivot').val(id_pivot);
+
+        $.get('mr/'+id_multa+'/asignados', function(data) {
+        })
+        .done(function(data) {
+            if(data.length>0){
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i].id_pivot == id_pivot){
+                        $('#codigoActualRef').append(
+                            '<center>'+
+                                '<div class="row">'+
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">'+
+                                            '<label for="">Código de Trans. Actual</label>'+
+                                            '<input type="text" name="ReferenciaNueva" class="form-control" disabled value="'+data[i].referencia+'" required>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</center>'
+                        );
+                    }
+                }
+            }else{
+                alert('no hay');
+            }
+        });
     }
 </script>
