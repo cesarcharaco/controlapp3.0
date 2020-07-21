@@ -279,7 +279,7 @@
                             @foreach($asignacion as $key)
                                 <tr>
                                     <td align="center">
-                                        <button class="btn btn-warning rounded" onclick="editarReferencia();">Editar Código de Trans.</button>
+                                        <button class="btn btn-warning rounded" onclick="editarReferencia('{{$key->id}}');">Editar Código de Trans.</button>
                                     </td>
                                     <td>{{$key->motivo}}</td>
                                     <td>{{$key->observacion}}</td>
@@ -496,15 +496,9 @@
                         <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded">
                             <div class="card-body">
                                 <center>
-                                   <div class="row">
-                                       <div class="col-md-12">
-                                           <div class="form-group">
-                                               <label for="">Código de Trans. Actual</label>
-                                               <br>
-                                               <span>32413243241341324</span>
-                                           </div>
-                                       </div>
-                                   </div>
+                                    <div id="codigoActualMulta"></div>
+
+                                       
                                    <div class="row">
                                        <div class="col-md-12">
                                            <div class="form-group">
@@ -605,7 +599,29 @@
         $('#CargandoAsignadosComprobar').css('display','none');
     }
 
-    function editarReferencia() {
+    function editarReferencia(id_multa,id_residente) {
         $('#editarReferencia').modal('show');
+        $('#codigoActualMulta').empty();
+        $.get('mr/'+id_multa+'/asignados', function(data) {
+        })
+        .done(function(data) {
+            if(data.length>0){
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i].status == 'Pagada'){
+                        $('#codigoActualMulta').append(
+                            '<div class="row">'+
+                               '<div class="col-md-12">'+
+                                   '<div class="form-group">'+
+                                       '<label for="">Código de Trans. Actual</label>'+
+                                       '<br>'+
+                                       '<span>'+data[i].referencia+'</span>'+
+                                   '</div>'+
+                               '</div>'+
+                           '</div>'
+                        );
+                    }
+                }
+            }
+        });
     }
 </script>
