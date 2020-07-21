@@ -623,11 +623,29 @@ class PagosController extends Controller
     public function editar_referencia(Request $request)
     {
         // dd($request->all());
+
+        //consultando datos de residente y multa
+        $buscar=\DB::table('residentes')
+        ->join('resi_has_mr','resi_has_mr.id_residente','=','residentes.id')
+        ->join('multas_recargas','multas_recargas.id','=','resi_has_mr.id_mr')
+        ->where('resi_has_mr.id',$request->id_pivot)
+        ->select('multas_recargas.motivo','multas_recargas.tipo','residentes.nombres','residentes.apellidos','residentes.rut','resi_has_mr.referencia','residentes.id AS id_residente')->get();
+        foreach ($buscar as $key) {
+            $factura="La ".$key->tipo.": que fue asignada al residente: ".$key->apellidos.", ".$key->nombres." RUT: ".$key->rut.", cuyo Códido de Transacción era: ".$key->referencia." ha sido cambiado a :".$request->ReferenciaNueva;
+            $id_user=$key->id_residente;
+        }
+        //dd($factura);
         \DB::table('resi_has_mr')
         ->where('id',$request->id_pivot)
         ->update([
             'referencia' => $request->ReferenciaNueva,
         ]);
+
+        $reporte=\DB::table('reportes_pagos')->insert([
+                        'referencia' => $request->ReferenciaNueva,
+                        'reporte' => $factura,
+                        'id_residente' => $id_user
+                    ]);
 
         toastr()->success('con éxito!!', 'Referencia modificada');
         return redirect()->back();
@@ -639,8 +657,20 @@ class PagosController extends Controller
     {
         //dd($request->all());
         $pago=Pagos::find($request->id_pago);
+        //dd($pago->mensualidad->inmuebles->residentes[0]->apellidos);
+        $factura="El Pago de Condominio correspondiente al mes: ".meses($pago->mensualidad->mes)." del Residente: ".$pago->mensualidad->inmuebles->residentes[0]->apellidos.", ".$pago->mensualidad->inmuebles->residentes[0]->nombres." RUT: ".$pago->mensualidad->inmuebles->residentes[0]->rut.", cuyo Códido de Transacción era:  ".$pago->referencia.", ha sido cambiado a: ".$request->ReferenciaNueva;
+        
+        $id_user=$pago->mensualidad->inmuebles->residentes[0]->id;
+
         $pago->referencia=$request->ReferenciaNueva;
         $pago->save();
+
+
+        $reporte=\DB::table('reportes_pagos')->insert([
+                        'referencia' => $request->ReferenciaNueva,
+                        'reporte' => $factura,
+                        'id_residente' => $id_user
+                    ]);
 
         toastr()->success('con éxito!!', 'Referencia modificada');
         return redirect()->back();        
