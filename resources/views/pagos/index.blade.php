@@ -76,7 +76,9 @@
                         <li class="breadcrumb-item active" aria-current="page">Pagos de Condominio</li>
                     </ol>
                 </nav>
-                <h4 class="mb-1 mt-0">Pagos - Pagos de Condominio</h4>
+                <span class="PalabraEditarPago">
+                    <h4 class="mb-1 mt-0">Pagos - Pagos de Condominio</h4>
+                </span>
             </div>
         </div>
     </div>
