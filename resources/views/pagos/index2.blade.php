@@ -76,7 +76,9 @@
                         <li class="breadcrumb-item active" aria-current="page">Multas y Recargas</li>
                     </ol>
                 </nav>
-                <h4 class="mb-1 mt-0">Pagos - Multas y Recargas</h4>
+                <span class="PalabraEditarPago">
+                    <h4 class="mb-1 mt-0">Pagos - Multas y Recargas</h4>
+                </span>
             </div>
         </div>
     </div>
@@ -159,9 +161,9 @@
                                             <br>
                                             <center>
                                                 <a href="#" class="btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="multasPorComprobar('{{$key->id}}')">
-                                                    <i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
+                                                    <i data-feather="check-square" class="iconosMetaforas" style="float:left;"></i>
                                                     <span class="PalabraPagoConfirmar">Confirmar</span>
-                                                    <span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i></span>
+                                                    <span class="PalabraEditarPago2"><i data-feather="check-square" class="iconosMetaforas2"></i></span>
                                                 </a>
                                             </center>
                                             
