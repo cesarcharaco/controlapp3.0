@@ -401,9 +401,9 @@
                                                     margin-bottom: 5px;
                                                     margin-top: 5px;
                                                     float: right;">
-                                                    <span class="PalabraEditarPago ">Nuevo Administrador</span>
+                                                    <span class="PalabraEditarPago text-white">Nuevo Administrador</span>
                                                     <center>
-                                                        <span class="PalabraEditarPago2 ">
+                                                        <span class="PalabraEditarPago2 text-white">
                                                             <i data-feather="plus" class="iconosMetaforas2"></i>
                                                         </span>
                                                     </center>

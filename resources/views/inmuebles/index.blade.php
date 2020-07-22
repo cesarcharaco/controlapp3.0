@@ -143,17 +143,19 @@
                     <tr class="text-white" id="th1" style="background-color: #CB8C4D;">
                         <th>#</th>
                         <th>
-                            <span class="tituloTabla">Idem</span>
-                            <span class="tituloTabla2">I</span>
+                            <span class="PalabraEditarPago">Idem</span>
+                            <i data-feather="sliders" class="iconosMetaforas2"></i>
                         </th>
                         <th>
-                            <span class="tituloTabla">Tipo</span>
-                            <span class="tituloTabla2">T</span>
+                            <span class="PalabraEditarPago">Tipo</span>
+                            <span class="PalabraEditarPago2">T</span>
                         </th>
                         <!-- <th>Estacionamientos</th> -->
                         <th>
-                            <span class="tituloTabla">Status</span>
-                            <span class="tituloTabla2">S</span>
+                            <span class="PalabraEditarPago">Status</span>
+                            <span class="PalabraEditarPago2">
+                                <i data-feather="sliders" class="iconosMetaforas2"></i>
+                            </span>
                         </th>
                         <!-- <th>Mensualidades</th> -->
                     </tr>
@@ -161,17 +163,21 @@
                         <th width="10"></th>
                         <th>
                             <span class="PalabraEditarPago">Idem</span>
-                            <span class="PalabraEditarPago2">I</span>
+                            <span class="PalabraEditarPago2">Id</span>
                         </th>
                         <th>
                             <center>
                                 <span class="PalabraEditarPago">Opciones</span>
-                                <span class="PalabraEditarPago2">O</span>
+                                <span class="PalabraEditarPago2">
+                                    <i data-feather="settings" class="iconosMetaforas2"></i>
+                                </span>
                             </center>
                         </th>
                         <th>
                             <span class="PalabraEditarPago">Status</span>
-                            <span class="PalabraEditarPago2">S</span>
+                            <span class="PalabraEditarPago2">
+                                <i data-feather="sliders" class="iconosMetaforas2"></i>
+                            </span>
                         </th>
                     </tr>
                 </thead>
