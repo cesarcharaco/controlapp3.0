@@ -39,7 +39,7 @@
                         <div class="col-md-6 col-xl-6">
                             <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                 <div class="card-body p-0">
-                                    <div class="media p-3">
+                                    <div class="media p-4">
                                         <div class="media-body">
                                             <span class="text-info text-uppercase font-size-12 font-weight-bold">Pago Comúnes</span>
                                             <div class="row">
@@ -78,27 +78,35 @@
                                     border-color: #2d572c !important;
                                     ">
                                 <div class="card-body p-0">
-                                    <div class="media p-3">
+                                    <div class="media">
                                         <div class="media-body">
-                                            <span class="text-success text-uppercase font-size-12 font-weight-bold" style="color:#2d572c !important;">Residentes</span>
+                                            <center><span class="text-success text-uppercase font-size-12 font-weight-bold" style="color:#2d572c !important;">Residentes</span></center>
                                             <div class="row justify-content-center">
                                                 <div class="col-md-6">
-                                                    <table width="100%">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th><span>Registrados: </span></th>
-                                                                <th align="left">{{ residentes() }}</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="text-primary">C/Inmuebles:</span></td>
-                                                                <td align="left">{{ residentes_alquilados_i() }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="text-danger">C/Estaciona.:</span></td>
-                                                                <td align="left">{{ residentes_alquilados_e() }}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                    <div class="card shadow" style="border: 1px solid #f6f6f7!important; border-color: #2d572c !important;">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="center"><span>Registrados: </span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center">{{ residentes() }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center"><span style="color: #CB8C4D !important;">C/Inmuebles:</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center">{{ residentes_alquilados_i() }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center"><span style="color: #cccc00 !important;">C/Estaciona.:</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center">{{ residentes_alquilados_e() }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group" align="center">
@@ -108,7 +116,8 @@
                                                             position: relative;
                                                             border: 1px solid #f6f6f7!important;
                                                             border-color: #2d572c !important;
-                                                            background-color: #2d572c !important;" class="btn shadow" onclick="NuevoResidente()"><strong class="text-white">Agregar</strong></a>
+                                                            background-color: #2d572c !important;" class="btn shadow" onclick="NuevoResidente()"><strong class="text-white">Agregar</strong>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,31 +126,58 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <div class="col-md-6 col-xl-6">
                             <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="
                                 display: none;
                                 border: 1px solid #f6f6f7!important;
                                 border-color: #CB8C4D !important; ">
                                 <div class="card-body p-0">
-                                    <div class="media p-3">
+                                    <div class="media p-2">
                                         <div class="media-body">
-                                            <span class="text-uppercase font-size-12 font-weight-bold" style="color: #CB8C4D  !important">Inmuebles</span>
-                                            <h6 class="mb-0">Existencia: {{ existencia_i() }}</h6>
-                                            <h6 class="mb-0">Alquilados: {{ alquilados_i_t() }}</h6>
-                                        </div>                                         
-                                        <div class="form-group">
-                                            <label class="mb-0" style="color: #CB8C4D !important">Nuevo Inmueble</label>
-                                            <a href="#" data-toggle="modal" data-target="#crearInmueble" style="
-                                                            width: 100% !important;
-                                                            position: relative;
-                                                            border: 1px solid #f6f6f7!important;
-                                                            border-color: #CB8C4D !important; 
-                                                            background-color: #CB8C4D !important; " class="btn shadow"><strong class="text-white">Agregar</strong></a>
-                                        </div>                                        
+                                            <center>
+                                                <span class="text-success text-uppercase font-size-12 font-weight-bold" style="color: #CB8C4D  !important">Inmuebles</span>
+                                            </center>
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-6">
+                                                    <div class="card shadow" style="border: 1px solid #f6f6f7!important; border-color: #CB8C4D !important;">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                        <td align="center"><span>Existencias:</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center">{{ existencia_i() }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center"><span>Alquilados:</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center">{{ alquilados_i_t() }}</td>
+                                                                    </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group" align="center">
+                                                        <label class="mb-0" style="color: #CB8C4D !important">Nuevo Inmueble</label>
+                                                        <h6 class="mb-0">
+                                                            <strong>
+                                                                <a href="#" data-toggle="modal" data-target="#crearInmueble" style="
+                                                                    width: 100% !important;
+                                                                    position: relative;
+                                                                    border: 1px solid #f6f6f7!important;
+                                                                    border-color: #CB8C4D !important; 
+                                                                    background-color: #CB8C4D !important; " class="btn shadow"><strong class="text-white">Agregar</strong>
+                                                                </a>
+                                                            </strong>
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -152,26 +188,55 @@
                                 border: 1px solid #f6f6f7!important;
                                 border-color:#cccc00 !important;">
                                 <div class="card-body p-0">
-                                    <div class="media p-3">
+                                    <div class="media p-2">
                                         <div class="media-body">
-                                            <span class="text-uppercase font-size-12 font-weight-bold" style="color: #cccc00 !important;">Estacionamientos</span>
-                                            <h6 class="mb-0">Existencia: {{ existencia_e() }}</h6>
-                                            <h6 class="mb-0">Alquilados: {{ alquilados_e_t() }}</h6>
-                                        </div>                                            
-                                        <div class="form-group">
-                                            <label class="mb-0" style="color: #cccc00 !important;">Nuevo Estacionamiento</label>
-                                            <h6 class="mb-0"><a href="#" style="
-                                                width: 100% !important;
-                                                position: relative;
-                                                border: 1px solid #f6f6f7!important;
-                                                border-color: #cccc00 !important;
-                                                background-color: #cccc00 !important;
-                                                " data-toggle="modal" data-target="#crearEstacionamiento" class="btn btn-danger shadow">Agregar</a></h6>
+                                            <center>
+                                                <span class="text-uppercase font-size-12 font-weight-bold" style="color: #cccc00 !important;">Estacionamientos</span>
+                                            </center>
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-6">
+                                                    <div class="card shadow" style="border: 1px solid #f6f6f7!important; border-color: #cccc00 !important;">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                        <td align="center"><span>Existencias:</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center">{{ existencia_e() }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center"><span>Alquilados:</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center">{{ alquilados_e_t() }}</td>
+                                                                    </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" align="center">
+                                                    <label class="mb-0" style="color: #cccc00 !important;">Nuevo Estacionamiento</label>
+                                                    <h6 class="mb-0">
+                                                        <strong>
+                                                            <a href="#" style="
+                                                            width: 100% !important;
+                                                            position: relative;
+                                                            border: 1px solid #f6f6f7!important;
+                                                            border-color: #cccc00 !important;
+                                                            background-color: #cccc00 !important;
+                                                            " data-toggle="modal" data-target="#crearEstacionamiento" class="btn btn-danger shadow">Agregar</a>
+                                                        </strong>
+                                                    </h6>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+
                        {{--  <div class="col-md-6 col-xl-3">
                             <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
                                 <div class="card-body p-0">
@@ -188,8 +253,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
-                    </div>
+                        </div>
+                    </div>--}}
+
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <div class="card border border-success rounded shadow p-3 mb-5 bg-white rounded" style="display: none;">

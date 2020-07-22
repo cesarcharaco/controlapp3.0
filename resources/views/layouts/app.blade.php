@@ -47,7 +47,7 @@
                50% { opacity: 0.0; }
               100% { opacity: 1.0; }
             }
-        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
+        .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2,.card-home2{
         {
             display: none;
         }
@@ -243,6 +243,12 @@
             }
             .tabla-estilo{
                 font-size: 7px;
+            }
+            .card-home{
+                display: none;
+            }
+            .card-home2{
+                display: block;
             }
             .boton-tabla{
                 font-size: 7px;
