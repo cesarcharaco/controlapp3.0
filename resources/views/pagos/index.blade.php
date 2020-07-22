@@ -146,14 +146,28 @@
                                                             border: 1px solid #f6f6f7!important;
                                                             border-color: #CB8C4D !important;
                                                             background-color: #CB8C4D !important;" class="btn" onclick="VerResi('{{$key2->id_residente}}')" href="#">
-                                                            <span class="palabraVerInmueble text-white">Ver Inmuebles</span>
-                                                            <span class="palabraVerInmueble2 text-white">I</span>
+                                                            <span class="PalabraEditarPago" style="position: relative;">
+                                                                <i data-feather="home" class="clipboard" style="float: left;"></i>
+                                                                Inmuebles
+                                                            </span>
+                                                            <center>
+                                                                <span class="PalabraEditarPago2">
+                                                                    <i data-feather="home" class="iconosMetaforas2"></i>
+                                                                </span>
+                                                            </center>
                                                         </a><br><br>
                                                 @endif
                                             @endforeach
                                             <a href="{{ url('pagos/'.$key->id.'/consultas')}}" style="width: 100% !important;" class="btn btn-danger">
-                                                <span class="palabraVerInmueble text-white">Consulta de Pago</span>
-                                                <span class="palabraVerInmueble2 text-white">C/P</span>
+                                                <span class="PalabraEditarPago" style="position: relative;">
+                                                    <i data-feather="clipboard" class="clipboard" style="float: left;"></i>
+                                                    Consultas de Pago
+                                                </span>
+                                                <center>
+                                                    <span class="PalabraEditarPago2">
+                                                        <i data-feather="clipboard" class="clipboard"></i>
+                                                    </span>
+                                                </center>
                                             </a>
                                             <br><br>
                                             @foreach($asignaEs as $key2)
@@ -163,8 +177,15 @@
                                                         border: 1px solid #f6f6f7!important;
                                                         border-color: #cccc00 !important;
                                                         background-color: #cccc00 !important;" class="btn" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
-                                                            <span class="palabraVerEstaciona text-white">Ver Estacionamiento</span>
-                                                            <span class="palabraVerEstaciona2 text-white">E</span>
+                                                            <span class="PalabraEditarPago" style="position: relative;">
+                                                                <i data-feather="truck" class="clipboard" style="float: left;"></i>
+                                                                Estacionamientos
+                                                            </span>
+                                                            <center>
+                                                                <span class="PalabraEditarPago2">
+                                                                    <i data-feather="truck" class="iconosMetaforas2"></i>
+                                                                </span>
+                                                            </center>
                                                         </a>
                                                 @endif
                                             @endforeach
