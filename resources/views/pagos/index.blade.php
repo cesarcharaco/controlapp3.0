@@ -147,7 +147,7 @@
                                                             position: relative;
                                                             border: 1px solid #f6f6f7!important;
                                                             border-color: #CB8C4D !important;
-                                                            background-color: #CB8C4D !important;" class="btn" onclick="VerResi('{{$key2->id_residente}}')" href="#">
+                                                            background-color: #CB8C4D !important;" class="btn btn-sm" onclick="VerResi('{{$key2->id_residente}}')" href="#">
                                                             <span class="PalabraEditarPago" style="position: relative;">
                                                                 <i data-feather="home" class="clipboard" style="float: left;"></i>
                                                                 Inmuebles
@@ -160,14 +160,14 @@
                                                         </a><br><br>
                                                 @endif
                                             @endforeach
-                                            <a href="{{ url('pagos/'.$key->id.'/consultas')}}" style="width: 100% !important;" class="btn btn-danger">
+                                            <a href="{{ url('pagos/'.$key->id.'/consultas')}}" style="width: 100% !important;" class="btn btn-danger btn-sm">
                                                 <span class="PalabraEditarPago" style="position: relative;">
                                                     <i data-feather="clipboard" class="clipboard" style="float: left;"></i>
                                                     Consultas de Pago
                                                 </span>
                                                 <center>
                                                     <span class="PalabraEditarPago2">
-                                                        <i data-feather="clipboard" class="clipboard"></i>
+                                                        <i data-feather="clipboard" class="iconosMetaforas2"></i>
                                                     </span>
                                                 </center>
                                             </a>
@@ -178,7 +178,7 @@
                                                         position: relative;
                                                         border: 1px solid #f6f6f7!important;
                                                         border-color: #cccc00 !important;
-                                                        background-color: #cccc00 !important;" class="btn" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
+                                                        background-color: #cccc00 !important;" class="btn btn-sm" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
                                                             <span class="PalabraEditarPago" style="position: relative;">
                                                                 <i data-feather="truck" class="clipboard" style="float: left;"></i>
                                                                 Estacionamientos
