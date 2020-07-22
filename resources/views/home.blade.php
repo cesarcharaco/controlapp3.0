@@ -401,12 +401,7 @@
                                                     margin-bottom: 5px;
                                                     margin-top: 5px;
                                                     float: right;">
-                                                    <span class="PalabraEditarPago text-white">Nuevo Administrador</span>
-                                                    <center>
-                                                        <span class="PalabraEditarPago2 text-white">
-                                                            <i data-feather="plus" class="iconosMetaforas2"></i>
-                                                        </span>
-                                                    </center>
+                                                    <span class="PalabraEditarPago">Agregar</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -415,44 +410,35 @@
                                         <thead>
                                             <tr class="bg-primary text-white" id="th2" style="display: none">
                                                 <th>
-                                                    <span class="PalabraEditarPago">Nombres</span>
-                                                    <span class="PalabraEditarPago2">N</span>
+                                                    <span>Nombres</span>
                                                 </th>
                                                 <th>
-                                                    <span class="PalabraEditarPago">Rut</span>
-                                                    <span class="PalabraEditarPago2">R</span>
+                                                    <span>Rut</span>
                                                 </th>
                                                 <th colspan="2">
                                                     <center>
-                                                        <span class="PalabraEditarPago">Opciones</span>
-                                                        <span class="PalabraEditarPago2">O</span>
+                                                        <span>Opciones</span>
                                                     </center>
                                                 </th>
                                                 <th>
-                                                    <span class="PalabraEditarPago">Status</span>
-                                                    <span class="PalabraEditarPago2">S</span>
+                                                    <span>Status</span>
                                                 </th>
                                             </tr>
                                             <tr class="bg-info text-white" id="th1">
                                                 <th>
-                                                    <span class="PalabraEditarPago">Nombres</span>
-                                                    <span class="PalabraEditarPago2">N</span>
+                                                    <span>Nombres</span>
                                                 </th>
                                                 <th>
-                                                    <span class="PalabraEditarPago">Rut</span>
-                                                    <span class="PalabraEditarPago2">R</span>
+                                                    <span>Rut</span>
                                                 </th>
                                                 <th>
-                                                    <span class="PalabraEditarPago">Email</span>
-                                                    <span class="PalabraEditarPago2">@</span>
+                                                    <span>Email</span>
                                                 </th>
                                                 <th>
-                                                    <span class="PalabraEditarPago">Registrado el</span>
-                                                    <span class="PalabraEditarPago2">R</span>
+                                                    <span>Registrado el</span>
                                                 </th>
                                                 <th>
-                                                    <span class="PalabraEditarPago">Status</span>
-                                                    <span class="PalabraEditarPago2">S</span>
+                                                    <span>Status</span>
                                                 </th>
                                             </tr>
                                         </thead>
@@ -543,7 +529,7 @@
                     </div>
                     
                     <div class="col-md-4">
-                        <div style="margin-top: -30px; margin-left: -20px; width: auto;" id="anuncioRoot">
+                        <div style="margin-top: -30px; width: auto;" id="anuncioRoot">
                             <table class="table table-striped">
                                 <thead>
                                     <th>
