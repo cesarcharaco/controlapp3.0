@@ -142,7 +142,7 @@
                                         </td>
                                         <td>
                                             
-                                            <a href="#" class="btn btn-danger btn-sm" style="border-radius: 5px; width: 100%" onclick="verAsignadosM('{{$key->id}}')" >
+                                            <a href="#" class="btn btn-danger btn-sm shadow" style="border-radius: 5px; width: 100%" onclick="verAsignadosM('{{$key->id}}')" >
                                                 <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
                                                 <span class="PalabraPagoConfirmar">Ver Asignaciones</span>
                                                 <span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i>
@@ -151,7 +151,7 @@
                                         </td>
                                         <td>
                                             <center>
-                                                <a href="#" class="btn btn-success btn-sm" style="border-radius: 5px; width: 100%" onclick="pagarMultasResidente('{{$key->id}}')" >
+                                                <a href="#" class="btn btn-success btn-sm shadow" style="border-radius: 5px; width: 100%" onclick="pagarMultasResidente('{{$key->id}}')" >
                                                     <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
                                                     <span class="PalabraPagoConfirmar">Pagar</span>
                                                     <span class="PalabraEditarPago2"><i data-feather="dollar-sign" class="iconosMetaforas2"></i>
@@ -160,7 +160,7 @@
                                             </center>
                                             <br>
                                             <center>
-                                                <a href="#" class="btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="multasPorComprobar('{{$key->id}}')">
+                                                <a href="#" class="btn btn-info btn-sm shadow" style="border-radius: 5px; width: 100%" onclick="multasPorComprobar('{{$key->id}}')">
                                                     <i data-feather="check-square" class="iconosMetaforas" style="float:left;"></i>
                                                     <span class="PalabraPagoConfirmar">Confirmar</span>
                                                     <span class="PalabraEditarPago2"><i data-feather="check-square" class="iconosMetaforas2"></i></span>
@@ -690,7 +690,7 @@
                 }else{
                     $('#ver_multas_asignadas').append(
                                 '<tr>'+
-                                    '<td align="center" colspan="3"><center>No se encuentra asiganda a ningún residente</center></td>'+
+                                    '<td align="center" colspan="3"><center>El residente no tiene asignaciones</center></td>'+
                                 '</tr>'
                             );
                 }

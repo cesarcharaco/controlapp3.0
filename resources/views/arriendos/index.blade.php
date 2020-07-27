@@ -37,13 +37,21 @@
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-md-12">
-                            <label>Detalles de adquisiciones</label>
-                            <select class="form-control select2" id="residente" onchange="buscarTodo(this.value)">
-                                <option value="0">Seleccione residente</option>
-                                @foreach($residentes as $key)
-                                    <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
-                                @endforeach()
-                            </select>
+                            <center>
+                                <label>Detalles de adquisiciones</label>
+                                <div class="cargandoArriendos" style="display: none;">
+                                    <div class="spinner-border text-warning m-2" role="status" id="cargando_E">
+                                        <span class="sr-only">Cargando Asignaciones...</span>
+                                    </div>
+                                    <p>Cargando Asignaciones...</p>
+                                </div>
+                                <select class="form-control select2" id="residente" onchange="buscarTodo(this.value)">
+                                    <option value="0" selected disabled>Seleccione residente</option>
+                                    @foreach($residentes as $key)
+                                        <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+                                    @endforeach()
+                                </select>
+                            </center>
                         </div>
                         
                     </div>
@@ -55,6 +63,12 @@
                     <div class="row justify-content-center">
                         <div class="col-md-12">
                             <label>Detalles de adquisiciones</label>
+                            <div class="cargandoArriendos" style="display: none;">
+                                <div class="spinner-border text-warning m-2" role="status" id="cargando_E">
+                                    <span class="sr-only">Cargando Asignaciones...</span>
+                                </div>
+                                <p>Cargando Asignaciones...</p>
+                            </div>
                             <button class="btn btn-success" onclick="buscarTodo('{{ \Auth::user()->tipo_usuario }}')">Buscar</button>
                         </div>
                         
@@ -321,6 +335,7 @@
 
 
     function buscarTodo(id_residente) {
+        $('.cargandoArriendos').show();
         $('#MuestraResidente').empty();
         $('#MuestraAsigna').css('display','none');
         $('#id_residente').val(id_residente);
@@ -376,7 +391,7 @@
                 estacionamientos(id_residente);
                 
 
-
+                $('.cargandoArriendos').hide();
 
             }else{
                 $('#MuestraResidente').empty();

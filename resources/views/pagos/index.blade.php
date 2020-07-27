@@ -147,7 +147,7 @@
                                                             position: relative;
                                                             border: 1px solid #f6f6f7!important;
                                                             border-color: #CB8C4D !important;
-                                                            background-color: #CB8C4D !important;" class="btn btn-sm" onclick="VerResi('{{$key2->id_residente}}')" href="#">
+                                                            background-color: #CB8C4D !important;" class="btn btn-sm shadow" onclick="VerResi('{{$key2->id_residente}}')" href="#">
                                                             <span class="PalabraEditarPago" style="position: relative;">
                                                                 <i data-feather="home" class="clipboard" style="float: left;"></i>
                                                                 Inmuebles
@@ -160,7 +160,7 @@
                                                         </a><br><br>
                                                 @endif
                                             @endforeach
-                                            <a href="{{ url('pagos/'.$key->id.'/consultas')}}" style="width: 100% !important;" class="btn btn-danger btn-sm">
+                                            <a href="{{ url('pagos/'.$key->id.'/consultas')}}" style="width: 100% !important;" class="btn btn-danger btn-sm shadow">
                                                 <span class="PalabraEditarPago" style="position: relative;">
                                                     <i data-feather="clipboard" class="clipboard" style="float: left;"></i>
                                                     Consultas de Pago
@@ -178,7 +178,7 @@
                                                         position: relative;
                                                         border: 1px solid #f6f6f7!important;
                                                         border-color: #cccc00 !important;
-                                                        background-color: #cccc00 !important;" class="btn btn-sm" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
+                                                        background-color: #cccc00 !important;" class="btn btn-sm shadow" onclick="VerEstacionamientos('{{$key2->id_residente}}')" href="#">
                                                             <span class="PalabraEditarPago" style="position: relative;">
                                                                 <i data-feather="truck" class="clipboard" style="float: left;"></i>
                                                                 Estacionamientos
@@ -200,8 +200,8 @@
                                                         @if($cuenta==0)   
                                                             <div class="dropdown align-self-center profile-dropdown-menu">
                                                                 
-                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning"data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" class="iconosMetaforas" style="float:left;"></i>
-                                                                    <span class="PalabraEditarPago" style="position: relative;">Editar<br> Pago</span>
+                                                                <a style="border-radius: 5px; width: 100%;" href="#" class="dropdown-toggle mr-0 btn btn-sm btn-warning shadow" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"> <i data-feather="edit" class="iconosMetaforas" style="float:left;"></i>
+                                                                    <span class="PalabraEditarPago" style="position: relative;">Editar Pago</span>
                                                                     <center><span class="PalabraEditarPago2"><i data-feather="edit" class="iconosMetaforas2"></i></span></center>
                                                                 </a>
 
@@ -227,13 +227,13 @@
                                                             </div>
                                                             <br>
 
-                                                            <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success"> <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
+                                                            <a style="border-radius: 5px; width: 100%;" href="#" onclick="BMesesResidente('{{$key->id}}')" class=" btn btn-sm btn-success shadow"> <i data-feather="dollar-sign" class="iconosMetaforas" style="float:left;"></i>
                                                                 <span class="PalabraRealizarPago">Realizar Pago</span>
                                                                 <center><span class="PalabraEditarPago2"><i data-feather="dollar-sign" class="iconosMetaforas2"></i></span></center>
                                                             </a>
 
                                                             <br><br>
-                                                            <center><a href="#" class="btn btn btn-info btn-sm" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
+                                                            <center><a href="#" class="btn btn btn-info btn-sm shadow" style="border-radius: 5px; width: 100%" onclick="pagosPorComprobar('{{$key->id}}')"><i data-feather="eye" class="iconosMetaforas" style="float:left;"></i>
                                                                 <span class="PalabraPagoConfirmar">Pagos por Confirmar</span>
                                                                 <center><span class="PalabraEditarPago2"><i data-feather="eye" class="iconosMetaforas2"></i></span></center>
                                                             </a></center>
@@ -568,12 +568,20 @@
             <div class="modal-dialog modals-default">
             <div class="modal-content">
                 <div class="modal-body">
-                    <!-- <div class="modal-header">
-                        <h4>Sus <span id="titleModal"></span></h4>
-                    </div> -->
+                    <div class="modal-header">
+                        <center>
+                            <h4>Sus <span class="titleModal"></span></h4>
+                            <div class="cargandoArriendos" style="display: none;">
+                                <div class="spinner-border text-warning m-2" role="status" id="cargando_E">
+                                    <span class="sr-only">Cargando <span class="titleModal"></span>...</span>
+                                </div>
+                                <p>Cargando <span class="titleModal"></span>...</p>
+                            </div>
+                        </center>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
+                    </div>
                     <div id="VerEstaFade" style="display: none">
                         
                         <div class="row">
@@ -1258,9 +1266,9 @@
     }
 
     function VerResi(id_residente) {
+        $('.cargandoArriendos').show();
         $('#VerEstaFade').css('display','none');
-        $('#titleModal').empty();
-        $('#titleModal').append('residencias');
+        $('.titleModal').html('Residencias');
         $('.carousel-inner').empty();
         $('#VerEsta').modal('show');
         $('#MostrarEstacionamientos').empty();
@@ -1281,12 +1289,13 @@
                                     '<h3 alt="'+i+' slide"background-color:gray; width: 100%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:90%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded" style="width:90%;">'+
                                                 '<thead><center>'+
-                                                    '<tr class="bg-info text-white" align="center">'+
-                                                        '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
-                                                        '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
-                                                    '</tr>'+
+                                                    // '<tr class="bg-info text-white" align="center">'+
+                                                    //     '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
+                                                    //     '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
+                                                    //     '<th></th>'+
+                                                    // '</tr>'+
                                                 '</center></thead>'+
                                                 '<tbody class="inmuebleBody'+data[i].id+'">'+
                                                 '</tbody>'+
@@ -1308,12 +1317,13 @@
                                     '<h3 alt="'+i+' slide"background-color:gray; width: 100%; opacity: 0.7;"><strong class="text-primary">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:90%;">'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded" style="width:90%;">'+
                                                 '<thead><center>'+
-                                                    '<tr class="bg-info text-white" align="center">'+
-                                                        '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
-                                                        '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
-                                                    '</tr>'+
+                                                    // '<tr class="bg-info text-white" align="center">'+
+                                                    //     '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
+                                                    //     '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
+                                                    //     '<th></th>'+
+                                                    // '</tr>'+
                                                 '</center></thead>'+
                                                 '<tbody class="inmuebleBody'+data[i].id+'">'+
 
@@ -1333,7 +1343,7 @@
             }
                         
             
-        
+        $('.cargandoArriendos').hide();
         });
     }
 
@@ -1348,18 +1358,30 @@
                     if(data[i].status == 'Pendiente'){
                         $('.inmuebleBody'+id_inmueble).append(
                             '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
-                            '<td align="center" class="text-success"><strong>'+data[i].status+'</strong></td>'
+                            '<td align="center" class="text-success"><strong>'+data[i].status+'</strong></td>'+
+                            '<td></td>'
                         );
                     }else if(data[i].status == 'Por Confirmar'){
                         $('.inmuebleBody'+id_inmueble).append(
                             '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
                             // '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'
-                            '<td align="center" class="text-warning"><strong>' +data[i].status+'</strong><br> CÓDIGO TRANS.: <b>'+data[i].referencia+'</b></td>'
+                            '<td align="center" class="text-warning"><strong>' +data[i].status+'</strong><br> CÓDIGO TRANS.: <b>'+data[i].referencia+'</b></td>'+
+                            '<td></td>'
                         );
                     }else{
                         $('.inmuebleBody'+id_inmueble).append(
                             '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
-                            '<td align="center" class="text-danger"><strong>'+data[i].status+'</strong></td>'
+                            '<td align="center" class="text-danger"><strong>'+data[i].status+'</strong></td>'+
+                            '<td align="center">'+
+                                '<div class="form-group">'+
+                                    '<div style="font-size: 1em; ">'+
+                                        '<svg class="bi bi-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
+                                          '<rect width="11" height="9" x="2.5" y="7" rx="2"/>'+
+                                          '<path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>'+
+                                        '</svg>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</td>'
                         );
                     }
                 $('.inmuebleBody'+id_inmueble).append('</tr>');
@@ -1505,8 +1527,8 @@
 
     function VerEstacionamientos(id_residente) {
         $('#VerEstaFade').css('display','none');
-        $('#titleModal').empty();
-        $('#titleModal').append('estacionamientos');
+        $('.cargandoArriendos').show()
+        $('.titleModal').html('Estacionamientos');
         $('.carousel-inner').empty();
         $('#VerEsta').modal('show');
         $('#MostrarEstacionamientos').empty();
@@ -1526,13 +1548,13 @@
                                     '<h3 alt="'+i+' slide"background-color:gray; width: 100%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:90%;">'+
-                                                '<thead><center>'+
-                                                    '<tr class="bg-info text-white" align="center">'+
-                                                        '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
-                                                        '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
-                                                    '</tr>'+
-                                                '</center></thead>'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded" style="width:90%;">'+
+                                                // '<thead><center>'+
+                                                //     '<tr class="bg-info text-white" align="center">'+
+                                                //         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
+                                                //         '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
+                                                //     '</tr>'+
+                                                // '</center></thead>'+
                                                 '<tbody class="EstacionaBody'+data[i].id+'">'+
                                                 '</tbody>'+
                                             '</table>'+
@@ -1550,13 +1572,13 @@
                                     '<h3 alt="'+i+' slide"background-color:gray; width: 100%; opacity: 0.7;"><strong class="text-warning">'+data[i].idem+'</strong></h3>'+
                                     '<div class="row justify-content-center">'+
                                         '<div class="col-md-12">'+
-                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded border border-info" style="border-color:aqua; width:90%;">'+
-                                                '<thead><center>'+
-                                                    '<tr class="bg-info text-white" align="center">'+
-                                                        '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
-                                                        '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
-                                                    '</tr>'+
-                                                '</center></thead>'+
+                                            '<table class="table table-curved data-table-basic2 table-striped tabla-estilo shadow p-3 mb-5 bg-white rounded" style="width:90%;">'+
+                                                // '<thead><center>'+
+                                                //     '<tr class="bg-info text-white" align="center">'+
+                                                //         '<th align="center" class="text-white" align="center"><strong align="center">Montos por mes</strong></th>'+
+                                                //         '<th align="center" class="text-white" align="center"><strong align="center">Status</strong></th>'+
+                                                //     '</tr>'+
+                                                // '</center></thead>'+
                                                 '<tbody class="EstacionaBody'+data[i].id+'">'+
                                                 '</tbody>'+
                                             '</table>'+
@@ -1571,7 +1593,7 @@
                     $('.carousel-inner').append('</div>');
             }
                         
-            
+        $('.cargandoArriendos').hide();
         });
     }
 
@@ -1596,17 +1618,29 @@
                     if(data[i].status == 'Pendiente'){
                         $('.EstacionaBody'+id_estacionamiento).append(
                             '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
-                            '<td align="center" class="text-success"><strong>'+data[i].status+'</strong></td>'
+                            '<td align="center" class="text-success"><strong>'+data[i].status+'</strong></td>'+
+                            '<td></td>'
                         );
                     }else if(data[i].status == 'Por Confirmar'){
                         $('.EstacionaBody'+id_estacionamiento).append(
                             '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
-                            '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'
+                            '<td align="center" class="text-warning"><strong>'+data[i].status+'</strong></td>'+
+                            '<td></td>'
                         );
                     }else{
                         $('.EstacionaBody'+id_estacionamiento).append(
                             '<td align="center"><strong>'+mes[data[i].mes-1]+'</strong></td>'+
-                            '<td align="center" class="text-danger"><strong>'+data[i].status+'</strong></td>'
+                            '<td align="center" class="text-danger"><strong>'+data[i].status+'</strong></td>'+
+                            '<td align="center">'+
+                                '<div class="form-group">'+
+                                    '<div style="font-size: 1em; ">'+
+                                        '<svg class="bi bi-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
+                                          '<rect width="11" height="9" x="2.5" y="7" rx="2"/>'+
+                                          '<path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>'+
+                                        '</svg>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</td>'
                         );
                     }
                     $('.EstacionaBody'+id_estacionamiento).append('</tr>');

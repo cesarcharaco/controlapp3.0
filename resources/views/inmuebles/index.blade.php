@@ -144,7 +144,7 @@
                         <th>#</th>
                         <th>
                             <span class="PalabraEditarPago">Idem</span>
-                            <i data-feather="sliders" class="iconosMetaforas2"></i>
+                            <span class="PalabraEditarPago2">I</span>
                         </th>
                         <th>
                             <span class="PalabraEditarPago">Tipo</span>

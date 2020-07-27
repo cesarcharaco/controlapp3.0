@@ -1105,6 +1105,7 @@
 
     function multasPorComprobar(id_residente) {
     	$('#ResidenteTienePagosC').css('display','none');
+    	$('#ResidenteTienePagosC2').empty();
         $('#PagoConfir').modal('show');
 		$('#muestraMesesMultasComprob').empty();
 		$('#muestraMesesMultasComprob2').empty();

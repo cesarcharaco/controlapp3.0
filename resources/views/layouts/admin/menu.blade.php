@@ -63,7 +63,7 @@
                 @if(\Auth::user()->tipo_usuario == 'Admin')
                     <li>
                         <a href="{{ url('estacionamientos') }}">
-                            <i data-feather="key"></i>
+                            <i data-feather="truck"></i>
                             <span> Estacionamiento </span>
                         </a>
                     </li>
