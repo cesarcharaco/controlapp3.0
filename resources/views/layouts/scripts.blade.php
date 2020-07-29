@@ -35,6 +35,7 @@
 
 
 <script type="text/javascript">
+	$(document).ready(VerCards);
 	var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
 	var f = new Date();
     var a=f.getFullYear();

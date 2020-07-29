@@ -3,6 +3,21 @@
 @section('content')
 
         <style type="text/css">
+
+
+
+        .card-header, .card-footer{        
+            /*-webkit-linear-gradient(to left, #d87602, #d64322);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;*/
+
+            /*background-image:
+            linear-gradient(to right, white, gray);*/
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: gray;
+            font: 18px Arial, sans-serif;
+        }
         .palabraVerInmueble2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
         {
             display: none;
@@ -66,9 +81,20 @@
 
 
     </style>
-    <div class="container">
+<div class="container">
         <input type="hidden" id="colorView" value="#25c2e3 !important">
-        <div class="row page-title">
+        <div class="row page-title" id="tituloP">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Publicidad</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Publicidad</h4>
+            </div>
+        </div>
+        <div class="row page-title" style="display: none;" id="tituloP1">
             <div class="col-md-12">
                 <nav aria-label="breadcrumb" class="float-right mt-1">
                     <ol class="breadcrumb">
@@ -77,6 +103,29 @@
                     </ol>
                 </nav>
                 <h4 class="mb-1 mt-0">Anuncios</h4>
+            </div>
+        </div>
+        <div class="row page-title" style="display: none;" id="tituloP2">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Empresas</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Empresas</h4>
+            </div>
+        </div>
+        <div class="row page-title" style="display: none;" id="tituloP3">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class="float-right mt-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('anuncios') }}">Publicidad</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Control de Pagos</li>
+                    </ol>
+                </nav>
+                <h4 class="mb-1 mt-0">Control de Pagos</h4>
             </div>
         </div>
         @include('flash::message')
@@ -96,216 +145,485 @@
                 </div>
             </div>
         @endif
-    
-    <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 offset-md-12">
-                        <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
-                            border-radius: 10px;
-                            color: white;
-                            height: 35px;
-                            margin-bottom: 5px;
-                            margin-top: 5px;
-                            float: right;">
-                            <span class="PalabraEditarPago ">Nuevo Anuncio</span>
-                            <center>
-                                <span class="PalabraEditarPago2 ">
-                                    <i data-feather="plus" class="iconosMetaforas2"></i>
-                                </span>
-                            </center>
-                        </a>
+    <div id="tablaAnucios" style="display: none;">
+        <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12 offset-md-12">
+                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                                border-radius: 10px;
+                                color: white;
+                                height: 35px;
+                                margin-bottom: 5px;
+                                margin-top: 5px;
+                                float: right;">
+                                <span class="PalabraEditarPago ">Nuevo Anuncio</span>
+                                <center>
+                                    <span class="PalabraEditarPago2 ">
+                                        <i data-feather="plus" class="iconosMetaforas2"></i>
+                                    </span>
+                                </center>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
+                <div class="col-md-4">
+                </div>
+                
 
-            <div class="col-md-12">
-                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
-                    <thead>
-                        <tr class="table-default text-white">
-                            <td colspan="2" align="center">
-                                <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
-                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un anuncio para ver mas opciones.</span>
-                                </div>
-                            </td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr class="bg-primary text-white" id="th2" style="display: none">
-                            <th width="10"></th>
-                            <th>
-                                <span class="PalabraEditarPago">Título</span>
-                                <span class="PalabraEditarPago2">T</span>
-                            </th>
-                            <th>
-                                <span class="PalabraEditarPago">URL</span>
-                                <span class="PalabraEditarPago2">@</span>
-                            </th>
-                            <th colspan="2">
-                                <center>
-                                    <span class="PalabraEditarPago">Opciones</span>
-                                    <span class="PalabraEditarPago2">O</span>
-                                </center>
-                            </th>
-                        </tr>
-                        <tr class="bg-info text-white" id="th1">
-                            <th>#</th>
-                            <th>
-                                <span class="tituloTabla">Título</span>
-                                <span class="tituloTabla2">T</span>
-                            </th>
-                            <th>
-                                <span class="tituloTabla">URL</span>
-                                <span class="tituloTabla2">@</span>
-                            </th>
-                            <!-- <th>Estacionamientos</th> -->
-                            <th>
-                                <span class="tituloTabla">Descripción</span>
-                                <span class="tituloTabla2">S</span>
-                            </th>
-                            <th>
-                                <span class="tituloTabla">Imagen</span>
-                                <span class="tituloTabla2">I</span>
-                            </th>
-                            <!-- <th>Mensualidades</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php $num=0 @endphp
-                        @foreach($anuncios as $key)
-                            <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                                <td align="center">
-                                    {{$num=$num+1}}
-                                </td>
-                                <td>{{$key->titulo}}</td>
-                                <td>{{$key->link}}</td>
-                                <td>{{$key->descripcion}}</td>
-                                <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;"></td>
-                            </tr>
-                            <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
-                                <td width="10">
-                                    <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
-                                        <span class="PalabraEditarPago ">Regresar</span>
-                                        <center>
-                                            <span class="PalabraEditarPago2 ">
-                                                <i data-feather="arrow-left" class="iconosMetaforas2"></i>
-                                            </span>
-                                        </center>
-                                    </button>
-                                </td>
-                                <td>
-                                    
-                                    <span>{{$key->titulo}}</span>
-                                </td>
-                                <td>
-                                    <span>{{$key->link}}</span>
-                                </td>
+                <div class="col-md-8">
+                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                         <thead>
+                            <tr class="table-default text-white">
                                 <td colspan="2" align="center">
-
-                                    <a href="#" class="border border-light btn btn-info btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="VerAdminAsignado('{{$key->id}}')">
-                                        <span class="PalabraEditarPago "><strong>Ver Asignados</strong></span>
-                                        <center>
-                                            <span class="PalabraEditarPago2 ">
-                                                <strong><i data-feather="eye" class="iconosMetaforas2"></i></strong>
-                                            </span>
-                                        </center>
-                                    </a>
-
-                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')">
-                                        <span class="PalabraEditarPago ">Editar</span>
-                                        <center>
-                                            <span class="PalabraEditarPago2 ">
-                                                <i data-feather="edit" class="iconosMetaforas2"></i>
-                                            </span>
-                                        </center>
-                                    </a>
-
-                                    <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EliminarAnuncio('{{$key->id}}')">
-                                        <span class="PalabraEditarPago ">Eliminar</span>
-                                        <center>
-                                            <span class="PalabraEditarPago2 ">
-                                                <i data-feather="trash" class="iconosMetaforas2"></i>
-                                            </span>
-                                        </center>
-                                    </a>
+                                    <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un anuncio para ver mas opciones.</span>
+                                    </div>
                                 </td>
-                                <td style="display: none"></td>
-                                
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                                <th width="10"></th>
+                                <th>
+                                    <span class="PalabraEditarPago">Título</span>
+                                    <span class="PalabraEditarPago2">T</span>
+                                </th>
+                                <th>
+                                    <span class="PalabraEditarPago">URL</span>
+                                    <span class="PalabraEditarPago2">@</span>
+                                </th>
+                                <th colspan="2">
+                                    <center>
+                                        <span class="PalabraEditarPago">Opciones</span>
+                                        <span class="PalabraEditarPago2">O</span>
+                                    </center>
+                                </th>
+                            </tr>
+                            <tr class="bg-info text-white" id="th1">
+                                <th>#</th>
+                                <th>
+                                    <span class="tituloTabla">Título</span>
+                                    <span class="tituloTabla2">T</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">URL</span>
+                                    <span class="tituloTabla2">@</span>
+                                </th>
+                                <!-- <th>Estacionamientos</th> -->
+                                <th>
+                                    <span class="tituloTabla">Descripción</span>
+                                    <span class="tituloTabla2">S</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">Imagen</span>
+                                    <span class="tituloTabla2">I</span>
+                                </th>
+                                <!-- <th>Mensualidades</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $num=0 @endphp
+                            @foreach($anuncios as $key)
+                                <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
+                                    <td align="center">
+                                        {{$num=$num+1}}
+                                    </td>
+                                    <td>{{$key->titulo}}</td>
+                                    <td>{{$key->link}}</td>
+                                    <td>{{$key->descripcion}}</td>
+                                    <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;"></td>
+                                </tr>
+                                <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                    <td width="10">
+                                        <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Regresar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        
+                                        <span>{{$key->titulo}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{$key->link}}</span>
+                                    </td>
+                                    <td colspan="2" align="center">
 
-                            </tr>
-                            <tr style="display: none;">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        @endforeach()
-                    </tbody>
-                </table>
+                                        <a href="#" class="border border-light btn btn-info btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="VerAdminAsignado('{{$key->id}}')">
+                                            <span class="PalabraEditarPago "><strong>Ver Asignados</strong></span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <strong><i data-feather="eye" class="iconosMetaforas2"></i></strong>
+                                                </span>
+                                            </center>
+                                        </a>
+
+                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')">
+                                            <span class="PalabraEditarPago ">Editar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+
+                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EliminarAnuncio('{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+                                    </td>
+                                    <td style="display: none"></td>
+                                    
+
+                                </tr>
+                                <tr style="display: none;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach()
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @php $num=0 @endphp
+                            @foreach($anuncios as $key)
+                                @if($num == 0)
+                                    <div class="carousel-item active">
+                                        <center>
+                                            <h3 alt="{{$num=$num+1}} slide"><strong class="text-dark">{{$key->titulo}}</strong></h3>
+                                            <br>
+                                            <img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-12">
+                                                    
+                                                </div>
+                                            </div>
+                                        </center>
+                                    </div>
+                                @else
+                                    <div class="carousel-item">
+                                        <center>
+                                            <h3 alt="{{$num=$num+1}} slide"><strong class="text-dark">{{$key->titulo}}</strong></h3>
+                                            <br>
+                                            <img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-12">
+                                                    
+                                                </div>
+                                            </div>
+                                        </center>
+                                    </div>
+                                @endif
+
+                                @php $num++ @endphp
+                            @endforeach()
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        </div>
+                </div>
             </div>
+        </div>
+    </div>
+
+
+    <div id="tablaEmpresas" style="display: none;">
+        <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12 offset-md-12">
+                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                                border-radius: 10px;
+                                color: white;
+                                height: 35px;
+                                margin-bottom: 5px;
+                                margin-top: 5px;
+                                float: right;">
+                                <span class="PalabraEditarPago ">Nueva Empresa</span>
+                                <center>
+                                    <span class="PalabraEditarPago2 ">
+                                        <i data-feather="plus" class="iconosMetaforas2"></i>
+                                    </span>
+                                </center>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                        <thead>
+                            <tr class="table-default text-white">
+                                <td colspan="2" align="center">
+                                    <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un anuncio para ver mas opciones.</span>
+                                    </div>
+                                </td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                                <th width="10"></th>
+                                <th>
+                                    <span class="PalabraEditarPago">Título</span>
+                                    <span class="PalabraEditarPago2">T</span>
+                                </th>
+                                <th>
+                                    <span class="PalabraEditarPago">URL</span>
+                                    <span class="PalabraEditarPago2">@</span>
+                                </th>
+                                <th colspan="2">
+                                    <center>
+                                        <span class="PalabraEditarPago">Opciones</span>
+                                        <span class="PalabraEditarPago2">O</span>
+                                    </center>
+                                </th>
+                            </tr>
+                            <tr class="bg-info text-white" id="th1">
+                                <th>#</th>
+                                <th>
+                                    <span class="tituloTabla">Título</span>
+                                    <span class="tituloTabla2">T</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">URL</span>
+                                    <span class="tituloTabla2">@</span>
+                                </th>
+                                <!-- <th>Estacionamientos</th> -->
+                                <th>
+                                    <span class="tituloTabla">Descripción</span>
+                                    <span class="tituloTabla2">S</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">Imagen</span>
+                                    <span class="tituloTabla2">I</span>
+                                </th>
+                                <!-- <th>Mensualidades</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $num=0 @endphp
+                            @foreach($anuncios as $key)
+                                <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
+                                    <td align="center">
+                                        {{$num=$num+1}}
+                                    </td>
+                                    <td>{{$key->titulo}}</td>
+                                    <td>{{$key->link}}</td>
+                                    <td>{{$key->descripcion}}</td>
+                                    <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;"></td>
+                                </tr>
+                                <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                    <td width="10">
+                                        <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Regresar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        
+                                        <span>{{$key->titulo}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{$key->link}}</span>
+                                    </td>
+                                    <td colspan="2" align="center">
+
+                                        <a href="#" class="border border-light btn btn-info btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="VerAdminAsignado('{{$key->id}}')">
+                                            <span class="PalabraEditarPago "><strong>Ver Asignados</strong></span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <strong><i data-feather="eye" class="iconosMetaforas2"></i></strong>
+                                                </span>
+                                            </center>
+                                        </a>
+
+                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')">
+                                            <span class="PalabraEditarPago ">Editar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+
+                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EliminarAnuncio('{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+                                    </td>
+                                    <td style="display: none"></td>
+                                    
+
+                                </tr>
+                                <tr style="display: none;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach()
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4 center" id="VerTabla1">
+            <a href="#" onclick="VerTabla(1)" id="verTabla2-1" style="display: none; width: 100%;">
+                <div class="card border border-dark shadow rounded m-7" style="height: 400px;
+                background-image: url('{{ asset('assets/images/anuncios/anuncios.jpg') }}');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                ">
+                    <div class="card-header">
+                        <h3 align="right" class="text-warning" >ANUNCIOS</h3>
+                    </div>
+                    <div class="card-body p-3 mb-5 ">
+                    </div>
+                    <div class="card-footer">
+                        <strong class="text-warning">Visualizar los Anuncios de la App.</strong>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 center" id="VerTabla2">
+            <a href="#" onclick="VerTabla(2)" id="verTabla2-2" style="display: none; width: 100%;">
+                <div class="card border border-dark shadow rounded m-7" style="height: 400px;
+                background-image: url('{{ asset('assets/images/anuncios/empresa.jpg') }}');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                ">
+                    <div class="card-header">
+                        <h3 align="right" class="text-warning" >EMPRESAS</h3>
+                    </div>
+                    <div class="card-body p-3 mb-5 ">
+                    </div>
+                    <div class="card-footer">
+                        <strong class="text-warning">Visionar las Empresas Registradas</strong>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 center" id="VerTabla3">
+            <a href="#" onclick="VerTabla(3)" id="verTabla2-3" style="display: none; width: 100%;">
+                <div class="card border border-dark shadow rounded m-7" style="height: 400px;
+                background-image: url('{{ asset('assets/images/anuncios/control.jpg') }}');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                ">
+                    <div class="card-header">
+                        <h3 align="right" class="text-warning" >CONTROL</h3>
+                    </div>
+                    <div class="card-body p-3 mb-5 ">
+                    </div>
+                    <div class="card-footer">
+                        <strong class="text-warning">Gestionar el Control de Pagos, Duración y Anuncios a Visualizar en la App.</strong>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
 
 <!-- --------------------------------------------VER AnuncioS--------------------------------------------------------- -->
-            <div class="modal fade" id="VerAnuncio" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Ver Anuncio</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Título del Anuncio</label>
-                                            <span id="ver_idem"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Url</label>
-                                            <span id="ver_tipo"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Estado del Anuncio</label>
-                                            <span id="ver_status"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Pago común</label>
-                                            <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">$</div>
-                                                </div>
-                                                <input type="number" name="monto[]" class="form-control" placeholder="10">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </center>
-                        </div>                            
-                    </div>
+    <div class="modal fade" id="VerAnuncio" role="dialog">
+        <div class="modal-dialog modals-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Ver Anuncio</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <center>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Título del Anuncio</label>
+                                    <span id="ver_idem"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Url</label>
+                                    <span id="ver_tipo"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Estado del Anuncio</label>
+                                    <span id="ver_status"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Pago común</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">$</div>
+                                        </div>
+                                        <input type="number" name="monto[]" class="form-control" placeholder="10">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>                            
             </div>
+        </div>
+    </div>
 <!-- --------------------------------------------FIN REGISTRAR AnuncioS--------------------------------------------------------- -->
 
 
@@ -365,48 +683,45 @@
                     </div>
                 </div>
             </div>
-        {!! Form::close() !!}
+    {!! Form::close() !!}
 
-
-
-
-        {!! Form::open(['route' => ['anuncios.destroy',1033], 'method' => 'DELETE']) !!}
-            @csrf
-            <div class="modal fade" id="eliminarAnuncio" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Eliminar anuncio</h4>                
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="hidden" class="form-control" name="id" required id="idAnuncio">
-                                        </div>
+    {!! Form::open(['route' => ['anuncios.destroy',1033], 'method' => 'DELETE']) !!}
+        @csrf
+        <div class="modal fade" id="eliminarAnuncio" role="dialog">
+            <div class="modal-dialog modals-default">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Eliminar anuncio</h4>                
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <center>
+                            <h3>¿Está seguro de querer eliminar el anuncio? Esta opción no se podrá deshacer</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="id" required id="idAnuncio">
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="float-right">
-                                    <button type="submit" class="btn btn-danger" >Eliminar</button>
-                                </div>
-                            </center>
-                        </div>
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-danger" >Eliminar</button>
+                            </div>
+                        </center>
                     </div>
                 </div>
             </div>
-        {!! Form::close() !!}
+        </div>
+    {!! Form::close() !!}
 
 
-            <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="modal fade" id="crearAnuncio" role="dialog">
-            <div class="modal-dialog modals-default">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4>Nuevo anuncio</h4>                
@@ -415,67 +730,163 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <center>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Seleccionar admin</label> 
-                                        <div class="">                                                                                
-                                            <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
-                                            <label for="admins_todos">Seleccionar todos</label>
-                                        </div>
-                                        <select name="admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple" >
-                                            @foreach($users_admin as $key)
-                                                <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
-                                            @endforeach
-                                            <option value="10">prueba</option>
+                        <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-empresa" aria-selected="true">1</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-datos" aria-selected="false">2</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-imagen" aria-selected="false">3</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-pago-tab" data-toggle="pill" href="#pills-pago" role="tab" aria-controls="pills-pago" aria-selected="false">4</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <center>
+                                <div class="card border border-info shadow p-3 m-4">
+                                    <div class="card-body">
+                                        <label for="SelectEmpresa">¿Cuál es la empresa que desea el anuncio?</label>
+                                        <select class="form-control select2">
+                                            <option>Seleccione Empresa</option>
                                         </select>
-
-                                        <div style="display: none">
-                                            <select name="admins[]" id="SelectAdminA2" class="form-control select2 border border-default" multiple="multiple" style="display: none;">
+                                    </div>
+                                </div>                                    
+                                <div class="form-group">
+                                </div>
+                                <div class="card border border-info shadow p-3 m-4">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>¿Cuales administradores podrán visualizar el anuncio?</label> 
+                                            <div class="">                                                                                
+                                                <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
+                                                <label for="admins_todos">Seleccionar todos</label>
+                                            </div>
+                                            <select name="admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple" >
                                                 @foreach($users_admin as $key)
                                                     <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
                                                 @endforeach
                                                 <option value="10">prueba</option>
                                             </select>
+
+                                            <div style="display: none">
+                                                <select name="admins[]" id="SelectAdminA2" class="form-control select2 border border-default" multiple="multiple" style="display: none;">
+                                                    @foreach($users_admin as $key)
+                                                        <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
+                                                    @endforeach
+                                                    <option value="10">prueba</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Título del anuncio</label>
-                                        <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
-                                    </div>
-                                </div>                                                       
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Link</label>
-                                        <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Imagen</label>
-                                        <div class="alert alert-primary" role="alert">
-                                            <p><strong>Recordar que:</strong><br>
-                                            - La imagen no debe exceder los 800 KB de tamaño<br>
-                                            - La imagen no debe tener una anchura mayor a 1024 kb<br>
-                                            - La imagen no debe tener una altura mayor a 800 kb</p>
+                            </center>
+
+
+                          </div>
+                          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                <center>
+                                    <div class="card border border-info shadow p-3 m-4">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Título del anuncio</label>
+                                                    <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
+                                        <div class="row justify-content-center">                                                       
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Link</label>
+                                                    <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Descripción</label>
+                                                    <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                </center>
+                          </div>
+                          <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                              <center>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Imagen</label>
+                                                <div class="alert alert-primary" role="alert">
+                                                    <p><strong>Recordar que:</strong><br>
+                                                    - La imagen no debe exceder los 800 KB de tamaño<br>
+                                                    - La imagen no debe tener una anchura mayor a 1024 kb<br>
+                                                    - La imagen no debe tener una altura mayor a 800 kb</p>
+                                                </div>
+                                                <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </center>
+
+                          </div>
+
+                          <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-pago-tab">
+                              <center>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="card shadow border border-info card-tabla rounded">
+                                                <div class="card-body">
+                                                    <input type="checkbox" name="">
+                                                   <h3>Plan Nro. 1</h3>
+                                                   <span>1 semana</span>
+                                                   <br>
+                                                    <span style="font-size: 30px;">$</span><span style="font-size: 70px;">30</span><strong>/Mes</strong>
+                                                   <br>
+                                                   <img class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1.png') }}" class="" style="width:100%;max-width:640px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card shadow border border-warning card-tabla rounded">
+                                                <div class="card-body">
+                                                    <input type="checkbox" name="">
+                                                    <h3>Plan Nro. 2</h3>
+                                                    <span>2 semenas</span>
+                                                    <br>
+                                                    <span style="font-size: 30px;">$</span><span style="font-size: 70px;">70</span><strong>/Mes</strong>
+                                                    <br>
+                                                    <img class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1.png') }}" class="" style="width:100%;max-width:640px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card shadow border border-danger card-tabla rounded">
+                                                <div class="card-body">
+                                                    <input type="checkbox" name="">
+                                                    <h3>Plan Nro. 3</h3>
+                                                    <span>4 semanas</span>
+                                                    <br>
+                                                    <span style="font-size: 30px;">$</span><span style="font-size: 70px;">100</span><strong>/Mes</strong>
+                                                    <br>
+                                                    <img class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1.png') }}" class="" style="width:100%;max-width:640px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </center>
+
+                          </div>
+                        </div>
+                        <center>
+                            <div class="row">
+                                <div class="col-md-12">
                                 </div>
                             </div>
                         </center>
@@ -503,6 +914,43 @@
 @endsection
 
 <script type="text/javascript">
+
+    
+
+    function VerCards() {
+        $(function () {
+            setTimeout( function(){
+
+                $('#verTabla2-1')
+                .css('opacity', 0)
+                    .slideDown('slow')
+                    .animate(
+                        { opacity: 1 },
+                        { queue: false, duration: 'slow' }
+                    );
+                setTimeout( function(){
+                    $('#verTabla2-2')
+                    .css('opacity', 0)
+                    .slideDown('slow')
+                    .animate(
+                        { opacity: 1 },
+                        { queue: false, duration: 'slow' }
+                    );
+                    setTimeout( function(){
+                        $('#verTabla2-3')
+                        .css('opacity', 0)
+                        .slideDown('slow')
+                        .animate(
+                            { opacity: 1 },
+                            { queue: false, duration: 'slow' }
+                        );
+                    }  , 500 );
+                }  , 500 );
+            }  , 500 );
+        });
+    }
+    VerTabla2
+    VerTabla3
 
     function select(accion, id, idem, tipo, status) {
 
@@ -949,6 +1397,64 @@
             $('#montoAnio').prop('disabled',true).val(null).prop('required',false);
         }
 
+    }
+
+    function VerTabla(opcion) {
+        $('#tituloP').hide();
+        $('#tituloP1').hide();
+        $('#tituloP2').hide();
+        $('#tituloP3').hide();
+               
+        $('#VerTabla1').hide();
+        $('#VerTabla2').hide();
+        $('#VerTabla3').hide();
+
+        if (opcion == 1) {
+            $("#tablaEmpresas").fadeOut("slow",
+                function() {
+                    $(this).hide();
+                    $("#tablaAnucios")
+                        .css('opacity', 0)
+                        .slideDown('slow')
+                        .animate(
+                            { opacity: 1 },
+                            { queue: false, duration: 'slow' }
+                        );
+                    $('#tituloP1').fadeIn(300);
+                    $('#VerTabla2').show();
+                    $('#VerTabla2').removeClass("col-md-4").addClass("col-md-6");
+                    $('#VerTabla3').show();
+                    $('#VerTabla3').removeClass("col-md-4").addClass("col-md-6");
+                });
+
+
+        }else if(opcion == 2){
+            $("#tablaAnucios").fadeOut("slow",
+                function() {
+                    $(this).hide();
+                    $("#tablaEmpresas")
+                        .css('opacity', 0)
+                        .slideDown('slow')
+                        .animate(
+                            { opacity: 1 },
+                            { queue: false, duration: 'slow' }
+                        );
+                    $('#tituloP2').fadeIn(300);
+                });
+
+            $('#VerTabla1').show();
+            $('#VerTabla1').removeClass("col-md-4").addClass("col-md-6");
+            $('#VerTabla3').show();
+            $('#VerTabla3').removeClass("col-md-4").addClass("col-md-6");
+        }else{
+            $('#tablaControl').hide();
+            $('#tituloP3').show();
+
+            $('#VerTabla1').show();
+            $('#VerTabla1').removeClass("col-md-4").addClass("col-md-6");
+            $('#VerTabla2').show();
+            $('#VerTabla2').removeClass("col-md-4").addClass("col-md-6");
+        }
     }
     
 </script>

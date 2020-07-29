@@ -101,22 +101,22 @@
 
                     @if(\Auth::user()->tipo_usuario != 'Residente')
                         <li>
-                                <a href="javascript: void(0);" aria-expanded="false">
-                                    <i data-feather="credit-card"></i>
-                                    <span> Pagos </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-    
-                                <ul class="nav-second-level mm-collapse" aria-expanded="false">
-                                    <li>
-                                        <a href="{{ url('pagos') }}">Pagos de Condominio</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('pagos_multas')}}">Multas/Recargas</a>
-                                    </li>
-                                </ul>
-                            </li>
-                    @endif
+                            <a href="javascript: void(0);" aria-expanded="false">
+                                <i data-feather="credit-card"></i>
+                                <span> Pagos </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul class="nav-second-level mm-collapse" aria-expanded="false">
+                                <li>
+                                    <a href="{{ url('pagos') }}">Pagos de Condominio</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('pagos_multas')}}">Multas/Recargas</a>
+                                </li>
+                            </ul>
+                        </li>
+                @endif
 
                     @if(\Auth::user()->tipo_usuario == 'Residente')
                         <li>
@@ -156,9 +156,28 @@
                     <li>
                         <a href="{{ url('anuncios') }}">
                             <i data-feather="columns"></i>
-                            <span> Anuncios </span>
+                            <span> Publicidad </span>
                         </a>
                     </li>
+                    <!-- <li>
+                            <a href="javascript: void(0);" aria-expanded="false">
+                                <i data-feather="columns"></i>
+                                <span> Publicidad </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul class="nav-second-level mm-collapse" aria-expanded="false">
+                                <li>
+                                    <a href="{{ url('anuncios') }}">Anuncios</a>
+                                </li>
+                                <li>
+                                    <a href="#">Empresas</a>
+                                </li>
+                                <li>
+                                    <a href="#">Control de pagos</a>
+                                </li>
+                            </ul>
+                        </li> -->
                 <li class="menu-title">Configuración </li>
 
                 
