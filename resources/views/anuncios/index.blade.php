@@ -382,7 +382,7 @@
                             <tr class="table-default text-white">
                                 <td colspan="2" align="center">
                                     <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
-                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un anuncio para ver mas opciones.</span>
+                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una empresa para ver mas opciones.</span>
                                     </div>
                                 </td>
                                 <td colspan="3"></td>
@@ -390,12 +390,12 @@
                             <tr class="bg-primary text-white" id="th2" style="display: none">
                                 <th width="10"></th>
                                 <th>
-                                    <span class="PalabraEditarPago">Título</span>
-                                    <span class="PalabraEditarPago2">T</span>
+                                    <span class="PalabraEditarPago">Nombre</span>
+                                    <span class="PalabraEditarPago2">N</span>
                                 </th>
                                 <th>
-                                    <span class="PalabraEditarPago">URL</span>
-                                    <span class="PalabraEditarPago2">@</span>
+                                    <span class="PalabraEditarPago">RUT</span>
+                                    <span class="PalabraEditarPago2">#</span>
                                 </th>
                                 <th colspan="2">
                                     <center>
@@ -407,11 +407,11 @@
                             <tr class="bg-info text-white" id="th1">
                                 <th>#</th>
                                 <th>
-                                    <span class="tituloTabla">Título</span>
+                                    <span class="tituloTabla">Nombre</span>
                                     <span class="tituloTabla2">T</span>
                                 </th>
                                 <th>
-                                    <span class="tituloTabla">URL</span>
+                                    <span class="tituloTabla">Rut</span>
                                     <span class="tituloTabla2">@</span>
                                 </th>
                                 <!-- <th>Estacionamientos</th> -->
@@ -420,89 +420,26 @@
                                     <span class="tituloTabla2">S</span>
                                 </th>
                                 <th>
-                                    <span class="tituloTabla">Imagen</span>
-                                    <span class="tituloTabla2">I</span>
+                                    <span class="tituloTabla">Status</span>
+                                    <span class="tituloTabla2">S</span>
                                 </th>
                                 <!-- <th>Mensualidades</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            @php $num=0 @endphp
-                            @foreach($anuncios as $key)
-                                <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                                    <td align="center">
-                                        {{$num=$num+1}}
-                                    </td>
-                                    <td>{{$key->titulo}}</td>
-                                    <td>{{$key->link}}</td>
-                                    <td>{{$key->descripcion}}</td>
-                                    <td><img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;"></td>
-                                </tr>
-                                <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
-                                    <td width="10">
-                                        <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
-                                            <span class="PalabraEditarPago ">Regresar</span>
-                                            <center>
-                                                <span class="PalabraEditarPago2 ">
-                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
-                                                </span>
-                                            </center>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        
-                                        <span>{{$key->titulo}}</span>
-                                    </td>
-                                    <td>
-                                        <span>{{$key->link}}</span>
-                                    </td>
-                                    <td colspan="2" align="center">
-
-                                        <a href="#" class="border border-light btn btn-info btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="VerAdminAsignado('{{$key->id}}')">
-                                            <span class="PalabraEditarPago "><strong>Ver Asignados</strong></span>
-                                            <center>
-                                                <span class="PalabraEditarPago2 ">
-                                                    <strong><i data-feather="eye" class="iconosMetaforas2"></i></strong>
-                                                </span>
-                                            </center>
-                                        </a>
-
-                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')">
-                                            <span class="PalabraEditarPago ">Editar</span>
-                                            <center>
-                                                <span class="PalabraEditarPago2 ">
-                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
-                                                </span>
-                                            </center>
-                                        </a>
-
-                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="EliminarAnuncio('{{$key->id}}')">
-                                            <span class="PalabraEditarPago ">Eliminar</span>
-                                            <center>
-                                                <span class="PalabraEditarPago2 ">
-                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
-                                                </span>
-                                            </center>
-                                        </a>
-                                    </td>
-                                    <td style="display: none"></td>
-                                    
-
-                                </tr>
-                                <tr style="display: none;">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            @endforeach()
+                            
                         </tbody>
                     </table>
                 </div>
                 <div class="col-md-4">
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="tablaControl" style="display: none;">
+        <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white tabla-estilo">
+            
         </div>
     </div>
 
@@ -1413,6 +1350,7 @@
             $("#tablaEmpresas").fadeOut("slow",
                 function() {
                     $(this).hide();
+                    $("#tablaControl").fadeOut("slow");
                     $("#tablaAnucios")
                         .css('opacity', 0)
                         .slideDown('slow')
@@ -1432,6 +1370,7 @@
             $("#tablaAnucios").fadeOut("slow",
                 function() {
                     $(this).hide();
+                    $("#tablaControl").fadeOut("slow");
                     $("#tablaEmpresas")
                         .css('opacity', 0)
                         .slideDown('slow')
@@ -1447,9 +1386,20 @@
             $('#VerTabla3').show();
             $('#VerTabla3').removeClass("col-md-4").addClass("col-md-6");
         }else{
-            $('#tablaControl').hide();
+            $("#tablaAnucios").fadeOut("slow",
+                function() {
+                    $(this).hide();
+                    $("#tablaEmpresas").fadeOut("slow");
+                    $("#tablaControl")
+                        .css('opacity', 0)
+                        .slideDown('slow')
+                        .animate(
+                            { opacity: 1 },
+                            { queue: false, duration: 'slow' }
+                        );
+                    $('#tituloP2').fadeIn(300);
+                });
             $('#tituloP3').show();
-
             $('#VerTabla1').show();
             $('#VerTabla1').removeClass("col-md-4").addClass("col-md-6");
             $('#VerTabla2').show();
