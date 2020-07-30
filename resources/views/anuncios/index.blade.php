@@ -148,7 +148,7 @@
     <div id="tablaAnucios" style="display: none;">
         <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12 offset-md-12">
                             <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
@@ -168,20 +168,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                </div>
                 
 
                 <div class="col-md-8">
                     <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                          <thead>
                             <tr class="table-default text-white">
-                                <td colspan="2" align="center">
+                                <td colspan="1"></td>
+                                <td colspan="3" align="center">
                                     <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
                                         <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un anuncio para ver mas opciones.</span>
                                     </div>
                                 </td>
-                                <td colspan="3"></td>
+                                <td colspan="1"></td>
                             </tr>
                             <tr class="bg-primary text-white" id="th2" style="display: none">
                                 <th width="10"></th>
@@ -354,7 +353,7 @@
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col-md-12 offset-md-12">
-                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#NuevaEmpresa" style="
                                 border-radius: 10px;
                                 color: white;
                                 height: 35px;
@@ -438,7 +437,7 @@
     </div>
 
     <div id="tablaControl" style="display: none;">
-        <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white tabla-estilo">
+        <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white n">
             
         </div>
     </div>
@@ -667,7 +666,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
+                        <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist" style="background-color: #C5C5C5 !important;">
                           <li class="nav-item">
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-empresa" aria-selected="true">1</a>
                           </li>
@@ -786,7 +785,9 @@
                                                    <br>
                                                     <span style="font-size: 30px;">$</span><span style="font-size: 70px;">30</span><strong>/Mes</strong>
                                                    <br>
-                                                   <img class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1.png') }}" class="" style="width:100%;max-width:640px;">
+                                                   <center>
+                                                    <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
+                                                   </center>
                                                 </div>
                                             </div>
                                         </div>
@@ -799,7 +800,9 @@
                                                     <br>
                                                     <span style="font-size: 30px;">$</span><span style="font-size: 70px;">70</span><strong>/Mes</strong>
                                                     <br>
-                                                    <img class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1.png') }}" class="" style="width:100%;max-width:640px;">
+                                                    <center>
+                                                        <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj2.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
+                                                    </center>
                                                 </div>
                                             </div>
                                         </div>
@@ -812,7 +815,9 @@
                                                     <br>
                                                     <span style="font-size: 30px;">$</span><span style="font-size: 70px;">100</span><strong>/Mes</strong>
                                                     <br>
-                                                    <img class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1.png') }}" class="" style="width:100%;max-width:640px;">
+                                                    <center>
+                                                        <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj3.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
+                                                    </center>
                                                 </div>
                                             </div>
                                         </div>
@@ -841,10 +846,173 @@
 
 <!-- --------------------------------------------FIN REGISTRAR AnuncioS------------------------------------------------------ -->
 
-    
+<form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">  
+    <div class="modal fade" id="NuevaEmpresa" role="dialog">
+        <div class="modal-dialog modals-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Nueva Empresa</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <!-- <label for="nombre">Nombre</label> -->
+                                    <input type="text" name="nombre" class="form-control" required placeholder="Nombre de la empresa">
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <input type="text" name="rut" placeholder="Rut de la empresa" minlength="7" maxlength="8" class="form-control" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <div style="float: left !important;">
+                                        <input type="number" name="verificador" min="1" minlength="1" maxlength="1" value="0" class="form-control" max="9" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <!-- <label>Estado del Anuncio</label> -->
+                                    <textarea class="form-control" name="descripcion" placeholder="¿Alguna descripción sobre la empresa?"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="status">¿La empresa se registrará como activa?</label>
+                                    <select class="form-control select2" required name="status">
+                                        <option selected value="">Activo</option>
+                                        <option selected value="">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-success" >Agregar</button>
+                    </div>
+                </div>                            
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">  
+    <div class="modal fade" id="editarEmpresa" role="dialog">
+        <div class="modal-dialog modals-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Editar Empresa</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <!-- <label for="nombre">Nombre</label> -->
+                                    <input type="text" name="nombre" class="form-control" required placeholder="Nombre de la empresa" id="nombreEmpresa_e">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <input type="text" name="rut" placeholder="Rut de la empresa" minlength="7" maxlength="8" class="form-control" required id="rutEmpresa_e">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <div style="float: left !important;">
+                                        <input type="number" name="verificador" min="1" minlength="1" maxlength="1" value="0" class="form-control" max="9" required id="verificadorEmpresa_e">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <!-- <label>Estado del Anuncio</label> -->
+                                    <textarea class="form-control" name="descripcion" placeholder="¿Alguna descripción sobre la empresa?" id="descripcionEmpresa_e"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="status">¿La empresa se registrará como activa?</label>
+                                    <select class="form-control select2" required name="status" id="statusEmpresa_e">
+                                        <option selected value="">Activo</option>
+                                        <option selected value="">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-success" >Editar</button>
+                    </div>
+                </div>                            
+            </div>
+        </div>
+    </div>
+</form>
                 
-            
+<form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">  
+    <div class="modal fade" id="eliminarEmpresa" role="dialog">
+        <div class="modal-dialog modals-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Eliminar Empresa</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <center>
+                            <h3>¿Está seguro de querer eliminar esta empresa? Sus anuncios y pagos también serán eliminados. Esta opción no se podrá deshacer</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" name="id" required id="idAnuncio">
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="float-right">
+                        <input type="hidden" name="id" id="id_empresa">
+                        <button type="submit" class="btn btn-danger" >Eliminar</button>
+                    </div>
+                </div>                            
+            </div>
+        </div>
+    </div>
+</form>    
 
 
 
@@ -854,40 +1022,7 @@
 
     
 
-    function VerCards() {
-        $(function () {
-            setTimeout( function(){
 
-                $('#verTabla2-1')
-                .css('opacity', 0)
-                    .slideDown('slow')
-                    .animate(
-                        { opacity: 1 },
-                        { queue: false, duration: 'slow' }
-                    );
-                setTimeout( function(){
-                    $('#verTabla2-2')
-                    .css('opacity', 0)
-                    .slideDown('slow')
-                    .animate(
-                        { opacity: 1 },
-                        { queue: false, duration: 'slow' }
-                    );
-                    setTimeout( function(){
-                        $('#verTabla2-3')
-                        .css('opacity', 0)
-                        .slideDown('slow')
-                        .animate(
-                            { opacity: 1 },
-                            { queue: false, duration: 'slow' }
-                        );
-                    }  , 500 );
-                }  , 500 );
-            }  , 500 );
-        });
-    }
-    VerTabla2
-    VerTabla3
 
     function select(accion, id, idem, tipo, status) {
 
@@ -1406,5 +1541,46 @@
             $('#VerTabla2').removeClass("col-md-4").addClass("col-md-6");
         }
     }
+
+    function editarEmpresa(id, nombre, rut, descripcion, status) {
+        $('#idEmpresa_e').val(id);
+        $('#nombreEmpresa_e').val(nombre);
+        $('#rutEmpresa_e').val(rut);
+        $('#descripcionEmpresa_e').val(descripcion);
+        $('#statusEmpresa_e').val(Status);
+
+        $('editarEmpresa').modal('show');
+    }
+
+    function eliminarEmpresa(id) {
+        $('id_empresa').val(id);
+        $('eliminarEmpresa').modal('show');
+    }
     
 </script>
+
+
+
+
+{{--    Editar Empresa
+
+    <a href="#" class="btn btn-warning btn-sm" onclick="editarEmpresa('{{$key-id}}','{{$key-nombre}}','{{$key-rut}}','{{$key-descripcion}}','{{$key-status}}')">
+        <span class="PalabraEditarPago ">Editar</span>
+        <center>
+            <span class="PalabraEditarPago2 ">
+                <i data-feather="edit" class="iconosMetaforas2"></i>
+            </span>
+        </center>
+    </a>
+
+    Eliminar
+
+    <a href="#" class="btn btn-danger btn-sm" onclick="eliminarEmpresa('{{$key-id}}')">
+        <span class="PalabraEditarPago ">Eliminar</span>
+        <center>
+            <span class="PalabraEditarPago2 ">
+                <i data-feather="trash" class="iconosMetaforas2"></i>
+            </span>
+        </center>
+    </a>
+--}}

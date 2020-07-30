@@ -130,6 +130,9 @@ Route::group(['middleware' => ['web','auth']], function () {
 	
 
 
+	Route::resource('contabilidad', 'ContabilidadController');
+
+
 	Route::post('editar_perfil','UserController@profileEdit')->name('Editar_perfil');
 
 });

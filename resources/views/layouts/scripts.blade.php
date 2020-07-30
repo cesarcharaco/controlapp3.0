@@ -35,6 +35,38 @@
 
 
 <script type="text/javascript">
+	function VerCards() {
+        $(function () {
+            setTimeout( function(){
+
+                $('#verTabla2-1')
+                .css('opacity', 0)
+                    .slideDown('slow')
+                    .animate(
+                        { opacity: 1 },
+                        { queue: false, duration: 'slow' }
+                    );
+                setTimeout( function(){
+                    $('#verTabla2-2')
+                    .css('opacity', 0)
+                    .slideDown('slow')
+                    .animate(
+                        { opacity: 1 },
+                        { queue: false, duration: 'slow' }
+                    );
+                    setTimeout( function(){
+                        $('#verTabla2-3')
+                        .css('opacity', 0)
+                        .slideDown('slow')
+                        .animate(
+                            { opacity: 1 },
+                            { queue: false, duration: 'slow' }
+                        );
+                    }  , 500 );
+                }  , 500 );
+            }  , 500 );
+        });
+    }
 	$(document).ready(VerCards);
 	var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
 	var f = new Date();
