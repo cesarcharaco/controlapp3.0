@@ -153,13 +153,22 @@
                         </li>
                     @endif
                     @if(\Auth::user()->tipo_usuario == 'Admin')
-                    <li>
-                        <a href="{{ url('contabilidad') }}">
-                            <i data-feather="activity"></i>
-                            <span> Balance General </span>
-                        </a>
-                    </li>
-                @endif
+                        <li>
+                            <a href="{{ url('contabilidad') }}">
+                                <i data-feather="activity"></i>
+                                <span> Balance General </span>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                        <li>
+                            <a href="{{ url('alquiler') }}">
+                                <i data-feather="clock"></i>
+                                <span> Alquiler </span>
+                            </a>
+                        </li>
+                    @endif
                 @if(\Auth::user()->tipo_usuario == 'root')
                     <li>
                         <a href="{{ url('anuncios') }}">
