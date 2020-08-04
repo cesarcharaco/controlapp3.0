@@ -386,7 +386,7 @@
                                 </td>
                                 <td colspan="3"></td>
                             </tr>
-                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                            <tr class="bg-primary text-white th2" style="display: none">
                                 <th width="10"></th>
                                 <th>
                                     <span class="PalabraEditarPago">Nombre</span>
@@ -403,7 +403,7 @@
                                     </center>
                                 </th>
                             </tr>
-                            <tr class="bg-info text-white" id="th1">
+                            <tr class="bg-info text-white th1">
                                 <th>#</th>
                                 <th>
                                     <span class="tituloTabla">Nombre</span>
@@ -426,7 +426,76 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @php $num=0 @endphp
+                            @foreach($empresas as $key)
+                                <tr class="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
+                                    <td align="center">
+                                        {{$num=$num+1}}
+                                    </td>
+                                    <td>{{$key->nombre}}</td>
+                                    <td>{{$key->rut_empresa}}</td>
+                                    <td>{{$key->descripcion}}</td>
+                                    @if($key->status == 'Activo')
+                                        <td style="position: all;">
+                                                <span class="tituloTabla text-success"><strong>Activo</strong></span>
+                                                <span class="tituloTabla2 text-success"><strong>A</strong></span>
+                                        </td>
+                                    @else
+                                        <td style="position: all;">
+                                                <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
+                                                <span class="tituloTabla2 text-danger"><strong>I</strong></span>
+                                        </td>
+                                    @endif
+                                </tr>
+                                <tr class="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                    <td width="10">
+                                        <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Regresar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        
+                                        <span>{{$key->nombre}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{$key->rut_empresa}}</span>
+                                    </td>
+                                    <td colspan="2" align="center">
+
+                                       <a href="#" class="btn btn-warning btn-sm" onclick="editarEmpresa('{{$key->id}}','{{$key->nombre}}','{{$key->rut_empresa}}','{{$key->descripcion}}','{{$key->status}}')">
+                                            <span class="PalabraEditarPago ">Editar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+                                    <a href="#" class="btn btn-danger btn-sm" onclick="eliminarEmpresa('{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+                                    </td>
+                                    <td style="display: none"></td>
+                                    
+
+                                </tr>
+                                <tr style="display: none;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach()
                         </tbody>
                     </table>
                 </div>
@@ -687,7 +756,9 @@
                                     <div class="card-body">
                                         <label for="SelectEmpresa">¿Cuál es la empresa que desea el anuncio?</label>
                                         <select class="form-control select2">
-                                            <option>Seleccione Empresa</option>
+                                            @foreach($empresas as $key)
+                                                <option value="{{$key->id}}">{{$key->nombre}} .- {{$key->rut_empresa}}</option>
+                                            @endforeach()
                                         </select>
                                     </div>
                                 </div>                                    
@@ -846,7 +917,8 @@
 
 <!-- --------------------------------------------FIN REGISTRAR AnuncioS------------------------------------------------------ -->
 
-<form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">  
+{!! Form::open(['route' => ['empresas.store'],'method' => 'POST', 'name' => 'registrarEmpresa', 'id' => 'registrar_empresa', 'data-parsley-validate']) !!}
+    @csrf 
     <div class="modal fade" id="NuevaEmpresa" role="dialog">
         <div class="modal-dialog modals-default">
             <div class="modal-content">
@@ -897,8 +969,8 @@
                                 <div class="form-group">
                                     <label for="status">¿La empresa se registrará como activa?</label>
                                     <select class="form-control select2" required name="status">
-                                        <option selected value="">Activo</option>
-                                        <option selected value="">Inactivo</option>
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
                                     </select>
                                 </div>
                             </div>
@@ -911,10 +983,11 @@
             </div>
         </div>
     </div>
-</form>
+{!! Form::close() !!}
 
 
-<form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">  
+{!! Form::open(['route' => ['empresas.update',1], 'method' => 'PUT', 'name' => 'editar_empresa', 'id' => 'editar_empresa', 'data-parsley-validate']) !!}
+    @csrf
     <div class="modal fade" id="editarEmpresa" role="dialog">
         <div class="modal-dialog modals-default">
             <div class="modal-content">
@@ -965,14 +1038,15 @@
                                 <div class="form-group">
                                     <label for="status">¿La empresa se registrará como activa?</label>
                                     <select class="form-control select2" required name="status" id="statusEmpresa_e">
-                                        <option selected value="">Activo</option>
-                                        <option selected value="">Inactivo</option>
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </center>
                     <div class="float-right">
+                        <input type="hidden" name="id" id="idEmpresa_e">
                         <button type="submit" class="btn btn-success" >Editar</button>
                     </div>
                 </div>                            
@@ -981,7 +1055,8 @@
     </div>
 </form>
                 
-<form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">  
+{!! Form::open(['route' => ['empresas.destroy',1033], 'method' => 'DELETE']) !!}
+    @csrf 
     <div class="modal fade" id="eliminarEmpresa" role="dialog">
         <div class="modal-dialog modals-default">
             <div class="modal-content">
@@ -1012,7 +1087,7 @@
             </div>
         </div>
     </div>
-</form>    
+{!! Form::close() !!} 
 
 
 
@@ -1545,42 +1620,20 @@
     function editarEmpresa(id, nombre, rut, descripcion, status) {
         $('#idEmpresa_e').val(id);
         $('#nombreEmpresa_e').val(nombre);
-        $('#rutEmpresa_e').val(rut);
-        $('#descripcionEmpresa_e').val(descripcion);
-        $('#statusEmpresa_e').val(Status);
 
-        $('editarEmpresa').modal('show');
+        $('#rutEmpresa_e').val(rut.substr(0,(rut.length-2)));
+        $('#verificadorEmpresa_e').val(rut.substr(-1,(rut.length)));
+
+        $('#descripcionEmpresa_e').val(descripcion);
+        $('#statusEmpresa_e').val(status);
+
+        $('#editarEmpresa').modal('show');
     }
 
     function eliminarEmpresa(id) {
-        $('id_empresa').val(id);
-        $('eliminarEmpresa').modal('show');
+        $('#id_empresa').val(id);
+        $('#eliminarEmpresa').modal('show');
     }
     
 </script>
 
-
-
-
-{{--    Editar Empresa
-
-    <a href="#" class="btn btn-warning btn-sm" onclick="editarEmpresa('{{$key-id}}','{{$key-nombre}}','{{$key-rut}}','{{$key-descripcion}}','{{$key-status}}')">
-        <span class="PalabraEditarPago ">Editar</span>
-        <center>
-            <span class="PalabraEditarPago2 ">
-                <i data-feather="edit" class="iconosMetaforas2"></i>
-            </span>
-        </center>
-    </a>
-
-    Eliminar
-
-    <a href="#" class="btn btn-danger btn-sm" onclick="eliminarEmpresa('{{$key-id}}')">
-        <span class="PalabraEditarPago ">Eliminar</span>
-        <center>
-            <span class="PalabraEditarPago2 ">
-                <i data-feather="trash" class="iconosMetaforas2"></i>
-            </span>
-        </center>
-    </a>
---}}

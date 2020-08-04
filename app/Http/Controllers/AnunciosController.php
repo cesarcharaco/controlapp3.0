@@ -8,6 +8,8 @@ use App\Http\Requests\AnunciosRequest;
 use App\Http\Requests\AnunciosUpdateRequest;
 use App\AdminsAnuncios;
 use App\UsersAdmin;
+use App\Empresas;
+use App\EmpresasAnuncios;
 use DB;
 class AnunciosController extends Controller
 {
@@ -19,9 +21,10 @@ class AnunciosController extends Controller
     public function index()
     {
         if(\Auth::user()->tipo_usuario == 'root'){
+            $empresas = Empresas::all();
             $users_admin = UsersAdmin::all();
             $anuncios=Anuncios::all();
-            return view('anuncios.index',compact('anuncios','users_admin'));
+            return view('anuncios.index',compact('anuncios','users_admin','empresas'));
         }else{
             toastr()->warning('no puede acceder!!', 'ACCESO DENEGADO');
             return redirect()->back();

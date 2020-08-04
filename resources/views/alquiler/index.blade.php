@@ -166,7 +166,7 @@
                               </td>
                               <td colspan="2"></td>
                           </tr>
-                          <tr class="text-white" id="th1" style="background-color: #CB8C4D;">
+                          <tr class="text-white" class="th1" style="background-color: #CB8C4D;">
                               <th>#</th>
                               <th>
                                   <span class="PalabraEditarPago">Idem</span>
@@ -183,7 +183,7 @@
                                   </span>
                               </th>
                           </tr>
-                          <tr class="bg-primary text-white" id="th2" style="display: none">
+                          <tr class="bg-primary text-white" class="th2" style="display: none">
                               <th width="10"></th>
                               <th>
                                   <span class="PalabraEditarPago">Idem</span>

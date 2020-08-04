@@ -134,6 +134,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 	Route::resource('alquiler', 'AlquilerController');
 
+	route::resource('empresas','EmpresasController');
 
 	Route::post('editar_perfil','UserController@profileEdit')->name('Editar_perfil');
 

@@ -1311,6 +1311,17 @@
                         $(this).hide();
                         $('#th2').fadeIn(300);
                 });
+            //class
+                $('.vista1-'+id).fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('.vista2-'+id).fadeIn(300);
+                });
+                $('.th1').fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('.th2').fadeIn(300);
+                });
             }else{
                 $('#vista2-'+id).fadeOut('slow',
                     function() { 
@@ -1321,6 +1332,17 @@
                     function() { 
                         $(this).hide();
                         $('#th1').fadeIn(300);
+                });
+            //class
+                $('.vista2-'+id).fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('.vista1-'+id).fadeIn(300);
+                });
+                $('.th2').fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('.th1').fadeIn(300);
                 });
             }
         }

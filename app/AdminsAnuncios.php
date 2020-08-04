@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminsAnuncios extends Model
 {
-    protected $table='admins_has_anuncios';
+    protected $table='empresas_has_anuncios';
 
-    protected $fillable=['id_users_admin','id_anuncios'];
+    protected $fillable=['id_empresa','id_anuncio'];
 
-    public function users_admin()
+    public function empresas()
 	  {
-	  	return $this->belongsTo('App\UsersAdmin','id_users_admin','id');
+	  	return $this->belongsTo('App\Empresas','id_empresa','id');
 	  }
 
 	public function anuncios()

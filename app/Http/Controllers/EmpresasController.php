@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Empresas;
 
 class EmpresasController extends Controller
 {
@@ -34,10 +35,10 @@ class EmpresasController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $empresas = new Empresas();
         $empresas->nombre = $request->nombre;
-        $empresas->rut_empresa=$request->rut_empresa;
+        $empresas->rut_empresa=$request->rut.'-'.$request->verificador;
         $empresas->descripcion=$request->descripcion;
         $empresas->status=$request->status;
         $empresas->save();
@@ -77,10 +78,10 @@ class EmpresasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
         $empresas = Empresas::find($request->id);
         $empresas->nombre = $request->nombre;
-        $empresas->rut_empresa=$request->rut_empresa;
+        $empresas->rut_empresa=$request->rut.'.-'.$request->verificador;
         $empresas->descripcion=$request->descripcion;
         $empresas->status=$request->status;
         $empresas->save();
@@ -95,8 +96,12 @@ class EmpresasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $empresa=Empresas::find($request->id);
+        $empresa->delete();
+
+        toastr()->success('¡Éxito!','¡Empresa eliminada con éxito!');
+        return redirect()->back();
     }
 }
