@@ -347,7 +347,7 @@
     </div>
 
 
-    <div id="tablaEmpresas" style="display: none;">
+    <div id="tablaEmpresas" style="display: block;">
         <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -371,6 +371,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                    
                 </div>
             </div>
 
@@ -500,6 +501,44 @@
                     </table>
                 </div>
                 <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            @php $num=0 @endphp
+                            @foreach($empresas as $key)
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="pt-3" style="width: 100% !important;">
+                                            <div class="toast fade show bg-white" role="alert" aria-live="assertive" aria-atomic="true" data-toggle="toast">
+                                                <div class="toast-header">
+                                                    <!-- <img src="assets/images/logo.svg" alt="brand-logo" height="18" class="mr-1"> -->
+                                                    <strong class="mr-auto"><h3>{{$key->nombre}}<h3></strong>
+                                                    <!-- <small>11 mins ago</small> -->
+                                                </div>
+                                                <div class="toast-body">
+                                                    @foreach($EmpresasAnuncios as $key2)
+                                                        @if($key->id == $key2->id_empresa)
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <div class="" style="font: 18px Arial, sans-serif;">
+                                                                        • {{$key2->anuncios->titulo}}
+                                                                    </div>
+                                                                    <small>{{$key2->anuncios->link}}</small>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <img class="imagenAnun" src="{{ asset($key2->anuncios->url_img) }}" class="avatar" style="width:100%;max-width:640px;">
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach()
+                                                </div>
+                                            </div>
+                                            <!--end toast-->
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach()
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -755,7 +794,7 @@
                                 <div class="card border border-info shadow p-3 m-4">
                                     <div class="card-body">
                                         <label for="SelectEmpresa">¿Cuál es la empresa que desea el anuncio?</label>
-                                        <select class="form-control select2">
+                                        <select class="form-control select2" name="id_empresa">
                                             @foreach($empresas as $key)
                                                 <option value="{{$key->id}}">{{$key->nombre}} .- {{$key->rut_empresa}}</option>
                                             @endforeach()
@@ -772,7 +811,7 @@
                                                 <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
                                                 <label for="admins_todos">Seleccionar todos</label>
                                             </div>
-                                            <select name="admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple" >
+                                            <select name="id_admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple" >
                                                 @foreach($users_admin as $key)
                                                     <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
                                                 @endforeach
@@ -780,7 +819,7 @@
                                             </select>
 
                                             <div style="display: none">
-                                                <select name="admins[]" id="SelectAdminA2" class="form-control select2 border border-default" multiple="multiple" style="display: none;">
+                                                <select name="id_admins[]" id="SelectAdminA2" class="form-control select2 border border-default" multiple="multiple" style="display: none;">
                                                     @foreach($users_admin as $key)
                                                         <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
                                                     @endforeach
@@ -850,7 +889,9 @@
                                         <div class="col-md-4">
                                             <div class="card shadow border border-info card-tabla rounded">
                                                 <div class="card-body">
-                                                    <input type="checkbox" name="">
+                                                    <div class="custom-control custom-radio mb-2">
+                                                      <input type="radio" id="customRadio1" name="planP" value="1">
+                                                    </div>
                                                    <h3>Plan Nro. 1</h3>
                                                    <span>1 semana</span>
                                                    <br>
@@ -865,7 +906,9 @@
                                         <div class="col-md-4">
                                             <div class="card shadow border border-warning card-tabla rounded">
                                                 <div class="card-body">
-                                                    <input type="checkbox" name="">
+                                                    <div class="custom-control custom-radio mb-2">
+                                                      <input type="radio" id="customRadio2" name="planP" value="2">
+                                                    </div>
                                                     <h3>Plan Nro. 2</h3>
                                                     <span>2 semenas</span>
                                                     <br>
@@ -880,7 +923,9 @@
                                         <div class="col-md-4">
                                             <div class="card shadow border border-danger card-tabla rounded">
                                                 <div class="card-body">
-                                                    <input type="checkbox" name="">
+                                                    <div class="custom-control custom-radio mb-2">
+                                                      <input type="radio" id="customRadio3" name="planP" value="3">
+                                                    </div>
                                                     <h3>Plan Nro. 3</h3>
                                                     <span>4 semanas</span>
                                                     <br>

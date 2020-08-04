@@ -24,7 +24,8 @@ class AnunciosController extends Controller
             $empresas = Empresas::all();
             $users_admin = UsersAdmin::all();
             $anuncios=Anuncios::all();
-            return view('anuncios.index',compact('anuncios','users_admin','empresas'));
+            $EmpresasAnuncios=EmpresasAnuncios::all();
+            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios'));
         }else{
             toastr()->warning('no puede acceder!!', 'ACCESO DENEGADO');
             return redirect()->back();
@@ -48,7 +49,7 @@ class AnunciosController extends Controller
      */
     public function store(AnunciosRequest $request)
     {
-        //dd($request->all());
+        // dd(date('Y-m-d'));
         $validacion=$this->validar_imagen($request->file('imagen'));
         
         if(!$validacion['valida']){
@@ -109,6 +110,15 @@ class AnunciosController extends Controller
                 }*/
                  
             }
+            $fecha_orden=date('Y-m-d');
+            $adminAnuncios=\DB::table('empresas_has_anuncios')->insert([
+                'id_empresa'    => $request->id_empresa,
+                'id_anuncios'   => $anuncio->id,
+                // 'id_planP'      => $request->planP,
+                'fecha_orden'   => $fecha_orden
+            ]);
+
+
             
        
         toastr()->success('con éxito!!','Anuncio registrado');

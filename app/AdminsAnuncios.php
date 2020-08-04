@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminsAnuncios extends Model
 {
-    protected $table='empresas_has_anuncios';
+    protected $table='admins_has_anuncios';
 
-    protected $fillable=['id_empresa','id_anuncio'];
+    protected $fillable=['id_users_admin','id_anuncios'];
 
-    public function empresas()
-	  {
-	  	return $this->belongsTo('App\Empresas','id_empresa','id');
-	  }
+   public function users_admin()
+	{
+		return $this->belongsTo('App\UsersAdmin','id_users_admin','id');
+	}
 
 	public function anuncios()
-	  {
-	  	return $this->belongsTo('App\Anuncios','id_anuncios','id');
-	  }
+	{
+		return $this->belongsTo('App\Anuncios','id_anuncios','id');
+	}
 }
