@@ -19,7 +19,9 @@ class EmpresasHasAnuncios extends Migration
             $table->unsignedBigInteger('id_anuncios');
             $table->unsignedBigInteger('id_planP')->nullable();
             $table->date('fecha_orden');
-            // $table->enum('status',['Activo','Inactivo'])->default('Activo');
+            $table->date('fecha_termino');
+            $table->string('referencia');
+            $table->enum('status',['Activo','Inactivo'])->default('Activo');
 
             $table->foreign('id_empresa')->references('id')->on('empresas')->onDelete('cascade');
             $table->foreign('id_anuncios')->references('id')->on('anuncios')->onDelete('cascade');

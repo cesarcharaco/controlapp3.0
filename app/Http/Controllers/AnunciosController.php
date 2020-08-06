@@ -10,6 +10,7 @@ use App\AdminsAnuncios;
 use App\UsersAdmin;
 use App\Empresas;
 use App\EmpresasAnuncios;
+use App\PlanesPago;
 use DB;
 class AnunciosController extends Controller
 {
@@ -25,7 +26,8 @@ class AnunciosController extends Controller
             $users_admin = UsersAdmin::all();
             $anuncios=Anuncios::all();
             $EmpresasAnuncios=EmpresasAnuncios::all();
-            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios'));
+            $planesPago=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->get();
+            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios','planesPago'));
         }else{
             toastr()->warning('no puede acceder!!', 'ACCESO DENEGADO');
             return redirect()->back();
@@ -49,7 +51,9 @@ class AnunciosController extends Controller
      */
     public function store(AnunciosRequest $request)
     {
-        // dd(date('Y-m-d'));
+        
+        // dd($fecha_termino);
+         
         $validacion=$this->validar_imagen($request->file('imagen'));
         
         if(!$validacion['valida']){
@@ -108,14 +112,20 @@ class AnunciosController extends Controller
                     $admins_anuncios->id_anuncios=$anuncio->id;
                     $admins_anuncios->save();
                 }*/
-                 
+            
             }
-            $fecha_orden=date('Y-m-d');
+            $planPago=PlanesPago::find($request->planP);
+            $fecha_actual=date('Y-m-d');
+            $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
+            
+
             $adminAnuncios=\DB::table('empresas_has_anuncios')->insert([
                 'id_empresa'    => $request->id_empresa,
                 'id_anuncios'   => $anuncio->id,
-                // 'id_planP'      => $request->planP,
-                'fecha_orden'   => $fecha_orden
+                'id_planP'      => $request->planP,
+                'fecha_orden'   => $fecha_actual,
+                'fecha_termino' => $fecha_termino,
+                'referencia'    => $request->referencia
             ]);
 
 

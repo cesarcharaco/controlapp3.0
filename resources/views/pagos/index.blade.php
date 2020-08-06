@@ -371,7 +371,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Total a pagar</label>
-                            <center style="color: grey; font-size: 100px; width:100%; font-size: 10vw;">$<span id="TotalPag class="iconosMetaforas2"ar">0</span></center>
+                            <center style="color: grey; font-size: 100px; width:100%; font-size: 10vw;">$<span id="TotalPag" class="iconosMetaforas2">0</span></center>
                             <input type="hidden" name="total" id="total" value="0">
                         </div>
                     </div>

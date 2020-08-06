@@ -347,36 +347,34 @@
     </div>
 
 
-    <div id="tablaEmpresas" style="display: block;">
+    <div id="tablaEmpresas" style="display: none;">
         <div class="card border border-warning rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-12 offset-md-12">
-                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#NuevaEmpresa" style="
-                                border-radius: 10px;
-                                color: white;
-                                height: 35px;
-                                margin-bottom: 5px;
-                                margin-top: 5px;
-                                float: right;">
-                                <span class="PalabraEditarPago ">Nueva Empresa</span>
-                                <center>
-                                    <span class="PalabraEditarPago2 ">
-                                        <i data-feather="plus" class="iconosMetaforas2"></i>
-                                    </span>
-                                </center>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    
-                </div>
-            </div>
+            
 
             <div class="row justify-content-center">
                 <div class="col-md-8">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12 offset-md-12">
+                                    <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#NuevaEmpresa" style="
+                                        border-radius: 10px;
+                                        color: white;
+                                        height: 35px;
+                                        margin-bottom: 5px;
+                                        margin-top: 5px;
+                                        float: right;">
+                                        <span class="PalabraEditarPago ">Nueva Empresa</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="plus" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                         <thead>
                             <tr class="table-default text-white">
@@ -501,44 +499,40 @@
                     </table>
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            @php $num=0 @endphp
-                            @foreach($empresas as $key)
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="pt-3" style="width: 100% !important;">
-                                            <div class="toast fade show bg-white" role="alert" aria-live="assertive" aria-atomic="true" data-toggle="toast">
-                                                <div class="toast-header">
-                                                    <!-- <img src="assets/images/logo.svg" alt="brand-logo" height="18" class="mr-1"> -->
-                                                    <strong class="mr-auto"><h3>{{$key->nombre}}<h3></strong>
-                                                    <!-- <small>11 mins ago</small> -->
-                                                </div>
-                                                <div class="toast-body">
-                                                    @foreach($EmpresasAnuncios as $key2)
-                                                        @if($key->id == $key2->id_empresa)
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <div class="" style="font: 18px Arial, sans-serif;">
-                                                                        • {{$key2->anuncios->titulo}}
+                    @php $num=0 @endphp
+                    @foreach($empresas as $key)
+                        <div class="row vista2-{{$key->id}}" style="display: none;">
+                            <div class="col-md-12">
+                                <div class="card border card-tabla shadow p-1 bg-white tabla-estilo" style="border-radius: 15px !important;">
+                                    <!-- <img src="assets/images/logo.svg" alt="brand-logo" height="18" class="mr-1"> -->
+                                    <strong><h3 align="center">{{$key->nombre}}</h3></strong>
+                                    <!-- <small>11 mins ago</small> -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card border border-info mb-3">
+                                                @foreach($EmpresasAnuncios as $key2)
+                                                    @if($key->id == $key2->id_empresa)
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item">
+                                                                        
+                                                                    <span><b>{{$key2->anuncios->titulo}}</b></span>
+                                                                    <br>
+                                                                    <span>{{$key2->anuncios->link}}</span>
+                                                                    <div class="float-right">
+                                                                        <img src="{{ asset($key2->planP->url_img) }}" class="shadow" style="width: 50px; height: 50px; border-radius: 35px !important;">
+                                                                        <img class="" src="{{ asset($key2->anuncios->url_img) }}" class="" style="width: 50px; height: 50px; border-radius: 30px;">
                                                                     </div>
-                                                                    <small>{{$key2->anuncios->link}}</small>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <img class="imagenAnun" src="{{ asset($key2->anuncios->url_img) }}" class="avatar" style="width:100%;max-width:640px;">
-                                                                </div>
-                                                            </div>
-                                                        @endif
-                                                    @endforeach()
-                                                </div>
+                                                                </li>
+                                                            </ul>
+                                                    @endif
+                                                @endforeach()
                                             </div>
-                                            <!--end toast-->
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach()
+                            </div>
                         </div>
-                    </div>
+                    @endforeach()
                 </div>
             </div>
         </div>
@@ -546,7 +540,76 @@
 
     <div id="tablaControl" style="display: none;">
         <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white n">
-            
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        @foreach($anuncios as $key)
+                            @foreach($EmpresasAnuncios as $key2)
+                                @if($key->id == $key2->id_anuncios)
+                                    @if($key2->status == 'Activo')
+                                        <div class="mb-3 card border border border-success">
+                                    @else
+                                        <div class="mb-3 card border border border-danger">
+                                    @endif
+                                        <?php 
+                                            $fecha1 =   Date('Y-m-d');
+                                            $fecha2 =   Date($key2->fecha_termino);
+                                            $fecha3 =   Date($key2->fecha_orden);
+
+                                            $dias = (strtotime($fecha1)-strtotime($fecha2))/86400;
+                                            $dias = abs($dias); $dias = floor($dias);
+
+                                            $dias2 = (strtotime($fecha1)-strtotime($fecha2))/86400;
+                                            $dias2 = abs($dias2); $dias = floor($dias2);
+
+                                            $total = $dias2*100/$dias;
+                                        ?>
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                
+                                                <span class="mb-2 p-2" style="font-size: 40px;color: gray; font: 18px Arial, sans-serif;" align="left">
+                                                    {{$key->titulo}}
+                                                </span>
+                                                @if($key2->status == 'Activo')
+                                                    <small style="border-radius: 30px;" class=" btn btn-success btn-sm">{{$key2->status}}</small>
+                                                @else
+                                                    <small style="border-radius: 30px;" class=" btn btn-success btn-sm">{{$key2->status}}</small>
+                                                @endif
+                                                <small style="float: right;border-radius: 30px;">Hace {{(strtotime($fecha1)-strtotime($fecha3))}} Dias</small>
+                                                <div class="float-right">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    @if($key2->status == 'Activo')
+                                                        <div class="progress mb-2" style="width: 100%;">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="{{$total}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total}}%"></div>
+                                                        </div>
+                                                    @else
+                                                        <div class="progress mb-2" style="width: 100%;">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="{{$total}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total}}%"></div>
+                                                        </div>
+                                                    @endif
+                                                    <center><span class="mb-2" style="font: 20px Arial, sans-serif;">{{$dias}}</span> <small> Dias Restantes</small></center>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="float-right">
+                                                        <img src="{{ asset($key->url_img) }}" class="shadow" style="width: 50px; height: 50px; border-radius: 35px !important;">
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach()
+                        @endforeach()
+                    </div>
+                    <div class="col-md-6">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -794,7 +857,7 @@
                                 <div class="card border border-info shadow p-3 m-4">
                                     <div class="card-body">
                                         <label for="SelectEmpresa">¿Cuál es la empresa que desea el anuncio?</label>
-                                        <select class="form-control select2" name="id_empresa">
+                                        <select class="form-control select2" name="id_empresa" required>
                                             @foreach($empresas as $key)
                                                 <option value="{{$key->id}}">{{$key->nombre}} .- {{$key->rut_empresa}}</option>
                                             @endforeach()
@@ -885,58 +948,30 @@
 
                           <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-pago-tab">
                               <center>
+                                    <div class="form-group">
+                                        <label>Referencia</label>
+                                        <input type="text" class="form-control" name="referencia" required>
+                                    </div>
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="card shadow border border-info card-tabla rounded">
-                                                <div class="card-body">
-                                                    <div class="custom-control custom-radio mb-2">
-                                                      <input type="radio" id="customRadio1" name="planP" value="1">
+                                        @foreach($planesPago as $key)
+                                            <div class="col-md-4">
+                                                <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important;">
+                                                    <div class="card-body">
+                                                        <div class="custom-control custom-radio mb-2">
+                                                          <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                                        </div>
+                                                       <h3>{{$key->nombre}}</h3>
+                                                       <span>{{$key->dias}} dias</span>
+                                                       <br>
+                                                        <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                       <br>
+                                                       <center>
+                                                        <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
+                                                       </center>
                                                     </div>
-                                                   <h3>Plan Nro. 1</h3>
-                                                   <span>1 semana</span>
-                                                   <br>
-                                                    <span style="font-size: 30px;">$</span><span style="font-size: 70px;">30</span><strong>/Mes</strong>
-                                                   <br>
-                                                   <center>
-                                                    <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
-                                                   </center>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="card shadow border border-warning card-tabla rounded">
-                                                <div class="card-body">
-                                                    <div class="custom-control custom-radio mb-2">
-                                                      <input type="radio" id="customRadio2" name="planP" value="2">
-                                                    </div>
-                                                    <h3>Plan Nro. 2</h3>
-                                                    <span>2 semenas</span>
-                                                    <br>
-                                                    <span style="font-size: 30px;">$</span><span style="font-size: 70px;">70</span><strong>/Mes</strong>
-                                                    <br>
-                                                    <center>
-                                                        <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj2.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
-                                                    </center>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="card shadow border border-danger card-tabla rounded">
-                                                <div class="card-body">
-                                                    <div class="custom-control custom-radio mb-2">
-                                                      <input type="radio" id="customRadio3" name="planP" value="3">
-                                                    </div>
-                                                    <h3>Plan Nro. 3</h3>
-                                                    <span>4 semanas</span>
-                                                    <br>
-                                                    <span style="font-size: 30px;">$</span><span style="font-size: 70px;">100</span><strong>/Mes</strong>
-                                                    <br>
-                                                    <center>
-                                                        <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj3.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
-                                                    </center>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach()
                                     </div>
                               </center>
 
@@ -1004,7 +1039,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <!-- <label>Estado del Anuncio</label> -->
-                                    <textarea class="form-control" name="descripcion" placeholder="¿Alguna descripción sobre la empresa?"></textarea>
+                                    <textarea class="form-control" name="descripcion" placeholder="¿Alguna descripción sobre la empresa?" required></textarea>
                                 </div>
                             </div>
                         </div>
