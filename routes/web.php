@@ -117,7 +117,13 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('pagoscomunes/{tipo}/{anio}/buscarPagoC','PagosComunesController@buscarPagoAnio');
 
 	Route::resource('anuncios','AnunciosController');
+	route::get('desactivar_orden','AnunciosController@desactivar_orden')->name('desactivar_orden');
+	route::get('editarOrdenAnuncio','AnunciosController@editar_orden_anuncio')->name('editar_orden_anuncio');
+	route::get('renovar_anuncio','AnunciosController@renovar_anuncio')->name('renovar_anuncio');
 	Route::get('anuncios/{id_anuncio}/admin_asignados','AdminController@admin_asignados');
+
+
+	
 	Route::resource('administradores','AdminController');
 
 
@@ -135,6 +141,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('alquiler', 'AlquilerController');
 
 	route::resource('empresas','EmpresasController');
+
 
 	Route::post('editar_perfil','UserController@profileEdit')->name('Editar_perfil');
 

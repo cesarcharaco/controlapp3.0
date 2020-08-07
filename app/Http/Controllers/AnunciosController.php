@@ -117,7 +117,7 @@ class AnunciosController extends Controller
             $planPago=PlanesPago::find($request->planP);
             $fecha_actual=date('Y-m-d');
             $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
-            
+
 
             $adminAnuncios=\DB::table('empresas_has_anuncios')->insert([
                 'id_empresa'    => $request->id_empresa,
@@ -270,5 +270,42 @@ class AnunciosController extends Controller
         $respuesta=['mensaje' => $mensaje,'valida' => $valida];
 
         return $respuesta;
+    }
+
+    public function desactivar_orden(Request $request)
+    {
+        dd($request->all());
+        toastr()->success('¡Anuncio Desactivado!', 'El Anuncio a sido desactivado');
+        return redirect()->back();
+    }
+
+    public function editar_orden_anuncio(Request $request)
+    {
+        // dd($request->all());
+        $empresasA=EmpresasAnuncios::find($request->id);
+        $planPago=PlanesPago::find($request->planP);
+
+        $fecha_actual=$empresasA->fecha_orden;
+        $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
+
+        $empresasA->referencia =$request->referencia;
+        $empresasA->id_planP = $request->planP;
+        $empresasA->fecha_termino = $fecha_termino;
+
+
+        if ($empresasA->save()) {
+            toastr()->success('¡Anuncio Editado!', 'El Anuncio a sido actualizado');
+        }else{
+            toastr()->error('¡Ocurrió un problema!', 'Inténte de nuevo editar el pago del anuncio');
+        }
+
+        return redirect()->back();
+    }
+
+    public function renovar_anuncio(Request $request)
+    {
+        dd($request->all());
+        toastr()->success('¡Anuncio Renovado!', 'El Anuncio a sido renovado');
+        return redirect()->back();
     }
 }
