@@ -176,6 +176,12 @@
                             <span> Publicidad </span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('planes_pago') }}">
+                            <i data-feather="dollar-sign"></i>
+                            <span> Planes de Pago </span>
+                        </a>
+                    </li>
                     <!-- <li>
                             <a href="javascript: void(0);" aria-expanded="false">
                                 <i data-feather="columns"></i>

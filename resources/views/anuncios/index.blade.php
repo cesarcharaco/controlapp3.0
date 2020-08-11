@@ -538,19 +538,19 @@
         </div>
     </div>
 
-    <div id="tablaControl" style="display: block;">
-        <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white n">
+    <div id="tablaControl" style="display: none;">
+        <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white">
             <div class="card-body">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         @foreach($anuncios as $key)
                             @foreach($EmpresasAnuncios as $key2)
                                 @if($key->id == $key2->id_anuncios)
-                                    <a href="#" onclick="verInfoControl('{{$key->id}}',1)">
+                                    <a href="#" onclick="verInfoControl('{{$key->id}}',1,'{{$key2->status}}')">
                                     @if($key2->status == 'Activo')
-                                        <div class="mb-3 card border border border-success">
+                                        <div class="mb-3 card border border border-success" id="tablaCC{{$key->id}}">
                                     @else
-                                        <div class="mb-3 card border border border-danger">
+                                        <div class="mb-3 card border border border-danger" id="tablaCC{{$key->id}}">
                                     @endif
                                         <?php 
                                             $fecha1 =   Date('Y-m-d');
@@ -561,11 +561,24 @@
                                             $dias = abs($dias);
                                             $dias = floor($dias);
 
-                                            $dias2 = (strtotime($fecha1)-strtotime($fecha2))/86400;
+                                            $dias2 = (strtotime($fecha2)-strtotime($fecha1))/86400;
                                             $dias2 = abs($dias2);
                                             $dias2 = floor($dias2);
 
-                                            $total = $dias2*100/$dias;
+                                            if($fecha1 > $fecha2){
+                                                $dias   = 0;
+                                                $dias2  = 0;
+                                                $total  = 0;
+                                            }else{
+                                                $dias = abs($dias);
+                                                $dias = floor($dias);
+
+                                                if ($dias2 != 0) {
+                                                    $total = ($dias2*100)/$dias;
+                                                }else{
+                                                    $total = 0;
+                                                }
+                                            }
                                         ?>
                                         <div class="card-body">
                                             <div class="mb-3">
@@ -573,7 +586,7 @@
                                                 @if($key2->status == 'Activo')
                                                     <small style="border-radius: 30px;" class=" btn btn-success btn-sm disabled">{{$key2->status}}</small>
                                                 @else
-                                                    <small style="border-radius: 30px;" class=" btn btn-success btn-sm disabled">{{$key2->status}}</small>
+                                                    <small style="border-radius: 30px;" class=" btn btn-danger btn-sm disabled">{{$key2->status}}</small>
                                                 @endif
                                                 <span class="mb-2 p-2" style="font-size: 40px;color: gray; font: 18px Arial, sans-serif;" align="left">
                                                     {{$key->titulo}}
@@ -593,7 +606,7 @@
                                                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="{{$total}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total}}%"></div>
                                                         </div>
                                                     @endif
-                                                    <center><span class="mb-2" style="color: grey; font: 20px Arial, sans-serif;">{{$dias}}</span> <small style="color: grey"> Dias Restantes</small></center>
+                                                    <center><span class="mb-2" style="color: grey; font: 20px Arial, sans-serif;">{{$dias2}}</span> <small style="color: grey"> Dias Restantes</small></center>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="float-right">
@@ -621,7 +634,7 @@
                                         background-size: cover;
                                         display: none;">
                                             <div class="card-header">
-                                                <button type="button" class="btn btn-success rounded" onclick="verInfoControl('{{$key->id}}',2)" style="border-radius: 30px !important; float: left !important;">
+                                                <button type="button" class="btn btn-success rounded" onclick="verInfoControl('{{$key->id}}',2,'{{$key2->status}}')" style="border-radius: 30px !important; float: left !important;">
                                                     <span class="PalabraEditarPago ">Regresar</span>
                                                     <center>
                                                         <span class="PalabraEditarPago2 ">
@@ -660,7 +673,7 @@
                                                 <br>
 
                                             </div>
-                                            <div onclick="verInfoControl('{{$key->id}}',2)">
+                                            <div onclick="verInfoControl('{{$key->id}}',2,'{{$key2->status}}')">
                                                 <div class="card-body bg-white">
                                                     <?php 
                                                         $fecha1 =   Date('Y-m-d');
@@ -670,10 +683,13 @@
                                                         $dias = (strtotime($fecha1)-strtotime($fecha2))/86400;
                                                         $dias = abs($dias); $dias = floor($dias);
 
-                                                        $dias2 = (strtotime($fecha1)-strtotime($fecha2))/86400;
-                                                        $dias2 = abs($dias2); $dias = floor($dias2);
-
-                                                        $total = $dias2*100/$dias;
+                                                        if($fecha2 > $fecha1){
+                                                            $dias  = 0;
+                                                            $total = 0;
+                                                        }else{
+                                                            $dias = abs($dias); $dias = floor($dias);
+                                                            $total = ($dias2*100)/$dias;
+                                                        }
                                                     ?>
                                                     <h3 style="">
                                                         Referencia: 
@@ -1046,24 +1062,56 @@
                                         <input type="text" class="form-control" name="referencia" required>
                                     </div>
                                     <div class="row">
+                                        <?php $num=0; ?>
                                         @foreach($planesPago as $key)
-                                            <div class="col-md-4">
-                                                <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important;">
-                                                    <div class="card-body">
-                                                        <div class="custom-control custom-radio mb-2">
-                                                          <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                            @if($num==0)
+                                                <div class="col-md-6">
+                                                    <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                        <div class="card-body">
+                                                            <div class="custom-control custom-radio mb-2">
+                                                              <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}" checked>
+                                                            </div>
+                                                           <h3>{{$key->nombre}}</h3>
+                                                           <span>{{$key->dias}} dias</span>
+                                                           <br>
+                                                            <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                           <br>
+                                                           <center>
+                                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
+                                                                width: 50%;
+                                                                /*height: 100%;*/
+                                                                /*height:70%;*/
+                                                                max-width:500px; 
+                                                                margin-right: -25px !important;">
+                                                           </center>
                                                         </div>
-                                                       <h3>{{$key->nombre}}</h3>
-                                                       <span>{{$key->dias}} dias</span>
-                                                       <br>
-                                                        <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
-                                                       <br>
-                                                       <center>
-                                                        <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
-                                                       </center>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @else
+                                                <div class="col-md-6">
+                                                    <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                        <div class="card-body">
+                                                            <div class="custom-control custom-radio mb-2">
+                                                              <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                                            </div>
+                                                           <h3>{{$key->nombre}}</h3>
+                                                           <span>{{$key->dias}} dias</span>
+                                                           <br>
+                                                            <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                           <br>
+                                                           <center>
+                                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
+                                                                width: 50%;
+                                                                /*height: 100%;*/
+                                                                /*height:70%;*/
+                                                                max-width:500px; 
+                                                                margin-right: -25px !important;">
+                                                           </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            <?php $num++; ?>
                                         @endforeach()
                                     </div>
                               </center>
@@ -1092,7 +1140,7 @@
 
 {!! Form::open(['route' => ['empresas.store'],'method' => 'POST', 'name' => 'registrarEmpresa', 'id' => 'registrar_empresa', 'data-parsley-validate']) !!}
     @csrf 
-    <div class="modal fade" id="NuevaEmpresa" role="dialog">
+    <div class="modal fade" id="NuevaEmpresa" role="dialog" style="border-radius: 30px !important;">
         <div class="modal-dialog modals-default">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1107,7 +1155,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <!-- <label for="nombre">Nombre</label> -->
-                                    <input type="text" name="nombre" class="form-control" required placeholder="Nombre de la empresa">
+                                    <input type="text" name="nombre" class="form-control border-info" required placeholder="Nombre de la empresa">
                                 </div>
                             </div>
                         </div>
@@ -1115,14 +1163,14 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="form-group">
-                                    <input type="text" name="rut" placeholder="Rut de la empresa" minlength="7" maxlength="8" class="form-control" required>
+                                    <input type="text" name="rut" placeholder="Rut de la empresa" minlength="7" maxlength="8" class="form-control border-info" required>
                                 </div>
                             </div>
                             
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <div style="float: left !important;">
-                                        <input type="number" name="verificador" min="1" minlength="1" maxlength="1" value="0" class="form-control" max="9" required>
+                                        <input type="number" name="verificador" min="1" minlength="1" maxlength="1" value="0" class="form-control border-info" max="9" required>
                                     </div>
                                 </div>
                             </div>
@@ -1132,7 +1180,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <!-- <label>Estado del Anuncio</label> -->
-                                    <textarea class="form-control" name="descripcion" placeholder="¿Alguna descripción sobre la empresa?" required></textarea>
+                                    <textarea class="form-control border-info" name="descripcion" placeholder="¿Alguna descripción sobre la empresa?" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -1141,8 +1189,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="status">¿La empresa se registrará como activa?</label>
-                                    <select class="form-control select2" required name="status">
-                                        <option value="Activo">Activo</option>
+                                    <select class="form-control select2 border-info" required name="status">
+                                        <option value="Activo" selected>Activo</option>
                                         <option value="Inactivo">Inactivo</option>
                                     </select>
                                 </div>
@@ -1861,11 +1909,18 @@
         $('#id_orden_pago').val(id);
     }
 
-    function verInfoControl(id,opcion) {
+    function verInfoControl(id,opcion,status) {
+
         if (opcion == 1) {
             $('.verDatosPagoA'+id).fadeIn(300);
+            $('#tablaCC'+id).removeClass("border-success").removeClass("border-danger").addClass("border-info");
         }else{
             $('.verDatosPagoA'+id).fadeOut('slow');
+            if (status == 'Activo') {
+                $('#tablaCC'+id).removeClass("border-info").addClass("border-success");
+            }else{
+                $('#tablaCC'+id).removeClass("border-info").addClass("border-danger");
+            }
         }
     }
     

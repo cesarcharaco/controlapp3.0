@@ -145,4 +145,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 	Route::post('editar_perfil','UserController@profileEdit')->name('Editar_perfil');
 
+	Route::resource('planes_pago','PlanesPagoController');
+
 });

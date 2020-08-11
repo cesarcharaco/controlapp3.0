@@ -21,6 +21,18 @@ class AnunciosController extends Controller
      */
     public function index()
     {
+        $anunciosStatus=EmpresasAnuncios::where('status','Activo')->get();
+        if (!is_null($anunciosStatus)) {
+            for ($i=0; $i < count($anunciosStatus); $i++) { 
+                $fecha1 =   Date('Y-m-d');
+                $fecha2 =   Date($anunciosStatus[$i]->fecha_termino);
+
+                if($fecha1 > $fecha2){
+                    $anunciosStatus[$i]->status = 'Inactivo';
+                    $anunciosStatus[$i]->save();
+                }
+            }
+        }
         if(\Auth::user()->tipo_usuario == 'root'){
             $empresas = Empresas::all();
             $users_admin = UsersAdmin::all();
@@ -305,7 +317,7 @@ class AnunciosController extends Controller
     public function renovar_anuncio(Request $request)
     {
         dd($request->all());
-        toastr()->success('¡Anuncio Renovado!', 'El Anuncio a sido renovado');
+        toastr()->success('¡Anuncio Renovado!', 'El Anuncio ha sido renovado');
         return redirect()->back();
     }
 }
