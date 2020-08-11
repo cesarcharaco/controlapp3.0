@@ -676,21 +676,33 @@
                                             <div onclick="verInfoControl('{{$key->id}}',2,'{{$key2->status}}')">
                                                 <div class="card-body bg-white">
                                                     <?php 
-                                                        $fecha1 =   Date('Y-m-d');
-                                                        $fecha2 =   Date($key2->fecha_termino);
-                                                        $fecha3 =   Date($key2->fecha_orden);
+                                            $fecha1 =   Date('Y-m-d');
+                                            $fecha2 =   Date($key2->fecha_termino);
+                                            $fecha3 =   Date($key2->fecha_orden);
 
-                                                        $dias = (strtotime($fecha1)-strtotime($fecha2))/86400;
-                                                        $dias = abs($dias); $dias = floor($dias);
+                                            $dias = (strtotime($fecha2)-strtotime($fecha3))/86400;
+                                            $dias = abs($dias);
+                                            $dias = floor($dias);
 
-                                                        if($fecha2 > $fecha1){
-                                                            $dias  = 0;
-                                                            $total = 0;
-                                                        }else{
-                                                            $dias = abs($dias); $dias = floor($dias);
-                                                            $total = ($dias2*100)/$dias;
-                                                        }
-                                                    ?>
+                                            $dias2 = (strtotime($fecha2)-strtotime($fecha1))/86400;
+                                            $dias2 = abs($dias2);
+                                            $dias2 = floor($dias2);
+
+                                            if($fecha1 > $fecha2){
+                                                $dias   = 0;
+                                                $dias2  = 0;
+                                                $total  = 0;
+                                            }else{
+                                                $dias = abs($dias);
+                                                $dias = floor($dias);
+
+                                                if ($dias2 != 0) {
+                                                    $total = ($dias2*100)/$dias;
+                                                }else{
+                                                    $total = 0;
+                                                }
+                                            }
+                                        ?>
                                                     <h3 style="">
                                                         Referencia: 
                                                     </h3>
