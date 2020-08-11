@@ -236,7 +236,8 @@
                                        '{{$key->dias}}',
                                        '{{$key->color}}',
                                        '{{$key->tipo}}',
-                                       '{{$key->status}}')">
+                                       '{{$key->status}}',
+                                       '{{$key->url_img}}')">
                                             <span class="PalabraEditarPago ">Editar</span>
                                             <center>
                                                 <span class="PalabraEditarPago2 ">
@@ -357,7 +358,7 @@
 	            			<br>
 	            			<div class="form-group">
 	                            <label>Imagen</label>
-	                            <div id="mostrarImagenEditar" align="center"></div>
+	                            <div class="mostrarImagenEditar" align="center"></div>
 	                            <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen" required>
 	                        </div>
 	                        <button type="submit" class="btn btn-success">Agregar</button>
@@ -450,10 +451,20 @@
 	            			<br>
 	            			<div class="form-group">
 	                            <label>Imagen</label>
-	                            <div id="mostrarImagenEditar" align="center"></div>
-	                            <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen" required>
+	                            <div class="mostrarImagenEditar" align="center"></div>
+	                            <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
 	                        </div>
-	                        <button type="submit" class="btn btn-success">Agregar</button>
+	                        <div class="form-group">
+	                            <label>Status</label>
+	                            <select name="status" class="form-control select2" id="status_PlanP">
+	                            	<option value="Activo">Activo</option>
+	                            	<option value="Inactivo">Inactivo</option>
+	                            </select>
+	                        </div>
+	                        <center>
+		                        <input type="hidden" name="id" class="id_PlanP">
+		                        <button type="submit" class="btn btn-success">Actualizar</button>
+	                        </center>
 		        		{!! Form::close() !!}
 	        		</div>
 	        	</div>
@@ -494,7 +505,7 @@
             });
     	$('.nuevoPlanPago').fadeIn(300);
     }
-    function editarPlanP(id,nombre,monto,dias,color,tipo,status){
+    function editarPlanP(id,nombre,monto,dias,color,tipo,status,nombre_img){
     	$(".vistaColumnaPlanP").fadeOut("fast",
             function() {
                 $(this).hide();
@@ -507,13 +518,15 @@
                 //         { opacity: 1 },
                 //         { queue: false, duration: 'slow' }
                 //     );
-				$('#id_PlanP').val(id);
+				$('.id_PlanP').val(id);
 				$('#nombre_PlanP').val(nombre);
 				$('#monto_PlanP').val(monto);
 				$('#dias_PlanP').val(dias);
 				$('#color_PlanP').val(color);
 				$('#tipo_PlanP').val(tipo);
 				$('#status_PlanP').val(status);
+				$('.mostrarImagenEditar').empty();
+				$('.mostrarImagenEditar').append('<img class="imagenAnun text-dark" src="'+nombre_img+'" width="250" height="200">');
             });
     	$('.editarPlanPago').fadeIn(300);
     }

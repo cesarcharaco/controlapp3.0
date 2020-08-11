@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\PlanesPago;
 use Illuminate\Http\Request;
+use App\Http\Requests\PlanesPagosRequest;
+use App\Http\Requests\PlanesPagosUpdateRequest;
 use App\Promociones;
 
 class PlanesPagoController extends Controller
@@ -37,7 +39,7 @@ class PlanesPagoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PlanesPagosRequest $request)
     {
         
         // dd($request->all());
@@ -72,7 +74,7 @@ class PlanesPagoController extends Controller
         $plan_pago->status      ='Activo';
         $plan_pago->save();            
        
-        toastr()->success('con éxito!!','Anuncio registrado');
+        toastr()->success('con éxito!!','Plan de Pagos registrado');
         return redirect()->back();
         
     }
@@ -106,9 +108,57 @@ class PlanesPagoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PlanesPagosUpdateRequest $request, $id)
     {
-        //
+        // dd($request->all());
+        $codigo=$this->generarCodigo();
+        //$codigo="nnn";
+        $cambio=0;
+        
+        $plan_pago=PlanesPago::find($request->id);
+        if($request->imagen!==null){
+            $validacion=$this->validar_imagen($request->file('imagen'));
+
+            if(!$validacion['valida']){
+                toastr()->warning('intente otra vez!!', $validacion['mensaje'].'');
+                return redirect()->back();
+            }else{
+                $nombre=$plan_pago->nombre_img;
+                unlink(public_path().'/images_planes_p/'.$nombre);
+                $file=$request->file('imagen');
+
+                $name=$codigo."_".$file->getClientOriginalName();
+                $file->move(public_path().'/images_planes_p/', $name);  
+                $name = $name;
+                $url ='images_planes_p/'.$name;
+                $cambio=1;
+            }
+        }
+            
+        //dd('asasa');
+            $plan_pago->nombre      =$request->nombre;
+            $plan_pago->monto       =$request->monto;
+            $plan_pago->dias        =$request->dias;
+            if($cambio==1){
+                $plan_pago->nombre_img=$name;
+                $plan_pago->url_img=$url;
+            }
+            $plan_pago->color       =$request->color;
+            $plan_pago->tipo        =$request->tipo;
+            $plan_pago->status      =$request->status;
+            $plan_pago->save();
+
+            // $plan_pago->titulo=$request->titulo;
+            // $plan_pago->link=$request->link;
+            // $plan_pago->descripcion=$request->descripcion;
+            // if($cambio==1){
+            //     $plan_pago->nombre_img=$name;
+            //     $plan_pago->url_img=$url;
+            // }
+            // $plan_pago->save();
+
+            toastr()->success('con éxito!!', 'Plan de Pagos actualizado');
+            return redirect()->back();
     }
 
     /**
