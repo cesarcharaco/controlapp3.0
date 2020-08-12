@@ -91,6 +91,7 @@ class AnunciosController extends Controller
             $anuncio->descripcion=$request->descripcion;
             $anuncio->nombre_img=$name;
             $anuncio->url_img=$url;
+            $anuncio->id_empresa=$request->id_empresa;
             $anuncio->save();
             
             $datos = $request['admins'];
@@ -131,8 +132,7 @@ class AnunciosController extends Controller
             $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
 
 
-            $adminAnuncios=\DB::table('empresas_has_anuncios')->insert([
-                'id_empresa'    => $request->id_empresa,
+            $adminAnuncios=\DB::table('planes_has_anuncios')->insert([
                 'id_anuncios'   => $anuncio->id,
                 'id_planP'      => $request->planP,
                 'fecha_orden'   => $fecha_actual,
@@ -179,7 +179,7 @@ class AnunciosController extends Controller
      */
     public function update(AnunciosUpdateRequest $request, $id_anuncio)
     {
-        //dd($request->all());
+        // dd($request->all());
 
         $codigo=$this->generarCodigo();
         //$codigo="nnn";
@@ -206,14 +206,30 @@ class AnunciosController extends Controller
         }
             
         //dd('asasa');
+            $anuncio->id_empresa=$request->id_empresa;
             $anuncio->titulo=$request->titulo;
             $anuncio->link=$request->link;
             $anuncio->descripcion=$request->descripcion;
             if($cambio==1){
-            $anuncio->nombre_img=$name;
-            $anuncio->url_img=$url;
+                $anuncio->nombre_img=$name;
+                $anuncio->url_img=$url;
             }
             $anuncio->save();
+
+
+
+
+            $planPago=PlanesPago::find($request->planP);
+            $fecha_actual=date('Y-m-d');
+            $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
+
+            $planesAnuncios = EmpresasAnuncios::where('id_anuncios',$anuncio->id)->first();
+
+            $planesAnuncios->id_planP = $request->planP;
+            $planesAnuncios->fecha_orden = $fecha_actual;
+            $planesAnuncios->fecha_termino = $fecha_termino;
+            $planesAnuncios->referencia = $request->referencia;
+            $planesAnuncios->save();
 
             toastr()->success('con éxito!!', 'Anuncio actualizado');
             return redirect()->back();

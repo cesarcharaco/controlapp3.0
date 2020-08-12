@@ -6,14 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmpresasAnuncios extends Model
 {
-    protected $table='empresas_has_anuncios';
+    protected $table='planes_has_anuncios';
 
-    protected $fillable=['id_empresa','id_anuncio','id_planP','fecha_orden','fecha_termino','referencia','status'];
-
-    public function empresas()
-	  {
-	  	return $this->belongsTo('App\Empresas','id_empresa','id');
-	  }
+    protected $fillable=['id_anuncio','id_planP','fecha_orden','fecha_termino','referencia','status'];
 
 	public function anuncios()
 	  {

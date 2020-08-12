@@ -1048,15 +1048,18 @@
 		$('#crearAnuncio').modal('show');
 	}
 
-	function EditarAnuncio(id,titulo,descripcion,nombre_img,link){
-		// alert(id+' '+titulo+' '+descripcion+' '+nombre_img+' '+link);
+	function EditarAnuncio(id,id_empresa,titulo,descripcion,url_img,link,referencia,id_planP){
+		$('#id_empresa_anuncio').val(id_empresa);
+		$('#SelectAdminA3').val();
 		$('#editarAnuncio').modal('show');
 		$('#mostrarImagenEditar').empty();
-		$('#mostrarImagenEditar').append('<img class="imagenAnun text-dark" src="'+nombre_img+'" width="250" height="200">');
+		$('#mostrarImagenEditar').append('<img class="imagenAnun text-dark" src="'+url_img+'" width="250" height="200">');
 		$('#idAnuncioE').val(id);
 		$('#tituloAnunE').val(titulo);
 		$('#urlAnunE').val(link);
 		$('#descripAnunE').val(descripcion);
+		$('#referenciaAnuncioE').val(referencia);
+		$('#customRadio2-'+id_planP).attr('checked',true);
 	}
 
 	function EliminarAnuncio(id){
@@ -1406,14 +1409,22 @@
 		});	
     }
     function TodosAdmins() {
-    	if($('#todoAdmin').prop('checked')){
+    	if($('#todoAdmin').prop('checked') || $('#todoAdmin2').prop('checked')){
     		$('#SelectAdminA').attr('disabled',true);
 
     		var options = $("#SelectAdminA2 > option").clone();
     		$("#SelectAdminA > option").remove();
     		$("#SelectAdminA").append(options);
+
+    		$('#SelectAdminA3').attr('disabled',true);
+
+    		var options = $("#SelectAdminA4 > option").clone();
+    		$("#SelectAdminA3 > option").remove();
+    		$("#SelectAdminA3").append(options);
+
     	}else{
     		$('#SelectAdminA').removeAttr('disabled',false);
+    		$('#SelectAdminA3').removeAttr('disabled',false);
     	}
     }
 </script>

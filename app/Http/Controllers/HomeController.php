@@ -12,6 +12,10 @@ use App\Inmuebles;
 use App\Anuncios;
 use App\UsersAdmin;
 use App\AdminsAnuncios;
+use App\Empresas;
+use App\EmpresasAnuncios;
+use App\PlanesPago;
+
 class HomeController extends Controller
 {
 
@@ -72,17 +76,19 @@ class HomeController extends Controller
                     ->where('residentes.id',$residentes->id)
                     ->select('anuncios.*')
                     ->get();
-                }else{
-                    $anuncios=Anuncios::all();
-                }
+            }else{
+                $anuncios=Anuncios::all();
+            }
             // dd(count($anuncios));
-
+            $empresas = Empresas::all();
+            $EmpresasAnuncios=EmpresasAnuncios::all();
+            $planesPago=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->get();
             
             $users_admin = UsersAdmin::all();
             
             //dd('-------------');
 
-            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin','admin'));    
+            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin','admin','empresas','EmpresasAnuncios','planesPago'));    
         } else {
             # code...
             

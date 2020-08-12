@@ -14,4 +14,8 @@ class PlanesPago extends Model
   	{
   		return $this->hasMany('App\Promociones','id_planP','id');
   	}
+
+  	public function anuncios() {
+    	return $this->belongsToMany('App\Anuncios','empresas_has_anuncios','id_planP','id_anuncios')->withPivot('referencia','status');
+    }
 }

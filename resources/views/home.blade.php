@@ -873,7 +873,7 @@
     <form action="{{ route('anuncios.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="modal fade" id="crearAnuncio" role="dialog">
-            <div class="modal-dialog modals-default">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4>Nuevo anuncio</h4>                
@@ -882,67 +882,181 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <center>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Seleccionar admin</label> 
-                                        <div class="">                                                                                
-                                            <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
-                                            <label for="admins_todos">Seleccionar todos</label>
-                                        </div>
-                                        <select name="admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple" >
-                                            @foreach($users_admin as $key)
-                                                <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
-                                            @endforeach
-                                            <option value="10">prueba</option>
+                        <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist" style="background-color: #C5C5C5 !important;">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-empresa" aria-selected="true">1</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-datos" aria-selected="false">2</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-imagen" aria-selected="false">3</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-pago-tab" data-toggle="pill" href="#pills-pago" role="tab" aria-controls="pills-pago" aria-selected="false">4</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <center>
+                                <div class="card border border-info shadow p-3 m-4">
+                                    <div class="card-body">
+                                        <label for="SelectEmpresa">¿Cuál es la empresa que desea el anuncio?</label>
+                                        <select class="form-control select2" name="id_empresa" required>
+                                            @foreach($empresas as $key)
+                                                <option value="{{$key->id}}">{{$key->nombre}} .- {{$key->rut_empresa}}</option>
+                                            @endforeach()
                                         </select>
-
-                                        <div style="display: none">
-                                            <select name="admins[]" id="SelectAdminA2" class="form-control select2 border border-default" multiple="multiple" style="display: none;">
+                                    </div>
+                                </div>                                    
+                                <div class="form-group">
+                                </div>
+                                <div class="card border border-info shadow p-3 m-4">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>¿Cuales administradores podrán visualizar el anuncio?</label> 
+                                            <div class="">                                                                                
+                                                <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
+                                                <label for="admins_todos">Seleccionar todos</label>
+                                            </div>
+                                            <select name="id_admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple" >
                                                 @foreach($users_admin as $key)
                                                     <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
                                                 @endforeach
                                                 <option value="10">prueba</option>
                                             </select>
+
+                                            <div style="display: none">
+                                                <select name="id_admins[]" id="SelectAdminA2" class="form-control select2 border border-default" multiple="multiple" style="display: none;">
+                                                    @foreach($users_admin as $key)
+                                                        <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
+                                                    @endforeach
+                                                    <option value="10">prueba</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Título del anuncio</label>
-                                        <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
-                                    </div>
-                                </div>                                                       
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Link</label>
-                                        <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Imagen</label>
-                                        <div class="alert alert-primary" role="alert">
-                                            <p><strong>Recordar que:</strong><br>
-                                            - La imagen no debe exceder los 800 KB de tamaño<br>
-                                            - La imagen no debe tener una anchura mayor a 1024 kb<br>
-                                            - La imagen no debe tener una altura mayor a 800 kb</p>
+                            </center>
+
+
+                          </div>
+                          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                <center>
+                                    <div class="card border border-info shadow p-3 m-4">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Título del anuncio</label>
+                                                    <input type="text" class="form-control" placeholder="Ej: Nuevos modelos de autos" name="titulo" required>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
+                                        <div class="row justify-content-center">                                                       
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Link</label>
+                                                    <input type="url" placeholder="Ej: https://www.google.co.ve/" class="form-control" name="link" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Descripción</label>
+                                                    <textarea placeholder="Ej: ¡Con nuevos repuestos traidos desde Suiza!..." class="form-control" name="descripcion" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                </center>
+                          </div>
+                          <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                              <center>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Imagen</label>
+                                                <div class="alert alert-primary" role="alert">
+                                                    <p><strong>Recordar que:</strong><br>
+                                                    - La imagen no debe exceder los 800 KB de tamaño<br>
+                                                    - La imagen no debe tener una anchura mayor a 1024 kb<br>
+                                                    - La imagen no debe tener una altura mayor a 800 kb</p>
+                                                </div>
+                                                <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </center>
+
+                          </div>
+
+                          <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-pago-tab">
+                              <center>
+                                    <div class="form-group">
+                                        <label>Referencia</label>
+                                        <input type="text" class="form-control" name="referencia" required>
+                                    </div>
+                                    <div class="row">
+                                        <?php $num=0; ?>
+                                        @foreach($planesPago as $key)
+                                            @if($num==0)
+                                                <div class="col-md-6">
+                                                    <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                        <div class="card-body">
+                                                            <div class="custom-control custom-radio mb-2">
+                                                              <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}" checked>
+                                                            </div>
+                                                           <h3>{{$key->nombre}}</h3>
+                                                           <span>{{$key->dias}} dias</span>
+                                                           <br>
+                                                            <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                           <br>
+                                                           <center>
+                                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
+                                                                width: 50%;
+                                                                /*height: 100%;*/
+                                                                /*height:70%;*/
+                                                                max-width:500px; 
+                                                                margin-right: -25px !important;">
+                                                           </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="col-md-6">
+                                                    <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                        <div class="card-body">
+                                                            <div class="custom-control custom-radio mb-2">
+                                                              <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                                            </div>
+                                                           <h3>{{$key->nombre}}</h3>
+                                                           <span>{{$key->dias}} dias</span>
+                                                           <br>
+                                                            <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                           <br>
+                                                           <center>
+                                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
+                                                                width: 50%;
+                                                                /*height: 100%;*/
+                                                                /*height:70%;*/
+                                                                max-width:500px; 
+                                                                margin-right: -25px !important;">
+                                                           </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            <?php $num++; ?>
+                                        @endforeach()
+                                    </div>
+                              </center>
+
+                          </div>
+                        </div>
+                        <center>
+                            <div class="row">
+                                <div class="col-md-12">
                                 </div>
                             </div>
                         </center>
