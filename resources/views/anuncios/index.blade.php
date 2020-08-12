@@ -4,7 +4,14 @@
 
         <style type="text/css">
 
-
+        .imagenAnun2{
+            /*display: none;*/
+            width: 40%;
+            height: auto;
+            /*height:70%;*/
+            max-width:500px; 
+            margin-right: -25px !important;
+        }
 
         .card-header, .card-footer{        
             /*-webkit-linear-gradient(to left, #d87602, #d64322);
@@ -59,6 +66,9 @@
                 width: 5px;
                 height: 5px;    
             }
+            .imagenAnun2{
+                width: 30%;
+            }
         }
         @media screen and (max-width: 480px) {
             .tituloTabla{
@@ -76,6 +86,9 @@
                 height: 30px;
                 margin-top: 5px;
                     
+            }
+            .imagenAnun2{
+                width: 30%;
             }
         }
 
@@ -1004,12 +1017,8 @@
                                                                 <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
                                                                <br>
                                                                <center>
-                                                                <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
-                                                                    width: 50%;
-                                                                    /*height: 100%;*/
-                                                                    /*height:70%;*/
-                                                                    max-width:500px; 
-                                                                    margin-right: -25px !important;">
+                                                                <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}" class="" style="
+                                                                    ">
                                                                </center>
                                                             </div>
                                                         </div>
@@ -1237,12 +1246,7 @@
                                                             <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
                                                            <br>
                                                            <center>
-                                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
-                                                                width: 50%;
-                                                                /*height: 100%;*/
-                                                                /*height:70%;*/
-                                                                max-width:500px; 
-                                                                margin-right: -25px !important;">
+                                                            <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
                                                            </center>
                                                         </div>
                                                     </div>
@@ -1260,12 +1264,7 @@
                                                             <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
                                                            <br>
                                                            <center>
-                                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
-                                                                width: 50%;
-                                                                /*height: 100%;*/
-                                                                /*height:70%;*/
-                                                                max-width:500px; 
-                                                                margin-right: -25px !important;">
+                                                            <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
                                                            </center>
                                                         </div>
                                                     </div>
@@ -1501,7 +1500,7 @@
                                             <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
                                            <br>
                                            <center>
-                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
+                                            <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
                                            </center>
                                         </div>
                                     </div>

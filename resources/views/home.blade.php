@@ -1013,12 +1013,7 @@
                                                             <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
                                                            <br>
                                                            <center>
-                                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
-                                                                width: 50%;
-                                                                /*height: 100%;*/
-                                                                /*height:70%;*/
-                                                                max-width:500px; 
-                                                                margin-right: -25px !important;">
+                                                            <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
                                                            </center>
                                                         </div>
                                                     </div>
@@ -1036,12 +1031,7 @@
                                                             <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
                                                            <br>
                                                            <center>
-                                                            <img align="center" class="imagenAnun" src="{{ asset($key->url_img) }}" class="" style="
-                                                                width: 50%;
-                                                                /*height: 100%;*/
-                                                                /*height:70%;*/
-                                                                max-width:500px; 
-                                                                margin-right: -25px !important;">
+                                                            <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
                                                            </center>
                                                         </div>
                                                     </div>

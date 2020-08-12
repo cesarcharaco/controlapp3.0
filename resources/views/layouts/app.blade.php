@@ -16,6 +16,14 @@
     @toastr_css
 
         <style type="text/css">
+        .imagenAnun2{
+            /*display: none;*/
+            width: 40%;
+            height: auto;
+            /*height:70%;*/
+            max-width:500px; 
+            margin-right: -25px !important;
+        }
 
             .botonParpadeante {
   
@@ -78,8 +86,12 @@
                 display: none;    
             }
             .card-table{
-                width: 100%
+                width: 100%;
             }
+            .imagenAnun2{
+                width: 40%;
+            }
+
 
         }
         @media only screen and (max-width: 200px)  {
