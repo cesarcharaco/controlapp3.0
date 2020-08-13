@@ -147,4 +147,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 	Route::resource('planes_pago','PlanesPagoController');
 
+	Route::resource('promociones','PromocionesController');
+
 });

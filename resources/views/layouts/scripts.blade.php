@@ -1314,6 +1314,11 @@
                         $(this).hide();
                         $('#th2').fadeIn(300);
                 });
+                $('#th1-2').fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('#th2-2').fadeIn(300);
+                });
             //class
                 $('.vista1-'+id).fadeOut('slow',
                     function() { 
@@ -1335,6 +1340,11 @@
                     function() { 
                         $(this).hide();
                         $('#th1').fadeIn(300);
+                });
+                $('#th2-2').fadeOut('slow',
+                    function() { 
+                        $(this).hide();
+                        $('#th1-2').fadeIn(300);
                 });
             //class
                 $('.vista2-'+id).fadeOut('slow',

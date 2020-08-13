@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Promociones;
+use App\PlanesPago;
 use Illuminate\Http\Request;
 
 class PromocionesController extends Controller
@@ -35,7 +36,31 @@ class PromocionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+
+        if ($request->porcentaje=="") {
+            toastr()->warning('intente otra vez!!', 'Debe ingresar un porcentaje');
+            return redirect()->back();
+        } elseif($request->duracion=="") {
+            toastr()->warning('intente otra vez!!', 'Debe ingresar una duración');
+            return redirect()->back();
+        }else{
+
+
+            $planesPago=PlanesPago::find($request->id_planP);
+
+            $promocion=new Promociones();
+            $promocion->duracion=$request->duracion;
+            $promocion->porcentaje=$request->porcentaje;
+            $promocion->id_planP=$planesPago->id;
+            
+            $promocion->save();
+
+
+            toastr()->success('con éxito!', 'La promoción ha sido registrada');
+            return redirect()->to('planes_pago');
+        }
     }
 
     /**
@@ -69,7 +94,21 @@ class PromocionesController extends Controller
      */
     public function update(Request $request, Promociones $promociones)
     {
-        //
+        // dd($request->all());
+        $promocion=Promociones::find($request->id);
+        $promocion->id_planP    =$request->id_planP;
+        $promocion->porcentaje  =$request->porcentaje;
+        $promocion->duracion    =$request->duracion;
+        $promocion->status      =$request->status;
+
+        if ($promocion->save()) {
+            toastr()->success('con éxito!!', 'La Promoción ha sido editada');
+            return redirect()->to('planes_pago');
+        } else {
+            toastr()->warning('Fallo!!', 'La Promoción no pudo ser editada');
+            return redirect()->to('planes_pago');
+        }
+
     }
 
     /**
@@ -78,8 +117,17 @@ class PromocionesController extends Controller
      * @param  \App\Promociones  $promociones
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Promociones $promociones)
+    public function destroy(Request $request, $promociones)
     {
-        //
+        // dd($request->all());
+        $promocion=Promociones::find($request->id);
+        
+        if ($promocion->delete()) {
+            toastr()->success('con éxito!!', 'La Promoción ha sido eliminada');
+            return redirect()->to('planes_pago');
+        } else {
+            toastr()->warning('Fallo!!', 'La Promoción no pudo ser eliminada');
+            return redirect()->to('planes_pago');
+        }
     }
 }

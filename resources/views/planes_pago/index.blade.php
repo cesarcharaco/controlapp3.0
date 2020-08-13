@@ -539,17 +539,17 @@
 				                                <span class="text-white p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una promoción para ver mas opciones.</span>
 				                            </div>
 				                        </th>
-				                        <th colspan="3"></th>
+				                        <th colspan="2"></th>
 				                    </tr>
-				                    <tr class="text-white" id="th1" style="background-color: #ff7043 !important;">
+				                    <tr class="text-white" id="th1-2" style="background-color: #ff7043 !important;">
 				                        <th>
 				                            <span class="PalabraEditarPago">Plan de pago</span>
 				                            <span class="PalabraEditarPago2">Plan P</span>
 				                        </th>
 				                        <th>
-				                            <span class="PalabraEditarPago">Monto</span>
+				                            <span class="PalabraEditarPago">Porcentaje</span>
 				                            <span class="PalabraEditarPago2">
-				                            	<i data-feather="dollar-sign" class="iconosMetaforas2"></i>
+				                            	<i data-feather="percent" class="iconosMetaforas2"></i>
 				                            </span>
 				                        </th>
 				                        <th>
@@ -558,8 +558,6 @@
 				                            	<i data-feather="calendar" class="iconosMetaforas2"></i>
 				                            </span>
 				                        </th>
-				                        <!-- <th>Estacionamientos</th> -->
-				                        <th></th>
 				                        <th>
 				                            <span class="PalabraEditarPago">Status</span>
 				                            <span class="PalabraEditarPago2">
@@ -568,11 +566,11 @@
 				                        </th>
 				                        <!-- <th>Mensualidades</th> -->
 				                    </tr>
-				                    <tr class="bg-primary text-white" id="th2" style="display: none">
+				                    <tr class="bg-primary text-white" id="th2-2" style="display: none">
 				                        <th width="10"></th>
 				                        <th>
-				                            <span class="PalabraEditarPago">Idem</span>
-				                            <span class="PalabraEditarPago2">Id</span>
+				                            <span class="PalabraEditarPago">Plan de pago</span>
+				                            <span class="PalabraEditarPago2">Plan P</span>
 				                        </th>
 				                        <th>
 				                            <center>
@@ -582,7 +580,6 @@
 				                                </span>
 				                            </center>
 				                        </th>
-				                        <th></th>
 				                        <th>
 				                            <span class="PalabraEditarPago">Status</span>
 				                            <span class="PalabraEditarPago2">
@@ -593,14 +590,11 @@
 				                </thead>
 				                <tbody>
 				                    @php $num=0 @endphp
-				                    @foreach($planes_pago as $key)
+				                    @foreach($promociones as $key)
 				                    	<tr class="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-				                    		<td>{{$key->nombre}}</td>
-		                                    <td align="right">{{$key->monto}} $</td>
-		                                    <td>{{$key->dias}}</td>
-				                    		<td>
-				                    			<img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:100%;max-width:640px;">
-				                    		</td>
+				                    		<td align="center">{{$key->planP->nombre}}</td>
+		                                    <td align="center">{{$key->porcentaje}} %</td>
+		                                    <td align="center">{{$key->duracion}} días</td>
 		                                    @if($key->status == 'Activo')
 		                                        <td style="position: all;">
 	                                                <span class="tituloTabla text-success"><strong>Activo</strong></span>
@@ -624,24 +618,15 @@
 	                                            </center>
 	                                        </button>
 	                                    </td>
-	                                    <td>
-	                                        	
-	                                        <span>{{$key->nombre}}</span>
-	                                    </td>
-	                                    <td>
-	                                        <span>{{$key->monto}}</span>
-	                                    </td>
-	                                    <td colspan="2" align="center">
+	                                    <td>{{$key->planP->nombre}}</td>
+	                                    <td align="center">
 
-	                                       <a href="#editarPlanPago" class="btn btn-warning btn-sm" onclick="editarPlanP(
+	                                       <a href="#editarPlanPago" class="btn btn-warning btn-sm" onclick="editarPromocion(
 	                                       '{{$key->id}}',
-	                                       '{{$key->nombre}}',
-	                                       '{{$key->monto}}',
-	                                       '{{$key->dias}}',
-	                                       '{{$key->color}}',
-	                                       '{{$key->tipo}}',
-	                                       '{{$key->status}}',
-	                                       '{{$key->url_img}}')">
+	                                       '{{$key->planP->id}}',
+	                                       '{{$key->porcentaje}}',
+	                                       '{{$key->duracion}}',
+	                                       '{{$key->status}}')">
 	                                            <span class="PalabraEditarPago ">Editar</span>
 	                                            <center>
 	                                                <span class="PalabraEditarPago2 ">
@@ -649,7 +634,7 @@
 	                                                </span>
 	                                            </center>
 	                                        </a>
-	                                    <a href="#EliminarPlanPago" class="btn btn-danger btn-sm" onclick="eliminarPlanP('{{$key->id}}')">
+	                                    <a href="#EliminarPlanPago" class="btn btn-danger btn-sm" onclick="eliminarPromocion('{{$key->id}}')">
 	                                            <span class="PalabraEditarPago ">Eliminar</span>
 	                                            <center>
 	                                                <span class="PalabraEditarPago2 ">
@@ -658,12 +643,22 @@
 	                                            </center>
 	                                        </a>
 	                                    </td>
-	                                    <td style="display: none"></td>
+	                                    @if($key->status == 'Activo')
+		                                        <td style="position: all;">
+	                                                <span class="tituloTabla text-success"><strong>Activo</strong></span>
+	                                                <span class="tituloTabla2 text-success"><strong>A</strong></span>
+		                                        </td>
+		                                    @else
+		                                        <td style="position: all;">
+	                                                <span class="tituloTabla text-danger"><strong>Inactivo</strong></span>
+	                                                <span class="tituloTabla2 text-danger"><strong>I</strong></span>
+		                                        </td>
+		                                    @endif
+
 	                                    
 
 	                                </tr>
 				                        <tr style="display: none;">
-				                            <td></td>
 				                            <td></td>
 				                            <td></td>
 				                            <td></td>
@@ -676,102 +671,123 @@
 				    </div>
 			    </div>
 		        <div class="col-md-6">
-		        	<div class="card-body">
-		        		{!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
-	            			@csrf
-		        			<h3 align="center" style="
-		        				color: gray;
-	            				font: 18px Arial, sans-serif;">
-	            				Nuev Promoción
-	            			</h3>
-	            			<div class="form-group">
-	            				<label>Plan de pago</label>
-	            				<select name="id_planP" class="form-control select2" required>
-	            					@foreach($planes_pago as $key)
-	            						<option value="{{$key->id}}">{{$key->nombre}} - <strong>Monto: </strong>{{$key->monto}}$</option>
-	            					@endforeach
-	            				</select>
-	            			</div>
-	            			<div class="form-group">
-	            				<label>Duración</label>
-	            				<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-	            					<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
-	            						<span class="input-group-text" style="width:39px; height:39px;">
-	            							<i data-feather="dollar-sign"></i>
-	            						</span>
-	            					</span>
-	            					<input name="monto" data-toggle="touchspin" type="text" data-bts-prefix="$" class="form-control" placeholder="3000" required>
-		            			</div>
-	            			</div>
-	            			<div class="form-group">
-	            				<label>Dias</label>
-	            				<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-	            					<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
-	            						<span class="input-group-text" style="width:39px; height:39px;">
-	            							<i data-feather="calendar"></i>
-	            						</span>
-	            					</span>
-	            					<input name="dias" min="1" minlength="1" max="365" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
-		            			</div>
-	            			</div>
-	            			<div class="form-group">
-	            				<label>Color</label>
-	            				<div id="component-colorpicker" class="input-group colorpicker-element" title="Using format option" data-colorpicker-id="3">
-	            					<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
-	            						<span class="input-group-text" style="width:39px; height:39px;">
-	            							<i data-feather="pen-tool"></i>
-	            						</span>
-	            					</span>
-	                                <input name="color" type="color" class="form-control input-lg" value="#564ab1" required>
-	                            </div>
-	            			</div>
-	            			<!-- <label>Plan dirigido a:</label>
-	            			<div class="row justify-content-center">
-	            				<div class="col-md-6" align="center">
-	            					<h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
-	            					<div class="custom-control custom-radio">
-                                      	<input type="radio" id="customRadio1" name="tipo" value="Anuncio" checked>
-                                    </div>
-		            				<div class="border border-success p-3 shadow" align="center" style="
-
-		            				background-image: url('{{ asset('assets/images/planes_p/anuncios.jpg') }}');
-	                                background-position: center;
-	                                background-repeat: no-repeat;
-	                                background-size: cover;
-
-		            				border-radius: 10px !important;
-		            				height: 130px !important;
-		            				width: 130px !important;">
-		            				</div>
-		            			</div>
-		            			<div class="col-md-6" align="center">
-	            					<h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Alquiler</h3>
-	            					<div class="custom-control custom-radio">
-                                      	<input type="radio" id="customRadio2" name="tipo" value="Alquiler">
-                                    </div>
-		            				<div class="border border-success p-3 shadow" align="center" style="
-
-		            				background-image: url('{{ asset('assets/images/planes_p/alquiler.jpg') }}');
-	                                background-position: center;
-	                                background-repeat: no-repeat;
-	                                background-size: cover;
-
-		            				border-radius: 10px !important;
-		            				height: 130px !important;
-		            				width: 130px !important;">
-		            				</div>
-		            			</div>
-	            			</div> -->
-	            			<input type="hidden" name="tipo" value="Anuncio">
-	            			<br>
-	            			<div class="form-group">
-	                            <label>Imagen</label>
-	                            <div class="mostrarImagenEditar" align="center"></div>
-	                            <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen" required>
-	                        </div>
-	                        <button type="submit" class="btn btn-success">Agregar</button>
-		        		{!! Form::close() !!}
-			        	</div>
+		        	<div class="vistaColumnaPromocion nuevaPromocion border shadow" style="border-radius: 30px;">
+			        	<div class="card-body">
+			        		{!! Form::open(['route' => ['promociones.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
+		            			@csrf
+			        			<h3 align="center" style="
+			        				color: gray;
+		            				font: 18px Arial, sans-serif;">
+		            				Nueva Promoción
+		            			</h3>
+		            			<center>
+			            			<div class="form-group">
+			            				<label>Plan de pago</label>
+			            				<select name="id_planP" class="form-control select2" required>
+			            					@foreach($planes_pago as $key)
+			            						@if($key->tipo == 'Anuncio')
+			            							<option value="{{$key->id}}">{{$key->nombre}} - <strong>Monto: </strong>{{$key->monto}}$</option>
+			            						@endif
+			            					@endforeach
+			            				</select>
+			            			</div>
+			            			<div class="form-group">
+			            				<label>Porcentaje (Descuento)</label>
+			            				<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+			            					<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+			            						<span class="input-group-text" style="width:39px; height:39px;">
+			            							<i data-feather="percent"></i>
+			            						</span>
+			            					</span>
+			            					<input name="porcentaje" data-toggle="touchspin" type="text" data-bts-prefix="$" class="form-control" placeholder="30" required>
+				            			</div>
+			            			</div>
+			            			<div class="form-group">
+			            				<label>Duración (Dias)</label>
+			            				<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+			            					<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+			            						<span class="input-group-text" style="width:39px; height:39px;">
+			            							<i data-feather="calendar"></i>
+			            						</span>
+			            					</span>
+			            					<input name="duracion" min="1" minlength="1" max="365" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+				            			</div>
+			            			</div>
+			            			
+			                        <button type="submit" class="btn btn-success">Agregar</button>
+			                    </center>
+			        		{!! Form::close() !!}
+				        </div>
+				    </div>
+				    <div class="vistaColumnaPromocion editarPromocion border border-warning shadow" id="editarPromocion" style="display: none; border-radius: 30px !important;">
+		        		<div class="card-body">
+		        			{!! Form::open(['route' => ['promociones.update',1033], 'enctype' => 'multipart/form-data', 'method' => 'PUT', 'name' => 'editar_promocion', 'id' => 'editar_promocion', 'data-parsley-validate']) !!}
+		            			@csrf
+			        			<h3 align="center" style="
+			        				color: gray;
+		            				font: 18px Arial, sans-serif;">
+		            				Editar Promoción
+		            			</h3>
+		            			<center>
+			            			<div class="form-group">
+			            				<label>Plan de pago</label>
+			            				<select name="id_planP" id="id_PlanP_promo_e" class="form-control select2" required>
+			            					@foreach($planes_pago as $key)
+			            						@if($key->tipo == 'Anuncio')
+			            							<option value="{{$key->id}}">{{$key->nombre}} - <strong>Monto: </strong>{{$key->monto}}$</option>
+			            						@endif
+			            					@endforeach
+			            				</select>
+			            			</div>
+			            			<div class="form-group">
+			            				<label>Porcentaje (Descuento)</label>
+			            				<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+			            					<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+			            						<span class="input-group-text" style="width:39px; height:39px;">
+			            							<i data-feather="percent"></i>
+			            						</span>
+			            					</span>
+			            					<input name="porcentaje" id="porcentaje_promo_e" data-toggle="touchspin" type="text" data-bts-prefix="$" class="form-control" placeholder="30" required>
+				            			</div>
+			            			</div>
+			            			<div class="form-group">
+			            				<label>Duración (Dias)</label>
+			            				<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+			            					<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+			            						<span class="input-group-text" style="width:39px; height:39px;">
+			            							<i data-feather="calendar"></i>
+			            						</span>
+			            					</span>
+			            					<input name="duracion" id="duracion_promo_e" min="1" minlength="1" max="365" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+				            			</div>
+			            			</div>
+			            			<div class="form-group">
+			            				<label>Status</label>
+			            				<select name="status" id="status_promo_e" class="form-control select2" required>
+			            					<option value="Activo">Activo</option>
+		                            		<option value="Inactivo">Inactivo</option>
+			            				</select>
+			            			</div>
+			            			<input type="hidden" name="id" id="id_promocionE" id="">
+			                        <button type="submit" class="btn btn-warning">Editar</button>
+			                    </center>
+			        		{!! Form::close() !!}
+		        		</div>
+		        	</div>
+				    <div class="vistaColumnaPromocion EliminarPromocion border border-danger shadow" id="EliminarPromocion" style="display: none; border-radius: 30px !important;">
+		        		<div class="card-body">
+		        			
+			        		{!! Form::open(['route' => ['promociones.destroy',1033], 'method' => 'DELETE']) !!}
+		        				@csrf
+		        				<h3>¿Está realmente seguro de querer eliminar esta Promoción?</h3> 
+		        				El Plan de Pagos volverá al monto original sin descuentos
+		        				<div class="float-right">
+		        					<input type="hidden" name="id" class="id_promocion" id="id_promocion">
+		        					<button type="submit" class="btn btn-danger">Eliminar</button>
+		        				</div>
+		        			{!! Form::close() !!}
+		        		</div>
+		        	</div>
 		        </div>
 		    </div>
 	    </div>
@@ -853,6 +869,7 @@
 			$(".vistaPromociones").fadeOut("slow",
             function() {
                 $(this).hide();
+				nuevaPromocion();
                 $(".vistaPlanesP")
                     .css('opacity', 0)
                     .slideDown('slow')
@@ -865,6 +882,7 @@
 			$(".vistaPlanesP").fadeOut("slow",
             function() {
                 $(this).hide();
+				nuevoPlanPago();
                 $(".vistaPromociones")
                     .css('opacity', 0)
                     .slideDown('slow')
@@ -879,8 +897,8 @@
 
 
 
-	 function nuevaPromocion() {
-    	$(".vistaColumnaPromociones").fadeOut("slow",
+	function nuevaPromocion() {
+    	$(".vistaColumnaPromocion").fadeOut("slow",
             function() {
                 $(this).hide();
                 // $('.vistaColumnaPlanP').hide();
@@ -894,5 +912,54 @@
                 //     );
             });
     	$('.nuevaPromocion').fadeIn(300);
+    }
+    
+
+	function editarPromocion(id, id_planP, porcentaje, duracion, status) {
+    	$(".vistaColumnaPromocion").fadeOut("slow",
+            function() {
+                $(this).hide();
+                // $('.vistaColumnaPlanP').hide();
+                // $(".editarPlanPago").fadeIn(300);
+                // $(".editarPlanPago")
+                //     .css('opacity', 0)
+                //     .slideDown('slow')
+                //     .animate(
+                //         { opacity: 1 },
+                //         { queue: false, duration: 'slow' }
+                //     );
+                $('#id_promocionE').val(id);
+				$('#id_PlanP_promo_e').val(id_planP);
+				$('#duracion_promo_e').val(duracion);
+				$('#porcentaje_promo_e').val(porcentaje);
+				$('#status_promo_e').val(status);
+				// $('.id_PlanP').val(id);
+				// $('#nombre_PlanP').val(nombre);
+				// $('#monto_PlanP').val(monto);
+				// $('#dias_PlanP').val(dias);
+				// $('#color_PlanP').val(color);
+				// $('#tipo_PlanP').val(tipo);
+				// $('#status_PlanP').val(status);
+				// $('.mostrarImagenEditar').empty();
+				// $('.mostrarImagenEditar').append('<img class="imagenAnun text-dark" src="'+nombre_img+'" width="250" height="200">');
+            });
+    	$('.editarPromocion').fadeIn(300);
+    }
+    function eliminarPromocion(id) {
+    	$('#id_promocion').val(id);
+		$(".vistaColumnaPromocion").fadeOut("slow",
+            function() {
+                $(this).hide();
+                // $('.vistaColumnaPlanP').hide();
+                // $(".nuevoPlanPago").fadeIn(300);
+                // $(".nuevoPlanPago")
+                //     .css('opacity', 0)
+                //     .slideDown('slow')
+                //     .animate(
+                //         { opacity: 1 },
+                //         { queue: false, duration: 'slow' }
+                //     );
+            });
+    	$('.EliminarPromocion').fadeIn(300);
     }
 </script>

@@ -12,6 +12,6 @@ class Promociones extends Model
 
 	public function planP()
 	  	{
-	  		return $this->belongsTo('App\Promociones','id_planP','id');
+	  		return $this->belongsTo('App\PlanesPago','id_planP','id');
 	  	}
 	}
