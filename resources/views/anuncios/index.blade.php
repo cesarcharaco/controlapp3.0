@@ -95,69 +95,69 @@
 
     </style>
 <div class="container">
-        <input type="hidden" id="colorView" value="#25c2e3 !important">
-        <div class="row page-title" id="tituloP">
-            <div class="col-md-12">
-                <nav aria-label="breadcrumb" class="float-right mt-1">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Publicidad</li>
-                    </ol>
-                </nav>
-                <h4 class="mb-1 mt-0">Publicidad</h4>
-            </div>
+    <input type="hidden" id="colorView" value="#25c2e3 !important">
+    <div class="row page-title" id="tituloP">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-right mt-1">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Publicidad</li>
+                </ol>
+            </nav>
+            <h4 class="mb-1 mt-0">Publicidad</h4>
         </div>
-        <div class="row page-title" style="display: none;" id="tituloP1">
-            <div class="col-md-12">
-                <nav aria-label="breadcrumb" class="float-right mt-1">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Anuncios</li>
-                    </ol>
-                </nav>
-                <h4 class="mb-1 mt-0">Anuncios</h4>
-            </div>
+    </div>
+    <div class="row page-title" style="display: none;" id="tituloP1">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-right mt-1">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Anuncios</li>
+                </ol>
+            </nav>
+            <h4 class="mb-1 mt-0">Anuncios</h4>
         </div>
-        <div class="row page-title" style="display: none;" id="tituloP2">
-            <div class="col-md-12">
-                <nav aria-label="breadcrumb" class="float-right mt-1">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Empresas</li>
-                    </ol>
-                </nav>
-                <h4 class="mb-1 mt-0">Empresas</h4>
-            </div>
+    </div>
+    <div class="row page-title" style="display: none;" id="tituloP2">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-right mt-1">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Empresas</li>
+                </ol>
+            </nav>
+            <h4 class="mb-1 mt-0">Empresas</h4>
         </div>
-        <div class="row page-title" style="display: none;" id="tituloP3">
-            <div class="col-md-12">
-                <nav aria-label="breadcrumb" class="float-right mt-1">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('anuncios') }}">Publicidad</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Control de Pagos</li>
-                    </ol>
-                </nav>
-                <h4 class="mb-1 mt-0">Control de Pagos</h4>
-            </div>
+    </div>
+    <div class="row page-title" style="display: none;" id="tituloP3">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-right mt-1">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('anuncios') }}">Publicidad</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Control de Pagos</li>
+                </ol>
+            </nav>
+            <h4 class="mb-1 mt-0">Control de Pagos</h4>
         </div>
-        @include('flash::message')
-        @if(count($errors))
-            <div class="alert-list m-4">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <ul>
-                        @foreach($errors->all() as $error)
-                        <li>
-                            {{$error}}
-                        </li>
-                        @endforeach
+    </div>
+    @include('flash::message')
+    @if(count($errors))
+        <div class="alert-list m-4">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>
+                        {{$error}}
+                    </li>
+                    @endforeach
 
-                    </ul>
-                </div>
+                </ul>
             </div>
-        @endif
+        </div>
+    @endif
     <div id="tablaAnucios" style="display: none;">
         <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
             <div class="row justify-content-center">
@@ -923,7 +923,7 @@
                                                     <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin2"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1" checked>
                                                     <label for="admins_todos">Seleccionar todos</label>
 
-                                                    <select name="id_admins[]" id="SelectAdminA3" class="form-control select2 border border-default" multiple="multiple" >
+                                                    <select name="id_admins[]" id="SelectAdminA3" class="form-control select2 border border-default" multiple="multiple" required>
                                                         @foreach($users_admin as $key)
                                                             <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
                                                         @endforeach
@@ -1152,7 +1152,7 @@
                                                 <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
                                                 <label for="admins_todos">Seleccionar todos</label>
                                             </div>
-                                            <select name="id_admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple" >
+                                            <select required name="id_admins[]" id="SelectAdminA" class="form-control select2 border border-default" multiple="multiple">
                                                 @foreach($users_admin as $key)
                                                     <option value="{{$key->id}}">{{$key->name}} - RUT: {{$key->rut}}</option>
                                                 @endforeach

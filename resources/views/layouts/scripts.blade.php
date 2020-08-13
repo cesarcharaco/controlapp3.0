@@ -1414,24 +1414,30 @@
     	if($('#todoAdmin').prop('checked')){
 
     		$('#SelectAdminA').attr('disabled',true);
+    		$('#SelectAdminA').removeAttr('required',false);
+
     		var options = $("#SelectAdminA2 > option").clone();
     		$("#SelectAdminA > option").remove();
     		$("#SelectAdminA").append(options);
 
     	}else{
     		$('#SelectAdminA').removeAttr('disabled',false);
+    		$('#SelectAdminA').attr('required',true);
     	}
 
 
     	if($('#todoAdmin2').prop('checked')){
 
 			$('#SelectAdminA3').attr('disabled',true);
+			$('#SelectAdminA3').removeAttr('required',false);
+
     		var options = $("#SelectAdminA4 > option").clone();
     		$("#SelectAdminA3 > option").remove();
     		$("#SelectAdminA3").append(options);
 
     	}else{
     		$('#SelectAdminA3').removeAttr('disabled',false);
+    		$('#SelectAdminA3').attr('required',true);
     	}
     }
 </script>
