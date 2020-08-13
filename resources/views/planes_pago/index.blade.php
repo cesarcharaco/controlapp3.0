@@ -101,7 +101,17 @@
             </div>
         @endif
     </div>
-    <div class="vistaPlanesP" style="display: none;">
+    <center>
+    	<div class="row justify-content-center mb-3">
+	    	<div class="col-md-6" align="center">
+	    		<button onclick="CambioVista(1);" class="btn btn-success text-white shadow mb-1" style="color: gray; font: 18px Arial, sans-serif;width: 80% !important;">Vista de Planes de Pagos</button>
+	    	</div>
+	    	<div class="col-md-6" align="center text-white"  style="">
+	    		<button onclick="CambioVista(2);" class="btn text-white shadow mb-1" style="border: 1px solid #f6f6f7!important; border-color: #ff7043 !important; background-color: #ff7043 !important;color: gray; font: 18px Arial, sans-serif;width: 80% !important;">Vista de Promociones</button>
+	    	</div>
+    	</div>
+    </center>
+    <div class="vistaPlanesP" style="display: block;">
 	    <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
 	        <div class="row justify-content-center">
 			    <div class="col-md-6">
@@ -321,7 +331,7 @@
 		                                <input name="color" type="color" class="form-control input-lg" value="#564ab1" required>
 		                            </div>
 		            			</div>
-		            			<label>Plan dirigido a:</label>
+		            			<!-- <label>Plan dirigido a:</label>
 		            			<div class="row justify-content-center">
 		            				<div class="col-md-6" align="center">
 		            					<h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
@@ -357,7 +367,8 @@
 			            				width: 130px !important;">
 			            				</div>
 			            			</div>
-		            			</div>
+		            			</div> -->
+		            			<input type="hidden" name="tipo" value="Anuncio">
 		            			<br>
 		            			<div class="form-group">
 		                            <label>Imagen</label>
@@ -414,7 +425,7 @@
 		                                <input name="color" id="color_PlanP" type="color" class="form-control input-lg" value="#564ab1" required>
 		                            </div>
 		            			</div>
-		            			<label>Plan dirigido a:</label>
+		            			<!-- <label>Plan dirigido a:</label>
 		            			<div class="row justify-content-center">
 		            				<div class="col-md-6" align="center">
 		            					<h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
@@ -450,7 +461,8 @@
 			            				width: 130px !important;">
 			            				</div>
 			            			</div>
-		            			</div>
+		            			</div> -->
+		            			<input type="hidden" name="tipo" value="Anuncio">
 		            			<br>
 		            			<div class="form-group">
 		                            <label>Imagen</label>
@@ -489,7 +501,7 @@
 		    </div>
 	    </div>
     </div>
-    <div class="vistaPromociones">
+    <div class="vistaPromociones" style="display: none;">
     	<div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;border: 1px solid #f6f6f7!important;border-color: #ff7043 !important;">
 	        <div class="row justify-content-center">
 			    <div class="col-md-6">
@@ -713,7 +725,7 @@
 	                                <input name="color" type="color" class="form-control input-lg" value="#564ab1" required>
 	                            </div>
 	            			</div>
-	            			<label>Plan dirigido a:</label>
+	            			<!-- <label>Plan dirigido a:</label>
 	            			<div class="row justify-content-center">
 	            				<div class="col-md-6" align="center">
 	            					<h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
@@ -749,7 +761,8 @@
 		            				width: 130px !important;">
 		            				</div>
 		            			</div>
-	            			</div>
+	            			</div> -->
+	            			<input type="hidden" name="tipo" value="Anuncio">
 	            			<br>
 	            			<div class="form-group">
 	                            <label>Imagen</label>
@@ -834,6 +847,34 @@
 
 
 
+
+	function CambioVista(opcion){
+		if(opcion == 1){
+			$(".vistaPromociones").fadeOut("slow",
+            function() {
+                $(this).hide();
+                $(".vistaPlanesP")
+                    .css('opacity', 0)
+                    .slideDown('slow')
+                    .animate(
+                        { opacity: 1 },
+                        { queue: false, duration: 'slow' }
+                    );
+            });
+		}else{
+			$(".vistaPlanesP").fadeOut("slow",
+            function() {
+                $(this).hide();
+                $(".vistaPromociones")
+                    .css('opacity', 0)
+                    .slideDown('slow')
+                    .animate(
+                        { opacity: 1 },
+                        { queue: false, duration: 'slow' }
+                    );
+            });
+		}
+	}
 
 
 
