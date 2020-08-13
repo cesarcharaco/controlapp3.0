@@ -4,71 +4,9 @@
      <style type="text/css">
         .card {
             border: 1px solid #f6f6f7!important;
-            border-color: #CB8C4D !important;
+            border-color: black !important;
         }
-        .palabraVerContabilidad2, .palabraVerEstaciona2,.PalabraEditarPago2, .tituloTabla2
-        {
-            display: none;
-        }
-        @media only screen and (max-width: 800px)  {
-
-            .PalabraEditarPago, .PalabraRealizarPago, .PalabraPagoConfirmar{
-                display: none;
-            }
-            .palabraVerContabilidad{
-                display: none;
-            }
-            .palabraVerContabilidad2{
-                display: block;
-            }
-            .palabraVerEstaciona{
-                display: none;
-            }
-            .palabraVerEstaciona2{
-                display: block;
-            }
-            .PalabraEditarPago2{
-                display: block;
-            }
-            .iconosMetaforas{
-                display: none;    
-            }
-            .card-table{
-                width: 100%
-            }
-
-        }
-        @media only screen and (max-width: 200px)  {
-            .botonesEditEli{
-                width: 15px;
-                height: 15px;
-            }
-            .iconosMetaforas2{
-                width: 5px;
-                height: 5px;    
-            }
-        }
-        @media screen and (max-width: 480px) {
-            .tituloTabla{
-                display: none;
-            }
-            .tituloTabla2{
-                display: block;
-            }
-            .iconosMetaforas2{
-                width: 15px;
-                height: 15px;    
-            }
-            .botonesEditEli{
-                width: 30px;
-                height: 30px;
-                margin-top: 5px;
-                    
-            }
-        }
-
-
-    </style>
+   </style>
     <input type="hidden" id="colorView" value="#CB8C4D !important">
     <div class="container">
         <div class="row page-title">
@@ -106,7 +44,7 @@
     <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded">
         <div class="row justify-content-center">
             <div class="col-md-12 col-xl-12">
-                <div class="card" style="border: 1px solid #f6f6f7!important; border-color: #CB8C4D !important;">
+                <div class="card" style="border: 1px solid #f6f6f7!important; border-color: black !important;">
                     <div class="card-body p-0">
                         <div class="media p-2">
                             <div class="media-body">
@@ -114,32 +52,28 @@
                                     <h4 class="header-title mt-0 mb-3">POSICIÓN CONSOLIDADO</h4>
                                 </center>
                                 <div class="row justify-content-center">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group" align="center">
-                                            <label style="color: #CB8C4D !important">Saldo Disponible</label>
-                                            <h6>
-                                                <strong>
-                                                    <a href="#" style=" width: 100% !important; border: 1px solid #CB8C4D!important; background: white !important;" class="btn">
-                                                        <strong class="text-success">{{$saldo->saldo}}</strong> <b class="text-dark">USD</b>
-                                                    </a>
-                                                </strong>
-                                            </h6>
+                                            <label>Saldo Disponible</label>
+                                            <button class="btn btn-success btn-rounded btn-block">
+                                                <strong class="text-dark">{{$saldo->saldo}} USD</strong>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group" align="center">
-                                            <label style="color: #CB8C4D !important">Registrar Egreso</label>
-                                            <h6>
-                                                <strong>
-                                                    <a href="#" data-toggle="modal" data-target="#registrarEgreso" style="
-                                                        width: 100% !important;
-                                                        position: relative;
-                                                        border: 1px solid #f6f6f7!important;
-                                                        border-color: #CB8C4D !important; 
-                                                        background-color: #CB8C4D !important; " class="btn shadow"><strong class="text-white">Agregar</strong>
-                                                    </a>
-                                                </strong>
-                                            </h6>
+                                            <label>Registrar Egreso</label>
+                                            <button data-toggle="modal" data-target="#registrar_egreso" class="btn btn-warning btn-rounded btn-block">
+                                                <strong class="text-white">Agregar</strong>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" align="center">
+                                            <label>Consultar Movimientos</label>
+                                            <a href="#" data-toggle="modal" class="btn btn-rounded btn-block" style="background: #3490dc;">
+                                                <strong class="text-white">Consultar</strong>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -152,29 +86,17 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-body" style="position: relative;">
+                    <div class="card-body">
                         <h4 class="header-title mt-0 mb-3" align="center">Balance General (Contabilidad) 
-                            <i class='uil uil-comment-exclamation' data-toggle="tooltip" data-placement="right" data-original-title="Aviso:  "></i>
+                            <i class='uil uil-comment-exclamation' data-toggle="tooltip" data-placement="right" data-original-title="Aviso: Balance del mes en curso"></i>
                         </h4>
-                        <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;" border="0">
+                        <table id="selection-datatable" class="table dt-responsive nowrap table-bordered" style="width: 100%;">
                             <thead>
-                                <tr class="text-white" id="th1" style="background-color: #CB8C4D;">
+                                <tr bgcolor="#3490dc" class="text-white">
                                     <th>Fecha</th>
-                                    <th>
-                                        <span class="PalabraEditarPago">Descripción</span>
-                                        <span class="PalabraEditarPago2">Desc.</span>
-                                    </th>
-                                    <th>
-                                        <span class="PalabraEditarPago">Ingreso</span>
-                                        <span class="PalabraEditarPago2">T</span>
-                                    </th>
-                                    <!-- <th>Estacionamientos</th> -->
-                                    <th>
-                                        <span class="PalabraEditarPago">Egreso</span>
-                                        <span class="PalabraEditarPago2">
-                                            <i data-feather="sliders" class="iconosMetaforas2"></i>
-                                        </span>
-                                    </th>
+                                    <th>Descripción</th>
+                                    <th>Ingreso</th>
+                                    <th>Egreso</th>
                                     <th>Saldo</th>
                                 </tr>
                             </thead>
@@ -197,8 +119,8 @@
         </div>
     </div>
 <!-- --------------------------------------------MODAL DE EGRESO------------------------------------------------------ -->
-<div class="modal fade" id="registrarEgreso" role="dialog">
-    {!! Form::open(['route' => ['contabilidad.store'],'method' => 'POST', 'name' => 'registrarEgreso', 'id' => 'registrarEgreso', 'data-parsley-validate']) !!}
+<div class="modal fade" id="registrar_egreso" role="dialog">
+    <form action="{{ route('contabilidad.store') }}" method="POST" name="registrarEgreso" id="registrarEgreso" class="parsley-examples">
         @csrf
         <div class="modal-dialog modals-default">
             <div class="modal-content">
@@ -207,7 +129,7 @@
                         <i class='uil-usd-circle' data-toggle="tooltip" data-placement="right" data-original-title="Aviso: Acá podrá registar un egreso"></i>
                         Registrar Egreso
                     </h4>
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close" data-dismiss="modal" id="cerrar">
                         <span>&times;</span>
                     </button>
                 </div>
@@ -215,21 +137,45 @@
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <label>Monto de egreso: <b style="color: red;">*</b></label>
-                            <input type="number" name="" class="form-control" placeholder="Monto de Egreso" required="required" min="1">
+                            <input type="number" name="egreso" class="form-control" placeholder="Monto de Egreso" required="required" data-parsley-type="number">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label>Descripción: <b style="color: red;">*</b></label>
-                            <input type="text" name="descripcion" class="form-control" placeholder="Ingrese Descripción" required="required" title="Ingrese la descripción del egreso">
+                            <label for="descripcion">Descripción: <b style="color: red;">*</b></label>
+                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese Descripción" required="required" title="Ingrese la descripción del egreso" data-parsley-type="alphanum" data-parsley-maxlength="20">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" style="border-radius: 50px;">Registrar Egreso</button>
+                    <button type="button" class="btn btn-danger btn-rounded" data-dismiss="modal" id="cerrar">Cerrar</button>
+                    <button type="submit" class="btn btn-success btn-rounded">Registrar Egreso</button>
                 </div>
             </div>
         </div>
-    {!! Form::close() !!}
+    </form>
 </div>
+
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function(){$(".parsley-examples").parsley()});
+    $('#registrar_egreso').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+    $("#cerrar").on("click", function(event){
+        console.log('sad');
+        event.preventDefault();
+        $('#registrarEgreso').trigger("reset");
+    });
+    $('#registrarEgreso')[0].reset();
+</script>
+
+<!-- Datatables init -->
+<script src="{{ asset('assets/js/data-table/datatables.init.js') }}"></script>
+<!-- Plugin js-->
+<script src="{{ asset('assets/libs/parsleyjs/parsley.min.js') }}"></script>
+<!-- Validation init js-->
+<script src="{{ asset('assets/js/form-validation.init.js') }}"></script>
 @endsection

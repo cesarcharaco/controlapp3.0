@@ -1441,3 +1441,4 @@
     	}
     }
 </script>
+@yield('content')
