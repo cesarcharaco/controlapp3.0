@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\contabilidad;
+use App\Contabilidad;
 use Illuminate\Http\Request;
 
 class ContabilidadController extends Controller
@@ -14,7 +14,11 @@ class ContabilidadController extends Controller
      */
     public function index()
     {
-        return View('contabilidad.index');
+        $cero = 0;
+        $mes = date('n');
+        $saldo = Contabilidad::latest('saldo')->first();
+        $contabilidad = Contabilidad::where('id_mes',$mes)->orderBy('id','desc')->get();
+        return View('contabilidad.index', compact('contabilidad','saldo'));
     }
 
     /**
