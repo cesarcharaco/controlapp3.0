@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Alquiler;
 use Illuminate\Http\Request;
+use App\PlanesPago;
 
 class AlquilerController extends Controller
 {
@@ -14,7 +15,8 @@ class AlquilerController extends Controller
      */
     public function index()
     {
-        return View('alquiler.index');
+        $planesPago=PlanesPago::where('status','Activo')->get();
+        return View('alquiler.index', compact('planesPago'));
     }
 
     /**

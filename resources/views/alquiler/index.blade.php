@@ -506,58 +506,48 @@
           <div class="card-body">
             <div class="">
               <center>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card shadow border border-info card-tabla rounded">
-                      <div class="card-body">
-                        <div class="custom-control custom-radio mb-2">
-                          <input type="radio" id="customRadio1" name="planP" value="1">
+                <div class="row justify-content-left">
+                  <?php $num=0; ?>
+                  @foreach($planesPago as $key)
+                    @if($num==0)
+                      <div class="col-md-4">
+                        <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                          <div class="card-body">
+                              <div class="custom-control custom-radio mb-2">
+                                <input type="radio" id="customRadio1-{{$key->id}}" name="planP" value="{{$key->id}}" checked>
+                              </div>
+                             <h3>{{$key->nombre}}</h3>
+                             <span>{{$key->dias}} dias</span>
+                             <br>
+                              <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                             <br>
+                             <center>
+                              <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                             </center>
+                          </div>
                         </div>
-                        <h3>Plan Nro. 1</h3>
-                        <span>1 semana</span>
-                        <br>
-                        <span style="font-size: 30px;">$</span><span style="font-size: 70px;">30</span><strong>/Mes</strong>
-                        <br>
-                        <center>
-                          <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj1-2.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
-                       </center>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card shadow border border-warning card-tabla rounded">
-                      <div class="card-body">
-                        <div class="custom-control custom-radio mb-2">
-                          <input type="radio" id="customRadio2" name="planP" value="2">
+                    @else
+                      <div class="col-md-4">
+                        <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                          <div class="card-body">
+                              <div class="custom-control custom-radio mb-2">
+                                <input type="radio" id="customRadio1-{{$key->id}}" name="planP" value="{{$key->id}}">
+                              </div>
+                             <h3>{{$key->nombre}}</h3>
+                             <span>{{$key->dias}} dias</span>
+                             <br>
+                              <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                             <br>
+                             <center>
+                              <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                             </center>
+                          </div>
                         </div>
-                        <h3>Plan Nro. 2</h3>
-                        <span>2 semenas</span>
-                        <br>
-                        <span style="font-size: 30px;">$</span><span style="font-size: 70px;">70</span><strong>/Mes</strong>
-                        <br>
-                        <center>
-                          <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj2-2.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
-                        </center>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card shadow border border-danger card-tabla rounded">
-                      <div class="card-body">
-                        <div class="custom-control custom-radio mb-2">
-                          <input type="radio" id="customRadio3" name="planP" value="3">
-                        </div>
-                        <h3>Plan Nro. 3</h3>
-                        <span>4 semanas</span>
-                        <br>
-                        <span style="font-size: 30px;">$</span><span style="font-size: 70px;">100</span><strong>/Mes</strong>
-                        <br>
-                        <center>
-                            <img align="center" class="imagenAnun" src="{{ asset('assets/images/anuncios/reloj3-2.png') }}" class="" style="width:70%;max-width:500px; margin-right: -25px !important;">
-                        </center>
-                      </div>
-                    </div>
-                  </div>
+                    @endif
+                    <?php $num++; ?>
+                  @endforeach()
                 </div>
               </center>
             </div>
