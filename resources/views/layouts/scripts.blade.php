@@ -1441,4 +1441,4 @@
     	}
     }
 </script>
-@yield('content')
+@yield('scripts')
