@@ -380,6 +380,7 @@ class AnunciosController extends Controller
         $planesAnuncios->id_planP = $request->planP;
         $planesAnuncios->fecha_orden = $fecha_actual;
         $planesAnuncios->fecha_termino = $fecha_termino;
+        $planesAnuncios->status = 'Activo';
         $planesAnuncios->save();
         
 

@@ -1281,7 +1281,8 @@
                                             @foreach($planesPago as $key)
                                                 @foreach($promociones as $key2)
                                                     @if($key->id == $key2->id_planP)
-                                                        @php $monto2=$key->monto*$key2->porcentaje/100 @endphp
+                                                        @php $monto=$key->monto*$key2->porcentaje/100 @endphp
+                                                        @php $monto2=$key->monto-$monto2 @endphp
                                                         @if($num==0)
                                                             <div class="col-md-6">
                                                                 <div class="card shadow border card-tabla rounded" style="height: 400px; border: solid !important; border-color: #ff7043 !important;">
@@ -1683,7 +1684,8 @@
                             @foreach($planesPago as $key)
                                 @foreach($promociones as $key2)
                                     @if($key->id == $key2->id_planP)
-                                        @php $monto2=$key->monto*$key2->porcentaje/100 @endphp
+                                        @php $monto=$key->monto*$key2->porcentaje/100 @endphp
+                                        @php $monto2=$key->monto-$monto2 @endphp
                                         @if($num==0)
                                             <div class="col-md-6">
                                                 <div class="card shadow border card-tabla rounded" style="height: 400px; border: solid !important; border-color: #ff7043 !important;">
