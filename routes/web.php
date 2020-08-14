@@ -119,6 +119,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('anuncios','AnunciosController');
 	route::get('desactivar_orden','AnunciosController@desactivar_orden')->name('desactivar_orden');
 	route::get('editarOrdenAnuncio','AnunciosController@editar_orden_anuncio')->name('editar_orden_anuncio');
+	route::get('renovarOrdenAnuncio','AnunciosController@renovar_orden_anuncio')->name('renovar_orden_anuncio');
 	route::get('renovar_anuncio','AnunciosController@renovar_anuncio')->name('renovar_anuncio');
 	Route::get('anuncios/{id_anuncio}/admin_asignados','AdminController@admin_asignados');
 

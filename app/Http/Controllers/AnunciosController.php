@@ -11,6 +11,8 @@ use App\UsersAdmin;
 use App\Empresas;
 use App\EmpresasAnuncios;
 use App\PlanesPago;
+use App\Promociones;
+use App\PagosAnuncios;
 use DB;
 class AnunciosController extends Controller
 {
@@ -34,12 +36,15 @@ class AnunciosController extends Controller
             }
         }
         if(\Auth::user()->tipo_usuario == 'root'){
+            $promociones=Promociones::all();
             $empresas = Empresas::all();
             $users_admin = UsersAdmin::all();
             $anuncios=Anuncios::all();
             $EmpresasAnuncios=EmpresasAnuncios::all();
+            $EmpresasAnuncios2=EmpresasAnuncios::where('id', '!=', 0)->groupBy('id_anuncios')->get();
             $planesPago=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->get();
-            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios','planesPago'));
+
+            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios','planesPago','promociones','EmpresasAnuncios2'));
         }else{
             toastr()->warning('no puede acceder!!', 'ACCESO DENEGADO');
             return redirect()->back();
@@ -63,8 +68,7 @@ class AnunciosController extends Controller
      */
     public function store(AnunciosRequest $request)
     {
-        
-        // dd($fecha_termino);
+            // $monto=0;
          
         $validacion=$this->validar_imagen($request->file('imagen'));
         
@@ -127,17 +131,31 @@ class AnunciosController extends Controller
                 }*/
             
             }
+
             $planPago=PlanesPago::find($request->planP);
+            $promociones=Promociones::where('id_planP',$planPago->id)->first();
+
+            if(!is_null($promociones)) {
+                $monto=$planPago->monto*$promociones->porcentaje/100;
+            }else{
+                $monto=$planPago->monto;
+            }
+        
+            // dd($monto);
             $fecha_actual=date('Y-m-d');
             $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
 
+            $adminAnuncios=new EmpresasAnuncios();
+            $adminAnuncios->id_anuncios     =$anuncio->id;
+            $adminAnuncios->id_planP        =$request->planP;
+            $adminAnuncios->fecha_orden     =$fecha_actual;
+            $adminAnuncios->fecha_termino   =$fecha_termino;
+            $adminAnuncios->save();
 
-            $adminAnuncios=\DB::table('planes_has_anuncios')->insert([
-                'id_anuncios'   => $anuncio->id,
-                'id_planP'      => $request->planP,
-                'fecha_orden'   => $fecha_actual,
-                'fecha_termino' => $fecha_termino,
-                'referencia'    => $request->referencia
+            $PagosAnuncios=\DB::table('pagos_anuncios')->insert([
+                'referencia'    => $request->referencia,
+                'monto'         => $monto,
+                'id_planesA'    => $adminAnuncios->id
             ]);
 
 
@@ -219,17 +237,30 @@ class AnunciosController extends Controller
 
 
 
-            $planPago=PlanesPago::find($request->planP);
-            $fecha_actual=date('Y-m-d');
-            $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
+            // $planPago=PlanesPago::find($request->planP);
+            // $fecha_actual=date('Y-m-d');
+            // $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
 
-            $planesAnuncios = EmpresasAnuncios::where('id_anuncios',$anuncio->id)->first();
+            // $planesAnuncios = EmpresasAnuncios::where('id_anuncios',$anuncio->id)->first();
+            // $PagosAnuncios=PagosAnuncios::where('id_planesA',$planesAnuncios->id)->where('referencia',$planesAnuncios->referencia)->first();
 
-            $planesAnuncios->id_planP = $request->planP;
-            $planesAnuncios->fecha_orden = $fecha_actual;
-            $planesAnuncios->fecha_termino = $fecha_termino;
-            $planesAnuncios->referencia = $request->referencia;
-            $planesAnuncios->save();
+            // $planesAnuncios->id_planP = $request->planP;
+            // $planesAnuncios->fecha_orden = $fecha_actual;
+            // $planesAnuncios->fecha_termino = $fecha_termino;
+            // $planesAnuncios->referencia = $request->referencia;
+            // $planesAnuncios->save();
+            
+
+            // $promociones=Promociones::where('id_planP',$planPago->id)->first();
+
+            // if(!is_null($promociones)) {
+            //     $monto=$planPago->monto*$promociones->porcentaje/100;
+            // }else{
+            //     $monto=$planPago->monto;
+            // }
+
+            // $PagosAnuncios->referencia=$request->referencia;
+            // $PagosAnuncios->save();
 
             toastr()->success('con éxito!!', 'Anuncio actualizado');
             return redirect()->back();
@@ -316,9 +347,12 @@ class AnunciosController extends Controller
         $fecha_actual=$empresasA->fecha_orden;
         $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
 
-        $empresasA->referencia =$request->referencia;
         $empresasA->id_planP = $request->planP;
         $empresasA->fecha_termino = $fecha_termino;
+
+        $PagosAnuncios=PagosAnuncios::where('id_planesA',$empresasA->id)->first();
+        $PagosAnuncios->referencia =$request->referencia;
+        $PagosAnuncios->save();
 
 
         if ($empresasA->save()) {
@@ -327,6 +361,44 @@ class AnunciosController extends Controller
             toastr()->error('¡Ocurrió un problema!', 'Inténte de nuevo editar el pago del anuncio');
         }
 
+        return redirect()->back();
+    }
+
+    public function renovar_orden_anuncio(Request $request)
+    {
+        // dd($request->all());
+        $anuncio=Anuncios::find($request->id_anuncio);
+
+        $planPago=PlanesPago::find($request->planP);
+
+        $fecha_actual=date('Y-m-d');
+        $fecha_termino= date("Y-m-d",strtotime($fecha_actual."+ ".$planPago->dias." days"));
+
+        $planesAnuncios = EmpresasAnuncios::where('id_anuncios',$anuncio->id)->first();
+        $PagosAnuncios  =PagosAnuncios::where('id_planesA',$planesAnuncios->id)->first();
+
+        $planesAnuncios->id_planP = $request->planP;
+        $planesAnuncios->fecha_orden = $fecha_actual;
+        $planesAnuncios->fecha_termino = $fecha_termino;
+        $planesAnuncios->save();
+        
+
+        $promociones=Promociones::where('id_planP',$planPago->id)->first();
+
+        if(!is_null($promociones)) {
+            $monto=$planPago->monto*$promociones->porcentaje/100;
+        }else{
+            $monto=$planPago->monto;
+        }
+
+       $PagosAnuncios=\DB::table('pagos_anuncios')->insert([
+            'referencia'    => $PagosAnuncios->referencia,
+            'monto'         => $monto,
+            'id_planesA'    => $planesAnuncios->id
+        ]);
+
+
+        toastr()->success('con éxito!!','Anuncio renovado');
         return redirect()->back();
     }
 

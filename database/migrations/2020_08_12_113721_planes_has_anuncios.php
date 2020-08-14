@@ -17,10 +17,10 @@ class PlanesHasAnuncios extends Migration
             $table->bigIncrements('id');
             
             $table->unsignedBigInteger('id_anuncios');
-            $table->unsignedBigInteger('id_planP')->nullable();
+            $table->unsignedBigInteger('id_planP');
             $table->date('fecha_orden');
             $table->date('fecha_termino');
-            $table->string('referencia');
+
             $table->enum('status',['Activo','Inactivo'])->default('Activo');
             
             $table->foreign('id_anuncios')->references('id')->on('anuncios')->onDelete('cascade');
