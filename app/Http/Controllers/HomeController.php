@@ -15,6 +15,7 @@ use App\AdminsAnuncios;
 use App\Empresas;
 use App\EmpresasAnuncios;
 use App\PlanesPago;
+use App\Promociones;
 
 class HomeController extends Controller
 {
@@ -69,6 +70,7 @@ class HomeController extends Controller
 
             $buscarPInmuebles= PagosComunes::where('tipo','Inmueble')->where('anio',$anio)->where('id_admin',$id_admin)->get();
             $buscarPEstaciona= PagosComunes::where('tipo','Estacionamiento')->where('anio',$anio)->where('id_admin',$id_admin)->get();
+            $promociones=Promociones::all();
             if(\Auth::user()->tipo_usuario=="Residentes"){
                 $anuncios=\DB::table('anuncios')
                     ->join('users_admin','users_admin.id','=','anuncios.id_users_admin')
@@ -88,7 +90,7 @@ class HomeController extends Controller
             
             //dd('-------------');
 
-            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin','admin','empresas','EmpresasAnuncios','planesPago'));    
+            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin','admin','empresas','EmpresasAnuncios','planesPago','promociones'));    
         } else {
             # code...
             

@@ -992,13 +992,109 @@
                           </div>
 
                           <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-pago-tab">
-                              <center>
-                                    <div class="form-group">
-                                        <label>Referencia</label>
-                                        <input type="text" class="form-control" name="referencia" required>
-                                    </div>
-                                    <div class="row">
-                                        <?php $num=0; ?>
+                            <center>
+                                <div class="form-group">
+                                    <label>Referencia</label>
+                                    <input type="text" class="form-control" name="referencia" required>
+                                </div>
+                                <div class="row">
+                                    <?php $num=0; ?>
+                                    @if(count($promociones)>0)
+                                        @foreach($planesPago as $key)
+                                            @foreach($promociones as $key2)
+                                                @if($key->id == $key2->id_planP) 
+                                                    @php $monto=$key->monto*$key2->porcentaje/100 @endphp
+                                                    @php $monto2=$key->monto-$monto @endphp
+                                                    @if($num==0)
+                                                        <div class="col-md-6">
+                                                            <div class="card shadow border card-tabla rounded" style="height: 400px; border: solid !important; border-color: #ff7043 !important;">
+                                                                <div class="ribbon"><span>¡LIMITADO!</span></div>
+                                                                <div class="ribbon2"><span>-{{$key2->porcentaje}}%</span></div>
+                                                                <div class="card-body">
+                                                                    <div class="custom-control custom-radio mb-2">
+                                                                      <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}" checked>
+                                                                    </div>
+                                                                   <h3>{{$key->nombre}}</h3>
+                                                                   <span>{{$key->dias}} dias</span>
+                                                                   <br>
+                                                                    <span style="font-size: 30px;">$</span><span style="font-size: 50px;"><s>{{$key->monto}}</s></span><strong>/Mes</strong><br>
+                                                                    <div style="margin-top: -30px !important;">
+                                                                        <span style="font-size: 30px; color: #ff7043 !important;">$</span><span style="font-size: 70px; color: #ff7043 !important;">{{$monto2}}</span><strong style=" color: #ff7043 !important;">/Mes</strong>
+                                                                    </div>
+                                                                   <br>
+                                                                   <center>
+                                                                    <img align="center" class="imagenAnun3" src="{{ asset($key->url_img) }}" style="">
+                                                                   </center>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="col-md-6">
+                                                            <div class="card shadow border card-tabla rounded" style="height: 400px; border: solid !important; border-color: #ff7043 !important;">
+                                                                <div class="ribbon"><span>¡LIMITADO!</span></div>
+                                                                <div class="ribbon2"><span>-{{$key2->porcentaje}}%</span></div>
+                                                                <div class="card-body">
+                                                                    <div class="custom-control custom-radio mb-2">
+                                                                      <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                                                    </div>
+                                                                   <h3>{{$key->nombre}}</h3>
+                                                                   <span>{{$key->dias}} dias</span>
+                                                                   <br>
+                                                                    <span style="font-size: 30px;">$</span><span style="font-size: 50px;"><s>{{$key->monto}}</s></span><strong>/Mes</strong><br>
+                                                                    <div style="margin-top: -30px !important;">
+                                                                        <span style="font-size: 30px; color: #ff7043 !important;">$</span><span style="font-size: 70px; color: #ff7043 !important;">{{$monto2}}</span><strong style=" color: #ff7043 !important;">/Mes</strong>
+                                                                    </div>
+                                                                   <br>
+                                                                   <center>
+                                                                    <img align="center" class="imagenAnun3" src="{{ asset($key->url_img) }}" style="">
+                                                                   </center>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @else
+                                                    @if($num==0)
+                                                        <div class="col-md-6">
+                                                            <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                                <div class="card-body">
+                                                                    <div class="custom-control custom-radio mb-2">
+                                                                      <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}" checked>
+                                                                    </div>
+                                                                   <h3>{{$key->nombre}}</h3>
+                                                                   <span>{{$key->dias}} dias</span>
+                                                                   <br>
+                                                                    <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                                   <br>
+                                                                   <center>
+                                                                    <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                                                                   </center>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="col-md-6">
+                                                            <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                                <div class="card-body">
+                                                                    <div class="custom-control custom-radio mb-2">
+                                                                      <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                                                    </div>
+                                                                   <h3>{{$key->nombre}}</h3>
+                                                                   <span>{{$key->dias}} dias</span>
+                                                                   <br>
+                                                                    <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                                   <br>
+                                                                   <center>
+                                                                    <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                                                                   </center>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endif
+                                            @endforeach()
+                                            <?php $num++; ?>
+                                        @endforeach()
+                                    @else
                                         @foreach($planesPago as $key)
                                             @if($num==0)
                                                 <div class="col-md-6">
@@ -1039,9 +1135,9 @@
                                             @endif
                                             <?php $num++; ?>
                                         @endforeach()
-                                    </div>
-                              </center>
-
+                                    @endif
+                                </div>
+                            </center>
                           </div>
                         </div>
                         <center>
