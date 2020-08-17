@@ -16,6 +16,109 @@
     @toastr_css
 
         <style type="text/css">
+
+                .ribbon {
+          position: absolute;
+          left: -5px; top: -5px;
+          z-index: 1;
+          overflow: hidden;
+          width: 75px; height: 75px;
+          text-align: right;
+        }
+        .ribbon span {
+          font-size: 10px;
+          font-weight: bold;
+          color: #FFF;
+          text-transform: uppercase;
+          text-align: center;
+          line-height: 20px;
+          transform: rotate(-45deg);
+          -webkit-transform: rotate(-45deg);
+          width: 100px;
+          display: block;
+          background: #79A70A;
+          background: linear-gradient(#FF7043 0%, #C9B216 100%);
+          box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+          position: absolute;
+          top: 19px; left: -21px;
+        }
+        .ribbon span::before {
+          content: "";
+          position: absolute; left: 0px; top: 100%;
+          z-index: -1;
+          border-left: 3px solid #C9B216;
+          border-right: 3px solid transparent;
+          border-bottom: 3px solid transparent;
+          border-top: 3px solid #C9B216;
+        }
+        .ribbon span::after {
+          content: "";
+          position: absolute; right: 0px; top: 100%;
+          z-index: -1;
+          border-left: 3px solid transparent;
+          border-right: 3px solid #C9B216;
+          border-bottom: 3px solid transparent;
+          border-top: 3px solid #C9B216;
+        }
+
+
+
+
+
+
+
+        .ribbon2 {
+          position: absolute;
+          right: -5px; top: -5px;
+          z-index: 1;
+          overflow: hidden;
+          width: 75px; height: 75px;
+          text-align: right;
+        }
+        .ribbon2 span {
+          font-size: 10px;
+          font-weight: bold;
+          color: #FFF;
+          text-transform: uppercase;
+          text-align: center;
+          line-height: 20px;
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+          width: 100px;
+          display: block;
+          background: #79A70A;
+          background: linear-gradient(#FF7043 0%, #FF7043 100%);
+          box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+          position: absolute;
+          top: 19px; right: -21px;
+        }
+        .ribbon2 span::before {
+          content: "";
+          position: absolute; left: 0px; top: 100%;
+          z-index: -1;
+          border-left: 3px solid #FF7043;
+          border-right: 3px solid transparent;
+          border-bottom: 3px solid transparent;
+          border-top: 3px solid #FF7043;
+        }
+        .ribbon2 span::after {
+          content: "";
+          position: absolute; right: 0px; top: 100%;
+          z-index: -1;
+          border-left: 3px solid transparent;
+          border-right: 3px solid #FF7043;
+          border-bottom: 3px solid transparent;
+          border-top: 3px solid #FF7043;
+        }
+
+        .imagenAnun3{
+            width: 40%;
+            height: auto;
+            max-width:500px; 
+            margin-right: -25px !important;
+            margin-top: -30px !important;
+        }
+
         .imagenAnun2{
             /*display: none;*/
             width: 40%;
@@ -91,10 +194,19 @@
             .imagenAnun2{
                 width: 40%;
             }
-
+            .imagenAnun3{
+                width: 20%;
+            }
 
         }
         @media only screen and (max-width: 200px)  {
+            .footer3{
+                height: 100px;
+                /*display: none;*/
+            }
+            .footer2{
+                height: 200px;
+            }
             .botonesEditEli{
                 width: 15px;
                 height: 15px;
@@ -103,8 +215,42 @@
                 width: 5px;
                 height: 5px;    
             }
+            .imagenAnun3{
+                width: 20%;
+            }
         }
         @media screen and (max-width: 480px) {
+            .footer1{
+                height: 50;
+            }
+            .footer2{
+                /*margin-bottom: 40px;*/
+                height: 60px;
+                position: relative;
+                /*display: none;*/
+            }
+            .footer3{
+                display: none;
+                height: 500px;
+            }
+            .tabla-estilo{
+                font-size: 7px;
+            }
+            .card-home{
+                display: none;
+            }
+            .card-home2{
+                display: block;
+            }
+            .boton-tabla{
+                font-size: 7px;
+                width: 50px;
+                height: 20px;
+                border-radius: 30px;
+            }
+            .card-tabla{
+                width: 100%
+            }
             .tituloTabla{
                 display: none;
             }
@@ -120,6 +266,9 @@
                 height: 30px;
                 margin-top: 5px;
                     
+            }
+            .imagenAnun3{
+                width: 20%;
             }
         }
 
@@ -230,49 +379,8 @@
                 width: 50%;
             }
         }*/
-        @media only screen and (max-width: 200px)  {
-            .footer3{
-                height: 100px;
-                /*display: none;*/
-            }
-            .footer2{
-                height: 200px;
-            }
-        }
-        @media screen and (max-width: 480px) {
-            .footer1{
-                height: 50;
-            }
-            .footer2{
-                /*margin-bottom: 40px;*/
-                height: 60px;
-                position: relative;
-                /*display: none;*/
-            }
-            .footer3{
-                display: none;
-                height: 500px;
-            }
-            .tabla-estilo{
-                font-size: 7px;
-            }
-            .card-home{
-                display: none;
-            }
-            .card-home2{
-                display: block;
-            }
-            .boton-tabla{
-                font-size: 7px;
-                width: 50px;
-                height: 20px;
-                border-radius: 30px;
-            }
-            .card-tabla{
-                width: 100%
-            }
-            
-        }
+
+
 
         @media screen and (max-width: 800px) {
             .footer1{
@@ -290,6 +398,9 @@
 
             .anuncioRoot{
                 width: 100%;
+            }
+            .imagenAnun3{
+                width: 20%;
             }
         }
     </style>
