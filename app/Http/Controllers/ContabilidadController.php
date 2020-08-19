@@ -14,9 +14,15 @@ class ContabilidadController extends Controller
      */
     public function index()
     {
-        $cero = 0;
         $mes = date('n');
-        $saldo = Contabilidad::latest('saldo')->first();
+        $consulta_saldo = Contabilidad::all()->count();
+        //dd($consulta_saldo);
+        if($consulta_saldo==0){
+            $saldo = 0;
+        } else {
+            $saldo = Contabilidad::latest('saldo')->first();
+        }
+        //dd($saldo);
         $contabilidad = Contabilidad::where('id_mes',$mes)->orderBy('id','desc')->get();
         return View('contabilidad.index', compact('contabilidad','saldo'));
     }
@@ -26,9 +32,50 @@ class ContabilidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $mes = date('n');
+        $hoy = date('Y-m-d');
+        $consulta_saldo = Contabilidad::all()->count();
+        //dd($consulta_saldo);
+        if($consulta_saldo==0){
+            $saldo = 0;
+        } else {
+            $saldo = Contabilidad::latest('saldo')->first();
+        }
+
+        $contabilidad = Contabilidad::where('created_at',$hoy)->orderBy('id','desc')->get();
+        //dd($request->all());
+        if ($request->filtro=="7dias") {
+            $contabilidad = Contabilidad::whereDate('created_at', now()->subDays(7))->get();
+        } else if($request->filtro=="30dias") {
+            $contabilidad = Contabilidad::whereDate('created_at', now()->subDays(30))->get();                
+        } else if($request->filtro=="rango_fecha") {
+            //dd($request->all());
+            if($request->fecha_desde > $request->fecha_hasta) {
+                toastr()->error('La fecha de inicio no puede ser mayor a fecha final !!', 'Vuelva a ingresar los datos', [
+                'timeOut' => 10000,
+                'progressBar' => true,
+                'showDuration'=> 300,
+                ]);
+                return redirect()->back();
+            }
+            $contabilidad  = Contabilidad::whereBetween('created_at',[$request->fecha_desde,$request->fecha_hasta])->get();
+            $contabilidad1  = Contabilidad::whereBetween('created_at',[$request->fecha_desde,$request->fecha_hasta])->count();
+            //dd($contabilidad);
+            if($contabilidad1==0) {
+                toastr()->error('No se encontraron datos en las fechas seleccionadas !!', 'No hay datos', [
+                'timeOut' => 10000,
+                'progressBar' => true,
+                'showDuration'=> 300,
+                ]);
+                return redirect()->back();
+            }
+        } elseif($request->filtro=="meses") {
+            
+        }
+         
+        return view('contabilidad.create', compact('saldo','contabilidad'));
     }
 
     /**
@@ -39,7 +86,18 @@ class ContabilidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $saldo = Contabilidad::latest('saldo')->first();
+        if ($request->egreso>$saldo) {
+            toastr()->error('El monto de egreso es mayor al saldo disponible !!', 'Saldo Insuficiente', [
+            'timeOut' => 10000,
+            'progressBar' => true,
+            'showDuration'=> 300,
+            ]);
+            return redirect()->back();
+        } else {
+            # code...
+        }
+        
     }
 
     /**

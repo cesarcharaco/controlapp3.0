@@ -54,15 +54,21 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-4">
                                         <div class="form-group" align="center">
-                                            <label>Saldo Disponible</label>
+                                            <strong>Saldo Disponible</strong>
                                             <button class="btn btn-success btn-rounded btn-block">
-                                                <strong class="text-dark">{{$saldo->saldo}} USD</strong>
+                                                <strong class="text-dark">
+                                                    @if($saldo==0)
+                                                        0 USD
+                                                    @else
+                                                        {{$saldo->saldo}} USD
+                                                    @endif
+                                                </strong>
                                             </button>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group" align="center">
-                                            <label>Registrar Egreso</label>
+                                            <strong>Registrar Egreso</strong>
                                             <button data-toggle="modal" data-target="#registrar_egreso" class="btn btn-warning btn-rounded btn-block">
                                                 <strong class="text-white">Agregar</strong>
                                             </button>
@@ -70,8 +76,8 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group" align="center">
-                                            <label>Consultar Movimientos</label>
-                                            <a href="#" data-toggle="modal" class="btn btn-rounded btn-block" style="background: #3490dc;">
+                                            <strong>Consultar Movimientos</strong>
+                                            <a href="{{ route('contabilidad.create') }}" class="btn btn-rounded btn-block" style="background: #3490dc;">
                                                 <strong class="text-white">Consultar</strong>
                                             </a>
                                         </div>
@@ -119,7 +125,7 @@
         </div>
     </div>
 <!-- --------------------------------------------MODAL DE EGRESO------------------------------------------------------ -->
-<div class="modal fade" id="registrar_egreso" role="dialog">
+<div class="modal fade" id="registrar_egreso" role="dialog" data-controls-modal="registrar_egreso" data-backdrop="static" data-keyboard="false">
     <form action="{{ route('contabilidad.store') }}" method="POST" name="registrarEgreso" id="registrarEgreso" class="parsley-examples">
         @csrf
         <div class="modal-dialog modals-default">
@@ -137,7 +143,7 @@
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <label>Monto de egreso: <b style="color: red;">*</b></label>
-                            <input type="number" name="egreso" class="form-control" placeholder="Monto de Egreso" required="required" data-parsley-type="number">
+                            <input type="number" name="egreso" class="form-control" placeholder="Monto de Egreso" required="required" data-parsley-type="number" min="1">
                         </div>
                     </div>
                     <div class="row">
@@ -148,7 +154,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-rounded" data-dismiss="modal" id="cerrar">Cerrar</button>
+                    <button type="button" class="btn btn-danger btn-rounded" data-dismiss="modal" id="cerrar1" class="close">Cerrar</button>
                     <button type="submit" class="btn btn-success btn-rounded">Registrar Egreso</button>
                 </div>
             </div>
@@ -159,17 +165,16 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
-    $(document).ready(function(){$(".parsley-examples").parsley()});
-    $('#registrar_egreso').modal({
-        backdrop: 'static',
-        keyboard: false
-    });
     $("#cerrar").on("click", function(event){
-        console.log('sad');
+        console.log('vaciar form');
+        event.preventDefault();
+        $('#registrarEgreso').trigger("reset");
+    })
+    $("#cerrar1").on("click", function(event){
+        console.log('vaciar form 1');
         event.preventDefault();
         $('#registrarEgreso').trigger("reset");
     });
-    $('#registrarEgreso')[0].reset();
 </script>
 
 <!-- Datatables init -->

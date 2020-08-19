@@ -8,5 +8,5 @@ class Contabilidad extends Model
 {
     protected $table='contabilidad';
 
-    protected $fillable=['id_mensualidad','id_mes','descripcion','ingreso','egreso','saldo'];
+    protected $fillable=['id_mensualidad','id_mes','descripcion','ingreso','egreso','saldo','created_at'];
 }
