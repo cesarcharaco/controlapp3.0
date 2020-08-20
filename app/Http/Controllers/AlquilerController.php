@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Alquiler;
 use Illuminate\Http\Request;
 use App\PlanesPago;
+use App\Residentes;
+// use App\Instalaciones;
 
 class AlquilerController extends Controller
 {
@@ -15,8 +17,10 @@ class AlquilerController extends Controller
      */
     public function index()
     {
+        $id_admin=id_admin(\Auth::user()->email);
+        $residentes=Residentes::where('id_admin',$id_admin)->get();
         $planesPago=PlanesPago::where('status','Activo')->get();
-        return View('alquiler.index', compact('planesPago'));
+        return View('alquiler.index', compact('planesPago','residentes'));
     }
 
     /**

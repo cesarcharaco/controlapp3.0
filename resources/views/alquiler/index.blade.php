@@ -92,37 +92,859 @@
 
     </style>
     <input type="hidden" id="colorView" value="#CB8C4D !important">
-    <div class="container">
-        <div class="row page-title">
-            <div class="col-md-12">
-                <nav aria-label="breadcrumb" class="float-right mt-1">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Alquiler</li>
-                    </ol>
-                </nav>
-                <h4 class="mb-1 mt-0">Alquiler</h4>
+    <div class="row page-title" id="tituloP">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-right mt-1">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Alquiler</li>
+                </ol>
+            </nav>
+            <h4 class="mb-1 mt-0">Alquiler</h4>
+        </div>
+    </div>
+    <div class="row page-title" style="display: none;" id="tituloP1">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-right mt-1">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Instalaciones</li>
+                </ol>
+            </nav>
+            <h4 class="mb-1 mt-0">Instalaciones</h4>
+        </div>
+    </div>
+    <div class="row page-title" style="display: none;" id="tituloP2">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-right mt-1">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Arrendamientos</li>
+                </ol>
+            </nav>
+            <h4 class="mb-1 mt-0">Arrendamientos</h4>
+        </div>
+    </div>
+    <div class="row page-title" style="display: none;" id="tituloP3">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-right mt-1">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('anuncios') }}">Control</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Control y Agenda</li>
+                </ol>
+            </nav>
+            <h4 class="mb-1 mt-0">Control y Agenda</h4>
+        </div>
+    </div>
+    @include('flash::message')
+    @if(count($errors))
+        <div class="alert-list m-4">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>
+                        {{$error}}
+                    </li>
+                    @endforeach
+
+                </ul>
             </div>
         </div>
-        @include('flash::message')
-        @if(count($errors))
-            <div class="alert-list m-4">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <ul>
-                        @foreach($errors->all() as $error)
-                        <li>
-                            {{$error}}
-                        </li>
-                        @endforeach
+    @endif
 
-                    </ul>
+    <div id="tablaInstalaciones" style="display: none;">
+        <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 offset-md-12">
+                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                                border-radius: 10px;
+                                color: white;
+                                height: 35px;
+                                margin-bottom: 5px;
+                                margin-top: 5px;
+                                float: right;">
+                                <span class="PalabraEditarPago ">Nueva Instalación</span>
+                                <center>
+                                    <span class="PalabraEditarPago2 ">
+                                        <i data-feather="plus" class="iconosMetaforas2"></i>
+                                    </span>
+                                </center>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-md-8">
+                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                         <thead>
+                            <tr class="table-default text-white">
+                                <td colspan="1"></td>
+                                <td colspan="3" align="center">
+                                    <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una instalación para ver mas opciones.</span>
+                                    </div>
+                                </td>
+                                <td colspan="1"></td>
+                            </tr>
+                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                                <th width="10"></th>
+                                <th>
+                                    <span class="PalabraEditarPago">Nombre</span>
+                                    <span class="PalabraEditarPago2">T</span>
+                                </th>
+                                <th>
+                                    <span class="PalabraEditarPago">URL</span>
+                                    <span class="PalabraEditarPago2">@</span>
+                                </th>
+                                <th colspan="2">
+                                    <center>
+                                        <span class="PalabraEditarPago">Opciones</span>
+                                        <span class="PalabraEditarPago2">O</span>
+                                    </center>
+                                </th>
+                            </tr>
+                            <tr class="bg-info text-white" id="th1">
+                                <th>#</th>
+                                <th>
+                                    <span class="tituloTabla">Nombre</span>
+                                    <span class="tituloTabla2">T</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">Horario Disponible</span>
+                                    <span class="tituloTabla2">@</span>
+                                </th>
+                                <!-- <th>Estacionamientos</th> -->
+                                <th>
+                                    <span class="tituloTabla">Max. personas</span>
+                                    <span class="tituloTabla2">S</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">Status</span>
+                                    <span class="tituloTabla2">S</span>
+                                </th>
+                                <!-- <th>Mensualidades</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                  <div class="vistaColumnaArriendos nuevoArriendo border shadow" id="nuevoArriendo" align="center" style="border-radius: 30px !important;">
+                    <div class="card-body">
+                      {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
+                          @csrf
+                        <h3 align="center" style="
+                          color: gray;
+                            font: 18px Arial, sans-serif;">
+                            Nueva Instalación
+                          </h3>
+                          <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" class="form-control" required placeholder="Instalación 1" required>
+                          </div>
+                          <div class="form-group card shadow" style="border-radius: 30px !important;">
+                            <div class="card-body">
+                              
+                              <label>Horario de disponibilidad</label>
+                              <br>
+                              <i data-feather="minus"></i>
+                              <div class="button-list">
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(1)" id="horarioBotonDia1">Lunes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(2)" id="horarioBotonDia2">Martes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(3)" id="horarioBotonDia3">Miércoles</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(4)" id="horarioBotonDia4">Jueves</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(5)" id="horarioBotonDia5">Viernes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(6)" id="horarioBotonDia6">Sábado</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(7)" id="horarioBotonDia7">Domingo</button>
+                              </div>
+                              <br>
+                              <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                  <div class="form-group" align="center">
+                                    <label>Desde</label>
+                                    <input class="form-control" id="example-time" type="time" name="desde">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" align="center">
+                                    <label>Hasta</label>
+                                    <input class="form-control" id="example-time" type="time" name="hasta">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Nro. máximo de personas</label>
+                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                <span class="input-group-text" style="width:39px; height:39px;">
+                                  <i data-feather="users"></i>
+                                </span>
+                              </span>
+                              <input name="dias" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <label>Status</label>
+                              <select name="status" class="form-control select2" id="status_PlanP">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                              </select>
+                          </div>
+                          <!-- <label>Plan dirigido a:</label>
+                          <div class="row justify-content-center">
+                            <div class="col-md-6" align="center">
+                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
+                              <div class="custom-control custom-radio">
+                                              <input type="radio" id="customRadio1" name="tipo" value="Anuncio" checked>
+                                          </div>
+                              <div class="border border-success p-3 shadow" align="center" style="
+
+                              background-image: url('{{ asset('assets/images/planes_p/anuncios.jpg') }}');
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+
+                              border-radius: 10px !important;
+                              height: 130px !important;
+                              width: 130px !important;">
+                              </div>
+                            </div>
+                            <div class="col-md-6" align="center">
+                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Alquiler</h3>
+                              <div class="custom-control custom-radio">
+                                              <input type="radio" id="customRadio2" name="tipo" value="Alquiler">
+                                          </div>
+                              <div class="border border-success p-3 shadow" align="center" style="
+
+                              background-image: url('{{ asset('assets/images/planes_p/alquiler.jpg') }}');
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+
+                              border-radius: 10px !important;
+                              height: 130px !important;
+                              width: 130px !important;">
+                              </div>
+                            </div>
+                          </div> -->
+                          
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
+                  <div class="vistaColumnaArriendos editarArriendo border border-warning shadow" id="editarArriendo" style="display: none; border-radius: 30px !important;">
+                    <div class="card-body">
+                      {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
+                          @csrf
+                        <h3 align="center" style="
+                          color: gray;
+                            font: 18px Arial, sans-serif;">
+                            Nueva Instalación
+                          </h3>
+                          <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" class="form-control" required placeholder="Instalación 1" required>
+                          </div>
+                          <div class="form-group card shadow" style="border-radius: 30px !important;">
+                            <div class="card-body">
+                              
+                              <label>Horario de disponibilidad</label>
+                              <br>
+                              <i data-feather="minus"></i>
+                              <div class="button-list">
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(1)" id="horarioBotonDia1">Lunes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(2)" id="horarioBotonDia2">Martes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(3)" id="horarioBotonDia3">Miércoles</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(4)" id="horarioBotonDia4">Jueves</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(5)" id="horarioBotonDia5">Viernes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(6)" id="horarioBotonDia6">Sábado</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(7)" id="horarioBotonDia7">Domingo</button>
+                              </div>
+                              <br>
+                              <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                  <div class="form-group" align="center">
+                                    <label>Desde</label>
+                                    <input class="form-control" id="example-time" type="time" name="desde">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" align="center">
+                                    <label>Hasta</label>
+                                    <input class="form-control" id="example-time" type="time" name="hasta">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Nro. máximo de personas</label>
+                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                <span class="input-group-text" style="width:39px; height:39px;">
+                                  <i data-feather="users"></i>
+                                </span>
+                              </span>
+                              <input name="dias" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <label>Status</label>
+                              <select name="status" class="form-control select2" id="status_PlanP">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                              </select>
+                          </div>
+                          <!-- <label>Plan dirigido a:</label>
+                          <div class="row justify-content-center">
+                            <div class="col-md-6" align="center">
+                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
+                              <div class="custom-control custom-radio">
+                                              <input type="radio" id="customRadio1" name="tipo" value="Anuncio" checked>
+                                          </div>
+                              <div class="border border-success p-3 shadow" align="center" style="
+
+                              background-image: url('{{ asset('assets/images/planes_p/anuncios.jpg') }}');
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+
+                              border-radius: 10px !important;
+                              height: 130px !important;
+                              width: 130px !important;">
+                              </div>
+                            </div>
+                            <div class="col-md-6" align="center">
+                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Alquiler</h3>
+                              <div class="custom-control custom-radio">
+                                              <input type="radio" id="customRadio2" name="tipo" value="Alquiler">
+                                          </div>
+                              <div class="border border-success p-3 shadow" align="center" style="
+
+                              background-image: url('{{ asset('assets/images/planes_p/alquiler.jpg') }}');
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+
+                              border-radius: 10px !important;
+                              height: 130px !important;
+                              width: 130px !important;">
+                              </div>
+                            </div>
+                          </div> -->
+                          
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
+                  <div class="vistaColumnaArriendos EliminarArriendo border border-danger shadow" id="EliminarArriendo" style="display: none; border-radius: 30px !important;">
+                    <div class="card-body">
+                      
+                      {!! Form::open(['route' => ['planes_pago.destroy',1033], 'method' => 'DELETE']) !!}
+                        @csrf
+                        <h3>¿Está realmente seguro de querer eliminar esta instalación?</h3> 
+                        Se eliminarán todos los datos, arrendamientos y alquileres que engloben a esta instalación.
+                        <div class="float-right">
+                          <input type="hidden" name="id" class="id_PlanP">
+                          <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </div>
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
                 </div>
             </div>
-        @endif
+        </div>
     </div>
-    <div class="row justify-content-left">
+
+
+    <div id="tablaArriendos" style="display: block;">
+        <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 offset-md-12">
+                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                                border-radius: 10px;
+                                color: white;
+                                height: 35px;
+                                margin-bottom: 5px;
+                                margin-top: 5px;
+                                float: right;">
+                                <span class="PalabraEditarPago ">Nuevo Arrendamiento</span>
+                                <center>
+                                    <span class="PalabraEditarPago2 ">
+                                        <i data-feather="plus" class="iconosMetaforas2"></i>
+                                    </span>
+                                </center>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-md-8">
+                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                         <thead>
+                            <tr class="table-default text-white">
+                                <td colspan="1"></td>
+                                <td colspan="3" align="center">
+                                    <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una instalación para ver mas opciones.</span>
+                                    </div>
+                                </td>
+                                <td colspan="1"></td>
+                            </tr>
+                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                                <th width="10"></th>
+                                <th>
+                                    <span class="PalabraEditarPago">Título</span>
+                                    <span class="PalabraEditarPago2">T</span>
+                                </th>
+                                <th>
+                                    <span class="PalabraEditarPago">URL</span>
+                                    <span class="PalabraEditarPago2">@</span>
+                                </th>
+                                <th colspan="2">
+                                    <center>
+                                        <span class="PalabraEditarPago">Opciones</span>
+                                        <span class="PalabraEditarPago2">O</span>
+                                    </center>
+                                </th>
+                            </tr>
+                            <tr class="bg-info text-white" id="th1">
+                                <th>#</th>
+                                <th>
+                                    <span class="tituloTabla">Título</span>
+                                    <span class="tituloTabla2">T</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">URL</span>
+                                    <span class="tituloTabla2">@</span>
+                                </th>
+                                <!-- <th>Estacionamientos</th> -->
+                                <th>
+                                    <span class="tituloTabla">Descripción</span>
+                                    <span class="tituloTabla2">S</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">Imagen</span>
+                                    <span class="tituloTabla2">I</span>
+                                </th>
+                                <!-- <th>Mensualidades</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                  <div class="vistaColumnaArriendos nuevoArriendo border shadow" id="nuevoArriendo" align="center" style="border-radius: 30px !important;">
+                    <div class="card-body">
+                      {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
+                          @csrf
+                        <h3 align="center" style="
+                          color: gray;
+                            font: 18px Arial, sans-serif;">
+                            Nuevo Arriendo
+                          </h3>
+                          <div class="form-group">
+                            <label>Residente</label>
+                            <select class="form-control select2" id="residente" onchange="buscarTodo(this.value)">
+                                <option value="0" selected disabled>Seleccione residente</option>
+                                @foreach($residentes as $key)
+                                    <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+                                @endforeach()
+                            </select>
+                          </div>
+                           <div class="form-group">
+                            <label>Instalación</label>
+                            <select class="form-control select2" id="instalacionList">
+                                <option value="0" selected disabled>Seleccione instalación</option>
+                                
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label>Tipo de Alquiler</label>
+                            <select name="status" class="form-control select2" id="status_PlanP">
+                              <option value="Permanente">Permanente</option>
+                              <option value="Temporal">Temporal</option>
+                            </select>
+                          </div>
+                          <div class="form-group card shadow" style="border-radius: 30px !important;">
+                            <div class="card-body">
+                              <div class="form-group">
+                                <label>Fecha</label>
+                                <input type="date" name="fecha" class="form-control">
+                              </div>
+                                  
+                              <div class="form-group" align="center">
+                                <label>Hora</label>
+                                <input class="form-control" id="example-time" type="time" name="desde">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Nro. de personas</label>
+                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                <span class="input-group-text" style="width:39px; height:39px;">
+                                  <i data-feather="users"></i>
+                                </span>
+                              </span>
+                              <input name="personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Nro. de horas</label>
+                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                <span class="input-group-text" style="width:39px; height:39px;">
+                                  <i data-feather="watch"></i>
+                                </span>
+                              </span>
+                              <input name="horas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <label>Status</label>
+                              <select name="status" class="form-control select2" id="status_PlanP">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                              </select>
+                          </div>
+                          <!-- <label>Plan dirigido a:</label>
+                          <div class="row justify-content-center">
+                            <div class="col-md-6" align="center">
+                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
+                              <div class="custom-control custom-radio">
+                                              <input type="radio" id="customRadio1" name="tipo" value="Anuncio" checked>
+                                          </div>
+                              <div class="border border-success p-3 shadow" align="center" style="
+
+                              background-image: url('{{ asset('assets/images/planes_p/anuncios.jpg') }}');
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+
+                              border-radius: 10px !important;
+                              height: 130px !important;
+                              width: 130px !important;">
+                              </div>
+                            </div>
+                            <div class="col-md-6" align="center">
+                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Alquiler</h3>
+                              <div class="custom-control custom-radio">
+                                              <input type="radio" id="customRadio2" name="tipo" value="Alquiler">
+                                          </div>
+                              <div class="border border-success p-3 shadow" align="center" style="
+
+                              background-image: url('{{ asset('assets/images/planes_p/alquiler.jpg') }}');
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+
+                              border-radius: 10px !important;
+                              height: 130px !important;
+                              width: 130px !important;">
+                              </div>
+                            </div>
+                          </div> -->
+                          
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
+                  <div class="vistaColumnaArriendos editarArriendo border border-warning shadow" id="editarArriendo" style="display: none; border-radius: 30px !important;">
+                    <div class="card-body">
+                      {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
+                          @csrf
+                        <h3 align="center" style="
+                          color: gray;
+                            font: 18px Arial, sans-serif;">
+                            Nueva Instalación
+                          </h3>
+                          <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" class="form-control" required placeholder="Instalación 1" required>
+                          </div>
+                          <div class="form-group card shadow" style="border-radius: 30px !important;">
+                            <div class="card-body">
+                              
+                              <label>Horario de disponibilidad</label>
+                              <br>
+                              <i data-feather="minus"></i>
+                              <div class="button-list">
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(1)" id="horarioBotonDia1">Lunes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(2)" id="horarioBotonDia2">Martes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(3)" id="horarioBotonDia3">Miércoles</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(4)" id="horarioBotonDia4">Jueves</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(5)" id="horarioBotonDia5">Viernes</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(6)" id="horarioBotonDia6">Sábado</button>
+                                <button type="button" class="btn btn-primary" onclick="diaNegocio(7)" id="horarioBotonDia7">Domingo</button>
+                              </div>
+                              <br>
+                              <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                  <div class="form-group" align="center">
+                                    <label>Desde</label>
+                                    <input class="form-control" id="example-time" type="time" name="desde">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" align="center">
+                                    <label>Hasta</label>
+                                    <input class="form-control" id="example-time" type="time" name="hasta">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Nro. máximo de personas</label>
+                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                <span class="input-group-text" style="width:39px; height:39px;">
+                                  <i data-feather="users"></i>
+                                </span>
+                              </span>
+                              <input name="dias" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <label>Status</label>
+                              <select name="status" class="form-control select2" id="status_PlanP">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                              </select>
+                          </div>
+                          <!-- <label>Plan dirigido a:</label>
+                          <div class="row justify-content-center">
+                            <div class="col-md-6" align="center">
+                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
+                              <div class="custom-control custom-radio">
+                                              <input type="radio" id="customRadio1" name="tipo" value="Anuncio" checked>
+                                          </div>
+                              <div class="border border-success p-3 shadow" align="center" style="
+
+                              background-image: url('{{ asset('assets/images/planes_p/anuncios.jpg') }}');
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+
+                              border-radius: 10px !important;
+                              height: 130px !important;
+                              width: 130px !important;">
+                              </div>
+                            </div>
+                            <div class="col-md-6" align="center">
+                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Alquiler</h3>
+                              <div class="custom-control custom-radio">
+                                              <input type="radio" id="customRadio2" name="tipo" value="Alquiler">
+                                          </div>
+                              <div class="border border-success p-3 shadow" align="center" style="
+
+                              background-image: url('{{ asset('assets/images/planes_p/alquiler.jpg') }}');
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+
+                              border-radius: 10px !important;
+                              height: 130px !important;
+                              width: 130px !important;">
+                              </div>
+                            </div>
+                          </div> -->
+                          
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
+                  <div class="vistaColumnaArriendos EliminarArriendo border border-danger shadow" id="EliminarArriendo" style="display: none; border-radius: 30px !important;">
+                    <div class="card-body">
+                      
+                      {!! Form::open(['route' => ['planes_pago.destroy',1033], 'method' => 'DELETE']) !!}
+                        @csrf
+                        <h3>¿Está realmente seguro de querer eliminar este Arriendo?</h3> 
+                        Se eliminarán todos los datos y pagos relacionados a este arriendo.
+                        <div class="float-right">
+                          <input type="hidden" name="id" class="id_PlanP">
+                          <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </div>
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tablaControl" style="display: none;">
+        <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 offset-md-12">
+                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                                border-radius: 10px;
+                                color: white;
+                                height: 35px;
+                                margin-bottom: 5px;
+                                margin-top: 5px;
+                                float: right;">
+                                <span class="PalabraEditarPago ">Nueva Instalación</span>
+                                <center>
+                                    <span class="PalabraEditarPago2 ">
+                                        <i data-feather="plus" class="iconosMetaforas2"></i>
+                                    </span>
+                                </center>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-md-8">
+                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                         <thead>
+                            <tr class="table-default text-white">
+                                <td colspan="1"></td>
+                                <td colspan="3" align="center">
+                                    <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
+                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una instalación para ver mas opciones.</span>
+                                    </div>
+                                </td>
+                                <td colspan="1"></td>
+                            </tr>
+                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                                <th width="10"></th>
+                                <th>
+                                    <span class="PalabraEditarPago">Título</span>
+                                    <span class="PalabraEditarPago2">T</span>
+                                </th>
+                                <th>
+                                    <span class="PalabraEditarPago">URL</span>
+                                    <span class="PalabraEditarPago2">@</span>
+                                </th>
+                                <th colspan="2">
+                                    <center>
+                                        <span class="PalabraEditarPago">Opciones</span>
+                                        <span class="PalabraEditarPago2">O</span>
+                                    </center>
+                                </th>
+                            </tr>
+                            <tr class="bg-info text-white" id="th1">
+                                <th>#</th>
+                                <th>
+                                    <span class="tituloTabla">Título</span>
+                                    <span class="tituloTabla2">T</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">URL</span>
+                                    <span class="tituloTabla2">@</span>
+                                </th>
+                                <!-- <th>Estacionamientos</th> -->
+                                <th>
+                                    <span class="tituloTabla">Descripción</span>
+                                    <span class="tituloTabla2">S</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">Imagen</span>
+                                    <span class="tituloTabla2">I</span>
+                                </th>
+                                <!-- <th>Mensualidades</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4 center" id="VerTabla1">
+            <a href="#" onclick="VerTabla(1)" id="verTabla2-1" style="display: none; width: 100%;">
+                <div class="card border border-dark shadow rounded m-7" style="height: 400px;
+                background-image: url('{{ asset('assets/images/alquiler/instalaciones.jpg') }}');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                ">
+                    <div class="card-header">
+                        <h3 align="right" class="text-warning" >INSTALACIONES</h3>
+                    </div>
+                    <div class="card-body p-3 mb-5 ">
+                    </div>
+                    <div class="card-footer">
+                        <strong class="text-warning">Visualizar las instalaciones de la App.</strong>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 center" id="VerTabla2">
+            <a href="#" onclick="VerTabla(2)" id="verTabla2-2" style="display: none; width: 100%;">
+                <div class="card border border-dark shadow rounded m-7" style="height: 400px;
+                background-image: url('{{ asset('assets/images/alquiler/arrendamiento.jpg') }}');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                ">
+                    <div class="card-header">
+                        <h3 align="right" class="text-warning" >ARRENDAMIENTOS</h3>
+                    </div>
+                    <div class="card-body p-3 mb-5 ">
+                    </div>
+                    <div class="card-footer">
+                        <strong class="text-warning">Visionar los arrendamientos registradas</strong>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 center" id="VerTabla3">
+            <a href="#" onclick="VerTabla(3)" id="verTabla2-3" style="display: none; width: 100%;">
+                <div class="card border border-dark shadow rounded m-7" style="height: 400px;
+                background-image: url('{{ asset('assets/images/alquiler/controlhorario.jpg') }}');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                ">
+                    <div class="card-header">
+                        <h3 align="right" class="text-warning" >AGENDA Y CONTROL</h3>
+                    </div>
+                    <div class="card-body p-3 mb-5 ">
+                    </div>
+                    <div class="card-footer">
+                        <strong class="text-warning">Gestionar el Control, arrendamientos, tiempo, horarios y agendas a Visualizar en la App.</strong>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    
+
+    <!--<div class="row justify-content-left">
       <div class="col-md-6">
         <div id="tablaAlquiler" class="card rounded card-tabla shadow bg-white rounded" style="display: none;border: 1px solid #f6f6f7!important;
             border-color: #CB8C4D !important;">
@@ -413,13 +1235,7 @@
         <h1 align="center" style="font: 30px Arial, sans-serif;">Datos de la instalación</h1>  
         <div class="card shadow border border-success">
           <div class="card-body" align="center">
-            <!-- <div class="row justify-content-center">
-              <div class="col-md-12">
-                <label>¿Donde se ubicará el negocio?</label>
-                <select class="form-control select2" >
-                </select>
-              </div>
-            </div> -->
+            
             <br>
             <div class="row justify-content-center">
               <div class="col-md-6">
@@ -451,13 +1267,13 @@
             </div>
             <div class="float-right">
               <a class="btn btn-success text-white" style="border-radius: 30% !important;" onclick="seccionHorario()">
-                <!-- <img src="{{ asset('assets/images/check.png') }}" style="width: 10%; height: 10%; float: right;"> -->
+               
                 Listo
               </a>
             </div>
           </div>
         </div>
-      </div>
+      <</div>
       <div class="seccionHorarioNegocio" style="display: none;">
         <h1 align="center" style="font: 30px Arial, sans-serif;">¿En qué Horario Operará la Instalación?</h1>
         <div class="card shadow border border-primary">
@@ -493,8 +1309,7 @@
             </div>
             <div class="float-right">
               <a class="btn btn-success text-white" style="border-radius: 30% !important;" onclick="seccionPago()">
-                <!-- <img src="{{ asset('assets/images/check.png') }}" style="width: 10%; height: 10%; float: right;"> -->
-                Listo
+               
               </a>
             </div>
           </div>
@@ -562,12 +1377,82 @@
       <div class="float-right">
         <button class="btn btn-success" style="display: none;">Agregar</button>
       </div>
-    </form>
+    </form>-->
 
 
 @endsection
 
 <script type="text/javascript">
+  function VerTabla(opcion) {
+      $('#tituloP').hide();
+      $('#tituloP1').hide();
+      $('#tituloP2').hide();
+      $('#tituloP3').hide();
+             
+      $('#VerTabla1').hide();
+      $('#VerTabla2').hide();
+      $('#VerTabla3').hide();
+
+      if (opcion == 1) {
+          $("#tablaArriendos").fadeOut("slow",
+              function() {
+                  $(this).hide();
+                  $("#tablaControl").fadeOut("slow");
+                  $("#tablaInstalaciones")
+                      .css('opacity', 0)
+                      .slideDown('slow')
+                      .animate(
+                          { opacity: 1 },
+                          { queue: false, duration: 'slow' }
+                      );
+                  $('#tituloP1').fadeIn(300);
+                  $('#VerTabla2').show();
+                  $('#VerTabla2').removeClass("col-md-4").addClass("col-md-6");
+                  $('#VerTabla3').show();
+                  $('#VerTabla3').removeClass("col-md-4").addClass("col-md-6");
+              });
+
+
+      }else if(opcion == 2){
+          $("#tablaInstalaciones").fadeOut("slow",
+              function() {
+                  $(this).hide();
+                  $("#tablaControl").fadeOut("slow");
+                  $("#tablaArriendos")
+                      .css('opacity', 0)
+                      .slideDown('slow')
+                      .animate(
+                          { opacity: 1 },
+                          { queue: false, duration: 'slow' }
+                      );
+                  $('#tituloP2').fadeIn(300);
+              });
+
+          $('#VerTabla1').show();
+          $('#VerTabla1').removeClass("col-md-4").addClass("col-md-6");
+          $('#VerTabla3').show();
+          $('#VerTabla3').removeClass("col-md-4").addClass("col-md-6");
+      }else{
+          $("#tablaInstalaciones").fadeOut("slow",
+              function() {
+                  $(this).hide();
+                  $("#tablaArriendos").fadeOut("slow");
+                  $("#tablaControl")
+                      .css('opacity', 0)
+                      .slideDown('slow')
+                      .animate(
+                          { opacity: 1 },
+                          { queue: false, duration: 'slow' }
+                      );
+                  $('#tituloP3').fadeIn(300);
+              });
+          $('#tituloP3').show();
+          $('#VerTabla1').show();
+          $('#VerTabla1').removeClass("col-md-4").addClass("col-md-6");
+          $('#VerTabla2').show();
+          $('#VerTabla2').removeClass("col-md-4").addClass("col-md-6");
+      }
+  }
   function NuevoAlquiler() {
     $('#verTabla3-2').hide();
     $('#verTabla3-3').hide();
