@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contabilidad;
 use Illuminate\Http\Request;
+Use \Carbon\Carbon;
 
 class ContabilidadController extends Controller
 {
@@ -14,16 +15,16 @@ class ContabilidadController extends Controller
      */
     public function index()
     {
-        $mes = date('n');
         $consulta_saldo = Contabilidad::all()->count();
         //dd($consulta_saldo);
         if($consulta_saldo==0){
             $saldo = 0;
         } else {
-            $saldo = Contabilidad::latest('saldo')->first();
+            $consulta_saldo = Contabilidad::latest('saldo')->first();
+            $saldo = $consulta_saldo->saldo;
         }
         //dd($saldo);
-        $contabilidad = Contabilidad::where('id_mes',$mes)->orderBy('id','desc')->get();
+        $contabilidad = Contabilidad::where('id_mes',date('n'))->orderBy('id','desc')->get();
         return View('contabilidad.index', compact('contabilidad','saldo'));
     }
 
@@ -34,41 +35,33 @@ class ContabilidadController extends Controller
      */
     public function create(Request $request)
     {
-        $mes = date('n');
-        $hoy = date('Y-m-d');
+        //CONSULTA DE SALDO
         $consulta_saldo = Contabilidad::all()->count();
-        //dd($consulta_saldo);
         if($consulta_saldo==0){
             $saldo = 0;
         } else {
-            $saldo = Contabilidad::latest('saldo')->first();
+            $consulta_saldo = Contabilidad::latest('saldo')->first();
+            $saldo = $consulta_saldo->saldo;
         }
+        //CONSULTA DE MOVIMIENTOS DE LA FECHA DE HOY
+        $contabilidad = Contabilidad::whereDate('created_at', date('Y-m-d'))->orderBy('id','desc')->get();
 
-        $contabilidad = Contabilidad::where('created_at',$hoy)->orderBy('id','desc')->get();
-        //dd($request->all());
+        // FILTRO DE BUSQUEDA
         if ($request->filtro=="7dias") {
-            $contabilidad = Contabilidad::whereDate('created_at', now()->subDays(7))->get();
+            $contabilidad  = Contabilidad::whereBetween('created_at',[now()->subDays(7)->format('Y-m-d'),now()->addDays(1)->format('Y-m-d')])->orderBy('id','desc')->get();
         } else if($request->filtro=="30dias") {
-            $contabilidad = Contabilidad::whereDate('created_at', now()->subDays(30))->get();                
+            $contabilidad  = Contabilidad::whereBetween('created_at',[now()->subDays(30)->format('Y-m-d'),now()->addDays(1)->format('Y-m-d')])->orderBy('id','desc')->get();
         } else if($request->filtro=="rango_fecha") {
             //dd($request->all());
             if($request->fecha_desde > $request->fecha_hasta) {
-                toastr()->error('La fecha de inicio no puede ser mayor a fecha final !!', 'Vuelva a ingresar los datos', [
-                'timeOut' => 10000,
-                'progressBar' => true,
-                'showDuration'=> 300,
-                ]);
+                toastr()->error('La fecha de inicio no puede ser mayor a fecha final !!', 'Vuelva a ingresar los datos');
                 return redirect()->back();
             }
             $contabilidad  = Contabilidad::whereBetween('created_at',[$request->fecha_desde,$request->fecha_hasta])->get();
             $contabilidad1  = Contabilidad::whereBetween('created_at',[$request->fecha_desde,$request->fecha_hasta])->count();
             //dd($contabilidad);
             if($contabilidad1==0) {
-                toastr()->error('No se encontraron datos en las fechas seleccionadas !!', 'No hay datos', [
-                'timeOut' => 10000,
-                'progressBar' => true,
-                'showDuration'=> 300,
-                ]);
+                toastr()->error('No se encontraron datos en las fechas seleccionadas !!', 'No hay datos');
                 return redirect()->back();
             }
         } elseif($request->filtro=="meses") {
@@ -87,12 +80,8 @@ class ContabilidadController extends Controller
     public function store(Request $request)
     {
         $saldo = Contabilidad::latest('saldo')->first();
-        if ($request->egreso>$saldo) {
-            toastr()->error('El monto de egreso es mayor al saldo disponible !!', 'Saldo Insuficiente', [
-            'timeOut' => 10000,
-            'progressBar' => true,
-            'showDuration'=> 300,
-            ]);
+        if ($request->egreso > $saldo->saldo) {
+            toastr()->error('El monto de egreso es mayor al saldo disponible !!', 'Saldo Insuficiente');
             return redirect()->back();
         } else {
             # code...

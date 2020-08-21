@@ -57,11 +57,7 @@
                                             <strong>Saldo Disponible</strong>
                                             <button class="btn btn-success btn-rounded btn-block">
                                                 <strong class="text-dark">
-                                                    @if($saldo==0)
-                                                        0 USD
-                                                    @else
-                                                        {{$saldo->saldo}} USD
-                                                    @endif
+                                                    {!! $saldo !!} USD
                                                 </strong>
                                             </button>
                                         </div>
@@ -109,11 +105,11 @@
                             <tbody>
                                 @foreach($contabilidad as $key)
                                 <tr>
-                                    <td>{{$key->created_at}}</td>
-                                    <td>{{$key->descripcion}}</td>
-                                    <td>{{$key->ingreso}}</td>
-                                    <td>{{$key->egreso}}</td>
-                                    <td>{{$key->saldo}}</td>
+                                    <th>{{$key->created_at}}</th>
+                                    <th>{{$key->descripcion}}</th>
+                                    <th>{{$key->ingreso}}</th>
+                                    <th>{{$key->egreso}}</th>
+                                    <th>{{$key->saldo}}</th>
                                 </tr>
                                 @endforeach
                             </tbody>

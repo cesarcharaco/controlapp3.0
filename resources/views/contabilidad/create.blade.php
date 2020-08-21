@@ -114,11 +114,7 @@
                                             <strong>Saldo Disponible a la fecha @php echo date('d/m/Y'); @endphp</strong>
                                             <button class="btn btn-success btn-rounded btn-block">
                                                 <strong class="text-dark">
-                                                    @if($saldo==0)
-                                                        0 USD
-                                                    @else
-                                                        {{$saldo->saldo}} USD
-                                                    @endif
+                                                    {!! $saldo !!} USD
                                                 </strong>
                                             </button>
                                         </div>
@@ -142,7 +138,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title mt-0 mb-3" align="center">Balance General (Contabilidad) 
+                        <h4 class="header-title mt-0 mb-3" align="center">Balance General del día (Contabilidad) 
                             <i class='uil uil-comment-exclamation' data-toggle="tooltip" data-placement="right" data-original-title="Aviso: Balance del mes en curso"></i>
                         </h4>
                         <table id="selection-datatable" class="table dt-responsive nowrap table-bordered" style="width: 100%;">
