@@ -12,6 +12,6 @@ class PagosAnuncios extends Model
 
 	public function planes_anuncio()
 	{
-		return $this->belongsTo('App\PlanesAnuncios','id_planesA');
+		return $this->belongsTo('App\PlanesAnuncios','id_planesA','id');
 	}
 }

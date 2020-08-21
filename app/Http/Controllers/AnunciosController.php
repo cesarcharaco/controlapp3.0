@@ -14,6 +14,7 @@ use App\PlanesPago;
 use App\Promociones;
 use App\PagosAnuncios;
 use DB;
+
 class AnunciosController extends Controller
 {
     /**
@@ -43,8 +44,9 @@ class AnunciosController extends Controller
             $EmpresasAnuncios=EmpresasAnuncios::all();
             $EmpresasAnuncios2=EmpresasAnuncios::where('id', '!=', 0)->groupBy('id_anuncios')->get();
             $planesPago=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->get();
+            $pagosAnuncios=PagosAnuncios::where('id','<>',0)->orderby('id','DESC')->get();
 
-            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios','planesPago','promociones','EmpresasAnuncios2'));
+            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios','planesPago','promociones','EmpresasAnuncios2','pagosAnuncios'));
         }else{
             toastr()->warning('no puede acceder!!', 'ACCESO DENEGADO');
             return redirect()->back();
@@ -351,7 +353,7 @@ class AnunciosController extends Controller
         $empresasA->fecha_termino = $fecha_termino;
 
         $PagosAnuncios=PagosAnuncios::where('id_planesA',$empresasA->id)->first();
-        $PagosAnuncios->referencia =$request->referencia;
+        $PagosAnuncios->referencia =$request->referencia_e;
         $PagosAnuncios->save();
 
 
@@ -393,7 +395,7 @@ class AnunciosController extends Controller
         }
 
        $PagosAnuncios=\DB::table('pagos_anuncios')->insert([
-            'referencia'    => $PagosAnuncios->referencia,
+            'referencia'    => $request->referencia,
             'monto'         => $monto,
             'id_planesA'    => $planesAnuncios->id
         ]);
