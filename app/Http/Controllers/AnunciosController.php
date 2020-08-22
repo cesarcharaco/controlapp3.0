@@ -41,6 +41,7 @@ class AnunciosController extends Controller
             $empresas = Empresas::all();
             $users_admin = UsersAdmin::all();
             $anuncios=Anuncios::all();
+            // $anunActivos
             $EmpresasAnuncios=EmpresasAnuncios::all();
             $EmpresasAnuncios2=EmpresasAnuncios::where('id', '!=', 0)->groupBy('id_anuncios')->get();
             $planesPago=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->get();
@@ -154,11 +155,17 @@ class AnunciosController extends Controller
             $adminAnuncios->fecha_termino   =$fecha_termino;
             $adminAnuncios->save();
 
-            $PagosAnuncios=\DB::table('pagos_anuncios')->insert([
-                'referencia'    => $request->referencia,
-                'monto'         => $monto,
-                'id_planesA'    => $adminAnuncios->id
-            ]);
+            $PagosAnuncios=new PagosAnuncios();
+            $PagosAnuncios->referencia  = $request->referencia;
+            $PagosAnuncios->monto       = $monto;
+            $PagosAnuncios->id_planesA  = $adminAnuncios->id;
+            $PagosAnuncios->save();
+
+            // $PagosAnuncios=\DB::table('pagos_anuncios')->insert([
+            //     'referencia'    => $request->referencia,
+            //     'monto'         => $monto,
+            //     'id_planesA'    => $adminAnuncios->id
+            // ]);
 
 
             
@@ -352,7 +359,7 @@ class AnunciosController extends Controller
         $empresasA->id_planP = $request->planP;
         $empresasA->fecha_termino = $fecha_termino;
 
-        $PagosAnuncios=PagosAnuncios::where('id_planesA',$empresasA->id)->first();
+        $PagosAnuncios=PagosAnuncios::find($request->id_pagos_anucios);
         $PagosAnuncios->referencia =$request->referencia_e;
         $PagosAnuncios->save();
 

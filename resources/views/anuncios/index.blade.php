@@ -563,7 +563,38 @@
         <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white">
             <div class="card-body">
                 <div class="mb-3" align="right">
-                    <button class="btn btn-warning">Estadísticas</button>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <table class="tablaControl table table-striped tabla-estilo">
+                                <thead>
+                                    <tr>
+                                        <td colspan="2">Estado de anuncios</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activos</td>
+                                        <td>Inactivos</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $activos=1;
+                                        $inactivos=1;
+                                    ?>
+                                    @foreach($anuncios as $key)
+                                        <tr>
+                                            <td>
+                                                @if($key->status == 'Activo')
+                                                    {{$activos++}}
+                                                @else
+                                                    {{$inactivos++}}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach()
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-6">
@@ -621,7 +652,11 @@
                                                             @endif
                                                         @endforeach()
                                                     </span>
-                                                    <small style="color: grey; float: right;border-radius: 30px;">Hace {{(strtotime($fecha1)-strtotime($fecha3))/86400}} Dias</small>
+                                                    @if((strtotime($fecha1)-strtotime($fecha3))/86400 == 0 )
+                                                         <small style="color: grey; float: right;border-radius: 30px;">Hoy</small>
+                                                    @else
+                                                        <small style="color: grey; float: right;border-radius: 30px;">Hace {{(strtotime($fecha1)-strtotime($fecha3))/86400}} Dias</small>
+                                                    @endif
                                                     <div class="float-right">
                                                     </div>
                                                 </div>
@@ -762,7 +797,7 @@
                                                                 @if($key3->id_planesA == $key2->id)
                                                                     <tr>
                                                                         <td>
-                                                                            <button type="button" class="btn btn-warning rounded btn-sm" onclick="editarPagoPublcidad('{{$key2->id}}','{{$key2->planP->id}}','{{$key3->referencia}}')" style="border-radius: 30px !important;">
+                                                                            <button type="button" class="btn btn-warning rounded btn-sm" onclick="editarPagoPublcidad('{{$key2->id}}','{{$key2->planP->id}}','{{$key3->referencia}}','{{$key3->id}}')" style="border-radius: 30px !important;">
                                                                                 <span class="PalabraEditarPago ">Editar</span>
                                                                                 <center>
                                                                                     <span class="PalabraEditarPago2 ">
@@ -1563,7 +1598,7 @@
                     <center>
                         <div class="form-group">
                             <label>Referencia Actual</label>
-                            <input type="text" name="referencia" id="referenciaActual" class="form-control" required disabled>
+                            <input type="text" name="referencia" id="referenciaActual" class="form-control" required disabled="disabled">
                         </div>
                         <div class="form-group">
                             <label>Nueva Referencia</label>
@@ -1592,6 +1627,7 @@
                         </div>
                     </center>
                     <div class="float-right">
+                        <input type="hidden" name="id_pagos_anucios" id="id_pagos_anucios">
                         <input type="hidden" name="id" id="id_orden_pago">
                         <input type="hidden" name="planP" id="id_planEP">
                         <button type="submit" class="btn btn-success" >Actualizar</button>
@@ -2271,12 +2307,13 @@
         $('#id_empresa').val(id);
         $('#eliminarEmpresa').modal('show');
     }
-    function editarPagoPublcidad(id_PlanesA,id_planP,referencia) {
+    function editarPagoPublcidad(id_PlanesA,id_planP,referencia,id_pagos_anucios) {
         $('#editarOAnuncio').modal('show');
         $('#customRadio1-'+id_planP).prop('checked', true);
         $('#referenciaActual').val(referencia);
         $('#id_orden_pago').val(id_PlanesA);
         $('#id_planEP').val(id_planP);
+        $('#id_pagos_anucios').val(id_pagos_anucios);
 
         $.get("publicidad/"+id+"/editar_pago",function (data) {
         })
