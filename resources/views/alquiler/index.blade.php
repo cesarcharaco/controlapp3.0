@@ -469,7 +469,7 @@
     </div>
 
 
-    <div id="tablaArriendos" style="display: block;">
+    <div id="tablaArriendos" style="display: none;">
         <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
             <div class="row justify-content-center">
                 <div class="col-md-12">
