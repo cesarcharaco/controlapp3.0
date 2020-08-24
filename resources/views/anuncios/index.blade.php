@@ -566,7 +566,7 @@
         </div>
     </div>
 
-    <div id="tablaControl" style="display: block;">
+    <div id="tablaControl" style="display: none;">
         <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white">
             <div class="card-body">
                 <div class="mb-3" align="right">
