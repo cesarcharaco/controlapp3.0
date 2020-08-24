@@ -1880,9 +1880,9 @@
 @endsection
 
 <script type="text/javascript">
-
     
-
+    
+    
 
 
     function select(accion, id, idem, tipo, status) {

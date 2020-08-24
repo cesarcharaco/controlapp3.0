@@ -549,9 +549,9 @@
                                                 <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="VerAdminAsignado('{{$key->id}}')" class="btn btn-info btn-sm">
                                                     a
                                                 </a>
-                                                <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
+                                                <!-- <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EditarAnuncio('{{$key->id}}','{{$key->titulo}}','{{$key->descripcion}}','{{$key->url_img}}','{{$key->link}}')" class="btn btn-warning btn-sm">
                                                     e
-                                                </a>
+                                                </a> -->
                                                 <a href="#" style="border-radius: 50px; width: 28px; height: 28px;" onclick="EliminarAnuncio('{{$key->id}}')" class="btn btn-danger btn-sm">
                                                     x
                                                 </a>
