@@ -631,10 +631,10 @@
                                                                 @php $total=0 @endphp
                                                                 {{$anunAnioActual}}
                                                                 @php $total=$anunAnioActual-$anunAnioAnterior @endphp
-                                                                @if($total>0)
+                                                                @if($total>=0)
                                                                     <span class="text-success">(+{{$total}})</span>
                                                                 @else
-                                                                    <span class="text-danger">(+{{$total}})</span>
+                                                                    <span class="text-danger">(-{{$total}})</span>
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -644,7 +644,7 @@
                                                                 @if($total>0)
                                                                     <span class="text-success">(+{{$total}})</span>
                                                                 @else
-                                                                    <span class="text-danger">(+{{$total}})</span>
+                                                                    <span class="text-danger">(-{{$total}})</span>
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -682,20 +682,20 @@
                                                                 @php $total=0 @endphp
                                                                 {{$anunAnioActualMonto}}$
                                                                 @php $total=$anunAnioActualMonto-$anunAnioAnteriorMonto @endphp
-                                                                @if($total>0)
+                                                                @if($total>=0)
                                                                     <span class="text-success">(+{{$total}}$)</span>
                                                                 @else
-                                                                    <span class="text-danger">(+{{$total}}$)</span>
+                                                                    <span class="text-danger">(-{{$total}}$)</span>
                                                                 @endif
                                                             </td>
                                                             <td>
                                                                 @php $total=0 @endphp
                                                                 {{$anunAnioAnteriorMonto}}$
                                                                 @php $total=$anunAnioAnteriorMonto-$anunAnioAntePasadoMonto @endphp
-                                                                @if($total>0)
+                                                                @if($total>=0)
                                                                     <span class="text-success">(+{{$total}}$)</span>
                                                                 @else
-                                                                    <span class="text-danger">(+{{$total}}$)</span>
+                                                                    <span class="text-danger">(-{{$total}}$)</span>
                                                                 @endif
                                                             </td>
                                                             <td>
