@@ -44,8 +44,8 @@ class AnunciosController extends Controller
             $users_admin = UsersAdmin::all();
             $anuncios=Anuncios::all();
 
-            $anunActivos=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->count();
-            $anunInactivos=PlanesPago::where('tipo','Anuncio')->where('status','Inactivo')->count();
+            $anunActivos=PlanesAnuncios::where('status','Activo')->count();
+            $anunInactivos=PlanesAnuncios::where('status','Inactivo')->count();
             $anunAnio=PlanesAnuncios::all();
             $pagosAnunciosMontos=PagosAnuncios::all();
 
