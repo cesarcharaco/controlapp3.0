@@ -26,6 +26,16 @@
 <script src="{{ asset('assets/js/data-table/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/js/data-table/four_button.js') }}"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js" integrity="sha512-G8JE1Xbr0egZE5gNGyUm1fF764iHVfRXshIoUWCTPAbKkkItp/6qal5YAHXrxEu4HNfPTQs6HOu3D5vCGS1j3w==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" integrity="sha512-QEiC894KVkN9Tsoi6+mKf8HaCLJvyA6QIRzY5KrfINXYuP9NxdIkRQhGq3BZi0J4I7V5SidGM3XUQ5wFiMDuWg==" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 <!-- <script src="{{ asset('assets/js/data-table/data-table-act.js') }}"></script> -->
 
 
@@ -35,6 +45,44 @@
 
 
 <script type="text/javascript">
+	var f = new Date();
+    var a=f.getFullYear();
+
+    var anunAnioActualMonto= $('#anunAnioActualMonto').val();
+    var anunAnioAnteriorMonto= $('#anunAnioAnteriorMonto').val();
+    var anunAnioAntePasadoMonto= $('#anunAnioAntePasadoMonto').val();
+
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: [a+' - '+anunAnioActualMonto+'$', a-1+' - '+anunAnioAnteriorMonto+'$', a-2+' - '+anunAnioAntePasadoMonto+'$'],
+	        datasets: [{
+	            label: 'Ingresos obtenidos por año',
+	            data: [anunAnioActualMonto, anunAnioAnteriorMonto, anunAnioAntePasadoMonto],
+	            backgroundColor: [
+	                'rgba(255, 99, 132, 0.2)',
+	                'rgba(54, 162, 235, 0.2)',
+	                'rgba(255, 206, 86, 0.2)'
+	            ],
+	            borderColor: [
+	                'rgba(255, 99, 132, 1)',
+	                'rgba(54, 162, 235, 1)',
+	                'rgba(255, 206, 86, 1)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero: true
+	                }
+	            }]
+	        }
+	    }
+	});
 	function VerCards() {
         $(function () {
             setTimeout( function(){
@@ -69,8 +117,6 @@
     }
 	$(document).ready(VerCards);
 	var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',''];
-	var f = new Date();
-    var a=f.getFullYear();
     function mostrar_mes(num) {
         switch (num) {
             case 1:

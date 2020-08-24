@@ -13,6 +13,7 @@ use App\EmpresasAnuncios;
 use App\PlanesPago;
 use App\Promociones;
 use App\PagosAnuncios;
+use App\PlanesAnuncios;
 use DB;
 
 class AnunciosController extends Controller
@@ -24,10 +25,11 @@ class AnunciosController extends Controller
      */
     public function index()
     {
+        $fecha1 =   Date('Y-m-d');
+        $anio=Date('Y');
         $anunciosStatus=EmpresasAnuncios::where('status','Activo')->get();
         if (!is_null($anunciosStatus)) {
             for ($i=0; $i < count($anunciosStatus); $i++) { 
-                $fecha1 =   Date('Y-m-d');
                 $fecha2 =   Date($anunciosStatus[$i]->fecha_termino);
 
                 if($fecha1 > $fecha2){
@@ -41,13 +43,59 @@ class AnunciosController extends Controller
             $empresas = Empresas::all();
             $users_admin = UsersAdmin::all();
             $anuncios=Anuncios::all();
-            // $anunActivos
+
+            $anunActivos=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->count();
+            $anunInactivos=PlanesPago::where('tipo','Anuncio')->where('status','Inactivo')->count();
+            $anunAnio=PlanesAnuncios::all();
+            $pagosAnunciosMontos=PagosAnuncios::all();
+
+            $anunAnioActual=0;
+            $anunAnioAnterior=0;
+            $anunAnioAntePasado=0;
+
+            $anunAnioActualMonto=0;
+            $anunAnioAnteriorMonto=0;
+            $anunAnioAntePasadoMonto=0;
+
+            for ($i=0; $i < count($anunAnio); $i++) { 
+                for ($j=0; $j < count($pagosAnunciosMontos); $j++) { 
+                    if ($anunAnio[$i]->created_at->year == $anio) {
+                        $anunAnioActual++;
+                        if ($pagosAnunciosMontos[$j]->id_planesA == $anunAnio[$i]->id) {
+                            $anunAnioActualMonto=$anunAnioActualMonto+$pagosAnunciosMontos[$j]->monto;
+                        }
+                        // $anunAnioActualMonto=$anunAnioActualMonto+$anunAnio[$i]->created_at
+                    }else if($anunAnio[$i]->created_at->year == $anio-1){
+                        $anunAnioAnterior++;
+                        if ($pagosAnunciosMontos[$j]->id_planesA == $anunAnio[$i]->id) {
+                            $anunAnioAnteriorMonto=$anunAnioAnteriorMonto+$pagosAnunciosMontos[$j]->monto;
+                        }
+                        // $anunAnioAnteriorMonto=$anunAnioAnteriorMonto+$anunAnio[$i]->created_at
+                    }
+                    else if($anunAnio[$i]->created_at->year == $anio-2){
+                        $anunAnioAntePasado++;
+                        if ($pagosAnunciosMontos[$j]->id_planesA == $anunAnio[$i]->id) {
+                            $anunAnioAntePasadoMonto=$anunAnioAntePasadoMonto+$pagosAnunciosMontos[$j]->monto;
+                        }
+                        // $anunAnioAntePasadoMonto=$anunAnioAntePasadoMonto+$anunAnio[$id]->created_at
+                    }else{
+
+                    }
+                }
+            }
+
+
+            // dd($anunAnioActualMonto, $anunAnioAnteriorMonto,$anunAnioAntePasadoMonto);
+            // $anunAnioAnterior=
+
+
+
             $EmpresasAnuncios=EmpresasAnuncios::all();
             $EmpresasAnuncios2=EmpresasAnuncios::where('id', '!=', 0)->groupBy('id_anuncios')->get();
             $planesPago=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->get();
             $pagosAnuncios=PagosAnuncios::where('id','<>',0)->orderby('id','DESC')->get();
 
-            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios','planesPago','promociones','EmpresasAnuncios2','pagosAnuncios'));
+            return view('anuncios.index',compact('anuncios','users_admin','empresas','EmpresasAnuncios','planesPago','promociones','EmpresasAnuncios2','pagosAnuncios','anunActivos','anunInactivos','anunAnioActual','anunAnioAnterior','anunAnioAntePasado','anunAnioActualMonto','anunAnioAnteriorMonto','anunAnioAntePasadoMonto'));
         }else{
             toastr()->warning('no puede acceder!!', 'ACCESO DENEGADO');
             return redirect()->back();

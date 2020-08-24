@@ -8,7 +8,7 @@ class PlanesAnuncios extends Model
 {
     protected $table='planes_has_anuncios';
 
-	protected $fillable=['id_anuncios','id_planP','fecha_orden','fecha_termino','status'];
+	protected $fillable=['id','id_anuncios','id_planP','fecha_orden','fecha_termino','status'];
 
 	public function pagos_anuncios()
 	{

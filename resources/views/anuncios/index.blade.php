@@ -98,6 +98,13 @@
     </style>
 <div class="container">
     <input type="hidden" id="colorView" value="#25c2e3 !important">
+
+    <input type="hidden" id="anunAnioActualMonto" value="{{$anunAnioActualMonto}}">
+    <input type="hidden" id="anunAnioAnteriorMonto" value="{{$anunAnioAnteriorMonto}}">
+    <input type="hidden" id="anunAnioAntePasadoMonto" value="{{$anunAnioAntePasadoMonto}}">
+    
+
+
     <div class="row page-title" id="tituloP">
         <div class="col-md-12">
             <nav aria-label="breadcrumb" class="float-right mt-1">
@@ -559,272 +566,378 @@
         </div>
     </div>
 
-    <div id="tablaControl" style="display: none;">
+    <div id="tablaControl" style="display: block;">
         <div class="card border border-danger card-tabla shadow p-3 mb-5 bg-white">
             <div class="card-body">
                 <div class="mb-3" align="right">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <table class="tablaControl table table-striped tabla-estilo">
-                                <thead>
-                                    <tr>
-                                        <td colspan="2">Estado de anuncios</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Activos</td>
-                                        <td>Inactivos</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $activos=1;
-                                        $inactivos=1;
-                                    ?>
-                                    @foreach($anuncios as $key)
-                                        <tr>
-                                            <td>
-                                                @if($key->status == 'Activo')
-                                                    {{$activos++}}
-                                                @else
-                                                    {{$inactivos++}}
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach()
-                                </tbody>
-                            </table>
+                    <button class="btn btn-warning" id="vistaEstadisticas1" onclick="vistaEstadisticas(1)" style="border-radius: 30px;">
+                        Ver Estadísticas
+                    </button>
+                    <button class="btn btn-success" id="vistaEstadisticas2" onclick="vistaEstadisticas(2)" style="border-radius: 30px; display: none;">
+                        Ver Anuncios
+                    </button>
+                </div>
+                <div class="controlEstadisticas" style="display: none;">
+                    <div class="mb-3" align="right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card shadow card-tabla border border-success">
+                                            <div class="card-body">
+                                                <table class="tablaControl table table-striped tabla-estilo">
+                                                    <thead>
+                                                        <tr align="center">
+                                                            <th colspan="2">Estado de anuncios</th>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <th align="center">Activos</th>
+                                                            <th align="center">Inactivos</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr align="center">
+                                                            <td>
+                                                                {{$anunActivos}}
+                                                            </td>
+                                                            <td>
+                                                                {{$anunInactivos}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card shadow card-tabla border border-success">
+                                            <div class="card-body">
+                                                <table class="tablaControl table table-striped tabla-estilo">
+                                                    <thead>
+                                                        <tr align="center">
+                                                            <th colspan="3">Nro. de Anuncios por año</th>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <th align="center">{{ date('Y') }}</th>
+                                                            <th align="center">{{ date('Y')-1 }}</th>
+                                                            <th align="center">{{ date('Y')-2 }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr align="center">
+                                                            <td>
+                                                                @php $total=0 @endphp
+                                                                {{$anunAnioActual}}
+                                                                @php $total=$anunAnioActual-$anunAnioAnterior @endphp
+                                                                @if($total>0)
+                                                                    <span class="text-success">(+{{$total}})</span>
+                                                                @else
+                                                                    <span class="text-danger">(+{{$total}})</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                @php $total=0 @endphp
+                                                                {{$anunAnioAnterior}}
+                                                                @php $total=$anunAnioAnterior-$anunAnioAntePasado @endphp
+                                                                @if($total>0)
+                                                                    <span class="text-success">(+{{$total}})</span>
+                                                                @else
+                                                                    <span class="text-danger">(+{{$total}})</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                {{$anunAnioAntePasado}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card shadow card-tabla border border-success">
+                                            <div class="card-body">
+                                                <canvas id="myChart"></canvas>
+                                                <table class="tablaControl table table-striped tabla-estilo">
+                                                    <thead>
+                                                        <tr align="center">
+                                                            <th colspan="3">Total de ingresos</th>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <th align="center">{{ date('Y') }}</th>
+                                                            <th align="center">{{ date('Y')-1 }}</th>
+                                                            <th align="center">{{ date('Y')-2 }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr align="center">
+                                                            <td>
+
+                                                                @php $total=0 @endphp
+                                                                {{$anunAnioActualMonto}}$
+                                                                @php $total=$anunAnioActualMonto-$anunAnioAnteriorMonto @endphp
+                                                                @if($total>0)
+                                                                    <span class="text-success">(+{{$total}}$)</span>
+                                                                @else
+                                                                    <span class="text-danger">(+{{$total}}$)</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                @php $total=0 @endphp
+                                                                {{$anunAnioAnteriorMonto}}$
+                                                                @php $total=$anunAnioAnteriorMonto-$anunAnioAntePasadoMonto @endphp
+                                                                @if($total>0)
+                                                                    <span class="text-success">(+{{$total}}$)</span>
+                                                                @else
+                                                                    <span class="text-danger">(+{{$total}}$)</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                {{$anunAnioAntePasadoMonto}}$
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="overflow-auto" style="height: 350px !important;">
-                            @foreach($anuncios as $key)
-                                @foreach($EmpresasAnuncios2 as $key2)
-                                    @if($key->id == $key2->id_anuncios)
-                                        <a href="#" onclick="verInfoControl('{{$key->id}}',1,'{{$key2->status}}')">
-                                        @if($key2->status == 'Activo')
-                                            <div class="mb-3 card border border border-success" id="tablaCC{{$key->id}}">
-                                        @else
-                                            <div class="mb-3 card border border border-danger" id="tablaCC{{$key->id}}">
-                                        @endif
-                                            <?php 
-                                                $fecha1 =   Date('Y-m-d');
-                                                $fecha2 =   Date($key2->fecha_termino);
-                                                $fecha3 =   Date($key2->fecha_orden);
+                <div class="controlAnuncios">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="overflow-auto" style="height: 350px !important;">
+                                @foreach($anuncios as $key)
+                                    @foreach($EmpresasAnuncios2 as $key2)
+                                        @if($key->id == $key2->id_anuncios)
+                                            <a href="#" onclick="verInfoControl('{{$key->id}}',1,'{{$key2->status}}')">
+                                            @if($key2->status == 'Activo')
+                                                <div class="mb-3 card border border border-success" id="tablaCC{{$key->id}}">
+                                            @else
+                                                <div class="mb-3 card border border border-danger" id="tablaCC{{$key->id}}">
+                                            @endif
+                                                <?php 
+                                                    $fecha1 =   Date('Y-m-d');
+                                                    $fecha2 =   Date($key2->fecha_termino);
+                                                    $fecha3 =   Date($key2->fecha_orden);
 
-                                                $dias = (strtotime($fecha2)-strtotime($fecha3))/86400;
-                                                $dias = abs($dias);
-                                                $dias = floor($dias);
-
-                                                $dias2 = (strtotime($fecha2)-strtotime($fecha1))/86400;
-                                                $dias2 = abs($dias2);
-                                                $dias2 = floor($dias2);
-
-                                                if($fecha1 > $fecha2){
-                                                    $dias   = 0;
-                                                    $dias2  = 0;
-                                                    $total  = 0;
-                                                }else{
+                                                    $dias = (strtotime($fecha2)-strtotime($fecha3))/86400;
                                                     $dias = abs($dias);
                                                     $dias = floor($dias);
 
-                                                    if ($dias2 != 0) {
-                                                        $total = ($dias2*100)/$dias;
+                                                    $dias2 = (strtotime($fecha2)-strtotime($fecha1))/86400;
+                                                    $dias2 = abs($dias2);
+                                                    $dias2 = floor($dias2);
+
+                                                    if($fecha1 > $fecha2){
+                                                        $dias   = 0;
+                                                        $dias2  = 0;
+                                                        $total  = 0;
                                                     }else{
-                                                        $total = 0;
+                                                        $dias = abs($dias);
+                                                        $dias = floor($dias);
+
+                                                        if ($dias2 != 0) {
+                                                            $total = ($dias2*100)/$dias;
+                                                        }else{
+                                                            $total = 0;
+                                                        }
                                                     }
-                                                }
-                                            ?>
-                                            <div class="card-body">
-                                                <div class="mb-3">
-                                                    
-                                                    @if($key2->status == 'Activo')
-                                                        <small style="border-radius: 30px;" class=" btn btn-success btn-sm disabled">{{$key2->status}}</small>
-                                                    @else
-                                                        <small style="border-radius: 30px;" class=" btn btn-danger btn-sm disabled">{{$key2->status}}</small>
-                                                    @endif
-                                                    <span class="mb-2 p-2" style="font-size: 40px;color: gray; font: 18px Arial, sans-serif;" align="left">
-                                                        {{$key->titulo}}
-                                                        @foreach($empresas as $key2)
-                                                            @if($key->id_empresa == $key2->id)
-                                                                <small> - {{$key2->nombre}}</small>
-                                                            @endif
-                                                        @endforeach()
-                                                    </span>
-                                                    @if((strtotime($fecha1)-strtotime($fecha3))/86400 == 0 )
-                                                         <small style="color: grey; float: right;border-radius: 30px;">Hoy</small>
-                                                    @else
-                                                        <small style="color: grey; float: right;border-radius: 30px;">Hace {{(strtotime($fecha1)-strtotime($fecha3))/86400}} Dias</small>
-                                                    @endif
-                                                    <div class="float-right">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        @if($key2->status == 'Activo')
-                                                            <div class="progress mb-2" style="width: 100%;">
-                                                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="{{$total}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total}}%"></div>
-                                                            </div>
-                                                        @else
-                                                            <div class="progress mb-2" style="width: 100%;">
-                                                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="{{$total}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total}}%"></div>
-                                                            </div>
-                                                        @endif
-                                                        <center><span class="mb-2" style="color: grey; font: 20px Arial, sans-serif;">{{$dias2}}</span> <small style="color: grey"> Dias Restantes</small></center>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="float-right">
-                                                            <img src="{{ asset($key->url_img) }}" class="shadow" style="width: 50px; height: 50px; border-radius: 35px !important;">
-                                                        </div>
+                                                ?>
+                                                <div class="card-body">
+                                                    <div class="mb-3">
                                                         
+                                                        @if($key2->status == 'Activo')
+                                                            <small style="border-radius: 30px;" class=" btn btn-success btn-sm disabled">{{$key2->status}}</small>
+                                                        @else
+                                                            <small style="border-radius: 30px;" class=" btn btn-danger btn-sm disabled">{{$key2->status}}</small>
+                                                        @endif
+                                                        <span class="mb-2 p-2" style="font-size: 40px;color: gray; font: 18px Arial, sans-serif;" align="left">
+                                                            {{$key->titulo}}
+                                                            @foreach($empresas as $key2)
+                                                                @if($key->id_empresa == $key2->id)
+                                                                    <small> - {{$key2->nombre}}</small>
+                                                                @endif
+                                                            @endforeach()
+                                                        </span>
+                                                        @if((strtotime($fecha1)-strtotime($fecha3))/86400 == 0 )
+                                                             <small style="color: grey; float: right;border-radius: 30px;">Hoy</small>
+                                                        @else
+                                                            <small style="color: grey; float: right;border-radius: 30px;">Hace {{(strtotime($fecha1)-strtotime($fecha3))/86400}} Dias</small>
+                                                        @endif
+                                                        <div class="float-right">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            @if($key2->status == 'Activo')
+                                                                <div class="progress mb-2" style="width: 100%;">
+                                                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="{{$total}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total}}%"></div>
+                                                                </div>
+                                                            @else
+                                                                <div class="progress mb-2" style="width: 100%;">
+                                                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="{{$total}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total}}%"></div>
+                                                                </div>
+                                                            @endif
+                                                            <center><span class="mb-2" style="color: grey; font: 20px Arial, sans-serif;">{{$dias2}}</span> <small style="color: grey"> Dias Restantes</small></center>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="float-right">
+                                                                <img src="{{ asset($key->url_img) }}" class="shadow" style="width: 50px; height: 50px; border-radius: 35px !important;">
+                                                            </div>
+                                                            
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                    @endif
+                                        </a>
+                                        @endif
+                                    @endforeach()
                                 @endforeach()
-                            @endforeach()
-                        </div> 
-                    </div>
-                    <div class="col-md-6">
-                        @foreach($anuncios as $key)
-                            @foreach($EmpresasAnuncios2 as $key2)
-                                @if($key->id == $key2->id_anuncios)
-                                        <div class="verDatosPagoA{{$key2->id}} VerDatosTodos" style="display: none">                                    
-                                            <div class="card border shadow" style="
-                                            background-image: url('{{ asset($key->url_img) }}');
-                                            background-position: center;
-                                            background-repeat: no-repeat;
-                                            background-size: cover;
-                                            display: none;">
-                                                <div class="card-header">
-                                                    <button type="button" class="btn btn-success rounded" onclick="verInfoControl('{{$key->id}}',2,'{{$key2->status}}')" style="border-radius: 30px !important; float: left !important;">
-                                                        <span class="PalabraEditarPago ">Regresar</span>
-                                                        <center>
-                                                            <span class="PalabraEditarPago2 ">
-                                                                <i data-feather="arrow-left" class="iconosMetaforas2"></i>
-                                                            </span>
-                                                        </center>
-                                                    </button>
-                                                    <div class="button-list float-right">
-
-                                                        <button type="button" class="btn btn-info rounded" onclick="RenovarPagoPublicidad('{{$key2->id_anuncios}}')" style="border-radius: 30px !important;">
-                                                            <span class="PalabraEditarPago ">Renovar</span>
+                            </div> 
+                        </div>
+                        <div class="col-md-6">
+                            @foreach($anuncios as $key)
+                                @foreach($EmpresasAnuncios2 as $key2)
+                                    @if($key->id == $key2->id_anuncios)
+                                            <div class="verDatosPagoA{{$key2->id}} VerDatosTodos" style="display: none">                                    
+                                                <div class="card border shadow" style="
+                                                background-image: url('{{ asset($key->url_img) }}');
+                                                background-position: center;
+                                                background-repeat: no-repeat;
+                                                background-size: cover;
+                                                display: none;">
+                                                    <div class="card-header">
+                                                        <button type="button" class="btn btn-success rounded" onclick="verInfoControl('{{$key->id}}',2,'{{$key2->status}}')" style="border-radius: 30px !important; float: left !important;">
+                                                            <span class="PalabraEditarPago ">Regresar</span>
                                                             <center>
                                                                 <span class="PalabraEditarPago2 ">
-                                                                    <i data-feather="dollar-sign" class="iconosMetaforas2"></i>
+                                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
                                                                 </span>
                                                             </center>
                                                         </button>
-                                                       <!--  <button type="button" class="btn btn-warning rounded" onclick="editarPagoPublcidad('{{$key2->id}}','{{$key2->planP->id}}',0)" style="border-radius: 30px !important;">
-                                                            <span class="PalabraEditarPago ">Editar</span>
-                                                            <center>
-                                                                <span class="PalabraEditarPago2 ">
-                                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
-                                                                </span>
-                                                            </center>
-                                                        </button> -->
-                                                       
-                                                        <!-- <button type="button" class="btn btn-danger rounded" onclick="diaNegocio(3)" style="border-radius: 30px !important;">
-                                                            <span class="PalabraEditarPago ">Eliminar</span>
-                                                            <center>
-                                                                <span class="PalabraEditarPago2 ">
-                                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
-                                                                </span>
-                                                            </center>
-                                                        </button> -->
+                                                        <div class="button-list float-right">
+
+                                                            <button type="button" class="btn btn-info rounded" onclick="RenovarPagoPublicidad('{{$key2->id_anuncios}}')" style="border-radius: 30px !important;">
+                                                                <span class="PalabraEditarPago ">Renovar</span>
+                                                                <center>
+                                                                    <span class="PalabraEditarPago2 ">
+                                                                        <i data-feather="dollar-sign" class="iconosMetaforas2"></i>
+                                                                    </span>
+                                                                </center>
+                                                            </button>
+                                                           <!--  <button type="button" class="btn btn-warning rounded" onclick="editarPagoPublcidad('{{$key2->id}}','{{$key2->planP->id}}',0)" style="border-radius: 30px !important;">
+                                                                <span class="PalabraEditarPago ">Editar</span>
+                                                                <center>
+                                                                    <span class="PalabraEditarPago2 ">
+                                                                        <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                                    </span>
+                                                                </center>
+                                                            </button> -->
+                                                           
+                                                            <!-- <button type="button" class="btn btn-danger rounded" onclick="diaNegocio(3)" style="border-radius: 30px !important;">
+                                                                <span class="PalabraEditarPago ">Eliminar</span>
+                                                                <center>
+                                                                    <span class="PalabraEditarPago2 ">
+                                                                        <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                                    </span>
+                                                                </center>
+                                                            </button> -->
+                                                        </div>
+                                                        <br>
+                                                        <br>
+
                                                     </div>
-                                                    <br>
-                                                    <br>
+                                                    <div onclick="verInfoControl('{{$key->id}}',2,'{{$key2->status}}')">
+                                                        <div class="card-body bg-white">
+                                                            <?php 
+                                                                $fecha1 =   Date('Y-m-d');
+                                                                $fecha2 =   Date($key2->fecha_termino);
+                                                                $fecha3 =   Date($key2->fecha_orden);
 
-                                                </div>
-                                                <div onclick="verInfoControl('{{$key->id}}',2,'{{$key2->status}}')">
-                                                    <div class="card-body bg-white">
-                                                        <?php 
-                                                            $fecha1 =   Date('Y-m-d');
-                                                            $fecha2 =   Date($key2->fecha_termino);
-                                                            $fecha3 =   Date($key2->fecha_orden);
-
-                                                            $dias = (strtotime($fecha2)-strtotime($fecha3))/86400;
-                                                            $dias = abs($dias);
-                                                            $dias = floor($dias);
-
-                                                            $dias2 = (strtotime($fecha2)-strtotime($fecha1))/86400;
-                                                            $dias2 = abs($dias2);
-                                                            $dias2 = floor($dias2);
-
-                                                            if($fecha1 > $fecha2){
-                                                                $dias   = 0;
-                                                                $dias2  = 0;
-                                                                $total  = 0;
-                                                            }else{
+                                                                $dias = (strtotime($fecha2)-strtotime($fecha3))/86400;
                                                                 $dias = abs($dias);
                                                                 $dias = floor($dias);
 
-                                                                if ($dias2 != 0) {
-                                                                    $total = ($dias2*100)/$dias;
+                                                                $dias2 = (strtotime($fecha2)-strtotime($fecha1))/86400;
+                                                                $dias2 = abs($dias2);
+                                                                $dias2 = floor($dias2);
+
+                                                                if($fecha1 > $fecha2){
+                                                                    $dias   = 0;
+                                                                    $dias2  = 0;
+                                                                    $total  = 0;
                                                                 }else{
-                                                                    $total = 0;
+                                                                    $dias = abs($dias);
+                                                                    $dias = floor($dias);
+
+                                                                    if ($dias2 != 0) {
+                                                                        $total = ($dias2*100)/$dias;
+                                                                    }else{
+                                                                        $total = 0;
+                                                                    }
                                                                 }
-                                                            }
-                                                        ?>
-                                                        <h3 style="">
-                                                            Fecha de orden: 
-                                                        </h3>
-                                                            <small>{{$key2->fecha_orden}}</small>
-                                                        <h3 style="">
-                                                            Término de la orden: 
-                                                        </h3>
-                                                            <small>{{$key2->fecha_termino}}</small>
-                                                        <h3 style="">
-                                                            Dias restantes: 
-                                                        </h3>
-                                                            <small>{{$dias}}</small>
+                                                            ?>
+                                                            <h3 style="">
+                                                                Fecha de orden: 
+                                                            </h3>
+                                                                <small>{{$key2->fecha_orden}}</small>
+                                                            <h3 style="">
+                                                                Término de la orden: 
+                                                            </h3>
+                                                                <small>{{$key2->fecha_termino}}</small>
+                                                            <h3 style="">
+                                                                Dias restantes: 
+                                                            </h3>
+                                                                <small>{{$dias}}</small>
 
 
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="bg-white">
-                                                    <div class="card-body">
-                                                        
-                                                        <h3>
-                                                            Referencias
-                                                        </h3>
-                                                        <table width="100%">
-                                                            @foreach($pagosAnuncios as $key3)
-                                                                @if($key3->id_planesA == $key2->id)
-                                                                    <tr>
-                                                                        <td>
-                                                                            <button type="button" class="btn btn-warning rounded btn-sm" onclick="editarPagoPublcidad('{{$key2->id}}','{{$key2->planP->id}}','{{$key3->referencia}}','{{$key3->id}}')" style="border-radius: 30px !important;">
-                                                                                <span class="PalabraEditarPago ">Editar</span>
-                                                                                <center>
-                                                                                    <span class="PalabraEditarPago2 ">
-                                                                                        <i data-feather="edit" class="iconosMetaforas2"></i>
-                                                                                    </span>
-                                                                                </center>
-                                                                            </button>
-                                                                        </td>
-                                                                        <td>{{$key3->referencia}}</td>
-                                                                        <td align="right"><strong>{{$key3->monto}} $</strong></td>
-                                                                        <td align="right">{{$key3->planes_anuncio->fecha_orden}}</td>
-                                                                    </tr>
-                                                                @endif()
-                                                            @endforeach()
-                                                        </table>
+                                                    <div class="bg-white">
+                                                        <div class="card-body">
+                                                            
+                                                            <h3>
+                                                                Referencias
+                                                            </h3>
+                                                            <table width="100%">
+                                                                @foreach($pagosAnuncios as $key3)
+                                                                    @if($key3->id_planesA == $key2->id)
+                                                                        <tr>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-warning rounded btn-sm" onclick="editarPagoPublcidad('{{$key2->id}}','{{$key2->planP->id}}','{{$key3->referencia}}','{{$key3->id}}')" style="border-radius: 30px !important;">
+                                                                                    <span class="PalabraEditarPago ">Editar</span>
+                                                                                    <center>
+                                                                                        <span class="PalabraEditarPago2 ">
+                                                                                            <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                                                        </span>
+                                                                                    </center>
+                                                                                </button>
+                                                                            </td>
+                                                                            <td>{{$key3->referencia}}</td>
+                                                                            <td align="right"><strong>{{$key3->monto}} $</strong></td>
+                                                                            <td align="right">{{$key3->planes_anuncio->fecha_orden}}</td>
+                                                                        </tr>
+                                                                    @endif()
+                                                                @endforeach()
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                @endif
+                                    @endif
+                                @endforeach()
                             @endforeach()
-                        @endforeach()
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2347,6 +2460,38 @@
             }else{
                 $('#tablaCC'+id).removeClass("border-info").addClass("border-danger");
             }
+        }
+    }
+    function vistaEstadisticas(opcion) {
+        if (opcion==1) {
+            $('#vistaEstadisticas1').fadeOut('slow',
+                function() {
+                    $(this).hide();
+                    $('#vistaEstadisticas2').fadeIn(300);
+                }
+            );
+
+            $('.controlAnuncios').fadeOut('slow',
+                function() {
+                    $(this).hide();
+                    $('.controlEstadisticas').fadeIn(300);
+                }
+            );
+        }else{
+            $('.VerDatosTodos').fadeOut('slow');
+            $('#vistaEstadisticas2').fadeOut('slow',
+                function() {
+                    $(this).hide();
+                    $('#vistaEstadisticas1').fadeIn(300);
+                }
+            );
+
+            $('.controlEstadisticas').fadeOut('slow',
+                function() {
+                    $(this).hide();
+                    $('.controlAnuncios').fadeIn(300);
+                }
+            );
         }
     }
     
