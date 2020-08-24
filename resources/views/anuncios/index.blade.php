@@ -641,7 +641,7 @@
                                                                 @php $total=0 @endphp
                                                                 {{$anunAnioAnterior}}
                                                                 @php $total=$anunAnioAnterior-$anunAnioAntePasado @endphp
-                                                                @if($total>0)
+                                                                @if($total>=0)
                                                                     <span class="text-success">(+{{$total}})</span>
                                                                 @else
                                                                     <span class="text-danger">(-{{$total}})</span>
