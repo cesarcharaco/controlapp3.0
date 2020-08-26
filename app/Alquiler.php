@@ -17,7 +17,7 @@ class Alquiler extends Model
 
     public function instalacion()
     {
-    	return $this->belongsTo('App\Instalacion','id_instalacion');
+    	return $this->belongsTo('App\Instalaciones','id_instalacion');
     }
     
 }

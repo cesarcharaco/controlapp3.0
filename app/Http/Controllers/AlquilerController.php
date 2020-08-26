@@ -20,11 +20,12 @@ class AlquilerController extends Controller
     public function index()
     {
         $dias= Dias::all();
+        $alquiler = Alquiler::all();
         $instalaciones = Instalaciones::all();
         $id_admin=id_admin(\Auth::user()->email);
         $residentes=Residentes::where('id_admin',$id_admin)->get();
         $planesPago=PlanesPago::where('status','Activo')->get();
-        return View('alquiler.index', compact('planesPago','residentes','dias','instalaciones'));
+        return View('alquiler.index', compact('planesPago','residentes','dias','instalaciones','alquiler'));
     }
 
     /**

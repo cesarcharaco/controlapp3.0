@@ -548,29 +548,40 @@
                             <tr class="bg-info text-white" id="th1">
                                 <th>#</th>
                                 <th>
-                                    <span class="tituloTabla">Título</span>
-                                    <span class="tituloTabla2">T</span>
+                                    <span class="tituloTabla">Residente</span>
+                                    <span class="tituloTabla2">Re</span>
                                 </th>
                                 <th>
-                                    <span class="tituloTabla">URL</span>
-                                    <span class="tituloTabla2">@</span>
+                                    <span class="tituloTabla">Instalación</span>
+                                    <span class="tituloTabla2">ins</span>
                                 </th>
                                 <!-- <th>Estacionamientos</th> -->
                                 <th>
-                                    <span class="tituloTabla">Descripción</span>
-                                    <span class="tituloTabla2">S</span>
+                                    <span class="tituloTabla">Tipo de alquiler</span>
+                                    <span class="tituloTabla2">TA</span>
                                 </th>
                                 <th>
-                                    <span class="tituloTabla">Imagen</span>
-                                    <span class="tituloTabla2">I</span>
+                                    <span class="tituloTabla">Fecha</span>
+                                    <span class="tituloTabla2">F</span>
+                                </th>
+                                <th>
+                                    <span class="tituloTabla">Hora</span>
+                                    <span class="tituloTabla2">H</span>
                                 </th>
                                 <!-- <th>Mensualidades</th> -->
                             </tr>
                         </thead>
                         <tbody>
-
-
-
+                            @foreach($alquiler as $key)
+                                <tr>
+                                    <td>{{$key->id}}</td>
+                                    <td>{{$key->residente->nombres}}</td>
+                                    <td>{{$key->instalacion->nombre}}</td>
+                                    <td>{{$key->tipo_alquiler}}</td>
+                                    <td>{{$key->fecha}}</td>
+                                    <td>{{$key->hora}}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
