@@ -140,6 +140,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('contabilidad', 'ContabilidadController');
 
 	Route::resource('alquiler', 'AlquilerController');
+	Route::post('registrar_alquiler', 'AlquilerController@registrar_alquiler')->name('registrar_alquiler');
 
 	route::resource('empresas','EmpresasController');
 

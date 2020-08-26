@@ -230,6 +230,21 @@
                                 </th>
                                 <!-- <th>Mensualidades</th> -->
                             </tr>
+                            @foreach($instalaciones as $key)
+                                <tr>
+                                    <td>{{$key->id}}</td>
+                                    <td>{{$key->nombre}}</td>
+                                    <td>
+                                        <ul>
+                                        @foreach($key->dias as $key2)
+                                            <li>{{ $key2->dia }}</li>
+                                        @endforeach
+                                        </ul>
+                                    </td>
+                                    <td>{{$key->max_personas}}</td>
+                                    <td>{{$key->status}}</td>
+                                </tr>
+                            @endforeach
                         </thead>
                         <tbody>
 
@@ -241,7 +256,7 @@
                 <div class="col-md-4">
                   <div class="vistaColumnaArriendos nuevoArriendo border shadow" id="nuevoArriendo" align="center" style="border-radius: 30px !important;">
                     <div class="card-body">
-                      {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
+                      {!! Form::open(['route' => ['alquiler.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_instalacion', 'id' => 'registrar_instalacion', 'data-parsley-validate']) !!}
                           @csrf
                         <h3 align="center" style="
                           color: gray;
@@ -258,7 +273,7 @@
                               <label>Horario de disponibilidad</label>
                               <br>
                               <i data-feather="minus"></i>
-                              <div class="button-list">
+                              <!-- <div class="button-list">
                                 <button type="button" class="btn btn-primary" onclick="diaNegocio(1)" id="horarioBotonDia1">Lunes</button>
                                 <button type="button" class="btn btn-primary" onclick="diaNegocio(2)" id="horarioBotonDia2">Martes</button>
                                 <button type="button" class="btn btn-primary" onclick="diaNegocio(3)" id="horarioBotonDia3">Miércoles</button>
@@ -266,19 +281,26 @@
                                 <button type="button" class="btn btn-primary" onclick="diaNegocio(5)" id="horarioBotonDia5">Viernes</button>
                                 <button type="button" class="btn btn-primary" onclick="diaNegocio(6)" id="horarioBotonDia6">Sábado</button>
                                 <button type="button" class="btn btn-primary" onclick="diaNegocio(7)" id="horarioBotonDia7">Domingo</button>
+                              </div> -->
+                              <div class="form-group">
+                                  <select name="id_dia[]" id="id_dia" class="form-control select2" multiple="multiple" required>
+                                      @foreach($dias as $key)
+                                        <option value="{{$key->id}}">{{$key->dia}}</option>
+                                      @endforeach
+                                  </select>
                               </div>
                               <br>
                               <div class="row justify-content-center">
                                 <div class="col-md-6">
                                   <div class="form-group" align="center">
                                     <label>Desde</label>
-                                    <input class="form-control" id="example-time" type="time" name="desde">
+                                    <input class="form-control" id="example-time" type="time" name="hora_desde">
                                   </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group" align="center">
                                     <label>Hasta</label>
-                                    <input class="form-control" id="example-time" type="time" name="hasta">
+                                    <input class="form-control" id="example-time" type="time" name="hora_hasta">
                                   </div>
                                 </div>
                               </div>
@@ -292,7 +314,7 @@
                                   <i data-feather="users"></i>
                                 </span>
                               </span>
-                              <input name="dias" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                              <input name="max_personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
                             </div>
                           </div>
                           <div class="form-group">
@@ -555,7 +577,7 @@
                 <div class="col-md-4">
                   <div class="vistaColumnaArriendos nuevoArriendo border shadow" id="nuevoArriendo" align="center" style="border-radius: 30px !important;">
                     <div class="card-body">
-                      {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
+                      {!! Form::open(['route' => ['registrar_alquiler'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_alquiler', 'id' => 'registrar_alquiler', 'data-parsley-validate']) !!}
                           @csrf
                         <h3 align="center" style="
                           color: gray;
@@ -564,7 +586,7 @@
                           </h3>
                           <div class="form-group">
                             <label>Residente</label>
-                            <select class="form-control select2" id="residente" onchange="buscarTodo(this.value)">
+                            <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente">
                                 <option value="0" selected disabled>Seleccione residente</option>
                                 @foreach($residentes as $key)
                                     <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
@@ -573,14 +595,16 @@
                           </div>
                            <div class="form-group">
                             <label>Instalación</label>
-                            <select class="form-control select2" id="instalacionList">
+                            <select class="form-control select2" id="instalacionList" name="id_instalacion">
                                 <option value="0" selected disabled>Seleccione instalación</option>
-                                
+                                @foreach($instalaciones as $key)
+                                <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
+                                @endforeach
                             </select>
                           </div>
                           <div class="form-group">
                             <label>Tipo de Alquiler</label>
-                            <select name="status" class="form-control select2" id="status_PlanP">
+                            <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler">
                               <option value="Permanente">Permanente</option>
                               <option value="Temporal">Temporal</option>
                             </select>
@@ -589,12 +613,12 @@
                             <div class="card-body">
                               <div class="form-group">
                                 <label>Fecha</label>
-                                <input type="date" name="fecha" class="form-control">
+                                <input type="date" name="fecha" class="form-control" required>
                               </div>
                                   
                               <div class="form-group" align="center">
                                 <label>Hora</label>
-                                <input class="form-control" id="example-time" type="time" name="desde">
+                                <input class="form-control" id="example-time" type="time" name="hora" required="">
                               </div>
                             </div>
                           </div>
@@ -606,7 +630,7 @@
                                   <i data-feather="users"></i>
                                 </span>
                               </span>
-                              <input name="personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                              <input name="num_personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
                             </div>
                           </div>
                           <div class="form-group">
@@ -617,7 +641,7 @@
                                   <i data-feather="watch"></i>
                                 </span>
                               </span>
-                              <input name="horas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
+                              <input name="num_horas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
                             </div>
                           </div>
                           <div class="form-group">

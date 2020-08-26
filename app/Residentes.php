@@ -44,4 +44,9 @@ class Residentes extends Model
     {
     	return $this->belongsTo('App\UsersAdmin','id_admin');
     }
+
+    public function alquiler()
+    {
+    	return $this->hasMany('App\Alquiler','id_residente','id');
+    }
 }
