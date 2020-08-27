@@ -91,7 +91,7 @@ class AnunciosController extends Controller
 
 
             $EmpresasAnuncios=EmpresasAnuncios::all();
-            $EmpresasAnuncios2=EmpresasAnuncios::where('id', '!=', 0)->groupBy('id_anuncios')->get();
+            $EmpresasAnuncios2=EmpresasAnuncios::where('id', '<>', 0)->groupBy('id_anuncios')->get();
             $planesPago=PlanesPago::where('tipo','Anuncio')->where('status','Activo')->get();
             $pagosAnuncios=PagosAnuncios::where('id','<>',0)->orderby('id','DESC')->get();
 
