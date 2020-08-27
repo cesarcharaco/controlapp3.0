@@ -893,7 +893,7 @@
                                                 <table class="tablaControl table table-striped tabla-estilo">
                                                     <thead>
                                                         <tr align="center">
-                                                            <th colspan="3">Nro. de Anuncios por año</th>
+                                                            <th colspan="3">Nro. de alquileres por año</th>
                                                         </tr>
                                                         <tr align="center">
                                                             <th align="center">{{ date('Y') }}</th>
