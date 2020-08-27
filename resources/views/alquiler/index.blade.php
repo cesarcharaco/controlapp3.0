@@ -161,7 +161,7 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12 offset-md-12">
-                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                            <a class="btn btn-success boton-tabla shadow" onclick="crearIncidencia()" style="
                                 border-radius: 10px;
                                 color: white;
                                 height: 35px;
@@ -291,13 +291,17 @@
                               </div>
                               <br>
                               <div class="row justify-content-center">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                   <div class="form-group" align="center">
                                     <label>Desde</label>
                                     <input class="form-control" id="example-time" type="time" name="hora_desde">
                                   </div>
                                 </div>
-                                <div class="col-md-6">
+                              </div>
+                              <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                </div>
+                                <div class="col-md-12">
                                   <div class="form-group" align="center">
                                     <label>Hasta</label>
                                     <input class="form-control" id="example-time" type="time" name="hora_hasta">
@@ -597,7 +601,7 @@
                           </h3>
                           <div class="form-group">
                             <label>Residente</label>
-                            <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente">
+                            <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente" required>
                                 <option value="0" selected disabled>Seleccione residente</option>
                                 @foreach($residentes as $key)
                                     <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
@@ -607,7 +611,7 @@
                            <div class="form-group">
                             <label>Instalación</label>
                             <select class="form-control select2" id="instalacionList" name="id_instalacion">
-                                <option value="0" selected disabled>Seleccione instalación</option>
+                                <option value="0" selected disabled required>Seleccione instalación</option>
                                 @foreach($instalaciones as $key)
                                 <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
                                 @endforeach
@@ -615,7 +619,7 @@
                           </div>
                           <div class="form-group">
                             <label>Tipo de Alquiler</label>
-                            <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler">
+                            <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler" required>
                               <option value="Permanente">Permanente</option>
                               <option value="Temporal">Temporal</option>
                             </select>
@@ -830,89 +834,114 @@
 
     <div id="tablaControl" style="display: none;">
         <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12 offset-md-12">
-                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
-                                border-radius: 10px;
-                                color: white;
-                                height: 35px;
-                                margin-bottom: 5px;
-                                margin-top: 5px;
-                                float: right;">
-                                <span class="PalabraEditarPago ">Nueva Instalación</span>
-                                <center>
-                                    <span class="PalabraEditarPago2 ">
-                                        <i data-feather="plus" class="iconosMetaforas2"></i>
-                                    </span>
-                                </center>
-                            </a>
+                    <div class="mb-3" align="right">
+                        <div class="row">
+                            <div class="col-md-12 offset-md-12">
+                                <a class="btn btn-danger boton-tabla shadow" onclick="crearIncidencia()" style="
+                                    border-radius: 10px;
+                                    color: white;
+                                    height: 35px;
+                                    margin-bottom: 5px;
+                                    margin-top: 5px;
+                                    float: right;">
+                                    <span class="PalabraEditarPago ">¿Algún problema?</span>
+                                    <center>
+                                        <span class="PalabraEditarPago2 ">
+                                            <i data-feather="plus" class="alert-octagon"></i>
+                                        </span>
+                                    </center>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card shadow card-tabla border border-success">
+                                            <div class="card-body">
+                                                <table class="tablaControl table table-striped tabla-estilo">
+                                                    <thead>
+                                                        <tr align="center">
+                                                            <th colspan="2">Estado de alquileres</th>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <th align="center">Activos</th>
+                                                            <th align="center">Inactivos</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr align="center">
+                                                            <td>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card shadow card-tabla border border-success">
+                                            <div class="card-body">
+                                                <table class="tablaControl table table-striped tabla-estilo">
+                                                    <thead>
+                                                        <tr align="center">
+                                                            <th colspan="3">Nro. de Anuncios por año</th>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <th align="center">{{ date('Y') }}</th>
+                                                            <th align="center">{{ date('Y')-1 }}</th>
+                                                            <th align="center">{{ date('Y')-2 }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr align="center">
+                                                            
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{--<div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card shadow card-tabla border border-success">
+                                            <div class="card-body">
+                                                <canvas id="myChart"></canvas>
+                                                <table class="tablaControl table table-striped tabla-estilo">
+                                                    <thead>
+                                                        <tr align="center">
+                                                            <th colspan="3">Total de ingresos</th>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <th align="center">{{ date('Y') }}</th>
+                                                            <th align="center">{{ date('Y')-1 }}</th>
+                                                            <th align="center">{{ date('Y')-2 }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr align="center">
+                                                            
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>--}}
                         </div>
                     </div>
-                </div>
-                
-
-                <div class="col-md-8">
-                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
-                         <thead>
-                            <tr class="table-default text-white">
-                                <td colspan="1"></td>
-                                <td colspan="3" align="center">
-                                    <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
-                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una instalación para ver mas opciones.</span>
-                                    </div>
-                                </td>
-                                <td colspan="1"></td>
-                            </tr>
-                            <tr class="bg-primary text-white" id="th2" style="display: none">
-                                <th width="10"></th>
-                                <th>
-                                    <span class="PalabraEditarPago">Título</span>
-                                    <span class="PalabraEditarPago2">T</span>
-                                </th>
-                                <th>
-                                    <span class="PalabraEditarPago">URL</span>
-                                    <span class="PalabraEditarPago2">@</span>
-                                </th>
-                                <th colspan="2">
-                                    <center>
-                                        <span class="PalabraEditarPago">Opciones</span>
-                                        <span class="PalabraEditarPago2">O</span>
-                                    </center>
-                                </th>
-                            </tr>
-                            <tr class="bg-info text-white" id="th1">
-                                <th>#</th>
-                                <th>
-                                    <span class="tituloTabla">Título</span>
-                                    <span class="tituloTabla2">T</span>
-                                </th>
-                                <th>
-                                    <span class="tituloTabla">URL</span>
-                                    <span class="tituloTabla2">@</span>
-                                </th>
-                                <!-- <th>Estacionamientos</th> -->
-                                <th>
-                                    <span class="tituloTabla">Descripción</span>
-                                    <span class="tituloTabla2">S</span>
-                                </th>
-                                <th>
-                                    <span class="tituloTabla">Imagen</span>
-                                    <span class="tituloTabla2">I</span>
-                                </th>
-                                <!-- <th>Mensualidades</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-4">
-                   
                 </div>
             </div>
         </div>
@@ -1413,12 +1442,57 @@
         <button class="btn btn-success" style="display: none;">Agregar</button>
       </div>
     </form>-->
-
+    {!! Form::open(['route' => ['registrar_incidencia'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_incidencia', 'id' => 'registrar_incidencia', 'data-parsley-validate']) !!}
+        @csrf
+        <div class="modal fade" id="crearIncidencia" role="dialog">
+            <div class="modal-dialog modals-default border border-danger">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Reportar incidencia</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Las indicidencias se agragarán como recargas a los residentes por daños en los equipos e instalaciones</p>
+                        <center>
+                            <div class="form-group">
+                                <label>Residente</label>
+                                <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente" required>
+                                    <option value="0" selected disabled>Seleccione residente</option>
+                                    @foreach($residentes as $key)
+                                        <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+                                    @endforeach()
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Motivo</label>
+                                <input type="text" name="motivo" class="form-control" required placeholder="Romper ventanas de la oficina">
+                            </div>
+                            <div class="form-group">
+                                <label>Observación (Opcional)</label>
+                                <textarea class="form-control" name="observacion" placeholder="¿Algo que desee acotar?"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Monto</label>
+                                <input type="number" name="monto" class="form-control" placeholder="15000" required>
+                        </center>
+                        <div align="center">
+                            <button type="submit" class="btn btn-danger">Guardar incidencia</button>
+                        </div>
+                    </div>                            
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
 
 @endsection
 
 <script type="text/javascript">
-  function VerTabla(opcion) {
+    function crearIncidencia(){
+        $('#crearIncidencia').modal('show');
+    }
+    function VerTabla(opcion) {
       $('#tituloP').hide();
       $('#tituloP1').hide();
       $('#tituloP2').hide();

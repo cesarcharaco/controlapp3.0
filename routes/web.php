@@ -150,5 +150,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('planes_pago','PlanesPagoController');
 
 	Route::resource('promociones','PromocionesController');
+	Route::post('registrar_incidencia','MultasRecargasController@registrar_incidencia')->name('registrar_incidencia');
 
 });

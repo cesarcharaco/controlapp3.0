@@ -321,6 +321,34 @@ class MultasRecargasController extends Controller
         ->get();   
     }
 
+    public function registrar_incidencia(Request $request)
+    {
+        // dd($request->all());
+        $anio=date('Y');
+        $id_admin=id_admin(\Auth::user()->email);
+
+        $mr=new MultasRecargas();
+        $mr->motivo=$request->motivo;
+        $mr->observacion=$request->observacion;
+        $mr->monto=$request->monto;
+        $mr->tipo='Recarga';
+        $mr->anio=$anio;
+        $mr->id_admin=$id_admin;
+        $mr->save();
+
+        // $asigna
+        $cont=0;
+
+        \DB::table('resi_has_mr')->insert([
+            'id_residente' => $request->id_residente,
+            'id_mr' => $mr->id,
+            'mes' => date('m')
+        ]);
+
+        toastr()->success('con éxito!!', 'Sanciones asignadas');
+        return redirect()->back();
+    }
+
     protected function buscar_asignado($id_residente,$id_mr)
     {
         $mes=date('m');
