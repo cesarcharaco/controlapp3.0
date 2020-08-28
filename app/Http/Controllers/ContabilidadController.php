@@ -21,8 +21,9 @@ class ContabilidadController extends Controller
         if($consulta_saldo==0){
             $saldo = 0;
         } else {
-            $consulta_saldo = Contabilidad::latest('saldo')->first();
+            $consulta_saldo = Contabilidad::all()->last();
             $saldo = $consulta_saldo->saldo;
+            //dd($consulta_saldo);
         }
         //dd($saldo);
         $contabilidad = Contabilidad::where('id_mes',date('n'))->orderBy('id','desc')->get();
@@ -41,7 +42,7 @@ class ContabilidadController extends Controller
         if($consulta_saldo==0){
             $saldo = 0;
         } else {
-            $consulta_saldo = Contabilidad::latest('saldo')->first();
+            $consulta_saldo = Contabilidad::all()->last();
             $saldo = $consulta_saldo->saldo;
         }
         //CONSULTA DE MOVIMIENTOS DE LA FECHA DE HOY
@@ -88,7 +89,20 @@ class ContabilidadController extends Controller
             toastr()->error('El monto de egreso es mayor al saldo disponible !!', 'Saldo Insuficiente');
             return redirect()->back();
         } else {
-            # code...
+            $consulta_saldo = Contabilidad::latest('saldo')->first();
+            $saldo = $consulta_saldo->saldo;
+            //dd($saldo);
+            $egreso = new Contabilidad();
+            $egreso->id_mensualidad=null;
+            $egreso->id_mes=date('n');
+            $egreso->descripcion=$request->descripcion;
+            $egreso->ingreso=0;
+            $egreso->egreso=$request->egreso;
+            $egreso->saldo=$saldo-$request->egreso;
+            $egreso->save();
+
+            toastr()->success('Egreso registrado con éxito !!', 'Éxito');
+            return redirect()->back();
         }
         
     }

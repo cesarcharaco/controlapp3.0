@@ -63,6 +63,7 @@ class AlquilerController extends Controller
                 ]);
             }
         }
+
         toastr()->success('con éxito!', 'Instalación registrada');
         return redirect()->back();
     }
@@ -80,6 +81,13 @@ class AlquilerController extends Controller
         $alquiler->num_horas=$request->num_horas;
         $alquiler->status=$request->status;
         $alquiler->save();
+
+        \DB::table('pagos_has_alquiler')->insert([
+            'referencia'=> $request->referencia,
+            'id_alquiler' => $alquiler->id,
+            'id_planesPago' => $request->planP,
+            'status'=>'En Proceso'
+        ]);
 
         toastr()->success('con éxito!', 'Alquiler registrada');
         return redirect()->back();

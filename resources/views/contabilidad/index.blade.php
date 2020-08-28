@@ -92,7 +92,7 @@
                         <h4 class="header-title mt-0 mb-3" align="center">Balance General (Contabilidad) 
                             <i class='uil uil-comment-exclamation' data-toggle="tooltip" data-placement="right" data-original-title="Aviso: Balance del mes en curso"></i>
                         </h4>
-                        <table id="selection-datatable" class="table dt-responsive nowrap table-bordered" style="width: 100%;">
+                        <table id="#" class="table dt-responsive nowrap table-bordered" style="width: 100%;">
                             <thead>
                                 <tr bgcolor="#3490dc" class="text-white">
                                     <th>Fecha</th>
@@ -138,14 +138,14 @@
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label>Monto de egreso: <b style="color: red;">*</b></label>
+                            <label for="egreso">Monto de egreso: <b style="color: red;">*</b></label>
                             <input type="number" name="egreso" class="form-control" placeholder="Monto de Egreso" required="required" data-parsley-type="number" min="1">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <label for="descripcion">Descripción: <b style="color: red;">*</b></label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese Descripción" required="required" title="Ingrese la descripción del egreso" data-parsley-type="alphanum" data-parsley-maxlength="20">
+                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese Descripción" required="required" title="Ingrese la descripción del egreso" data-parsley-type="text" data-parsley-maxlength="20">
                         </div>
                     </div>
                 </div>
