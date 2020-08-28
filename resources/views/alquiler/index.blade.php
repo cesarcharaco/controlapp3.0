@@ -883,12 +883,23 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <?php
+                                                            $alquilerA=0;
+                                                            $alquilerI=0;
+                                                        ?>
+                                                        @foreach($alquiler as $key)
+                                                            @if($key->status == 'Activo')
+                                                                @php $alquilerA++; @endphp
+                                                            @else
+                                                                @php $alquilerI++; @endphp
+                                                            @endif
+                                                        @endforeach()
                                                         <tr align="center">
                                                             <td>
-                                                                
+                                                                {{ $alquilerA }}
                                                             </td>
                                                             <td>
-                                                                
+                                                                {{ $alquilerI }}
                                                             </td>
                                                         </tr>
                                                     </tbody>
