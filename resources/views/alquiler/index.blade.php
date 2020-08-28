@@ -303,7 +303,7 @@
                     </table>
                 </div>
                 <div class="col-md-4">
-                    <div class="vistaColumnaArriendos nuevoArriendo2 border shadow" align="center" id="crearInstalacion" style="border-radius: 30px !important;">
+                    <div class="vistaColumnaInstalaciones nuevoArriendo2 border shadow" align="center" id="crearInstalacion" style="border-radius: 30px !important;">
                         <div class="card-body">
                           {!! Form::open(['route' => ['alquiler.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_instalacion', 'id' => 'registrar_instalacion', 'data-parsley-validate']) !!}
                               @csrf
@@ -419,7 +419,7 @@
                           {!! Form::close() !!}
                         </div>
                     </div>
-                    <div class="vistaColumnaArriendos editarArriendo border border-warning shadow" id="editarInstalacion" style="display: none; border-radius: 30px !important;">
+                    <div class="vistaColumnaInstalaciones editarArriendo border border-warning shadow" id="editarInstalacion" style="display: none; border-radius: 30px !important;">
                         <div class="card-body">
                           {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
                               @csrf
@@ -488,7 +488,7 @@
                           {!! Form::close() !!}
                         </div>
                     </div>
-                    <div class="vistaColumnaArriendos EliminarArriendo border border-danger shadow" id="EliminarInstalacion" style="display: none; border-radius: 30px !important;">
+                    <div class="vistaColumnaInstalaciones EliminarArriendo border border-danger shadow" id="EliminarInstalacion" style="display: none; border-radius: 30px !important;">
                         <div class="card-body">
                           
                           {!! Form::open(['route' => ['planes_pago.destroy',1033], 'method' => 'DELETE']) !!}
@@ -1657,25 +1657,25 @@
 
 
     function crearInstalacion() {
-        $(".vistaColumnaArriendos").fadeOut("slow",
+        $(".vistaColumnaInstalaciones").fadeOut("slow",
           function() {
-            $(".vistaColumnaArriendos").hide();
+            $(".vistaColumnaInstalaciones").hide();
             $("#crearInstalacion").fadeIn(300);
           });
     }
 
     function editarInstalacion(id,nombre,hora_desde,hora_hasta,max_personas,status) {
-        $(".vistaColumnaArriendos").fadeOut("slow",
+        $(".vistaColumnaInstalaciones").fadeOut("slow",
           function() {
-            $(".vistaColumnaArriendos").hide();
+            $(".vistaColumnaInstalaciones").hide();
             $("#editarInstalacion").fadeIn(300);
           });
     }
 
     function eliminarInstalacion(id) {
-        $(".vistaColumnaArriendos").fadeOut("slow",
+        $(".vistaColumnaInstalaciones").fadeOut("slow",
           function() {
-            $(".vistaColumnaArriendos").hide();
+            $(".vistaColumnaInstalaciones").hide();
             $("#EliminarInstalacion").fadeIn(300);
           });
     }
