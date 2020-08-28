@@ -263,7 +263,7 @@
                                     </td>
                                     <td colspan="2" align="center">
 
-                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="editarInstalacion('{{$key->id}}','{{$key->nombre}}','{{$key->hora_desde}}','{{$key->hora_hasta}}','{{$key->max_personas}}','{{$key->status}}')">
+                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="editarInstalacion('{{$key->id}}','{{$key->nombre}}','{{$key->id_dia}}','{{$key->hora_desde}}','{{$key->hora_hasta}}','{{$key->max_personas}}','{{$key->status}}')">
 
                                             <span class="PalabraEditarPago "><strong>Editar</strong></span>
                                             <center>
@@ -421,7 +421,7 @@
                     </div>
                     <div class="vistaColumnaInstalaciones editarArriendo border border-warning shadow" id="editarInstalacion" style="display: none; border-radius: 30px !important;">
                         <div class="card-body">
-                          {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
+                          {!! Form::open(['route' => ['editar_instalacion'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'update_instalacion', 'id' => 'update_instalacion', 'data-parsley-validate']) !!}
                               @csrf
                             <h3 align="center" style="
                               color: gray;
@@ -450,13 +450,13 @@
                                     <div class="col-md-6">
                                       <div class="form-group" align="center">
                                         <label>Desde</label>
-                                        <input class="form-control" type="time" name="desde" id="desdeInstalacion">
+                                        <input class="form-control" type="time" name="hora_desde" id="desdeInstalacion">
                                       </div>
                                     </div>
                                     <div class="col-md-6">
                                       <div class="form-group" align="center">
                                         <label>Hasta</label>
-                                        <input class="form-control" type="time" name="hasta" id="hastaInstalacion">
+                                        <input class="form-control" type="time" name="hora_hasta" id="hastaInstalacion">
                                       </div>
                                     </div>
                                   </div>
@@ -470,7 +470,7 @@
                                       <i data-feather="users"></i>
                                     </span>
                                   </span>
-                                  <input name="dias" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required id="npersonasInstalacion">
+                                  <input name="max_personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required id="npersonasInstalacion">
                                 </div>
                               </div>
                               <div class="form-group">
@@ -1662,9 +1662,10 @@
           });
     }
 
-    function editarInstalacion(id,nombre,hora_desde,hora_hasta,max_personas,status) {
+    function editarInstalacion(id,nombre,id_dia,hora_desde,hora_hasta,max_personas,status) {
         $('#idInstalacion').val(id);
         $('#nombreInstalacion').val(nombre);
+        $('#id_diaInstalacion').val(id_dia);
         $('#desdeInstalacion').val(hora_desde);
         $('#hastaInstalacion').val(hora_hasta);
         $('#npersonasInstalacion').val(max_personas);

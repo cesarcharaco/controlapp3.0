@@ -63,7 +63,7 @@ class AlquilerController extends Controller
                 ]);
             }
         }
-        toastr()->success('con éxito!', 'Instalacion registrada');
+        toastr()->success('con éxito!', 'Instalación registrada');
         return redirect()->back();
     }
 
@@ -116,7 +116,13 @@ class AlquilerController extends Controller
      */
     public function update(Request $request, Alquiler $alquiler)
     {
-        $instalacion = Instalaciones::find($id);
+        //
+    }
+
+    public function editar_instalacion(Request $request)
+    {
+        //dd($request->all());
+        $instalacion = Instalaciones::find($request->id);
         $instalacion->nombre=$request->nombre;
         $instalacion->hora_desde=$request->hora_desde;
         $instalacion->hora_hasta=$request->hora_hasta;
@@ -125,14 +131,13 @@ class AlquilerController extends Controller
 
         if (count($request->id_dia)>0) {
             for($i=0; $i<count($request->id_dia); $i++){
-                \DB::table('instalaciones_has_dias')->update([
-                    'id'=> $id,
-                    'id_instalacion' => $instalacion->id,
+                \DB::table('instalaciones_has_dias')->where('id_instalacion',$request->id)
+                ->update([
                     'id_dia' => $request->id_dia[$i]
                 ]);
             }
         }
-        toastr()->success('con éxito!', 'Instalacion registrada');
+        toastr()->success('con éxito!', 'Instalación actualizada');
         return redirect()->back();
     }
 
