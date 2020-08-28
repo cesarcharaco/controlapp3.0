@@ -494,7 +494,7 @@
                             <h3>Desactivar instalacion</h3> 
                             Se DESACTIVARÁN, NO se ELIMINARÁN los datos de la instalación. Se cambiará el status a Inactivo.
                             <div class="float-right">
-                              <input type="hidden" name="id" class="id_PlanP">
+                              <input type="hidden" name="id" class="id_instalacionE" id="id_instalacionE">
                               <button type="submit" class="btn btn-warning">Desactivar</button>
                             </div>
                           {!! Form::close() !!}
@@ -1678,6 +1678,7 @@
     }
 
     function eliminarInstalacion(id) {
+        $('#id_instalacionE').val(id);
         $(".vistaColumnaInstalaciones").fadeOut("slow",
           function() {
             $(".vistaColumnaInstalaciones").hide();
