@@ -273,8 +273,8 @@
                                             </center>
                                         </a>
 
-                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="eliminarInstalacion('{{$key->id}}')">
-                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="eliminarInstalacion('{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Desactivar</span>
                                             <center>
                                                 <span class="PalabraEditarPago2 ">
                                                     <i data-feather="trash" class="iconosMetaforas2"></i>
@@ -486,16 +486,16 @@
                           {!! Form::close() !!}
                         </div>
                     </div>
-                    <div class="vistaColumnaInstalaciones EliminarArriendo border border-danger shadow" id="EliminarInstalacion" style="display: none; border-radius: 30px !important;">
+                    <div class="vistaColumnaInstalaciones EliminarArriendo border border-warning shadow" id="EliminarInstalacion" style="display: none; border-radius: 30px !important;">
                         <div class="card-body">
                           
                           {!! Form::open(['route' => ['planes_pago.destroy',1033], 'method' => 'DELETE']) !!}
                             @csrf
-                            <h3>¿Está realmente seguro de querer eliminar esta instalación?</h3> 
-                            Se eliminarán todos los datos, arrendamientos y alquileres que engloben a esta instalación.
+                            <h3>Desactivar instalacion</h3> 
+                            Se DESACTIVARÁN, NO se ELIMINARÁN los datos de la instalación. Se cambiará el status a Inactivo.
                             <div class="float-right">
                               <input type="hidden" name="id" class="id_PlanP">
-                              <button type="submit" class="btn btn-danger">Eliminar</button>
+                              <button type="submit" class="btn btn-warning">Desactivar</button>
                             </div>
                           {!! Form::close() !!}
                         </div>
