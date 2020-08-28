@@ -24,7 +24,7 @@ class AlquilerController extends Controller
         $instalaciones = Instalaciones::all();
         $id_admin=id_admin(\Auth::user()->email);
         $residentes=Residentes::where('id_admin',$id_admin)->get();
-        $planesPago=PlanesPago::where('status','Activo')->get();
+        $planesPago=PlanesPago::where('tipo','Alquiler')->where('status','Activo')->get();
         return View('alquiler.index', compact('planesPago','residentes','dias','instalaciones','alquiler'));
     }
 

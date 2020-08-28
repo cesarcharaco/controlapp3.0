@@ -19,6 +19,7 @@ class CreatePagosHasAlquilerTable extends Migration
             $table->decimal('monto',11, 2);
             $table->unsignedBigInteger('id_alquiler');
             $table->unsignedBigInteger('id_planesPago');
+            $table->enum('status',['Pagado','En Proceso','No Pagado'])->default('En Proceso');;
 
             $table->foreign('id_alquiler')->references('id')->on('alquiler')->onDelete('cascade');
             $table->foreign('id_planesPago')->references('id')->on('planes_pago')->onDelete('cascade');

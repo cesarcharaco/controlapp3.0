@@ -8,7 +8,7 @@ class PagosAlquiler extends Model
 {
     protected $table='pagos_has_alquiler';
 
-	protected $fillable=['id','referencia','monto','id_alquiler','id_planesPago'];
+	protected $fillable=['id','referencia','monto','id_alquiler','id_planesPago','status'];
 
 	public function alquiler()
 	{

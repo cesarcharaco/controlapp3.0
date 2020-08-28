@@ -20,7 +20,6 @@ class CreateAlquilerTable extends Migration
             $table->enum('tipo_alquiler',['Permanente','Temporal']);
             $table->date('fecha');
             $table->time('hora');
-            $table->string('num_personas');
             $table->string('num_horas');
             $table->enum('status',['Activo','Inactivo']);
 
