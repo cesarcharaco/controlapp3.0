@@ -116,7 +116,24 @@ class AlquilerController extends Controller
      */
     public function update(Request $request, Alquiler $alquiler)
     {
-        //
+        $instalacion = Instalaciones::find($id);
+        $instalacion->nombre=$request->nombre;
+        $instalacion->hora_desde=$request->hora_desde;
+        $instalacion->hora_hasta=$request->hora_hasta;
+        $instalacion->max_personas=$request->max_personas;
+        $instalacion->save();
+
+        if (count($request->id_dia)>0) {
+            for($i=0; $i<count($request->id_dia); $i++){
+                \DB::table('instalaciones_has_dias')->update([
+                    'id'=> $id,
+                    'id_instalacion' => $instalacion->id,
+                    'id_dia' => $request->id_dia[$i]
+                ]);
+            }
+        }
+        toastr()->success('con éxito!', 'Instalacion registrada');
+        return redirect()->back();
     }
 
     /**
@@ -127,6 +144,11 @@ class AlquilerController extends Controller
      */
     public function destroy(Alquiler $alquiler)
     {
-        //
+        $instalacion = Instalaciones::find($id);
+        $instalacion->status=$request->status;
+        $instalaciones->save();
+
+        toastr()->success('con éxito!', 'instalación deshabilitada');
+        return redirect()->back();
     }
 }

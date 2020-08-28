@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-     <style type="text/css">
+    <style type="text/css">
         .card {
             border: 1px solid #f6f6f7!important;
             border-color: black !important;
         }
-   </style>
+    </style>
     <input type="hidden" id="colorView" value="#CB8C4D !important">
     <div class="container">
         <div class="row page-title">
@@ -71,7 +71,7 @@
                                                             <input type="radio" id="rango_fecha" name="filtro" class="custom-control-input filtro" value="rango_fecha">
                                                             <label class="custom-control-label" for="rango_fecha">Rango de fecha &nbsp;</label>
                                                         </div>
-                                                        <div class="custom-control custom-radio mb-2">
+                                                        <div class="custom-control custom-radio mb-2" style="display: none;">
                                                             <input type="radio" id="meses" name="filtro" class="custom-control-input filtro" value="meses">
                                                             <label class="custom-control-label" for="meses">Por meses &nbsp;</label>
                                                         </div>
@@ -167,6 +167,15 @@
 
                 </div>
             </div>
+        </div>
+        <div class="row justify-content-center">
+            {!! Form::open(['route' => 'reportes_mensual_pdf', 'method' => 'POST',  'target' => '_blank']) !!}
+                @csrf
+                <input type="hidden" name="pdf" value="{{$pdf}}">
+                <button type="submit" class="btn btn-danger btn-rounded">
+                    <strong class="text-white">Imprimir PDF</strong>
+                </button>
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

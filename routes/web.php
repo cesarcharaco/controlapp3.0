@@ -138,6 +138,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
 	Route::resource('contabilidad', 'ContabilidadController');
+	Route::post('reportes_mensual_pdf','ContabilidadController@reportes_mensual_pdf')->name('reportes_mensual_pdf');
 
 	Route::resource('alquiler', 'AlquilerController');
 	Route::post('registrar_alquiler', 'AlquilerController@registrar_alquiler')->name('registrar_alquiler');

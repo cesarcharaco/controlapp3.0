@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contabilidad;
 use Illuminate\Http\Request;
 Use \Carbon\Carbon;
+use PDF;
 
 class ContabilidadController extends Controller
 {
@@ -45,14 +46,17 @@ class ContabilidadController extends Controller
         }
         //CONSULTA DE MOVIMIENTOS DE LA FECHA DE HOY
         $contabilidad = Contabilidad::whereDate('created_at', date('Y-m-d'))->orderBy('id','desc')->get();
-
+        $pdf=0;
         // FILTRO DE BUSQUEDA
         if ($request->filtro=="7dias") {
+            $pdf="7dias";
             $contabilidad  = Contabilidad::whereBetween('created_at',[now()->subDays(7)->format('Y-m-d'),now()->addDays(1)->format('Y-m-d')])->orderBy('id','desc')->get();
         } else if($request->filtro=="30dias") {
+            $pdf="30dias";
             $contabilidad  = Contabilidad::whereBetween('created_at',[now()->subDays(30)->format('Y-m-d'),now()->addDays(1)->format('Y-m-d')])->orderBy('id','desc')->get();
         } else if($request->filtro=="rango_fecha") {
             //dd($request->all());
+            $pdf="rango_fecha";
             if($request->fecha_desde > $request->fecha_hasta) {
                 toastr()->error('La fecha de inicio no puede ser mayor a fecha final !!', 'Vuelva a ingresar los datos');
                 return redirect()->back();
@@ -68,7 +72,7 @@ class ContabilidadController extends Controller
             
         }
          
-        return view('contabilidad.create', compact('saldo','contabilidad'));
+        return view('contabilidad.create', compact('saldo','contabilidad','pdf'));
     }
 
     /**
@@ -132,5 +136,20 @@ class ContabilidadController extends Controller
     public function destroy(contabilidad $contabilidad)
     {
         //
+    }
+
+    public function reportes_mensual_pdf(Request $request) {
+        if($request->pdf==0){
+            $contabilidad = Contabilidad::whereDate('created_at', date('Y-m-d'))->orderBy('id','desc')->get();
+        } elseif ($request->pdf=="7dias"){
+            $contabilidad  = Contabilidad::whereBetween('created_at',[now()->subDays(7)->format('Y-m-d'),now()->addDays(1)->format('Y-m-d')])->orderBy('id','desc')->get();
+        } elseif ($request->pdf=="30dias"){
+            $contabilidad  = Contabilidad::whereBetween('created_at',[now()->subDays(30)->format('Y-m-d'),now()->addDays(1)->format('Y-m-d')])->orderBy('id','desc')->get();
+        } elseif ($request->pdf=="rango_fecha"){
+            $contabilidad  = Contabilidad::whereBetween('created_at',[$request->fecha_desde,$request->fecha_hasta])->get();
+        }
+        $pdf = PDF::loadView('contabilidad/pdf/reportes_mensual_pdf', array('contabilidad'=>$contabilidad));
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream('reportes_mensual_pdf.pdf');
     }
 }
