@@ -8,6 +8,7 @@ use App\PlanesPago;
 use App\Residentes;
 use App\Dias;
 use App\Instalaciones;
+use App\PlanesPago;
 // use App\Instalaciones;
 
 class AlquilerController extends Controller
@@ -25,7 +26,8 @@ class AlquilerController extends Controller
         $id_admin=id_admin(\Auth::user()->email);
         $residentes=Residentes::where('id_admin',$id_admin)->get();
         $planesPago=PlanesPago::where('status','Activo')->get();
-        return View('alquiler.index', compact('planesPago','residentes','dias','instalaciones','alquiler'));
+        $pagosAnuncios=PagosAnuncios::where('id','<>',0)->orderby('id','DESC')->get();
+        return View('alquiler.index', compact('planesPago','residentes','dias','instalaciones','alquiler','pagosAnuncios'));
     }
 
     /**

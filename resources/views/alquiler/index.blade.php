@@ -501,7 +501,7 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12 offset-md-12">
-                            <a class="btn btn-success boton-tabla shadow" data-toggle="modal" data-target="#crearAnuncio" onclick="AnuncioCreate()" style="
+                            <a class="btn btn-success boton-tabla shadow" onclick="nuevoArriendo()" style="
                                 border-radius: 10px;
                                 color: white;
                                 height: 35px;
@@ -1489,6 +1489,9 @@
 @endsection
 
 <script type="text/javascript">
+    function nuevoArriendo() {
+        $('#nuevoArriendo').modal('show');
+    }
     function crearIncidencia(){
         $('#crearIncidencia').modal('show');
     }
