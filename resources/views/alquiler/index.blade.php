@@ -866,102 +866,148 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
+                        <div class="form-group card shadow" style="border-radius: 30px !important;">
+                            <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card shadow card-tabla border border-success">
-                                            <div class="card-body">
-                                                <table class="tablaControl table table-striped tabla-estilo">
-                                                    <thead>
-                                                        <tr align="center">
-                                                            <th colspan="2">Estado de alquileres</th>
-                                                        </tr>
-                                                        <tr align="center">
-                                                            <th align="center">Activos</th>
-                                                            <th align="center">Inactivos</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                            $alquilerA=0;
-                                                            $alquilerI=0;
-                                                        ?>
-                                                        @foreach($alquiler as $key)
-                                                            @if($key->status == 'Activo')
-                                                                @php $alquilerA++; @endphp
-                                                            @else
-                                                                @php $alquilerI++; @endphp
-                                                            @endif
-                                                        @endforeach()
-                                                        <tr align="center">
-                                                            <td>
-                                                                {{ $alquilerA }}
-                                                            </td>
-                                                            <td>
-                                                                {{ $alquilerI }}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card shadow card-tabla border border-success">
+                                                    <div class="card-body">
+                                                        <table class="tablaControl table table-striped tabla-estilo">
+                                                            <thead>
+                                                                <tr align="center">
+                                                                    <th colspan="2">Estado de alquileres</th>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <th align="center">Activos</th>
+                                                                    <th align="center">Inactivos</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                    $alquilerA=0;
+                                                                    $alquilerI=0;
+                                                                ?>
+                                                                @foreach($alquiler as $key)
+                                                                    @if($key->status == 'Activo')
+                                                                        @php $alquilerA++; @endphp
+                                                                    @else
+                                                                        @php $alquilerI++; @endphp
+                                                                    @endif
+                                                                @endforeach()
+                                                                <tr align="center">
+                                                                    <td>
+                                                                        {{ $alquilerA }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $alquilerI }}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card shadow card-tabla border border-success">
+                                                    <div class="card-body">
+                                                        <table class="tablaControl table table-striped tabla-estilo">
+                                                            <thead>
+                                                                <tr align="center">
+                                                                    <th colspan="3">Nro. de alquileres por año</th>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <th align="center">{{ date('Y') }}</th>
+                                                                    <th align="center">{{ date('Y')-1 }}</th>
+                                                                    <th align="center">{{ date('Y')-2 }}</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr align="center">
+                                                                    
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card shadow card-tabla border border-success">
-                                            <div class="card-body">
-                                                <table class="tablaControl table table-striped tabla-estilo">
-                                                    <thead>
-                                                        <tr align="center">
-                                                            <th colspan="3">Nro. de alquileres por año</th>
-                                                        </tr>
-                                                        <tr align="center">
-                                                            <th align="center">{{ date('Y') }}</th>
-                                                            <th align="center">{{ date('Y')-1 }}</th>
-                                                            <th align="center">{{ date('Y')-2 }}</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr align="center">
-                                                            
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card shadow card-tabla border border-success">
+                                                    <div class="card-body">
+                                                        <table class="tablaControl table table-striped tabla-estilo">
+                                                            <thead>
+                                                                <tr align="center">
+                                                                    <th colspan="2">Estado de instalaciones</th>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <th align="center">Activos</th>
+                                                                    <th align="center">Inactivos</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                    $instalaA=0;
+                                                                    $instalaI=0;
+                                                                ?>
+                                                                @foreach($instalaciones as $key)
+                                                                    @if($key->status == 'Activo')
+                                                                        @php $instalaA++; @endphp
+                                                                    @else
+                                                                        @php $instalaI++; @endphp
+                                                                    @endif
+                                                                @endforeach()
+                                                                <tr align="center">
+                                                                    <td>
+                                                                        {{ $instalaA }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $instalaI }}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    {{--<div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card shadow card-tabla border border-success">
+                                                    <div class="card-body">
+                                                        <canvas id="myChart"></canvas>
+                                                        <table class="tablaControl table table-striped tabla-estilo">
+                                                            <thead>
+                                                                <tr align="center">
+                                                                    <th colspan="3">Total de ingresos</th>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                    <th align="center">{{ date('Y') }}</th>
+                                                                    <th align="center">{{ date('Y')-1 }}</th>
+                                                                    <th align="center">{{ date('Y')-2 }}</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr align="center">
+                                                                    
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>--}}
                                 </div>
                             </div>
-                            {{--<div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card shadow card-tabla border border-success">
-                                            <div class="card-body">
-                                                <canvas id="myChart"></canvas>
-                                                <table class="tablaControl table table-striped tabla-estilo">
-                                                    <thead>
-                                                        <tr align="center">
-                                                            <th colspan="3">Total de ingresos</th>
-                                                        </tr>
-                                                        <tr align="center">
-                                                            <th align="center">{{ date('Y') }}</th>
-                                                            <th align="center">{{ date('Y')-1 }}</th>
-                                                            <th align="center">{{ date('Y')-2 }}</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr align="center">
-                                                            
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>--}}
                         </div>
                     </div>
                 </div>
