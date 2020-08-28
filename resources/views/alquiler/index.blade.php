@@ -1503,85 +1503,237 @@
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-empresa" aria-selected="true">1</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-datos" aria-selected="false">2</a>
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-pago" role="tab" aria-controls="pills-datos" aria-selected="false">2</a>
                           </li>
                         </ul>
-                        <center>
-                            <h3 align="center" style="
-                          color: gray;
-                            font: 18px Arial, sans-serif;">
-                            Nuevo Arriendo
-                          </h3>
-                          <div class="form-group">
-                            <label>Residente</label>
-                            <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente" required>
-                                <option value="0" selected disabled>Seleccione residente</option>
-                                @foreach($residentes as $key)
-                                    <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
-                                @endforeach()
-                            </select>
-                          </div>
-                           <div class="form-group">
-                            <label>Instalación</label>
-                            <select class="form-control select2" id="instalacionList" name="id_instalacion">
-                                <option value="0" selected disabled required>Seleccione instalación</option>
-                                @foreach($instalaciones as $key)
-                                <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
-                                @endforeach
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label>Tipo de Alquiler</label>
-                            <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler" required>
-                              <option value="Permanente">Permanente</option>
-                              <option value="Temporal">Temporal</option>
-                            </select>
-                          </div>
-                          <div class="form-group card shadow" style="border-radius: 30px !important;">
-                            <div class="card-body">
+                        <div class="tab-content" id="pills-tabContent">
+                          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <center>
+                                <h3 align="center" style="
+                              color: gray;
+                                font: 18px Arial, sans-serif;">
+                                Nuevo Arriendo
+                              </h3>
                               <div class="form-group">
-                                <label>Fecha</label>
-                                <input type="date" name="fecha" class="form-control" required>
+                                <label>Residente</label>
+                                <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente" required>
+                                    <option value="0" selected disabled>Seleccione residente</option>
+                                    @foreach($residentes as $key)
+                                        <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+                                    @endforeach()
+                                </select>
                               </div>
-                                  
-                              <div class="form-group" align="center">
-                                <label>Hora</label>
-                                <input class="form-control" id="example-time" type="time" name="hora" required="">
+                               <div class="form-group">
+                                <label>Instalación</label>
+                                <select class="form-control select2" id="instalacionList" name="id_instalacion">
+                                    <option value="0" selected disabled required>Seleccione instalación</option>
+                                    @foreach($instalaciones as $key)
+                                    <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
+                                    @endforeach
+                                </select>
                               </div>
+                              <div class="form-group">
+                                <label>Tipo de Alquiler</label>
+                                <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler" required>
+                                  <option value="Permanente">Permanente</option>
+                                  <option value="Temporal">Temporal</option>
+                                </select>
+                              </div>
+                              <div class="form-group card shadow" style="border-radius: 30px !important;">
+                                <div class="card-body">
+                                  <div class="form-group">
+                                    <label>Fecha</label>
+                                    <input type="date" name="fecha" class="form-control" required>
+                                  </div>
+                                      
+                                  <div class="form-group" align="center">
+                                    <label>Hora</label>
+                                    <input class="form-control" id="example-time" type="time" name="hora" required="">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label>Nro. de personas</label>
+                                <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                  <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                    <span class="input-group-text" style="width:39px; height:39px;">
+                                      <i data-feather="users"></i>
+                                    </span>
+                                  </span>
+                                  <input name="num_personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label>Nro. de horas</label>
+                                <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                  <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                    <span class="input-group-text" style="width:39px; height:39px;">
+                                      <i data-feather="watch"></i>
+                                    </span>
+                                  </span>
+                                  <input name="num_horas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <label>Status</label>
+                                  <select name="status" class="form-control select2" id="status_PlanP">
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                  </select>
+                              </div>
+                              
+                                <button type="submit" class="btn btn-danger">Guardar</button>
+                            </center>
+                          </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-pago-tab">
+                        <center>
+                            <div class="form-group">
+                                <label>Referencia</label>
+                                <input type="text" class="form-control" name="referencia" required>
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label>Nro. de personas</label>
-                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
-                                <span class="input-group-text" style="width:39px; height:39px;">
-                                  <i data-feather="users"></i>
-                                </span>
-                              </span>
-                              <input name="num_personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                            <div class="row">
+                                <?php $num=0; ?>
+                                @if(count($promociones)>0)
+                                    @foreach($planesPago as $key)
+                                        @foreach($promociones as $key2)
+                                            @if($key->id == $key2->id_planP) 
+                                                @php $monto=$key->monto*$key2->porcentaje/100 @endphp
+                                                @php $monto2=$key->monto-$monto @endphp
+                                                @if($num==0)
+                                                    <div class="col-md-6">
+                                                        <div class="card shadow border card-tabla rounded" style="height: 400px; border: solid !important; border-color: #ff7043 !important;">
+                                                            <div class="ribbon"><span>¡LIMITADO!</span></div>
+                                                            <div class="ribbon2"><span>-{{$key2->porcentaje}}%</span></div>
+                                                            <div class="card-body">
+                                                                <div class="custom-control custom-radio mb-2">
+                                                                  <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}" checked>
+                                                                </div>
+                                                               <h3>{{$key->nombre}}</h3>
+                                                               <span>{{$key->dias}} dias</span>
+                                                               <br>
+                                                                <span style="font-size: 30px;">$</span><span style="font-size: 50px;"><s>{{$key->monto}}</s></span><strong>/Mes</strong><br>
+                                                                <div style="margin-top: -30px !important;">
+                                                                    <span style="font-size: 30px; color: #ff7043 !important;">$</span><span style="font-size: 70px; color: #ff7043 !important;">{{$monto2}}</span><strong style=" color: #ff7043 !important;">/Mes</strong>
+                                                                </div>
+                                                               <br>
+                                                               <center>
+                                                                <img align="center" class="imagenAnun3" src="{{ asset($key->url_img) }}" style="">
+                                                               </center>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="col-md-6">
+                                                        <div class="card shadow border card-tabla rounded" style="height: 400px; border: solid !important; border-color: #ff7043 !important;">
+                                                            <div class="ribbon"><span>¡LIMITADO!</span></div>
+                                                            <div class="ribbon2"><span>-{{$key2->porcentaje}}%</span></div>
+                                                            <div class="card-body">
+                                                                <div class="custom-control custom-radio mb-2">
+                                                                  <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                                                </div>
+                                                               <h3>{{$key->nombre}}</h3>
+                                                               <span>{{$key->dias}} dias</span>
+                                                               <br>
+                                                                <span style="font-size: 30px;">$</span><span style="font-size: 50px;"><s>{{$key->monto}}</s></span><strong>/Mes</strong><br>
+                                                                <div style="margin-top: -30px !important;">
+                                                                    <span style="font-size: 30px; color: #ff7043 !important;">$</span><span style="font-size: 70px; color: #ff7043 !important;">{{$monto2}}</span><strong style=" color: #ff7043 !important;">/Mes</strong>
+                                                                </div>
+                                                               <br>
+                                                               <center>
+                                                                <img align="center" class="imagenAnun3" src="{{ asset($key->url_img) }}" style="">
+                                                               </center>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @else
+                                                @if($num==0)
+                                                    <div class="col-md-6">
+                                                        <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                            <div class="card-body">
+                                                                <div class="custom-control custom-radio mb-2">
+                                                                  <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}" checked>
+                                                                </div>
+                                                               <h3>{{$key->nombre}}</h3>
+                                                               <span>{{$key->dias}} dias</span>
+                                                               <br>
+                                                                <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                               <br>
+                                                               <center>
+                                                                <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                                                               </center>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="col-md-6">
+                                                        <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                            <div class="card-body">
+                                                                <div class="custom-control custom-radio mb-2">
+                                                                  <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                                                </div>
+                                                               <h3>{{$key->nombre}}</h3>
+                                                               <span>{{$key->dias}} dias</span>
+                                                               <br>
+                                                                <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                               <br>
+                                                               <center>
+                                                                <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                                                               </center>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        @endforeach()
+                                        <?php $num++; ?>
+                                    @endforeach()
+                                @else
+                                    @foreach($planesPago as $key)
+                                        @if($num==0)
+                                            <div class="col-md-6">
+                                                <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                    <div class="card-body">
+                                                        <div class="custom-control custom-radio mb-2">
+                                                          <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}" checked>
+                                                        </div>
+                                                       <h3>{{$key->nombre}}</h3>
+                                                       <span>{{$key->dias}} dias</span>
+                                                       <br>
+                                                        <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                       <br>
+                                                       <center>
+                                                        <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                                                       </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="col-md-6">
+                                                <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                    <div class="card-body">
+                                                        <div class="custom-control custom-radio mb-2">
+                                                          <input type="radio" id="customRadio1" name="planP" value="{{$key->id}}">
+                                                        </div>
+                                                       <h3>{{$key->nombre}}</h3>
+                                                       <span>{{$key->dias}} dias</span>
+                                                       <br>
+                                                        <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                       <br>
+                                                       <center>
+                                                        <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                                                       </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <?php $num++; ?>
+                                    @endforeach()
+                                @endif
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label>Nro. de horas</label>
-                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
-                                <span class="input-group-text" style="width:39px; height:39px;">
-                                  <i data-feather="watch"></i>
-                                </span>
-                              </span>
-                              <input name="num_horas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                              <label>Status</label>
-                              <select name="status" class="form-control select2" id="status_PlanP">
-                                <option value="Activo">Activo</option>
-                                <option value="Inactivo">Inactivo</option>
-                              </select>
-                          </div>
-                          
-                            <button type="submit" class="btn btn-danger">Guardar</button>
                         </center>
+
                     </div>                            
                 </div>
             </div>

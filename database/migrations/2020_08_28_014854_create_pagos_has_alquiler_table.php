@@ -15,9 +15,9 @@ class CreatePagosHasAlquilerTable extends Migration
     {
         Schema::create('pagos_has_alquiler', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_alquiler');
             $table->string('referencia');
             $table->decimal('monto',11, 2);
+            $table->unsignedBigInteger('id_alquiler');
             $table->unsignedBigInteger('id_planesPago');
 
             $table->foreign('id_alquiler')->references('id')->on('alquiler')->onDelete('cascade');
