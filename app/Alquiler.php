@@ -19,5 +19,9 @@ class Alquiler extends Model
     {
     	return $this->belongsTo('App\Instalaciones','id_instalacion');
     }
-    
+
+    public function pagos_has_alquiler()
+    {
+        return $this->hasMany('App\PagosAlquiler','id_alquiler','id');
+    }
 }
