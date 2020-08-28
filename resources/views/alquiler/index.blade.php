@@ -489,7 +489,7 @@
                     <div class="vistaColumnaInstalaciones EliminarArriendo border border-warning shadow" id="EliminarInstalacion" style="display: none; border-radius: 30px !important;">
                         <div class="card-body">
                           
-                          {!! Form::open(['route' => ['planes_pago.destroy',1033], 'method' => 'DELETE']) !!}
+                          {!! Form::open(['route' => ['desactivar_instalacion'], 'method' => 'POST']) !!}
                             @csrf
                             <h3>Desactivar instalacion</h3> 
                             Se DESACTIVARÁN, NO se ELIMINARÁN los datos de la instalación. Se cambiará el status a Inactivo.

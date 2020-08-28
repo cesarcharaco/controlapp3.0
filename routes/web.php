@@ -143,6 +143,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::resource('alquiler', 'AlquilerController');
 	Route::post('registrar_alquiler', 'AlquilerController@registrar_alquiler')->name('registrar_alquiler');
 	Route::post('editar_instalacion', 'AlquilerController@editar_instalacion')->name('editar_instalacion');
+	Route::post('desactivar_instalacion', 'AlquilerController@desactivar_instalacion')->name('desactivar_instalacion');
 
 	route::resource('empresas','EmpresasController');
 

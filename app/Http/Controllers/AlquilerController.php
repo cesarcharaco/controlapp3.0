@@ -155,11 +155,23 @@ class AlquilerController extends Controller
      * @param  \App\Alquiler  $alquiler
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alquiler $alquiler)
+    public function destroy(Request $request, Alquiler $alquiler)
     {
+        dd($request->all());
         $instalacion = Instalaciones::find($id);
-        $instalacion->status=$request->status;
-        $instalaciones->save();
+        $instalacion->status='Inactivo';
+        $instalacion->save();
+
+        toastr()->success('con éxito!', 'instalación deshabilitada');
+        return redirect()->back();
+    }
+
+    public function desactivar_instalacion(Request $request)
+    {
+        //dd($request->all());
+        $instalacion = Instalaciones::find($request->id);
+        $instalacion->status='Inactivo';
+        $instalacion->save();
 
         toastr()->success('con éxito!', 'instalación deshabilitada');
         return redirect()->back();
