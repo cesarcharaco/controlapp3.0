@@ -254,7 +254,7 @@
                     </table>
                 </div>
                 <div class="col-md-4">
-                  <div class="vistaColumnaArriendos nuevoArriendo border shadow" id="nuevoArriendo" align="center" style="border-radius: 30px !important;">
+                  <div class="vistaColumnaArriendos nuevoArriendo2 border shadow" align="center" style="border-radius: 30px !important;">
                     <div class="card-body">
                       {!! Form::open(['route' => ['alquiler.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_instalacion', 'id' => 'registrar_instalacion', 'data-parsley-validate']) !!}
                           @csrf
@@ -590,7 +590,7 @@
                     </table>
                 </div>
                 <div class="col-md-4">
-                  <div class="vistaColumnaArriendos nuevoArriendo border shadow" id="nuevoArriendo" align="center" style="border-radius: 30px !important;">
+                  <div class="vistaColumnaArriendos nuevoArriendo border shadow" align="center" style="border-radius: 30px !important;">
                     <div class="card-body">
                       {!! Form::open(['route' => ['registrar_alquiler'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_alquiler', 'id' => 'registrar_alquiler', 'data-parsley-validate']) !!}
                           @csrf
@@ -1480,6 +1480,108 @@
                         <div align="center">
                             <button type="submit" class="btn btn-danger">Guardar incidencia</button>
                         </div>
+                    </div>                            
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
+
+    {!! Form::open(['route' => ['registrar_alquiler'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_alquiler', 'id' => 'registrar_alquiler', 'data-parsley-validate']) !!}
+        @csrf
+        <div class="modal fade" id="nuevoArriendo" role="dialog">
+            <div class="modal-dialog modals-default border border-primary rounded">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Nuevo Arriendo</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist" style="background-color: #C5C5C5 !important;">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-empresa" aria-selected="true">1</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-datos" aria-selected="false">2</a>
+                          </li>
+                        </ul>
+                        <center>
+                            <h3 align="center" style="
+                          color: gray;
+                            font: 18px Arial, sans-serif;">
+                            Nuevo Arriendo
+                          </h3>
+                          <div class="form-group">
+                            <label>Residente</label>
+                            <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente" required>
+                                <option value="0" selected disabled>Seleccione residente</option>
+                                @foreach($residentes as $key)
+                                    <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+                                @endforeach()
+                            </select>
+                          </div>
+                           <div class="form-group">
+                            <label>Instalación</label>
+                            <select class="form-control select2" id="instalacionList" name="id_instalacion">
+                                <option value="0" selected disabled required>Seleccione instalación</option>
+                                @foreach($instalaciones as $key)
+                                <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
+                                @endforeach
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label>Tipo de Alquiler</label>
+                            <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler" required>
+                              <option value="Permanente">Permanente</option>
+                              <option value="Temporal">Temporal</option>
+                            </select>
+                          </div>
+                          <div class="form-group card shadow" style="border-radius: 30px !important;">
+                            <div class="card-body">
+                              <div class="form-group">
+                                <label>Fecha</label>
+                                <input type="date" name="fecha" class="form-control" required>
+                              </div>
+                                  
+                              <div class="form-group" align="center">
+                                <label>Hora</label>
+                                <input class="form-control" id="example-time" type="time" name="hora" required="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Nro. de personas</label>
+                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                <span class="input-group-text" style="width:39px; height:39px;">
+                                  <i data-feather="users"></i>
+                                </span>
+                              </span>
+                              <input name="num_personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Nro. de horas</label>
+                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                <span class="input-group-text" style="width:39px; height:39px;">
+                                  <i data-feather="watch"></i>
+                                </span>
+                              </span>
+                              <input name="num_horas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <label>Status</label>
+                              <select name="status" class="form-control select2" id="status_PlanP">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                              </select>
+                          </div>
+                          
+                            <button type="submit" class="btn btn-danger">Guardar</button>
+                        </center>
                     </div>                            
                 </div>
             </div>
