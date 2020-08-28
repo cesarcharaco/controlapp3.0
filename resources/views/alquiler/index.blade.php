@@ -430,7 +430,7 @@
                               </h3>
                               <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="text" name="nombre" class="form-control" required placeholder="Instalación 1" required>
+                                <input type="text" name="nombre" class="form-control" required placeholder="Instalación 1" required id="nombreInstalacion">
                               </div>
                               <div class="form-group card shadow" style="border-radius: 30px !important;">
                                 <div class="card-body">
@@ -438,27 +438,25 @@
                                   <label>Horario de disponibilidad</label>
                                   <br>
                                   <i data-feather="minus"></i>
-                                  <div class="button-list">
-                                    <button type="button" class="btn btn-primary" onclick="diaNegocio(1)" id="horarioBotonDia1">Lunes</button>
-                                    <button type="button" class="btn btn-primary" onclick="diaNegocio(2)" id="horarioBotonDia2">Martes</button>
-                                    <button type="button" class="btn btn-primary" onclick="diaNegocio(3)" id="horarioBotonDia3">Miércoles</button>
-                                    <button type="button" class="btn btn-primary" onclick="diaNegocio(4)" id="horarioBotonDia4">Jueves</button>
-                                    <button type="button" class="btn btn-primary" onclick="diaNegocio(5)" id="horarioBotonDia5">Viernes</button>
-                                    <button type="button" class="btn btn-primary" onclick="diaNegocio(6)" id="horarioBotonDia6">Sábado</button>
-                                    <button type="button" class="btn btn-primary" onclick="diaNegocio(7)" id="horarioBotonDia7">Domingo</button>
+                                  <div class="form-group">
+                                    <select name="id_dia[]" id="id_diaInstalaciones" class="form-control select2" multiple="multiple" required>
+                                        @foreach($dias as $key)
+                                            <option value="{{$key->id}}">{{$key->dia}}</option>
+                                        @endforeach
+                                    </select>
                                   </div>
                                   <br>
                                   <div class="row justify-content-center">
                                     <div class="col-md-6">
                                       <div class="form-group" align="center">
                                         <label>Desde</label>
-                                        <input class="form-control" id="example-time" type="time" name="desde">
+                                        <input class="form-control" type="time" name="desde" id="desdeInstalacion">
                                       </div>
                                     </div>
                                     <div class="col-md-6">
                                       <div class="form-group" align="center">
                                         <label>Hasta</label>
-                                        <input class="form-control" id="example-time" type="time" name="hasta">
+                                        <input class="form-control" type="time" name="hasta" id="hastaInstalacion">
                                       </div>
                                     </div>
                                   </div>
@@ -472,18 +470,18 @@
                                       <i data-feather="users"></i>
                                     </span>
                                   </span>
-                                  <input name="dias" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
+                                  <input name="dias" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required id="npersonasInstalacion">
                                 </div>
                               </div>
                               <div class="form-group">
                                   <label>Status</label>
-                                  <select name="status" class="form-control select2" id="status_PlanP">
+                                  <select name="status" class="form-control select2" id="status_PlanP" id="statusInstalacion">
                                     <option value="Activo">Activo</option>
                                     <option value="Inactivo">Inactivo</option>
                                   </select>
                               </div>
                               
-                              
+                              <input type="hidden" name="id" id="idInstalacion">
                             <button type="submit" class="btn btn-success">Agregar</button>
                           {!! Form::close() !!}
                         </div>
@@ -1665,6 +1663,12 @@
     }
 
     function editarInstalacion(id,nombre,hora_desde,hora_hasta,max_personas,status) {
+        $('#idInstalacion').val(id);
+        $('#nombreInstalacion').val(nombre);
+        $('#desdeInstalacion').val(hora_desde);
+        $('#hastaInstalacion').val(hora_hasta);
+        $('#npersonasInstalacion').val(max_personas);
+        $('#statusInstalacion').val(status);
         $(".vistaColumnaInstalaciones").fadeOut("slow",
           function() {
             $(".vistaColumnaInstalaciones").hide();
