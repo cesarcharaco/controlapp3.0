@@ -644,7 +644,7 @@
                                             </a>
                                         @endforeach()
 
-                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="eliminarArriendo('{{$key->id}}')">
+                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="eliminarArriendo('{{$key->id}}','{{$key->id_instalacion}}')">
                                             <span class="PalabraEditarPago ">Eliminar</span>
                                             <center>
                                                 <span class="PalabraEditarPago2 ">
@@ -671,12 +671,13 @@
                   <div class="vistaColumnaArriendos EliminarArriendo border border-danger shadow" id="EliminarArriendo" style="display: none; border-radius: 30px !important;">
                         <div class="card-body">
                           
-                          {!! Form::open(['route' => ['alquiler.destroy',1033], 'method' => 'DELETE']) !!}
+                          {!! Form::open(['route' => ['eliminar_alquiler'], 'method' => 'POST']) !!}
                             @csrf
                             <h3>¿Está realmente seguro de querer eliminar este Arriendo?</h3> 
                             Se eliminarán todos los datos y pagos relacionados a este arriendo.
                             <div class="float-right">
-                              <input type="hidden" name="id" class="id_ArriendoE" id="id_ArriendoE">
+                              <input type="text" name="id" class="id_ArriendoE" id="id_ArriendoE">
+                              <input type="text" name="id_instalacion" class="id_ArriendoE" id="id_instalacion">
                               <button type="submit" class="btn btn-danger">Eliminar</button>
                             </div>
                           {!! Form::close() !!}
@@ -1419,7 +1420,7 @@
                           </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                 <center>
                                   <div class="form-group">
                                     <label>Residente</label>
@@ -1435,7 +1436,9 @@
                                     <select class="form-control select2" id="instalacionList" name="id_instalacion">
                                         <option value="0" selected disabled required>Seleccione instalación</option>
                                         @foreach($instalaciones as $key)
-                                        <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
+                                        @if($key->status=="Activo")
+                                            <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
+                                        @endif
                                         @endforeach
                                     </select>
                                   </div>
@@ -1450,12 +1453,12 @@
                                     <div class="card-body">
                                       <div class="form-group">
                                         <label>Fecha</label>
-                                        <input type="date" name="fecha" class="form-control" id="fechaAlquiler" required>
+                                        <input type="date" name="fecha" class="form-control" id="fechaAlquiler">
                                       </div>
                                           
                                       <div class="form-group" align="center">
                                         <label>Hora</label>
-                                        <input class="form-control" type="time" name="hora"  id="horaAlquiler" required>
+                                        <input class="form-control" type="time" name="hora"  id="horaAlquiler">
                                       </div>
                                     </div>
                                   </div>
@@ -1482,10 +1485,10 @@
                             <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-pago-tab">
                                 <center>
                                     <div class="form-group" id="pagoRealizado">
-                                            <div class="">                  
-                                                <label for="admins_todos">¿Se realizó el pago?</label>
-                                                <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si el pago se realizó correctamente" value="1">
-                                            </div>
+                                        <div class="">                  
+                                            <label for="admins_todos">¿Se realizó el pago?</label>
+                                            <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si el pago se realizó correctamente" value="1">
+                                        </div>
                                         <label>Referencia</label>
                                         <input type="text" class="form-control" name="referencia" required>
                                     </div>
@@ -1533,7 +1536,6 @@
                                             @endforeach()
                                     </div>
                                 </center>
-
                             </div>
                         </div>
                         <div align="center">
@@ -1545,7 +1547,7 @@
         </div>
     {!! Form::close() !!}
 
-    {!! Form::open(['route' => ['alquiler.update',1033], 'enctype' => 'multipart/form-data', 'method' => 'PUT', 'name' => 'update_arriendo', 'id' => 'update_arriendo', 'data-parsley-validate']) !!}
+    {!! Form::open(['route' => ['editar_alquiler'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'update_arriendo', 'id' => 'update_arriendo', 'data-parsley-validate']) !!}
         @csrf
         <div class="modal fade" id="editarArriendo2" role="dialog">
             <div class="modal-dialog modals-default border border-primary rounded">
@@ -1597,12 +1599,12 @@
                                     <div class="card-body">
                                       <div class="form-group">
                                         <label>Fecha</label>
-                                        <input type="date" name="fecha" class="form-control" id="fechaAlquilerArriendoE" required>
+                                        <input type="date" name="fecha" class="form-control" id="fechaAlquilerArriendoE">
                                       </div>
                                           
                                       <div class="form-group" align="center">
                                         <label>Hora</label>
-                                        <input class="form-control" type="time" name="hora"  id="horaAlquilerArriendoE" required>
+                                        <input class="form-control" type="time" name="hora"  id="horaAlquilerArriendoE">
                                       </div>
                                     </div>
                                   </div>
@@ -1730,8 +1732,9 @@
         $('#editarArriendo2').modal('show');
     }
 
-    function eliminarArriendo(id) {
+    function eliminarArriendo(id, id_instalacion) {
         $('#id_ArriendoE').val(id);
+        $('#id_instalacion').val(id_instalacion);
         $('#EliminarArriendo').fadeIn(300);
     }
 
