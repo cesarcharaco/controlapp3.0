@@ -18,8 +18,8 @@ class CreateAlquilerTable extends Migration
             $table->unsignedBigInteger('id_residente');
             $table->unsignedBigInteger('id_instalacion');
             $table->enum('tipo_alquiler',['Permanente','Temporal']);
-            $table->date('fecha');
-            $table->time('hora');
+            $table->date('fecha')->nullable();
+            $table->time('hora')->nullable();
             $table->string('num_horas');
             $table->enum('status',['Activo','Inactivo']);
 

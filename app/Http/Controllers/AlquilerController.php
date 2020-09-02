@@ -46,7 +46,7 @@ class AlquilerController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $instalacion = new Instalaciones();
         $instalacion->nombre=$request->nombre;
         $instalacion->hora_desde=$request->hora_desde;
@@ -70,20 +70,22 @@ class AlquilerController extends Controller
 
     public function registrar_alquiler(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $alquiler = new Alquiler();
         $alquiler->id_residente=$request->id_residente;
         $alquiler->id_instalacion=$request->id_instalacion;
         $alquiler->tipo_alquiler=$request->tipo_alquiler;
         $alquiler->fecha=$request->fecha;
         $alquiler->hora=$request->hora;
-        $alquiler->num_personas=$request->num_personas;
         $alquiler->num_horas=$request->num_horas;
         $alquiler->status=$request->status;
         $alquiler->save();
 
+        $pagos=PlanesPago::find($request->planP);
+
         \DB::table('pagos_has_alquiler')->insert([
             'referencia'=> $request->referencia,
+            'monto'     => $pagos->monto,
             'id_alquiler' => $alquiler->id,
             'id_planesPago' => $request->planP,
             'status'=>'En Proceso'

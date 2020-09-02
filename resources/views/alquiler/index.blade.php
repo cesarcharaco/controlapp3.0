@@ -205,8 +205,8 @@
                                     </center>
                                 </th>
                                 <th>
-                                    <span class="PalabraEditarPago">URL</span>
-                                    <span class="PalabraEditarPago2">@</span>
+                                    <span class="PalabraEditarPago">Dias</span>
+                                    <span class="PalabraEditarPago2">D</span>
                                 </th>
                             </tr>
                             <tr class="bg-info text-white" id="th1">
@@ -282,7 +282,11 @@
                                             </center>
                                         </a>
                                     </td>
-                                    <td>{{$key->status}}</td>
+                                    <td>
+                                        @foreach($key->dias as $key2)
+                                            <li>{{ $key2->dia }}</li>
+                                        @endforeach
+                                    </td>
                                     
 
                                 </tr>
@@ -482,7 +486,7 @@
                               </div>
                               
                               <input type="hidden" name="id" id="idInstalacion">
-                            <button type="submit" class="btn btn-success">Agregar</button>
+                            <button type="submit" class="btn btn-warning">Editar</button>
                           {!! Form::close() !!}
                         </div>
                     </div>
@@ -495,7 +499,7 @@
                             Se DESACTIVARÁN, NO se ELIMINARÁN los datos de la instalación. Se cambiará el status a Inactivo.
                             <div class="float-right">
                               <input type="hidden" name="id" class="id_instalacionE" id="id_instalacionE">
-                              <button type="submit" class="btn btn-warning">Desactivar</button>
+                              <button type="submit" class="btn btn-warning btn-sm">Desactivar</button>
                             </div>
                           {!! Form::close() !!}
                         </div>
@@ -543,7 +547,7 @@
                                 </td>
                                 <td colspan="1"></td>
                             </tr>
-                            <tr class="bg-primary text-white" id="th2" style="display: none">
+                            <tr class="bg-primary text-white" class="th2" style="display: none">
                                 <th width="10"></th>
                                 <th>
                                     <span class="PalabraEditarPago">Título</span>
@@ -560,7 +564,7 @@
                                     </center>
                                 </th>
                             </tr>
-                            <tr class="bg-info text-white" id="th1">
+                            <tr class="bg-info text-white" class="th1">
                                 <th>#</th>
                                 <th>
                                     <span class="tituloTabla">Residente</span>
@@ -588,7 +592,7 @@
                         </thead>
                         <tbody>
                             @foreach($alquiler as $key)
-                                <tr>
+                                <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
                                     <td>{{$key->id}}</td>
                                     <td>{{$key->residente->nombres}}</td>
                                     <td>{{$key->instalacion->nombre}}</td>
@@ -596,247 +600,87 @@
                                     <td>{{$key->fecha}}</td>
                                     <td>{{$key->hora}}</td>
                                 </tr>
+                                <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                    <td width="10">
+                                        <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Regresar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <span>{{$key->residente->nombres}}</span><br>
+                                    </td>
+                                    <td>
+                                        <span>{{$key->instalacion->nombre}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{$key->tipo_alquiler}}</span>
+                                    </td>
+                                    <td colspan="2" align="center">
+                                        @foreach($key->pagos_has_alquiler as $key2)
+                                            <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="editarArriendo(
+                                                    '{{$key->id}}',
+                                                    '{{$key->id_residente}}',
+                                                    '{{$key->id_instalacion}}',
+                                                    '{{$key->tipo_alquiler}}',
+                                                    '{{$key->fecha}}',
+                                                    '{{$key->hora}}',
+                                                    '{{$key->num_horas}}',
+                                                    '{{$key->status}}',
+                                                    '{{$key2->status}}',
+                                                    '{{$key2->referencia}}',
+                                                    '{{$key2->id_planesPago}}'
+                                                )">
+                                                <span class="PalabraEditarPago "><strong>Editar</strong></span>
+                                                <center>
+                                                    <span class="PalabraEditarPago2 ">
+                                                        <strong><i data-feather="edit" class="iconosMetaforas2"></i></strong>
+                                                    </span>
+                                                </center>
+                                            </a>
+                                        @endforeach()
+
+                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="eliminarArriendo('{{$key->id}}')">
+                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+                                    </td>
+                                    
+
+                                </tr>
+                                <tr style="display: none;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="col-md-4">
-                  {{--<div class="vistaColumnaArriendos nuevoArriendo border shadow" align="center" style="border-radius: 30px !important;">
-                    <div class="card-body">
-                      {!! Form::open(['route' => ['registrar_alquiler'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_alquiler', 'id' => 'registrar_alquiler', 'data-parsley-validate']) !!}
-                          @csrf
-                        <h3 align="center" style="
-                          color: gray;
-                            font: 18px Arial, sans-serif;">
-                            Nuevo Arriendo
-                          </h3>
-                          <div class="form-group">
-                            <label>Residente</label>
-                            <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente" required>
-                                <option value="0" selected disabled>Seleccione residente</option>
-                                @foreach($residentes as $key)
-                                    <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
-                                @endforeach()
-                            </select>
-                          </div>
-                           <div class="form-group">
-                            <label>Instalación</label>
-                            <select class="form-control select2" id="instalacionList" name="id_instalacion">
-                                <option value="0" selected disabled required>Seleccione instalación</option>
-                                @foreach($instalaciones as $key)
-                                <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
-                                @endforeach
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label>Tipo de Alquiler</label>
-                            <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler" required>
-                              <option value="Permanente">Permanente</option>
-                              <option value="Temporal">Temporal</option>
-                            </select>
-                          </div>
-                          <div class="form-group card shadow" style="border-radius: 30px !important;">
-                            <div class="card-body">
-                              <div class="form-group">
-                                <label>Fecha</label>
-                                <input type="date" name="fecha" class="form-control" required>
-                              </div>
-                                  
-                              <div class="form-group" align="center">
-                                <label>Hora</label>
-                                <input class="form-control" id="example-time" type="time" name="hora" required="">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label>Nro. de personas</label>
-                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
-                                <span class="input-group-text" style="width:39px; height:39px;">
-                                  <i data-feather="users"></i>
-                                </span>
-                              </span>
-                              <input name="num_personas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label>Nro. de horas</label>
-                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
-                                <span class="input-group-text" style="width:39px; height:39px;">
-                                  <i data-feather="watch"></i>
-                                </span>
-                              </span>
-                              <input name="num_horas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                              <label>Status</label>
-                              <select name="status" class="form-control select2" id="status_PlanP">
-                                <option value="Activo">Activo</option>
-                                <option value="Inactivo">Inactivo</option>
-                              </select>
-                          </div>
-                          <!-- <label>Plan dirigido a:</label>
-                          <div class="row justify-content-center">
-                            <div class="col-md-6" align="center">
-                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
-                              <div class="custom-control custom-radio">
-                                              <input type="radio" id="customRadio1" name="tipo" value="Anuncio" checked>
-                                          </div>
-                              <div class="border border-success p-3 shadow" align="center" style="
-
-                              background-image: url('{{ asset('assets/images/planes_p/anuncios.jpg') }}');
-                                        background-position: center;
-                                        background-repeat: no-repeat;
-                                        background-size: cover;
-
-                              border-radius: 10px !important;
-                              height: 130px !important;
-                              width: 130px !important;">
-                              </div>
-                            </div>
-                            <div class="col-md-6" align="center">
-                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Alquiler</h3>
-                              <div class="custom-control custom-radio">
-                                              <input type="radio" id="customRadio2" name="tipo" value="Alquiler">
-                                          </div>
-                              <div class="border border-success p-3 shadow" align="center" style="
-
-                              background-image: url('{{ asset('assets/images/planes_p/alquiler.jpg') }}');
-                                        background-position: center;
-                                        background-repeat: no-repeat;
-                                        background-size: cover;
-
-                              border-radius: 10px !important;
-                              height: 130px !important;
-                              width: 130px !important;">
-                              </div>
-                            </div>
-                          </div> -->
-                          
-                        <button type="submit" class="btn btn-success">Agregar</button>
-                      {!! Form::close() !!}
-                    </div>--}}
-                  </div>
-                  <div class="vistaColumnaArriendos editarArriendo border border-warning shadow" id="editarArriendo" style="display: none; border-radius: 30px !important;">
-                    <div class="card-body">
-                      {!! Form::open(['route' => ['planes_pago.store'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'nuevp_planP', 'id' => 'nuevp_planP', 'data-parsley-validate']) !!}
-                          @csrf
-                        <h3 align="center" style="
-                          color: gray;
-                            font: 18px Arial, sans-serif;">
-                            Nueva Instalación
-                          </h3>
-                          <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control" required placeholder="Instalación 1" required>
-                          </div>
-                          <div class="form-group card shadow" style="border-radius: 30px !important;">
-                            <div class="card-body">
-                              
-                              <label>Horario de disponibilidad</label>
-                              <br>
-                              <i data-feather="minus"></i>
-                              <div class="button-list">
-                                <button type="button" class="btn btn-primary" onclick="diaNegocio(1)" id="horarioBotonDia1">Lunes</button>
-                                <button type="button" class="btn btn-primary" onclick="diaNegocio(2)" id="horarioBotonDia2">Martes</button>
-                                <button type="button" class="btn btn-primary" onclick="diaNegocio(3)" id="horarioBotonDia3">Miércoles</button>
-                                <button type="button" class="btn btn-primary" onclick="diaNegocio(4)" id="horarioBotonDia4">Jueves</button>
-                                <button type="button" class="btn btn-primary" onclick="diaNegocio(5)" id="horarioBotonDia5">Viernes</button>
-                                <button type="button" class="btn btn-primary" onclick="diaNegocio(6)" id="horarioBotonDia6">Sábado</button>
-                                <button type="button" class="btn btn-primary" onclick="diaNegocio(7)" id="horarioBotonDia7">Domingo</button>
-                              </div>
-                              <br>
-                              <div class="row justify-content-center">
-                                <div class="col-md-6">
-                                  <div class="form-group" align="center">
-                                    <label>Desde</label>
-                                    <input class="form-control" id="example-time" type="time" name="desde">
-                                  </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <div class="form-group" align="center">
-                                    <label>Hasta</label>
-                                    <input class="form-control" id="example-time" type="time" name="hasta">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label>Nro. máximo de personas</label>
-                            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                              <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
-                                <span class="input-group-text" style="width:39px; height:39px;">
-                                  <i data-feather="users"></i>
-                                </span>
-                              </span>
-                              <input name="dias" min="1" minlength="1" max="50" data-toggle="touchspin" type="number" data-bts-prefix="$" class="form-control" placeholder="7" required>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                              <label>Status</label>
-                              <select name="status" class="form-control select2" id="status_PlanP">
-                                <option value="Activo">Activo</option>
-                                <option value="Inactivo">Inactivo</option>
-                              </select>
-                          </div>
-                          <!-- <label>Plan dirigido a:</label>
-                          <div class="row justify-content-center">
-                            <div class="col-md-6" align="center">
-                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Anuncios</h3>
-                              <div class="custom-control custom-radio">
-                                              <input type="radio" id="customRadio1" name="tipo" value="Anuncio" checked>
-                                          </div>
-                              <div class="border border-success p-3 shadow" align="center" style="
-
-                              background-image: url('{{ asset('assets/images/planes_p/anuncios.jpg') }}');
-                                        background-position: center;
-                                        background-repeat: no-repeat;
-                                        background-size: cover;
-
-                              border-radius: 10px !important;
-                              height: 130px !important;
-                              width: 130px !important;">
-                              </div>
-                            </div>
-                            <div class="col-md-6" align="center">
-                              <h3 align="center" style="color: gray; font: 18px Arial, sans-serif;">Alquiler</h3>
-                              <div class="custom-control custom-radio">
-                                              <input type="radio" id="customRadio2" name="tipo" value="Alquiler">
-                                          </div>
-                              <div class="border border-success p-3 shadow" align="center" style="
-
-                              background-image: url('{{ asset('assets/images/planes_p/alquiler.jpg') }}');
-                                        background-position: center;
-                                        background-repeat: no-repeat;
-                                        background-size: cover;
-
-                              border-radius: 10px !important;
-                              height: 130px !important;
-                              width: 130px !important;">
-                              </div>
-                            </div>
-                          </div> -->
-                          
-                        <button type="submit" class="btn btn-success">Agregar</button>
-                      {!! Form::close() !!}
-                    </div>
-                  </div>
                   <div class="vistaColumnaArriendos EliminarArriendo border border-danger shadow" id="EliminarArriendo" style="display: none; border-radius: 30px !important;">
-                    <div class="card-body">
-                      
-                      {!! Form::open(['route' => ['planes_pago.destroy',1033], 'method' => 'DELETE']) !!}
-                        @csrf
-                        <h3>¿Está realmente seguro de querer eliminar este Arriendo?</h3> 
-                        Se eliminarán todos los datos y pagos relacionados a este arriendo.
-                        <div class="float-right">
-                          <input type="hidden" name="id" class="id_PlanP">
-                          <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <div class="card-body">
+                          
+                          {!! Form::open(['route' => ['alquiler.destroy',1033], 'method' => 'DELETE']) !!}
+                            @csrf
+                            <h3>¿Está realmente seguro de querer eliminar este Arriendo?</h3> 
+                            Se eliminarán todos los datos y pagos relacionados a este arriendo.
+                            <div class="float-right">
+                              <input type="hidden" name="id" class="id_ArriendoE" id="id_ArriendoE">
+                              <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </div>
+                          {!! Form::close() !!}
                         </div>
-                      {!! Form::close() !!}
-                    </div>
                   </div>
                 </div>
             </div>
@@ -1597,21 +1441,21 @@
                                   </div>
                                   <div class="form-group">
                                     <label>Tipo de Alquiler</label>
-                                    <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler" required>
+                                    <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler" onchange="TipoAlquiler(this.value)" required>
                                       <option value="Permanente">Permanente</option>
                                       <option value="Temporal">Temporal</option>
                                     </select>
                                   </div>
-                                  <div class="form-group card shadow" style="border-radius: 30px !important;">
+                                  <div class="form-group card shadow vistaTipoAlquiler" style="border-radius: 30px !important; display: none;">
                                     <div class="card-body">
                                       <div class="form-group">
                                         <label>Fecha</label>
-                                        <input type="date" name="fecha" class="form-control" required>
+                                        <input type="date" name="fecha" class="form-control" id="fechaAlquiler" required>
                                       </div>
                                           
                                       <div class="form-group" align="center">
                                         <label>Hora</label>
-                                        <input class="form-control" id="example-time" type="time" name="hora" required="">
+                                        <input class="form-control" type="time" name="hora"  id="horaAlquiler" required>
                                       </div>
                                     </div>
                                   </div>
@@ -1623,18 +1467,16 @@
                                           <i data-feather="watch"></i>
                                         </span>
                                       </span>
-                                      <input name="num_horas" min="1" minlength="1" max="50" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
+                                      <input name="num_horas" min="1" minlength="2" max="24" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required>
                                     </div>
-                                  </div>
-                                  <div class="form-group">
+                                    </div>
+                                    <div class="form-group">
                                       <label>Status</label>
                                       <select name="status" class="form-control select2" id="status_PlanP">
                                         <option value="Activo">Activo</option>
                                         <option value="Inactivo">Inactivo</option>
                                       </select>
-                                  </div>
-                                  
-                                    
+                                    </div>                                  
                                 </center>
                             </div>
                             <div class="tab-pane fade" id="pills-pago" role="tabpanel" aria-labelledby="pills-pago-tab">
@@ -1642,7 +1484,7 @@
                                     <div class="form-group" id="pagoRealizado">
                                             <div class="">                  
                                                 <label for="admins_todos">¿Se realizó el pago?</label>
-                                                <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea seleccionar a todos los admins" value="1">
+                                                <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si el pago se realizó correctamente" value="1">
                                             </div>
                                         <label>Referencia</label>
                                         <input type="text" class="form-control" name="referencia" required>
@@ -1695,7 +1537,161 @@
                             </div>
                         </div>
                         <div align="center">
-                            <button type="submit" class="btn btn-danger">Guardar</button>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                    </div>                          
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
+
+    {!! Form::open(['route' => ['alquiler.update',1033], 'enctype' => 'multipart/form-data', 'method' => 'PUT', 'name' => 'update_arriendo', 'id' => 'update_arriendo', 'data-parsley-validate']) !!}
+        @csrf
+        <div class="modal fade" id="editarArriendo2" role="dialog">
+            <div class="modal-dialog modals-default border border-primary rounded">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Editar Arriendo</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist" style="background-color: #C5C5C5 !important;">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-homeE" role="tab" aria-controls="pills-empresaE" aria-selected="true">1</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-pagoE" role="tab" aria-controls="pills-datosE" aria-selected="false">2</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-homeE" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <center>
+                                  <div class="form-group">
+                                    <label>Residente</label>
+                                    <select class="form-control select2" id="id_residenteArriendoE" onchange="buscarTodo(this.value)" name="id_residente" required>
+                                        <option value="0" selected disabled>Seleccione residente</option>
+                                        @foreach($residentes as $key)
+                                            <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
+                                        @endforeach()
+                                    </select>
+                                  </div>
+                                   <div class="form-group">
+                                    <label>Instalación</label>
+                                    <select class="form-control select2" id="instalacionListArriendoE" name="id_instalacion">
+                                        <option value="0" selected disabled required>Seleccione instalación</option>
+                                        @foreach($instalaciones as $key)
+                                        <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
+                                        @endforeach
+                                    </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Tipo de Alquiler</label>
+                                    <select class="form-control select2" id="tipo_alquilerArriendoE" name="tipo_alquiler" onchange="TipoAlquiler(this.value)" required>
+                                      <option value="Permanente">Permanente</option>
+                                      <option value="Temporal">Temporal</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group card shadow vistaTipoAlquiler" style="border-radius: 30px !important; display: none;">
+                                    <div class="card-body">
+                                      <div class="form-group">
+                                        <label>Fecha</label>
+                                        <input type="date" name="fecha" class="form-control" id="fechaAlquilerArriendoE" required>
+                                      </div>
+                                          
+                                      <div class="form-group" align="center">
+                                        <label>Hora</label>
+                                        <input class="form-control" type="time" name="hora"  id="horaAlquilerArriendoE" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Nro. de horas</label>
+                                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                      <span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
+                                        <span class="input-group-text" style="width:39px; height:39px;">
+                                          <i data-feather="watch"></i>
+                                        </span>
+                                      </span>
+                                      <input name="num_horas" min="1" minlength="2" max="24" data-toggle="touchspin" type="number"  class="form-control" placeholder="7" required id="num_horasArriendoE">
+                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label>Status</label>
+                                      <select name="status" class="form-control select2" id="statusArriendoE">
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
+                                      </select>
+                                    </div>                                  
+                                </center>
+                            </div>
+                            <div class="tab-pane fade" id="pills-pagoE" role="tabpanel" aria-labelledby="pills-pago-tab">
+                                <center>
+                                    <div class="form-group" id="pagoRealizado">
+                                            <div>                  
+                                                <label for="admins_todos">¿Se realizó el pago?</label>
+                                                <input type="checkbox" name="admins_todos" id="pagadoArriendoE"  data-toggle="tooltip" data-placement="top" title="Seleccione si el pago se realizó correctamente" value="1">
+                                            </div>
+                                            <div>  
+                                                <span id="pagadoArriendoE2"></span>
+                                            </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Referencia</label>
+                                        <input type="text" class="form-control" name="referencia" id="referenciaArriendoE" required>
+                                    </div>
+                                    <div class="row">
+                                        <?php $num=0; ?>
+                                            @foreach($planesPago as $key)
+                                                @if($num==0)
+                                                    <div class="col-md-6">
+                                                        <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                            <div class="card-body">
+                                                                <div class="custom-control custom-radio mb-2">
+                                                                  <input type="radio" id="planPArriendoE{{$key->id}}" name="planP" value="{{$key->id}}" checked>
+                                                                </div>
+                                                               <h3>{{$key->nombre}}</h3>
+                                                               <span>{{$key->dias}} dias</span>
+                                                               <br>
+                                                                <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                               <br>
+                                                               <center>
+                                                                <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                                                               </center>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="col-md-6">
+                                                        <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
+                                                            <div class="card-body">
+                                                                <div class="custom-control custom-radio mb-2">
+                                                                  <input type="radio" id="planPArriendoE{{$key->id}}" name="planP" value="{{$key->id}}">
+                                                                </div>
+                                                               <h3>{{$key->nombre}}</h3>
+                                                               <span>{{$key->dias}} dias</span>
+                                                               <br>
+                                                                <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
+                                                               <br>
+                                                               <center>
+                                                                <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
+                                                               </center>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                <?php $num++; ?>
+                                            @endforeach()
+                                    </div>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div align="center">
+                            <input type="hidden" name="id" id="id_editarArriendo">
+                            <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
                     </div>                          
                 </div>
@@ -1707,6 +1703,52 @@
 
 <script type="text/javascript">
 
+    function editarArriendo(id,id_residente,id_instalacion,tipo_alquiler,fecha,hora,num_horas,status,status2,referencia,id_planesPago) {
+
+        $('#id_residenteArriendoE').val(id_residente);
+        $('#instalacionListArriendoE').val(id_instalacion);
+        $('#tipo_alquilerArriendoE').val(tipo_alquiler);
+        $('#fechaAlquilerArriendoE').val(fecha);
+        $('#horaAlquilerArriendoE').val(hora);
+        $('#num_horasArriendoE').val(num_horas);
+        $('#statusArriendoE').val(status);
+
+        $('#pagadoArriendoE').val(status2);
+
+        if(status2 == 'Pagado'){
+            $('#pagadoArriendoE').prop('checked', true);
+        }else{
+            $('#pagadoArriendoE').removeAttr('checked', false);
+        }
+
+        $('#pagadoArriendoE2').html(status2);
+
+        $('#referenciaArriendoE').val(referencia);
+        $('#planPArriendoE'+id).prop('checked', true);
+
+        $('#id_editarArriendo').val(id);
+        $('#editarArriendo2').modal('show');
+    }
+
+    function eliminarArriendo(id) {
+        $('#id_ArriendoE').val(id);
+        $('#EliminarArriendo').fadeIn(300);
+    }
+
+    function TipoAlquiler(tipo) {
+        if(tipo == 'Permanente'){
+            $('.vistaTipoAlquiler').fadeOut('slow',
+            function() { 
+              $(this).hide();
+            });
+            $('#fechaAlquiler').removeAttr('required',false);
+            $('#horaAlquiler').removeAttr('required',false);
+        }else{
+            $('.vistaTipoAlquiler').fadeIn(300);
+            $('#fechaAlquiler').attr('required',true);
+            $('#horaAlquiler').attr('required',true);
+        }
+    }
 
 
 
