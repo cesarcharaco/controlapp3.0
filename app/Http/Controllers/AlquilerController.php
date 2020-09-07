@@ -89,8 +89,10 @@ class AlquilerController extends Controller
         $alquiler->id_residente=$request->id_residente;
         $alquiler->id_instalacion=$request->id_instalacion;
         $alquiler->tipo_alquiler=$request->tipo_alquiler;
-        $alquiler->fecha=$request->fecha;
-        $alquiler->hora=$request->hora;
+        if($request->tipo_alquiler=="Temporal") {
+            $alquiler->fecha=$request->fecha;
+            $alquiler->hora=$request->hora;            
+        }
         $alquiler->num_horas=$request->num_horas;
         $alquiler->status=$request->status;
         $alquiler->save();
@@ -105,8 +107,67 @@ class AlquilerController extends Controller
             'status'=>'En Proceso'
         ]);
 
+        $instalacion=Instalaciones::find($alquiler->id_instalacion);
+        $instalacion->status="Inactivo";
+        $instalacion->save();
+
         toastr()->success('con éxito!', 'Alquiler registrada');
-        return redirect()->back();
+        return redirect()->to('alquiler');
+    }
+
+    public function editar_alquiler(Request $request)
+    {
+        //dd($request->all());
+        $alquiler =  Alquiler::find($request->id);
+        $alquiler->id_residente=$request->id_residente;
+        $alquiler->id_instalacion=$request->id_instalacion;
+        $alquiler->tipo_alquiler=$request->tipo_alquiler;
+        if($request->tipo_alquiler=="Temporal") {
+            $alquiler->fecha=$request->fecha;
+            $alquiler->hora=$request->hora;            
+        }
+        $alquiler->num_horas=$request->num_horas;
+        $alquiler->status=$request->status;
+        $alquiler->save();
+
+        $pagos=PlanesPago::find($request->planP);
+        if($request->admins_todos=="En Proceso"){
+            \DB::table('pagos_has_alquiler')->where('id_alquiler', $request->id)
+            ->update([
+                'referencia'=> $request->referencia,
+                'monto'     => $pagos->monto,
+                'id_planesPago' => $request->planP,
+                'status'=> "Pagado"
+            ]);
+        } else {
+            \DB::table('pagos_has_alquiler')->where('id_alquiler', $request->id)
+            ->update([
+                'referencia'=> $request->referencia,
+                'monto'     => $pagos->monto,
+                'id_planesPago' => $request->planP,
+                'status'=> "En Proceso"
+            ]);
+        }
+        
+        toastr()->success('con éxito!', 'Alquiler actualizado');
+        return redirect()->to('alquiler');
+    }
+
+    public function eliminar_alquiler(Request $request)
+    {
+        //dd($request->all());
+        $alquiler=Alquiler::find($request->id);
+        $alquiler->delete();
+
+        \DB::table('pagos_has_alquiler')->where('id_alquiler', $request->id)
+        ->delete();
+
+        $instalacion=Instalaciones::find($request->id_instalacion);
+        $instalacion->status="Activo";
+        $instalacion->save();
+
+        toastr()->success('con éxito!', 'Alquiler Eliminado');
+        return redirect()->to('alquiler');
     }
 
     /**
