@@ -536,8 +536,69 @@
                 
 
                 <div class="col-md-8">
+                    <!-- <div class="card border border-primary rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Dias</label>
+                                        <select class="form-control select2" name="dia">
+                                            <?php $d=0; ?>
+                                            @foreach($dias as $key)
+                                                @foreach($dias2 as $key2)
+                                                    @if($key->id == $key2->id)
+                                                        <option value="{{$key2->id}}">{{$key->dia}}</option>
+                                                    @endif
+                                                @endforeach()
+                                            @endforeach()
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Fechas</label>
+                                        <select class="form-control select2" name="fechas">
+                                            <?php $f=0; ?>
+                                            @for($i=0; $i< count($alquiler); $i++)
+                                                @php $f=$alquiler[$i]->created_at->year @endphp
+
+                                                @if($alquiler[$i]->created_at->year == $f)
+                                                    <option value="{{$f}}">{{$f}}</option>
+                                                    $f++;
+                                                @else
+                                                    <option value="{{$f}}">{{$f}}</option>
+                                                @endif
+                                            @endfor()
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Horas</label>
+                                        <select class="form-control select2" name="horas">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tipo de Alquiler</label>
+                                            <select class="form-control select2" id="tipo_alquiler" name="tipo_alquiler" onchange="TipoAlquiler(this.value)" required>
+                                                <option value="Permanente">Permanente</option>
+                                                <option value="Temporal">Temporal</option>
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <center>
+                                <a href="#vistaArriendo" class="btn btn-info">Buscar</a>
+                            </center>
+                        </div>
+                    </div> -->
                     <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
-                         <thead>
+                         <thead id="vistaArriendo">
                             <tr class="table-default text-white">
                                 <td colspan="1"></td>
                                 <td colspan="3" align="center">
@@ -920,440 +981,7 @@
 
     
 
-    <!--<div class="row justify-content-left">
-      <div class="col-md-6">
-        <div id="tablaAlquiler" class="card rounded card-tabla shadow bg-white rounded" style="display: none;border: 1px solid #f6f6f7!important;
-            border-color: #CB8C4D !important;">
-          <div class="card-body">
-            <div class="row justify-content-center">
-                  @if(\Auth::user()->tipo_usuario == 'Admin')
-                      <div class="col-md-12">
-                          <div class="row">
-                              <div class="col-md-12 offset-md-12">
-                                  <a class="btn btn-success boton-tabla shadow" style="
-                                      border-radius: 10px;
-                                      color: white;
-                                      height: 35px;
-                                      margin-bottom: 5px;
-                                      margin-top: 5px;
-                                      float: right;
-                                      border: 1px solid #f6f6f7!important;
-                                      border-color: #CB8C4D !important;
-                                      background-color: #CB8C4D !important" onclick="NuevoAlquiler()">
-                                      <span class="PalabraEditarPago text-white">Nuevo Alquiler</span>
-                                      <center>
-                                          <span class="PalabraEditarPago2 text-white">
-                                              <i data-feather="plus" class="iconosMetaforas2"></i>
-                                          </span>
-                                      </center>
-                                  </a>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="row justify-content-center">
-                  @endif
-              <div class="col-md-12">
-                  <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
-                      <thead>
-                          <tr class="table-default text-white">
-                              <td colspan="2" align="center">
-                                  <div class="card border border-info" role="alert">
-                                      <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un Alquiler para ver mas opciones.</span>
-                                  </div>
-                              </td>
-                              <td colspan="2"></td>
-                          </tr>
-                          <tr class="text-white" class="th1" style="background-color: #CB8C4D;">
-                              <th>#</th>
-                              <th>
-                                  <span class="PalabraEditarPago">Idem</span>
-                                  <span class="PalabraEditarPago2">I</span>
-                              </th>
-                              <th>
-                                  <span class="PalabraEditarPago">Tipo</span>
-                                  <span class="PalabraEditarPago2">T</span>
-                              </th>
-                              <th>
-                                  <span class="PalabraEditarPago">Status</span>
-                                  <span class="PalabraEditarPago2">
-                                      <i data-feather="sliders" class="iconosMetaforas2"></i>
-                                  </span>
-                              </th>
-                          </tr>
-                          <tr class="bg-primary text-white" class="th2" style="display: none">
-                              <th width="10"></th>
-                              <th>
-                                  <span class="PalabraEditarPago">Idem</span>
-                                  <span class="PalabraEditarPago2">Id</span>
-                              </th>
-                              <th>
-                                  <center>
-                                      <span class="PalabraEditarPago">Opciones</span>
-                                      <span class="PalabraEditarPago2">
-                                          <i data-feather="settings" class="iconosMetaforas2"></i>
-                                      </span>
-                                  </center>
-                              </th>
-                              <th>
-                                  <span class="PalabraEditarPago">Status</span>
-                                  <span class="PalabraEditarPago2">
-                                      <i data-feather="sliders" class="iconosMetaforas2"></i>
-                                  </span>
-                              </th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        
-                      </tbody>
-                  </table>
-              </div>
-            </div>
-        </div>
-        </div>
-        <div class="col-md-6">
-        </div>
-      </div>
-    </div>
-    <form>
-      <div class="bg-white seccionControl shadow border border-success disabled" style="border-radius: 30px !important;">
-        <br>
-        <div class="row container">
-          <div class="col-md-2" align="left" id="seccionControl1">
-            <div class="card shadow border border-success" style="border-radius: 50%;">
-              <div style="right: 0%;position: absolute; border-radius: 100%; width: 30%; height: 30%;" class="text-white" align="right">
-                <img align="center" src="{{ asset('assets/images/check.png') }}" class="" style="width:100%; border-radius: 40% !important;">
-              </div>  
-              <div class="card-body">
-                <center>
-                  <div style="width: 100%; height: 100%;">
-                    <h3>Abrir Negocio</h3>
-                    <input type="hidden" name="negocio" id="negocio">
-                  </div>
-                </center>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2" align="left" id="seccionControl2">
-            <div class="card shadow border border-success" style="border-radius: 50%;">
-              <div style="right: 0%;position: absolute; border-radius: 100%; width: 30%; height: 30%;" class="text-white" align="right">
-                <img align="center" src="{{ asset('assets/images/check.png') }}" class="" style="width:100%; border-radius: 40% !important;">
-              </div>  
-              <div class="card-body">
-                <center>
-                <img align="center" id="seccionControl2-2" class="" style="width:75%; border-radius: 40% !important;">
-                </center>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2" align="left" id="seccionControl3">
-            <div class="card shadow border border-success" style="border-radius: 50%;">
-              <div style="right: 0%;position: absolute; border-radius: 100%; width: 30%; height: 30%;" class="text-white" align="right">
-                <img align="center" src="{{ asset('assets/images/check.png') }}" class="" style="width:100%; border-radius: 40% !important;">
-              </div>  
-              <div class="card-body">
-                <center>
-                  <div style="width: 100%; height: 100%;">
-                    <h3>Datos Negocio</h3>
-                  </div>
-                </center>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2" align="left" id="seccionControl4">
-            <div class="card shadow border border-success" style="border-radius: 50%;">
-              <div style="right: 0%;position: absolute; border-radius: 100%; width: 30%; height: 30%;" class="text-white" align="right">
-                <img align="center" src="{{ asset('assets/images/check.png') }}" class="" style="width:100%; border-radius: 40% !important;">
-              </div>  
-              <div class="card-body">
-                <center>
-                <img align="center" src="{{ asset('assets/images/alquiler/calendar.png') }}" class="" style="width:70%;">
-                </center>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2" align="left" id="seccionControl5">
-            <div class="card shadow border border-success" style="border-radius: 50%;">
-              <div style="right: 0%;position: absolute; border-radius: 100%; width: 30%; height: 30%;" class="text-white" align="right">
-                <img align="center" src="{{ asset('assets/images/check.png') }}" class="" style="width:100%; border-radius: 40% !important;">
-              </div>  
-              <div class="card-body">
-                <center>
-                <img align="center" src="{{ asset('assets/images/alquiler/pago.png') }}" class="" style="width:80%;">
-                </center>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2" align="left" id="seccionControl6" style="width: 100%; height: 100%;">
-            <center>
-              <button type="submit" class="btn btn-success">Agregar</button>
-            </center>
-          </div>
-        </div>
-      </div>
-      <div class="seccionQueHacer" style="display: none;">
-        <h1 align="center" style="font: 30px Arial, sans-serif; display: none;" id="verTabla3-1">¿Qué Desea Hacer?</h1>
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <a href="#" onclick="seccionNegocio(1);">
-              <div id="verTabla3-2" class="card border border-dark shadow rounded m-7" style="height: 100px;
-                    background-image: url('{{ asset('assets/images/alquiler/Negocio.jpg') }}');
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    display: none;
-                    ">
-                <div class="card-header">
-                  <h3 align="center" class="text-warning">Instalar un Negocio</h3>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6">
-            <a href="#" onclick="seccionNegocio(2);">
-              <div id="verTabla3-3" class="card border border-dark shadow rounded m-7" style="height: 100px;
-                    background-image: url('{{ asset('assets/images/alquiler/Reunion.jpg') }}');
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    display: none;
-                    ">
-                <div class="card-header">
-                  <h3 align="center" class="text-warning">Alquilar Espacio para reunión</h3>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="seccionTipoNegocio" style="display: none;">
-        <input type="hidden" name="tipoNegocio" id="InputTipoNegocio">
-        <h1 align="center" style="font: 30px Arial, sans-serif;">¿Qué Tipo de Instalación Desea Abrir?</h1>      
-        <div class="row justify-content-center" style="width: auto; height: auto;">
-          <div class="col-md-4">
-            <div class="card rounded shadow " id="cardTipoNegocio1" style="display: none;">
-              <div class="card-body">
-                <a href="#" onclick="SelectTipoN(1);">
-                <center>
-                  <img align="center" class="imagenAnun" src="{{ asset('assets/images/alquiler/gym.png') }}" class="" style="width:70%;">
-                  <h3>Gimnasio/Deporte <br><br></h3>
-                </center>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card rounded shadow " id="cardTipoNegocio2" style="display: none;">
-              <div class="card-body">
-                <a href="#" onclick="SelectTipoN(2);">
-                <center>
-                  <img align="center" class="imagenAnun" src="{{ asset('assets/images/alquiler/market.png') }}" class="" style="width:70%;max-width:500px; ">
-                  <h3>Mercado/Distribuidor de alimentos</h3>
-                </center>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card rounded shadow " id="cardTipoNegocio3" style="display: none;">
-              <div class="card-body">
-                <a href="#" onclick="SelectTipoN(3);">
-                <center>
-                  <img align="center" class="imagenAnun" src="{{ asset('assets/images/alquiler/restaurant.png') }}" class="" style="width:70%;max-width:500px;">
-                  <h3>Restaurant <br><br></h3>
-                </center>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center" style="width: auto; height: auto;">
-          <div class="col-md-4">
-            <div class="card rounded shadow " id="cardTipoNegocio4" style="display: none;">
-              <div class="card-body">
-                <a href="#" onclick="SelectTipoN(4);">
-                <center>
-                  <img align="center" class="imagenAnun" src="{{ asset('assets/images/alquiler/factory.png') }}" class="" style="width:70%;">
-                  <h3>Producción </h3>
-                </center>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card rounded shadow " id="cardTipoNegocio5" style="display: none;">
-              <div class="card-body">
-                <a href="#" onclick="SelectTipoN(5);">
-                <center>
-                  <img align="center" class="imagenAnun" src="{{ asset('assets/images/alquiler/oficina.png') }}" class="" style="width:70%;max-width:500px; ">
-                  <h3>Oficina</h3>
-                </center>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card rounded shadow " id="cardTipoNegocio6" style="display: none;">
-              <div class="card-body">
-                <a href="#" onclick="SelectTipoN(6);">
-                <center>
-                  <img align="center" class="imagenAnun" src="{{ asset('assets/images/alquiler/theater.png') }}" class="" style="width:70%;max-width:500px;">
-                  <h3>Entretenimiento </h3>
-                </center>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="seccionDatosNegocio" style="display: none;">
-        <h1 align="center" style="font: 30px Arial, sans-serif;">Datos de la instalación</h1>  
-        <div class="card shadow border border-success">
-          <div class="card-body" align="center">
-            
-            <br>
-            <div class="row justify-content-center">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Nombre</label>
-                  <input type="text" name="nombre" class="form-control border border-success" placeholder="Nombre del Negocio">
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label>Rut</label>
-                  <input type="text" name="nombre" class="form-control border border-success" placeholder="Rut del Negocio">
-                </div>
-              </div>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label><br></label>
-                  <input type="text" name="verificador" min="1" minlength="1" maxlength="2" class="form-control border border-success" id="verificadorEdit" value="1" required>
-                </div>
-              </div>
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Descripcion</label>
-                  <textarea class="form-control border border-success" placeholder="Descripción del Negocio"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="float-right">
-              <a class="btn btn-success text-white" style="border-radius: 30% !important;" onclick="seccionHorario()">
-               
-                Listo
-              </a>
-            </div>
-          </div>
-        </div>
-      <</div>
-      <div class="seccionHorarioNegocio" style="display: none;">
-        <h1 align="center" style="font: 30px Arial, sans-serif;">¿En qué Horario Operará la Instalación?</h1>
-        <div class="card shadow border border-primary">
-          <div class="card-body">
-            <div class="row justify-content-left">
-              <div class="col-md-6">
-                <div class="button-list">
-                  <button type="button" class="btn btn-primary" onclick="diaNegocio(1)" id="horarioBotonDia1">Lunes</button>
-                  <button type="button" class="btn btn-primary" onclick="diaNegocio(2)" id="horarioBotonDia2">Martes</button>
-                  <button type="button" class="btn btn-primary" onclick="diaNegocio(3)" id="horarioBotonDia3">Miércoles</button>
-                  <button type="button" class="btn btn-primary" onclick="diaNegocio(4)" id="horarioBotonDia4">Jueves</button>
-                  <button type="button" class="btn btn-primary" onclick="diaNegocio(5)" id="horarioBotonDia5">Viernes</button>
-                  <button type="button" class="btn btn-primary" onclick="diaNegocio(6)" id="horarioBotonDia6">Sábado</button>
-                  <button type="button" class="btn btn-primary" onclick="diaNegocio(7)" id="horarioBotonDia7">Domingo</button>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="row justify-content-center">
-                  <div class="col-md-6">
-                    <div class="form-group" align="center">
-                      <label>Desde</label>
-                      <input class="form-control" id="example-time" type="time" name="time">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group" align="center">
-                      <label>Hasta</label>
-                      <input class="form-control" id="example-time" type="time" name="time">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="float-right">
-              <a class="btn btn-success text-white" style="border-radius: 30% !important;" onclick="seccionPago()">
-               
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="seccionPagoNegocio" style="display: none;">
-        <h1 align="center" style="font: 30px Arial, sans-serif;">¿Qué plan de pago desea para la instalación?</h1>  
-        <div class="card shadow rounded">
-          <div class="card-body">
-            <div class="">
-              <center>
-                <div class="row justify-content-left">
-                  <?php $num=0; ?>
-                  @foreach($planesPago as $key)
-                    @if($num==0)
-                      <div class="col-md-4">
-                        <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
-                          <div class="card-body">
-                              <div class="custom-control custom-radio mb-2">
-                                <input type="radio" id="customRadio1-{{$key->id}}" name="planP" value="{{$key->id}}" checked>
-                              </div>
-                             <h3>{{$key->nombre}}</h3>
-                             <span>{{$key->dias}} dias</span>
-                             <br>
-                              <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
-                             <br>
-                             <center>
-                              <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
-                             </center>
-                          </div>
-                        </div>
-                      </div>
-                    @else
-                      <div class="col-md-4">
-                        <div class="card shadow border card-tabla rounded" style="border-color: {{$key->color}} !important; height: 400px;">
-                          <div class="card-body">
-                              <div class="custom-control custom-radio mb-2">
-                                <input type="radio" id="customRadio1-{{$key->id}}" name="planP" value="{{$key->id}}">
-                              </div>
-                             <h3>{{$key->nombre}}</h3>
-                             <span>{{$key->dias}} dias</span>
-                             <br>
-                              <span style="font-size: 30px;">$</span><span style="font-size: 70px;">{{$key->monto}}</span><strong>/Mes</strong>
-                             <br>
-                             <center>
-                              <img align="center" class="imagenAnun2" src="{{ asset($key->url_img) }}">
-                             </center>
-                          </div>
-                        </div>
-                      </div>
-                    @endif
-                    <?php $num++; ?>
-                  @endforeach()
-                </div>
-              </center>
-            </div>
-            <div class="float-right">
-              <a class="btn btn-success text-white" style="border-radius: 30% !important;" onclick="SeccionListo()">
-                Listo
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="float-right">
-        <button class="btn btn-success" style="display: none;">Agregar</button>
-      </div>
-    </form>-->
+    
     {!! Form::open(['route' => ['registrar_incidencia'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'registrar_incidencia', 'id' => 'registrar_incidencia', 'data-parsley-validate']) !!}
         @csrf
         <div class="modal fade" id="crearIncidencia" role="dialog">

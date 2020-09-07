@@ -25,7 +25,21 @@ class AlquilerController extends Controller
         $id_admin=id_admin(\Auth::user()->email);
         $residentes=Residentes::where('id_admin',$id_admin)->get();
         $planesPago=PlanesPago::where('tipo','Alquiler')->where('status','Activo')->get();
-        return View('alquiler.index', compact('planesPago','residentes','dias','instalaciones','alquiler'));
+
+        // $fechas_alquiler=\DB::table('instalaciones')
+        //     ->join('alquiler','alquiler.id_instalacion','=','instalaciones.id')
+        //     ->select('alquiler')
+
+
+         $dias2=\DB::table('dias')
+        ->join('instalaciones_has_dias','instalaciones_has_dias.id_dia','=','dias.id')
+        ->join('instalaciones','instalaciones.id','=','instalaciones_has_dias.id_instalacion')
+        ->where('dias.id','<>',0)
+        ->select('dias.id')->groupBy('dias.id')->get();
+        // dd($dias);
+
+
+        return View('alquiler.index', compact('planesPago','residentes','dias','instalaciones','alquiler','dias2'));
     }
 
     /**
