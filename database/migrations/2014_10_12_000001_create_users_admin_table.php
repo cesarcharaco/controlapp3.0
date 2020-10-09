@@ -19,6 +19,9 @@ class CreateUsersAdminTable extends Migration
             $table->string('rut');
             $table->string('email')->unique();
             $table->enum('status',['activo','suspendido'])->default('activo');
+            $table->unsignedBigInteger('id_membresia');
+
+            $table->foreign('id_membresia')->references('id')->on('membresias')->onDelete('cascade');
             $table->timestamps();
         });
     }

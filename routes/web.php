@@ -156,5 +156,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 	Route::resource('promociones','PromocionesController');
 	Route::post('registrar_incidencia','MultasRecargasController@registrar_incidencia')->name('registrar_incidencia');
+	Route::resource('membresias','MembresiasController');
 
 });

@@ -8,7 +8,7 @@ class UsersAdmin extends Model
 {
     protected $table='users_admin';
 
-    protected $fillable=['name','rut','email','status'];
+    protected $fillable=['name','rut','email','status','id_membresia'];
 	
     public function residentes()
     {
@@ -47,5 +47,10 @@ class UsersAdmin extends Model
 
     public function anuncios() {
         return $this->belongsToMany('App\Anuncios','admins_has_anuncios','id_anuncios','id_users_admin');
+    }
+
+    public function membresia()
+    {
+        return $this->belongsTo('App\Membresias','id_membresia');
     }
 }

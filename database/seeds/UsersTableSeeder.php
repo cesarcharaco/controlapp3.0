@@ -14,7 +14,8 @@ class UsersTableSeeder extends Seeder
         \DB::table('users_admin')->insert([
             'name' => 'Administrador1',
             'rut' => '123456789',
-            'email' => 'admin1@controlapp.cl'
+            'email' => 'admin1@controlapp.cl',
+            'id_membresia' => 3
         ]);
 
         \DB::table('users')->insert([
