@@ -658,8 +658,20 @@
                                     <td>{{$key->residente->nombres}}</td>
                                     <td>{{$key->instalacion->nombre}}</td>
                                     <td>{{$key->tipo_alquiler}}</td>
-                                    <td>{{$key->fecha}}</td>
-                                    <td>{{$key->hora}}</td>
+                                    <td>
+                                        @if($key->fecha)
+                                            {{$key->fecha}}
+                                        @else
+                                            <strong class="text-warning">Temporal</strong>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($key->hora)
+                                            {{$key->hora}}
+                                        @else
+                                            <strong class="text-warning">Temporal</strong>
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
                                     <td width="10">
@@ -832,8 +844,26 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                <?php 
+                                                                    $fecha1=0;
+                                                                    $fecha2=0;
+                                                                    $fecha3=0;
+                                                                ?>
+                                                                @foreach($alquiler as $key)
+
+                                                                    @if($key->created_at->year == date('Y'))
+                                                                        @php $fecha1++; @endphp
+                                                                    @elseif($key->created_at->year == date('Y')-1)
+                                                                        @php $fecha2++; @endphp
+                                                                    @else
+                                                                        @php $fecha3++; @endphp
+                                                                    @endif
+
+                                                                @endforeach()
                                                                 <tr align="center">
-                                                                    
+                                                                    <td>{{$fecha1}}</td>
+                                                                    <td>{{$fecha2}}</td>
+                                                                    <td>{{$fecha3}}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -1000,7 +1030,7 @@
                             <div class="form-group">
                                 <label>Residente</label>
                                 <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente" required>
-                                    <option value="0" selected disabled>Seleccione residente</option>
+                                    <option disabled>Seleccione residente</option>
                                     @foreach($residentes as $key)
                                         <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
                                     @endforeach()
@@ -1053,7 +1083,7 @@
                                   <div class="form-group">
                                     <label>Residente</label>
                                     <select class="form-control select2" id="id_residente" onchange="buscarTodo(this.value)" name="id_residente" required>
-                                        <option value="0" selected disabled>Seleccione residente</option>
+                                        <option disabled>Seleccione residente</option>
                                         @foreach($residentes as $key)
                                             <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
                                         @endforeach()
@@ -1062,7 +1092,7 @@
                                    <div class="form-group">
                                     <label>Instalación</label>
                                     <select class="form-control select2" id="instalacionList" name="id_instalacion">
-                                        <option value="0" selected disabled required>Seleccione instalación</option>
+                                        <option disabled required>Seleccione instalación</option>
                                         @foreach($instalaciones as $key)
                                         @if($key->status=="Activo")
                                             <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
@@ -1118,7 +1148,7 @@
                                             <input type="checkbox" name="admins_todos" onchange="TodosAdmins()" id="todoAdmin"  data-toggle="tooltip" data-placement="top" title="Seleccione si el pago se realizó correctamente" value="1">
                                         </div>
                                         <label>Referencia</label>
-                                        <input type="text" class="form-control" name="referencia" required>
+                                        <input type="text" class="form-control" name="referencia" maxlength="20" required>
                                     </div>
                                     <div class="row">
                                         <?php $num=0; ?>
@@ -1201,7 +1231,7 @@
                                   <div class="form-group">
                                     <label>Residente</label>
                                     <select class="form-control select2" id="id_residenteArriendoE" onchange="buscarTodo(this.value)" name="id_residente" required>
-                                        <option value="0" selected disabled>Seleccione residente</option>
+                                        <option disabled>Seleccione residente</option>
                                         @foreach($residentes as $key)
                                             <option value="{{$key->id}}">{{$key->nombres}} {{$key->apellidos}} - {{$key->rut}}</option>
                                         @endforeach()
@@ -1210,7 +1240,7 @@
                                    <div class="form-group">
                                     <label>Instalación</label>
                                     <select class="form-control select2" id="instalacionListArriendoE" name="id_instalacion">
-                                        <option value="0" selected disabled required>Seleccione instalación</option>
+                                        <option disabled required>Seleccione instalación</option>
                                         @foreach($instalaciones as $key)
                                         <option value="{{$key->id}}">{{$key->nombre}} - Dias disponible:@foreach($key->dias as $key2) {{$key2->dia}} @endforeach - {{$key->status}}</option>
                                         @endforeach
@@ -1270,7 +1300,7 @@
                                     <br>
                                     <div class="form-group">
                                         <label>Referencia</label>
-                                        <input type="text" class="form-control" name="referencia" id="referenciaArriendoE" required>
+                                        <input type="text" class="form-control" name="referencia" id="referenciaArriendoE" required maxlength="20">
                                     </div>
                                     <div class="row">
                                         <?php $num=0; ?>
