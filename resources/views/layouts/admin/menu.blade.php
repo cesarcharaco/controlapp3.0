@@ -163,6 +163,15 @@
 
                     @if(\Auth::user()->tipo_usuario == 'Admin')
                         <li>
+                            <a href="{{ url('membresias') }}">
+                                <i data-feather="clock"></i>
+                                <span> Membresías </span>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                        <li>
                             <a href="{{ url('alquiler') }}">
                                 <i data-feather="clock"></i>
                                 <span> Alquiler </span>

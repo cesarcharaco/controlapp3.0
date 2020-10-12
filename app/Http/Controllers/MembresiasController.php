@@ -17,7 +17,7 @@ class MembresiasController extends Controller
         $membresias=Membresias::all();
         $num=0;
 
-        return view('membresias.index')->compact('membresias','num');
+        return view('membresias.index', compact('membresias','num'));
     }
 
     /**
