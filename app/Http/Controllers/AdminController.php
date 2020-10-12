@@ -18,6 +18,7 @@ use App\MultasRecargas;
 use App\Notificaciones;
 use App\Noticias;
 use App\Residentes;
+use App\Membresias;
 class AdminController extends Controller
 {
     /**
@@ -28,8 +29,9 @@ class AdminController extends Controller
     public function index()
     {
         $admin=UsersAdmin::all();
+        $membresias = Membresias::all();
 
-        return view('root.index',compact('admin'));
+        return view('root.index',compact('admin','membresias'));
     }
 
     /**
@@ -59,6 +61,7 @@ class AdminController extends Controller
         $user->name=$request->name;
         $user->rut=$request->rut.'-'.$request->verificador;
         $user->email=$request->email;
+        $user->id_membresia=$request->id_membresia;
         $user->save();
 
         $user2=new User();

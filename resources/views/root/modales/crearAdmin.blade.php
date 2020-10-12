@@ -44,7 +44,27 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="link_tb">Link de TransBank</label>
+                                    <input type="url" name="link_tb" id="link_tb" class="form-control" placeholder="Link de TransBank" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="membrecia">Membresía</label>
+                                    <select name="id_membresia" id="id_membresia" required="required" class="form-control">
+                                        <option value="">Seleccione una membresía...</option>
+                                        @foreach($membresias as $key)
+                                            <option value="{{$key->id}}">{{$key->nombre}} | Monto: {{$key->monto}} $</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
