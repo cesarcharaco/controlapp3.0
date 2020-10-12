@@ -855,8 +855,10 @@
                                                                         @php $fecha1++; @endphp
                                                                     @elseif($key->created_at->year == date('Y')-1)
                                                                         @php $fecha2++; @endphp
-                                                                    @else
+                                                                    @elseif($key->created_at->year == date('Y')-2)
                                                                         @php $fecha3++; @endphp
+                                                                    @else
+                                                                    
                                                                     @endif
 
                                                                 @endforeach()
