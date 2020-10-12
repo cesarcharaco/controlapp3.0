@@ -30,7 +30,7 @@
 			<div class="form-group">
                 <label>Imagen</label>
                 <div class="mostrarImagenEditar" align="center"></div>
-                <input id="imagenMembresia" type="file" class="form-control" id="example-fileinput" name="imagen">
+                <input id="imagenMembresia" type="file" class="form-control" id="example-fileinput" name="url_imagen">
             </div>
             <center>
                 <input type="hidden" name="id" class="id_edit_membresia">
