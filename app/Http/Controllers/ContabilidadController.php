@@ -85,24 +85,29 @@ class ContabilidadController extends Controller
     public function store(Request $request)
     {
         $saldo = Contabilidad::latest('saldo')->first();
-        if ($request->egreso > $saldo->saldo) {
-            toastr()->error('El monto de egreso es mayor al saldo disponible !!', 'Saldo Insuficiente');
-            return redirect()->back();
-        } else {
-            $consulta_saldo = Contabilidad::latest('saldo')->first();
-            $saldo = $consulta_saldo->saldo;
-            //dd($saldo);
-            $egreso = new Contabilidad();
-            $egreso->id_mensualidad=null;
-            $egreso->id_mes=date('n');
-            $egreso->descripcion=$request->descripcion;
-            $egreso->ingreso=0;
-            $egreso->egreso=$request->egreso;
-            $egreso->saldo=$saldo-$request->egreso;
-            $egreso->save();
+        if ($saldo) {
+            if ($request->egreso > $saldo->saldo) {
+                toastr()->error('El monto de egreso es mayor al saldo disponible !!', 'Saldo Insuficiente');
+                return redirect()->back();
+            } else {
+                $consulta_saldo = Contabilidad::latest('saldo')->first();
+                $saldo = $consulta_saldo->saldo;
+                //dd($saldo);
+                $egreso = new Contabilidad();
+                $egreso->id_mensualidad=null;
+                $egreso->id_mes=date('n');
+                $egreso->descripcion=$request->descripcion;
+                $egreso->ingreso=0;
+                $egreso->egreso=$request->egreso;
+                $egreso->saldo=$saldo-$request->egreso;
+                $egreso->save();
 
-            toastr()->success('Egreso registrado con éxito !!', 'Éxito');
-            return redirect()->back();
+                toastr()->success('Egreso registrado con éxito !!', 'Éxito');
+                return redirect()->back();
+            }
+        }else{
+            toastr()->error('No hay saldo disponible para un nuevo egreso!!', 'Saldo Insuficiente');
+                return redirect()->back();
         }
         
     }

@@ -603,13 +603,15 @@
                                                                                 <input type="email" readonly="" class="form-control-plaintext" id="email_profile"value="{{Auth::user()->email}}">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group row">
-                                                                            <div class="col-lg-12">
-                                                                                <label>Teléfono</label>
-                                                                                <input type="text" readonly="" class="form-control-plaintext" id="telefono_profile"value="13123123">
-                                                                                <input type="text" name="telefono" maxlength="20" class="form-control" id="telefono_profileE"value="13123123" style="display: none;" required>
-                                                                            </div>
-                                                                        </div>
+                                                                        @if(\Auth::user()->tipo_usuario!="Admin")
+                                                                          <div class="form-group row">
+                                                                              <div class="col-lg-12">
+                                                                                  <label>Teléfono</label>
+                                                                                  <input type="text" readonly="" class="form-control-plaintext" id="telefono_profile"value="13123123">
+                                                                                  <input type="text" name="telefono" maxlength="20" class="form-control" id="telefono_profileE"value="13123123" style="display: none;" required>
+                                                                              </div>
+                                                                          </div>
+                                                                        @endif
                                                                         
                                                                     </div>
                                                                 </center>
