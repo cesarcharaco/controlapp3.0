@@ -124,8 +124,10 @@ class MembresiasController extends Controller
     {
         // dd($request->all());
         $validacion=array();
+        //dd(is_null($request->cambiar_imagen));
         if (is_null($request->cambiar_imagen)) {
             $pasar=1;
+            $validacion['valida']=false;
         } else {
             $validacion['valida']=$this->validar_imagen($request->file('url_imagen'));
             $pasar=0;
@@ -156,10 +158,11 @@ class MembresiasController extends Controller
                             return redirect()->back();
                         } else {
                             $membresia=  Membresias::find($request->id);
-                            if($pasar==1){
+                            if($pasar==0){
                                 //eliminando imagen anterior
                                 $url_imagen=$membresia->url_imagen;
-                                unlink(public_path().''.$url_imagen);
+                                //dd(public_path().''.$url_imagen);
+                                unlink(public_path().'/'.$url_imagen);
                                 //--------------------------
                                 $file=$request->file('url_imagen');
                                 $validatedData = $request->validate([
