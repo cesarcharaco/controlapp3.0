@@ -35,7 +35,7 @@
 			   	@csrf
 
 	        		<div class="row">
-	        			<div class="col-md-4">
+	        			<div class="col-md-5">
 			        		<div class="form-group">
 			        			<label class="text-primary">Meses</label>
 			        			<select class="form-control select2 border border-default" multiple name="id_mes[]">
@@ -46,10 +46,10 @@
 			        		</div>
 	        			</div>
 
-	        			<div class="col-md-4">
+	        			<div class="col-md-5">
 			        		<div class="form-group">
 			        			<label class="text-primary">Año</label>
-			        			<select class="form-control select2 border border-default" name="anio">
+			        			<select class="form-control select2 border border-default" name="anio" style="height: 100% !important;">
 			        				@for($j=0;$j< count($anio);$j++)
 			        					<option value="{{ $anio[$j] }}">{{ $anio[$j] }}</option>
 			        				@endfor
