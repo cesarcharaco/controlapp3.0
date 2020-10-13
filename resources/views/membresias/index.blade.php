@@ -102,31 +102,29 @@
     </div>
     <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
         <div class="row justify-content-center">
-            @if(\Auth::user()->tipo_usuario == 'Admin')
-                <div class="col-md-12">
-	                <div class="row">
-	                    <div class="col-md-12 offset-md-12">
-	                        <a href="#nuevoMembresia" class="btn btn-success boton-tabla shadow" onclick="nuevoMembresia()" style="
-	                            border-radius: 10px;
-	                            color: white;
-	                            height: 35px;
-	                            margin-bottom: 5px;
-	                            margin-top: 5px;
-	                            float: right;
-	                            border: 1px solid #f6f6f7!important;
-	                            border-color: #43d39e !important;
-	                            background-color: #43d39e !important">
-	                            <span class="PalabraEditarPago text-white">Nuevo Membresía</span>
-	                            <center>
-	                                <span class="PalabraEditarPago2 text-white">
-	                                    <i data-feather="plus" class="iconosMetaforas2"></i>
-	                                </span>
-	                            </center>
-	                        </a>
-	                    </div>
-	                </div>
-	            </div>
-            @endif
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12 offset-md-12">
+                        <a href="#nuevoMembresia" class="btn btn-success boton-tabla shadow" onclick="nuevoMembresia()" style="
+                            border-radius: 10px;
+                            color: white;
+                            height: 35px;
+                            margin-bottom: 5px;
+                            margin-top: 5px;
+                            float: right;
+                            border: 1px solid #f6f6f7!important;
+                            border-color: #43d39e !important;
+                            background-color: #43d39e !important">
+                            <span class="PalabraEditarPago text-white">Nuevo Membresía</span>
+                            <center>
+                                <span class="PalabraEditarPago2 text-white">
+                                    <i data-feather="plus" class="iconosMetaforas2"></i>
+                                </span>
+                            </center>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row justify-content-center">
 		    <div class="col-md-8">

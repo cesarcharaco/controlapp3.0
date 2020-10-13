@@ -29,7 +29,7 @@
 			<div class="form-group">
                 <label>Imagen</label>
                 <div class="mostrarImagenEditar" align="center"></div>
-                <input id="imagen_membresia" type="file" class="form-control" id="example-fileinput" name="url_imagen" required>
+                <input id="imagen_membresia" type="file" class="form-control-file" id="example-fileinput" name="url_imagen" required>
             </div>
             <button type="submit" class="btn btn-success">Agregar</button>
 		{!! Form::close() !!}
