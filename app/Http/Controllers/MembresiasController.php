@@ -122,8 +122,7 @@ class MembresiasController extends Controller
      */
     public function update(Request $request, $id_membresia)
     {
-        // dd($request->all());
-        if (is_null($request->url_imagen)) {
+        if (is_null($request->cambiar_imagen)) {
             $pasar=1;
         } else {
             $validacion=$this->validar_imagen($request->file('url_imagen'));
@@ -136,7 +135,7 @@ class MembresiasController extends Controller
             return redirect()->back();
         }else{
         
-            if (is_null($request->nombre)) {
+            if (is_null($request->nombres)) {
                 toastr()->warning('intente otra vez!!', 'Debe ingresar el nombre de la membresía');
                 return redirect()->back();
             } else {
