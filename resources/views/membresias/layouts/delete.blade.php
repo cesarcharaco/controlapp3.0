@@ -6,7 +6,7 @@
 			<h3>¿Está realmente seguro de querer eliminar esta membresía?</h3> 
 			Se eliminarán todos los pagos y datos relacionadas a esta membresía.
 			<center>
-				<input type="hidden" name="id" id="id_membresia">
+				<input type="hidden" name="id_membresia" id="id_membresia">
 				<button type="submit" class="btn btn-danger">Eliminar</button>
 			</center>
 		</div>

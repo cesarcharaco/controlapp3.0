@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Membresias;
-use App\UserAdmin;
+use App\UsersAdmin;
+
 class MembresiasController extends Controller
 {
     /**
@@ -38,14 +39,14 @@ class MembresiasController extends Controller
      */
     public function store(Request $request)
     {
-        $validacion=$this->validar_imagen($request->file('imagen'));
+        $validacion=$this->validar_imagen($request->file('url_imagen'));
         
         if(!$validacion['valida']){
             toastr()->warning('intente otra vez!!', $validacion['mensaje'].'');
             return redirect()->back();
         }else{
         
-            if (is_null($request->nombres)) {
+            if (is_null($request->nombre)) {
                 toastr()->warning('intente otra vez!!', 'Debe ingresar el nombre de la membresía');
                 return redirect()->back();
             } else {
@@ -63,10 +64,11 @@ class MembresiasController extends Controller
                             toastr()->warning('intente otra vez!!', 'Nombre ya registrado');
                             return redirect()->back();
                         } else {
+        // dd($request->all());
                             $validatedData = $request->validate([
-                                'imagen' => 'mimes:jpeg,png'
+                                'url_imagen' => 'mimes:jpeg,png'
                             ]);
-                            $file=$request->file('imagen');
+                            $file=$request->file('url_imagen');
                             $codigo=$this->generarCodigo();
                             $name=$codigo."_".$file->getClientOriginalName();
                             $file->move(public_path().'/assets/images/', $name);  
@@ -74,6 +76,7 @@ class MembresiasController extends Controller
 
                             $membresia= new Membresias();
                             $membresia->url_imagen=$url;
+                            $membresia->monto=$request->monto;
                             $membresia->nombre=$request->nombre;
                             $membresia->cant_inmuebles=$request->cant_inmuebles;
                             $membresia->save();
@@ -119,10 +122,11 @@ class MembresiasController extends Controller
      */
     public function update(Request $request, $id_membresia)
     {
-        if (is_null($request->cambiar_imagen)) {
+        // dd($request->all());
+        if (is_null($request->url_imagen)) {
             $pasar=1;
         } else {
-            $validacion=$this->validar_imagen($request->file('imagen'));
+            $validacion=$this->validar_imagen($request->file('url_imagen'));
             $pasar=0;
         }
         
@@ -132,7 +136,7 @@ class MembresiasController extends Controller
             return redirect()->back();
         }else{
         
-            if (is_null($request->nombres)) {
+            if (is_null($request->nombre)) {
                 toastr()->warning('intente otra vez!!', 'Debe ingresar el nombre de la membresía');
                 return redirect()->back();
             } else {
@@ -156,11 +160,11 @@ class MembresiasController extends Controller
                                 $url_imagen=$membresia->url_imagen;
                                 unlink(public_path().''.$url_imagen);
                                 //--------------------------
-                                $file=$request->file('imagen');
+                                $file=$request->file('url_imagen');
                                 $validatedData = $request->validate([
-                                    'imagen' => 'mimes:jpeg,png'
+                                    'url_imagen' => 'mimes:jpeg,png'
                                 ]);
-                                $file=$request->file('imagen');
+                                $file=$request->file('url_imagen');
                                 $codigo=$this->generarCodigo();
                                 $name=$codigo."_".$file->getClientOriginalName();
                                 $file->move(public_path().'/assets/images/', $name);  
@@ -169,6 +173,7 @@ class MembresiasController extends Controller
                             }
                             $membresia->nombre=$request->nombre;
                             $membresia->cant_inmuebles=$request->cant_inmuebles;
+                            $membresia->monto=$request->monto;
                             $membresia->save();
                             toastr()->success('Éxito!!', 'Membresía Actualizada');
                             return redirect()->to('membresias');
@@ -188,14 +193,13 @@ class MembresiasController extends Controller
     public function destroy(Request $request)
     {
         $membresia=Membresias::find($request->id_membresia);
-        $admins=UserAdmin::where('id_membresia',$request->id_membresia)->count();
-
+        $admins=UsersAdmin::where('id_membresia',$request->id_membresia)->count();
         if ($admins>0) {
             toastr()->warning('Alerta!!', 'No es posible eliminar la membresía debido a que ha sido asignada a usuarios');
             return redirect()->back();
         } else {
             $url_imagen=$membresia->url_imagen;
-            unlink(public_path().''.$url_imagen);
+            unlink(public_path().'/'.$url_imagen);
             if ($membresia->delete()) {
                 toastr()->success('Éxito!!', 'La Membresía ha sido eliminada');
                 return redirect()->back();

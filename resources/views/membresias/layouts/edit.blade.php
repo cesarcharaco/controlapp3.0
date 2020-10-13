@@ -1,6 +1,6 @@
 <div class="vistaColumnaMembresia editarMembresia border border-warning shadow" id="editarMembresia" style="display: none; border-radius: 30px !important;">
 	<div class="card-body">
-		{!! Form::open(['route' => ['planes_pago.update',1033], 'enctype' => 'multipart/form-data', 'method' => 'PUT', 'name' => 'editar_membresia', 'id' => 'editar_membresia', 'data-parsley-validate']) !!}
+		{!! Form::open(['route' => ['membresias.update',1033], 'enctype' => 'multipart/form-data', 'method' => 'PUT', 'name' => 'editar_membresia', 'id' => 'editar_membresia', 'data-parsley-validate']) !!}
 			@csrf
 			<h3 align="center" style="
 				color: gray;
@@ -23,7 +23,7 @@
 							<i data-feather="dollar-sign"></i>
 						</span>
 					</span>
-					<input name="monto" id="monto_Membresia" data-toggle="touchspin" type="text" data-bts-prefix="$" class="form-control" placeholder="3000" required>
+					<input name="monto" id="monto_Membresia_e" data-toggle="touchspin" type="text" data-bts-prefix="$" class="form-control" placeholder="3000" required>
     			</div>
 			</div>
 			<br>

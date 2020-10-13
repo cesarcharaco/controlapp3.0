@@ -267,7 +267,7 @@
 		$('.id_edit_membresia').val(id);
 		$('#nombre_Membresia').val(nombre);
 		$('#cant_inmuebles_membresia').val(cant_inmuebles);
-		$('#monto_Membresia').val(monto);
+		$('#monto_Membresia_e').val(monto);
 		$('#imagenMembresia').val();
 		$('.mostrarImagenEditar').empty();
 		$('.mostrarImagenEditar').append('<img class="imagenAnun border" src="'+url_imagen+'" class="avatar" style="width:100%;max-width:640px; border-radius: 50% !important;">');
