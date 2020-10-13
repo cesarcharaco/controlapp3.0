@@ -69,7 +69,7 @@
 
 
     </style>
-    <input type="hidden" id="colorView" value="#CB8C4D !important">
+    <input type="hidden" id="colorView" value="#43d39e !important">
     <div class="container">
         <div class="row page-title">
             <div class="col-md-12">
@@ -100,7 +100,7 @@
             </div>
         @endif
     </div>
-    <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none;">
+    <div class="card rounded card-tabla shadow p-3 mb-5 bg-white rounded" style="display: none; border-color: #43d39e !important;">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="row">
@@ -132,7 +132,7 @@
 	                <thead>
 	                    <tr class="table-default text-white">
 	                        <th colspan="2" align="center">
-	                            <div class="card border border-info" role="alert">
+	                            <div class="card border" style="border-color: #43d39e !important;" role="alert">
 	                                <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un Membresía para ver mas opciones.</span>
 	                            </div>
 	                        </th>
