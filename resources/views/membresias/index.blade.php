@@ -105,7 +105,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12 offset-md-12">
-                        <a href="#nuevoMembresia" class="btn btn-success boton-tabla shadow" onclick="nuevoMembresia()" style="
+                        <a href="#nuevaMembresia" class="btn btn-success boton-tabla shadow" onclick="nuevaMembresia()" style="
                             border-radius: 10px;
                             color: white;
                             height: 35px;
@@ -180,7 +180,7 @@
 	                <tbody>
 	                    @php $num=0 @endphp
 	                    @foreach($membresias as $key)
-	                    	<tr class="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
+	                    	<tr class="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')" data-toggle="tooltip" data-placement="top" title="Seleccione si el pago se realizó correctamente" value="1">
 	                    		<td align="center">{{$key->nombre}}</td>
                                 <td align="center">{{$key->monto}} $</td>
                                 <td align="center">{{$key->cant_inmuebles}}</td>
@@ -253,6 +253,21 @@
 @endsection
 
 <script type="text/javascript">
+
+	function mostrarEditarImagen(opcion) {
+		if(opcion == 1){
+			$('#mostrarEditarImagenCheck').removeAttr('onchange');
+			$('#mostrarEditarImagenCheck').attr('onchange','mostrarEditarImagen(2)');
+			$('#mostrarEditarImagen2').removeAttr('disabled',false);
+			$('#mostrarEditarImagen2').attr('required',true);
+		}else{
+			$('#mostrarEditarImagenCheck').removeAttr('onchange');
+			$('#mostrarEditarImagenCheck').attr('onchange','mostrarEditarImagen(1)');
+			$('#mostrarEditarImagen2').attr('disabled',true);
+			$('#mostrarEditarImagen2').removeAttr('required',false);
+			$('#mostrarEditarImagen2').val(null);
+		}
+	}
 	function nuevaMembresia() {
 		$(".vistaColumnaMembresia").fadeOut("slow",
             function() {

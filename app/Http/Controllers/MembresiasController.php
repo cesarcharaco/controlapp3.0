@@ -122,6 +122,7 @@ class MembresiasController extends Controller
      */
     public function update(Request $request, $id_membresia)
     {
+        // dd($request->all());
         $validacion=array();
         if (is_null($request->cambiar_imagen)) {
             $pasar=1;
@@ -136,7 +137,7 @@ class MembresiasController extends Controller
             return redirect()->back();
         }else{
         
-            if (is_null($request->nombres)) {
+            if (is_null($request->nombre)) {
                 toastr()->warning('intente otra vez!!', 'Debe ingresar el nombre de la membresía');
                 return redirect()->back();
             } else {
@@ -149,12 +150,12 @@ class MembresiasController extends Controller
                         return redirect()->back();
                     } else {    
 
-                        $buscar=Membresias::where('nombre',$request->nombre)->where('id','<>',$id_membresia)->count();
+                        $buscar=Membresias::where('nombre',$request->nombre)->where('id','<>',$request->id)->count();
                         if ($buscar>0) {
                             toastr()->warning('intente otra vez!!', 'Nombre ya registrado');
                             return redirect()->back();
                         } else {
-                            $membresia=  Membresias::find($id_membresia);
+                            $membresia=  Membresias::find($request->id);
                             if($pasar==1){
                                 //eliminando imagen anterior
                                 $url_imagen=$membresia->url_imagen;
@@ -171,6 +172,7 @@ class MembresiasController extends Controller
                                 $url ='/assets/images/'.$name;
                                 $membresia->url_imagen=$url;
                             }
+                            // dd($request->all());
                             $membresia->nombre=$request->nombre;
                             $membresia->cant_inmuebles=$request->cant_inmuebles;
                             $membresia->monto=$request->monto;

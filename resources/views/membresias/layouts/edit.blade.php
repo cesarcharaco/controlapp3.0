@@ -27,10 +27,14 @@
     			</div>
 			</div>
 			<br>
+            <label>Imagen</label>
+            <div class="mostrarImagenEditar" align="center"></div>
 			<div class="form-group">
-                <label>Imagen</label>
-                <div class="mostrarImagenEditar" align="center"></div>
-                <input id="imagenMembresia" type="file" class="form-control-file" id="example-fileinput" name="url_imagen">
+				<input type="checkbox" name="cambiar_imagen" onchange="mostrarEditarImagen(1)" id="mostrarEditarImagenCheck"  data-toggle="tooltip" data-placement="top" title="Seleccione si desea editar la imagen de membresia" value="1">
+	            <label for="admins_todos">¿Cambiar imagen?</label>
+			</div>
+			<div class="form-group">
+                <input type="file" class="form-control-file" id="mostrarEditarImagen2" name="url_imagen" disabled>
             </div>
             <center>
                 <input type="hidden" name="id" class="id_edit_membresia">
