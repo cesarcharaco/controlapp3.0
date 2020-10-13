@@ -161,7 +161,7 @@
                         </li>
                     @endif
 
-                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                    @if(\Auth::user()->tipo_usuario == 'root')
                         <li>
                             <a href="{{ url('membresias') }}">
                                 <i data-feather="clock"></i>
