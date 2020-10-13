@@ -180,7 +180,7 @@
 	                <tbody>
 	                    @php $num=0 @endphp
 	                    @foreach($membresias as $key)
-	                    	<tr class="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')" data-toggle="tooltip" data-placement="top" title="Seleccione si el pago se realizó correctamente" value="1">
+	                    	<tr class="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')" data-toggle="tooltip" data-placement="top" title="Seleccione para ver mas opciones" value="1">
 	                    		<td align="center">{{$key->nombre}}</td>
                                 <td align="center">{{$key->monto}} $</td>
                                 <td align="center">{{$key->cant_inmuebles}}</td>
