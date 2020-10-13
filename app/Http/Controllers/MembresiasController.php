@@ -122,10 +122,11 @@ class MembresiasController extends Controller
      */
     public function update(Request $request, $id_membresia)
     {
+        $validacion=array();
         if (is_null($request->cambiar_imagen)) {
             $pasar=1;
         } else {
-            $validacion=$this->validar_imagen($request->file('url_imagen'));
+            $validacion['valida']=$this->validar_imagen($request->file('url_imagen'));
             $pasar=0;
         }
         
