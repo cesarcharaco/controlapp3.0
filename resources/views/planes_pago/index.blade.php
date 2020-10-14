@@ -191,8 +191,8 @@
 							                    <tr class="bg-primary text-white" id="th2" style="display: none">
 							                        <th width="10"></th>
 							                        <th>
-							                            <span class="PalabraEditarPago">Idem</span>
-							                            <span class="PalabraEditarPago2">Id</span>
+							                            <span class="PalabraEditarPago">Nombre</span>
+							                            <span class="PalabraEditarPago2">N</span>
 							                        </th>
 							                        <th>
 							                            <center>
@@ -215,10 +215,10 @@
 							                    @php $num=0 @endphp
 							                    @foreach($planes_pago as $key)
 							                    	<tr class="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-							                    		<td>{{$key->nombre}}</td>
-					                                    <td align="right">{{$key->monto}} $</td>
-					                                    <td>{{$key->dias}}</td>
-							                    		<td>
+							                    		<td align="center">{{$key->nombre}}</td>
+					                                    <td align="center">{{$key->monto}} $</td>
+					                                    <td align="center">{{$key->dias}}</td>
+							                    		<td align="center">
 							                    			<img class="imagenAnun" src="{{ asset($key->url_img) }}" class="avatar" style="width:50%;max-width:640px;">
 							                    		</td>
 					                                    @if($key->status == 'Activo')
@@ -508,7 +508,7 @@
 		$('#tipo_PlanP').val(tipo);
 		$('#status_PlanP').val(status);
 		$('.mostrarImagenEditar').empty();
-		$('.mostrarImagenEditar').append('<img class="imagenAnun text-dark" src="'+nombre_img+'" width="250" height="200">');
+		$('.mostrarImagenEditar').append('<img class="imagenAnun text-dark" src="'+nombre_img+'" style="width:50%;max-width:200px;">');
     	$('#btnRegistrar_plan').fadeOut('fast');
       	$('#example1_wrapper').fadeOut('fast');
     }

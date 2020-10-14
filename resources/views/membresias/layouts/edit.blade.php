@@ -34,7 +34,11 @@
 	            <label for="admins_todos">¿Cambiar imagen?</label>
 			</div>
 			<div class="form-group">
-                <input type="file" class="form-control-file" id="mostrarEditarImagen2" name="url_imagen" disabled>
+                <label for="file-upload2" class="label-form2 custom-file-upload btn btn-primary border" style="
+                cursor: pointer; display: none;">
+                    <strong>Seleccionar imagen</strong>
+                </label>
+                <input name="url_imagen" id="mostrarEditarImagen2" type="file" style="display: none;" onchange="input_file(this.value)" disabled />
             </div>
             <center>
                 <input type="hidden" name="id" class="id_edit_membresia">

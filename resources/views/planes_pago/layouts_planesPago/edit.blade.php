@@ -55,7 +55,9 @@
 				<div class="form-group">
 	                <label>Imagen</label>
 	                <div class="mostrarImagenEditar" align="center"></div>
-	                <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen">
+
+	                <label for="file-upload_e" class="label-form2 custom-file-upload btn btn-primary border" style="cursor: pointer;"><strong>Seleccionar imagen</strong></label>
+					<input name="imagen" id="file-upload_e" type="file" style="display: none;" onchange="input_file(this.value)" required />
 	            </div>
 	            <div class="form-group">
 	                <label>Status</label>

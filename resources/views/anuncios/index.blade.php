@@ -1173,6 +1173,11 @@
                                                         - La imagen no debe tener una altura mayor a 800 kb</p>
                                                     </div>
                                                     <input type="file" class="form-control" id="example-fileinput" name="imagen">
+                                                    <label for="file-upload2" class="label-form2 custom-file-upload btn btn-primary border" style="
+                                                    cursor: pointer;">
+                                                        <strong>Seleccionar imagen</strong>
+                                                    </label>
+                                                    <input name="imagen" id="file-upload2" type="file" style="display: none;" onchange="input_file(this.value)" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -1343,7 +1348,12 @@
                                                     - La imagen no debe tener una anchura mayor a 1024 kb<br>
                                                     - La imagen no debe tener una altura mayor a 800 kb</p>
                                                 </div>
-                                                <input type="file" class="form-control" id="example-fileinput" name="imagen" required>
+                                                <label for="file-upload" class="label-form custom-file-upload btn btn-primary border" style="
+                                                /*padding: 6px 12px;*/
+                                                cursor: pointer;">
+                                                    <strong>Seleccionar imagen</strong>
+                                                </label>
+                                                <input name="imagen" id="file-upload" type="file" style="display: none;" onchange="input_file(this.value)" required />
                                             </div>
                                         </div>
                                     </div>

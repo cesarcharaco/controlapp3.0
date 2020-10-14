@@ -29,7 +29,13 @@
 			<div class="form-group">
                 <label>Imagen <b class="text-danger">*</b></label>
                 <div class="mostrarImagenEditar" align="center"></div>
-                <input id="imagen_membresia" type="file" class="form-control-file" id="example-fileinput" name="url_imagen" required>
+
+                <label for="file-upload2" class="label-form2 custom-file-upload btn btn-primary border" style="
+                /*padding: 6px 12px;*/
+                cursor: pointer;">
+                    <strong>Seleccionar imagen</strong>
+                </label>
+                <input name="imagen" id="file-upload2" type="file" style="display: none;" onchange="input_file(this.value)" required/>
             </div>
             <button type="submit" class="btn btn-success">Agregar</button>
 		{!! Form::close() !!}

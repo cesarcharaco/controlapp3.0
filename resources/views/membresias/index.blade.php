@@ -257,11 +257,13 @@
 		if(opcion == 1){
 			$('#mostrarEditarImagenCheck').removeAttr('onchange');
 			$('#mostrarEditarImagenCheck').attr('onchange','mostrarEditarImagen(2)');
+            $('.label-form2').show();
 			$('#mostrarEditarImagen2').removeAttr('disabled',false);
 			$('#mostrarEditarImagen2').attr('required',true);
 		}else{
 			$('#mostrarEditarImagenCheck').removeAttr('onchange');
 			$('#mostrarEditarImagenCheck').attr('onchange','mostrarEditarImagen(1)');
+            $('.label-form2').hide();
 			$('#mostrarEditarImagen2').attr('disabled',true);
 			$('#mostrarEditarImagen2').removeAttr('required',false);
 			$('#mostrarEditarImagen2').val(null);
