@@ -155,12 +155,11 @@
 							            <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
 							                <thead>
 							                    <tr class="table-default text-white">
-							                        <th colspan="2" align="center">
-							                            <div class="card border border-info" role="alert">
-							                                <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un plan de pago para ver mas opciones.</span>
-							                            </div>
-							                        </th>
-							                        <th colspan="3"></th>
+							                        <td colspan="5" align="center">
+						                                <div class="card border border-info" role="alert">
+						                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione un plan de pago para ver mas opciones.</span>
+						                                </div>
+						                            </td>
 							                    </tr>
 							                    <tr class="text-white" id="th1" style="background-color: #43d39e;">
 							                        <th>
@@ -345,12 +344,11 @@
 					            <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
 					                <thead>
 					                    <tr class="text-white">
-					                        <th colspan="2" align="center">
-					                            <div class="card" role="alert" style="border: 1px solid #f6f6f7!important; border-color: #ff7043 !important;background-color: #ff7043 !important;">
-					                                <span class="text-white p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una promoción para ver mas opciones.</span>
-					                            </div>
-					                        </th>
-					                        <th colspan="2"></th>
+					                        <td colspan="4" align="center">
+				                                <div class="card border border-info" style="border-color: #ff7043 !important;" role="alert">
+				                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una promoción para ver mas opciones.</span>
+				                                </div>
+				                            </td>
 					                    </tr>
 					                    <tr class="text-white" id="th1-2" style="background-color: #ff7043 !important;">
 					                        <th>

@@ -152,12 +152,11 @@
                     <thead>
                         @if(\Auth::user()->tipo_usuario == 'Admin')
                             <tr class="table-default text-white">
-                                <td colspan="3" align="center">
+                                <td colspan="5" align="center">
                                     <div class="card border border-danger" style="" role="alert">
                                         <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a una multa/recarga para ver mas opciones.</span>
                                     </div>
                                 </td>
-                                <td colspan="2"></td>
                             </tr>
                         @endif
                         <tr class="bg-primary text-white" id="th2" style="display: none">

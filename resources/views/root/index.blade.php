@@ -125,12 +125,11 @@
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                     <thead>
                         <tr class="table-default text-white">
-                            <td colspan="3" align="center">
+                            <td colspan="6" align="center">
                                 <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
                                     <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un usuario administrador para ver mas opciones.</span>
                                 </div>
                             </td>
-                            <td colspan="3"></td>
                         </tr>
                         <tr class="bg-primary text-white" id="th2" style="display: none">
                             <th width="10"></th>

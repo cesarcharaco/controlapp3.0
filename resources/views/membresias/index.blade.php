@@ -131,12 +131,11 @@
 	            <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100% !important;">
 	                <thead>
 	                    <tr class="table-default text-white">
-	                        <th colspan="2" align="center">
-	                            <div class="card border" style="border-color: #43d39e !important;" role="alert">
-	                                <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un Membresía para ver mas opciones.</span>
-	                            </div>
-	                        </th>
-	                        <th colspan="2"></th>
+	                        <td colspan="4" align="center">
+                                <div class="card border" style="border-color: #43d39e !important;" role="alert">
+                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una membresía para ver mas opciones.</span>
+                                </div>
+                            </td>
 	                    </tr>
 	                    <tr class="text-white" id="th1" style="background-color: #43d39e;">
 	                        <th>

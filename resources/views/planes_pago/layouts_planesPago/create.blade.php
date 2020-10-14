@@ -15,11 +15,11 @@
 					Nuevo Plan de Pago
 				</h3>
 				<div class="form-group">
-					<label>Nombre</label>
+					<label>Nombre <b style="color: red;">*</b></label>
 					<input type="text" name="nombre" class="form-control" required placeholder="Plan Nro. 1" required>
 				</div>
 				<div class="form-group">
-					<label>Monto</label>
+					<label>Monto <b style="color: red;">*</b></label>
 					<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
 						<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
 							<span class="input-group-text" style="width:39px; height:39px;">
@@ -30,7 +30,7 @@
 	    			</div>
 				</div>
 				<div class="form-group">
-					<label>Dias</label>
+					<label>Dias <b style="color: red;">*</b></label>
 					<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
 						<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
 							<span class="input-group-text" style="width:39px; height:39px;">
@@ -41,7 +41,7 @@
 	    			</div>
 				</div>
 				<div class="form-group">
-					<label>Color</label>
+					<label>Color <b style="color: red;">*</b></label>
 					<div id="component-colorpicker" class="input-group colorpicker-element" title="Using format option" data-colorpicker-id="3">
 						<span class="input-group-addon bootstrap-touchspin-prefix input-group-prepend">
 							<span class="input-group-text" style="width:39px; height:39px;">
@@ -54,9 +54,15 @@
 				<input type="hidden" name="tipo" value="Anuncio">
 				<br>
 				<div class="form-group">
-	                <label>Imagen</label>
+	                <label>Imagen <b style="color: red;">*</b></label>
 	                <div class="mostrarImagenEditar" align="center"></div>
-	                <input id="imagenAnunE" type="file" class="form-control" id="example-fileinput" name="imagen" required>
+
+	                <label for="file-upload" class="label-form custom-file-upload btn btn-primary border" style="
+				    /*padding: 6px 12px;*/
+				    cursor: pointer;">
+					    <strong>Seleccionar imagen</strong>
+					</label>
+					<input name="imagen" id="file-upload" type="file" style="display: none;" onchange="input_file(this.value)" required />
 	            </div>
 	            <button type="submit" class="btn btn-success">Agregar</button>
 			{!! Form::close() !!}

@@ -136,12 +136,11 @@
                 <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" id="tablaResidentes" style="width: 100%;">
                     <thead>
                         <tr class="table-default text-white">
-                            <td colspan="2" align="center">
+                            <td colspan="5" align="center">
                                 <div class="card border border-info" style="" role="alert">
                                     <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un residente para ver mas opciones.</span>
                                 </div>
                             </td>
-                            <td colspan="3"></td>
                         </tr>
                         <tr class="text-white" id="th1" style="background-color: #2d572c !important;">
                             <th width="10">#</th>
