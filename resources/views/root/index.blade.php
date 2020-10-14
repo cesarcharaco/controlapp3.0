@@ -219,7 +219,7 @@
                                 </td>
                                 <td style="display: none"></td>
                                 <td align="center" colspan="2">
-                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" data-toggle="modal" data-target="#editarResidente" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}')">
+                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" data-toggle="modal" data-target="#editarResidente" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}','{{$key->link_flow}}','{{$key->link_tb}}')">
                                         <span class="PalabraEditarPago ">Editar</span>
                                         <center>
                                             <span class="PalabraEditarPago2 ">
@@ -274,9 +274,57 @@
 @include('root.modales.editarAdmin')
     </div>
 @endsection
+@section('scripts')
+<script>
+$('#check_flow').on('change',function () {
+    if ($('#check_flow').prop('checked')) {
+      $('#link_flow').attr('disabled',false);
+      $("#link_flow").prop('required', true);
+    }else{
+      $('#link_flow').attr('disabled',true);
+      $("#link_flow").removeAttr('required');
+      link_flow.value="";
+    }
+  });    
+</script>
+<script>
+$('#check_tb').on('change',function () {
+    if ($('#check_tb').prop('checked')) {
+      $('#link_tb').attr('disabled',false);
+      $("#link_tb").prop('required', true);
+    }else{
+      $('#link_tb').attr('disabled',true);
+      $("#link_tb").removeAttr('required');
+      link_tb.value="";
+    }
+  });    
+</script>
+
+<script>
+$('#check_flow_edit').on('change',function () {
+    if ($('#check_flow_edit').prop('checked')) {
+      $('#link_flow_edit').attr('disabled',false);
+      $("#link_flow_edit").prop('required', true);
+    }else{
+      $('#link_flow_edit').attr('disabled',true);
+      $("#link_flow_edit").removeAttr('required');
+    }
+  });    
+</script>
+<script>
+$('#check_tb_edit').on('change',function () {
+    if ($('#check_tb_edit').prop('checked')) {
+      $('#link_tb_edit').attr('disabled',false);
+      $("#link_tb_edit").prop('required', true);
+    }else{
+      $('#link_tb_edit').attr('disabled',true);
+      $("#link_tb_edit").removeAttr('required');
+    }
+  });    
+</script>
 
 <script type="text/javascript">
-        function Editar(id,name,rut,email,status) {
+        function Editar(id,name,rut,email,status,link_flow, link_tb) {
             $('#editarAdmin').modal('show');
             $('#id_admin_e').val(id);
             $('#name_e').val(name);
@@ -284,6 +332,8 @@
             $('#verificador_e').val(rut.substr(-1,(rut.length)));
             $('#email_e').val(email);
             $('#status_e').val(status);
+            $('#link_flow_edit').val(link_flow);
+            $('#link_tb_edit').val(link_tb);
         }
 
         function CambiarContraseña() {
@@ -296,6 +346,24 @@
             }else{
 
                 $('#verCambiarContraseña').fadeOut('slow',
+                    function() { 
+                        $(this).css('display','none');
+                });
+                $('#contraseñaE').removeAttr('required',false);
+                $('#confirmarContraseñaE').removeAttr('required',false);               
+            }
+        }
+
+        function CambiarPagos() {
+            if($('#CheckCambiarPagos').prop('checked')){
+
+                $('#verCambiarPagos').fadeIn(300);
+                $('#contraseñaE').attr('required',true);
+                $('#confirmarContraseñaE').attr('required',true);
+                
+            }else{
+
+                $('#verCambiarPagos').fadeOut('slow',
                     function() { 
                         $(this).css('display','none');
                 });
@@ -325,3 +393,4 @@
 
         // }
     </script>
+    @endsection

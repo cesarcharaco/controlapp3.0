@@ -56,6 +56,47 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label>¿Desea cambiar la opciones de pago?</label>
+                                    <input type="checkbox" name="cambiar_pagos" value="si" id="CheckCambiarPagos" onclick="CambiarPagos();">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="verCambiarPagos" style="display: none;">
+                            <label>Opciones de pago</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Flow</label>
+                                        <input type="checkbox" name="opciones_pago" value="si" id="check_flow_edit" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>TransBank</label>
+                                        <input type="checkbox" name="opciones_pago" value="si" id="check_tb_edit">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="link_flow_edit">Link de Flow</label>
+                                        <input type="url" name="link_flow" id="link_flow_edit" class="form-control" placeholder="Link de Flow" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="link_tb_edit">Link de TransBank</label>
+                                        <input type="url" name="link_tb" id="link_tb_edit" class="form-control" placeholder="Link de TransBank" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label>¿Desea cambiar la contraseña de usuario?</label>
                                     <input type="checkbox" name="cambiar" value="si" id="CheckCambiarContraseña" onclick="CambiarContraseña();">
                                 </div>

@@ -62,6 +62,8 @@ class AdminController extends Controller
         $user->rut=$request->rut.'-'.$request->verificador;
         $user->email=$request->email;
         $user->id_membresia=$request->id_membresia;
+        $user->link_flow=$request->link_flow;
+        $user->link_tb=$request->link_tb;
         $user->save();
 
         $user2=new User();
@@ -124,11 +126,14 @@ class AdminController extends Controller
                     # en caso de no querer cambiar la contraseña
                     $user= UsersAdmin::find($request->id);
                     $email=$user->email;
-
                     $user->name=$request->name_e;
                     $user->rut=$request->rut_e.'-'.$request->verificador_e;
                     $user->email=$request->email_e;
                     $user->status=$request->status;
+                    if ($request->cambiar_pagos=="si") {
+                        $user->link_flow=$request->link_flow;
+                        $user->link_tb=$request->link_tb;
+                    }
                     $user->save();
 
                     $user2=User::where('email',$email)->first();
@@ -143,11 +148,14 @@ class AdminController extends Controller
                     if ($request->password==$request->password_confirmation) {
                         $user= UsersAdmin::find($request->id);
                         $email=$user->email;
-
                         $user->name=$request->name_e;
                         $user->rut=$request->rut_e.'-'.$request->verificador_e;
                         $user->email=$request->email_e;
                         $user->status=$request->status;
+                        if ($request->cambiar_pagos=="si") {
+                            $user->link_flow=$request->link_flow;
+                            $user->link_tb=$request->link_tb;
+                        }
                         $user->save();
 
                         $user2=User::where('email',$email)->first();

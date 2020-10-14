@@ -44,11 +44,35 @@
                                 </div>
                             </div>
                         </div>
+
+                        <label>Opciones de pago</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Flow</label>
+                                    <input type="checkbox" name="opciones_pago" value="si" id="check_flow" >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>TransBank</label>
+                                    <input type="checkbox" name="opciones_pago" value="si" id="check_tb" onclick="CambiarContraseña();">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="link_flow">Link de Flow</label>
+                                    <input type="url" name="link_flow" id="link_flow" class="form-control" placeholder="Link de Flow" disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="link_tb">Link de TransBank</label>
-                                    <input type="url" name="link_tb" id="link_tb" class="form-control" placeholder="Link de TransBank" required="required">
+                                    <input type="url" name="link_tb" id="link_tb" class="form-control" placeholder="Link de TransBank" disabled="disabled">
                                 </div>
                             </div>
                         </div>
