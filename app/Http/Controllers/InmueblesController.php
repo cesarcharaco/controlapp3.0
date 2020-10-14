@@ -9,6 +9,7 @@ use App\Mensualidades;
 use App\Estacionamientos;
 use App\PagosComunes;
 use App\Pagos;
+use App\UsersAdmin;
 class InmueblesController extends Controller
 {
 	/**
@@ -63,31 +64,26 @@ class InmueblesController extends Controller
                 toastr()->warning('intente otra vez!!', 'No existen Pagos Comunes registrados para el presente año');
                 return redirect()->back();
             } else {
-                $inmueble=new Inmuebles();
-                $inmueble->idem=$request->idem;
-                $inmueble->tipo=$request->tipo;
-                $inmueble->status='Disponible';
-                $inmueble->estacionamiento=$request->estacionamiento;
-                if ($request->estacionamiento=="Si") {
-                    $inmueble->cuantos=$request->cuantos;
-                }
-                $inmueble->id_admin=$id_admin;
-                $inmueble->save();
+                $cant_inmuebles = Inmuebles::where('id_admin',\Auth::User()->id)->count();
+                $membresia_activa = UsersAdmin::where('email',\Auth::user()->email)->first();
+                $count_membresia = $membresia_activa->membresia->cant_inmuebles;
+                //dd($count_membresia);
+                if ($cant_inmuebles >= $count_membresia) {
+                    toastr()->warning('Error!!', 'Excede el límite de cantidad de inmuebles registrado que poseé su membresía');
+                    return redirect()->back();
+                } else {
+                    $inmueble=new Inmuebles();
+                    $inmueble->idem=$request->idem;
+                    $inmueble->tipo=$request->tipo;
+                    $inmueble->status='Disponible';
+                    $inmueble->estacionamiento=$request->estacionamiento;
+                    if ($request->estacionamiento=="Si") {
+                        $inmueble->cuantos=$request->cuantos;
+                    }
+                    $inmueble->id_admin=$id_admin;
+                    $inmueble->save();
 
-                foreach ($mensualidad as $key) {
-                    $reg=new Mensualidades();
-                    $reg->id_inmueble=$inmueble->id;
-                    $reg->mes= $key->mes;
-                    $reg->anio= $key->anio;
-                    $reg->monto= $key->monto;
-                    $reg->save();
-                }
-                //buscando pagos en años siguientes al actual
-                $anio_sig=$anio+1;
-                $mens_sig=PagosComunes::where('anio',$anio_sig)->where('tipo','Inmueble')->where('id_admin',$id_admin)->get();
-                $encontrado=count($mens_sig);
-                while ($encontrado > 0) {
-                    foreach ($mens_sig as $key) {
+                    foreach ($mensualidad as $key) {
                         $reg=new Mensualidades();
                         $reg->id_inmueble=$inmueble->id;
                         $reg->mes= $key->mes;
@@ -95,12 +91,28 @@ class InmueblesController extends Controller
                         $reg->monto= $key->monto;
                         $reg->save();
                     }
-                    $anio_sig++;
+                    //buscando pagos en años siguientes al actual
+                    $anio_sig=$anio+1;
                     $mens_sig=PagosComunes::where('anio',$anio_sig)->where('tipo','Inmueble')->where('id_admin',$id_admin)->get();
                     $encontrado=count($mens_sig);
+                    while ($encontrado > 0) {
+                        foreach ($mens_sig as $key) {
+                            $reg=new Mensualidades();
+                            $reg->id_inmueble=$inmueble->id;
+                            $reg->mes= $key->mes;
+                            $reg->anio= $key->anio;
+                            $reg->monto= $key->monto;
+                            $reg->save();
+                        }
+                        $anio_sig++;
+                        $mens_sig=PagosComunes::where('anio',$anio_sig)->where('tipo','Inmueble')->where('id_admin',$id_admin)->get();
+                        $encontrado=count($mens_sig);
 
+                    }
+                    //-----------fin de buscar pagos en años siguientes
+                    # code...
                 }
-                //-----------fin de buscar pagos en años siguientes
+                
             }
             
 
