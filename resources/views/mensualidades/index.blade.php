@@ -86,7 +86,9 @@
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4>Nueva Mensualidad</h4>
+                        <h4>Nueva Mensualidad 
+                            <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small>
+                        </h4>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
@@ -96,7 +98,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select type="text" name="id_inmueble" placeholder="Inmueble" class="form-control">
+                                    <label>Inmueble <b class="text-danger">*</b></label>
+                                    <select type="text" name="id_inmueble" placeholder="Inmueble" class="form-control" required>
                                         @foreach($inmuebles as $key)
                                             <option value="{{$key->id}}"> {{$key->idem}} - {{$key->tipo}}</option>
                                         @endforeach()
@@ -108,7 +111,8 @@
                          <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select type="text" multiple="multiple" name="mes[]" placeholder="Inmueble" class="form-control">
+                                    <label>Mes <b class="text-danger">*</b></label>
+                                    <select type="text" multiple="multiple" name="mes[]" placeholder="Inmueble" class="form-control" required>
                                         <option value="" disabled="" selected="">Especifique el mes</option>
                                         <option value="1">Enero</option>
                                         <option value="2">Febrero</option>
@@ -130,7 +134,8 @@
                          <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select type="text" name="anio" placeholder="Inmueble" class="form-control">
+                                    <label>Año <b class="text-danger">*</b></label>
+                                    <select type="text" name="anio" placeholder="Inmueble" class="form-control" required>
                                         <option value="" disabled="" selected="">Especifique el año</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
@@ -144,7 +149,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="number" name="monto" class="form-control" placeholder="Monto a especificar">
+                                    <label>Monto <b class="text-danger">*</b></label>
+                                    <input type="number" name="monto" class="form-control" placeholder="Monto a especificar" required>
                                 </div>
                             </div>
 

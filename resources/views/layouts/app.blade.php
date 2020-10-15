@@ -635,7 +635,7 @@
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4>Nuevo Estacionamiento</h4>
+                                                <h4>Nuevo Estacionamiento <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small></h4>
                                                 <button type="button" class="close" data-dismiss="modal">
                                                     <span>&times;</span>
                                                 </button>
@@ -645,6 +645,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
+                                                                <label>Idem del estacionamiento <b class="text-danger">*</b></label>
                                                                 <input type="text" name="idem" placeholder="Idem del estacionamiento" class="form-control" required="required">
                                                             </div>
                                                         </div>
@@ -653,7 +654,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Estado del estacionamiento</label>
+                                                                <label>Estado del estacionamiento <b class="text-danger">*</b></label>
                                                                 <select name="status" class="form-control" required placeholder="Introduzca el status del estacionamiento">
                                                                     <option value="Libre" selected="selected">Libre</option>
                                                                     <option value="Ocupado" >Ocupado</option>
@@ -770,7 +771,7 @@
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4>Nuevo Residente</h4>
+                                                <h4>Nuevo Residente <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small></h4>
                                                 <button type="button" class="close" data-dismiss="modal">
                                                     <span>&times;</span>
                                                 </button>
@@ -781,6 +782,7 @@
                                                         <div class="col-md-12">
                                                             
                                                             <div class="form-group">
+                                                                <label>Nombres <b class="text-danger">*</b></label>
                                                                 <input type="text" name="nombres" placeholder="Nombres del residente" class="form-control" required>
                                                             </div>
                                                         </div>
@@ -788,10 +790,12 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
+                                                                <label>Apellidos <b class="text-danger">*</b></label>
                                                                 <input type="text" name="apellidos" placeholder="Apellidos del residente" class="form-control" required>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <label>Rut <b class="text-danger">*</b></label>
                                                     <div class="row">
                                                         <div class="col-md-10">
                                                             <div class="form-group">
@@ -810,6 +814,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
+                                                                <label>Teléfono <b class="text-danger">*</b></label>
                                                                 <input type="text" name="telefono" maxlength="20" placeholder="Teléfono del residente" class="form-control" required>
                                                             </div>
                                                         </div>
@@ -817,6 +822,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
+                                                                <label>Email <b class="text-danger">*</b></label>
                                                                 <input type="email" name="email" placeholder="Email del residente" class="form-control" required>
                                                             </div>
                                                         </div>
@@ -825,7 +831,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>¿Asignar inmueble?</label>
+                                                                <label>¿Asignar inmueble? <b class="text-danger">*</b></label>
                                                                 <select name="id_inmuebles[]" multiple class="form select2" multiple="" id="asignaInmueResidente" required>
                                                                     
                                                                 </select>
@@ -835,7 +841,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>¿Asignar estacionamiento?</label>
+                                                                <label>¿Asignar estacionamiento? <b class="text-danger">*</b></label>
                                                                 <select name="id_estacionamientos[]" multiple class="form select2" multiple="" id="asignaEstaResidente">
 
                                                                 </select>
@@ -1219,7 +1225,7 @@
                                     <div class="modal-dialog modals-default">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4>Nuevo Inmueble</h4>
+                                                <h4>Nuevo Inmueble <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small></h4>
                                                 <button type="button" class="close" data-dismiss="modal">
                                                     <span>&times;</span>
                                                 </button>
@@ -1229,7 +1235,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group" style="text-align:center;">
-                                                                <center>
+                                                                <center> <label>Idem del inmueble<b class="text-danger">*</b></label>
                                                                     <input type="text" name="idem" placeholder="Idem del Inmueble" class="form-control" required="required">
                                                                 </center>
                                                             </div>
@@ -1240,7 +1246,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <center>
-                                                                    <label>Tipo de Inmueble</label>
+                                                                    <label>Tipo de Inmueble <b class="text-danger">*</b></label>
                                                                     <select name="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble" required="required">
                                                                         <option value="Casa" selected="selected">Casa</option>
                                                                         <option value="Apartamento" >Apartamento</option>
@@ -1257,7 +1263,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <center>
-                                                                    <label>Estado del Inmueble</label>
+                                                                    <label>Estado del Inmueble <b class="text-danger">*</b></label>
                                                                     <select name="status" class="form-control" required placeholder="Introduzca el status del Inmueble">
                                                                         <option value="Disponible" selected="selected">Disponible</option>
                                                                         <option value="No Disponible" >No Disponible</option>
@@ -1271,7 +1277,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <center>
-                                                                    <label>¿El inmueble posee estacionamientos?</label>
+                                                                    <label>¿El inmueble posee estacionamientos? <b class="text-danger">*</b></label>
                                                                     <select name="estacionamiento" class="form-control select2" onchange="CheckboxCuantos(this.value)" id="PoseeEstacionamientoI" required placeholder="¿Algún estacionamiento para el inmueble?">
                                                                         <option value="Si">Si</option>
                                                                         <option value="No" selected="selected">No</option>
@@ -1284,7 +1290,7 @@
                                                     <div class="row" id="cuantosEstaciona" style="display: none;">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Cantidad de estacionamientos</label>
+                                                                <label>Cantidad de estacionamientos <b class="text-danger">*</b></label>
                                                                 <input type="number" name="Cuantos" class="form-control" placeholder="1">
                                                             </div>
                                                         </div>

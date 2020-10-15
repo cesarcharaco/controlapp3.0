@@ -127,537 +127,147 @@
                     </div>
                 </div>
             @endif
-            
-
-        <div class="col-md-12">
-            <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
-                <thead>
-                    <tr class="table-default text-white">
-                        <td colspan="4" align="center">
-                            <div class="card border border-info" role="alert">
-                                <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un inmueble para ver mas opciones.</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="text-white" id="th1" style="background-color: #CB8C4D;">
-                        <th>#</th>
-                        <th>
-                            <span class="PalabraEditarPago">Idem</span>
-                            <span class="PalabraEditarPago2">I</span>
-                        </th>
-                        <th>
-                            <span class="PalabraEditarPago">Tipo</span>
-                            <span class="PalabraEditarPago2">T</span>
-                        </th>
-                        <!-- <th>Estacionamientos</th> -->
-                        <th>
-                            <span class="PalabraEditarPago">Status</span>
-                            <span class="PalabraEditarPago2">
-                                <i data-feather="sliders" class="iconosMetaforas2"></i>
-                            </span>
-                        </th>
-                        <!-- <th>Mensualidades</th> -->
-                    </tr>
-                    <tr class="bg-primary text-white" id="th2" style="display: none">
-                        <th width="10"></th>
-                        <th>
-                            <span class="PalabraEditarPago">Idem</span>
-                            <span class="PalabraEditarPago2">Id</span>
-                        </th>
-                        <th>
-                            <center>
-                                <span class="PalabraEditarPago">Opciones</span>
+            <div class="col-md-12">
+                <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
+                    <thead>
+                        <tr class="table-default text-white">
+                            <td colspan="4" align="center">
+                                <div class="card border border-info" role="alert">
+                                    <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione a un inmueble para ver mas opciones.</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="text-white" id="th1" style="background-color: #CB8C4D;">
+                            <th>#</th>
+                            <th>
+                                <span class="PalabraEditarPago">Idem</span>
+                                <span class="PalabraEditarPago2">I</span>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Tipo</span>
+                                <span class="PalabraEditarPago2">T</span>
+                            </th>
+                            <!-- <th>Estacionamientos</th> -->
+                            <th>
+                                <span class="PalabraEditarPago">Status</span>
                                 <span class="PalabraEditarPago2">
-                                    <i data-feather="settings" class="iconosMetaforas2"></i>
+                                    <i data-feather="sliders" class="iconosMetaforas2"></i>
                                 </span>
-                            </center>
-                        </th>
-                        <th>
-                            <span class="PalabraEditarPago">Status</span>
-                            <span class="PalabraEditarPago2">
-                                <i data-feather="sliders" class="iconosMetaforas2"></i>
-                            </span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php $num=0 @endphp
-                    @foreach($inmuebles as $key)
-                        <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                            <td align="center">{{$num=$num+1}}</td>
-                            <td style="position: all;">{{$key->idem}}</td>
-                            <td style="position: all;">{{$key->tipo}}</td>
-                            <!-- <td>Si</td> -->
-                            @if($key->status == 'Disponible')
-                                <td style="position: all;">
-                                        <span class="tituloTabla text-success"><strong>Disponible</strong></span>
-                                        <span class="tituloTabla2 text-success"><strong>D</strong></span>
-                                </td>
-                            @else
-                                <td style="position: all;">
-                                        <span class="tituloTabla text-danger"><strong>No Disponible</strong></span>
-                                        <span class="tituloTabla2 text-danger"><strong>N/D</strong></span>
-                                </td>
-                            @endif
+                            </th>
+                            <!-- <th>Mensualidades</th> -->
                         </tr>
-                        <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
-                            <td width="10">
-                                <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
-                                    <span class="PalabraEditarPago ">Regresar</span>
-                                    <center>
-                                        <span class="PalabraEditarPago2 ">
-                                            <i data-feather="arrow-left" class="iconosMetaforas2"></i>
-                                        </span>
-                                    </center>
-                                </button>
-                            </td>
-                            <td>
-                                
-                                <span>{{$key->idem}}</span>
-                            </td>
-                            <td align="center">
-                                @if(\Auth::user()->tipo_usuario == 'Admin')
-                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">
-                                        <span class="PalabraEditarPago ">Editar</span>
-                                        <center>
-                                            <span class="PalabraEditarPago2 ">
-                                                <i data-feather="edit" class="iconosMetaforas2"></i>
-                                            </span>
-                                        </center>
-                                    </a>
-
-                                    <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">
-                                        <span class="PalabraEditarPago ">Eliminar</span>
-                                        <center>
-                                            <span class="PalabraEditarPago2 ">
-                                                <i data-feather="trash" class="iconosMetaforas2"></i>
-                                            </span>
-                                        </center>
-                                    </a>
+                        <tr class="bg-primary text-white" id="th2" style="display: none">
+                            <th width="10"></th>
+                            <th>
+                                <span class="PalabraEditarPago">Idem</span>
+                                <span class="PalabraEditarPago2">Id</span>
+                            </th>
+                            <th>
+                                <center>
+                                    <span class="PalabraEditarPago">Opciones</span>
+                                    <span class="PalabraEditarPago2">
+                                        <i data-feather="settings" class="iconosMetaforas2"></i>
+                                    </span>
+                                </center>
+                            </th>
+                            <th>
+                                <span class="PalabraEditarPago">Status</span>
+                                <span class="PalabraEditarPago2">
+                                    <i data-feather="sliders" class="iconosMetaforas2"></i>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $num=0 @endphp
+                        @foreach($inmuebles as $key)
+                            <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
+                                <td align="center">{{$num=$num+1}}</td>
+                                <td style="position: all;">{{$key->idem}}</td>
+                                <td style="position: all;">{{$key->tipo}}</td>
+                                <!-- <td>Si</td> -->
+                                @if($key->status == 'Disponible')
+                                    <td style="position: all;">
+                                            <span class="tituloTabla text-success"><strong>Disponible</strong></span>
+                                            <span class="tituloTabla2 text-success"><strong>D</strong></span>
+                                    </td>
+                                @else
+                                    <td style="position: all;">
+                                            <span class="tituloTabla text-danger"><strong>No Disponible</strong></span>
+                                            <span class="tituloTabla2 text-danger"><strong>N/D</strong></span>
+                                    </td>
                                 @endif
-                            </td>
-                            @if(\Auth::user()->tipo_usuario == 'Disponible')
-                                <td style="position: all;">
-                                        <span class="tituloTabla text-success"><strong>Disponible</strong></span>
-                                        <span class="tituloTabla2 text-success"><strong>D</strong></span>
+                            </tr>
+                            <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                <td width="10">
+                                    <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
+                                        <span class="PalabraEditarPago ">Regresar</span>
+                                        <center>
+                                            <span class="PalabraEditarPago2 ">
+                                                <i data-feather="arrow-left" class="iconosMetaforas2"></i>
+                                            </span>
+                                        </center>
+                                    </button>
                                 </td>
-                            @else
-                                <td style="position: all;">
-                                        <span class="tituloTabla text-danger"><strong>No Disponible</strong></span>
-                                        <span class="tituloTabla2 text-danger"><strong>N/D</strong></span>
+                                <td>
+                                    
+                                    <span>{{$key->idem}}</span>
                                 </td>
-                            @endif
+                                <td align="center">
+                                    @if(\Auth::user()->tipo_usuario == 'Admin')
+                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">
+                                            <span class="PalabraEditarPago ">Editar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
 
-                        </tr>
-                        <tr style="display: none;">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    @endforeach()
-                </tbody>
-            </table>
+                                        <a href="#" class="btn btn-danger btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(3,'{{$key->id}}','{{$key->idem}}','{{$key->tipo}}','{{$key->status}}')">
+                                            <span class="PalabraEditarPago ">Eliminar</span>
+                                            <center>
+                                                <span class="PalabraEditarPago2 ">
+                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
+                                                </span>
+                                            </center>
+                                        </a>
+                                    @endif
+                                </td>
+                                @if(\Auth::user()->tipo_usuario == 'Disponible')
+                                    <td style="position: all;">
+                                            <span class="tituloTabla text-success"><strong>Disponible</strong></span>
+                                            <span class="tituloTabla2 text-success"><strong>D</strong></span>
+                                    </td>
+                                @else
+                                    <td style="position: all;">
+                                            <span class="tituloTabla text-danger"><strong>No Disponible</strong></span>
+                                            <span class="tituloTabla2 text-danger"><strong>N/D</strong></span>
+                                    </td>
+                                @endif
+
+                            </tr>
+                            <tr style="display: none;">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        @endforeach()
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+        @include('inmuebles.layouts.create')
+        @include('inmuebles.layouts.show')
+        @include('inmuebles.layouts.edit')
+        @include('inmuebles.layouts.delete')
+        @include('inmuebles.layouts.registrar_mensualidad')
+        @include('inmuebles.layouts.ver_mensualidad')
+        @include('inmuebles.layouts.editar_mensualidad')
+        @include('inmuebles.layouts.eliminar_mensualidad')
     </div>
-
-
-<!-- --------------------------------------------VER InmuebleS--------------------------------------------------------- -->
-            <div class="modal fade" id="VerInmueble" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Ver Inmueble</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Nombre del Inmueble</label>
-                                            <span id="ver_idem"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Tipo de Inmueble</label>
-                                            <span id="ver_tipo"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Estado del Inmueble</label>
-                                            <span id="ver_status"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Pago común</label>
-                                            <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">$</div>
-                                                </div>
-                                                <input type="number" name="monto[]" class="form-control" placeholder="10">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </center>
-                        </div>                            
-                    </div>
-                </div>
-            </div>
-<!-- --------------------------------------------FIN REGISTRAR InmuebleS--------------------------------------------------------- -->
-
-<!-- --------------------------------------------VER InmuebleS--------------------------------------------------------- -->
-            <div class="modal fade" id="VerMensualidades" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Ver Mensualidades</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div id="fechasM"></div>
-                                <div id="buttonShow"></div>
-                                <div id="MesesM"></div>
-                                <input type="hidden" name="id" id="idShowM">
-                            </center>
-                        </div>                            
-                    </div>
-                </div>
-            </div>
-<!-- --------------------------------------------FIN REGISTRAR InmuebleS--------------------------------------------------------- -->
-
-
-
-
-
-<!-- --------------------------------------------CREAR MENSUALIDAD--------------------------------------------------------- -->
-{!! Form::open(['route' => ['inmuebles.registrar_mensualidad'],'method' => 'POST', 'name' => 'registrar_mensualidad', 'id' => 'registrar_mensualidad', 'data-parsley-validate']) !!}
-    @csrf
-            <div class="modal fade" id="createMensualidad" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Registrar una nueva mensualidad</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Especifique el año para la mensualidad</label>
-                                            <select name="anio" id="SelectAnio1" class="form-control" onchange="accionM(1,this.value);">
-                                                <option value="0">Seleccione el año</option>
-                                                <?php $anio=date('Y');?>
-                                                @for($i=0; $i<10; $i++)
-                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="buttonCreate"></div>
-                                        <div id="createMensuality1"></div>
-                                        <div id="createMensuality2"></div>
-                                    </div>
-                                </div>
-                            </center>
-                        </div> 
-
-                        <div class="modal-footer">
-                            <input type="hidden" name="id_inmueble" id="idCreateM">
-                            <input type="hidden" name="anio" id="anioCreateM">
-                            <input type="hidden" id="accionCreate" name="accion" value="1">
-                            <button type="submit" class="btn btn-success" disabled id="buttonC" style="border-radius: 50px;">Guardar</button>
-                        </div>                           
-                    </div>
-                </div>
-            </div>
-{!! Form::close() !!}
-<!-- --------------------------------------------FIN CREAR MENSUALIDAD--------------------------------------------------------- -->
-
-
-
-
-
-
-
-<!-- --------------------------------------------EDITAR MENSUALIDAD--------------------------------------------------------- -->
-        {!! Form::open(['route' => ['inmuebles.editar_mensualidad'],'method' => 'POST', 'name' => 'editar_mensualidad', 'id' => 'editar_mensualidad', 'data-parsley-validate']) !!}
-        @csrf
-            <div class="modal fade" id="editarMensualidad" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Editar mensualidad</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Especifique el año para editar la mensualidad</label>
-                                            <select name="anio" id="SelectAnio2" class="form-control" onchange="accionM(2,this.value);">
-                                                <option value="0">Seleccionar año</option>
-                                                <?php $anio=date('Y');?>
-                                                @for($i=0; $i<10; $i++)
-                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="buttonEdit"></div>
-                                        <div id="editMensuality1"></div>
-                                        <div id="editMensuality2"></div>
-                                    </div>
-                                </div>
-                            </center>
-                        </div> 
-
-                        <div class="modal-footer">
-                            <input type="hidden" name="id_inmueble" id="idEditM">
-                            <input type="hidden" name="anio" id="anioEditM">
-                            <input type="hidden" id="accionEdit" name="accion" value="1">
-                            <button type="submit" id="buttonE" disabled class="btn btn-warning" style="border-radius: 50px;">Guardar</button>
-                        </div>                                                  
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
-<!-- --------------------------------------------FIN EDITAR MENSUALIDAD--------------------------------------------------------- -->
-
-
-
-
-
-
-<!-- --------------------------------------------ELIMINAR MENSUALIDAD--------------------------------------------------------- -->
-        {!! Form::open(['route' => ['inmuebles.eliminar_mensualidad'],'method' => 'POST', 'name' => 'eliminar_mensualidad', 'id' => 'eliminar_mensualidad', 'data-parsley-validate']) !!} 
-        @csrf   
-            <div class="modal fade" id="deleteMensualidad" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Eliminar una mensualidad</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Especifique el año para eliminar la mensualidad</label>
-                                            <select name="anio" id="SelectAnio3" class="form-control" onchange="accionM(3,this.value);">
-                                                <option value="0">Seleccione el año</option>
-                                                <?php $anio=date('Y');?>
-                                                @for($i=0; $i<10; $i++)
-                                                    <option value="{{$anio++}}">{{$anio-1}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="deleteMensuality"></div>
-                                    </div>
-                                </div>
-                            </center>
-                        </div> 
-
-                        <div class="modal-footer">
-                            <input type="hidden" name="id_inmueble" id="idDeleteM">
-                            <input type="hidden" name="anio" id="anioDeleteM">
-                            <button type="submit" class="btn btn-danger" id="buttonD" disabled style="border-radius: 50px;">Eliminar</button>
-                        </div>                            
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
-<!-- --------------------------------------------FIN ELIMINAR MENSUALIDAD--------------------------------------------------------- -->
-
-
-
-<!-- --------------------------------------------EDITAR InmuebleS--------------------------------------------------------- -->
-         {!! Form::open(['route' => ['inmuebles.update',1], 'method' => 'PUT', 'name' => 'editar_inmueble', 'id' => 'editar_inmueble', 'data-parsley-validate']) !!}
-                    @csrf
-            <div class="modal fade" id="editarInmueble" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Editar Inmueble</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Nombre del Inmueble</label>
-                                            <input type="text" id="idem" name="idem" placeholder="Idem del Inmueble" class="form-control" required="required">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Tipo de Inmueble</label>
-                                            <select name="tipo" id="tipo" class="form-control" required placeholder="Introduzca el tipo de Inmueble">
-                                                <option value="Casa" selected="selected">Casa</option>
-                                                <option value="Apartamento" >Apartamento</option>
-                                                <option value="Anexo" >Anexo</option>
-                                                <option value="Habitación" >Habitación</option>
-                                                <option value="Otro" >Otro</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Estado del Inmueble</label>
-                                            <select name="status" id="status_e" class="form-control" required placeholder="Introduzca el status del Inmueble">
-                                                <option value="Disponible" selected="selected">Disponible</option>
-                                                <option value="No Disponible" >No Disponible</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>¿El inmueble posee estacionamientos?</label>
-                                            <select name="estacionamiento" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                                <option value="Si" selected="selected">Si</option>
-                                                <option value="No">No</option>
-
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>¿Cuántos?</label>
-                                            <input type="number" name="Cuantos[]" class="form-control" placeholder="1">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Asignar estacionamientos al inmueble</label><label class="badge badge-soft-warning">Opcional</label>
-                                            <select name="id_estacionamientos" class="form-control select2" required placeholder="¿Algún estacionamiento para el inmueble?">
-                                                <option value="0" selected="selected">Seleccionar estacionamientos</option>
-                                                @foreach($estacionamientos as $key)
-                                                    <option value="{{$key->id}}">{{$key->idem}}</option>
-                                                @endforeach()
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </center>
-                        </div>
-                            
-                        <div class="modal-footer">
-                            <input type="hidden" name="id" id="id_e">
-                            <input type="hidden" name="opcion" id="opcion_e" value="1">
-                            <button type="submit" class="btn btn-warning" style="border-radius: 50px;">Editar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
-        </div>
-<!-- --------------------------------------------FIN EDITAR InmuebleS--------------------------------------------------------- -->
-
-
-
-
-<!-- --------------------------------------------ELIMINAR InmuebleS--------------------------------------------------------- -->
-        {!! Form::open(['route' => ['inmuebles.destroy',1033], 'method' => 'DELETE']) !!}
-            @csrf
-            <div class="modal fade" id="eliminarInmueble" role="dialog">
-                <div class="modal-dialog modals-default">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Eliminar Inmueble</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                            <h3>¡ATENCIÓN!</h3>
-                            <p>Está a punto de eliminar este inmueble con todos sus registros y mensualidades. Esta opción no se podrá deshacer</p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="hidden" name="id" id="id">
-                            <button type="submit" class="btn btn-danger" style="border-radius: 50px;">Eliminar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
-<!-- --------------------------------------------FIN ELIMINAR InmuebleS--------------------------------------------------------- -->
-
-    </div>
-
-
-
-
-
-
-<!-- --------------------------------------------FIN REGISTRAR InmuebleS------------------------------------------------------ -->
-
-    
-
-                
-            
-
-
-
 @endsection
 
 <script type="text/javascript">

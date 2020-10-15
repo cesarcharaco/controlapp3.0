@@ -158,7 +158,9 @@
             <div class="modal-dialog modals-default">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4>Editar Código de Transacción</h4>
+                        <h4>Editar Código de Transacción 
+                            <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small>
+                        </h4>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
@@ -180,7 +182,7 @@
                                    <div class="row">
                                        <div class="col-md-12">
                                            <div class="form-group">
-                                               <label for="">Código de Trans. Nueva</label>
+                                               <label for="">Código de Trans. Nueva <b class="text-danger">*</b></label>
                                                <input type="text" name="ReferenciaNueva" class="form-control" required>
                                            </div>
                                        </div>

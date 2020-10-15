@@ -129,7 +129,7 @@
                 <div class="modal-header">
                     <h4>
                         <i class='uil-usd-circle' data-toggle="tooltip" data-placement="right" data-original-title="Aviso: Acá podrá registar un egreso"></i>
-                        Registrar Egreso
+                        Registrar Egreso <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small>
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" id="cerrar">
                         <span>&times;</span>

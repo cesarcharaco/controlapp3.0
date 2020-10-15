@@ -146,7 +146,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
 
-                                            <label><b>Seleccione un/unos Inmueble(s)</b></label><br>
+                                            <label>Seleccione un/unos Inmueble(s) <b class="text-danger">*</b></label><br>
                                             <div class="dropdown bootstrap-select show-tick show">
                                             <select name="id_inmueble[]" class="form-control select2" required="required" title="Seleccione un Inmueble" multiple="multiple">
                                                 @foreach($inmuebles as $key)
@@ -185,6 +185,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label>Estacionamientos <b class="text-danger">*</b></label>
                                             <select name="id_estacionamiento[]" class="form-control" required="required" title="Seleccione un Estacionamiento" multiple="multiple">
                                                 @foreach($estacionamientos as $key)
                                                     <option value="{{$key->id}}">{{$key->idem}}</option>
