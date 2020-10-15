@@ -184,6 +184,7 @@
            {!! Form::open(['route' => ['pagos.store'],'method' => 'POST', 'name' => 'registrarPago', 'id' => 'registrar_pago', 'data-parsley-validate']) !!}
                 @csrf
             <div class="card-body">
+                <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -249,7 +250,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Rereferencias</label>
+                                <label>Rereferencias <b class="danger">*</b></label>
                                 <input type="text" required="required" name="referencia" class="form-control">
                             </div>
                         </div>

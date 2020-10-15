@@ -5,7 +5,7 @@
 			<h3 align="center" style="
 				color: gray;
 				font: 18px Arial, sans-serif;">
-				Editar Membresía
+				Editar Membresía <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small>
 			</h3>
 			<div class="form-group">
 				<label>Nombre <b class="text-danger">*</b></label>
