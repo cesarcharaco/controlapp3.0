@@ -17,6 +17,16 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin1@controlapp.cl',
             'id_membresia' => 3
         ]);
+        \DB::table('admins_has_pasarelas')->insert([
+            'id_pasarela' => 1,
+            'id_admin' => 1,
+            'link_pasarela' => 'https://www.flow.com',
+        ]);
+        \DB::table('admins_has_pasarelas')->insert([
+            'id_pasarela' => 2,
+            'id_admin' => 1,
+            'link_pasarela' => 'https://www.transbank.com',
+        ]);
 
         \DB::table('users')->insert([
         	'name' => 'Administrador1',

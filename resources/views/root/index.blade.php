@@ -219,7 +219,7 @@
                                 </td>
                                 <td style="display: none"></td>
                                 <td align="center" colspan="2">
-                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" data-toggle="modal" data-target="#editarResidente" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}','{{$key->link_flow}}','{{$key->link_tb}}')">
+                                    <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" data-toggle="modal" data-target="#editarResidente" onclick="Editar('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}','{{$key->membresia->nombre}}','{{$key->membresia->cant_inmuebles}}','{{$key->membresia->monto}}','{{$key->link_flow}}','{{$key->link_tb}}')">
                                         <span class="PalabraEditarPago ">Editar</span>
                                         <center>
                                             <span class="PalabraEditarPago2 ">
@@ -324,7 +324,7 @@ $('#check_tb_edit').on('change',function () {
 </script>
 
 <script type="text/javascript">
-        function Editar(id,name,rut,email,status,link_flow, link_tb) {
+        function Editar(id,name,rut,email,status,membresia_nombre,membresia_cant,membresia_monto,link_flow, link_tb) {
             $('#editarAdmin').modal('show');
             $('#id_admin_e').val(id);
             $('#name_e').val(name);
@@ -332,6 +332,7 @@ $('#check_tb_edit').on('change',function () {
             $('#verificador_e').val(rut.substr(-1,(rut.length)));
             $('#email_e').val(email);
             $('#status_e').val(status);
+            $("#membresia_e").append('<input id="membresia_actual" class="form-control" value="'+membresia_nombre+' | Cant. Inmuebles: '+membresia_cant+' | Monto: '+membresia_monto+'" disabled="disabled">');
             $('#link_flow_edit').val(link_flow);
             $('#link_tb_edit').val(link_tb);
         }
@@ -364,6 +365,24 @@ $('#check_tb_edit').on('change',function () {
             }else{
 
                 $('#verCambiarPagos').fadeOut('slow',
+                    function() { 
+                        $(this).css('display','none');
+                });
+                $('#contraseñaE').removeAttr('required',false);
+                $('#confirmarContraseñaE').removeAttr('required',false);               
+            }
+        }
+
+        function CambiarMembresia() {
+            if($('#CheckCambiarMembresia').prop('checked')){
+
+                $('#verCambiarMembresia').fadeIn(300);
+                $('#contraseñaE').attr('required',true);
+                $('#confirmarContraseñaE').attr('required',true);
+                
+            }else{
+
+                $('#verCambiarMembresia').fadeOut('slow',
                     function() { 
                         $(this).css('display','none');
                 });

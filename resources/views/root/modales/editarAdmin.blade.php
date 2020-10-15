@@ -36,6 +36,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="email_e">Email</label>
                                     <input type="email" id="email_e" name="email_e" placeholder="Email del admin" class="form-control" required>
                                 </div>
                             </div>
@@ -44,10 +45,44 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="status_e">Status</label>
                                     <select name="status" id="status_e" class="form-control">
                                         <option value="activo">Activo</option>
                                         <option value="suspendido">Suspendido</option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>¿Desea cambiar la membresía?</label>
+                                    <input type="checkbox" name="cambiar_membresia" value="si" id="CheckCambiarMembresia" onclick="CambiarMembresia();">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="verCambiarMembresia" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="membresia_edit">Membresia actual</label>
+                                        <div id="membresia_e">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="link_tb_edit">Cambiar de membresía</label>
+                                        <select name="id_membresia" id="id_membresia" class="form-control">
+                                            @foreach($membresias as $key)
+                                                <option value="{{$key->id}}">{{$key->nombre}} | Cant. Inmubles: {{$key->cant_inmuebles}} | Precio: {{$key->monto}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -64,24 +99,10 @@
                         <div id="verCambiarPagos" style="display: none;">
                             <label>Opciones de pago</label>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Flow</label>
-                                        <input type="checkbox" name="opciones_pago" value="si" id="check_flow_edit" >
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>TransBank</label>
-                                        <input type="checkbox" name="opciones_pago" value="si" id="check_tb_edit">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="link_flow_edit">Link de Flow</label>
-                                        <input type="url" name="link_flow" id="link_flow_edit" class="form-control" placeholder="Link de Flow" disabled="disabled">
+                                        <input type="url" name="link_flow" id="link_flow_edit" class="form-control" placeholder="Link de Flow">
                                     </div>
                                 </div>
                             </div>
@@ -89,11 +110,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="link_tb_edit">Link de TransBank</label>
-                                        <input type="url" name="link_tb" id="link_tb_edit" class="form-control" placeholder="Link de TransBank" disabled="disabled">
+                                        <input type="url" name="link_tb" id="link_tb_edit" class="form-control" placeholder="Link de TransBank">
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

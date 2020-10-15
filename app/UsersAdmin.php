@@ -53,4 +53,9 @@ class UsersAdmin extends Model
     {
         return $this->belongsTo('App\Membresias','id_membresia');
     }
+
+    public function pasarelas()
+    {
+        return $this->belongsToMany('App\Pasarelas','admins_has_pasarelas','id_admin','id_pasarela');
+    }
 }
