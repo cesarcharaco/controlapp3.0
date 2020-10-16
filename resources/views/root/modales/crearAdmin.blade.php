@@ -92,6 +92,23 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="membrecia">Pasarelas de pago</label>
+                                    <select name="id_membresia" id="id_membresia" required="required" class="form-control">
+                                        <option value="">Seleccione una pasarela</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="link[]">Link de la pasarela</label>
+                                    <input type="text" name="link[]" class="form-control" placeholder="Link de la pasarela de pago">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label>Ingrese contraseña</label>
                                     <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
                                 </div>
