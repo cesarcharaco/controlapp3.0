@@ -1508,32 +1508,33 @@
     }
 
 
-    function selectPasarela(opcion,id){
-
-    	opcion++;
-        // if ('#pasarelaPago'+id) {
-        	// alert('existe');
-        // }else{
-        	// alert('no existe');
-	    	$('#pasarelas_pago').append(
-	    		'<div class="col-md-6">'+
-	                '<div class="form-group">'+
-	                    '<label>Pasarelas de Pago</label>'+
-	                    '<select name="id_pasarela[]" id="pasarelaP'+opcion+'" class="form-control" onchange="selectPasarela('+opcion+',this.value)">'+
-	                    '</select>'+
-	                '</div>'+
-	            '</div>'+
-	            '<div class="col-md-6">'+
+    function selectPasarela(){
+    	opcion = parseInt($('#opcionS').val());
+    	opcion2= opcion+1;
+    	$('#pasarelas_pago').append(
+    		'<div class="col-md-6 opcion'+opcion+'">'+
+                '<div class="form-group">'+
+                    '<label for="id_pasarela">Pasarelas de Pago <a class="btn text-danger btn-sm" onclick="deletePasarelas('+opcion+')" style="border-radius: 30px;" data-toggle="tooltip" data-placement="top" title="Seleccione para eliminar la Pasarela de Pago" value="1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></label>'+
+                    '<select name="id_pasarela[]" id="pasarelaP'+opcion+'" class="form-control">'+
+                    '</select>'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-md-6 opcion'+opcion+'">'+
+            	'<div style="margin-top: 13px;">'+
 	                '<div class="form-group">'+
 	                    '<label>Link</label>'+
 	                    '<input type="text" name="link_pasarela[]" class="form-control">'+
 	                '</div>'+
-	            '</div>'
-	        );
-        	var options = $("#selectP > option").clone();
-			$('#pasarelaP'+opcion).append(options);
-        // }
+	            '</div>'+
+	        '</div>'
+        );
+    	var options = $("#id_pasarela > option").clone();
+		$('#pasarelaP'+opcion).append(options);
+		$('#opcionS').val(opcion2);
+    }
 
+    function deletePasarelas(opcion) {
+    	$('.opcion'+opcion).remove();
     }
 </script>
 @yield('scripts')

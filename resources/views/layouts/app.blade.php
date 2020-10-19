@@ -1446,6 +1446,7 @@
             </div>
 
 
+        <input type="hidden" id="opcionS" value="1">
             
         </div>
     {{-- @include('layouts.admin.footer') --}}

@@ -48,8 +48,13 @@
                         <div class="row" id="pasarelas_pago">
                             <div class="col-md-6" id="pasarelaPago1">
                                 <div class="form-group">
-                                    <label for="id_pasarela">Pasarelas de Pago</label>
-                                    <select name="id_pasarela[]" id="id_pasarela" class="form-control" onchange="selectPasarela(1,this.value)">
+                                    <label for="id_pasarela">Pasarelas de Pago
+                                        <a class="btn text-success btn-sm" onclick="selectPasarela()" style="border-radius: 30px;"  data-toggle="tooltip" data-placement="top" title="Seleccione para agregar una Pasarela de Pago">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>
+                                        </a>
+                                    </label>
+                                    <select name="id_pasarela[]" style="margin-bottom: -50px !important;" id="id_pasarela" class="form-control">
                                         <option selected disabled>Seleccione Pasarela de Pagos</option>
                                         <!-- FOREACH -->
                                         @foreach($pasarelas as $key)
@@ -59,9 +64,11 @@
                                 </div>
                             </div>
                             <div class="col-md-6" id="pasarelaPago1">
-                                <div class="form-group">
-                                    <label>Link</label>
-                                    <input type="text" name="link_pasarela[]" class="form-control" required>
+                                <div style="margin-top: 2px;">
+                                    <div class="form-group">
+                                        <label>Link</label>
+                                        <input type="text" name="link_pasarela[]" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
