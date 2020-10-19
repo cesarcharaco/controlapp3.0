@@ -378,7 +378,7 @@
             
 
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="row justify-content-center">
                         <div class="col-md-12">
                             <div class="row">
@@ -522,42 +522,6 @@
                             @endforeach()
                         </tbody>
                     </table>
-                </div>
-                <div class="col-md-4">
-                    @php $num=0 @endphp
-                    @foreach($empresas as $key)
-                        <div class="row vista2-{{$key->id}}" style="display: none;">
-                            <div class="col-md-12">
-                                <div class="card border card-tabla shadow p-1 bg-white tabla-estilo" style="border-radius: 15px !important;">
-                                    <!-- <img src="assets/images/logo.svg" alt="brand-logo" height="18" class="mr-1"> -->
-                                    <strong><h3 align="center">{{$key->nombre}}</h3></strong>
-                                    <!-- <small>11 mins ago</small> -->
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="card border border-info mb-3">
-                                                @foreach($EmpresasAnuncios as $key2)
-                                                    @if($key->id == $key2->id_empresa)
-                                                            <ul class="list-group list-group-flush">
-                                                                <li class="list-group-item">
-                                                                        
-                                                                    <span><b>{{$key2->anuncios->titulo}}</b></span>
-                                                                    <br>
-                                                                    <span>{{$key2->anuncios->link}}</span>
-                                                                    <div class="float-right">
-                                                                        <img src="{{ asset($key2->planP->url_img) }}" class="shadow" style="width: 50px; height: 50px; border-radius: 35px !important;">
-                                                                        <img class="" src="{{ asset($key2->anuncios->url_img) }}" class="" style="width: 50px; height: 50px; border-radius: 30px;">
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                    @endif
-                                                @endforeach()
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach()
                 </div>
             </div>
         </div>
@@ -1004,18 +968,18 @@
 
 <!--Anuncios-->
 
-    @include('alquiler.layouts_anuncios.create')
-    @include('alquiler.layouts_anuncios.show')
-    @include('alquiler.layouts_anuncios.edit')
-    @include('alquiler.layouts_anuncios.delete')
-    @include('alquiler.layouts_anuncios.editar_orden_anuncio.blade')
-    @include('alquiler.layouts_anuncios.renovar_orden_anuncio.blade')
+    @include('anuncios.layouts_anuncios.create')
+    @include('anuncios.layouts_anuncios.show')
+    @include('anuncios.layouts_anuncios.edit')
+    @include('anuncios.layouts_anuncios.delete')
+    @include('anuncios.layouts_anuncios.editar_orden_anuncio')
+    @include('anuncios.layouts_anuncios.renovar_orden_anuncio')
 
 <!--Empresas-->
     
-    @include('alquiler.layouts_empresas.create')
-    @include('alquiler.layouts_empresas.edit')
-    @include('alquiler.layouts_empresas.delete')
+    @include('anuncios.layouts_empresas.create')
+    @include('anuncios.layouts_empresas.edit')
+    @include('anuncios.layouts_empresas.delete')
 
 
 @endsection
