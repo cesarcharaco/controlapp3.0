@@ -1506,5 +1506,34 @@
     	$('.label-form2').removeClass('btn-primary').addClass('btn-success').html('<strong>Archivo seleccionado </strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>');
 
     }
+
+
+    function selectPasarela(opcion,id){
+
+    	opcion++;
+        // if ('#pasarelaPago'+id) {
+        	// alert('existe');
+        // }else{
+        	// alert('no existe');
+	    	$('#pasarelas_pago').append(
+	    		'<div class="col-md-6">'+
+	                '<div class="form-group">'+
+	                    '<label>Pasarelas de Pago</label>'+
+	                    '<select name="id_pasarela[]" id="pasarelaP'+opcion+'" class="form-control select2" onchange="selectPasarela('+opcion+',this.value)">'+
+	                    '</select>'+
+	                '</div>'+
+	            '</div>'+
+	            '<div class="col-md-6">'+
+	                '<div class="form-group">'+
+	                    '<label>Link</label>'+
+	                    '<input type="text" name="link_pasarela[]" class="form-control">'+
+	                '</div>'+
+	            '</div>'
+	        );
+        	var options = $("#selectP > option").clone();
+			$('#pasarelaP'+opcion).append(options);
+        // }
+
+    }
 </script>
 @yield('scripts')

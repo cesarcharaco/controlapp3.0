@@ -259,7 +259,6 @@
             </div>
         </div>
 
-        @include('inmuebles.layouts.create')
         @include('inmuebles.layouts.show')
         @include('inmuebles.layouts.edit')
         @include('inmuebles.layouts.delete')

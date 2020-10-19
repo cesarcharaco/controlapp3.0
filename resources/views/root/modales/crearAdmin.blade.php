@@ -45,6 +45,23 @@
                             </div>
                         </div>
 
+                        <div class="row" id="pasarelas_pago">
+                            <div class="col-md-6" id="pasarelaPago1">
+                                <div class="form-group">
+                                    <label for="id_pasarela">Pasarelas de Pago</label>
+                                    <select name="id_pasarela[]" id="selectP" class="form-control" onchange="selectPasarela(1,this.value)">
+                                        <option selected disabled>Seleccione Pasarela de Pagos</option>
+                                        <!-- FOREACH -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="pasarelaPago1">
+                                <div class="form-group">
+                                    <label>Link</label>
+                                    <input type="text" name="link_pasarela[]" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
                         <label>Opciones de pago</label>
                         <div class="row">
                             <div class="col-md-6">
