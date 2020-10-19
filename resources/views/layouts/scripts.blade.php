@@ -1519,7 +1519,7 @@
 	    		'<div class="col-md-6">'+
 	                '<div class="form-group">'+
 	                    '<label>Pasarelas de Pago</label>'+
-	                    '<select name="id_pasarela[]" id="pasarelaP'+opcion+'" class="form-control select2" onchange="selectPasarela('+opcion+',this.value)">'+
+	                    '<select name="id_pasarela[]" id="pasarelaP'+opcion+'" class="form-control" onchange="selectPasarela('+opcion+',this.value)">'+
 	                    '</select>'+
 	                '</div>'+
 	            '</div>'+

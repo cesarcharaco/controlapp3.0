@@ -1,7 +1,7 @@
 <form action="{{ route('administradores.store') }}" method="POST" name="registrar_admin" data-parsley-validate>
     @csrf
     <div class="modal fade" id="crearAdmin" role="dialog">
-        <div class="modal-dialog modals-default">
+        <div class="modal-dialog modals-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4>Nuevo Admin</h4>
@@ -49,9 +49,12 @@
                             <div class="col-md-6" id="pasarelaPago1">
                                 <div class="form-group">
                                     <label for="id_pasarela">Pasarelas de Pago</label>
-                                    <select name="id_pasarela[]" id="selectP" class="form-control" onchange="selectPasarela(1,this.value)">
+                                    <select name="id_pasarela[]" id="id_pasarela" class="form-control" onchange="selectPasarela(1,this.value)">
                                         <option selected disabled>Seleccione Pasarela de Pagos</option>
                                         <!-- FOREACH -->
+                                        @foreach($pasarelas as $key)
+                                            <option value="{{$key->id}}">{{$key->pasarela}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -59,37 +62,6 @@
                                 <div class="form-group">
                                     <label>Link</label>
                                     <input type="text" name="link_pasarela[]" class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
-                        <label>Opciones de pago</label>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Flow</label>
-                                    <input type="checkbox" name="opciones_pago" value="si" id="check_flow" >
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>TransBank</label>
-                                    <input type="checkbox" name="opciones_pago" value="si" id="check_tb" onclick="CambiarContraseña();">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="link_flow">Link de Flow</label>
-                                    <input type="url" name="link_flow" id="link_flow" class="form-control" placeholder="Link de Flow" disabled="disabled">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="link_tb">Link de TransBank</label>
-                                    <input type="url" name="link_tb" id="link_tb" class="form-control" placeholder="Link de TransBank" disabled="disabled">
                                 </div>
                             </div>
                         </div>
@@ -103,23 +75,6 @@
                                             <option value="{{$key->id}}">{{$key->nombre}} | Monto: {{$key->monto}} $</option>
                                         @endforeach
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="membrecia">Pasarelas de pago</label>
-                                    <select name="id_membresia" id="id_membresia" required="required" class="form-control">
-                                        <option value="">Seleccione una pasarela</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="link[]">Link de la pasarela</label>
-                                    <input type="text" name="link[]" class="form-control" placeholder="Link de la pasarela de pago">
                                 </div>
                             </div>
                         </div>

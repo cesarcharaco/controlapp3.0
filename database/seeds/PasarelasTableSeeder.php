@@ -17,5 +17,29 @@ class PasarelasTableSeeder extends Seeder
         \DB::table('pasarelas')->insert([
             'pasarela' => 'TransBank',
         ]);
+        \DB::table('pasarelas')->insert([
+            'pasarela' => 'Webpay',
+        ]);
+        \DB::table('pasarelas')->insert([
+            'pasarela' => 'MercadoPago',
+        ]);
+        \DB::table('pasarelas')->insert([
+            'pasarela' => 'Paypal',
+        ]);
+        \DB::table('pasarelas')->insert([
+            'pasarela' => 'PagoFácil',
+        ]);
+        \DB::table('pasarelas')->insert([
+            'pasarela' => 'Khipu',
+        ]);
+        \DB::table('pasarelas')->insert([
+            'pasarela' => 'Kushki',
+        ]);
+        \DB::table('pasarelas')->insert([
+            'pasarela' => 'Stripe',
+        ]);
+        \DB::table('pasarelas')->insert([
+            'pasarela' => 'PayU Latam',
+        ]);
     }
 }

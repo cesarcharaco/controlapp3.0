@@ -19,6 +19,7 @@ use App\Notificaciones;
 use App\Noticias;
 use App\Residentes;
 use App\Membresias;
+use App\Pasarelas;
 class AdminController extends Controller
 {
     /**
@@ -30,8 +31,9 @@ class AdminController extends Controller
     {
         $admin=UsersAdmin::all();
         $membresias = Membresias::all();
+        $pasarelas = Pasarelas::all();
 
-        return view('root.index',compact('admin','membresias'));
+        return view('root.index',compact('admin','membresias','pasarelas'));
     }
 
     /**
