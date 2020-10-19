@@ -52,11 +52,11 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminRequest $request)
+    public function store(Request $request)
     {
         //dd($request->all());
-            
-
+        $id_pasarela = $request['id_pasarela'];
+        $link_pasarela = $request['link_pasarela'];
         //dd('----------------');
         $user=new UsersAdmin();
 
@@ -64,9 +64,18 @@ class AdminController extends Controller
         $user->rut=$request->rut.'-'.$request->verificador;
         $user->email=$request->email;
         $user->id_membresia=$request->id_membresia;
-        $user->link_flow=$request->link_flow;
-        $user->link_tb=$request->link_tb;
         $user->save();
+
+        foreach($id_pasarela as $key){
+            for ($j=0; $j < count($link_pasarela); $j++) {
+                \DB::table('admins_has_pasarelas')->insert([
+                    'id_pasarela' => $key,
+                    'id_admin' => $user->id,
+                    'link_pasarela' => $link_pasarela[$j]
+                ]);
+            }
+        }
+        dd('fin');
 
         $user2=new User();
         $user2->name=$request->name;

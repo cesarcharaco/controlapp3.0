@@ -4,7 +4,7 @@
         <div class="modal-dialog modals-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Nuevo Admin</h4>
+                    <h4>Nuevo Admin <small>Todos los campos (<b style="color: red;">*</b>) son requeridos.</small></h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
@@ -15,7 +15,7 @@
                             <div class="col-md-12">
                                 
                                 <div class="form-group">
-                                    <label>Nombre del Admin</label>
+                                    <label>Nombre del Admin <b style="color: red;">*</b></label>
                                     <input type="text" name="name" placeholder="Nombre"  class="form-control" required>
                                 </div>
                             </div>
@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="form-group">
-                                    <label>RUT</label>
+                                    <label>RUT <b style="color: red;">*</b></label>
                                     <input type="text" name="rut" id="rut" placeholder="Rut" minlength="7" maxlength="8" class="form-control" required>
                                 </div>
                             </div>
@@ -39,16 +39,23 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Email</label>
+                                    <label>Email <b style="color: red;">*</b></label>
                                     <input type="email" name="email" placeholder="Email del admin" class="form-control" required>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row" id="pasarelas_pago">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>!Seleccione si desea agregar pasarelas de pago?</label>
+                                    <input type="checkbox" name="cambiar_pagos" value="si" id="CheckagregarPasarelas" onclick="agregarPasarelas();">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="pasarelas_pago" style="display: none;">
                             <div class="col-md-6" id="pasarelaPago1">
                                 <div class="form-group">
-                                    <label for="id_pasarela">Pasarelas de Pago
+                                    <label for="id_pasarela">Pasarelas de Pago <b style="color: red;">*</b>
                                         <a class="btn text-success btn-sm" onclick="selectPasarela()" style="border-radius: 30px;"  data-toggle="tooltip" data-placement="top" title="Seleccione para agregar una Pasarela de Pago">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
                                             </svg>
@@ -66,8 +73,8 @@
                             <div class="col-md-6" id="pasarelaPago1">
                                 <div style="margin-top: 2px;">
                                     <div class="form-group">
-                                        <label>Link</label>
-                                        <input type="text" name="link_pasarela[]" class="form-control">
+                                        <label>Link <b style="color: red;">*</b></label>
+                                        <input type="text" name="link_pasarela[]" class="form-control" placeholder="Ingrese Link" id="link_pasarela">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +82,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="membrecia">Membresía</label>
+                                    <label for="membrecia">Membresía <b style="color: red;">*</b></label>
                                     <select name="id_membresia" id="id_membresia" required="required" class="form-control">
                                         <option value="">Seleccione una membresía...</option>
                                         @foreach($membresias as $key)
@@ -88,7 +95,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Ingrese contraseña</label>
+                                    <label>Ingrese contraseña <b style="color: red;">*</b></label>
                                     <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
                                 </div>
                             </div>
@@ -97,7 +104,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Confirmar contraseña</label>
+                                    <label>Confirmar contraseña <b style="color: red;">*</b></label>
                                     <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" class="form-control" required>
                                 </div>
                             </div>

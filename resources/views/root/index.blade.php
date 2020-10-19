@@ -390,6 +390,23 @@ $('#check_tb_edit').on('change',function () {
                 $('#confirmarContraseñaE').removeAttr('required',false);               
             }
         }
+        function agregarPasarelas() {
+            if($('#CheckagregarPasarelas').prop('checked')){
+
+                $('#pasarelas_pago').fadeIn(300);
+                $('#id_pasarela').attr('required',true);
+                $('#link_pasarela').attr('required',true);
+                
+            }else{
+
+                $('#pasarelas_pago').fadeOut('slow',
+                    function() { 
+                        $(this).css('display','none');
+                });
+                $('#id_pasarela').removeAttr('required',false);
+                $('#link_pasarela').removeAttr('required',false);               
+            }
+        }
         
     </script>
     <script type="text/javascript">

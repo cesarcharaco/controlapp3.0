@@ -17,6 +17,7 @@ use App\EmpresasAnuncios;
 use App\PlanesPago;
 use App\Promociones;
 use App\Membresias;
+use App\Pasarelas;
 
 class HomeController extends Controller
 {
@@ -91,7 +92,8 @@ class HomeController extends Controller
             
             //dd('-------------');
             $membresias=Membresias::all();
-            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin','admin','empresas','EmpresasAnuncios','planesPago','promociones','membresias'));    
+            $pasarelas=Pasarelas::all();
+            return view('home', compact('noticias', 'notificaciones','residentes','residente','buscarPInmuebles','buscarPEstaciona','anuncios','users_admin','admin','empresas','EmpresasAnuncios','planesPago','promociones','membresias','pasarelas'));    
         } else {
             # code...
             
