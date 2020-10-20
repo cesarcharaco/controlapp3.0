@@ -1508,44 +1508,21 @@
     }
 
 
-    function selectPasarela(){
-    	opcion = parseInt($('#opcionS').val());
-    	opcion2= opcion+1;
-    	$('#pasarelas_pago').append(
-    		'<div class="col-md-6 opcion'+opcion+'">'+
-                '<div class="form-group">'+
-                    '<label for="id_pasarela">Pasarelas de Pago <b style="color: red;">*</b><a class="btn text-danger btn-sm" onclick="deletePasarelas('+opcion+')" style="border-radius: 30px;" data-toggle="tooltip" data-placement="top" title="Seleccione para eliminar la Pasarela de Pago" value="1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></label>'+
-                    '<select name="id_pasarela[]" id="pasarelaP'+opcion+'" class="form-control select2" onchange="selectPasarela2(this.value)">'+
-                    '</select>'+
-                '</div>'+
-            '</div>'+
-            '<div class="col-md-6 opcion'+opcion+'">'+
-            	'<div style="margin-top: 13px;">'+
-	                '<div class="form-group">'+
-	                    '<label>Link <b style="color: red;">*</b></label>'+
-	                    '<input type="text" name="link_pasarela[]" class="form-control" placeholder="Ingrese Link">'+
-	                '</div>'+
-	            '</div>'+
-	        '</div>'
-        );
-    	var options = $("#id_pasarela > option").clone();
-		$('#pasarelaP'+opcion).append(options);
-		$('#opcionS').val(opcion2);
+    function selectPasarela(opcion, id){
+    	if ($('#check_pasarela'+opcion+'-'+id).prop('checked')) {
+    		$('#link_pasarela'+opcion+'-'+id).removeAttr('disabled',false);
+    		$('#link_pasarela'+opcion+'-'+id).attr('required',true);
+    		$('#link_pasarela'+opcion+'-'+id).addClass('border').addClass('border-success');
+    	}else{
+    		$('#link_pasarela'+opcion+'-'+id).attr('disabled',true);
+    		$('#link_pasarela'+opcion+'-'+id).removeAttr('required',false);
+    		$('#link_pasarela'+opcion+'-'+id).removeClass('border').removeClass('border-success');
+    		$('#link_pasarela'+opcion+'-'+id).val(null);
+    	}
     }
 
     function selectPasarela2(id) {
-    	var disabled=jQuery('.opcion_pasarela'+id).attr('disabled',true);
     	
-    	var sel = document.getElementById("id_pasarela"); 
-    	for (var i = 0; i < sel.length; i++) {
-
-		}
-    	if ($('.selDiv option[value="SEL1"]')) {
-    		alert('seleccionado');
-    	}else{
-    		alert('No seleccionado');
-    	}
-    	// var status = $('.select2 option:selected').attr('disabled');
     }
 
     function deletePasarelas(opcion) {

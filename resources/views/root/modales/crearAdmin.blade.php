@@ -47,35 +47,31 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>!Seleccione si desea agregar pasarelas de pago?</label>
+                                    <label>Agregar pasarelas de pago</label>
                                     <input type="checkbox" name="cambiar_pagos" value="si" id="CheckagregarPasarelas" onclick="agregarPasarelas();">
                                 </div>
                             </div>
                         </div>
                         <div class="row" id="pasarelas_pago" style="display: none;">
-                            <div class="col-md-6" id="pasarelaPago1">
+                            <div class="col-md-12" id="pasarelaPago1">
                                 <div class="form-group">
                                     <label for="id_pasarela">Pasarelas de Pago <b style="color: red;">*</b>
-                                        <a class="btn text-success btn-sm" onclick="selectPasarela()" style="border-radius: 30px;"  data-toggle="tooltip" data-placement="top" title="Seleccione para agregar una Pasarela de Pago">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg>
-                                        </a>
                                     </label>
-                                    <select name="id_pasarela[]" style="margin-bottom: -50px !important;" id="id_pasarela" class="form-control select2" onchange="selectPasarela2(this.value)">
-                                        <option selected disabled>Seleccione Pasarela de Pagos</option>
-                                        <!-- FOREACH -->
-                                        @foreach($pasarelas as $key)
-                                            <option value="{{$key->id}}" class="opcion_pasarela{{$key->id}}">{{$key->pasarela}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6" id="pasarelaPago1">
-                                <div style="margin-top: 2px;">
-                                    <div class="form-group">
-                                        <label>Link <b style="color: red;">*</b></label>
-                                        <input type="text" name="link_pasarela[]" class="form-control" placeholder="Ingrese Link" id="link_pasarela">
-                                    </div>
+                                    @foreach($pasarelas as $key)
+                                        <div class="card-body border">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-2">
+                                                    <input id="check_pasarela1-{{$key->id}}" type="checkbox" name="id_pasarela[]" value="{{$key->id}}" onclick="selectPasarela(1,'{{$key->id}}')">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <span>{{$key->pasarela}}</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="link_pasarela[]" class="form-control" placeholder="Ingrese Link" id="link_pasarela1-{{$key->id}}" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

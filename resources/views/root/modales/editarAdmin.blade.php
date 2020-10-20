@@ -97,13 +97,28 @@
                             </div>
                         </div>
                         <div id="verCambiarPagos" style="display: none;">
+                            <strong>Pasarelas de pago registradas</strong>
+                            <div class="card border">
+                                <div class="card-body">
+                                    <div id="id_pasarela_edit"></div>
+                                </div>
+                            </div>
                             <label>Plataformas de pago</label>
-                            <select name="id_pasarela[]" multiple id="id_pasarela_edit" class="form-control">
-                                <!-- FOREACH -->
-                                @foreach($pasarelas as $key)
-                                    <option value="{{$key->id}}">{{$key->pasarela}}</option>
-                                @endforeach
-                            </select>
+                            @foreach($pasarelas as $key)
+                                <div class="card-body border">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2">
+                                            <input id="check_pasarela2-{{$key->id}}" type="checkbox" name="id_pasarela[]" value="{{$key->id}}" onclick="selectPasarela(2,'{{$key->id}}')">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span>{{$key->pasarela}}</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="link_pasarela[]" class="form-control" placeholder="Ingrese Link" id="link_pasarela2-{{$key->id}}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
 
                         <div class="row">

@@ -350,7 +350,7 @@ $('#check_tb_edit').on('change',function () {
     function verAdmin(id,name,rut,email,status,membresia_nombre,membresia_cant,membresia_monto,link_flow, link_tb) {
         $('#ver_pasarelas_pago').empty();
         $('#ver_pasarelas_pago').append('Cargando pasarelas...');
-        if (status == 'Activo') {
+        if (status == 'activo') {
             status='<div class="card-body" style="height:110px !important;"><h3><span class="text-success">Activo</span></h3></div>';
         }else{
             status='<div class="card-body" style="height:110px !important;"><h3><span class="text-danger">Suspendido</span></h3></div>';
@@ -402,18 +402,16 @@ $('#check_tb_edit').on('change',function () {
             $.get("pasarelas/"+id+"/buscar",function (data) {
             })
             .done(function(data) {
-                $('#ver_pasarelas_pago').empty();
+                $('#id_pasarela_edit').empty();
                 console.log(data.length)
                 if (data.length>0) {
                     for (var i = 0; i < data.length; i++) {
-                        alert(data[i].id);
-                        $('#id_pasarela_edit').val(data[i].id);
+                        $('#id_pasarela_edit').append('<span><strong>'+data[i].pasarela+':</strong> '+data[i].link_pasarela+'</span><br>');
                     }
                 }else{
-                    $('#ver_pasarelas_pago').append('<option selected disabled>No tiene pasarelas de pago registradas</option>');
+                    $('#id_pasarela_edit').append('<h2>No tiene pasarelas de pago registradas</h2>');
                 }
             });
-            id_pasarela_edit
         }
 
         function CambiarContraseña() {
