@@ -122,7 +122,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	route::get('renovarOrdenAnuncio','AnunciosController@renovar_orden_anuncio')->name('renovar_orden_anuncio');
 	route::get('renovar_anuncio','AnunciosController@renovar_anuncio')->name('renovar_anuncio');
 	Route::get('anuncios/{id_anuncio}/admin_asignados','AdminController@admin_asignados');
-
+	Route::get('pasarelas/{id_admin}/buscar','AdminController@pasarelas_admin');
 
 	
 	Route::resource('administradores','AdminController');

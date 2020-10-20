@@ -91,29 +91,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>¿Desea cambiar la opciones de pago?</label>
+                                    <label>¿Desea cambiar las plataformas de pago?</label>
                                     <input type="checkbox" name="cambiar_pagos" value="si" id="CheckCambiarPagos" onclick="CambiarPagos();">
                                 </div>
                             </div>
                         </div>
                         <div id="verCambiarPagos" style="display: none;">
-                            <label>Opciones de pago</label>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="link_flow_edit">Link de Flow</label>
-                                        <input type="url" name="link_flow" id="link_flow_edit" class="form-control" placeholder="Link de Flow">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="link_tb_edit">Link de TransBank</label>
-                                        <input type="url" name="link_tb" id="link_tb_edit" class="form-control" placeholder="Link de TransBank">
-                                    </div>
-                                </div>
-                            </div>
+                            <label>Plataformas de pago</label>
+                            <select name="id_pasarela[]" multiple id="id_pasarela_edit" class="form-control">
+                                <!-- FOREACH -->
+                                @foreach($pasarelas as $key)
+                                    <option value="{{$key->id}}">{{$key->pasarela}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="row">

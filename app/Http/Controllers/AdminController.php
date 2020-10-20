@@ -300,4 +300,13 @@ class AdminController extends Controller
             ->select('users_admin.*')
             ->get();
     }
+
+    public function pasarelas_admin($id_admin)
+    {
+        return $pasarelas=\DB::table('admins_has_pasarelas')
+            ->join('pasarelas','pasarelas.id','=','admins_has_pasarelas.id_pasarela')
+            ->where('admins_has_pasarelas.id_admin',$id_admin)
+            ->select('pasarelas.*','admins_has_pasarelas.link_pasarela')
+            ->get();
+    }
 }

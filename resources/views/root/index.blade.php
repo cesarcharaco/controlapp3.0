@@ -120,13 +120,11 @@
                 </div>
             </div>
             
-            <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div style="width: 100%;">
                         @include('root.layouts.showAdmin')
                     </div>
                 </div>
-            </div>
 
             <div class="col-md-12">
                 <div id="example1_wrapper">
@@ -228,11 +226,11 @@
                                     <td style="display: none"></td>
                                     <td align="center" colspan="2">
 
-                                        <a data-toggle="collapse" href="#verAdmin" role="button" aria-expanded="false" aria-controls="verAdmin" class="btn btn-success btn-sm" onclick="verAdmin()">
+                                        <a data-toggle="collapse" href="#verAdmin" role="button" aria-expanded="false" aria-controls="verAdmin" class="btn btn-success btn-sm" onclick="verAdmin('{{$key->id}}','{{$key->name}}','{{$key->rut}}','{{$key->email}}','{{$key->status}}','{{$key->membresia->nombre}}','{{$key->membresia->cant_inmuebles}}','{{$key->membresia->monto}}','{{$key->link_flow}}','{{$key->link_tb}}')">
                                             <span class="PalabraEditarPago ">Ver</span>
                                             <center>
                                                 <span class="PalabraEditarPago2 ">
-                                                    <i data-feather="edit" class="iconosMetaforas2"></i>
+                                                    <i data-feather="eye" class="iconosMetaforas2"></i>
                                                 </span>
                                             </center>
                                         </a>
@@ -349,7 +347,43 @@ $('#check_tb_edit').on('change',function () {
       $('#btnRegistrar_admin').show();
     }
 
-    function verAdmin() {
+    function verAdmin(id,name,rut,email,status,membresia_nombre,membresia_cant,membresia_monto,link_flow, link_tb) {
+        $('#ver_pasarelas_pago').empty();
+        $('#ver_pasarelas_pago').append('Cargando pasarelas...');
+        if (status == 'Activo') {
+            status='<div class="card-body" style="height:110px !important;"><h3><span class="text-success">Activo</span></h3></div>';
+        }else{
+            status='<div class="card-body" style="height:110px !important;"><h3><span class="text-danger">Suspendido</span></h3></div>';
+        }
+        $('#id_admin_v').html(id);
+        $('#name_v').html(name);
+        $('#rut_v').html(rut);
+        $('#email_v').html(email);
+        $('#status_v').html(status);
+        $("#membresia_v").append('<div class="card-body border border-warning"><h3>'+membresia_nombre+'</h3> <span>Cant. Inmuebles: '+membresia_cant+'</span> - <strong>Monto: '+membresia_monto+'$</strong></div>');
+        $('#link_flow_edit').val(link_flow);
+        $('#link_tb_edit').val(link_tb);
+
+
+        $.get("pasarelas/"+id+"/buscar",function (data) {
+        })
+        .done(function(data) {
+            $('#ver_pasarelas_pago').empty();
+            console.log(data.length)
+            if (data.length>0) {
+                for (var i = 0; i < data.length; i++) {
+                    $('#ver_pasarelas_pago').append('<h3>'+data[i].pasarela+' - '+data[i].link_pasarela+'</h3>');
+                }
+            }else{
+                $('#ver_pasarelas_pago').append('<h3>No hay pasarelas de pago</h3>');
+            }
+        });
+
+
+
+
+
+
         $('#btnRegistrar_admin').fadeOut('fast');
         $('#example1_wrapper').fadeOut('fast');
     }
@@ -364,6 +398,22 @@ $('#check_tb_edit').on('change',function () {
             $("#membresia_e").append('<input id="membresia_actual" class="form-control" value="'+membresia_nombre+' | Cant. Inmuebles: '+membresia_cant+' | Monto: '+membresia_monto+'" disabled="disabled">');
             $('#link_flow_edit').val(link_flow);
             $('#link_tb_edit').val(link_tb);
+
+            $.get("pasarelas/"+id+"/buscar",function (data) {
+            })
+            .done(function(data) {
+                $('#ver_pasarelas_pago').empty();
+                console.log(data.length)
+                if (data.length>0) {
+                    for (var i = 0; i < data.length; i++) {
+                        alert(data[i].id);
+                        $('#id_pasarela_edit').val(data[i].id);
+                    }
+                }else{
+                    $('#ver_pasarelas_pago').append('<option selected disabled>No tiene pasarelas de pago registradas</option>');
+                }
+            });
+            id_pasarela_edit
         }
 
         function CambiarContraseña() {
