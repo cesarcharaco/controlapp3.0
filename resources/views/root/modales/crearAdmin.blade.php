@@ -61,11 +61,11 @@
                                             </svg>
                                         </a>
                                     </label>
-                                    <select name="id_pasarela[]" style="margin-bottom: -50px !important;" id="id_pasarela" class="form-control">
+                                    <select name="id_pasarela[]" style="margin-bottom: -50px !important;" id="id_pasarela" class="form-control select2" onchange="selectPasarela2(this.value)">
                                         <option selected disabled>Seleccione Pasarela de Pagos</option>
                                         <!-- FOREACH -->
                                         @foreach($pasarelas as $key)
-                                            <option value="{{$key->id}}">{{$key->pasarela}}</option>
+                                            <option value="{{$key->id}}" class="opcion_pasarela{{$key->id}}">{{$key->pasarela}}</option>
                                         @endforeach
                                     </select>
                                 </div>
