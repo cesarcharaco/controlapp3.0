@@ -875,6 +875,9 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                              <center><h5>Pasarelas de pago de tu Admin</h5></center><br>
+                                              <p>{{ buscar_pasarelas() }}</p>
+                                              <hr>
                                                 <center>
                                                     <div id="muestraMesesAPagar">
                                                         
@@ -911,6 +914,9 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                              <center><h5>Pasarelas de pago de tu Admin</h5></center><br>
+                                              <p>{{ buscar_pasarelas() }}</p>
+                                              <hr>
                                                 <center>
                                                     <div class="row">
                                                         <div class="col-md-12">

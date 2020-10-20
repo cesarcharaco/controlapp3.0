@@ -18,7 +18,8 @@ use App\PlanesPago;
 use App\Promociones;
 use App\Membresias;
 use App\Pasarelas;
-
+use App\AdminsPasarelas;
+use App\User;
 class HomeController extends Controller
 {
 

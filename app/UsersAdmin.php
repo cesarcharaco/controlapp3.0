@@ -56,6 +56,6 @@ class UsersAdmin extends Model
 
     public function pasarelas()
     {
-        return $this->belongsToMany('App\Pasarelas','admins_has_pasarelas','id_admin','id_pasarela');
+        return $this->belongsToMany('App\Pasarelas','admins_has_pasarelas','id_pasarela','id_admin');
     }
 }

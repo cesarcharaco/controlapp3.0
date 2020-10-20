@@ -505,3 +505,25 @@ function anios_registros()
 	return $buscar;
 
 }
+
+function buscar_pasarelas()
+{
+
+	$id_admin = \App\Residentes::join('users','users.id','=','residentes.id_usuario')
+        ->where('users.id',\Auth::User()->id)->get();
+        foreach ($id_admin as $key) {
+            $id_admin = $key->id_admin;
+        }
+    //dd($id_admin);
+    $buscar_pasarelas=\App\AdminsPasarelas::join('users_admin','users_admin.id','=','admins_has_pasarelas.id_admin')
+    ->join('residentes','residentes.id_admin','=','users_admin.id')
+    ->where('residentes.id_admin',$id_admin)
+    ->select('admins_has_pasarelas.*')
+    ->get();
+    foreach ($buscar_pasarelas as $key) {
+    	$buscar_pasarelas = print("<b>" .$key->pasarelas->pasarela.":</b> <a href='".$key->link_pasarela."' target='_blank'>" .$key->link_pasarela."</a><br>");
+    }
+	
+	return $buscar_pasarelas;
+
+}

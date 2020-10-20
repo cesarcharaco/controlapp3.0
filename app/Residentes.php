@@ -8,7 +8,7 @@ class Residentes extends Model
 {
 	protected $table='residentes';
 
-	protected $fillable=['nombres','apellidos','rut','telefono','id_usuario','id_admin'];
+	protected $fillable=['id','nombres','apellidos','rut','telefono','id_usuario','id_admin'];
 
 	public function usuario()
 	{
