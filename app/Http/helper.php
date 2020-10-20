@@ -528,3 +528,23 @@ function buscar_pasarelas()
 		return $buscar_pasarelas;
 	}
 }
+
+function contar_buscar_pasarelas()
+{
+	if(\Auth::User()->tipo_usuario=="Residente") {
+
+		$id_admin = \App\Residentes::join('users','users.id','=','residentes.id_usuario')
+	        ->where('users.id',\Auth::User()->id)->get();
+	        foreach ($id_admin as $key) {
+	            $id_admin = $key->id_admin;
+	        }
+	    //dd($id_admin);
+	    $contar_buscar_pasarelas=\App\AdminsPasarelas::join('users_admin','users_admin.id','=','admins_has_pasarelas.id_admin')
+	    ->join('residentes','residentes.id_admin','=','users_admin.id')
+	    ->where('residentes.id_admin',$id_admin)
+	    ->select('admins_has_pasarelas.*')
+	    ->count();
+		
+		return $contar_buscar_pasarelas;
+	}
+}
