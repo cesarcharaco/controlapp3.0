@@ -12,34 +12,34 @@ class PasarelasTableSeeder extends Seeder
     public function run()
     {
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'Flow',
+            'pasarela' => 'Flow'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'TransBank',
+            'pasarela' => 'TransBank'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'Webpay',
+            'pasarela' => 'Webpay'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'MercadoPago',
+            'pasarela' => 'MercadoPago'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'Paypal',
+            'pasarela' => 'Paypal'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'PagoFácil',
+            'pasarela' => 'PagoFácil'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'Khipu',
+            'pasarela' => 'Khipu'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'Kushki',
+            'pasarela' => 'Kushki'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'Stripe',
+            'pasarela' => 'Stripe'
         ]);
         \DB::table('pasarelas')->insert([
-            'pasarela' => 'PayU Latam',
+            'pasarela' => 'PayU Latam'
         ]);
     }
 }

@@ -54,10 +54,9 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $id_pasarela = $request['id_pasarela'];
-        $link_pasarela = $request['link_pasarela'];
+        
         //dd('----------------');
+        //dd($request->all());
         $user=new UsersAdmin();
 
         $user->name=$request->name;
@@ -66,16 +65,15 @@ class AdminController extends Controller
         $user->id_membresia=$request->id_membresia;
         $user->save();
 
-        foreach($id_pasarela as $key){
-            for ($j=0; $j < count($link_pasarela); $j++) {
+        
+            for ($i=0; $i < count($request->id_pasarela); $i++) {
                 \DB::table('admins_has_pasarelas')->insert([
-                    'id_pasarela' => $key,
+                    'id_pasarela' => $request->id_pasarela[$i],
                     'id_admin' => $user->id,
-                    'link_pasarela' => $link_pasarela[$j]
+                    'link_pasarela' => $request->link_pasarela[$i]
                 ]);
             }
-        }
-        dd('fin');
+        
 
         $user2=new User();
         $user2->name=$request->name;
