@@ -234,7 +234,7 @@
                                         </a>
                                     @endif
                                 </td>
-                                @if(\Auth::user()->tipo_usuario == 'Disponible')
+                                @if($key->status == 'Disponible')
                                     <td style="position: all;">
                                             <span class="tituloTabla text-success"><strong>Disponible</strong></span>
                                             <span class="tituloTabla2 text-success"><strong>D</strong></span>

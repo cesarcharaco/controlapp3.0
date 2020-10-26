@@ -175,7 +175,7 @@
                             <td align="center">{{$num=$num+1}}</td>
                             <th colspan="2">{{$key->idem}}</th>
                             <td style="display: none"></td>
-                            @if(\Auth::user()->tipo_usuario == 'En Uso')
+                            @if($key->status == 'Libre')
                                 <td style="position: all;">
                                         <span class="tituloTabla text-success"><strong>En Uso</strong></span>
                                         <span class="tituloTabla2 text-success"><strong>U</strong></span>
@@ -203,7 +203,7 @@
                                 <span>{{$key->idem}}</span>
                             </td>
                             <td align="center">
-                                 @if(\Auth::user()->tipo_usuario == 'Admin')
+                                @if(\Auth::user()->tipo_usuario == 'Admin')
                                     <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="select(2,'{{$key->id}}','{{$key->idem}}','{{$key->status}}')">
                                         <span class="PalabraEditarPago ">Editar</span>
                                         <center>
@@ -223,15 +223,15 @@
                                     </a>
                                 @endif
                             </td>
-                            @if(\Auth::user()->tipo_usuario == 'Disponible')
+                            @if($key->status == 'Libre')
                                 <td style="position: all;">
-                                        <span class="tituloTabla text-success"><strong>Disponible</strong></span>
-                                        <span class="tituloTabla2 text-success"><strong>D</strong></span>
+                                        <span class="tituloTabla text-success"><strong>En Uso</strong></span>
+                                        <span class="tituloTabla2 text-success"><strong>U</strong></span>
                                 </td>
                             @else
                                 <td style="position: all;">
-                                        <span class="tituloTabla text-danger"><strong>No Disponible</strong></span>
-                                        <span class="tituloTabla2 text-danger"><strong>N/D</strong></span>
+                                        <span class="tituloTabla text-danger"><strong>Retirado</strong></span>
+                                        <span class="tituloTabla2 text-danger"><strong>R</strong></span>
                                 </td>
                             @endif
 
