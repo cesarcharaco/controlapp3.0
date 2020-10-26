@@ -841,7 +841,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>¿Asignar estacionamiento? <b class="text-danger">*</b></label>
+                                                                <label>¿Asignar estacionamiento? </label>
                                                                 <select name="id_estacionamientos[]" multiple class="form select2" multiple="" id="asignaEstaResidente">
 
                                                                 </select>
