@@ -384,17 +384,21 @@ class PagosController extends Controller
                                 
                            }
                         }
-                    $reporte_new=new Reportes();
-                    $reporte_new->referencia=$request->referencia_edit;
-                    $reporte_new->reporte=$reporte;
-                    $reporte_new->tipo="Pendiente";
-                    $reporte_new->id_residente=$request->id_residente_edit;
-                    $reporte_new->save();
-                    toastr()->success('con éxito!!', 'Se ha colocado como Pendiente el Pago Común del mes '.$mes.'');
+                    if($ref_encontrada > 0 && (count($id_mensualidad_i)>0 || count($id_mensualidad_e)>0)){
+                        $reporte_new=new Reportes();
+                        $reporte_new->referencia=$request->referencia_edit;
+                        $reporte_new->reporte=$reporte;
+                        $reporte_new->tipo="Pendiente";
+                        $reporte_new->id_residente=$request->id_residente_edit;
+                        $reporte_new->save();
+                        toastr()->success('con éxito!!', 'Se ha colocado como Pendiente el Pago Común del mes '.$mes.'');
+                    }else{
+                        toastr()->warning('Alerta!!', 'Verifique si ha suministrado los datos correctamente');
+                    }
                         return redirect()->back();
                     //-------------fin con estacionamientos---------------------
                 } else {
-                    toastr()->warning('verifique el código de transacción!!', 'La información no pudo ser encontrada');
+                    toastr()->warning('Verifique el código de transacción!!', 'La información no pudo ser encontrada');
                         return redirect()->back();
                 }
                 
@@ -482,8 +486,9 @@ class PagosController extends Controller
                 break;
             case 3:
             //multas y Recargas
+            if(!is_null($request->id_multa)){
                 $pago=MultasRecargas::find($request->id_multa);
-                
+
                 $sql="SELECT * FROM `reportes_pagos` where referencia='".$request->referencia_edit."' AND tipo='Cancelado' AND reporte LIKE '%".$pago->motivo."%' ORDER BY id DESC LIMIT 0,1";
                 //dd($sql2);
                 $buscar=\DB::select($sql);
@@ -506,10 +511,13 @@ class PagosController extends Controller
                    toastr()->success('con éxito!!', 'Se ha colocado como Pendiente la '.$pago->tipo.': '.$pago->motivo.'');
                     return redirect()->back();
                } else {
-                   toastr()->warning('verifique el código de transacción!!', 'La información no pudo ser encontrada');
+                   toastr()->warning('Verifique el código de transacción!!', 'La información no pudo ser encontrada');
                     return redirect()->back();
                }
-               
+               }else{
+                    toastr()->warning('Alerta!!', 'Verifique si ha suministrado los datos correctamente');
+                    return redirect()->back();
+               }
                 break;
         }
     }
