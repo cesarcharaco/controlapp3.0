@@ -1,12 +1,19 @@
-<div class="vistaColumnaInstalaciones editarArriendo border border-warning shadow" id="editarInstalacion" style="display: none; border-radius: 30px !important;">
-    <div class="card-body">
+<div class="collapse multi-collapse" id="editarInstalacion" style=" margin-left: -8px; width: 100% !important; background-color: white !important; border-radius: 30px !important;">
+  <div class="card">
+    <div class="card-header" style="background-color: white !important;">
+        <a data-toggle="collapse" data-target="#editarInstalacion" aria-expanded="false" aria-controls="editarInstalacion" class="btn btn-primary btn-sm text-uppercase float-right text-white" style="border-radius: 5px; float: right;" onclick="cerrar(3)">
+          <strong>Cerrar</strong>
+        </a>
+      </div>
+    <div class="border card-body">
       {!! Form::open(['route' => ['editar_instalacion'], 'enctype' => 'multipart/form-data', 'method' => 'POST', 'name' => 'update_instalacion', 'id' => 'update_instalacion', 'data-parsley-validate']) !!}
-          @csrf
+        @csrf
         <h3 align="center" style="
           color: gray;
-            font: 18px Arial, sans-serif;">
-            Editar Instalación <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small>
-          </h3>
+          font: 18px Arial, sans-serif;">
+          Editar Instalación <br> <small>Todos los campos (<b style="color: red;">*</b>) son requerido.</small>
+        </h3>
+        <center>
           <div class="form-group">
             <label>Nombre <b class="text-danger">*</b></label>
             <input type="text" name="nombre" class="form-control" required placeholder="Instalación 1" id="nombreInstalacion">
@@ -17,12 +24,17 @@
               <label>Horario de disponibilidad <b class="text-danger">*</b></label>
               <br>
               <i data-feather="minus"></i>
+              <div class="card-body">
+                <div id="dias_insta"></div>
+              </div>
+              <br>
               <div class="form-group">
-                <select name="id_dia[]" id="id_diaInstalaciones" class="form-control select2" multiple="multiple" required>
-                    @foreach($dias as $key)
-                        <option value="{{$key->id}}">{{$key->dia}}</option>
-                    @endforeach
-                </select>
+                <div class="button-list" style="width: 100% !important">
+                @foreach($dias as $key)
+                  <input type="checkbox" id="id_diaInstalaciones" value="{{$key->id}}" name="id_dia[]">
+                  <label>{{$key->dia}}</label>
+                @endforeach
+              </div>
               </div>
               <br>
               <div class="row justify-content-center">
@@ -61,7 +73,9 @@
           </div>
           
           <input type="hidden" name="id" id="idInstalacion">
-        <button type="submit" class="btn btn-warning">Editar</button>
+          <button type="submit" class="btn btn-warning">Editar</button>
+        </center>
       {!! Form::close() !!}
     </div>
+  </div>
 </div>

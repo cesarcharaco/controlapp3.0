@@ -106,7 +106,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('inmuebles_disponibles/{id}/buscar','InmueblesController@inmuebles_disponibles');
 	Route::get('estacionamientos_disponibles/{id}/buscar','EstacionamientosController@estacionamientos_disponibles');
 
-
+	Route::get('instalaciones/{id_instalacion}/buscar_dias','ArriendosController@buscar_dias');
 
 	Route::resource('reportes','ReportesController');
 	Route::post('reportes/general','ReportesController@general')->name('reportes.general');

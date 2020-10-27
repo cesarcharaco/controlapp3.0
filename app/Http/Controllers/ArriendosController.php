@@ -271,6 +271,16 @@ class ArriendosController extends Controller
         ->get();
     }
 
+
+    public function buscar_dias($id)
+    {
+        return \DB::table('instalaciones_has_dias')
+        ->join('dias','dias.id','=','instalaciones_has_dias.id_dia')
+        ->where('instalaciones_has_dias.id_instalacion',$id)
+        ->select('dias.*')
+        ->get();
+    }
+
     public function desocupar(Request $request)
     {
         //dd($request->all());
