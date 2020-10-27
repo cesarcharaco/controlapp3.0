@@ -509,4 +509,5 @@
         $('#id_estacionamientoDesocupar').val(id_estacionamiento);
         $('#id_inmuebleDesocupar').val(id_inmueble);
     }
+    
 </script>

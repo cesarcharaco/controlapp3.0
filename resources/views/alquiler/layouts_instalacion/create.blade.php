@@ -33,8 +33,8 @@
               <div class="row justify-content-center">
                 <div class="col-md-6">
                   <div class="form-group" align="center">
-                    <label>Desde</label>
-                    <input class="form-control" id="example-time" type="time" name="hora_desde">
+                    <label>Desdea</label>
+                    <input class="form-control" id="example-time1" type="time" name="hora_desde">
                   </div>
                 </div>
                 <div class="col-md-6">

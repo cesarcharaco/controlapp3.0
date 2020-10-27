@@ -9,10 +9,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'ControlApp') }}</title>
+    
+    
+
+
 
     <link rel="shortcut icon" href="{{ asset('assets/images/logo.jpg') }}">
     
     @include('layouts.css')
+
+    
     @toastr_css
 
         <style type="text/css">

@@ -1226,4 +1226,5 @@
     $('#seccionControl5').fadeIn('show');
     $('#seccionControl6').fadeIn('show');
   }
+  
 </script>

@@ -18,6 +18,9 @@
 <!-- Styles -->
 {{--  <link href="{{ asset('toastr/build/toastr.css') }}" rel="stylesheet"/> --}}
 {{-- <script src="{{ asset('resources/css/toastr.css') }}"></script>  --}}
+{{-- timepicker --}}
+
+ 
 
 <!-- Data Table CSS
 		============================================ -->

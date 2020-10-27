@@ -10,6 +10,9 @@
 <script src="{{ asset('js/app.js') }}" prefer></script>
 <script type="text/javascript" src="{{ asset('slick/slick.min.js') }}"></script>
 
+{{-- timepicker --}}
+
+
 
 
 <script src="{{ asset('assets/js/data-table/jquery.dataTables.min.js') }}"></script>
@@ -25,7 +28,6 @@
 <script src="{{ asset('assets/js/data-table/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/js/data-table/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/js/data-table/four_button.js') }}"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js" integrity="sha512-G8JE1Xbr0egZE5gNGyUm1fF764iHVfRXshIoUWCTPAbKkkItp/6qal5YAHXrxEu4HNfPTQs6HOu3D5vCGS1j3w==" crossorigin="anonymous"></script>
@@ -1532,5 +1534,7 @@
     function deletePasarelas(opcion) {
     	$('.opcion'+opcion).remove();
     }
+
+
 </script>
 @yield('scripts')
