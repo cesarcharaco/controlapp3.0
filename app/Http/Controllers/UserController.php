@@ -46,7 +46,7 @@ class UserController extends Controller
         $user->name=$request->nombres;
         $user->rut=$request->rut.'-'.$request->verificador;
         $user->email=$request->email;
-        $user->password=bcrypt($request->rut);
+        $user->password=\Hash::make($request->rut.'-'.$request->verificador);
         $user->save();
 
 

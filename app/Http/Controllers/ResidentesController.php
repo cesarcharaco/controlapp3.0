@@ -80,7 +80,7 @@ class ResidentesController extends Controller
                         $user->name=$request->nombres;
                         $user->rut= $request->rut.'-'.$request->verificador;
                         $user->email=$request->email;
-                        $user->password=bcrypt($request->rut);
+                        $user->password=\Hash::make($request->rut.'-'.$request->verificador);
                         $user->tipo_usuario='Residente';
                         $user->save();
 
@@ -252,7 +252,7 @@ class ResidentesController extends Controller
                         $user->name=$request->nombres;
                         $user->rut=$request->rut.'-'.$request->verificador;
                         $user->email=$request->email;
-                        $user->password=bcrypt($request->rut);
+                        $user->password=\Hash::make($request->rut.'-'.$request->verificador);
                         $user->save();
                         toastr()->success('con éxito!!', 'Residente actualizado');
                         return redirect()->back();
@@ -437,29 +437,34 @@ class ResidentesController extends Controller
      */
     public function destroy(Request $request)
     {
+        //dd($request->all());
         $residente = Residentes::where('id', $request->id)->first();
         $id=$residente->id_usuario;
+        if(count($residente->inmuebles)>0){   
+            foreach ($residente->inmuebles as $key) {
+                $inmueble=Inmuebles::find($key->pivot->id_inmueble);
+                $inmueble->status="Disponible";
+                $inmueble->save();
+                foreach ($key->mensualidades as $key2) {
+                    $buscar=Pagos::where('id_mensualidad',$key2->id);
+                    $buscar->delete();
+                }
+            }
+        }
+        if(count($residente->estacionamientos)>0){
+            foreach ($residente->estacionamientos as $key) {
+                $inmueble=Estacionamientos::find($key->pivot->id_estacionamiento);
+                $inmueble->status="Libre";
+                $inmueble->save();
+                foreach ($key->mensualidad as $key2) {
+                    $buscar=PagosE::where('id_mens_estac',$key2->id);
+                    $buscar->delete();
+                }
+            }
+        }
+        //dd('----------');
+
         
-        foreach ($residente->inmuebles as $key) {
-            $inmueble=Inmuebles::find($key->pivot->id_inmueble);
-            $inmueble->status="Disponible";
-            $inmueble->save();
-            foreach ($key->mensualidades as $key2) {
-                $buscar=Pagos::where('id_mensualidad',$key2->id);
-                $buscar->delete();
-            }
-        }
-
-        foreach ($residente->estacionamientos as $key) {
-            $inmueble=Estacionamientos::find($key->pivot->id_estacionamiento);
-            $inmueble->status="Libre";
-            $inmueble->save();
-            foreach ($key->mensualidad as $key2) {
-                $buscar=PagosE::where('id_mens_estac',$key2->id);
-                $buscar->delete();
-            }
-        }
-
         $residente->delete();
 
         if($eliminar = User::find($id)){
