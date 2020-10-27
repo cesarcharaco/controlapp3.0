@@ -289,8 +289,12 @@
 	    .done(function(data) {
 	        if (data.length>0) {
 	            for (var i = 0; i < data.length; i++) {
-	               $("#campoResidentes").append('<option value="'+data[i].id+'">'+data[i].nombres+' '+data[i].apellidos+' - '+data[i].rut+'</option>');
-	               $("#campoResidentes2").append('<option value="'+data[i].id+'">'+data[i].nombres+' '+data[i].apellidos+' - '+data[i].rut+'</option>');
+	            	if ($('#option_mr_resi-'+data[i].id).val() == undefined || ($('#option_mr_resi-'+data[i].id).val() == null)) {
+		               $("#campoResidentes").append('<option id="option_mr_resi-'+data[i].id+'" value="'+data[i].id+'">'+data[i].nombres+' '+data[i].apellidos+' - '+data[i].rut+'</option>');
+		               $("#campoResidentes2").append('<option value="'+data[i].id+'">'+data[i].nombres+' '+data[i].apellidos+' - '+data[i].rut+'</option>');
+
+		            }else{
+		            }
 	            }
 	        }else{
 	        	$("#campoResidentes").attr('disabled',true);
