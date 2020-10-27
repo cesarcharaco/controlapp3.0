@@ -45,7 +45,6 @@
                                 </span>
                             </div>
                             <div class="alert" style="background-color: #e4eeee;" role="alert" style="border-radius: 30px;">
-                                <p style="font-family: italic;"><strong>Nota:</strong> La contraseña para ingresar será<br><strong>Rut</strong>-<strong>Verificador</strong></p>
                                 <strong style="font-family: italic;">La contraseña debe tener al menos 9 carácteres.</strong>
                             </div>
                             <div class="wrap-input100 validate-input" data-validate = "Password is required">

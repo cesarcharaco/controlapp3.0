@@ -218,23 +218,24 @@
                                     </th>
                                 </tr>
                                 <tr class="bg-info text-white" id="th1">
-                                    <th>#</th>
-                                    <th>
-                                        <span class="tituloTabla">Nombre</span>
-                                        <span class="tituloTabla2">T</span>
+                                    <th colspan="2" align="center">
+                                        <center>
+                                            <span class="PalabraEditarPago">Nombre</span>
+                                            <span class="PalabraEditarPago2">N</span>
+                                        </center>
                                     </th>
                                     <th>
-                                        <span class="tituloTabla">Horario Disponible</span>
-                                        <span class="tituloTabla2">@</span>
+                                        <span class="PalabraEditarPago">Horario Disponible</span>
+                                        <span class="PalabraEditarPago2">H</span>
                                     </th>
                                     <!-- <th>Estacionamientos</th> -->
                                     <th>
-                                        <span class="tituloTabla">Max. personas</span>
-                                        <span class="tituloTabla2">S</span>
+                                        <span class="PalabraEditarPago">Max. personas</span>
+                                        <span class="PalabraEditarPago2">Max.</span>
                                     </th>
                                     <th>
-                                        <span class="tituloTabla">Status</span>
-                                        <span class="tituloTabla2">S</span>
+                                        <span class="PalabraEditarPago">Status</span>
+                                        <span class="PalabraEditarPago2">S</span>
                                     </th>
                                     <!-- <th>Mensualidades</th> -->
                                 </tr>
@@ -242,20 +243,51 @@
                             <tbody>
                                 @foreach($instalaciones as $key)
                                     <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                                        <td>{{$key->id}}</td>
-                                        <td>{{$key->nombre}}</td>
+                                        <td colspan="2" align="center">{{$key->nombre}}</td>
                                         <td>
-                                            <ul>
                                             @foreach($key->dias as $key2)
-                                                <li>{{ $key2->dia }}</li>
+                                                <span class="PalabraEditarPago">
+                                                    <strong>{{ $key2->dia }}</strong><br>
+                                                </span>
+                                                @if($key2->dia == 'Lunes')
+                                                    <span class="PalabraEditarPago2">Lunes</span>
+                                                @elseif($key2->dia == 'Martes')
+                                                    <span class="PalabraEditarPago2">Martes</span>
+                                                @elseif($key2->dia == 'Miércoles')
+                                                    <span class="PalabraEditarPago2">Mier.</span>
+                                                @elseif($key2->dia == 'Jueves')
+                                                    <span class="PalabraEditarPago2">Jueves</span>
+                                                @elseif($key2->dia == 'Viernes')
+                                                    <span class="PalabraEditarPago2">Vie.</span>
+                                                @elseif($key2->dia == 'Sábado')
+                                                    <span class="PalabraEditarPago2">Sábado</span>
+                                                @else
+                                                    <span class="PalabraEditarPago2">Dom.</span>
+                                                @endif
                                             @endforeach
-                                            </ul>
                                         </td>
                                         <td>{{$key->max_personas}}</td>
-                                        <td>{{$key->status}}</td>
+                                        <td>
+                                            @if($key->status == 'Activo')
+                                                <span class="PalabraEditarPago">
+                                                    <strong class="text-success">{{$key->status}}</strong>
+                                                </span>
+                                                <span class="PalabraEditarPago2 text-success">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                                </span>
+                                            @else
+                                                <span class="PalabraEditarPago">
+                                                    <strong class="text-danger">{{$key->status}}</strong>
+                                                </span>
+                                                <span class="PalabraEditarPago2 text-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                                </span>
+                                            @endif
+                                        </td>
+
                                     </tr>
                                     <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
-                                        <td width="10">
+                                        <td width="10" colspan="2">
                                             <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
                                                 <span class="PalabraEditarPago ">Regresar</span>
                                                 <center>
@@ -264,9 +296,6 @@
                                                     </span>
                                                 </center>
                                             </button>
-                                        </td>
-                                        <td>
-                                            
                                             <span>{{$key->nombre}}</span>
                                         </td>
                                         <td style="display: none;">
@@ -294,7 +323,24 @@
                                         </td>
                                         <td>
                                             @foreach($key->dias as $key2)
-                                                <li>{{ $key2->dia }}</li>
+                                                <span class="PalabraEditarPago">
+                                                    <strong>{{ $key2->dia }}</strong><br>
+                                                </span>
+                                                @if($key2->dia == 'Lunes')
+                                                    <span class="PalabraEditarPago2">Lunes</span>
+                                                @elseif($key2->dia == 'Martes')
+                                                    <span class="PalabraEditarPago2">Martes</span>
+                                                @elseif($key2->dia == 'Miércoles')
+                                                    <span class="PalabraEditarPago2">Mier.</span>
+                                                @elseif($key2->dia == 'Jueves')
+                                                    <span class="PalabraEditarPago2">Jueves</span>
+                                                @elseif($key2->dia == 'Viernes')
+                                                    <span class="PalabraEditarPago2">Vie.</span>
+                                                @elseif($key2->dia == 'Sábado')
+                                                    <span class="PalabraEditarPago2">Sábado</span>
+                                                @else
+                                                    <span class="PalabraEditarPago2">Dom.</span>
+                                                @endif
                                             @endforeach
                                         </td>
                                     </tr>
