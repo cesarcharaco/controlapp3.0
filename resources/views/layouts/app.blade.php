@@ -942,7 +942,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Referencia</label>
-                                                                <input type="text" class="form-control" name="referencia" required>
+                                                                <input type="text" maxlength="20" max="20" class="form-control" name="referencia" required>
                                                             </div>
                                                         </div>
                                                     </div>
