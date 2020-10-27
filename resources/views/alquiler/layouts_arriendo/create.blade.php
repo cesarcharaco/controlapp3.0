@@ -52,12 +52,12 @@
                                 <div class="card-body">
                                   <div class="form-group">
                                     <label>Fecha</label>
-                                    <input type="date" name="fecha" class="form-control" id="fechaAlquiler">
+                                    <input type="date" max="<?php echo date('Y-m-d');?>" name="fecha" class="form-control" id="fechaAlquiler">
                                   </div>
                                       
                                   <div class="form-group" align="center">
                                     <label>Hora</label>
-                                    <input class="form-control" type="time" name="hora"  id="horaAlquiler">
+                                    <input type="text" id="basic-timepicker" class="form-control flatpickr-input" placeholder="Basic timepicker" readonly="readonly">
                                   </div>
                                 </div>
                               </div>

@@ -18,7 +18,7 @@
               <br>
               <i data-feather="minus"></i>
               <div class="form-group">
-                  <select name="id_dia[]" id="id_dia" class="form-control select2" multiple="multiple" required>
+                  <select name="id_dia[]" id="id_dia"class="form-control select2" multiple required>
                       @foreach($dias as $key)
                         <option value="{{$key->id}}">{{$key->dia}}</option>
                       @endforeach

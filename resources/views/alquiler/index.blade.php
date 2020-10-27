@@ -155,7 +155,7 @@
         </div>
     @endif
 
-    <div id="tablaInstalaciones" style="display: none;">
+    <div id="tablaInstalaciones">
         <div class="card border border-info rounded card-tabla shadow p-3 mb-5 bg-white rounded tabla-estilo">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -181,132 +181,9 @@
                 
 
                 <div class="col-md-8">
-                    <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
-                         <thead>
-                            <tr class="table-default text-white">
-                                <td colspan="5" align="center">
-                                    <div class="card border border-info" style="background-color: #D6EAF8" role="alert">
-                                        <span class="text-dark p-1 mb-1"><strong>Aviso: </strong><br>-Seleccione una instalación para ver mas opciones.</span>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="bg-primary text-white" id="th2" style="display: none">
-                                <th width="10"></th>
-                                <th>
-                                    <span class="PalabraEditarPago">Nombre</span>
-                                    <span class="PalabraEditarPago2">N</span>
-                                </th>
-                                <th colspan="2">
-                                    <center>
-                                        <span class="PalabraEditarPago">Opciones</span>
-                                        <span class="PalabraEditarPago2">O</span>
-                                    </center>
-                                </th>
-                                <th>
-                                    <span class="PalabraEditarPago">Dias</span>
-                                    <span class="PalabraEditarPago2">D</span>
-                                </th>
-                            </tr>
-                            <tr class="bg-info text-white" id="th1">
-                                <th>#</th>
-                                <th>
-                                    <span class="tituloTabla">Nombre</span>
-                                    <span class="tituloTabla2">T</span>
-                                </th>
-                                <th>
-                                    <span class="tituloTabla">Horario Disponible</span>
-                                    <span class="tituloTabla2">@</span>
-                                </th>
-                                <!-- <th>Estacionamientos</th> -->
-                                <th>
-                                    <span class="tituloTabla">Max. personas</span>
-                                    <span class="tituloTabla2">S</span>
-                                </th>
-                                <th>
-                                    <span class="tituloTabla">Status</span>
-                                    <span class="tituloTabla2">S</span>
-                                </th>
-                                <!-- <th>Mensualidades</th> -->
-                            </tr>
-                            @foreach($instalaciones as $key)
-                                <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
-                                    <td>{{$key->id}}</td>
-                                    <td>{{$key->nombre}}</td>
-                                    <td>
-                                        <ul>
-                                        @foreach($key->dias as $key2)
-                                            <li>{{ $key2->dia }}</li>
-                                        @endforeach
-                                        </ul>
-                                    </td>
-                                    <td>{{$key->max_personas}}</td>
-                                    <td>{{$key->status}}</td>
-                                </tr>
-                                <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
-                                    <td width="10">
-                                        <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
-                                            <span class="PalabraEditarPago ">Regresar</span>
-                                            <center>
-                                                <span class="PalabraEditarPago2 ">
-                                                    <i data-feather="arrow-left" class="iconosMetaforas2"></i>
-                                                </span>
-                                            </center>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        
-                                        <span>{{$key->nombre}}</span>
-                                    </td>
-                                    <td style="display: none;">
-                                    </td>
-                                    <td colspan="2" align="center">
-
-                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="editarInstalacion('{{$key->id}}','{{$key->nombre}}','{{$key->id_dia}}','{{$key->hora_desde}}','{{$key->hora_hasta}}','{{$key->max_personas}}','{{$key->status}}')">
-
-                                            <span class="PalabraEditarPago "><strong>Editar</strong></span>
-                                            <center>
-                                                <span class="PalabraEditarPago2 ">
-                                                    <strong><i data-feather="edit" class="iconosMetaforas2"></i></strong>
-                                                </span>
-                                            </center>
-                                        </a>
-
-                                        <a href="#" class="btn btn-warning btn-sm boton-tabla shadow botonesEditEli" style="border-radius: 5px;" onclick="eliminarInstalacion('{{$key->id}}')">
-                                            <span class="PalabraEditarPago ">Desactivar</span>
-                                            <center>
-                                                <span class="PalabraEditarPago2 ">
-                                                    <i data-feather="trash" class="iconosMetaforas2"></i>
-                                                </span>
-                                            </center>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        @foreach($key->dias as $key2)
-                                            <li>{{ $key2->dia }}</li>
-                                        @endforeach
-                                    </td>
-                                    
-
-                                </tr>
-                                <tr style="display: none;">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            @endforeach
-                        </thead>
-                        <tbody>
-
-
-
-                        </tbody>
-                    </table>
+                    
                 </div>
                 <div class="col-md-4">
-                    @include('alquiler.layouts_instalacion.create')
-                    @include('alquiler.layouts_instalacion.create')
                     @include('alquiler.layouts_instalacion.create')
                 </div>
             </div>
@@ -339,7 +216,7 @@
                 </div>
                 
 
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <table class="table dataTable data-table-basic table-curved table-striped tabla-estilo" style="width: 100%;">
                          <thead>
                             <tr class="table-default text-white">
