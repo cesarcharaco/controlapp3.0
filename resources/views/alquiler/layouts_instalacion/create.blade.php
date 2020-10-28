@@ -31,12 +31,16 @@
               </div>
               <br>
               <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <div class="form-group" align="center">
-                    <label>Desdea</label>
-                    <input class="form-control" id="example-time1" type="time" name="hora_desde">
-                  </div>
-                </div>
+                <div class='col-md-6'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker6'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
                 <div class="col-md-6">
                   <div class="form-group" align="center">
                     <label>Hasta</label>

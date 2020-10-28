@@ -449,7 +449,7 @@
                             </thead>
                             <tbody>
                                 @foreach($alquiler as $key)
-                                    <tr id="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
+                                    <tr class="vista1-{{$key->id}}" onclick="opcionesTabla(1,'{{$key->id}}')">
                                         <td>{{$key->id}}</td>
                                         <td>{{$key->residente->nombres}}</td>
                                         <td>{{$key->instalacion->nombre}}</td>
@@ -469,7 +469,7 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    <tr id="vista2-{{$key->id}}" class="table-success" style="display: none;">
+                                    <tr class="vista2-{{$key->id}}" class="table-success" style="display: none;">
                                         <td width="10">
                                             <button class="btn btn-success btn-sm boton-tabla shadow botonesEditEli" onclick="opcionesTabla(2,'{{$key->id}}')">
                                                 <span class="PalabraEditarPago ">Regresar</span>
