@@ -13,6 +13,8 @@ use App\Mensualidades;
 use App\MensualidadE;
 use App\Pagos;
 use App\PagosE;
+use App\Reportes;
+use App\Alquiler;
 class ResidentesController extends Controller
 {
     /**
@@ -464,7 +466,20 @@ class ResidentesController extends Controller
         }
         //dd('----------');
 
-        
+        if(count($residente->reportes)>0){
+            foreach($residente->reportes as $key){
+                $reporte=Reportes::find($key->id);
+                $reporte->delete();
+            }
+        }
+
+
+        if(count($residente->alquiler)>0){
+            foreach($residente->alquiler as $key){
+                $alquiler=Alquiler::find($key->id);
+                $alquiler->delete();
+            }
+        }
         $residente->delete();
 
         if($eliminar = User::find($id)){
