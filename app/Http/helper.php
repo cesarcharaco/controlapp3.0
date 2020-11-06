@@ -521,11 +521,16 @@ function buscar_pasarelas()
 	    ->where('residentes.id_admin',$id_admin)
 	    ->select('admins_has_pasarelas.*')
 	    ->get();
-	    foreach ($buscar_pasarelas as $key) {
-	    	$buscar_pasarelas = print("<b>" .$key->pasarelas->pasarela.":</b> <a href='".$key->link_pasarela."' target='_blank'>" .$key->link_pasarela."</a><br>");
-	    }
-		
-		return $buscar_pasarelas;
+	    $contar = count($buscar_pasarelas);
+
+	    if ($contar==0) {
+	    	$buscar_pasarelas = "Admin no posee pasarelas de pago registradas";
+	    	return $buscar_pasarelas;
+	    } else {
+		    foreach ($buscar_pasarelas as $key) {
+		    	echo("<b>" .$key->pasarelas->pasarela.":</b> <a href='".$key->link_pasarela."' target='_blank'>" .$key->link_pasarela."</a><br>");
+		    }
+		}
 	}
 }
 

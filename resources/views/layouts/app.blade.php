@@ -882,22 +882,17 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                              @if(contar_buscar_pasarelas() ==0)
-                                                <center><h5>Admin no posee pasarelas de pago registradas</h5></center><br>
-                                                <hr>
-                                              @else
-                                                <center><h5>Pasarelas de pago de tu Admin</h5></center><br>
-                                                <p>{{ buscar_pasarelas() }}</p>
-                                                <hr>
-                                              @endif
-                                                <center>
-                                                    <div id="muestraMesesAPagar">
-                                                        
-                                                    </div>
-                                                    <div id="muestraMesesAPagar2" style="display: none;">
-                                                        <h3 align="center">No hay inmuebles que pagar</h3>
-                                                    </div>
-                                                </center>
+                                              <center><h5>Pasarelas de pago de tu Admin</h5></center><br>
+                                              <center><p>{{ buscar_pasarelas() }}</p></center>
+                                              <hr>
+                                              <center>
+                                                  <div id="muestraMesesAPagar">
+                                                      
+                                                  </div>
+                                                  <div id="muestraMesesAPagar2" style="display: none;">
+                                                      <h3 align="center">No hay inmuebles que pagar</h3>
+                                                  </div>
+                                              </center>
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
@@ -926,69 +921,64 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                              @if(contar_buscar_pasarelas() ==0)
-                                                <center><h5>Admin no posee pasarelas de pago registradas</h5></center><br>
-                                                <hr>
-                                              @else
-                                                <center><h5>Pasarelas de pago de tu Admin</h5></center><br>
-                                                <p>{{ buscar_pasarelas() }}</p>
-                                                <hr>
-                                              @endif
-                                                <center>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Multas/Recargas</label>
-                                                                <select class="form-control select2" name="id_mensMulta[]" id="MultasPagarResi" onchange="montoTotalMulta(this.value)">
-                                                                    
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Referencia</label>
-                                                                <input type="text" maxlength="20" max="20" class="form-control" name="referencia" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @if(\Auth::user()->tipo_usuario=="admin")
-                                                        <div class="card border border-info shadow p-3 mb-5 bg-white">
-                                                            <div class="row" id="mis_mr">
-                                                                <div class="col-md-12">
-                                                                    <table id="mrSeleccionado" class="table tabla-estilo" style="width: 100%;" alt="Max-width 100%">
-                                                                        
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @else
-                                                        <div class="card border border-info shadow p-3 mb-5 bg-white">
-                                                            <div class="row" id="mis_mr">
-                                                                <div class="col-md-12">
-                                                                    <table id="mrSeleccionado2" class="table tabla-estilo" style="width: 100%;" alt="Max-width 100%">
-                                                                        
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endif
+                                              <center><h5>Pasarelas de pago de tu Admin</h5></center><br>
+                                              <center><p>{{ buscar_pasarelas() }}</p></center>
+                                              <hr>
+                                              <center>
+                                                  <div class="row">
+                                                      <div class="col-md-12">
+                                                          <div class="form-group">
+                                                              <label>Multas/Recargas</label>
+                                                              <select class="form-control select2" name="id_mensMulta[]" id="MultasPagarResi" onchange="montoTotalMulta(this.value)">
+                                                                  
+                                                              </select>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <div class="row">
+                                                      <div class="col-md-12">
+                                                          <div class="form-group">
+                                                              <label>Referencia</label>
+                                                              <input type="text" maxlength="20" max="20" class="form-control" name="referencia" required>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  @if(\Auth::user()->tipo_usuario=="admin")
+                                                      <div class="card border border-info shadow p-3 mb-5 bg-white">
+                                                          <div class="row" id="mis_mr">
+                                                              <div class="col-md-12">
+                                                                  <table id="mrSeleccionado" class="table tabla-estilo" style="width: 100%;" alt="Max-width 100%">
+                                                                      
+                                                                  </table>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  @else
+                                                      <div class="card border border-info shadow p-3 mb-5 bg-white">
+                                                          <div class="row" id="mis_mr">
+                                                              <div class="col-md-12">
+                                                                  <table id="mrSeleccionado2" class="table tabla-estilo" style="width: 100%;" alt="Max-width 100%">
+                                                                      
+                                                                  </table>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  @endif
 
-                                                    <label align="center">Total a Pagar</label>
-                                                    <div class="card border border-dark shadow p-1 mb-3 bg-white">
-                                                        <div class="row" id="mis_mr">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <span style="font-size: 20px" class="text-dark" id="TotalPagar">0</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div style="display: none;" id="idMultaForm">
-                                                        
-                                                    </div>
-                                                </center>
+                                                  <label align="center">Total a Pagar</label>
+                                                  <div class="card border border-dark shadow p-1 mb-3 bg-white">
+                                                      <div class="row" id="mis_mr">
+                                                          <div class="col-md-12">
+                                                              <div class="form-group">
+                                                                  <span style="font-size: 20px" class="text-dark" id="TotalPagar">0</span>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <div style="display: none;" id="idMultaForm">
+                                                      
+                                                  </div>
+                                              </center>
                                             </div>
                                             <div class="modal-footer">
                                                 <input type="hidden" name="opcion" id="opcion" value="1">
